@@ -1,0 +1,11 @@
+name: PHPStan
+on: [push]
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: php-actions/phpstan@v3
+        with:
+          php_version: 8.1
+          configuration: phpstan.neon
