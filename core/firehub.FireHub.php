@@ -41,6 +41,8 @@ final class FireHub {
      * @since 0.1.4.pre-alpha.M1
      *
      * @throws Error if system cannot load Autoload file.
+     * @throws Error If class name is empty.
+     * @throws Error If there is a problem suffix.
      *
      * @return $this This object.
      */
@@ -59,6 +61,8 @@ final class FireHub {
      * @since 0.1.4.pre-alpha.M1
      *
      * @throws Error if system cannot load Autoload file.
+     * @throws Error If class name is empty.
+     * @throws Error If there is a problem suffix.
      *
      * @return $this This object.
      */
@@ -103,6 +107,8 @@ final class FireHub {
      * @since 0.1.4.pre-alpha.M1
      *
      * @throws Error if system cannot load Autoload file.
+     * @throws Error If class name is empty.
+     * @throws Error If there is a problem suffix.
      *
      * @return $this This object.
      */
