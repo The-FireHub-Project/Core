@@ -213,7 +213,7 @@ final class Autoload {
      *
      * @return string|false Class name or false if class components are empty.
      */
-    public function class (array &$class_name_components):string|false {
+    private function class (array &$class_name_components):string|false {
 
         $class = end($class_name_components);
 
