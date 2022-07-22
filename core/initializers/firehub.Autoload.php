@@ -12,7 +12,9 @@
  * @license OSL Open Source License version 3 - [https://opensource.org/licenses/OSL-3.0](https://opensource.org/licenses/OSL-3.0)
  *
  * @package FireHub\Initializers
+ *
  * @version 1.0
+ * @version 1.1 Added low-level classes
  */
 
 namespace FireHub\Initializers;
@@ -20,6 +22,7 @@ namespace FireHub\Initializers;
 use FireHub\Initializers\Enums\ {
     Prefix, Suffix
 };
+use FireHub\Support\LowLevel\Arr;
 use Error;
 
 use const FireHub\Initializers\Constants\DS;
@@ -33,17 +36,13 @@ use function class_exists;
 use function sprintf;
 use function explode;
 use function is_file;
-use function end;
-use function array_pop;
-use function reset;
-use function array_shift;
+use function is_string;
 use function strtolower;
-use function count;
-use function array_unshift;
 use function implode;
 
 require FIREHUB_ROOT.DS.'initializers/enums/firehub.Prefix.php';
 require FIREHUB_ROOT.DS.'initializers/enums/firehub.Suffix.php';
+require FIREHUB_ROOT.DS.'support/lowlevel/firehub.Arr.php';
 
 /**
  * ### Autoload for called classes
@@ -205,7 +204,9 @@ final class Autoload {
 
     /**
      * ### Extract class name from class components
+     *
      * @since 0.1.4.pre-alpha.M1
+     * @since 0.2.0.pre-alpha.M1 Added low-level classes
      *
      * @param array<int, string> &$class_name_components <p>
      * List of class name components.
@@ -215,11 +216,11 @@ final class Autoload {
      */
     private function class (array &$class_name_components):string|false {
 
-        $class = end($class_name_components);
+        $class = Arr::last($class_name_components);
 
-        array_pop($class_name_components);
+        Arr::pop($class_name_components);
 
-        return $class;
+        return is_string($class) ? $class : false;
 
     }
 
@@ -227,7 +228,9 @@ final class Autoload {
      * ### Extract prefix from first component in class components
      *
      * Prefix must be listed in \FireHub\Initializers\Enums\Prefix to work.
+     *
      * @since 0.1.4.pre-alpha.M1
+     * @since 0.2.0.pre-alpha.M1 Added low-level classes
      *
      * @param array<int, string> &$class_name_components <p>
      * List of class name components.
@@ -237,12 +240,12 @@ final class Autoload {
      */
     private function prefix (array &$class_name_components):Prefix|false {
 
-        $prefix = reset($class_name_components);
+        $prefix = Arr::first($class_name_components);
 
-        array_shift($class_name_components);
+        Arr::shift($class_name_components);
 
         return $prefix
-            ? Prefix::tryFrom(strtolower($prefix))
+            ? Prefix::tryFrom(is_string($prefix) ? strtolower($prefix) : '')
                 ?? false
             : false;
 
@@ -252,7 +255,9 @@ final class Autoload {
      * ### Extract suffix from class name
      *
      * Suffix must be listed in \FireHub\Initializers\Enums\Suffix to work.
+     *
      * @since 0.1.4.pre-alpha.M1
+     * @since 0.2.0.pre-alpha.M1 Added low-level classes
      *
      * @param string &$class <p>
      * Class name.
@@ -266,7 +271,7 @@ final class Autoload {
 
         $components = explode('_', $class);
 
-        $suffix = count($components) > 1 ? strtolower($components[1]) : false;
+        $suffix = Arr::count($components) > 1 ? strtolower($components[1]) : false;
 
         $class = $components[0];
 
@@ -279,7 +284,9 @@ final class Autoload {
 
     /**
      * ### Add phar extension to first class component
+     *
      * @since 0.1.4.pre-alpha.M1
+     * @since 0.2.0.pre-alpha.M1 Added low-level classes
      *
      * @param array<int, string> &$class_name_components <p>
      * List of class name components.
@@ -293,9 +300,9 @@ final class Autoload {
 
         $phar = $class_name_components[0];
 
-        array_shift($class_name_components);
+        Arr::shift($class_name_components);
 
-        array_unshift($class_name_components, $phar . '.phar');
+        Arr::unshift($class_name_components, $phar . '.phar');
 
     }
 
