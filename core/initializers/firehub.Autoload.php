@@ -220,7 +220,7 @@ final class Autoload {
 
         Arr::pop($class_name_components);
 
-        return is_string($class) ? $class : false;
+        return !is_null($class) ? $class : false;
 
     }
 
@@ -245,7 +245,7 @@ final class Autoload {
         Arr::shift($class_name_components);
 
         return $prefix
-            ? Prefix::tryFrom(is_string($prefix) ? strtolower($prefix) : '')
+            ? Prefix::tryFrom(strtolower($prefix))
                 ?? false
             : false;
 
