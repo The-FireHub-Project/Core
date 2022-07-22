@@ -36,7 +36,7 @@ use function class_exists;
 use function sprintf;
 use function explode;
 use function is_file;
-use function is_string;
+use function is_null;
 use function strtolower;
 use function implode;
 
