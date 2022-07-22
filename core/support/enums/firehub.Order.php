@@ -8,7 +8,7 @@
  * @copyright 2022 FireHub Web Application Framework
  * @license OSL Open Source License version 3 - [https://opensource.org/licenses/OSL-3.0](https://opensource.org/licenses/OSL-3.0)
  *
- * @package FireHub\Support\Enums
+ * @package FireHub\Support
  * @version 1.0
  */
 
@@ -18,7 +18,7 @@ namespace FireHub\Support\Enums;
  * ### Ordering enum
  * @since 0.2.0.pre-alpha.M2
  *
- * @package FireHub\Support\Enums
+ * @package FireHub\Support
  */
 enum Order:string {
 
