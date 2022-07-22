@@ -7,6 +7,7 @@ package FireHub <<Node>> #FFEBEE {
             - bootloaders ():self
             - registerConstants ():self
             - autoload ():self
+            - kernel (Kernel $kernel):string
         }
     }
 }
