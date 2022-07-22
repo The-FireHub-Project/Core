@@ -81,11 +81,14 @@ final class Iterator {
      * ### Copy the iterator into an array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param Traversable<mixed> $iterator <p>
-     * The iterator being counted.
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param Traversable<TKey, TValue> $iterator <p>
+     * The iterator being copied.
      * </p>
      *
-     * @return array<int|string, mixed> An array containing items of the iterator.
+     * @return array<TKey, TValue> An array containing items of the iterator.
      */
     public static function toArray (Traversable $iterator):array {
 
