@@ -1122,7 +1122,7 @@ final class Arr {
      * The array.
      * </p>
      *
-     * @return mixed First value from array.
+     * @return mixed First value from array or null if array is empty.
      */
     public static function first (array $array):mixed {
 
@@ -1138,7 +1138,7 @@ final class Arr {
      * The array.
      * </p>
      *
-     * @return mixed Last value from array.
+     * @return mixed Last value from array or null if array is empty.
      */
     public static function last (array $array):mixed {
 
@@ -1154,7 +1154,7 @@ final class Arr {
      * The array.
      * </p>
      *
-     * @return null|int|string First key from array.
+     * @return null|int|string First key from array or null if array is empty.
      */
     public static function firstKey (array $array):null|int|string {
 
@@ -1170,7 +1170,7 @@ final class Arr {
      * The array.
      * </p>
      *
-     * @return null|int|string First key from array.
+     * @return null|int|string First key from array or null if array is empty.
      */
     public static function lastKey (array $array):null|int|string {
 
