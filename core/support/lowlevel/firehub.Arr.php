@@ -174,16 +174,19 @@ final class Arr {
      * ### Counts all the values of an array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * The array of values to count.
      * </p>
-     * @param null|int|string $key [optional] <p>
+     * @param null|TKey $key [optional] <p>
      * Key to count if counting multidimensional array.
      * </p>
      *
      * @throws Error If you have to provide key when counting multidimensional array.
      *
-     * @return array<int|string, int> An associative array of values from input as keys and their count as value.
+     * @return array<int, int> An associative array of values from input as keys and their count as value.
      */
     public static function countValues (array $array, null|int|string $key = null):array {
 
@@ -222,11 +225,14 @@ final class Arr {
      * ### Removes an item at the beginning of an array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> &$array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> &$array <p>
      * Array to shift.
      * </p>
      *
-     * @return mixed The shifted value, or null if array is empty or is not an array.
+     * @return null|TValue The shifted value, or null if array is empty or is not an array.
      */
     public static function shift (array &$array):mixed {
 
@@ -257,11 +263,14 @@ final class Arr {
      * ### Pop the element off the end of array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> &$array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> &$array <p>
      * Array to pop.
      * </p>
      *
-     * @return mixed The last value of array. If array is empty (or is not an array), null will be returned.
+     * @return null|TValue The last value of array. If array is empty (or is not an array), null will be returned.
      */
     public static function pop (array &$array):mixed {
 
@@ -377,29 +386,26 @@ final class Arr {
      * ### Creates an array by using one array for keys and another for its values
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $keys <p>
+     * @template TKey of array-key
+     * @template TValue of array-key
+     *
+     * @param array<TKey, TValue> $keys <p>
      * Array of values to be used as keys. Illegal values for key will be converted to string.
      * </p>
-     * @param array<int|string, mixed> $values <p>
+     * @param array<TKey, mixed> $values <p>
      * Array of values to be used as values on combined array.
      * </p>
      *
      * @throws Error If one of the original key is neither string nor integer.
      * @throws Error If current and combined arrays need to have the same number of items.
      *
-     * @return array<int|string, mixed> The combined array, false if the number of elements for each array isn't equal or if the arrays are empty.
+     * @return array<TValue, mixed> The combined array, false if the number of elements for each array isn't equal or if the arrays are empty.
      */
     public static function combine (array $keys, array $values):array {
 
         try {
 
-            foreach ($keys as $value) {
-
-                $items[] = is_string($value) || is_int($value) ? $value : throw new Error('One of the original key is neither string nor integer');
-
-            }
-
-            return array_combine($items ?? [], $values);
+            return array_combine($keys, $values);
 
         } catch (Throwable $error) {
 
@@ -425,9 +431,9 @@ final class Arr {
      * Allows you to search second dimension on multidimensional array.
      * </p>
      *
-     * @return false|int|string The key for needle if it is found in the array, false otherwise.
+     * @return int|string|false The key for needle if it is found in the array, false otherwise.
      */
-    public static function search (mixed $value, array $array, int|string|false $second_dimension_column = false):false|int|string {
+    public static function search (mixed $value, array $array, int|string|false $second_dimension_column = false):int|string|false {
 
         return $second_dimension_column
             ? array_search($value, self::combine(self::keys($array), self::column($array, $second_dimension_column)), true)
@@ -439,14 +445,17 @@ final class Arr {
      * ### Searches the array for a given value and returns the list of corresponding keys if successful
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param mixed $value <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param TValue $value <p>
      * The searched value.
      * </p>
-     * @param array<int|string, mixed> $array <p>
+     * @param array<TKey, TValue> $array <p>
      * Array to search.
      * </p>
      *
-     * @return array<int, int|string> The keys for needle if it is found in the array.
+     * @return array<int, TKey> The keys for needle if it is found in the array.
      */
     public static function searchAll (mixed $value, array $array):array {
 
@@ -458,14 +467,17 @@ final class Arr {
      * ### Computes the difference of arrays
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * The array to compare from.
      * </p>
-     * @param array<int|string, mixed> ...$excludes [optional] <p>
+     * @param array<TKey, TValue> ...$excludes [optional] <p>
      * An array to compare against.
      * </p>
      *
-     * @return array<int|string, mixed> An array containing all the entries from array1 that are not present in any of the other arrays.
+     * @return array<TKey, TValue> An array containing all the entries from array1 that are not present in any of the other arrays.
      */
     public static function difference (array $array, array ...$excludes):array {
 
@@ -477,14 +489,17 @@ final class Arr {
      * ### Computes the difference of arrays using keys for comparison
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * The array to compare from.
      * </p>
-     * @param array<int|string, mixed> ...$excludes [optional] <p>
+     * @param array<TKey, TValue> ...$excludes [optional] <p>
      * An array to compare against.
      * </p>
      *
-     * @return array<int|string, mixed> An array containing all the entries from array1 that are not present in any of the other arrays.
+     * @return array<TKey, TValue> An array containing all the entries from array1 that are not present in any of the other arrays.
      */
     public static function differenceKey (array $array, array ...$excludes):array {
 
@@ -496,14 +511,17 @@ final class Arr {
      * ### Computes the difference of arrays with additional index check
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * The array to compare from.
      * </p>
-     * @param array<int|string, mixed> ...$excludes [optional] <p>
+     * @param array<TKey, TValue> ...$excludes [optional] <p>
      * An array to compare against.
      * </p>
      *
-     * @return array<int|string, mixed> An array containing all the entries from array1 that are not present in any of the other arrays.
+     * @return array<TKey, TValue> An array containing all the entries from array1 that are not present in any of the other arrays.
      */
     public static function differenceAssoc (array $array, array ...$excludes):array {
 
@@ -515,11 +533,14 @@ final class Arr {
      * ### Removes duplicate values from an array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * The array to remove duplicates.
      * </p>
      *
-     * @return array<int|string, mixed> The filtered array.
+     * @return array<TKey, TValue> The filtered array.
      */
     public static function unique (array $array):array {
 
@@ -531,11 +552,14 @@ final class Arr {
      * ### Removes unique values from an array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * The array to remove unique values.
      * </p>
      *
-     * @return array<int|string, mixed> An array containing all the entries from array1 that are not present in any of the other arrays.
+     * @return array<TKey, TValue> An array containing all the entries from array1 that are not present in any of the other arrays.
      */
     public static function duplicates (array $array):array {
 
@@ -547,13 +571,16 @@ final class Arr {
      * ### Exchanges all keys with their associated values in array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue of int|string
+     *
+     * @param array<TKey, TValue> $array <p>
      * The array to flip.
      * </p>
      *
      * @throws Error If method flip requires that all values be either int or string.
      *
-     * @return array<int|string, mixed> The flipped array.
+     * @return array<TValue, TKey> The flipped array.
      */
     public static function flip (array $array):array {
 
@@ -576,7 +603,7 @@ final class Arr {
      * @param array<int|string, mixed> $array <p>
      * The array to filter items.
      * </p>
-     * @param array<int|string, mixed> $keys <p>
+     * @param array<int|string, int|string> $keys <p>
      * List of keys to return.
      * </p>
      *
@@ -597,7 +624,7 @@ final class Arr {
      * @param array<int|string, mixed> $array <p>
      * The array to filter items.
      * </p>
-     * @param array<int|string, mixed> $keys <p>
+     * @param array<int|string, int|string> $keys <p>
      * List of keys to return.
      * </p>
      *
@@ -637,7 +664,9 @@ final class Arr {
      * ### Pick one or more random values out of the array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TValue
+     *
+     * @param array<int|string, TValue> $array <p>
      * Array from we are picking random items.
      * </p>
      * @param int $number [optional] <p>
@@ -649,7 +678,7 @@ final class Arr {
      *
      * @throws Error If asked number of items is greater than total number of items in array.
      *
-     * @return mixed If you are picking only one entry, returns the key for a random entry. Otherwise, it returns an array of keys for the random entries.
+     * @return array<int|string, TValue> If you are picking only one entry, returns the key for a random entry. Otherwise, it returns an array of keys for the random entries.
      */
     public static function random (array $array, int $number = 1, bool $preserve_keys = false):mixed {
 
@@ -704,14 +733,17 @@ final class Arr {
      * ### Reverse the order of array items
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * Array to reverse.
      * </p>
      * @param bool $preserve_keys [optional] <p>
      * Whether you want to preserve keys from original array or not.
      * </p>
      *
-     * @return array<int|string, mixed> The filtered array.
+     * @return array<TKey, TValue> The filtered array.
      */
     public static function reverse (array $array, bool $preserve_keys = false):array {
 
@@ -723,14 +755,17 @@ final class Arr {
      * ### Computes the intersection of arrays
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * The array with main values to check.
      * </p>
-     * @param array<int|string, mixed> ...$arrays <p>
+     * @param array<TKey, TValue> ...$arrays <p>
      * An array to compare values against.
      * </p>
      *
-     * @return array<int|string, mixed> The filtered array.
+     * @return array<TKey, TValue> The filtered array.
      */
     public static function intersect (array $array, array ...$arrays):array {
 
@@ -742,14 +777,17 @@ final class Arr {
      * ### Computes the intersection of arrays using keys for comparison
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * The array with main values to check.
      * </p>
-     * @param array<int|string, mixed> ...$arrays <p>
+     * @param array<TKey, TValue> ...$arrays <p>
      * An array to compare values against.
      * </p>
      *
-     * @return array<int|string, mixed> The filtered array.
+     * @return array<TKey, TValue> The filtered array.
      */
     public static function intersectKey (array $array, array ...$arrays):array {
 
@@ -761,14 +799,17 @@ final class Arr {
      * ### Computes the intersection of arrays with additional index check
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * The array with main values to check.
      * </p>
-     * @param array<int|string, mixed> ...$arrays <p>
+     * @param array<TKey, TValue> ...$arrays <p>
      * An array to compare values against.
      * </p>
      *
-     * @return array<int|string, mixed> The filtered array.
+     * @return array<TKey, TValue> The filtered array.
      */
     public static function intersectAssoc (array $array, array ...$arrays):array {
 
@@ -780,14 +821,17 @@ final class Arr {
      * ### Shuffle array items
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * An array to shuffle.
      * </p>
      * @param bool $preserve_keys [optional] <p>
      * Whether you want to preserve keys from original array or not.
      * </p>
      *
-     * @return array<int|string, mixed> Shuffled array.
+     * @return array<TKey, TValue> Shuffled array.
      */
     public static function shuffle (array &$array, bool $preserve_keys = false):array {
 
@@ -823,7 +867,10 @@ final class Arr {
      * ### Extract a slice of the array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * Array to slice.
      * </p>
      * @param int $offset <p>
@@ -837,10 +884,10 @@ final class Arr {
      * </p>
      * @param bool $preserve_keys [optional] <p>
      * Note that array_slice will reorder and reset the array indices by default.
-     * You can change this behaviour by setting preserve_keys to true
+     * You can change this behaviour by setting preserve_keys to true.
      * </p>
      *
-     * @return array<int|string, mixed> Sliced array.
+     * @return array<TKey, TValue> Sliced array.
      */
     public static function slice (array $array, int $offset, ?int $length = null, bool $preserve_keys = false):array {
 
@@ -852,7 +899,10 @@ final class Arr {
      * ### Remove a portion of the array and replace it with something else
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * Array to splice.
      * </p>
      * @param int $offset <p>
@@ -864,13 +914,13 @@ final class Arr {
      * If length is specified and is positive, then that many elements will be removed.
      * If length is specified and is negative then the end of the removed portion will be that many elements from the end of the array.
      * </p>
-     * @param array<int|string, mixed> $replacement [optional] <p>
+     * @param array<TKey, TValue> $replacement [optional] <p>
      * If replacement array is specified, then the removed elements are replaced with elements from this array.
      * If offset and length are such that nothing is removed, then the elements from the replacement array or array are inserted in the place specified by the offset.
      * Keys in replacement array are not preserved.
      * </p>
      *
-     * @return array<int|string, mixed> Spliced array.
+     * @return array<TKey, TValue> Spliced array.
      */
     public static function splice (array &$array, int $offset, ?int $length = null, array $replacement = []):array {
 
@@ -882,14 +932,17 @@ final class Arr {
      * ### Remove number of items from the beginning of the array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * Array to skip.
      * </p>
      * @param int $offset <p>
      * Number of items to skip.
      * </p>
      *
-     * @return array<int|string, mixed> An array without skipped items.
+     * @return array<TKey, TValue> An array without skipped items.
      */
     public static function skip (array $array, int $offset) {
 
@@ -995,7 +1048,10 @@ final class Arr {
      * ### Sorts array by multiple fields
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * Array to sort.
      * </p>
      * @param array<int, array<int, string|\FireHub\Support\Enums\Order>> $fields <p>
@@ -1008,7 +1064,7 @@ final class Arr {
      * @throws Error If key does not exist.
      * @throws Error If key is missing somewhere.
      *
-     * @return array<int|string, mixed> Sorter array.
+     * @return array<TKey, TValue> Sorter array.
      */
     public static function sortByMany (array $array, array $fields):array {
 
@@ -1073,7 +1129,7 @@ final class Arr {
      *
      * @return bool True if key exist in array, false otherwise.
      */
-    public static function keyExist (int|string $key,  array $array):bool {
+    public static function keyExist (int|string $key, array $array):bool {
 
         return array_key_exists($key, $array);
 
@@ -1083,16 +1139,19 @@ final class Arr {
      * ### Return all the keys or a subset of the keys of an array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * An array containing keys to return.
      * </p>
-     * @param mixed $filter [optional] <p>
+     * @param TValue $filter [optional] <p>
      * If specified, then only keys containing these values are returned.
      * </p>
      *
-     * @return array<int, int|string> An array of all the keys in input.
+     * @return array<int, TKey> An array of all the keys in input.
      */
-    public static function keys (array $array, mixed $filter = null) {
+    public static function keys (array $array, mixed $filter = null):array {
 
         return is_null($filter) ? array_keys($array) : array_keys($array, $filter, true);
 
@@ -1102,11 +1161,13 @@ final class Arr {
      * ### Return all the values from array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TValue
+     *
+     * @param array<int|string, TValue> $array <p>
      * The array.
      * </p>
      *
-     * @return array<int, mixed> An indexed array of values.
+     * @return array<int, TValue> An indexed array of values.
      */
     public static function values (array $array):array {
 
@@ -1118,11 +1179,14 @@ final class Arr {
      * ### Get first value from array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * The array.
      * </p>
      *
-     * @return mixed First value from array or null if array is empty.
+     * @return null|TValue First value from array or null if array is empty.
      */
     public static function first (array $array):mixed {
 
@@ -1134,11 +1198,14 @@ final class Arr {
      * ### Gat last value from array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * The array.
      * </p>
      *
-     * @return mixed Last value from array or null if array is empty.
+     * @return null|TValue Last value from array or null if array is empty.
      */
     public static function last (array $array):mixed {
 
@@ -1150,11 +1217,14 @@ final class Arr {
      * ### Get first key from array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * The array.
      * </p>
      *
-     * @return null|int|string First key from array or null if array is empty.
+     * @return null|TKey First key from array or null if array is empty.
      */
     public static function firstKey (array $array):null|int|string {
 
@@ -1163,14 +1233,17 @@ final class Arr {
     }
 
     /**
-     * ### Gat last key from array
+     * ### Get last key from array
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param array<int|string, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * The array.
      * </p>
      *
-     * @return null|int|string First key from array or null if array is empty.
+     * @return null|TKey First key from array or null if array is empty.
      */
     public static function lastKey (array $array):null|int|string {
 
@@ -1213,13 +1286,13 @@ final class Arr {
     }
 
     /**
-     * ### Counts all elements in an array
+     * ### Create an array containing a range of elements
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param string|int|float $start <p>
+     * @param int|float|string $start <p>
      * First value of the sequence.
      * </p>
-     * @param string|int|float $end <p>
+     * @param int|float|string $end <p>
      * The sequence is ended upon reaching the end value.
      * </p>
      * @param int|float $step [optional] <p>
@@ -1230,9 +1303,9 @@ final class Arr {
      * @throws Error If Your start is bigger then the end of array.
      * @throws Error If Your step is bigger then the end of array.
      *
-     * @return array<int, string|int|float> An array of elements from start to end, inclusive.
+     * @return array<int, int|float|string> An array of elements from start to end, inclusive.
      */
-    public static function range (string|int|float $start, string|int|float $end, int|float $step = 1):array {
+    public static function range (int|float|string $start, int|float|string $end, int|float $step = 1):array {
 
         try {
 
