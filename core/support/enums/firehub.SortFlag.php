@@ -15,7 +15,7 @@
 namespace FireHub\Support\Enums;
 
 /**
- * ### Sorting collection enum
+ * ### Sorting enum
  * @since 0.2.0.pre-alpha.M2
  *
  * @package FireHub\Support
