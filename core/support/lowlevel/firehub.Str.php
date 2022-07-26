@@ -33,22 +33,25 @@ use function implode;
 use function explode;
 use function strcmp;
 use function strcasecmp;
-use function strstr;
-use function stristr;
-use function strrchr;
+use function mb_strstr;
+use function mb_stristr;
+use function mb_strrchr;
+use function mb_strrichr;
 use function strpbrk;
 use function strspn;
 use function strcspn;
 use function is_int;
 use function strip_tags;
-use function strpos;
-use function stripos;
+use function mb_strpos;
+use function mb_stripos;
 use function stripslashes;
 use function mb_substr;
 use function mb_substr_count;
 use function strtr;
 use function trim;
 use function wordwrap;
+use function mb_convert_encoding;
+use function mb_detect_encoding;
 use function ord;
 use function chr;
 use function str_word_count;
@@ -500,14 +503,17 @@ final class Str {
      * @param bool $case_sensitive [optional] <p>
      * Is string to find case-sensitive or not.
      * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
      *
      * @return string|false The portion of string, or false if needle is not found.
      */
-    public static function firstPart (string $find, string $string, bool $before_needle = false, bool $case_sensitive = true):string|false {
+    public static function firstPart (string $find, string $string, bool $before_needle = false, bool $case_sensitive = true, ?Encoding $encoding = null):string|false {
 
-        if ($case_sensitive) return strstr($string, $find);
+        if ($case_sensitive) return mb_strstr($string, $find, $before_needle, $encoding?->value);
 
-        return stristr($string, $find);
+        return mb_stristr($string, $find, $before_needle, $encoding?->value);
 
     }
 
@@ -521,12 +527,23 @@ final class Str {
      * @param string $string <p>
      * The string being searched.
      * </p>
+     * @param bool $before_needle [optional] <p>
+     * If true, returns the part of the string before the last occurrence (excluding the find string).
+     * </p>
+     * @param bool $case_sensitive [optional] <p>
+     * Is string to find case-sensitive or not.
+     * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
      *
      * @return string|false The portion of string, or false if needle is not found.
      */
-    public static function lastPart (string $find, string $string):string|false {
+    public static function lastPart (string $find, string $string, bool $before_needle = false, bool $case_sensitive = true, ?Encoding $encoding = null):string|false {
 
-        return strrchr($string, $find);
+        if ($case_sensitive) return mb_strrchr($string, $find, $before_needle, $encoding?->value);
+
+        return mb_strrichr($string, $find, $before_needle, $encoding?->value);
 
     }
 
@@ -682,14 +699,17 @@ final class Str {
      * @param bool $case_sensitive [optional] <p>
      * Search case-sensitive position.
      * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
      *
      * @return int|false
      */
-    public static function position (string $search, string $string, int $offset = 0, bool $case_sensitive = true):int|false {
+    public static function position (string $search, string $string, int $offset = 0, bool $case_sensitive = true, ?Encoding $encoding = null):int|false {
 
-        if ($case_sensitive) return strpos($string, $search, $offset);
+        if ($case_sensitive) return mb_strpos($string, $search, $offset, $encoding?->value);
 
-        return stripos($string, $search, $offset);
+        return mb_stripos($string, $search, $offset, $encoding?->value);
 
     }
 
@@ -848,6 +868,51 @@ final class Str {
     public static function wrap (string $string, int $width = 75, string $break = "\n", bool $cut_long_words = false):string {
 
         return wordwrap($string, $width, $break, $cut_long_words);
+
+    }
+
+    /**
+     * ### Convert a string from one character encoding to another
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $string <p>
+     * The string to be converted.
+     * </p>
+     * @param \FireHub\Support\Enums\Encoding $to <p>
+     * The desired encoding of the result.
+     * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $from [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
+     *
+     * @return string|false Encoded string or false on failure.
+     */
+    public static function convertEncoding (string $string, Encoding $to, ?Encoding $from = null):string|false {
+
+        return mb_convert_encoding($string, $to->value, $from?->value);
+
+    }
+
+    /**
+     * ### Detect character encoding
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $string <p>
+     * The string to detect encoding.
+     * </p>
+     *
+     * @return string|false The detected character encoding, or false if the string is not valid in any of the listed encodings.
+     */
+    public static function detectEncoding (string $string):string|false {
+
+        $cases = [];
+        foreach (Encoding::cases() as $case) {
+
+            $cases[] = $case->value;
+
+        }
+
+        return mb_detect_encoding($string, $cases, true);
 
     }
 
