@@ -340,7 +340,7 @@ final class Str {
      * ### Split a string by a string
      * @since 0.2.0.pre-alpha.M2
      *
-     * @param non-empty-string $string <p>
+     * @param string $string <p>
      * String being exploded.
      * </p>
      * @param string $separator <p>
