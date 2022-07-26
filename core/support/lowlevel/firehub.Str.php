@@ -15,7 +15,7 @@
 namespace FireHub\Support\LowLevel;
 
 use FireHub\Support\Enums\ {
-    Side, StrCase
+    Encoding, Side, StrCase
 };
 use Error;
 
@@ -70,7 +70,7 @@ final class Str {
      * Value to check.
      * </p>
      *
-     * @return bool True if value is string, false otherwise
+     * @return bool True if value is string, false otherwise.
      */
     public static function isString (mixed $value):bool {
 
@@ -86,7 +86,7 @@ final class Str {
      * Value to check.
      * </p>
      *
-     * @return bool True if string is empty, false otherwise
+     * @return bool True if string is empty, false otherwise.
      */
     public static function isEmpty (string $value):bool {
 
@@ -153,6 +153,8 @@ final class Str {
 
     /**
      * ### Checks if a string ends with a given value
+     *
+     * Note that multibyte characters may not work as expected while $case_sensitive is on.
      * @since 0.2.0.pre-alpha.M2
      *
      * @param string $string <p>
@@ -165,16 +167,16 @@ final class Str {
      * @param string|array<string> $replace <p>
      * The string being searched and replaced on.
      * </p>
-     * @param null|bool &$count [optional] <p>
-     * If passed, this will hold the number of matched and replaced needles.
-     * </p>
      * @param bool $case_sensitive [optional] <p>
      * Searched values are case-insensitive.
+     * </p>
+     * @param null|bool &$count [optional] <p>
+     * If passed, this will hold the number of matched and replaced needles.
      * </p>
      *
      * @return string String with the replaced values.
      */
-    public static function replace (string $string, string|array $search, string|array $replace, ?bool &$count = null, bool $case_sensitive = true):string {
+    public static function replace (string $string, string|array $search, string|array $replace, bool $case_sensitive = true, ?bool &$count = null):string {
 
         if ($case_sensitive) return str_replace($search, $replace, $string, $count);
 
@@ -274,12 +276,15 @@ final class Str {
      * @param string $string <p>
      * The string being measured for length.
      * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
      *
      * @return int<0, max> String length.
      */
-    public static function length (string $string):int {
+    public static function length (string $string, ?Encoding $encoding = null):int {
 
-        return mb_strlen($string);
+        return mb_strlen($string, $encoding?->value);
 
     }
 
@@ -290,16 +295,19 @@ final class Str {
      * @param string $string <p>
      * The string being shuffled.
      * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
      *
      * @return string The shuffled string.
      */
-    public static function shuffle (string $string):string {
+    public static function shuffle (string $string, ?Encoding $encoding = null):string {
 
-        $split = self::split($string);
+        $split = self::split($string, 1, $encoding);
 
         Arr::shuffle($split);
 
-        return self::implode($split, '');
+        return self::implode($split);
 
     }
 
@@ -313,12 +321,15 @@ final class Str {
      * @param int<1, max> $length [optional] <p>
      * If specified, each element of the returned array will be composed of multiple characters instead of a single character.
      * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
      *
      * @return array<int, string> If the optional length parameter is specified, the returned array will be broken down into chunks with each being length in length, except the final chunk which may be shorter if the string does not divide evenly. The default length is 1, meaning every chunk will be one byte in size.
      */
-    public static function split (string $string, int $length = 1):array {
+    public static function split (string $string, int $length = 1, ?Encoding $encoding = null):array {
 
-        return mb_str_split($string, $length);
+        return mb_str_split($string, $length, $encoding?->value);
 
     }
 
@@ -404,12 +415,15 @@ final class Str {
      * @param string $string <p>
      * The string being lowercased.
      * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
      *
      * @return string String with all alphabetic characters converted to lowercase.
      */
-    public static function toLower (string $string):string {
+    public static function toLower (string $string, ?Encoding $encoding = null):string {
 
-        return self::convert($string, StrCase::LOWER);
+        return self::convert($string, StrCase::LOWER, $encoding);
 
     }
 
@@ -420,12 +434,15 @@ final class Str {
      * @param string $string <p>
      * The string being uppercased.
      * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
      *
      * @return string String with all alphabetic characters converted to uppercase.
      */
-    public static function toUpper (string $string):string {
+    public static function toUpper (string $string, ?Encoding $encoding = null):string {
 
-        return self::convert($string, StrCase::UPPER);
+        return self::convert($string, StrCase::UPPER, $encoding);
 
     }
 
@@ -436,12 +453,15 @@ final class Str {
      * @param string $string <p>
      * String to capitalize every word.
      * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
      *
      * @return string Capitalize string.
      */
-    public static function toTitle (string $string):string {
+    public static function toTitle (string $string, ?Encoding $encoding = null):string {
 
-        return self::convert($string, StrCase::TITLE);
+        return self::convert($string, StrCase::TITLE, $encoding);
 
     }
 
@@ -452,12 +472,15 @@ final class Str {
      * @param string $string <p>
      * String to capitalize.
      * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
      *
      * @return string Capitalize string.
      */
-    public static function capitalize (string $string):string {
+    public static function capitalize (string $string, ?Encoding $encoding = null):string {
 
-        return self::toUpper(self::part($string, 0, 1)).self::part($string, 1);
+        return self::toUpper(self::part($string, 0, 1), $encoding).self::part($string, 1, null, $encoding);
 
     }
 
@@ -702,12 +725,15 @@ final class Str {
      * Maximum number of characters to use from string.
      * If omitted or NULL is passed, extract all characters to the end of the string.
      * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
      *
      * @return string The portion of string specified by the start and length parameters.
      */
-    public static function part (string $string, int $start, ?int $length = null) {
+    public static function part (string $string, int $start, ?int $length = null, ?Encoding $encoding = null) {
 
-        return mb_substr($string, $start, $length);
+        return mb_substr($string, $start, $length, $encoding?->value);
 
     }
 
@@ -721,12 +747,15 @@ final class Str {
      * @param string $search <p>
      * The string being found.
      * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
      *
      * @return int Number of times the searched substring occurs in the string.
      */
-    public static function partCount (string $string, string $search):int {
+    public static function partCount (string $string, string $search, ?Encoding $encoding = null):int {
 
-        return mb_substr_count($string, $search);
+        return mb_substr_count($string, $search, $encoding?->value);
 
     }
 
@@ -737,16 +766,19 @@ final class Str {
      * @param string $string <p>
      * A string to reverse.
      * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
      *
      * @return string Reversed string.
      */
-    public static function reverse (string $string):string {
+    public static function reverse (string $string, ?Encoding $encoding = null):string {
 
         $reversed = '';
 
-        for ($count = self::length($string); $count >= 0; $count--) {
+        for ($count = self::length($string, $encoding); $count >= 0; $count--) {
 
-            $reversed .= self::part($string, $count, 1);
+            $reversed .= self::part($string, $count, 1, $encoding);
 
         }
 
@@ -884,12 +916,15 @@ final class Str {
      * @param \FireHub\Support\Enums\StrCase $case <p>
      * The mode of the conversion.
      * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
      *
      * @return string Converted string.
      */
-    private static function convert (string $string, StrCase $case):string {
+    private static function convert (string $string, StrCase $case, ?Encoding $encoding = null):string {
 
-        return mb_convert_case($string, $case->value);
+        return mb_convert_case($string, $case->value, $encoding?->value);
 
     }
 
