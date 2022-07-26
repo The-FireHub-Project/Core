@@ -646,6 +646,38 @@ final class Str {
     }
 
     /**
+     * ### Count character in string
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $string <p>
+     * A string to count characters.
+     * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
+     *
+     * @return array<array-key, int<0, max>> List of found characters.
+     */
+    public static function countCharacters (string $string, ?Encoding $encoding = null):array {
+
+        $length = self::length($string, $encoding);
+
+        $unique = [];
+        for ($count = 0; $count < $length; $count++) {
+
+            $character = self::part($string, $count, 1, $encoding);
+
+            if (!Arr::keyExist($character, $unique)) $unique[$character] = 0;
+
+            $unique[$character]++;
+
+        }
+
+        return $unique;
+
+    }
+
+    /**
      * ### List of words in string
      * @since 0.2.0.pre-alpha.M2
      *
