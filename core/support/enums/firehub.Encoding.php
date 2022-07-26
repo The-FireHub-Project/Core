@@ -23,7 +23,7 @@ namespace FireHub\Support\Enums;
 enum Encoding:string {
 
     case BASE64 = 'BASE64';
-    case UUENCODE = '+UUENCODE';
+    case UUENCODE = 'UUENCODE';
     case HTML_ENTITIES = 'HTML-ENTITIES';
     case QUOTED_PRINTABLE = 'Quoted-Printable';
     case SEVEN_BIT = '7bit';
