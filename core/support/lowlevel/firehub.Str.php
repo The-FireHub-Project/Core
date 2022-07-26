@@ -703,7 +703,7 @@ final class Str {
      * Character encoding. If it is null, the internal character encoding value will be used.
      * </p>
      *
-     * @return int|false
+     * @return int|false Numeric position of the first occurrence or false if none exist.
      */
     public static function position (string $search, string $string, int $offset = 0, bool $case_sensitive = true, ?Encoding $encoding = null):int|false {
 
