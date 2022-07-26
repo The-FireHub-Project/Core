@@ -22,7 +22,9 @@ namespace FireHub\Initializers;
 use FireHub\Initializers\Enums\ {
     Prefix, Suffix
 };
-use FireHub\Support\LowLevel\Arr;
+use FireHub\Support\LowLevel\ {
+    Arr, Str
+};
 use Error;
 
 use const FireHub\Initializers\Constants\DS;
@@ -34,15 +36,14 @@ use function spl_autoload_functions;
 use function spl_autoload_call;
 use function class_exists;
 use function sprintf;
-use function explode;
 use function is_file;
 use function is_null;
-use function strtolower;
-use function implode;
 
 require FIREHUB_ROOT.DS.'initializers/enums/firehub.Prefix.php';
 require FIREHUB_ROOT.DS.'initializers/enums/firehub.Suffix.php';
 require FIREHUB_ROOT.DS.'support/lowlevel/firehub.Arr.php';
+require FIREHUB_ROOT.DS.'support/lowlevel/firehub.Str.php';
+require FIREHUB_ROOT.DS.'support/enums/firehub.StrCase.php';
 
 /**
  * ### Autoload for called classes
@@ -146,7 +147,9 @@ final class Autoload {
 
     /**
      * ### The autoload function being registered
+     *
      * @since 0.1.4.pre-alpha.M1
+     * @since 0.2.0.pre-alpha.M1 Added low-level classes
      *
      * @param string $path <p>
      * Root path where register will try to find classes.
@@ -176,7 +179,7 @@ final class Autoload {
     private function callback (string $path, string $class_fqn, bool $prefix, bool $suffix, bool $phar):void {
 
         // list of class name components
-        $class_name_components = explode('\\', $class_fqn);
+        $class_name_components = Str::explode($class_fqn, '\\');
 
         // extract class name from class components
         $class = $this->class($class_name_components) ?: throw new Error(sprintf('Class name %s is empty.', $class_fqn));
@@ -245,7 +248,7 @@ final class Autoload {
         Arr::shift($class_name_components);
 
         return $prefix
-            ? Prefix::tryFrom(strtolower($prefix))
+            ? Prefix::tryFrom(Str::toLower($prefix))
                 ?? false
             : false;
 
@@ -268,15 +271,15 @@ final class Autoload {
      * @return \FireHub\Initializers\Enums\Suffix|false Suffix for file or false if none exist.
      */
     private function suffix (string &$class):Suffix|false {
+        ;
+        $components = Str::explode($class, '_');
 
-        $components = explode('_', $class);
-
-        $suffix = Arr::count($components) > 1 ? strtolower($components[1]) : false;
+        $suffix = Arr::count($components) > 1 ? Str::toLower($components[1]) : false;
 
         $class = $components[0];
 
         return $suffix
-            ? Suffix::tryFrom(strtolower($suffix))
+            ? Suffix::tryFrom(Str::toLower($suffix))
                 ?? throw new Error(sprintf('Class %s could not be loaded. There is a problem with suffix: %s', $class, $suffix))
             : false;
 
@@ -308,7 +311,9 @@ final class Autoload {
 
     /**
      * ### Get namespace path from components
+     *
      * @since 0.1.4.pre-alpha.M1
+     * @since 0.2.0.pre-alpha.M1 Added low-level classes
      *
      * @param array<int, string> $class_name_components <p>
      * List of class name components.
@@ -318,7 +323,7 @@ final class Autoload {
      */
     private function namespace (array $class_name_components):string {
 
-        return strtolower(implode(DS, $class_name_components));
+        return Str::toLower(Str::implode($class_name_components, DS));
 
     }
 
