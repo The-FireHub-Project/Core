@@ -46,7 +46,6 @@ use function array_diff_key;
 use function array_diff_assoc;
 use function array_unique;
 use function array_pad;
-use function sprintf;
 use function array_rand;
 use function array_reverse;
 use function array_intersect;
@@ -683,7 +682,7 @@ final class Arr {
     public static function random (array $array, int $number = 1, bool $preserve_keys = false):mixed {
 
         // check if asked number of items is greater than total number of items in array
-        !($number > self::count($array)) ?: throw new Error(sprintf('Asked random values are %d, and are greater then total number of items in array %d.', $number, self::count($array)));
+        !($number > self::count($array)) ?: throw new Error("Asked random values are $number, and are greater then total number of items in array ".self::count($array).".");
 
         // get the random keys from array items
         $keys = array_rand($array, $number);
@@ -1087,13 +1086,13 @@ final class Arr {
              * $array[0] is already checked in isArray method.
              * @phpstan-ignore-next-line
              */
-            self::keyExist($column, $array[0]) ?: throw new Error(sprintf('Key %s does not exist.', $column));
+            self::keyExist($column, $array[0]) ?: throw new Error("Key $column does not exist.");
 
             // field 1 will be converter to PHP order constants
             // it will default to SORT_ASC is FireHub\Support\Enums\Order is not the type
             $order = $order === Order::DESC ? SORT_DESC : SORT_ASC;
 
-            self::count(self::keys($array)) === self::count(self::column($array, $column)) ?: throw new Error(sprintf('Key %s is missing somewhere.', $column));
+            self::count(self::keys($array)) === self::count(self::column($array, $column)) ?: throw new Error("Key $column is missing somewhere.");
 
             // first array is array of value from selected column
             $multi_sort[] = [...self::column($array, $column)];
@@ -1313,9 +1312,9 @@ final class Arr {
 
         } catch (Throwable $error) {
 
-            if ($start > $end) throw new Error(sprintf('Your start %d is bigger then the end of array %d.', $start, $end));
+            if ($start > $end) throw new Error("Your start $start is bigger then the end of array $end.");
 
-            if ($end < $step) throw new Error(sprintf('Your step %d is bigger then the end of array %d.', $end, $step));
+            if ($end < $step) throw new Error("Your step $end is bigger then the end of array $step.");
 
             throw new Error($error->getMessage());
 

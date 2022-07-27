@@ -35,7 +35,6 @@ use function spl_autoload_unregister;
 use function spl_autoload_functions;
 use function spl_autoload_call;
 use function class_exists;
-use function sprintf;
 use function is_file;
 use function is_null;
 
@@ -137,7 +136,7 @@ final class Autoload {
 
         if (!class_exists($class, false)) {
 
-            throw new Error(sprintf('Class %s does not exist', $class));
+            throw new Error("Class $class does not exist");
 
         }
 
@@ -182,7 +181,7 @@ final class Autoload {
         $class_name_components = Str::explode($class_fqn, '\\');
 
         // extract class name from class components
-        $class = $this->class($class_name_components) ?: throw new Error(sprintf('Class name %s is empty.', $class_fqn));
+        $class = $this->class($class_name_components) ?: throw new Error("Class name $class_fqn is empty.");
 
         // if using prefix option then extract prefix from class components
         $prefix = $prefix // if prefix option is true
@@ -280,7 +279,7 @@ final class Autoload {
 
         return $suffix
             ? Suffix::tryFrom(Str::toLower($suffix))
-                ?? throw new Error(sprintf('Class %s could not be loaded. There is a problem with suffix: %s', $class, $suffix))
+                ?? throw new Error("Class $class could not be loaded. There is a problem with suffix: $suffix.")
             : false;
 
     }
