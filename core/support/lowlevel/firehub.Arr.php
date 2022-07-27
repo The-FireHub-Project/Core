@@ -15,7 +15,7 @@
 namespace FireHub\Support\LowLevel;
 
 use FireHub\Support\Enums\ {
-    Order, SortFlag
+    DataType, Order, SortFlag
 };
 use Throwable, Error;
 
@@ -27,6 +27,7 @@ use const ARRAY_FILTER_USE_BOTH;
 use const ARRAY_FILTER_USE_KEY;
 
 use function is_array;
+use function settype;
 use function count;
 use function array_count_values;
 use function in_array;
@@ -94,6 +95,30 @@ final class Arr {
     public static function isArray (mixed $value):bool {
 
         return is_array($value);
+
+    }
+
+    /**
+     * ### Convert value to array
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @template TValue
+     *
+     * @param TValue $value <p>
+     * Value to convert.
+     * </p>
+     *
+     * @return array<int|string, TValue> Array representation of value.
+     */
+    public static function toArray (mixed $value):array {
+
+        settype($value, DataType::ARRAY->value);
+
+        /**
+         * PHPStan stan reports value might not be array type
+         * @phpstan-ignore-next-line
+         */
+        return $value;
 
     }
 
