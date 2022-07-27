@@ -40,7 +40,7 @@ final class Iterator {
      */
     public static function isIterator (mixed $value):bool {
 
-        return DataIs::Iterable($value);
+        return DataIs::iterable($value);
 
     }
 
