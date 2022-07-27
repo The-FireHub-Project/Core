@@ -52,6 +52,8 @@ use function stripslashes;
 use function mb_substr;
 use function mb_substr_count;
 use function strtr;
+use function ltrim;
+use function rtrim;
 use function trim;
 use function wordwrap;
 use function mb_convert_encoding;
@@ -889,6 +891,9 @@ final class Str {
      * @param string $string <p>
      * The string that will be trimmed.
      * </p>
+     * @param \FireHub\Support\Enums\Side $side [optional] <p>
+     * Side to trim string.
+     * </p>
      * @param string $characters [optional] <p>
      * The stripped characters can also be specified using the char-list parameter.
      * Simply list all characters that you want to be stripped.
@@ -896,9 +901,13 @@ final class Str {
      *
      * @return string The trimmed string.
      */
-    public static function trim (string $string, string $characters = " \n\r\t\v\x00"):string {
+    public static function trim (string $string, Side $side = Side::BOTH, string $characters = " \n\r\t\v\x00"):string {
 
-        return trim($string, $characters);
+        return match($side) {
+            Side::LEFT => ltrim($string, $characters),
+            Side::RIGHT => rtrim($string, $characters),
+            default => trim($string, $characters)
+        };
 
     }
 
