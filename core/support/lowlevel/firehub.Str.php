@@ -19,6 +19,10 @@ use FireHub\Support\Enums\ {
 };
 use Error;
 
+use const ENT_QUOTES;
+use const ENT_SUBSTITUTE;
+use const ENT_HTML401;
+
 use function is_string;
 use function str_contains;
 use function str_starts_with;
@@ -52,6 +56,8 @@ use function trim;
 use function wordwrap;
 use function mb_convert_encoding;
 use function mb_detect_encoding;
+use function htmlentities;
+use function html_entity_decode;
 use function ord;
 use function chr;
 use function str_word_count;
@@ -479,11 +485,30 @@ final class Str {
      * Character encoding. If it is null, the internal character encoding value will be used.
      * </p>
      *
-     * @return string Capitalize string.
+     * @return string Capitalized string.
      */
     public static function capitalize (string $string, ?Encoding $encoding = null):string {
 
         return self::toUpper(self::part($string, 0, 1), $encoding).self::part($string, 1, null, $encoding);
+
+    }
+
+    /**
+     * ### De-capitalize string
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $string <p>
+     * String to de-capitalize.
+     * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
+     *
+     * @return string De-capitalized string.
+     */
+    public static function deCapitalize (string $string, ?Encoding $encoding = null):string {
+
+        return self::toLower(self::part($string, 0, 1), $encoding).self::part($string, 1, null, $encoding);
 
     }
 
@@ -945,6 +970,44 @@ final class Str {
         }
 
         return mb_detect_encoding($string, $cases, true);
+
+    }
+
+    /**
+     * ### Convert all applicable characters to HTML entities
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $string <p>
+     * String to encode.
+     * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
+     *
+     * @return string The encoded string.
+     */
+    public static function htmlEncode (string $string, ?Encoding $encoding = null):string {
+
+        return htmlentities($string, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401, $encoding?->value);
+
+    }
+
+    /**
+     * ### Convert HTML entities to their corresponding characters
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $string <p>
+     * String to decode.
+     * </p>
+     * @param null|\FireHub\Support\Enums\Encoding $encoding [optional] <p>
+     * Character encoding. If it is null, the internal character encoding value will be used.
+     * </p>
+     *
+     * @return string The decoded string.
+     */
+    public static function htmlDecode (string $string, ?Encoding $encoding = null):string {
+
+        return html_entity_decode($string, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401, $encoding?->value);
 
     }
 
