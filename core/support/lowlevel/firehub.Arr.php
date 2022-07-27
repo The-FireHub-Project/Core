@@ -26,8 +26,6 @@ use const SORT_DESC;
 use const ARRAY_FILTER_USE_BOTH;
 use const ARRAY_FILTER_USE_KEY;
 
-use function is_array;
-use function settype;
 use function count;
 use function array_count_values;
 use function in_array;
@@ -90,11 +88,11 @@ final class Arr {
      * Value to check.
      * </p>
      *
-     * @return bool True if value is array, false otherwise
+     * @return bool True if value is array, false otherwise.
      */
     public static function isArray (mixed $value):bool {
 
-        return is_array($value);
+        return Data::getType($value) === DataType::ARRAY;
 
     }
 
@@ -112,13 +110,11 @@ final class Arr {
      */
     public static function toArray (mixed $value):array {
 
-        settype($value, DataType::ARRAY->value);
-
         /**
          * PHPStan stan reports value might not be array type
          * @phpstan-ignore-next-line
          */
-        return $value;
+        return Data::setType($value, DataType::ARRAY);
 
     }
 

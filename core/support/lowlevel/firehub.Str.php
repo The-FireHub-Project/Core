@@ -23,8 +23,6 @@ use const ENT_QUOTES;
 use const ENT_SUBSTITUTE;
 use const ENT_HTML401;
 
-use function is_string;
-use function settype;
 use function str_contains;
 use function str_starts_with;
 use function str_ends_with;
@@ -86,7 +84,7 @@ final class Str {
      */
     public static function isString (mixed $value):bool {
 
-        return is_string($value);
+        return Data::getType($value) === DataType::STRING;
 
     }
 
@@ -102,13 +100,11 @@ final class Str {
      */
     public static function toString (mixed $value):string {
 
-        settype($value, DataType::STRING->value);
-
         /**
          * PHPStan stan reports value might not be string type
          * @phpstan-ignore-next-line
          */
-        return $value;
+        return Data::setType($value, DataType::STRING);
 
     }
 
