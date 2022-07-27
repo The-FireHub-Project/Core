@@ -16,7 +16,6 @@ namespace FireHub\Support\LowLevel;
 
 use Traversable, Closure;
 
-use function is_iterable;
 use function iterator_count;
 use function iterator_to_array;
 use function iterator_apply;
@@ -41,7 +40,7 @@ final class Iterator {
      */
     public static function isIterator (mixed $value):bool {
 
-        return is_iterable($value);
+        return DataIs::Iterable($value);
 
     }
 
