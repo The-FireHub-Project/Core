@@ -15,7 +15,7 @@
 namespace FireHub\Support\LowLevel;
 
 use FireHub\Support\Enums\ {
-    Encoding, Side, StrCase
+    DataType, Encoding, Side, StrCase
 };
 use Error;
 
@@ -24,6 +24,7 @@ use const ENT_SUBSTITUTE;
 use const ENT_HTML401;
 
 use function is_string;
+use function settype;
 use function str_contains;
 use function str_starts_with;
 use function str_ends_with;
@@ -86,6 +87,28 @@ final class Str {
     public static function isString (mixed $value):bool {
 
         return is_string($value);
+
+    }
+
+    /**
+     * ### Convert value to string
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param mixed $value <p>
+     * Value to convert.
+     * </p>
+     *
+     * @return string String representation of value.
+     */
+    public static function toString (mixed $value):string {
+
+        settype($value, DataType::STRING->value);
+
+        /**
+         * PHPStan stan reports value might not be string type
+         * @phpstan-ignore-next-line
+         */
+        return $value;
 
     }
 
