@@ -23,7 +23,7 @@ use FireHub\Initializers\Enums\ {
     Prefix, Suffix
 };
 use FireHub\Support\LowLevel\ {
-    Arr, Str
+    Arr, Str, DataIs
 };
 use Error;
 
@@ -35,13 +35,12 @@ use function spl_autoload_unregister;
 use function spl_autoload_functions;
 use function spl_autoload_call;
 use function class_exists;
-use function is_file;
-use function is_null;
 
 require FIREHUB_ROOT.DS.'initializers/enums/firehub.Prefix.php';
 require FIREHUB_ROOT.DS.'initializers/enums/firehub.Suffix.php';
 require FIREHUB_ROOT.DS.'support/lowlevel/firehub.Arr.php';
 require FIREHUB_ROOT.DS.'support/lowlevel/firehub.Str.php';
+require FIREHUB_ROOT.DS.'support/lowlevel/firehub.DataIs.php';
 require FIREHUB_ROOT.DS.'support/enums/firehub.StrCase.php';
 
 /**
@@ -200,7 +199,7 @@ final class Autoload {
         // add phar extension to first class component
         !$phar ?: $this->phar($class_name_components);
 
-        !is_file($file = $path.DS.$this->namespace($class_name_components).DS.$prefix.$class.$suffix.'.php') ?: require_once $file;
+        !DataIs::file($file = $path.DS.$this->namespace($class_name_components).DS.$prefix.$class.$suffix.'.php') ?: require_once $file;
 
     }
 
@@ -222,7 +221,11 @@ final class Autoload {
 
         Arr::pop($class_name_components);
 
-        return !is_null($class) ? $class : false;
+        /**
+         * PHPStan stan reports value might be string|false|null
+         * @phpstan-ignore-next-line
+         */
+        return !DataIs::null($class) ? $class : false;
 
     }
 
