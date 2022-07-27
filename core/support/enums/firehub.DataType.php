@@ -26,19 +26,19 @@ enum DataType:string {
      * ### A bool expresses a truth value, it can be either true or false
      * @since 0.2.0.pre-alpha.M2
      */
-    case BOOLEAN = 'bool';
+    case BOOL = 'boolean';
 
     /**
      * ### An int is a number of the set ℤ = {..., -2, -1, 0, 1, 2, ...}
      * @since 0.2.0.pre-alpha.M2
      */
-    case INTEGER = 'int';
+    case INT = 'integer';
 
     /**
      * ### A floating-point number is represented approximately with a fixed number of significant digits
      * @since 0.2.0.pre-alpha.M2
      */
-    case FLOAT = 'float';
+    case FLOAT = 'double';
 
     /**
      * ### A string is series of characters, where a character is the same as a byte
@@ -62,6 +62,5 @@ enum DataType:string {
      * ### The special null value represents a variable with no value
      * @since 0.2.0.pre-alpha.M2
      */
-    case NULL = 'null';
-
+    case NULL = 'NULL';
 }
