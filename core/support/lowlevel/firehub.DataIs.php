@@ -17,13 +17,13 @@ namespace FireHub\Support\LowLevel;
 use function is_a;
 use function is_array;
 use function is_bool;
-use function is_dir;
 use function is_callable;
 use function is_countable;
 use function is_executable;
 use function is_file;
 use function is_finite;
 use function is_float;
+use function is_dir;
 use function is_infinite;
 use function is_int;
 use function is_iterable;
@@ -97,22 +97,6 @@ final class DataIs {
     public static function bool (mixed $value):bool {
 
         return is_bool($value);
-
-    }
-
-    /**
-     * ### Tells whether the filename is a directory
-     * @since 0.2.0.pre-alpha.M2
-     *
-     * @param string $filename <p>
-     * Path to the file.
-     * </p>
-     *
-     * @return bool Returns true if the filename exists and is a directory, false otherwise.
-     */
-    public static function dir (string $filename):bool {
-
-        return is_dir($filename);
 
     }
 
@@ -209,6 +193,22 @@ final class DataIs {
     public static function float (mixed $value):bool {
 
         return is_float($value);
+
+    }
+
+    /**
+     * ### Tells whether the filename is a folder
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $filename <p>
+     * Path to the file.
+     * </p>
+     *
+     * @return bool Returns true if the filename exists and is a folder, false otherwise.
+     */
+    public static function folder (string $filename):bool {
+
+        return is_dir($filename);
 
     }
 
