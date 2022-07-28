@@ -18,6 +18,7 @@ use FireHub\Support\Enums\DataType;
 use FireHub\Support\Enums\FilePermission;
 use Error;
 
+use const FireHub\Initializers\Constants\DS;
 use const PATHINFO_FILENAME;
 use const PATHINFO_EXTENSION;
 
@@ -28,6 +29,9 @@ use function decoct;
 use function fileperms;
 use function chmod;
 use function octdec;
+use function copy;
+use function rename;
+use function unlink;
 
 /**
  * ### File low level class
@@ -179,6 +183,112 @@ final class File {
         $permissions = Data::getType($permissions = octdec($mode)) === DataType::INT ? $permissions : throw new Error("We cannot convert octane to decimal number for number $mode.");
 
         return self::isFile($path) ? chmod($path, $permissions) : throw new Error("Path $path is not file.");
+
+    }
+
+    /**
+     * ### Copies file
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $path <p>
+     * Path to filename.
+     * </p>
+     * @param string $to <p>
+     * The destination path. If dest is a URL, the copy operation may fail if the wrapper does not support overwriting of existing files.
+     * If the destination file already exists, it will be overwritten.
+     * </p>
+     * @param bool $overwrite [optional] <p>
+     * Is set to true, if file already exists will be overwritten with the new one.
+     * </p>
+     *
+     * @throws Error If overwrite is off and path already exist.
+     *
+     * @return bool True on success, false otherwise.
+     */
+    public static function copy (string $path, string $to, bool $overwrite = true):bool {
+
+        return $overwrite
+            ? copy($path, $to.DS.self::basename($path))
+            : (self::isFile($to.DS.self::basename($path))
+                ? throw new Error("Path $path already exist.")
+                : copy($path, $to.DS.self::basename($path))
+            );
+
+    }
+
+    /**
+     * ### Moves file
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $path <p>
+     * Path to filename.
+     * </p>
+     * @param string $to <p>
+     * The destination path.
+     * </p>
+     * @param bool $overwrite [optional] <p>
+     * Is set to true, if file already exists will be overwritten with the new one.
+     * </p>
+     *
+     * @throws Error If overwrite is off and path already exist.
+     *
+     * @return bool True on success, false otherwise.
+     */
+    public static function move (string $path, string $to, bool $overwrite = true):bool {
+
+        return $overwrite
+            ? rename($path, $to.DS.self::basename($path))
+            : (self::isFile($to.DS.self::basename($path))
+                ? throw new Error("Path $path already exist.")
+                : rename($path, $to.DS.self::basename($path))
+            );
+
+    }
+
+    /**
+     * ### Renames file
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $path <p>
+     * Path to filename.
+     * </p>
+     * @param string $new_basename $to <p>
+     * New file base name (file name with extension).
+     * </p>
+     * @param bool $overwrite [optional] <p>
+     * Is set to true, if file already exists will be overwritten with the new one.
+     * </p>
+     *
+     * @throws Error If overwrite is off and path already exist.
+     *
+     * @return bool True on success, false otherwise.
+     */
+    public static function rename (string $path, string $new_basename, bool $overwrite = true):bool {
+
+        return $overwrite
+            ? rename($path, self::dirname($path).DS.$new_basename)
+            : (self::isFile(self::dirname($path).DS.$new_basename)
+                ? throw new Error("Path $path already exist.")
+                : rename($path, self::dirname($path).DS.$new_basename)
+            );
+
+    }
+
+    /**
+     * ### Deletes file
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $path <p>
+     * Path to filename.
+     * </p>
+     *
+     * @throws Error If path is not file.
+     *
+     * @return bool True on success, false otherwise.
+     */
+    public static function delete (string $path):bool {
+
+        return self::isFile($path) ? unlink($path) : throw new Error("Path $path is not file.");
 
     }
 
