@@ -22,7 +22,6 @@ use const FireHub\Initializers\Constants\DS;
 use const PATHINFO_FILENAME;
 use const PATHINFO_EXTENSION;
 
-use function dirname;
 use function basename;
 use function pathinfo;
 use function decoct;
@@ -32,6 +31,7 @@ use function octdec;
 use function copy;
 use function rename;
 use function unlink;
+use function filesize;
 
 /**
  * ### File low level class
@@ -58,7 +58,23 @@ final class File {
     }
 
     /**
-     * ### Returns directory name component of path
+     * ### Checks if file is empty
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $path <p>
+     * Path to check.
+     * </p>
+     *
+     * @return bool True if file is empty, false otherwise.
+     */
+    public static function isEmpty (string $path):bool {
+
+        return self::size($path) === 0;
+
+    }
+
+    /**
+     * ### Returns parent folder name component of path
      * @since 0.2.0.pre-alpha.M2
      *
      * @param string $path <p>
@@ -67,11 +83,11 @@ final class File {
      *
      * @throws Error If path is not file.
      *
-     * @return string The basename of the given path.
+     * @return string The parent folder name of the given path.
      */
-    public static function dirname (string $path):string {
+    public static function parentFolder (string $path):string {
 
-        return self::isFile($path) ? dirname($path) : throw new Error("Path $path is not file.");
+        return self::isFile($path) ? Folder::parentFolder($path) : throw new Error("Path $path is not file.");
 
     }
 
@@ -144,7 +160,7 @@ final class File {
      */
     public static function getPermissions (string $path):string {
 
-        $permissions = Data::getType($permissions = fileperms($path)) === DataType::INT ? $permissions : throw new Error("We cannot read permissions for file $path.");
+        $permissions = Data::getType($permissions = @fileperms($path)) === DataType::INT ? $permissions : throw new Error("We cannot read permissions for file $path.");
 
         return self::isFile($path) ? Str::part(decoct($permissions), -4) : throw new Error("Path $path is not file.");
 
@@ -266,10 +282,10 @@ final class File {
     public static function rename (string $path, string $new_basename, bool $overwrite = true):bool {
 
         return $overwrite
-            ? rename($path, self::dirname($path).DS.$new_basename)
-            : (self::isFile(self::dirname($path).DS.$new_basename)
+            ? rename($path, self::parentFolder($path).DS.$new_basename)
+            : (self::isFile(self::parentFolder($path).DS.$new_basename)
                 ? throw new Error("Path $path already exist.")
-                : rename($path, self::dirname($path).DS.$new_basename)
+                : rename($path, self::parentFolder($path).DS.$new_basename)
             );
 
     }
@@ -289,6 +305,27 @@ final class File {
     public static function delete (string $path):bool {
 
         return self::isFile($path) ? unlink($path) : throw new Error("Path $path is not file.");
+
+    }
+
+    /**
+     * ### Gets file size
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $path <p>
+     * Path to filename.
+     * </p>
+     *
+     * @throws Error Cannot read path $path size.
+     * @throws Error If path is not file.
+     *
+     * @return int The size of the file in bytes.
+     */
+    public static function size (string $path):int {
+
+        if (($size = filesize($path)) === false) {throw new Error("Cannot read path $path size.");}
+
+        return self::isFile($path) ? $size : throw new Error("Path $path is not file.");
 
     }
 
