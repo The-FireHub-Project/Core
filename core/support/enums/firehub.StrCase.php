@@ -23,25 +23,25 @@ namespace FireHub\Support\Enums;
 enum StrCase:int {
 
     /**
-     * ### Performs a full upper-case folding.
+     * ### Performs a full upper-case folding
      * @since 0.2.0.pre-alpha.M2
      */
     case UPPER = 0;
 
     /**
-     * ### Performs a full lower-case folding.
+     * ### Performs a full lower-case folding
      * @since 0.2.0.pre-alpha.M2
      */
     case LOWER = 1;
 
     /**
-     * ### Performs a full title-case conversion based on the Cased and CaseIgnorable derived Unicode properties. In particular this improves handling of quotes and apostrophes.
+     * ### Performs a full title-case conversion based on the Cased and CaseIgnorable derived Unicode properties. In particular this improves handling of quotes and apostrophes
      * @since 0.2.0.pre-alpha.M2
      */
     case TITLE = 2;
 
     /**
-     * ### Performs a full case fold conversion which removes case distinctions present in the string. This is used for caseless matching.
+     * ### Performs a full case fold conversion which removes case distinctions present in the string. This is used for caseless matching
      * @since 0.2.0.pre-alpha.M2
      */
     case MB_CASE_FOLD = 3;
