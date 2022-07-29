@@ -12,13 +12,18 @@
  * @license OSL Open Source License version 3 - [https://opensource.org/licenses/OSL-3.0](https://opensource.org/licenses/OSL-3.0)
  *
  * @package FireHub\Initializers
+ *
  * @version 1.0
+ * @version 1.1 Added low-level classes
  */
 
 namespace FireHub\Initializers;
 
 use FireHub\Initializers\Enums\ {
     Prefix, Suffix
+};
+use FireHub\Support\LowLevel\ {
+    Arr, Str, DataIs
 };
 use Error;
 
@@ -30,20 +35,13 @@ use function spl_autoload_unregister;
 use function spl_autoload_functions;
 use function spl_autoload_call;
 use function class_exists;
-use function sprintf;
-use function explode;
-use function is_file;
-use function end;
-use function array_pop;
-use function reset;
-use function array_shift;
-use function strtolower;
-use function count;
-use function array_unshift;
-use function implode;
 
 require FIREHUB_ROOT.DS.'initializers/enums/firehub.Prefix.php';
 require FIREHUB_ROOT.DS.'initializers/enums/firehub.Suffix.php';
+require FIREHUB_ROOT.DS.'support/lowlevel/firehub.Arr.php';
+require FIREHUB_ROOT.DS.'support/lowlevel/firehub.Str.php';
+require FIREHUB_ROOT.DS.'support/lowlevel/firehub.DataIs.php';
+require FIREHUB_ROOT.DS.'support/enums/firehub.StrCase.php';
 
 /**
  * ### Autoload for called classes
@@ -137,7 +135,7 @@ final class Autoload {
 
         if (!class_exists($class, false)) {
 
-            throw new Error(sprintf('Class %s does not exist', $class));
+            throw new Error("Class $class does not exist");
 
         }
 
@@ -147,7 +145,9 @@ final class Autoload {
 
     /**
      * ### The autoload function being registered
+     *
      * @since 0.1.4.pre-alpha.M1
+     * @since 0.2.0.pre-alpha.M1 Added low-level classes
      *
      * @param string $path <p>
      * Root path where register will try to find classes.
@@ -177,10 +177,10 @@ final class Autoload {
     private function callback (string $path, string $class_fqn, bool $prefix, bool $suffix, bool $phar):void {
 
         // list of class name components
-        $class_name_components = explode('\\', $class_fqn);
+        $class_name_components = Str::explode($class_fqn, '\\');
 
         // extract class name from class components
-        $class = $this->class($class_name_components) ?: throw new Error(sprintf('Class name %s is empty.', $class_fqn));
+        $class = $this->class($class_name_components) ?: throw new Error("Class name $class_fqn is empty.");
 
         // if using prefix option then extract prefix from class components
         $prefix = $prefix // if prefix option is true
@@ -199,13 +199,15 @@ final class Autoload {
         // add phar extension to first class component
         !$phar ?: $this->phar($class_name_components);
 
-        !is_file($file = $path.DS.$this->namespace($class_name_components).DS.$prefix.$class.$suffix.'.php') ?: require_once $file;
+        !DataIs::file($file = $path.DS.$this->namespace($class_name_components).DS.$prefix.$class.$suffix.'.php') ?: require_once $file;
 
     }
 
     /**
      * ### Extract class name from class components
+     *
      * @since 0.1.4.pre-alpha.M1
+     * @since 0.2.0.pre-alpha.M1 Added low-level classes
      *
      * @param array<int, string> &$class_name_components <p>
      * List of class name components.
@@ -215,11 +217,15 @@ final class Autoload {
      */
     private function class (array &$class_name_components):string|false {
 
-        $class = end($class_name_components);
+        $class = Arr::last($class_name_components);
 
-        array_pop($class_name_components);
+        Arr::pop($class_name_components);
 
-        return $class;
+        /**
+         * PHPStan stan reports value might be string|false|null
+         * @phpstan-ignore-next-line
+         */
+        return !DataIs::null($class) ? $class : false;
 
     }
 
@@ -227,7 +233,9 @@ final class Autoload {
      * ### Extract prefix from first component in class components
      *
      * Prefix must be listed in \FireHub\Initializers\Enums\Prefix to work.
+     *
      * @since 0.1.4.pre-alpha.M1
+     * @since 0.2.0.pre-alpha.M1 Added low-level classes
      *
      * @param array<int, string> &$class_name_components <p>
      * List of class name components.
@@ -237,12 +245,12 @@ final class Autoload {
      */
     private function prefix (array &$class_name_components):Prefix|false {
 
-        $prefix = reset($class_name_components);
+        $prefix = Arr::first($class_name_components);
 
-        array_shift($class_name_components);
+        Arr::shift($class_name_components);
 
         return $prefix
-            ? Prefix::tryFrom(strtolower($prefix))
+            ? Prefix::tryFrom(Str::toLower($prefix))
                 ?? false
             : false;
 
@@ -252,7 +260,9 @@ final class Autoload {
      * ### Extract suffix from class name
      *
      * Suffix must be listed in \FireHub\Initializers\Enums\Suffix to work.
+     *
      * @since 0.1.4.pre-alpha.M1
+     * @since 0.2.0.pre-alpha.M1 Added low-level classes
      *
      * @param string &$class <p>
      * Class name.
@@ -263,23 +273,25 @@ final class Autoload {
      * @return \FireHub\Initializers\Enums\Suffix|false Suffix for file or false if none exist.
      */
     private function suffix (string &$class):Suffix|false {
+        ;
+        $components = Str::explode($class, '_');
 
-        $components = explode('_', $class);
-
-        $suffix = count($components) > 1 ? strtolower($components[1]) : false;
+        $suffix = Arr::count($components) > 1 ? Str::toLower($components[1]) : false;
 
         $class = $components[0];
 
         return $suffix
-            ? Suffix::tryFrom(strtolower($suffix))
-                ?? throw new Error(sprintf('Class %s could not be loaded. There is a problem with suffix: %s', $class, $suffix))
+            ? Suffix::tryFrom(Str::toLower($suffix))
+                ?? throw new Error("Class $class could not be loaded. There is a problem with suffix: $suffix.")
             : false;
 
     }
 
     /**
      * ### Add phar extension to first class component
+     *
      * @since 0.1.4.pre-alpha.M1
+     * @since 0.2.0.pre-alpha.M1 Added low-level classes
      *
      * @param array<int, string> &$class_name_components <p>
      * List of class name components.
@@ -293,15 +305,17 @@ final class Autoload {
 
         $phar = $class_name_components[0];
 
-        array_shift($class_name_components);
+        Arr::shift($class_name_components);
 
-        array_unshift($class_name_components, $phar . '.phar');
+        Arr::unshift($class_name_components, $phar . '.phar');
 
     }
 
     /**
      * ### Get namespace path from components
+     *
      * @since 0.1.4.pre-alpha.M1
+     * @since 0.2.0.pre-alpha.M1 Added low-level classes
      *
      * @param array<int, string> $class_name_components <p>
      * List of class name components.
@@ -311,7 +325,7 @@ final class Autoload {
      */
     private function namespace (array $class_name_components):string {
 
-        return strtolower(implode(DS, $class_name_components));
+        return Str::toLower(Str::implode($class_name_components, DS));
 
     }
 
