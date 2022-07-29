@@ -19,6 +19,7 @@ use FireHub\Support\Enums\FilePermission;
 use FireHub\Support\Enums\Order;
 use Error;
 
+use const FireHub\Initializers\Constants\DS;
 use const SCANDIR_SORT_ASCENDING;
 use const SCANDIR_SORT_DESCENDING;
 use const SCANDIR_SORT_NONE;
@@ -133,6 +134,40 @@ final class Folder {
     }
 
     /**
+     * ### Copies source folder to destination
+     *
+     * note: If destination folder doesn't exist, it will be created.
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $source <p>
+     * The source path.
+     * </p>
+     * @param string $destination <p>
+     * The destination path.
+     * </p>
+     * @param bool $hidden [optional] <p>
+     * Copy hidden file as well.
+     * </p>
+     *
+     * @return bool True if folder was copied, false otherwise.
+     */
+    public static function copy (string $source, string $destination, bool $hidden = false):bool {
+
+        if (!self::create($destination)) throw new Error("Cannot create folder $destination");
+
+        foreach (self::list($source, hidden: $hidden) as $filename) {
+
+            self::isFolder($source.DS.$filename)
+                ? self::copy($source.DS.$filename, $destination.DS.$filename)
+                : File::copy($source.DS.$filename, $destination, false);
+
+        }
+
+        return true;
+
+    }
+
+    /**
      * ### Creates folder
      * @since 0.2.0.pre-alpha.M2
      *
@@ -218,12 +253,15 @@ final class Folder {
      * @param null|\FireHub\Support\Enums\Order $order [optional] <p>
      * Result order.
      * </p>
+     * @param bool $hidden [optional] <p>
+     * List hidden file as well.
+     * </p>
      *
      * @throws Error When listing filenames in folder, maybe path $path is folder.
      *
      * @return array<int, string> The parent folder name of the given path.
      */
-    public static function list (string $path, ?Order $order = null):array {
+    public static function list (string $path, ?Order $order = null, bool $hidden = true):array {
 
         $order = match ($order) {
             Order::ASC => SCANDIR_SORT_ASCENDING,
@@ -231,7 +269,11 @@ final class Folder {
             default => SCANDIR_SORT_NONE
         };
 
-        return ($filenames = scandir($path, $order)) ? $filenames : throw new Error("Error listing filenames in folder, maybe path $path is folder.");
+        return ($filenames = scandir($path, $order))
+            ? $hidden
+                ? $filenames
+                : Arr::filter($filenames, fn($value):bool => !Str::startsWith('.', $value))
+            : throw new Error("Error listing filenames in folder, maybe path $path is folder.");
 
     }
 
