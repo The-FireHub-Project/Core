@@ -14,6 +14,8 @@
 
 namespace FireHub\Support\LowLevel;
 
+use FireHub\Support\Enums\DataType;
+use FireHub\Support\Enums\FilePermission;
 use FireHub\Support\Enums\Order;
 use Error;
 
@@ -21,6 +23,10 @@ use const SCANDIR_SORT_ASCENDING;
 use const SCANDIR_SORT_DESCENDING;
 use const SCANDIR_SORT_NONE;
 
+use function decoct;
+use function fileperms;
+use function chmod;
+use function octdec;
 use function dirname;
 use function scandir;
 
@@ -64,6 +70,63 @@ final class Folder {
     public static function isEmpty (string $path):bool {
 
         return self::isFolder($path) ? Arr::count(self::list($path)) === 2 : throw new Error("Path $path is not folder.");
+
+    }
+
+    /**
+     * ### Gets folder permissions
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $path <p>
+     * Path to filename.
+     * </p>
+     *
+     * @throws Error If we cannot read permissions for folder.
+     * @throws Error If path is not folder.
+     *
+     * @return string Folder permissions.
+     */
+    public static function getPermissions (string $path):string {
+
+        $permissions = Data::getType($permissions = @fileperms($path)) === DataType::INT ? $permissions : throw new Error("We cannot read permissions for folder $path.");
+
+        return self::isFolder($path) ? Str::part(decoct($permissions), -4) : throw new Error("Path $path is not folder.");
+
+    }
+
+    /**
+     * ### Sets folder permissions
+     *
+     * note: This method will not work on Windows.
+     *
+     * note: This method will not work on remote folders as the folder to be examined must be accessible via the server's filesystem.
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $path <p>
+     * Path to filename.
+     * </p>
+     * @param \FireHub\Support\Enums\FilePermission $owner_permissions <p>
+     * Folder owner permission.
+     * </p>
+     * @param \FireHub\Support\Enums\FilePermission $owner_group_permissions <p>
+     * Folder owner group permission.
+     * </p>
+     * @param \FireHub\Support\Enums\FilePermission $global_permissions <p>
+     * Everyone's permission.
+     * </p>
+     *
+     * @throws Error If we cannot convert octane to decimal number.
+     * @throws Error If path is not Folder.
+     *
+     * @return bool True if permission was set, false otherwise.
+     */
+    public static function setPermissions (string $path, FilePermission $owner_permissions, FilePermission $owner_group_permissions, FilePermission $global_permissions):bool {
+
+        $mode = '0'.$owner_permissions->value.$owner_group_permissions->value.$global_permissions->value;
+
+        $permissions = Data::getType($permissions = octdec($mode)) === DataType::INT ? $permissions : throw new Error("We cannot convert octane to decimal number for number $mode.");
+
+        return self::isFolder($path) ? chmod($path, $permissions) : throw new Error("Path $path is note folder.");
 
     }
 
