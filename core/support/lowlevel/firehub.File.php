@@ -21,6 +21,8 @@ use Error;
 use const FireHub\Initializers\Constants\DS;
 use const PATHINFO_FILENAME;
 use const PATHINFO_EXTENSION;
+use const FILE_APPEND;
+use const LOCK_EX;
 
 use function basename;
 use function pathinfo;
@@ -32,6 +34,8 @@ use function copy;
 use function rename;
 use function unlink;
 use function filesize;
+use function file_get_contents;
+use function file_put_contents;
 
 /**
  * ### File low level class
@@ -316,16 +320,80 @@ final class File {
      * Path to filename.
      * </p>
      *
-     * @throws Error Cannot read path $path size.
+     * @throws Error Cannot read path size.
      * @throws Error If path is not file.
      *
      * @return int The size of the file in bytes.
      */
     public static function size (string $path):int {
 
-        if (($size = filesize($path)) === false) {throw new Error("Cannot read path $path size.");}
+        return self::isFile($path)
+            ? ($size = @filesize($path))
+                ? $size
+                : throw new Error("Cannot read path $path size.")
+            : throw new Error("Path $path is not file.");
 
-        return self::isFile($path) ? $size : throw new Error("Path $path is not file.");
+    }
+
+    /**
+     * ### Reads entire file into a string
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $path <p>
+     * Path to filename.
+     * </p>
+     *
+     * @throws Error If failed to read file content.
+     * @throws Error If path is not file.
+     *
+     * @return string Data from file.
+     */
+    public static function getContent (string $path):string {
+
+        return self::isFile($path)
+            ? ($content = @file_get_contents($path)) !== false
+                ? $content
+                : throw new Error("Failed to read file $path content.")
+            : throw new Error("Path $path is not file.");
+
+    }
+
+    /**
+     * ### Write data to a file
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $path <p>
+     * Path to filename.
+     * </p>
+     * @param string $data <p>
+     * The data to write.
+     * </p>
+     * @param bool $append [optional] <p>
+     * Append the data to the file instead of overwriting it.
+     * </p>
+     * @param bool $lock [optional] <p>
+     * Acquire an exclusive lock on the file while proceeding to the writing.
+     * </p>
+     *
+     * @throws Error If failed to put data into file.
+     * @throws Error If path is not file.
+     *
+     * @return int Number of bytes that were written to the file.
+     */
+    public static function putContent (string $path, string $data, bool $append = false, bool $lock = true):int {
+
+        $options = match (true) {
+            $append && $lock => FILE_APPEND | LOCK_EX,
+            $append => FILE_APPEND,
+            $lock => LOCK_EX,
+            default => 0
+        };
+
+        return self::isFile($path)
+            ? ($content = @file_put_contents($path, $data, $options)) !== false
+                ? $content
+                : throw new Error("Failed to put data into file $path.")
+            : throw new Error("Path $path is not file.");
 
     }
 
