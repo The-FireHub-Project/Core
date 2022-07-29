@@ -27,6 +27,8 @@ use function decoct;
 use function fileperms;
 use function chmod;
 use function octdec;
+use function mkdir;
+use function rmdir;
 use function dirname;
 use function scandir;
 
@@ -127,6 +129,64 @@ final class Folder {
         $permissions = Data::getType($permissions = octdec($mode)) === DataType::INT ? $permissions : throw new Error("We cannot convert octane to decimal number for number $mode.");
 
         return self::isFolder($path) ? chmod($path, $permissions) : throw new Error("Path $path is note folder.");
+
+    }
+
+    /**
+     * ### Creates folder
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $path <p>
+     * Path to filename.
+     * </p>
+     * @param \FireHub\Support\Enums\FilePermission $owner_permissions <p>
+     * Folder owner permission.
+     *
+     * note: This parameter is ignored on Windows.
+     * </p>
+     * @param \FireHub\Support\Enums\FilePermission $owner_group_permissions <p>
+     * Folder owner group permission.
+     *
+     * note: This parameter is ignored on Windows.
+     * </p>
+     * @param \FireHub\Support\Enums\FilePermission $global_permissions <p>
+     * Everyone's permission.
+     *
+     * note: This parameter is ignored on Windows.
+     * </p>
+     *
+     * @throws Error If we cannot convert octane to decimal number.
+     * @throws Error If path already exist.
+     *
+     * @return bool True on success, false otherwise.
+     */
+    public static function create (string $path, FilePermission $owner_permissions = FilePermission::ALL, FilePermission $owner_group_permissions = FilePermission::ALL, FilePermission $global_permissions = FilePermission::ALL):bool {
+
+        $mode = '0'.$owner_permissions->value.$owner_group_permissions->value.$global_permissions->value;
+
+        $permissions = Data::getType($permissions = octdec($mode)) === DataType::INT ? $permissions : throw new Error("We cannot convert octane to decimal number for number $mode.");
+
+        return !self::isFolder($path)
+            ? mkdir($path, $permissions, true)
+            : throw new Error("Path $path already exist.");
+
+    }
+
+    /**
+     * ### Deletes folder
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $path <p>
+     * Path to filename.
+     * </p>
+     *
+     * @throws Error If path is not folder.
+     *
+     * @return bool True on success, false otherwise.
+     */
+    public static function delete (string $path):bool {
+
+        return self::isFolder($path) ? rmdir($path) : throw new Error("Path $path is not folder.");
 
     }
 
