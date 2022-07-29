@@ -149,6 +149,12 @@ final class Folder {
      * Copy hidden file as well.
      * </p>
      *
+     * @throws Error If it cannot create folder.
+     * @throws Error If we cannot convert octane to decimal number.
+     * @throws Error If destination path already exist.
+     * @throws Error When listing filenames in folder, maybe path $path is folder.
+     * @throws Error If overwrite is off and path already exist while coping file.
+     *
      * @return bool True if folder was copied, false otherwise.
      */
     public static function copy (string $source, string $destination, bool $hidden = false):bool {
@@ -164,6 +170,29 @@ final class Folder {
         }
 
         return true;
+
+    }
+
+    /**
+     * ### Moved folder
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $source <p>
+     * The source path.
+     * </p>
+     * @param string $destination <p>
+     * The destination path.
+     * </p>
+     *
+     * @throws Error If path source or destination already exist.
+     *
+     * @return bool True on success, false otherwise.
+     */
+    public static function move (string $source, string $destination):bool {
+
+        return !self::isFolder($source) || !self::isFolder($destination)
+            ? throw new Error("Path $source or $destination already exist.")
+            : rename($source, $destination);
 
     }
 
