@@ -295,6 +295,26 @@ final class File {
     }
 
     /**
+     * ### Creates file
+     * @since 0.2.0.pre-alpha.M2
+     *
+     * @param string $path <p>
+     * Path to filename.
+     * </p>
+     *
+     * @throws Error If path already exist.
+     *
+     * @return bool True on success, false otherwise.
+     */
+    public static function create (string $path):bool {
+
+        return !self::isFile($path)
+            ? self::putContent($path, '', create_file: true) === 0
+            : throw new Error("Path $path already exist.");
+
+    }
+
+    /**
      * ### Deletes file
      * @since 0.2.0.pre-alpha.M2
      *
@@ -374,13 +394,16 @@ final class File {
      * @param bool $lock [optional] <p>
      * Acquire an exclusive lock on the file while proceeding to the writing.
      * </p>
+     * @param bool $create_file [optional] <p>
+     * Is true, method will create new file if one doesn't exist.
+     * </p>
      *
      * @throws Error If failed to put data into file.
      * @throws Error If path is not file.
      *
      * @return int Number of bytes that were written to the file.
      */
-    public static function putContent (string $path, string $data, bool $append = false, bool $lock = true):int {
+    public static function putContent (string $path, string $data, bool $append = false, bool $lock = true, bool $create_file = false):int {
 
         $options = match (true) {
             $append && $lock => FILE_APPEND | LOCK_EX,
@@ -389,7 +412,7 @@ final class File {
             default => 0
         };
 
-        return self::isFile($path)
+        return (!$create_file && self::isFile($path)) || $create_file
             ? ($content = @file_put_contents($path, $data, $options)) !== false
                 ? $content
                 : throw new Error("Failed to put data into file $path.")
