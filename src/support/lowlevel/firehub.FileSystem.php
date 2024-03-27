@@ -62,7 +62,6 @@ use function touch;
  * @since 1.0.0
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class FileSystem {
@@ -256,11 +255,12 @@ class FileSystem {
 
         $path_info = pathinfo($path);
 
-        if (!isset($path_info['dirname'])) $path_info['dirname'] = false;
-        if (!isset($path_info['extension'])) $path_info['extension'] = false;
-        if (!isset($path_info['filename'])) $path_info['filename'] = false;
-
-        return $path_info;
+        return [
+            'dirname' => $path_info['dirname'] ?? false,
+            'basename' => $path_info['basename'],
+            'extension' => $path_info['extension'] ?? false,
+            'filename' => $path_info['filename'] ?? false,
+        ];
 
     }
 

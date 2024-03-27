@@ -44,7 +44,6 @@ use function mb_substr_count;
  * @since 1.0.0
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 final class StrMB extends StrSafe {
 
@@ -59,7 +58,7 @@ final class StrMB extends StrSafe {
      * @uses \FireHub\Core\Support\Enums\String\CaseFolding::LOWER To convert to lowercase.
      * @uses \FireHub\Core\Support\Enums\String\CaseFolding::TITLE To convert to title-case.
      *
-     * @param $string <p>
+     * @param string $string <p>
      * The string being converted.
      * </p>
      * @param \FireHub\Core\Support\Enums\String\CaseFolding $caseFolding <p>
@@ -69,7 +68,8 @@ final class StrMB extends StrSafe {
      * Character encoding. If it is null, the internal character encoding value will be used.
      * </p>
      *
-     * @return string Converted string.
+     * @return string <code>$string is non-empty-string ? non-empty-string : string</code> Converted string.
+     * @phpstan-return ($string is non-empty-string ? non-empty-string : string)
      */
     public static function convert (string $string, CaseFolding $caseFolding, Encoding $encoding = null):string {
 
@@ -95,8 +95,8 @@ final class StrMB extends StrSafe {
      * </p>
      * @param int $start <p>
      * If start is non-negative, the returned string will start at the start position in string, counting from zero.
-     * For instance, in the string 'abcdef', the character at position 0 is 'a',
-     * the character at position 2 is 'c', and so forth.
+     * For instance, in the string 'abcdef', the character at position 0 is 'a', the character at position 2 is 'c',
+     * and so forth.
      * If the start is negative, the returned string will start at the start character from the end of the string.
      * </p>
      * @param null|int $length [optional] <p>
@@ -354,6 +354,7 @@ final class StrMB extends StrSafe {
      * @return true|\FireHub\Core\Support\Enums\String\Encoding If encoding is set, then returns true. In this case, the
      * character encoding for multibyte regex is NOT changed. If encoding is omitted, then the current character
      * encoding name is returned.
+     * @phpstan-return ($encoding is null ? \FireHub\Core\Support\Enums\String\Encoding : true)
      */
     public static function encoding (Encoding $encoding = null):true|Encoding {
 

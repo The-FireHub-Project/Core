@@ -58,7 +58,6 @@ use function wordwrap;
  * @since 1.0.0
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
- * @SuppressWarnings(PHPMD.TooManyMethods)
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 final class StrSB extends StrSafe {
@@ -707,7 +706,7 @@ final class StrSB extends StrSafe {
 
         return $case_sensitive
             ? parent::compare($string_1, $string_2)
-            : strcasecmp($string_1, $string_2);
+            : strcasecmp($string_1, $string_2) <=> 0;
 
     }
 
@@ -744,7 +743,7 @@ final class StrSB extends StrSafe {
             $offset,
             $length,
             !$case_sensitive
-        );
+        ) <=> 0;
 
     }
 
@@ -767,7 +766,7 @@ final class StrSB extends StrSafe {
      */
     public static function compareFirstN (string $string_1, string $string_2, int $length):int|false {
 
-        return $length > 0 ? strncmp($string_1, $string_2, $length) : false;
+        return $length > 0 ? strncmp($string_1, $string_2, $length) <=> 0 : false;
 
     }
 

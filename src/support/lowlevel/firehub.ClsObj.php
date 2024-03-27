@@ -78,8 +78,6 @@ abstract class ClsObj {
      * @phpstan-param class-string|object $object_or_class
      * @phpstan-param non-empty-string $property
      *
-     * @throws Error If there was an error trying to get property.
-     *
      * @return bool True if the property exists, false if it doesn't exist.
      *
      * @note As opposed with isset(), [[ClsObj#propertyExist()]] returns true even if the property has the value null.
@@ -88,13 +86,7 @@ abstract class ClsObj {
      */
     final public static function propertyExist (string|object $object_or_class, string $property):bool {
 
-        /**
-         * PHPStan reports that property_exists could not return NULL, but it can if an error trying to get property.
-         * @phpstan-ignore-next-line
-         */
-        return DataIs::null($property = property_exists($object_or_class, $property))
-            ? $property
-            : throw new Error("There was an error trying to get property: $property");
+        return property_exists($object_or_class, $property);
 
     }
 
@@ -105,7 +97,6 @@ abstract class ClsObj {
      * @since 1.0.0
      *
      * @param string|object $object_or_class <p>
-     * <code>class-string|object</code>
      * A class name or an object instance.
      * </p>
      * @param string $class <p>
@@ -114,8 +105,6 @@ abstract class ClsObj {
      * @param bool $autoload [optional] <p>
      * Whether to allow this function to load the class automatically through the __autoload magic method.
      * </p>
-     * @phpstan-param class-string|object $object_or_class
-     * class-string $class
      *
      * @return bool True if the object is of this object type or has this object type as one of its supertypes,
      * false otherwise.
@@ -222,8 +211,8 @@ abstract class ClsObj {
      */
     final public static function parents (object|string $object_or_class, bool $autoload = true):array {
 
-        return class_parents($object_or_class, $autoload)
-            ?: throw new Error('$object_or_class does not exist and could not be loaded.');
+        return ($result = class_parents($object_or_class, $autoload)) !== false
+            ? $result : throw new Error('$object_or_class does not exist and could not be loaded.');
 
     }
 
@@ -251,8 +240,8 @@ abstract class ClsObj {
      */
     final public static function implements (object|string $object_or_class, bool $autoload = true):array {
 
-        return class_implements($object_or_class, $autoload)
-            ?: throw new Error('$object_or_class does not exist and could not be loaded.');
+        return ($result = class_implements($object_or_class, $autoload)) !== false
+            ? $result : throw new Error('$object_or_class does not exist and could not be loaded.');
 
     }
 
@@ -280,8 +269,8 @@ abstract class ClsObj {
      */
     final public static function uses (object|string $object_or_class, bool $autoload = true):array {
 
-        return class_uses($object_or_class, $autoload)
-            ?: throw new Error('$object_or_class does not exist and could not be loaded.');
+        return ($result = class_uses($object_or_class, $autoload)) !== false
+            ? $result : throw new Error('$object_or_class does not exist and could not be loaded.');
 
     }
 

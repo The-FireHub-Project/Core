@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\LowLevel;
 
 use FireHub\Core\Support\Enums\Side;
-use Error, ValueError;
+use Error, ValueError, Stringable;
 
 use const FireHub\Core\Support\Constants\Number\MAX;
 
@@ -43,7 +43,6 @@ use function trim;
  * @since 1.0.0
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 abstract class StrSafe {
 
@@ -144,13 +143,13 @@ abstract class StrSafe {
      * @since 1.0.0
      *
      * @param array $array <p>
-     * <code><![CDATA[ array<array-key, mixed> ]]></code>
+     * <code><![CDATA[ array<array-key, null|scalar|Stringable> ]]></code>
      * The array of strings to implode.
      * </p>
      * @param string $separator [optional] <p>
      * The boundary string.
      * </p>
-     * @phpstan-param array<array-key, mixed> $array
+     * @phpstan-param array<array-key, null|scalar|Stringable> $array
      *
      * @throws Error If array item could not be converted to string.
      *
@@ -213,6 +212,7 @@ abstract class StrSafe {
      * </p>
      * @phpstan-param string|list<string> $search
      * @phpstan-param string|list<string> $replace
+     * @param-out int $count
      *
      * @return string String with the replaced values.
      *
@@ -311,8 +311,8 @@ abstract class StrSafe {
     /**
      * ### Strip whitespace (or other characters) from the beginning and end of a string
      *
-     * This function returns a string with whitespace stripped from the beginning and end of string. Without the
-     * second parameter, trim() will strip these characters.
+     * This function returns a string with whitespace stripped from the beginning and end of string.
+     * Without the second parameter, [[StrSafe#trim()]] will strip these characters.
      *
      * - " " (ASCII 32 (0x20)), an ordinary space.
      * - "\t" (ASCII 9 (0x09)), a tab.
@@ -410,7 +410,7 @@ abstract class StrSafe {
      */
     public static function compare (string $string_1, string $string_2):int {
 
-        return strcmp($string_1, $string_2);
+        return strcmp($string_1, $string_2) <=> 0;
 
     }
 

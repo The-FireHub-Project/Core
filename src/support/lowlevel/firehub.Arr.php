@@ -262,6 +262,8 @@ final class Arr {
      * @phpstan-param array<TKey, TValue> &$array
      * @phpstan-param-out array<TKey, TValue> $array
      *
+     * @throws ArgumentCountError If the $callback function requires more than two parameters.
+     *
      * @return true True on success.
      */
     public static function walkRecursive (array &$array, callable $callback):true {
@@ -1144,8 +1146,8 @@ final class Arr {
      * The callback function to use.
      * If no callback is supplied, all empty and false entries of an array will be removed.
      * </p>
-     * @param bool $pass_key [optional] <p>
-     * Pass key as the argument to callback.
+     * @param bool $pass_value [optional] <p>
+     * Pass value in addition to key as the argument to callback.
      * </p>
      * @phpstan-param array<TKey, TValue> $array
      *
@@ -1155,11 +1157,11 @@ final class Arr {
      * @caution If the array is changed from the callback function (e.g., an element added, deleted or unset) then
      * behavior of this function is undefined.
      */
-    public static function filter (array $array, callable $callback = null, bool $pass_key = false):array {
+    public static function filter (array $array, callable $callback = null, bool $pass_value = false):array {
 
         if (DataIs::null($callback)) return array_filter($array);
 
-        return array_filter($array, $callback, $pass_key
+        return array_filter($array, $callback, $pass_value
                 ? ARRAY_FILTER_USE_BOTH
                 : ARRAY_FILTER_USE_KEY
         );
@@ -1269,8 +1271,6 @@ final class Arr {
      * If only an array is provided, map() will return the input array.
      * </p>
      * @phpstan-param array<TKey, TValue> $array
-     *
-     * @throws ArgumentCountError If an insufficient number of arguments is provided.
      *
      * @return array <code><![CDATA[ array<TKey, mixed> ]]></code> Array containing all the elements of arr1 after
      * applying the callback function.
@@ -1497,6 +1497,8 @@ final class Arr {
      *
      * @return array <code><![CDATA[ ($preserve_keys is true ? array<TKey, TValue> : array<TKey|int, TValue>) ]]></code> Sliced array.
      * @phpstan-return ($preserve_keys is true ? array<TKey, TValue> : array<TKey|int, TValue>)
+     *
+     * @note Named keys will always retain their name.
      */
     public static function slice (array $array, int $offset, int $length = null, bool $preserve_keys = false):array {
 
@@ -1536,7 +1538,7 @@ final class Arr {
      * Keys in a replacement array are not preserved.
      * </p>
      * @phpstan-param array<TKey, TValue> &$array
-     * @phpstan-param-out array<TKey, TValue> $array
+     * @phpstan-param-out array<TKey, mixed> $array
      *
      * @return array <code><![CDATA[ array<TKey|int, TValue> ]]></code> Spliced array.
      * @phpstan-return array<TKey|int, TValue>
@@ -1839,6 +1841,8 @@ final class Arr {
      * </p>
      * @phpstan-param array<array-key, mixed> $array
      *
+     * @error\exeption E_WARNING If $array values cannot be converted to int or float.
+     *
      * @return int|float The product as an integer or float.
      */
     public static function product (array $array):int|float {
@@ -1856,6 +1860,8 @@ final class Arr {
      * The input array.
      * </p>
      * @phpstan-param array<array-key, mixed> $array
+     *
+     * @error\exeption E_WARNING If $array values cannot be converted to int or float.
      *
      * @return int|float The sum of values as an integer or float; 0 if the array is empty.
      */
@@ -1929,7 +1935,7 @@ final class Arr {
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\Enums\Order::ASC As default parameter.
-     * @uses \FireHub\Core\Support\Enums\Sort::SORT_REGULAR As default parameter.
+     * @uses \FireHub\Core\Support\Enums\Sort::BY_REGULAR As default parameter.
      *
      * @template TKey of array-key
      * @template TValue
@@ -1956,7 +1962,7 @@ final class Arr {
      *
      * @todo Replace phpstan error when update is available.
      */
-    public static function sort (array &$array, Order $order = Order::ASC, Sort $flag = Sort::SORT_REGULAR, bool $preserve_keys = false):true {
+    public static function sort (array &$array, Order $order = Order::ASC, Sort $flag = Sort::BY_REGULAR, bool $preserve_keys = false):true {
 
         /** @phpstan-ignore-next-line In PHP 8.2 wrong return as bool, instead of true */
         return $order === Order::ASC
@@ -1974,7 +1980,7 @@ final class Arr {
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\Enums\Order::ASC As default parameter.
-     * @uses \FireHub\Core\Support\Enums\Sort::SORT_REGULAR As default parameter.
+     * @uses \FireHub\Core\Support\Enums\Sort::BY_REGULAR As default parameter.
      *
      * @template TKey of array-key
      * @template TValue
@@ -1996,7 +2002,7 @@ final class Arr {
      *
      * @note Resets array's internal pointer to the first element.
      */
-    public static function sortByKey (array &$array, Order $order = Order::ASC, Sort $flag = Sort::SORT_REGULAR):true {
+    public static function sortByKey (array &$array, Order $order = Order::ASC, Sort $flag = Sort::BY_REGULAR):true {
 
         return $order === Order::ASC
             ? ksort($array, $flag->value)
