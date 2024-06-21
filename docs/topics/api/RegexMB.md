@@ -25,7 +25,7 @@
 <p><format style="italic">The syntax for patterns used in these functions closely resembles Perl. The expression must be enclosed in the
 delimiters, a forward slash (/), for example. Delimiters can be any non-alphanumeric, non-whitespace ASCII character
 except the backslash (\) and the null byte. If the delimiter character has to be used in the expression itself,
-it needs to be escaped by backslash. Perl-style (), }, [], and <> matching delimiters may also be used.</format></p>
+it needs to be escaped by backslash. Perl style (), }, [], and <> matching delimiters may also be used.</format></p>
 
 <deflist>
     <def title="Class basic info:">
@@ -36,7 +36,7 @@ it needs to be escaped by backslash. Perl-style (), }, [], and <> matching delim
 <deflist><def title="Fully Qualified Class Name:">
         \FireHub\Core\Support\LowLevel\RegexMB
     </def><def title="Source code:">
-        <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L39">
+        <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L41">
             View source code
         </a>
     </def>
@@ -64,12 +64,13 @@ it needs to be escaped by backslash. Perl-style (), }, [], and <> matching delim
 |public static |<a href="#match()">match</a>|### Perform a regular expression match|
 |public static |<a href="#replace()">replace</a>|### Perform a regular expression search and replace|
 |public static |<a href="#replacefunc()">replaceFunc</a>|### Perform a regular expression search and replace using a callback|
+|public static |<a href="#split()">split</a>|### Split string by a regular expression|
 |public static |<a href="#encoding()">encoding</a>|### Set/Get character encoding for multibyte regex|
 
 ## method: match {id="match()"}
 
 <code-block lang="php">
-    <![CDATA[public static RegexMB::match(string $pattern, string $string, bool $case_sensitive = true):bool]]>
+    <![CDATA[public static RegexMB::match(string $pattern, string $string, bool $case_sensitive = true, null|string[] &$result = null):bool]]>
 </code-block>
 
 
@@ -89,12 +90,12 @@ it needs to be escaped by backslash. Perl-style (), }, [], and <> matching delim
 <p><format style="italic">Searches subject for a match to the regular expression given in a pattern.</format></p>
 
 <deflist><def title="Source code:">
-                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L59">
+                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L67">
                     View source code
                 </a>
             </def>
             <def title="Blame:">
-                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L59">
+                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L67">
                     View blame
                 </a>
             </def></deflist>
@@ -111,6 +112,8 @@ The regular expression pattern.
 The string being evaluated.
 </format></li><li>bool <format style="bold">$case_sensitive</format> = true - <format style="italic">[optional] 
 Case-sensitive match.
+</format></li><li>by reference null or string[] <format style="bold">$result</format> = null - <format style="italic">[optional] 
+Case-sensitive match.
 </format></li></list>
     </def>
 </deflist>
@@ -122,7 +125,7 @@ Case-sensitive match.
 ## method: replace {id="replace()"}
 
 <code-block lang="php">
-    <![CDATA[public static RegexMB::replace(string $pattern, string $replacement, string $string):string]]>
+    <![CDATA[public static RegexMB::replace(string $pattern, string $replacement, string $string, bool $case_sensitive = true):string]]>
 </code-block>
 
 
@@ -142,12 +145,12 @@ Case-sensitive match.
 <p><format style="italic">Searches $subject for matches to $pattern and replaces them with $replacement.</format></p>
 
 <deflist><def title="Source code:">
-                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L93">
+                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L105">
                     View source code
                 </a>
             </def>
             <def title="Blame:">
-                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L93">
+                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L105">
                     View blame
                 </a>
             </def></deflist>
@@ -164,6 +167,8 @@ The regular expression pattern.
 The string to replace.
 </format></li><li>string <format style="bold">$string</format> - <format style="italic">
 The string being evaluated.
+</format></li><li>bool <format style="bold">$case_sensitive</format> = true - <format style="italic">[optional] 
+Case-sensitive replace.
 </format></li></list>
     </def>
 </deflist>
@@ -201,12 +206,12 @@ and replace.</format></li></list>
 <p><format style="italic">Searches $subject for matches to $pattern and replaces them with $replacement.</format></p>
 
 <deflist><def title="Source code:">
-                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L124">
+                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L138">
                     View source code
                 </a>
             </def>
             <def title="Blame:">
-                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L124">
+                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L138">
                     View blame
                 </a>
             </def></deflist>
@@ -240,10 +245,69 @@ and replace.</format></li></list>
         <list><li>string - <format style="italic">Replaced string.</format></li></list>
     </def>
 </deflist>
+## method: split {id="split()"}
+
+<code-block lang="php">
+    <![CDATA[public static RegexMB::split(string $pattern, string $string, int $limit = -1):string[]]]>
+</code-block>
+
+
+
+
+
+
+
+
+
+
+
+
+
+### ### Split string by a regular expression
+
+<p><format style="italic">Split the given string by a regular expression.</format></p>
+
+<deflist><def title="Source code:">
+                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L167">
+                    View source code
+                </a>
+            </def>
+            <def title="Blame:">
+                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L167">
+                    View blame
+                </a>
+            </def></deflist>
+<deflist>
+    <def title="Version history:">
+        <list><li>1.0.0</li></list>
+    </def>
+</deflist>
+<deflist>
+    <def title="This method has parameters:">
+        <list><li>string <format style="bold">$pattern</format> - <format style="italic">
+The regular expression pattern.
+</format></li><li>string <format style="bold">$string</format> - <format style="italic">
+The input string.
+</format></li><li>int <format style="bold">$limit</format> = -1 - <format style="italic">[optional] 
+The maximum possible replacements for each pattern in each subject string.
+Defaults to -1 (no limit).
+</format></li></list>
+    </def>
+</deflist>
+<deflist>
+    <def title="This method throws:">
+        <list><li><a href="Error.md">\Error</a> - <format style="italic">If error while performing a regular expression split.</format></li></list>
+    </def>
+</deflist>
+<deflist>
+    <def title="This method returns:">
+        <list><li>string[] - <format style="italic">Array containing substrings of $string split along boundaries matched by $pattern.</format></li></list>
+    </def>
+</deflist>
 ## method: encoding {id="encoding()"}
 
 <code-block lang="php">
-    <![CDATA[public static RegexMB::encoding(null|\FireHub\Core\Support\Enums\String\Encoding $encoding = null):true|\FireHub\Core\Support\Enums\String\Encoding]]>
+    <![CDATA[public static RegexMB::encoding(null|\FireHub\Core\Support\Enums\String\Encoding $encoding = null):mixed]]>
 </code-block>
 
 
@@ -263,12 +327,12 @@ and replace.</format></li></list>
 
 
 <deflist><def title="Source code:">
-                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L151">
+                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L194">
                     View source code
                 </a>
             </def>
             <def title="Blame:">
-                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L151">
+                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/support/lowlevel/firehub.RegexMB.php#L194">
                     View blame
                 </a>
             </def></deflist>
@@ -279,7 +343,7 @@ and replace.</format></li></list>
 </deflist>
 <deflist>
     <def title="This method uses:">
-        <list><li><a href="Encoding.md">\FireHub\Core\Support\Enums\String\Encoding</a>  - <format style="italic">To get or set regex character encoding.</format></li><li><a href="DataIs.md#string()">\FireHub\Core\Support\LowLevel\DataIs::string()</a>  - <format style="italic">To check if provider encoding is string.</format></li></list>
+        <list><li><a href="Encoding.md">\FireHub\Core\Support\Enums\String\Encoding</a>  - <format style="italic">To get or set regex character encoding.</format></li></list>
     </def>
 </deflist>
 <deflist>
@@ -296,7 +360,8 @@ Character encoding. If it is null, the internal character encoding value will be
 </deflist>
 <deflist>
     <def title="This method returns:">
-        <list><li>true or <a href="Encoding.md">\FireHub\Core\Support\Enums\String\Encoding</a> - <format style="italic">If encoding is set, then returns true. In this case, the internal character encoding is
-NOT changed. If encoding is omitted, then the current character encoding name for a multibyte regex is returned.</format></li></list>
+        <list><li>mixed - <format style="italic">If encoding is set, then returns true.
+In this case, the internal character encoding is NOT changed.
+If encoding is omitted, then the current character encoding name for a multibyte regex is returned.</format></li></list>
     </def>
 </deflist>

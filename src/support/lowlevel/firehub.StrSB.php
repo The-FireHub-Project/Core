@@ -21,7 +21,9 @@ use function addcslashes;
 use function chunk_split;
 use function count_chars;
 use function lcfirst;
+use function str_ireplace;
 use function str_pad;
+use function str_replace;
 use function str_shuffle;
 use function str_split;
 use function str_word_count;
@@ -42,7 +44,6 @@ use function strrpos;
 use function strspn;
 use function strtolower;
 use function strtoupper;
-use function strtr;
 use function substr;
 use function substr_compare;
 use function substr_count;
@@ -58,7 +59,6 @@ use function wordwrap;
  * @since 1.0.0
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
- * @SuppressWarnings(PHPMD.TooManyMethods)
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 final class StrSB extends StrSafe {
@@ -74,12 +74,12 @@ final class StrSB extends StrSafe {
      * @param string $string <p>
      * The string to be escaped.
      * </p>
-     * @param string $characters [optional] <p>
+     * @param null|string $characters [optional] <p>
      * The list of characters to be escaped. Non-alphanumeric characters with ASCII codes lower than 32 and higher
      * than 126 converted to octal representation.
      * </p>
      */
-    public static function addSlashes (string $string, string $characters = null):string {
+    public static function addSlashes (string $string, ?string $characters = null):string {
 
         return empty($characters)
             ? parent::addSlashes($string)
@@ -97,13 +97,12 @@ final class StrSB extends StrSafe {
      * @param string $string <p>
      * The string to be chunked.
      * </p>
-     * @param int $length [optional] <p>
+     * @param positive-int $length [optional] <p>
      * The chunk length.
      * </p>
      * @param string $separator [optional] <p>
      * The line-ending sequence.
      * </p>
-     * @phpstan-param positive-int $length
      *
      * @throws ValueError If length is less than 1.
      *
@@ -134,15 +133,13 @@ final class StrSB extends StrSafe {
      * If the value of $length is negative, less than, or equal to the length of the input string, no padding takes
      * place.
      * </p>
-     * @param string $pad [optional] <p>
-     * <code>non-empty-string</code>
+     * @param non-empty-string $pad [optional] <p>
      * The pad may be truncated if the required number of padding characters can't be evenly divided by the pad's
      * length.
      * </p>
      * @param \FireHub\Core\Support\Enums\Side $side [optional] <p>
      * Pad side.
      * </p>
-     * @phpstan-param non-empty-string $pad
      *
      * @throws Error If the pad is empty.
      *
@@ -155,6 +152,45 @@ final class StrSB extends StrSafe {
             Side::RIGHT => 1,
             Side::BOTH => 2
         }) : throw new Error('Pad cannot be empty.');
+
+    }
+
+    /**
+     * ### Replace all occurrences of the search string with the replacement string
+     *
+     * This function returns a string or an array with all occurrences of search in a subject replaced with the given replacement value.
+     * @since 1.0.0
+     *
+     * @param string|list<string> $search <p>
+     * The replacement value that replaces found search values.
+     * An array may be used to designate multiple replacements.
+     * </p>
+     * @param string|list<string> $replace <p>
+     * The string being searched and replaced on.
+     * </p>
+     * @param string $string <p>
+     * The value being searched for.
+     * </p>
+     * @param bool $case_sensitive [optional] <p>
+     * Searched values are case-insensitive.
+     * </p>
+     * @param null|int &$count [optional] <p>
+     * If passed, this will hold the number of matched and replaced needles.
+     * </p>
+     * @param-out int $count
+     *
+     * @return string String with the replaced values.
+     *
+     * @note Multibyte characters may not work as expected while $case_sensitive is on.
+     * @note Because method replaces left to right, it might replace a previously inserted value when doing
+     * multiple replacements.
+     * @tip To replace text based on a pattern rather than a fixed string, use preg_replace().
+     */
+    public static function replace (string|array $search, string|array $replace, string $string, bool $case_sensitive = true, ?int &$count = null):string {
+
+        if ($case_sensitive) return str_replace($search, $replace, $string, $count);
+
+        return str_ireplace($search, $replace, $string, $count);
 
     }
 
@@ -184,7 +220,7 @@ final class StrSB extends StrSafe {
      *
      * @return string String with the replaced values.
      */
-    public static function replacePart (string $string, string $replace, int $offset, int $length = null):string {
+    public static function replacePart (string $string, string $replace, int $offset, ?int $length = null):string {
 
         return substr_replace($string, $replace, $offset, $length);
 
@@ -359,28 +395,6 @@ final class StrSB extends StrSafe {
     }
 
     /**
-     * ### Translate characters or replace substrings
-     * @since 1.0.0
-     *
-     * @param string $string <p>
-     * The string being translated to.
-     * </p>
-     * @param string $from <p>
-     * An array of key-value pairs for translation.
-     * </p>
-     * @param string $to <p>
-     * The string replaced from.
-     * </p>
-     *
-     * @return string The translated string.
-     */
-    public static function translate (string $string, string $from, string $to):string {
-
-        return strtr($string, $from, $to);
-
-    }
-
-    /**
      * ### Get part of string
      *
      * Returns the portion of the string specified by the $start and $length parameters.
@@ -485,9 +499,7 @@ final class StrSB extends StrSafe {
      * The examined string.
      * </p>
      *
-     * @return array <code><![CDATA[ array<int, int> ]]></code> An array with the byte-value as a key with a frequency
-     * greater than zero are listed.
-     * @phpstan-return array<int, int>
+     * @return array<int, int> An array with the byte-value as a key with a frequency greater than zero are listed.
      */
     public static function countByChar (string $string):array {
 
@@ -503,19 +515,16 @@ final class StrSB extends StrSafe {
      * @param string $string <p>
      * The input string.
      * </p>
-     * @param int $length [optional] <p>
-     * <code>positive-int</code>
+     * @param positive-int $length [optional] <p>
      * Maximum length of the chunk.
      * </p>
-     * @phpstan-param positive-int $length
      *
      * @throws Error If length is less than 1.
      *
-     * @return array <code><![CDATA[ array<int, string> ]]></code> If the optional $length parameter is specified, the
-     * returned array will be broken down into chunks with each being $length in length, except the final chunk which
-     * may be shorter if the string does not divide evenly. The default $length is 1, meaning every chunk will be one
-     * byte in size.
-     * @phpstan-return array<int, string>
+     * @return array<int, string> If the optional $length parameter is specified, the returned array will be broken down
+     * into chunks with each being $length in length, except the final chunk which may be shorter if the string does not
+     * divide evenly.
+     * The default $length is 1, meaning every chunk will be one byte in size.
      */
     public static function split (string $string, int $length = 1):array {
 
@@ -540,22 +549,19 @@ final class StrSB extends StrSafe {
      * @param null|string $characters [optional] <p>
      * A list of additional characters which will be considered as 'word'.
      * </p>
-     * @param int $format [optional] <p>
-     * <code><![CDATA[ 0|1|2 ]]></code>
+     * @param 0|1|2 $format [optional] <p>
      * A string to search words.
      * 0 - returns the number of words found.
      * 1 - returns an array containing all the words found inside the string.
      * 2 - returns an associative array, where the key is the numeric position of the word inside the string and the
      * value is the actual word itself.
      * </p>
-     * @phpstan-param 0|1|2 $format
      *
      * @throws Error If failed to count words for string.
      *
-     * @return int|array <code><![CDATA[ int|array<int, string> ]]></code> Number of words found or list of words.
-     * @phpstan-return int|array<int, string>
+     * @return int|array<int, string> Number of words found or list of words.
      */
-    public static function countWords (string $string, string $characters = null, int $format = 0):int|array {
+    public static function countWords (string $string, ?string $characters = null, int $format = 0):int|array {
 
         return str_word_count($string, $format, $characters)
             ?: throw new Error('Failed to count words for string.');
@@ -583,8 +589,7 @@ final class StrSB extends StrSafe {
      * plus the length is greater than the $string length. A negative length counts from the end of $string.
      * </p>
      *
-     * @return int <code>non-negative-int</code> Number of times the searched substring occurs in the string.
-     * @phpstan-return non-negative-int
+     * @return non-negative-int Number of times the searched substring occurs in the string.
      *
      * @note This method doesn't count overlapped substring.
      */
@@ -675,8 +680,7 @@ final class StrSB extends StrSafe {
      * The string being measured for length.
      * </p>
      *
-     * @return int <code>non-negative-int</code> String length.
-     * @phpstan-return non-negative-int
+     * @return non-negative-int String length.
      *
      * @note The function returns the number of bytes rather than the number of characters in a string.
      */
@@ -707,7 +711,7 @@ final class StrSB extends StrSafe {
 
         return $case_sensitive
             ? parent::compare($string_1, $string_2)
-            : strcasecmp($string_1, $string_2);
+            : strcasecmp($string_1, $string_2) <=> 0;
 
     }
 
@@ -736,7 +740,7 @@ final class StrSB extends StrSafe {
      *
      * @return int -1 if string1 is less than string2, 1 if string1 is greater than string2 and 0 if they are equal.
      */
-    public static function comparePart (string $string_1, string $string_2, int $offset, int $length = null, bool $case_sensitive = true):int {
+    public static function comparePart (string $string_1, string $string_2, int $offset, ?int $length = null, bool $case_sensitive = true):int {
 
         return substr_compare(
             $string_1,
@@ -744,7 +748,7 @@ final class StrSB extends StrSafe {
             $offset,
             $length,
             !$case_sensitive
-        );
+        ) <=> 0;
 
     }
 
@@ -767,7 +771,7 @@ final class StrSB extends StrSafe {
      */
     public static function compareFirstN (string $string_1, string $string_2, int $length):int|false {
 
-        return $length > 0 ? strncmp($string_1, $string_2, $length) : false;
+        return $length > 0 ? strncmp($string_1, $string_2, $length) <=> 0 : false;
 
     }
 

@@ -14,8 +14,11 @@
 
 namespace FireHub\Core\Support\LowLevel;
 
+use FireHub\Core\Base\ {
+    InitStatic, Trait\ConcreteStatic
+};
 use FireHub\Core\Support\Enums\Side;
-use Error, ValueError;
+use Error, ValueError, Stringable;
 
 use const FireHub\Core\Support\Constants\Number\MAX;
 
@@ -27,13 +30,12 @@ use function quotemeta;
 use function rtrim;
 use function str_contains;
 use function str_ends_with;
-use function str_ireplace;
 use function str_repeat;
-use function str_replace;
 use function str_starts_with;
 use function strcmp;
 use function strip_tags;
 use function stripslashes;
+use function strtr;
 use function trim;
 
 /**
@@ -43,9 +45,14 @@ use function trim;
  * @since 1.0.0
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-abstract class StrSafe {
+abstract class StrSafe implements InitStatic {
+
+    /**
+     * ### FireHub initial concrete static trait
+     * @since 1.0.0
+     */
+    use ConcreteStatic;
 
     /**
      * ### Checks if string contains value
@@ -74,14 +81,12 @@ abstract class StrSafe {
      * Performs a case-sensitive check indicating if $string begins with $value.
      * @since 1.0.0
      *
-     * @param string $value <p>
-     * <code>non-empty-string></code>
+     * @param non-empty-string $value <p>
      * The value to search for.
      * </p>
      * @param string $string <p>
      * The string to search in.
      * </p>
-     * @phpstan-param non-empty-string $value
      *
      * @return bool True if string starts with value, false otherwise.
      */
@@ -97,15 +102,12 @@ abstract class StrSafe {
      * Performs a case-sensitive check indicating if $string ends with $value.
      * @since 1.0.0
      *
-     * @param string $value <p>
-     * <code>non-empty-string></code>
+     * @param non-empty-string $value <p>
      * The value to search for.
      * </p>
      * @param string $string <p>
      * The string to search in.
      * </p>
-     * @phpstan-param non-empty-string $value
-     *
      *
      * @return bool True if string ends with value, false otherwise.
      */
@@ -143,14 +145,12 @@ abstract class StrSafe {
      * Join array elements with a $separator string.
      * @since 1.0.0
      *
-     * @param array $array <p>
-     * <code><![CDATA[ array<array-key, mixed> ]]></code>
+     * @param array<array-key, null|scalar|Stringable> $array <p>
      * The array of strings to implode.
      * </p>
      * @param string $separator [optional] <p>
      * The boundary string.
      * </p>
-     * @phpstan-param array<array-key, mixed> $array
      *
      * @throws Error If array item could not be converted to string.
      *
@@ -170,62 +170,14 @@ abstract class StrSafe {
      * @since 1.0.0
      *
      * @param string $string <p>
-     * <code>non-empty-string</code>
      * The input string.
      * </p>
-     * @phpstan-param non-empty-string $string
-     *
-     * @throws Error If empty string is given as string.
      *
      * @return string The string with meta-characters quoted.
      */
     final public static function quoteMeta (string $string):string {
 
-        return quotemeta($string)
-            ?: throw new Error('Empty string is given as string.');
-
-    }
-
-    /**
-     * ### Replace all occurrences of the search string with the replacement string
-     *
-     * This function returns a string or an array with all occurrences of search
-     * in a subject replaced with the given replacement value.
-     * @since 1.0.0
-     *
-     * @param string|array $search <p>
-     * <code><![CDATA[ string|list<string> ]]></code>
-     * The replacement value that replaces found search values.
-     * An array may be used to designate multiple replacements.
-     * </p>
-     * @param string|array $replace <p>
-     * <code><![CDATA[ string|list<string> ]]></code>
-     * The string being searched and replaced on.
-     * </p>
-     * @param string $string <p>
-     * The value being searched for.
-     * </p>
-     * @param bool $case_sensitive [optional] <p>
-     * Searched values are case-insensitive.
-     * </p>
-     * @param null|int &$count [optional] <p>
-     * If passed, this will hold the number of matched and replaced needles.
-     * </p>
-     * @phpstan-param string|list<string> $search
-     * @phpstan-param string|list<string> $replace
-     *
-     * @return string String with the replaced values.
-     *
-     * @note Multibyte characters may not work as expected while $case_sensitive is on.
-     * @note Because method replaces left to right, it might replace a previously inserted value when doing
-     * multiple replacements.
-     * @tip To replace text based on a pattern rather than a fixed string, use preg_replace().
-     */
-    final public static function replace (string|array $search, string|array $replace, string $string, bool $case_sensitive = true, int &$count = null):string {
-
-        if ($case_sensitive) return str_replace($search, $replace, $string, $count);
-
-        return str_ireplace($search, $replace, $string, $count);
+        return quotemeta($string);
 
     }
 
@@ -239,22 +191,20 @@ abstract class StrSafe {
      * The string to be repeated.
      * </p>
      * @param int $times <p>
-     * <code>non-negative-int</code>
-     * Number of time the input string should be repeated. Multiplier has to be greater than or equal to 0. If the
-     * multiplier is set to 0, the function will return an empty string.
+     * Number of time the input string should be repeated. Multiplier has to be greater than or equal to 0.
+     * If the $times is set to 0 or less, the function will return empty string.
      * </p>
      * @param string $separator [optional] <p>
      * Separator in between any repeated string.
      * </p>
-     * @phpstan-param non-negative-int $times
-     *
-     * @throws Error If $times argument is not 0 or greater.
      *
      * @return string Repeated string.
+     *
+     * @note If $times is less than 1, the original string will be returned.
      */
     final public static function repeat (string $string, int $times, string $separator = ''):string {
 
-        return $times === 0 ? '' : str_repeat($string.$separator, $times - 1).$string;
+        return $times < 1 ? '' : str_repeat($string.$separator, $times - 1).$string;
 
     }
 
@@ -268,10 +218,8 @@ abstract class StrSafe {
      * @param string $string <p>
      * The input string.
      * </p>
-     * @param null|string|array $allowed_tags <p>
-     * <code><![CDATA[ null|string|array<int, string> ]]></code>
+     * @param null|string|array<int, string> $allowed_tags <p>
      * You can use the optional second parameter to specify tags which should not be stripped.
-     * @phpstan-param null|string|array<int, string> $allowed_tags
      *
      * @return string the Stripped string.
      *
@@ -311,8 +259,8 @@ abstract class StrSafe {
     /**
      * ### Strip whitespace (or other characters) from the beginning and end of a string
      *
-     * This function returns a string with whitespace stripped from the beginning and end of string. Without the
-     * second parameter, trim() will strip these characters.
+     * This function returns a string with whitespace stripped from the beginning and end of string.
+     * Without the second parameter, [[StrSafe#trim()]] will strip these characters.
      *
      * - " " (ASCII 32 (0x20)), an ordinary space.
      * - "\t" (ASCII 9 (0x09)), a tab.
@@ -366,25 +314,19 @@ abstract class StrSafe {
      * @param string $string <p>
      * The input string.
      * </p>
-     * @param string $separator <p>
-     * <code>non-empty-string</code>
+     * @param non-empty-string $separator <p>
      * The boundary string.
      * </p>
-     * @param int $limit [optional] <p>
-     * <code><![CDATA[ int<min, max> ]]></code>
+     * @param int<min, max> $limit [optional] <p>
      * If the limit is set and positive, the returned array will contain a maximum of limit elements with the last
      * element containing the rest of the string. If the limit parameter is negative, all components except the last
      * - limit are returned. If the limit parameter is zero, then this is treated as 1.
      * </p>
-     * @phpstan-param non-empty-string $separator
-     * @phpstan-param int<min, max> $limit
      *
      * @throws ValueError If separator is an empty string.
      *
-     * @return array <code>string[]</code> If delimiter contains a value that is not contained in string and a negative
-     * limit is used, then an empty array will be returned. For any other limit, an array containing string will be
-     * returned.
-     * @phpstan-return string[]
+     * @return string[] If delimiter contains a value that is not contained in string and a negative limit is used, then an empty array will be returned.
+     * For any other limit, an array containing string will be returned.
      */
     final public static function explode (string $string, string $separator, int $limit = MAX):array {
 
@@ -410,7 +352,28 @@ abstract class StrSafe {
      */
     public static function compare (string $string_1, string $string_2):int {
 
-        return strcmp($string_1, $string_2);
+        return strcmp($string_1, $string_2) <=> 0;
+
+    }
+
+    /**
+     * ### Translate characters or replace substrings
+     * @since 1.0.0
+     *
+     * @param string $string <p>
+     * The string being translated to.
+     * </p>
+     * @param array<non-empty-string, string> $replace_pairs <p>
+     * An array of key-value pairs for translation.
+     * </p>
+     *
+     * @error\exeption E_WARNING If the key for parameter $replace_pairs is empty.
+     *
+     * @return string The translated string.
+     */
+    public static function translate (string $string, array $replace_pairs):string {
+
+        return strtr($string, $replace_pairs);
 
     }
 

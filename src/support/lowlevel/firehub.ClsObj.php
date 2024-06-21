@@ -14,6 +14,9 @@
 
 namespace FireHub\Core\Support\LowLevel;
 
+use FireHub\Core\Base\ {
+    InitStatic, Trait\ConcreteStatic
+};
 use Error, TypeError;
 
 use function class_implements;
@@ -34,22 +37,24 @@ use function is_subclass_of;
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
-abstract class ClsObj {
+abstract class ClsObj implements InitStatic {
+
+    /**
+     * ### FireHub initial concrete static trait
+     * @since 1.0.0
+     */
+    use ConcreteStatic;
 
     /**
      * ### Checks if the class method exists
      * @since 1.0.0
      *
-     * @param string|object $object_or_class <p>
-     * <code>class-string|object</code>
+     * @param class-string|object $object_or_class <p>
      * An object instance or a class name.
      * </p>
-     * @param string $method <p>
-     * <code>non-empty-string</code>
+     * @param non-empty-string $method <p>
      * The method name.
      * </p>
-     * @phpstan-param class-string|object $object_or_class
-     * @phpstan-param non-empty-string $method
      *
      * @return bool True if the method given by method has been defined for the given object_or_class, false otherwise.
      *
@@ -67,18 +72,12 @@ abstract class ClsObj {
      * This method checks if the given property exists in the specified class.
      * @since 1.0.0
      *
-     * @param string|object $object_or_class <p>
-     * <code>class-string|object</code>
+     * @param class-string|object $object_or_class <p>
      * The class name or an object of the class to test for.
      * </p>
-     * @param string $property <p>
-     * <code>non-empty-string</code>
+     * @param non-empty-string $property <p>
      * The name of the property.
      * </p>
-     * @phpstan-param class-string|object $object_or_class
-     * @phpstan-param non-empty-string $property
-     *
-     * @throws Error If there was an error trying to get property.
      *
      * @return bool True if the property exists, false if it doesn't exist.
      *
@@ -88,13 +87,7 @@ abstract class ClsObj {
      */
     final public static function propertyExist (string|object $object_or_class, string $property):bool {
 
-        /**
-         * PHPStan reports that property_exists could not return NULL, but it can if an error trying to get property.
-         * @phpstan-ignore-next-line
-         */
-        return DataIs::null($property = property_exists($object_or_class, $property))
-            ? $property
-            : throw new Error("There was an error trying to get property: $property");
+        return property_exists($object_or_class, $property);
 
     }
 
@@ -105,7 +98,6 @@ abstract class ClsObj {
      * @since 1.0.0
      *
      * @param string|object $object_or_class <p>
-     * <code>class-string|object</code>
      * A class name or an object instance.
      * </p>
      * @param string $class <p>
@@ -114,8 +106,6 @@ abstract class ClsObj {
      * @param bool $autoload [optional] <p>
      * Whether to allow this function to load the class automatically through the __autoload magic method.
      * </p>
-     * @phpstan-param class-string|object $object_or_class
-     * class-string $class
      *
      * @return bool True if the object is of this object type or has this object type as one of its supertypes,
      * false otherwise.
@@ -132,18 +122,15 @@ abstract class ClsObj {
      * Checks if the given object_or_class has the class $class as one of its parents or implements it.
      * @since 1.0.0
      *
-     * @param string|object $object_or_class <p>
-     * <code>class-string|object</code>
+     * @param class-string|object $object_or_class <p>
      * The tested class. No error is generated if the class does not exist.
      * </p>
-     * @param string $class <p>
+     * @param class-string $class <p>
      * The class or interface name.
      * </p>
      * @param bool $autoload [optional] <p>
      * Whether to allow this function to load the class automatically through the __autoload magic method.
      * </p>
-     * @phpstan-param class-string|object $object_or_class
-     * @phpstan-param class-string $class
      *
      * @return bool True if the object is of this object or lass type or has this object type as one of its supertypes,
      * false otherwise.
@@ -160,16 +147,13 @@ abstract class ClsObj {
      *
      * @uses \FireHub\Core\Support\LowLevel\Cls::isClass() To check if $object_or_class parameter is class.
      *
-     * @param string|object $object_or_class <p>
-     * <code>class-string|object</code>
+     * @param class-string|object $object_or_class <p>
      * The class name or an object instance.
      * </p>
-     * @phpstan-param class-string|object $object_or_class
      *
      * @throws TypeError If $object_or_class is not an object or a valid class name.
      *
-     * @return array <code><![CDATA[ array<string> ]]></code> Returns an array of method names defined for the class.
-     * @phpstan-return array<string>
+     * @return array<string> Returns an array of method names defined for the class.
      *
      * @note The result depends on the current scope.
      */
@@ -183,15 +167,12 @@ abstract class ClsObj {
      * ### Retrieves the parent class name for an object or class
      * @since 1.0.0
      *
-     * @param string|object $object_or_class <p>
-     * <code>class-string|object</code>
+     * @param class-string|object $object_or_class <p>
      * The tested object or class name. This parameter is optional if called from the object's method.
      * </p>
-     * @phpstan-param class-string|object $object_or_class
      *
-     * @return string|false <code>class-string|false</code> The name of the parent class for the class that
-     * $object_or_class is an instance or the name, or false if object_or_class doesn't have a parent.
-     * @phpstan-return class-string|false
+     * @return class-string|false The name of the parent class for the class that $object_or_class is an instance or the name, or false if object_or_class
+     * doesn't have a parent.
      */
     final public static function parentClass (string|object $object_or_class):string|false {
 
@@ -205,25 +186,22 @@ abstract class ClsObj {
      * This function returns an array with the name of the parent classes of the given object_or_class.
      * @since 1.0.0
      *
-     * @param string|object $object_or_class <p>
-     * <code>class-string|object</code>
+     * @param class-string|object $object_or_class <p>
      * An object (class instance) or a string (class or interface name).
      * </p>
      * @param bool $autoload [optional] <p>
      * Whether to allow this function to load the class automatically through the __autoload magic method.
      * </p>
-     * @phpstan-param class-string|object $object_or_class
      *
      * @throws Error If $object_or_class does not exist and could not be loaded.
      * @error\exeption E_WARNING If $object_or_class does not exist and could not be loaded.
      *
-     * @return array <code><![CDATA[ array<string, class-string> ]]></code> An array on success.
-     * @phpstan-return array<string, class-string>
+     * @return array<string, class-string> An array on success.
      */
     final public static function parents (object|string $object_or_class, bool $autoload = true):array {
 
-        return class_parents($object_or_class, $autoload)
-            ?: throw new Error('$object_or_class does not exist and could not be loaded.');
+        return ($result = class_parents($object_or_class, $autoload)) !== false
+            ? $result : throw new Error('$object_or_class does not exist and could not be loaded.');
 
     }
 
@@ -234,25 +212,22 @@ abstract class ClsObj {
      * and its parents implement.
      * @since 1.0.0
      *
-     * @param string|object $object_or_class <p>
-     * <code>class-string|object</code>
+     * @param class-string|object $object_or_class <p>
      * An object (class instance) or a string (class or interface name).
      * </p>
      * @param bool $autoload [optional] <p>
      * Whether to allow this function to load the class automatically through the __autoload magic method.
      * </p>
-     * @phpstan-param class-string|object $object_or_class
      *
      * @throws Error If $object_or_class does not exist and could not be loaded.
      * @error\exeption E_WARNING If $object_or_class does not exist and could not be loaded.
      *
-     * @return array <code><![CDATA[ array<string, class-string> ]]></code> An array.
-     * @phpstan-return array<string, class-string>
+     * @return array<string, class-string> An array.
      */
     final public static function implements (object|string $object_or_class, bool $autoload = true):array {
 
-        return class_implements($object_or_class, $autoload)
-            ?: throw new Error('$object_or_class does not exist and could not be loaded.');
+        return ($result = class_implements($object_or_class, $autoload)) !== false
+            ? $result : throw new Error('$object_or_class does not exist and could not be loaded.');
 
     }
 
@@ -263,25 +238,22 @@ abstract class ClsObj {
      * This does, however, not include any traits used by a parent class.
      * @since 1.0.0
      *
-     * @param string|object $object_or_class <p>
-     * <code>class-string|object</code>
+     * @param class-string|object $object_or_class <p>
      * An object (class instance) or a string (class or interface name).
      * </p>
      * @param bool $autoload [optional] <p>
      * Whether to allow this function to load the class automatically through the __autoload magic method.
      * </p>
-     * @phpstan-param class-string|object $object_or_class
      *
      * @throws Error If $object_or_class does not exist and could not be loaded.
      * @error\exeption E_WARNING If $object_or_class does not exist and could not be loaded.
      *
-     * @return array <code><![CDATA[ array<string, class-string> ]]></code> An array.
-     * @phpstan-return array<string, class-string>
+     * @return array<string, class-string> An array.
      */
     final public static function uses (object|string $object_or_class, bool $autoload = true):array {
 
-        return class_uses($object_or_class, $autoload)
-            ?: throw new Error('$object_or_class does not exist and could not be loaded.');
+        return ($result = class_uses($object_or_class, $autoload)) !== false
+            ? $result : throw new Error('$object_or_class does not exist and could not be loaded.');
 
     }
 

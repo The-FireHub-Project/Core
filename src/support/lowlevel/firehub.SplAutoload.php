@@ -14,6 +14,9 @@
 
 namespace FireHub\Core\Support\LowLevel;
 
+use FireHub\Core\Base\ {
+    InitStatic, Trait\ConcreteStatic
+};
 use Error, LogicException;
 
 use function spl_autoload;
@@ -29,7 +32,13 @@ use function spl_autoload_unregister;
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
-final class SplAutoload {
+final class SplAutoload implements InitStatic {
+
+    /**
+     * ### FireHub initial concrete static trait
+     * @since 1.0.0
+     */
+    use ConcreteStatic;
 
     /**
      * ### Default autoload implementation
@@ -51,7 +60,7 @@ final class SplAutoload {
      *
      * @return void
      */
-    public static function default (string $class, string $file_extensions = null):void {
+    public static function default (string $class, ?string $file_extensions = null):void {
 
         spl_autoload($class, $file_extensions);
 
@@ -74,7 +83,7 @@ final class SplAutoload {
      *
      * @note There should not be a space between the defined file extensions.
      */
-    public static function extensions (string $file_extensions = null):string {
+    public static function extensions (?string $file_extensions = null):string {
 
         return spl_autoload_extensions($file_extensions);
 
@@ -103,7 +112,7 @@ final class SplAutoload {
      *
      * @phpstan-ignore-next-line PHPStan reports that the method could still return bool.
      */
-    public static function register (callable $callback = null, bool $prepend = false):true {
+    public static function register (?callable $callback = null, bool $prepend = false):true {
 
         return spl_autoload_register($callback, true, $prepend)
             ?: throw new Error('Failed to register a callback function as an autoloader.');
@@ -138,9 +147,8 @@ final class SplAutoload {
      * ### Get all registered autoload functions
      * @since 1.0.0
      *
-     * @return array <code><![CDATA[ array<array-key, mixed> ]]></code> An array of all registered autoload functions.
+     * @return array<array-key, mixed> An array of all registered autoload functions.
      * If no function is registered, or autoloaded queue is not activated, then the return value will be an empty array.
-     * @phpstan-return array<array-key, mixed>
      */
     public static function functions ():array {
 

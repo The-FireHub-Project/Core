@@ -94,19 +94,19 @@
 
 
 <deflist><def title="Source code:">
-                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L44">
+                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L43">
                     View source code
                 </a>
             </def>
             <def title="Blame:">
-                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L44">
+                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L43">
                     View blame
                 </a>
             </def></deflist>
 ## method: __construct {id="__construct()"}
 
 <code-block lang="php">
-    <![CDATA[public Callback::__construct(callable|string $path):void]]>
+    <![CDATA[public Callback::__construct(callable|non-empty-string $path):void]]>
 </code-block>
 
 
@@ -126,12 +126,12 @@
 
 
 <deflist><def title="Source code:">
-                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L43">
+                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L42">
                     View source code
                 </a>
             </def>
             <def title="Blame:">
-                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L43">
+                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L42">
                     View blame
                 </a>
             </def></deflist>
@@ -142,7 +142,7 @@
 </deflist>
 <deflist>
     <def title="This method has parameters:">
-        <list><li>callable or string <format style="bold">$path</format> - <format style="italic">
+        <list><li>callable or non-empty-string <format style="bold">$path</format> - <format style="italic">
 <code>Closure(string $namespace, string $classname):(non-empty-string|false)|non-empty-string</code>
 Folder path where autoloader will try to find classes. All namespace components will be resolved as folders
 inside a root path.
@@ -157,7 +157,7 @@ inside a root path.
 ## method: classComponents {id="classcomponents()"}
 
 <code-block lang="php">
-    <![CDATA[private Callback::classComponents(string $class):array]]>
+    <![CDATA[private Callback::classComponents(string $class):array{namespace: string, classname: string}]]>
 </code-block>
 
 
@@ -177,12 +177,12 @@ inside a root path.
 
 
 <deflist><def title="Source code:">
-                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L67">
+                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L65">
                     View source code
                 </a>
             </def>
             <def title="Blame:">
-                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L67">
+                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L65">
                     View blame
                 </a>
             </def></deflist>
@@ -215,7 +215,7 @@ Class FQN to resolve.
 </deflist>
 <deflist>
     <def title="This method returns:">
-        <list><li>array - <format style="italic"><code>array{namespace: string, classname: string}</code> Class components.</format></li></list>
+        <list><li>array{namespace: string, classname: string} - <format style="italic">Class components.</format></li></list>
     </def>
 </deflist>
 ## method: __invoke {id="__invoke()"}
@@ -241,12 +241,12 @@ Class FQN to resolve.
 
 
 <deflist><def title="Source code:">
-                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L110">
+                <a href="https://github.com/The-FireHub-Project/Core/blob/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L109">
                     View source code
                 </a>
             </def>
             <def title="Blame:">
-                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L110">
+                <a href="https://github.com/The-FireHub-Project/Core/blame/develop-pre-alpha-m1/src/initializers/autoload/firehub.Callback.php#L109">
                     View blame
                 </a>
             </def></deflist>
@@ -257,7 +257,7 @@ Class FQN to resolve.
 </deflist>
 <deflist>
     <def title="This method uses:">
-        <list><li><a href="Callback.md#classcomponents()">\FireHub\Core\Initializers\Autoload\Callback::classComponents()</a>  - <format style="italic">To get class components from class FQN.</format></li><li><a href="DataIs.md#callable()">\FireHub\Core\Support\LowLevel\DataIs::callable()</a>  - <format style="italic">To check if $class is callable or string.</format></li><li><a href="File.md#isfile()">\FireHub\Core\Support\LowLevel\File::isFile()</a>  - <format style="italic">To check if $path is a valid path.</format></li><li><a href="DS.md">\FireHub\Core\Support\Constants\Path\DS</a>  - <format style="italic">As system definition for separating folders, platform specific.</format></li></list>
+        <list><li><a href="Callback.md#classcomponents()">\FireHub\Core\Initializers\Autoload\Callback::classComponents()</a>  - <format style="italic">To get class components from class FQN.</format></li><li><a href="DataIs.md#callable()">\FireHub\Core\Support\LowLevel\DataIs::callable()</a>  - <format style="italic">To check if $class is callable or string.</format></li><li><a href="DataIs.md#string()">\FireHub\Core\Support\LowLevel\DataIs::string()</a>  - <format style="italic">To check if callable path return string.</format></li><li><a href="File.md#isfile()">\FireHub\Core\Support\LowLevel\File::isFile()</a>  - <format style="italic">To check if $path is a valid path.</format></li><li><a href="DS.md">\FireHub\Core\Support\Constants\Path\DS</a>  - <format style="italic">As system definition for separating folders, platform specific.</format></li></list>
     </def>
 </deflist>
 <deflist>

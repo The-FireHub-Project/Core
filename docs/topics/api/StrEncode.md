@@ -224,7 +224,7 @@ The data to be encoded.
 ## method: uuDecode {id="uudecode()"}
 
 <code-block lang="php">
-    <![CDATA[public static StrEncode::uuDecode(string $data):string]]>
+    <![CDATA[public static StrEncode::uuDecode(non-empty-string $data):string]]>
 </code-block>
 
 
@@ -260,7 +260,7 @@ The data to be encoded.
 </deflist>
 <deflist>
     <def title="This method has parameters:">
-        <list><li>string <format style="bold">$data</format> - <format style="italic">
+        <list><li>non-empty-string <format style="bold">$data</format> - <format style="italic">
 The uuencoded data.
 </format></li></list>
     </def>

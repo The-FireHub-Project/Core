@@ -14,6 +14,9 @@
 
 namespace FireHub\Core\Support\LowLevel;
 
+use FireHub\Core\Base\ {
+    InitStatic, Trait\ConcreteStatic
+};
 use FireHub\Core\Support\Enums\Data\Type;
 use Error, Exception, Stringable;
 
@@ -30,7 +33,13 @@ use function unserialize;
  *
  * @comment Temporary exclude on phpmd.md because match pattern is not read correctly on line 196.
  */
-final class Data {
+final class Data implements InitStatic {
+
+    /**
+     * ### FireHub initial concrete static trait
+     * @since 1.0.0
+     */
+    use ConcreteStatic;
 
     /**
      * ### Gets data type
@@ -156,11 +165,9 @@ final class Data {
      * To make the serialized string into a PHP value again, use unserialize().
      * @since 1.0.0
      *
-     * @param string|int|float|bool|array|object|null $value <p>
-     * <code><![CDATA[ scalar|array<array-key, mixed>|object|null ]]></code>
+     * @param scalar|array<array-key, mixed>|object|null $value <p>
      * The value to be serialized.
      * </p>
-     * @phpstan-param scalar|array<array-key, mixed>|object|null $value
      *
      * @throws Error If try to serialize anonymous class, function or resource.
      *
@@ -172,7 +179,7 @@ final class Data {
      * example, serialize() output should generally be stored in a BLOB field in a database, rather than a CHAR or
      * TEXT field.
      */
-    public static function serializeValue (string|int|float|bool|array|object|null $value):string {
+    public static function serialize (string|int|float|bool|array|object|null $value):string {
 
         try {
 
@@ -190,27 +197,23 @@ final class Data {
      * ### Creates a PHP value from a stored representation
      * @since 1.0.0
      *
-     * @param string $data <p>
-     * <code>non-empty-string</code>
+     * @param non-empty-string $data <p>
      * The serialized string.
      * </p>
-     * @param bool|array $allowed_classes [optional] <p>
-     * <code><![CDATA[ bool|array<class-string> ]]></code>
+     * @param bool|array<class-string> $allowed_classes [optional] <p>
      * Either an array of class names which should be accepted, false to accept no classes,
      * or true to accept all classes.
      * </p>
      * @param int $max_depth [optional] <p>
      * The maximum depth of structures permitted during unserialization, and is intended to prevent stack overflows.
      * </p>
-     * @phpstan-param non-empty-string $data
-     * @phpstan-param bool|array<class-string> $allowed_classes
      *
      * @throws Error $data is already false already or $data is NULL, or could not unserialize data.
      * @error\exeption E_WARNING if could not unserialize data.
      *
      * @return mixed The converted value is returned.
      */
-    public static function unserializeValue (string $data, bool|array $allowed_classes = false, int $max_depth = 4096):mixed {
+    public static function unserialize (string $data, bool|array $allowed_classes = false, int $max_depth = 4096):mixed {
 
         return match ($data) {
             'b:0;', 'N;' => throw new Error('$data is already false already or $data is NULL'),
