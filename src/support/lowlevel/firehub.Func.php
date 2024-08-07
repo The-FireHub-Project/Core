@@ -14,6 +14,9 @@
 
 namespace FireHub\Core\Support\LowLevel;
 
+use FireHub\Core\Base\ {
+    InitStatic, Trait\ConcreteStatic
+};
 use Error;
 
 use function function_exists;
@@ -25,21 +28,26 @@ use function unregister_tick_function;
 /**
  * ### Function low-level proxy class
  *
- * Class allows you to obtain information about functions.
+ * Class allows you to collect information about functions.
  * @since 1.0.0
  */
-final class Func {
+final class Func implements InitStatic {
 
     /**
-     * ### Checks if function name exists
+     * ### FireHub initial concrete static trait
+     * @since 1.0.0
+     */
+    use ConcreteStatic;
+
+    /**
+     * ### Checks if the function name exists
      *
      * Checks the list of defined functions, both built-in (internal) and user-defined, for function.
      * @since 1.0.0
      *
-     * @param string $name <p>
+     * @param non-empty-string $name <p>
      * The function name.
      * </p>
-     * @phpstan-param non-empty-string $name
      *
      * @return bool True if the interface exists, false otherwise.
      *
@@ -69,8 +77,7 @@ final class Func {
      * Zero or more parameters to be passed to the callback.
      * </p>
      *
-     * @return mixed <code>TReturn</code> The return value of the callback.
-     * @phpstan-return TReturn
+     * @return TReturn The return value of the callback.
      *
      * @note Callbacks registered with this method will not be called if there is an uncaught exception thrown
      * in a previous callback.
@@ -93,7 +100,7 @@ final class Func {
      *
      * @param callable $callback <p>
      * The shutdown callback to register.
-     * The shutdown callbacks are executed as part of the request, so it's possible to send output from them and
+     * The shutdown callbacks are executed as part of the request, so it is possible to send output from them and
      * access output buffers.
      * </p>
      * @param mixed ...$arguments <p>
@@ -103,9 +110,9 @@ final class Func {
      * @return void
      *
      * @note The working directory of the script can change inside the shutdown function under some web servers,
-     * e.g. Apache.
+     * for example, Apache.
      * @note Shutdown functions will not be executed if the process is killed with a SIGTERM or SIGKILL signal. While
-     * you cannot intercept a SIGKILL, you can use pcntl_signal() to install a handler for a SIGTERM which uses exit()
+     * you can't intercept a SIGKILL, you can use pcntl_signal() to install a handler for a SIGTERM which uses exit()
      * to end cleanly.
      * @note Shutdown functions run separately from the time tracked by max_execution_time. That means even if a
      * process is terminated for running too long, shutdown functions will still be called. Additionally, if the
@@ -127,7 +134,7 @@ final class Func {
      * The function to register.
      * </p>
      * @param mixed ...$arguments <p>
-     * Parameters for callback function.
+     * Parameters for a callback function.
      * </p>
      *
      * @throws Error If failed to register tick function.

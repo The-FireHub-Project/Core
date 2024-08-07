@@ -10,6 +10,7 @@
 
 [![PHPMD](https://github.com/The-FireHub-Project/Core/actions/workflows/PHPMD.yml/badge.svg?branch=develop-pre-alpha-m1)](https://github.com/The-FireHub-Project/Core/actions/workflows/PHPMD.yml)
 [![PHPStan](https://github.com/The-FireHub-Project/Core/actions/workflows/PHPStan.yml/badge.svg?branch=develop-pre-alpha-m1)](https://github.com/The-FireHub-Project/Core/actions/workflows/PHPStan.yml)
+[![PHPUnit](https://github.com/The-FireHub-Project/Core/actions/workflows/PHPUnit.yml/badge.svg?branch=develop-pre-alpha-m1)](https://github.com/The-FireHub-Project/Core/actions/workflows/PHPUnit.yml)
 [![Qodana](https://github.com/The-FireHub-Project/Core/actions/workflows/Qodana.yml/badge.svg?branch=develop-pre-alpha-m1)](https://github.com/The-FireHub-Project/Core/actions/workflows/Qodana.yml)
 [![codecov](https://codecov.io/gh/The-FireHub-Project/Core/branch/develop-pre-alpha-m1/graph/badge.svg?token=38D32MP5TL)](https://app.codecov.io/gh/The-FireHub-Project/Core/tree/develop-pre-alpha-m1)
 [![GitHub Discussions](https://img.shields.io/github/discussions/The-FireHub-Project/Core?style=flat&labelColor=30363d)](https://github.com/orgs/The-FireHub-Project/discussions)
@@ -39,6 +40,13 @@ The maintainer of this repo has not yet edited this section.
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/The-FireHub-Project/Core.svg)](http://isitmaintained.com/project/The-FireHub-Project/Core 'Average time to resolve an issue')
 
 Read our [Support](https://github.com/The-FireHub-Project/.github/blob/master/.github/SUPPORT.md) file that explains how you can get help with the repository and project.
+
+**This project has been extensively tested and here are the results with icicle graph:**
+
+<img src="https://codecov.io/gh/The-FireHub-Project/Core/graphs/icicle.svg?token=38D32MP5TL" width="100%" height="200px" alt="codecov_icicle_graph">
+
+> [!NOTE]
+> The top section represents the entire project. Proceeding with folders and finally individual files. The size and color of each slice is representing the number of statements and the coverage, respectively.
 
 ## Community
 
