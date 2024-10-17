@@ -15,6 +15,9 @@
 namespace FireHub\Core\Kernel\HTTP\Micro;
 
 use FireHub\Core\Initializers\Kernel as BaseKernel;
+use FireHub\Core\Kernel\ {
+    Request, Response
+};
 
 /**
  * ### Micro HTTP Kernel
@@ -22,16 +25,19 @@ use FireHub\Core\Initializers\Kernel as BaseKernel;
  * Process Micro HTTP requests that come in through various sources and give a client an appropriate response.
  * @since 1.0.0
  */
-final class Kernel extends BaseKernel {
+class Kernel extends BaseKernel {
 
     /**
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Components\DI\Container::resolve() To resolve response.
+     * @uses \FireHub\Core\Kernel\HTTP\Response As return.
      */
-    public function runtime ():string {
+    public function handle (Request $request):Response {
 
-        return 'Micro HTTP Torch';
+        return $this->container->resolve(Response::class);
 
     }
 

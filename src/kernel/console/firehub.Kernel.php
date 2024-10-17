@@ -15,6 +15,7 @@
 namespace FireHub\Core\Kernel\Console;
 
 use FireHub\Core\Initializers\Kernel as BaseKernel;
+use FireHub\Core\Kernel\Request;
 
 /**
  * ### Console Kernel
@@ -22,16 +23,19 @@ use FireHub\Core\Initializers\Kernel as BaseKernel;
  * Process Console requests that come in through various sources and give a client the appropriate response.
  * @since 1.0.0
  */
-final class Kernel extends BaseKernel {
+class Kernel extends BaseKernel {
 
     /**
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Components\DI\Container::resolve() To resolve response.
+     * @uses \FireHub\Core\Kernel\Console\Response As return.
      */
-    public function runtime ():string {
+    public function handle (Request $request):Response {
 
-        return 'Console Torch';
+        return $this->container->resolve(Response::class);
 
     }
 
