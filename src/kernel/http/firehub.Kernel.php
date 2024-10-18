@@ -15,6 +15,10 @@
 namespace FireHub\Core\Kernel\HTTP;
 
 use FireHub\Core\Initializers\Kernel as BaseKernel;
+use FireHub\Core\Kernel\Request as BaseRequest;
+
+use FireHub\Core\Support\Collection;
+use FireHub\Core\Support\Enums\HTTP\Cache\Response as ResponseCache;
 
 /**
  * ### HTTP Kernel
@@ -22,16 +26,32 @@ use FireHub\Core\Initializers\Kernel as BaseKernel;
  * Process HTTP requests that come in through various sources and give a client the appropriate response.
  * @since 1.0.0
  */
-final class Kernel extends BaseKernel {
+class Kernel extends BaseKernel {
 
     /**
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Components\DI\Container::resolve() To resolve response.
+     * @uses \FireHub\Core\Kernel\HTTP\Response As return.
+     *
+     * @param \FireHub\Core\Kernel\HTTP\Request $request <p>
+     * Interact with the current request being handled by your application.
+     * </p>
+     *
+     * @phpstan-ignore-next-line
      */
-    public function runtime ():string {
+    public function handle (BaseRequest $request):Response {
 
-        return 'HTTP Torch';
+        return (new Response($request, 'HTTP Torch'))->cache(Collection::list([
+            ['directive' => ResponseCache::PRIVATE],
+            ['directive' => ResponseCache::MAX_AGE, 'argument' => 5],
+            ['directive' => ResponseCache::SHARED_MAX_AGE, 'argument' => 5],
+            ['directive' => ResponseCache::MUST_REVALIDATE]
+        ]));
+
+        //return $this->container->resolve(Response::class, ['content' => 'tests']);
 
     }
 
