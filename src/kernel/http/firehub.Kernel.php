@@ -15,6 +15,8 @@
 namespace FireHub\Core\Kernel\HTTP;
 
 use FireHub\Core\Initializers\Kernel as BaseKernel;
+use FireHub\Core\Kernel\Request as BaseRequest;
+use FireHub\Core\Components\DI\Container;
 
 /**
  * ### HTTP Kernel
@@ -22,16 +24,51 @@ use FireHub\Core\Initializers\Kernel as BaseKernel;
  * Process HTTP requests that come in through various sources and give a client the appropriate response.
  * @since 1.0.0
  */
-final class Kernel extends BaseKernel {
+class Kernel extends BaseKernel {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Components\DI\Container As parameter.
+     * @uses \FireHub\Core\Kernel\HTTP\Server As parameter.
+     *
+     * @param \FireHub\Core\Components\DI\Container $container <p>
+     * Dependency injection container.
+     * </p>
+     * @param \FireHub\Core\Kernel\HTTP\Server $server <p>
+     * Server and execution environment information.
+     * </p>
+     *
+     * @return void
+     */
+    public function __construct (
+        protected Container $container,
+        protected Server $server
+    ) {
+
+        parent::__construct($container);
+
+    }
 
     /**
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Kernel\HTTP\Response As return.
+     *
+     * @param \FireHub\Core\Kernel\HTTP\Request $request <p>
+     * Interact with the current request being handled by your application.
+     * </p>
+     *
+     * @phpstan-ignore-next-line
      */
-    public function runtime ():string {
+    public function handle (BaseRequest $request):Response {
 
-        return 'HTTP Torch';
+        return new Response(
+            $this->server, $request, 'HTTP Torch'
+        );
 
     }
 
