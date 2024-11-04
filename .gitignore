@@ -4,5 +4,8 @@
 # PHPUnit cache
 .phpunit.cache/
 
+# Composer dependencies resolver
+composer.lock
+
 # Vendor
 /vendor/
