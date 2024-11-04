@@ -1,0 +1,62 @@
+{
+    "name": "firehub/core",
+    "description": "FireHub Web Application Framework",
+    "type": "library",
+    "keywords": ["php", "framework", "core", "firehub"],
+    "homepage": "https://the-firehub-project.github.io/Core/",
+    "license": "OSL-3.0",
+    "require": {
+        "php": "^8.3",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.12",
+        "phpunit/phpunit": "^11.4",
+        "phpmd/phpmd": "^2.15",
+        "friendsofphp/php-cs-fixer": "^3.6",
+        "ext-openssl": "*"
+    },
+    "suggest": {
+        "php-64bit": "^8.3"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "php-cs-fixer": "php-cs-fixer"
+    },
+    "authors": [
+        {
+            "name": "Danijel Galić",
+            "email": "danijel.galic@outlook.com",
+            "homepage": "https://github.com/dieselxxx",
+            "role": "Owner"
+        }
+    ],
+    "support": {
+        "email": "danijel.galic@outlook.com",
+        "issues": "https://github.com/The-FireHub-Project/Core/issues",
+        "security": "https://github.com/The-FireHub-Project/Core/security/policy",
+        "forum": "https://github.com/orgs/The-FireHub-Project/discussions",
+        "wiki": "https://github.com/The-FireHub-Project/Core/wiki",
+        "source": "https://github.com/The-FireHub-Project/Core",
+        "docs": "https://the-firehub-project.github.io/Core/"
+    },
+    "funding": [
+        {
+            "type": "patreon",
+            "url": "https://www.patreon.com/firehub"
+        }
+    ],
+    "config": {
+        "process-timeout": 300,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "disable-tls": false,
+        "secure-http": true,
+        "vendor-dir": "vendor",
+        "bin-dir": "vendor/bin",
+        "prepend-autoloader": false,
+        "sort-packages": true
+    }
+}
