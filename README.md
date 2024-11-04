@@ -65,6 +65,8 @@ Read our [Support](https://github.com/The-FireHub-Project/.github/blob/master/.g
 
 ## Licence
 
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FThe-FireHub-Project%2FCore.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2FThe-FireHub-Project%2FCore?ref=badge_shield&issueType=license)
+
 This software is licensed under the Open Software License version 3.0.
 
 For more details, read the full license [here](./LICENSE.md).
