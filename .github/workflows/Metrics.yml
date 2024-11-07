@@ -1,0 +1,156 @@
+name: Metrics
+on:
+  schedule:
+    - cron:  '30 23 * * *'
+  workflow_dispatch:
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    permissions:
+      contents: write
+    steps:
+      - name: Update base
+        uses: lowlighter/metrics@latest
+        with:
+          output_action: commit
+          retries: 1
+          retries_delay: 10
+          committer_branch: docs
+          committer_message: "Update base metrics"
+          template: repository
+          user: The-FireHub-Project
+          repo: Core
+          filename: resources/graphics/images/metrics/base.svg
+          token: ${{ secrets.GH_TOKEN }}
+          base_indepth: yes
+      - name: Update activity
+        uses: lowlighter/metrics@latest
+        with:
+          output_action: commit
+          retries: 1
+          retries_delay: 10
+          committer_branch: docs
+          committer_message: "Update activity metrics"
+          template: repository
+          user: The-FireHub-Project
+          repo: Core
+          filename: resources/graphics/images/metrics/activity.svg
+          token: ${{ secrets.GH_TOKEN }}
+          base: ""
+          plugin_activity: yes
+          plugin_activity_days: 365
+          plugin_activity_visibility: public
+          plugin_activity_timestamps: true
+      - name: Update contributors
+        uses: lowlighter/metrics@latest
+        with:
+          output_action: commit
+          retries: 1
+          retries_delay: 10
+          committer_branch: docs
+          committer_message: "Update contributors metrics"
+          template: repository
+          user: The-FireHub-Project
+          repo: Core
+          filename: resources/graphics/images/metrics/contributors.svg
+          token: ${{ secrets.GH_TOKEN }}
+          base: ""
+          plugin_contributors: yes
+          plugin_contributors_head: ${{ github.head_ref || github.ref_name }}
+          plugin_contributors_contributions: yes
+          plugin_contributors_sections: categories
+          plugin_contributors_categories: |
+            {
+              "💻 Code":["src/**"],
+              "💻 Dot files":[".**"],
+              "📚 Documentation":["README.md", "**/README.md"],
+              "#️⃣ Legal": ["/LICENCE.md", "/CITATION.cff"],
+              "#️⃣ Others": ["*"]
+            }
+      - name: Update followup
+        uses: lowlighter/metrics@latest
+        with:
+          output_action: commit
+          retries: 1
+          retries_delay: 10
+          committer_branch: docs
+          committer_message: "Update followup metrics"
+          template: repository
+          user: The-FireHub-Project
+          repo: Core
+          filename: resources/graphics/images/metrics/followup.svg
+          token: ${{ secrets.GH_TOKEN }}
+          base: ""
+          plugin_followup: yes
+          plugin_followup_indepth: yes
+      - name: Update languages
+        uses: lowlighter/metrics@latest
+        with:
+          output_action: commit
+          retries: 1
+          retries_delay: 10
+          committer_branch: docs
+          committer_message: "Update languages metrics"
+          template: repository
+          user: The-FireHub-Project
+          repo: Core
+          filename: resources/graphics/images/metrics/languages.svg
+          token: ${{ secrets.GH_TOKEN }}
+          base: ""
+          plugin_languages: yes
+          plugin_languages_indepth: true
+          plugin_languages_sections: most-used, recently-used
+          plugin_languages_details: bytes-size, percentage, lines
+          plugin_languages_categories: data, markup, programming, prose
+          plugin_languages_recent_categories: data, markup, programming, prose
+      - name: Update people
+        uses: lowlighter/metrics@latest
+        with:
+          output_action: commit
+          retries: 1
+          retries_delay: 10
+          committer_branch: docs
+          committer_message: "Update people metrics"
+          template: repository
+          user: The-FireHub-Project
+          repo: Core
+          filename: resources/graphics/images/metrics/people.svg
+          token: ${{ secrets.GH_TOKEN }}
+          base: ""
+          plugin_people: yes
+          plugin_people_types: sponsors, contributors, stargazers, watchers, thanks
+          #plugin_people_thanks:
+      - name: Update sponsors
+        uses: lowlighter/metrics@latest
+        with:
+          output_action: commit
+          retries: 1
+          retries_delay: 10
+          committer_branch: docs
+          committer_message: "Update sponsors metrics"
+          template: repository
+          user: The-FireHub-Project
+          repo: Core
+          filename: resources/graphics/images/metrics/sponsors.svg
+          token: ${{ secrets.GH_TOKEN }}
+          base: ""
+          plugin_sponsors: yes
+          plugin_sponsors_title: Sponsor Us!
+      - name: Update stargazers
+        uses: lowlighter/metrics@latest
+        with:
+          output_action: commit
+          retries: 1
+          retries_delay: 10
+          committer_branch: docs
+          committer_message: "Update stargazers metrics"
+          template: repository
+          user: The-FireHub-Project
+          repo: Core
+          filename: resources/graphics/images/metrics/stargazers.svg
+          token: ${{ secrets.GH_TOKEN }}
+          base: ""
+          plugin_stargazers: yes
+          plugin_stargazers_days: 0
