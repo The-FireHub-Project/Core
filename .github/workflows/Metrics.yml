@@ -66,7 +66,7 @@ jobs:
               "♨️ Code":["src/**"],
               "🎈 Dot files":[".**"],
               "💢 Documentation":["README.md", "**/README.md"],
-              "🦽Legal": ["/LICENCE.md", "/CITATION.cff"],
+              "🦽 Legal": ["/LICENCE.md", "/CITATION.cff"],
               "🥢 Others": ["*"]
             }
       - name: Update followup
