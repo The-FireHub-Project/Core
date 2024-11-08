@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap = "src/public/console.php"
          colors="true"
-         cacheDirectory=".phpunit.cache"
+         cacheDirectory="vendor/phpunit/.phpunit.cache"
          displayDetailsOnTestsThatTriggerWarnings="true">
     <testsuites>
         <testsuite name="unit">
