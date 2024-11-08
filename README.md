@@ -8,7 +8,7 @@
 
 ## About
 
-[![PHPMD](https://github.com/The-FireHub-Project/Core/actions/workflows/PHPMD.yml/badge.svg?branch=master)](https://github.com/The-FireHub-Project/Core/actions/workflows/PHPMD.yml)
+![PHPMD](https://github.com/The-FireHub-Project/Core/actions/workflows/PHPMD.yml/badge.svg?branch=master)
 [![PHPStan](https://github.com/The-FireHub-Project/Core/actions/workflows/PHPStan.yml/badge.svg?branch=master)](https://github.com/The-FireHub-Project/Core/actions/workflows/PHPStan.yml)
 [![PHPUnit](https://github.com/The-FireHub-Project/Core/actions/workflows/PHPUnit.yml/badge.svg?branch=master)](https://github.com/The-FireHub-Project/Core/actions/workflows/PHPUnit.yml)
 [![codecov](https://codecov.io/gh/The-FireHub-Project/Core/branch/master/graph/badge.svg?token=38D32MP5TL)](https://app.codecov.io/gh/The-FireHub-Project/Core/tree/master)
@@ -19,6 +19,23 @@
 [![Website](https://img.shields.io/website?down_message=offline&up_message=online&url=https%3A%2F%2Fthe-firehub-project.github.io%2F?style=flat&labelColor=30363d)](https://the-firehub-project.github.io/)
 
 FireHub is a powerful web application framework with elegant syntax.
+
+<table>
+    <tr>
+        <th colspan="2">About repository</th>
+    </tr>
+    <tr>
+        <td colspan="2"><img src="https://raw.githubusercontent.com/The-FireHub-Project/Core/refs/heads/docs/resources/graphics/images/metrics/base.svg" alt="base" /></td>
+    </tr>
+    <tr>
+        <th width="600px">Organization projects</th>
+        <th width="600px">Recent activity</th>
+    </tr>
+    <tr>
+        <td><img src="https://raw.githubusercontent.com/The-FireHub-Project/.github/refs/heads/master/resources/graphics/images/metrics/projects.svg" alt="projects" /></td>
+        <td><img src="https://raw.githubusercontent.com/The-FireHub-Project/Core/refs/heads/docs/resources/graphics/images/metrics/activity.svg" alt="activity" /></td>
+    </tr>
+</table>
 
 ## Installation
 
@@ -39,6 +56,17 @@ The maintainer of this repo has not yet edited this section.
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/The-FireHub-Project/Core.svg)](http://isitmaintained.com/project/The-FireHub-Project/Core 'Average time to resolve an issue')
 
 Read our [Support](https://github.com/The-FireHub-Project/.github/blob/master/.github/SUPPORT.md) file that explains how you can get help with the repository and project.
+
+<table>
+    <tr>
+        <th width="600px">Issue and pull request status</th>
+        <th width="600px">Mostly used languages</th>
+    </tr>
+    <tr>
+        <td><img src="https://raw.githubusercontent.com/The-FireHub-Project/Core/refs/heads/docs/resources/graphics/images/metrics/followup.svg" alt="followup" /></td>
+        <td><img src="https://raw.githubusercontent.com/The-FireHub-Project/Core/refs/heads/docs/resources/graphics/images/metrics/languages.svg" alt="languages" /></td>
+    </tr>
+</table>
 
 **This project has been extensively tested, and here are the results with icicle graph:**
 
@@ -61,6 +89,25 @@ Read our [Support](https://github.com/The-FireHub-Project/.github/blob/master/.g
 
 - Project authors can be found [here](.github/AUTHORS.md).
 - The full list of individual contributors can be found [here](.github/CONTRIBUTORS.md).
+
+<table>
+    <tr>
+        <th width="600px">People involved</th>
+        <th width="600px">Contributors</th>
+    </tr>
+    <tr>
+        <td><img src="https://raw.githubusercontent.com/The-FireHub-Project/Core/refs/heads/docs/resources/graphics/images/metrics/people.svg" alt="people" /></td>
+        <td><img src="https://raw.githubusercontent.com/The-FireHub-Project/Core/refs/heads/docs/resources/graphics/images/metrics/contributors.svg" alt="contributors" /></td>
+    </tr>
+    <tr>
+        <th width="600px">Sponsors</th>
+        <th width="600px">Stargazers</th>
+    </tr>
+    <tr>
+        <td><img src="https://raw.githubusercontent.com/The-FireHub-Project/Core/refs/heads/docs/resources/graphics/images/metrics/sponsors.svg" alt="sponsors" /></td>
+        <td><img src="https://raw.githubusercontent.com/The-FireHub-Project/Core/refs/heads/docs/resources/graphics/images/metrics/stargazers.svg" alt="stargazers" /></td>
+    </tr>
+</table>
 
 ## Licence
 
