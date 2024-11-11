@@ -261,7 +261,7 @@ return (new Config)
             'after_heredoc' => true,
             'attribute_placement' => 'standalone',
             'keep_multiple_spaces_after_comma' => false,
-            'on_multiline' => 'ensure_single_line'
+            'on_multiline' => 'ensure_fully_multiline'
         ],
         'native_function_invocation' => [
             'exclude' => [],
@@ -488,9 +488,9 @@ return (new Config)
             'align' => 'left',
             'spacing' => 1,
             'tags' => [
-                'test', 'covers',  'method', 'property', 'property-read', 'property-write', 'phpstan-method',
+                'test', 'covers', 'method', 'property', 'property-read', 'property-write', 'phpstan-method',
                 'phpstan-param', 'phpstan-property', 'phpstan-property-read', 'phpstan-property-write',
-                'phpstan-assert', 'phpstan-assert-if-true', 'phpstan-assert-if-false',  'psalm-method', 'psalm-param',
+                'phpstan-assert', 'phpstan-assert-if-true', 'phpstan-assert-if-false', 'psalm-method', 'psalm-param',
                 'psalm-param-out', 'psalm-property', 'psalm-property-read', 'psalm-property-write', 'psalm-assert',
                 'psalm-assert-if-true', 'psalm-assert-if-false'
             ]
@@ -517,11 +517,11 @@ return (new Config)
             'order' => [
                 'title', 'description', 'since', 'author', 'copyright', 'license', 'category', 'package', 'subpackage',
                 'version', 'inheritdoc', 'uses', 'template', 'see', 'link', 'example', 'method',
-                'property', 'property-read',  'property-write', 'extends', 'implements', 'global', 'param', 'var',
+                'property', 'property-read', 'property-write', 'extends', 'implements', 'global', 'param', 'var',
                 'throws', 'return', 'internal', 'api', 'deprecated', 'experimental',
                 'warning', 'caution', 'info', 'note',
                 'phpstan-ignore', 'phpstan-ignore-line', 'phpstan-ignore-next-line', 'SuppressWarnings',
-                'enhancement', 'investigate', 'performance', 'suggestion',  'incident', 'security', 'optimize',
+                'enhancement', 'investigate', 'performance', 'suggestion', 'incident', 'security', 'optimize',
                 'refactor', 'feature', 'testing', 'comment', 'debug', 'fixme', 'hack', 'todo', 'bug'
             ]
         ],
@@ -630,6 +630,8 @@ return (new Config)
             'space_multiple_catch' => null
         ]
     ])
-    ->setFinder(Finder::create()
-        ->in(__DIR__)
-    );
+    ->setFinder(
+        Finder::create()
+            ->in(__DIR__)
+    )
+;
