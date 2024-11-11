@@ -478,7 +478,7 @@ return (new Config)
             'fix_inline' => true,
             'replacements' => []
         ],
-        'no_blank_lines_after_phpdoc' => true,
+        'no_blank_lines_after_phpdoc' => false,
         'no_empty_phpdoc' => true,
         'no_superfluous_phpdoc_tags' => false,
         'phpdoc_add_missing_param_annotation' => [
