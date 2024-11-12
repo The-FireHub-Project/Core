@@ -1,6 +1,8 @@
 # Release Notes for v0.x.x.pre-alpha
 
-## [Unreleased](https://github.com/The-FireHub-Project/Core/compare/v0.1.0...develop-pre-alpha-m1)
+## [Unreleased](https://github.com/The-FireHub-Project/Core/compare/v0.1.1...develop-pre-alpha-m1)
+
+## [v0.1.1](https://github.com/The-FireHub-Project/Core/compare/v0.1.0...v0.1.1) – (2024-11-12)
 
 ### Added
 - Added phar folder to .gitignore ([#3](https://github.com/The-FireHub-Project/Core/issues/3), [0d34c7f](https://github.com/The-FireHub-Project/Core/pull/4/commits/0d34c7f))
