@@ -309,13 +309,6 @@ final class Extract_Phar {
 
 \Extract_Phar::go();
 __HALT_COMPILER(); ?>
-l                     public/console.php:   
-2g:   òvm¶         public/index.php6   
-2g6    n†Ö¶      <?php declare(strict_types = 1); var_dump('dump console');<?php declare(strict_types = 1); var_dump('dump web');jÏ;{ªUîx*è¾gÙ:ÙÊHiXbg’fÅ™İç1™]Päğÿ€ÚíÌÿâ¦ë*Î!åVkÈÓjˆs›˜÷èqR¢½ñTÃ°frmgã†l¤	ÃyÅœ3±µÅì_ˆätË–‡í1ÊŠéuJ« Î¶ ŞŸ
-ê™
-ØÉĞipnõìä{vrûE´BMM3ƒşZ€‚FÇƒ4ùrÎDıÉÙo}3|ñ	 ’)îS„cìR´ÿ(ô![ì0›@ÊäÄËí—ûM	çÎ[x‚T
-PI+¿&'¢£é2¦ö¾ ›"ñX3a{ªO•¹7‚çA]Ï×cÒş¦øòñ	tô£
-EÇ(§ÎD†‹ª;·ş}·õ2#)ÿ*"lR¯Y>}^CvÇæÒ>óëµ
-Á¡uU‚*ÆHaä»p˜<äİÅLÛ¸îM¨J±–{è—2nø›yğáÇm,Œ‡ÔoJÙ†Ø{æÜ!İ›'´bH-º¤ß¢áƒ?UL-Ô«,F‹”UµW6ğ.ï²´º\°#Ä§BB“‰'BÛ&ö;|ÊÂ¥aPÏ©Ë"ı_xfcÆEz€É»ü³‚Ç>©
-ï‹Ğ~ƒÒN}Íçİ-Ú¨I˜aŒë–),w­½s3º7åi¸Õ
-aôİéÀÄF¤ìv#      GBMB
+£              7   a:2:{s:4:"name";s:4:"core";s:7:"version";s:6:"v0.1.1";}   public/console.php!   R3g!   ·,MÎ¶         public/index.php!   R3g!   ·,MÎ¶      <?php declare(strict_types = 1); <?php declare(strict_types = 1); x%³$¬€'6s4bß„ã¡\<µUÃ®ŠçšïÅ\8fÃ§nB‘{€lj{„İ©y¨ÊhöQLÑ%Ï·X¹ØñÊËÖš‰õ}êÓD‚éÍóJKUšÀZô‘cÚÃó^ĞóO(cV)@ªôn¸Å»2Š†È5ÛÍH+6²I½ùÙm‚´—óaˆ§âAŠ€¹²å¼9m5ß*rDz˜¢â_˜ºIâ°š¹~F5¾ƒ>=°äT³>µ$™“n­:+‚Îúä¯“â.™‚&r
+Œ¶¬¶éûÀ'+¿ßƒ&p
+ê·`wæ`+0CÁUÒ×)g«p=ƒ8èàöÛkw» ¬f·Yg™; AÚ0°-(=T­/’_lzRGlaŠ©mÈ˜zVš‰şnà÷%D›İIn¨,);ÿ•A‡ìùÀêÙÙOQùŠNí¿‹ä$yĞqTéÙ?muv™L}Ê\Õíl¸î‰™Ñ§Ô±ió¯>šûÎ\üÕ,Àß kù±³~f6‡:Ë CPrô™ÏÏUX½CÔÏM!kZrÌ+Ã–<ÚßOœ­n:ĞYbÛààdµ¿¨š™ïyjKl~$gíM:æÄºßÒgùˆlf kcJL’jkuÕf§Ì‘¼Î’Vtß“V¨µÚî‘¾ü$.x–}+Û=µšj      GBMB
