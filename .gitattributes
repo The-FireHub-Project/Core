@@ -14,6 +14,7 @@
 /.php-cs-fixer.php export-ignore
 /CHANGELOG.md export-ignore
 /CITATION.cff export-ignore
+/Dockerfile export-ignore
 /LICENSE.md export-ignore
 /phpmd.xml export-ignore
 /phpstan.neon export-ignore
