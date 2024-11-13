@@ -1,6 +1,12 @@
 # Release Notes for v0.x.x.pre-alpha
 
-## [Unreleased](https://github.com/The-FireHub-Project/Core/compare/v0.1.1...develop-pre-alpha-m1)
+## [Unreleased](https://github.com/The-FireHub-Project/Core/compare/v0.1.2...develop-pre-alpha-m1)
+
+## [v0.1.2](https://github.com/The-FireHub-Project/Core/compare/v0.1.1...v0.1.2) – (2024-11-13)
+
+### Added
+- Create Dockerfile ([#6](https://github.com/The-FireHub-Project/Core/issues/6), [e438d1d](https://github.com/The-FireHub-Project/Core/pull/4/commits/e438d1d))
+- Create Docker.yml ([#6](https://github.com/The-FireHub-Project/Core/issues/6), [5ea090b](https://github.com/The-FireHub-Project/Core/pull/4/commits/5ea090b))
 
 ## [v0.1.1](https://github.com/The-FireHub-Project/Core/compare/v0.1.0...v0.1.1) – (2024-11-12)
 
