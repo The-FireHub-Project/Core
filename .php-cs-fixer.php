@@ -126,7 +126,7 @@ return (new Config)
             'single_line' => true,
             'space_before_parenthesis' => true
         ],
-        'final_class' => true,
+        'final_class' => false,
         'final_internal_class' => [
             'consider_absent_docblock_as_internal_class' => true,
             'exclude' => [],
