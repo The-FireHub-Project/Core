@@ -277,9 +277,7 @@ return (new Config)
         'phpdoc_to_property_type' => false,
         'phpdoc_to_return_type' => false,
         'regular_callable_call' => true,
-        'return_type_declaration' => [
-            'space_before' => 'none'
-        ],
+        'return_type_declaration' => false,
         'single_line_throw' => true,
         'static_lambda' => true,
         'use_arrow_functions' => true,
