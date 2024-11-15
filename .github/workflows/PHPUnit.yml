@@ -22,6 +22,6 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: mbstring
-          tools: phpunit
+          tools: phpunit:11.4
       - name: Run PHPUnit
         run: phpunit

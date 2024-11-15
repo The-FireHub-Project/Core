@@ -24,7 +24,7 @@ jobs:
         with:
           php-version: 8.3
           coverage: none
-          tools: phpmd
+          tools: phpmd:2.15
       - name: Run PHPMD
         run: phpmd . sarif phpmd.xml --reportfile phpmd-results.sarif
         continue-on-error: true
