@@ -19,7 +19,6 @@ parameters:
     reportStaticMethodSignatures: true
     reportUnmatchedIgnoredErrors: false
     checkUninitializedProperties: true
-    #checkUninitializedProperties: false
     checkImplicitMixed: true
     #checkMissingOverrideMethodAttribute: true
     tipsOfTheDay: false
