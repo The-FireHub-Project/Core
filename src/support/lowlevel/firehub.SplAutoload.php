@@ -14,7 +14,7 @@
 
 namespace FireHub\Core\Support\LowLevel;
 
-use FireHub\Core\Support\LowLevel\Exceptions\ {
+use FireHub\Core\Support\LowLevel\Exceptions\Autoload\ {
     AutoloadRegisterException, ClassNotFoundException
 };
 use LogicException;
