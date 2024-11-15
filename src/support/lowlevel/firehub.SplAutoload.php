@@ -48,8 +48,8 @@ final class SplAutoload {
      * filename extensions .inc and .php.
      * </p>
      *
-     * @throws \FireHub\Core\Support\LowLevel\Exceptions\ClassNotFoundException When the class is not found and there
-     * are no other autoloaders registered.
+     * @throws \FireHub\Core\Support\LowLevel\Exceptions\Autoload\ClassNotFoundException When the class is not found
+     * and there are no other autoloaders registered.
      *
      * @return void
      */
@@ -107,7 +107,7 @@ final class SplAutoload {
      * Whether to prepend the autoloader on the stack instead of appending it.
      * </p>
      *
-     * @throws \FireHub\Core\Support\LowLevel\Exceptions\AutoloadRegisterException If failed to register a callback
+     * @throws \FireHub\Core\Support\LowLevel\Exceptions\Autoload\AutoloadRegisterException If failed to register a callback
      * function as an autoloader.
      *
      * @return true True if autoloader was registered.
@@ -131,8 +131,8 @@ final class SplAutoload {
      * The autoload function that will be unregistered.
      * </p>
      *
-     * @throws \FireHub\Core\Support\LowLevel\Exceptions\AutoloadRegisterException If failed to unregister autoloader
-     * implementation.
+     * @throws \FireHub\Core\Support\LowLevel\Exceptions\Autoload\AutoloadRegisterException If failed to unregister
+     * autoloader implementation.
      *
      * @return true True if autoloader was unregistered.
      */
