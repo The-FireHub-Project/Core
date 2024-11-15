@@ -13,13 +13,13 @@ parameters:
     checkInternalClassCaseSensitivity: true
     reportMaybesInMethodSignatures: true
     reportMaybesInPropertyPhpDocTypes: true
-    #reportPossiblyNonexistentConstantArrayOffset: true
-    #reportWrongPhpDocTypeInVarTag: true
-    #reportAlwaysTrueInLastCondition: true
+    reportPossiblyNonexistentConstantArrayOffset: true
+    reportWrongPhpDocTypeInVarTag: true
+    reportAlwaysTrueInLastCondition: true
     reportStaticMethodSignatures: true
     reportUnmatchedIgnoredErrors: false
-    #checkUninitializedProperties: true
-    checkUninitializedProperties: false
+    checkUninitializedProperties: true
+    #checkUninitializedProperties: false
     checkImplicitMixed: true
-    checkMissingOverrideMethodAttribute: true
+    #checkMissingOverrideMethodAttribute: true
     tipsOfTheDay: false
