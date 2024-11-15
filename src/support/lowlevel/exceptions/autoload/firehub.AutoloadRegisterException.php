@@ -12,7 +12,9 @@
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\LowLevel\Exceptions;
+namespace FireHub\Core\Support\LowLevel\Exceptions\Autoload;
+
+use FireHub\Core\Support\LowLevel\Exceptions\AutoloadException;
 
 /**
  * ### Autoload Register Exception
