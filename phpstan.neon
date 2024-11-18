@@ -7,7 +7,7 @@ parameters:
     excludePaths:
         analyseAndScan:
             - src/testing/
-    treatPhpDocTypesAsCertain: true
+    treatPhpDocTypesAsCertain: false
     checkExplicitMixedMissingReturn: true
     checkFunctionNameCase: true
     checkInternalClassCaseSensitivity: true
