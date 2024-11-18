@@ -20,4 +20,20 @@ use FireHub\Core\Support\LowLevel\Exceptions\AutoloadException;
  * ### Autoload Register Exception
  * @since 1.0.0
  */
-class AutoloadRegisterException extends AutoloadException {}
+class AutoloadRegisterException extends AutoloadException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Failed to register a callback function as an autoloader.';
+
+        parent::__construct();
+
+    }
+
+}

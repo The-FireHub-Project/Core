@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\LowLevel;
 
 use FireHub\Core\Support\LowLevel\Exceptions\Autoload\ {
-    AutoloadRegisterException, ClassNotFoundException
+    AutoloadRegisterException, AutoloadUnregisterException, ClassNotFoundException
 };
 use LogicException;
 
@@ -61,7 +61,7 @@ final class SplAutoload {
 
         } catch (LogicException) {
 
-            throw new ClassNotFoundException('Failed to register a callback function as an autoloader.');
+            throw new ClassNotFoundException($class);
 
         }
 
@@ -115,7 +115,7 @@ final class SplAutoload {
     public static function register (?callable $callback = null, bool $prepend = false):true {
 
         return spl_autoload_register($callback, true, $prepend)
-            ?: throw new AutoloadRegisterException('Failed to register a callback function as an autoloader.');
+            ?: throw new AutoloadRegisterException;
 
     }
 
@@ -131,7 +131,7 @@ final class SplAutoload {
      * The autoload function that will be unregistered.
      * </p>
      *
-     * @throws \FireHub\Core\Support\LowLevel\Exceptions\Autoload\AutoloadRegisterException If failed to unregister
+     * @throws \FireHub\Core\Support\LowLevel\Exceptions\Autoload\AutoloadUnregisterException If failed to unregister
      * autoloader implementation.
      *
      * @return true True if autoloader was unregistered.
@@ -139,7 +139,7 @@ final class SplAutoload {
     public static function unregister (callable $callback):true {
 
         return spl_autoload_unregister($callback)
-            ?: throw new AutoloadRegisterException('Failed to unregister autoload implementation.');
+            ?: throw new AutoloadUnregisterException;
 
     }
 

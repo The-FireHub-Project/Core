@@ -17,24 +17,20 @@ namespace FireHub\Core\Support\LowLevel\Exceptions\Autoload;
 use FireHub\Core\Support\LowLevel\Exceptions\AutoloadException;
 
 /**
- * ### Class not found exception
+ * ### Autoload Unregister Exception
  * @since 1.0.0
  */
-class ClassNotFoundException extends AutoloadException {
+class AutoloadUnregisterException extends AutoloadException {
 
     /**
      * ### Constructor
      * @since 1.0.0
      *
-     * @param class-string $class <p>
-     * Fully qualified class name that is being called.
-     * </p>
-     *
      * @return void
      */
-    public function __construct (string $class) {
+    public function __construct () {
 
-        $this->message = "Class {$class} is not found and there are no other autoloaders registered.";
+        $this->message = 'Failed to unregister a callback function as an autoloader.';
 
         parent::__construct();
 

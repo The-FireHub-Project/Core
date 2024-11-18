@@ -20,4 +20,54 @@ use Exception as InternalException;
  * ### Main Exception
  * @since 1.0.0
  */
-class Exception extends InternalException {}
+class Exception extends InternalException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        parent::__construct();
+
+    }
+
+    /**
+     * ### Sets the exception message
+     * @since 1.0.0
+     *
+     * @param string $message <p>
+     * The exception message.
+     * </p>
+     *
+     * @return static This exception instance.
+     */
+    public function setMessage (string $message):self {
+
+        $this->message = $message;
+
+        return $this;
+
+    }
+
+    /**
+     * ### Sets the exception code
+     * @since 1.0.0
+     *
+     * @param int $code <p>
+     * The exception code.
+     * </p>
+     *
+     * @return static This exception instance.
+     */
+    public function setCode (int $code):self {
+
+        $this->code = $code;
+
+        return $this;
+
+    }
+
+}
