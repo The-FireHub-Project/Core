@@ -631,5 +631,9 @@ return (new Config)
     ->setFinder(
         Finder::create()
             ->in(__DIR__)
+            ->notPath([
+                // @todo excluded paths until cs-fixer supports PHP 8.4
+                'src/support/lowlevel/firehub.Data.php',
+            ])
     )
 ;

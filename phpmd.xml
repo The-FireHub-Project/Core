@@ -20,7 +20,6 @@
     <rule ref="rulesets/design.xml" />
     <rule ref="rulesets/naming.xml" />
     <rule ref="rulesets/unusedcode.xml" />
-    <exclude-pattern>testing\phpmd\*.php</exclude-pattern>
     <rule name="BooleanArgumentFlag"
           message="The method {0} has a boolean flag argument {1}, which is a certain sign of a Single Responsibility Principle violation."
           class="src\testing\phpmd\BooleanArgumentFlag">
@@ -34,7 +33,7 @@
         </properties>
     </rule>
     <rule name="TooManyMethods"
-          message="The method {0} has a boolean flag argument {1}, which is a certain sign of a Single Responsibility Principle violation."
+          message="The class {1} has {2} non-getter- and setter-methods. Consider refactoring {1} to keep number of methods under {3}."
           class="src\testing\phpmd\TooManyMethods">
         <priority>1</priority>
         <properties>
@@ -45,5 +44,19 @@
                       description="Namespaces to exclude, seperated by comma." />
         </properties>
     </rule>
-
+    <rule name="TooManyPublicMethods"
+          message="The class {1} has {2} public methods. Consider refactoring {1} to keep number of public methods under {3}."
+          class="src\testing\phpmd\TooManyPublicMethods">
+        <priority>1</priority>
+        <properties>
+            <property name="maxmethods" value="10" />
+            <property name="ignorepattern" value="(^(set|get))i" />
+            <property name="exclude_namespaces"
+                      value="FireHub\Core\Support\LowLevell"
+                      description="Namespaces to exclude, seperated by comma." />
+        </properties>
+    </rule>
+    <exclude-pattern>testing\phpmd\*.php</exclude-pattern>
+    <!-- @todo excluded paths until cs-fixer supports PHP 8.4 -->
+    <exclude-pattern>support\lowlevel\firehub.Data.php</exclude-pattern>
 </ruleset>
