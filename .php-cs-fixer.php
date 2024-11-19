@@ -203,7 +203,7 @@ return (new Config)
 
         // constant notation
         'native_constant_invocation' => [
-            'exclude' => ['null', 'false', 'true'],
+            'exclude' => ['null', 'false', 'true', 'T_ARRAY', 'T_STRING'],
             'fix_built_in' => true,
             'include' => [],
             'scope' => 'all',
