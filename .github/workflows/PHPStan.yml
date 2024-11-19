@@ -23,5 +23,7 @@ jobs:
           php-version: ${{ matrix.php-versions }}
           extensions: mbstring
           tools: phpstan:2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Run PHPStan
         run: phpstan analyse --memory-limit=256M

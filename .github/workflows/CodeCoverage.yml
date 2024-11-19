@@ -18,6 +18,8 @@ jobs:
           php-version: '8.3'
           extensions: mbstring
           tools: phpunit:11.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Run PHPUnit and collect coverage
         run: phpunit --log-junit junit.xml --coverage-clover coverage.xml .
       - name: Upload coverage to Codecov

@@ -25,6 +25,8 @@ jobs:
           php-version: 8.3
           coverage: none
           tools: phpmd:2.15
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Run PHPMD
         run: phpmd . sarif phpmd.xml --reportfile phpmd-results.sarif
         continue-on-error: true
