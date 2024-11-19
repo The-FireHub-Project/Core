@@ -10,7 +10,7 @@
     </rule>
     <rule name="BooleanArgumentFlag"
           message="The method {0} has a boolean flag argument {1}, which is a certain sign of a Single Responsibility Principle violation."
-          class="src_testing_phpmd_BooleanArgumentFlag">
+          class="src\testing\phpmd\BooleanArgumentFlag">
         <priority>1</priority>
         <properties>
             <property name="exclude_namespaces"

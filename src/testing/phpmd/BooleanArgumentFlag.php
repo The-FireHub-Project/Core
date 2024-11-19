@@ -1,7 +1,24 @@
 <?php declare(strict_types = 1);
 
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galić <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Testing
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace src\testing\phpmd;
+
 use PHPMD\AbstractNode;
 use PHPMD\Rule\CleanCode\BooleanArgumentFlag as ParentBooleanArgumentFlag;
+use Override;
+
+use function in_array;
 
 /**
  * ### Check for a boolean flag in the method/ function signature
@@ -9,7 +26,7 @@ use PHPMD\Rule\CleanCode\BooleanArgumentFlag as ParentBooleanArgumentFlag;
  * Boolean flags are signs for single responsibility principle violations.
  * @since 1.0.0
  */
-final class src_testing_phpmd_BooleanArgumentFlag extends ParentBooleanArgumentFlag {
+final class BooleanArgumentFlag extends ParentBooleanArgumentFlag {
 
     /**
      * ### Applies the rule to the given node.
@@ -24,10 +41,10 @@ final class src_testing_phpmd_BooleanArgumentFlag extends ParentBooleanArgumentF
      *
      * @return void
      */
-    #[\Override]
+    #[Override]
     public function apply (AbstractNode $node):void {
 
-        if (\in_array(
+        if (in_array(
             $node->getNamespaceName(),
             explode(',', $this->getStringProperty('exclude_namespaces')),
             true
