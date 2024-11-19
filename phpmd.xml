@@ -8,17 +8,10 @@
     <rule ref="rulesets/cleancode.xml">
         <exclude name="BooleanArgumentFlag" />
     </rule>
-    <rule name="BooleanArgumentFlag"
-          message="The method {0} has a boolean flag argument {1}, which is a certain sign of a Single Responsibility Principle violation."
-          class="src\testing\phpmd\BooleanArgumentFlag">
-        <priority>1</priority>
-        <properties>
-            <property name="exclude_namespaces"
-                      value="FireHub\Core\Support\LowLevel"
-                      description="Namespaces to exclude, seperated by comma." />
-        </properties>
+    <rule ref="rulesets/codesize.xml">
+        <exclude name="TooManyMethods" />
+        <exclude name="TooManyPublicMethods" />
     </rule>
-    <rule ref="rulesets/codesize.xml" />
     <rule ref="rulesets/controversial.xml">
         <exclude name="CamelCasePropertyName" />
         <exclude name="CamelCaseParameterName" />
@@ -28,4 +21,29 @@
     <rule ref="rulesets/naming.xml" />
     <rule ref="rulesets/unusedcode.xml" />
     <exclude-pattern>testing\phpmd\*.php</exclude-pattern>
+    <rule name="BooleanArgumentFlag"
+          message="The method {0} has a boolean flag argument {1}, which is a certain sign of a Single Responsibility Principle violation."
+          class="src\testing\phpmd\BooleanArgumentFlag">
+        <priority>1</priority>
+        <properties>
+            <property name="maxmethods" value="25" />
+            <property name="ignorepattern" value="(^(set|get))i" />
+            <property name="exclude_namespaces"
+                      value="FireHub\Core\Support\LowLevel"
+                      description="Namespaces to exclude, seperated by comma." />
+        </properties>
+    </rule>
+    <rule name="TooManyMethods"
+          message="The method {0} has a boolean flag argument {1}, which is a certain sign of a Single Responsibility Principle violation."
+          class="src\testing\phpmd\TooManyMethods">
+        <priority>1</priority>
+        <properties>
+            <property name="maxmethods" value="25" />
+            <property name="ignorepattern" value="(^(set|get))i" />
+            <property name="exclude_namespaces"
+                      value="FireHub\Core\Support\LowLevel"
+                      description="Namespaces to exclude, seperated by comma." />
+        </properties>
+    </rule>
+
 </ruleset>
