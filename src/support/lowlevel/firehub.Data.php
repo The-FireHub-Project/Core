@@ -197,11 +197,11 @@ final class Data {
      *
      * @return string String containing a byte-stream representation of a value that can be stored anywhere.
      *
-     * @warning When serialize() serializes objects, the leading backslash is not included in the class name of
+     * @warning When [[Data#serialize()]] serializes objects, the leading backslash is not included in the class name of
      * namespaced classes for maximum compatibility.
      * @note This is a binary string that may include null bytes and needs to be stored and handled as such. For
-     * example, serialize() output should generally be stored in a BLOB field in a database, rather than a CHAR or
-     * TEXT field.
+     * example, [[Data#serialize()]] output should generally be stored in a BLOB field in a database, rather than a CHAR
+     * or TEXT field.
      */
     public static function serialize (string|int|float|bool|array|object|null $value):string {
 
@@ -226,8 +226,8 @@ final class Data {
      * The serialized string.
      * </p>
      * @param bool|array<class-string> $allowed_classes [optional] <p>
-     * Either an array of class names which should be accepted, false to accept no classes,
-     * or true to accept all classes.
+     * Either an array of class names which should be accepted, false to accept no classes, or true to accept all
+     * classes.
      * </p>
      * @param int $max_depth [optional] <p>
      * The maximum depth of structures is permitted during unserialization and is intended to prevent stack overflows.

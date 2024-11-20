@@ -36,8 +36,8 @@ final class SplAutoload {
      * ### Default autoload implementation
      *
      * This function is intended to be used as a default implementation for [[SplAutoload#register()]].
-     * If nothing else is specified and the register method is called without any parameters,
-     * then this function will be used for any later call to autoload.
+     * If nothing else is specified and the register method is called without any parameters, then this function will
+     * be used for any later call to autoload.
      * @since 1.0.0
      *
      * @param class-string $class <p>
@@ -100,8 +100,7 @@ final class SplAutoload {
      * @since 1.0.0
      *
      * @param null|callable(string):void $callback [optional] <p>
-     * The autoload function being registered. If no callback is provided, then the default autoloader
-     * will be used.
+     * The autoload function being registered. If no callback is provided, then the default autoloader will be used.
      * </p>
      * @param bool $prepend [optional] <p>
      * Whether to prepend the autoloader on the stack instead of appending it.
@@ -123,8 +122,9 @@ final class SplAutoload {
      * ### Unregister autoload implementation
      *
      * Removes a function from the autoloaded queue. If the queue is activated and empty after removing the given
-     * function, then it will be deactivated. When this function results in the queue being deactivated, any autoload
-     * function that previously existed will not be reactivated.
+     * function, then it will be deactivated.
+     * When this function results in the queue being deactivated, any autoload function that previously existed will
+     * not be reactivated.
      * @since 1.0.0
      *
      * @param callable(string):void $callback <p>
@@ -147,8 +147,8 @@ final class SplAutoload {
      * ### Get all registered autoload functions
      * @since 1.0.0
      *
-     * @return array<array-key, mixed> An array of all registered autoload functions.
-     * If no function is registered, or autoloaded queue is not activated, then the return value will be an empty array.
+     * @return array<array-key, mixed> An array of all registered autoload functions, or if no function is registered,
+     * or autoloaded queue is not activated, then the return value will be an empty array.
      */
     public static function functions ():array {
 
