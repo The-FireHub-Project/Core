@@ -44,7 +44,7 @@ class Exception extends InternalException {
      *
      * @return static This exception instance.
      */
-    public function withMessage (string $message):self {
+    public function withMessage (string $message):static {
 
         $this->message = $message;
 
@@ -62,7 +62,7 @@ class Exception extends InternalException {
      *
      * @return static This exception instance.
      */
-    public function withCode (int $code):self {
+    public function withCode (int $code):static {
 
         $this->code = $code;
 
