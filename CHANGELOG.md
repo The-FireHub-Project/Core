@@ -2,6 +2,14 @@
 
 ## [Unreleased](https://github.com/The-FireHub-Project/Core/compare/v0.1.2...develop-pre-alpha-m1)
 
+### Added
+- Created SplAutoload low-level support class ([#8](https://github.com/The-FireHub-Project/Core/issues/8), [2393d5f](https://github.com/The-FireHub-Project/Core/pull/4/commits/2393d5f))
+- Create a Number list of constants ([#8](https://github.com/The-FireHub-Project/Core/issues/8), [6d26299](https://github.com/The-FireHub-Project/Core/pull/4/commits/6d26299))
+- Create DataIs low-level proxy class ([#8](https://github.com/The-FireHub-Project/Core/issues/8), [8db6ecb](https://github.com/The-FireHub-Project/Core/pull/4/commits/8db6ecb))
+- Create Data enums ([#8](https://github.com/The-FireHub-Project/Core/issues/8), [eb6f686](https://github.com/The-FireHub-Project/Core/pull/4/commits/eb6f686))
+- Create Data low-level proxy class ([#8](https://github.com/The-FireHub-Project/Core/issues/8), [bed0cf0](https://github.com/The-FireHub-Project/Core/pull/4/commits/bed0cf0))
+- Create Arr low-level proxy class ([#8](https://github.com/The-FireHub-Project/Core/issues/8), [a0076ff](https://github.com/The-FireHub-Project/Core/pull/4/commits/a0076ff))
+
 ## [v0.1.2](https://github.com/The-FireHub-Project/Core/compare/v0.1.1...v0.1.2) – (2024-11-13)
 
 ### Added
