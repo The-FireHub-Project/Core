@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="480" height="445" class="">
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="461" class="">
     <defs>
         <style/>
     </defs>
@@ -30,11 +30,11 @@
                                 <div class="details">
                                     <div>on branch <span class="code">develop-pre-alpha-m1</span></div>
                                     <div class="commit">
-                                        <div class="sha">#fddd92d</div>
-                                        <div class="message">Changed set* methods to with* (#8)</div>
+                                        <div class="sha">#6983f87</div>
+                                        <div class="message">Changed description</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">19 Nov 2024, 14:07:16</div>
+                                <div class="timestamp">20 Nov 2024, 09:46:16</div>
                             </section>
                         </div>
                         <div class="row fill-width">
@@ -52,11 +52,11 @@
                                 <div class="details">
                                     <div>on branch <span class="code">develop-pre-alpha-m1</span></div>
                                     <div class="commit">
-                                        <div class="sha">#cddbbbf</div>
-                                        <div class="message">Added T_ARRAY and T_STRING as exclude in native_constant_invocation</div>
+                                        <div class="sha">#8201926</div>
+                                        <div class="message">Changed description</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">19 Nov 2024, 13:42:50</div>
+                                <div class="timestamp">20 Nov 2024, 09:38:12</div>
                             </section>
                         </div>
                         <div class="row fill-width">
@@ -74,11 +74,11 @@
                                 <div class="details">
                                     <div>on branch <span class="code">develop-pre-alpha-m1</span></div>
                                     <div class="commit">
-                                        <div class="sha">#8db6ecb</div>
-                                        <div class="message">Create DataIs low-level proxy class (#8)</div>
+                                        <div class="sha">#6ddda79</div>
+                                        <div class="message">Excluded StaticAccess from cleancode ruleset</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">19 Nov 2024, 13:27:30</div>
+                                <div class="timestamp">20 Nov 2024, 09:23:48</div>
                             </section>
                         </div>
                         <div class="row fill-width">
@@ -96,11 +96,11 @@
                                 <div class="details">
                                     <div>on branch <span class="code">develop-pre-alpha-m1</span></div>
                                     <div class="commit">
-                                        <div class="sha">#bb8e9b8</div>
-                                        <div class="message">Created rules for TooManyMethods and TooManyPublicMethods</div>
+                                        <div class="sha">#83366ed</div>
+                                        <div class="message">Create LongClass custom ruleset</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">19 Nov 2024, 13:23:18</div>
+                                <div class="timestamp">20 Nov 2024, 09:16:32</div>
                             </section>
                         </div>
                         <div class="row fill-width">
@@ -111,18 +111,22 @@
                                     </svg>
                                     <div class="content">
                                         <span class="user">dieselxxx</span>
-                                        pushed 1 commit in
+                                        pushed 2 commits in
                                         <span class="repo">The-FireHub-Project/Core</span>
                                     </div>
                                 </div>
                                 <div class="details">
                                     <div>on branch <span class="code">develop-pre-alpha-m1</span></div>
                                     <div class="commit">
-                                        <div class="sha">#f3b364c</div>
-                                        <div class="message">Updated PHPMD BooleanArgumentFlag rule namespace</div>
+                                        <div class="sha">#bed0cf0</div>
+                                        <div class="message">Create Data low-level proxy class (#8)</div>
+                                    </div>
+                                    <div class="commit">
+                                        <div class="sha">#eb6f686</div>
+                                        <div class="message">Create Data enums (#8)</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">19 Nov 2024, 12:45:11</div>
+                                <div class="timestamp">20 Nov 2024, 08:58:38</div>
                             </section>
                         </div>
                     </section>
