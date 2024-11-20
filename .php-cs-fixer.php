@@ -203,7 +203,7 @@ return (new Config)
 
         // constant notation
         'native_constant_invocation' => [
-            'exclude' => ['null', 'false', 'true', 'T_ARRAY', 'T_STRING'],
+            'exclude' => ['null', 'false', 'true', 'T_ARRAY', 'T_STRING', 'HTML_ENTITIES'],
             'fix_built_in' => true,
             'include' => [],
             'scope' => 'all',
@@ -634,6 +634,7 @@ return (new Config)
             ->notPath([
                 // @todo excluded paths until cs-fixer supports PHP 8.4
                 'src/support/lowlevel/firehub.Arr.php',
+                'src/support/lowlevel/firehub.CharMB.php',
                 'src/support/lowlevel/firehub.Data.php',
             ])
     )
