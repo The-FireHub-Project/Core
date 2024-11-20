@@ -309,8 +309,14 @@ final class Extract_Phar {
 
 \Extract_Phar::go();
 __HALT_COMPILER(); ?>
-G                 &   components/error/firehub.Exception.php'  ó<7g'  ÆÆŒc∂      '   components/error/firehub.Exception.php~  ó<7g  £∂Ê∂         public/console.php›  ó<7g›  ¿˙0ø∂         public/index.php‹  ó<7g‹  \⁄}5∂      H   support/lowlevel/exceptions/arr/firehub.ArrSizeInconsistentException.phpY  ó<7gY  'I)n∂      I   support/lowlevel/exceptions/arr/firehub.FailedSortMultiArrayException.phpZ  ó<7gZ  î√∂      J   support/lowlevel/exceptions/arr/firehub.FailedSortMultiArrayException.php~Y  ó<7gY  'I)n∂      J   support/lowlevel/exceptions/autoload/firehub.AutoloadRegisterException.phpq  ó<7gq  áÃª∞∂      K   support/lowlevel/exceptions/autoload/firehub.AutoloadRegisterException.php~0  ó<7g0  ¶ÆÚ±∂      G   support/lowlevel/exceptions/autoload/firehub.ClassNotFoundException.phpl  ó<7gl  zkÃò∂      4   support/lowlevel/exceptions/firehub.ArrException.php4  ó<7g4  â·ÿï∂      9   support/lowlevel/exceptions/firehub.AutoloadException.php<  ó<7g<  ä’í
-∂      :   support/lowlevel/exceptions/firehub.AutoloadException.php~;  ó<7g;  îŸø∂      B   support/lowlevel/exceptions/firehub.AutoloadRegisterException.php~7  ó<7g7  eˇ°∂      ?   support/lowlevel/exceptions/firehub.ClassNotFoundException.php~(  ó<7g(  ®›£Ê∂          support/lowlevel/firehub.Arr.phpä  ó<7gä  j%§∂      !   support/lowlevel/firehub.Arr.php~‘  ó<7g‘  Ã”€∞∂      (   support/lowlevel/firehub.SplAutoload.php  ó<7g  ÀKœÑ∂      )   support/lowlevel/firehub.SplAutoload.php~Á  ó<7gÁ  uÎ:∂      %   testing/phpmd/BooleanArgumentFlag.php  ó<7g  ´`(m∂      <?php declare(strict_types = 1);
+ù  =           7   a:2:{s:4:"name";s:4:"core";s:7:"version";s:6:"v0.1.3";}&   components/error/firehub.Exception.phpO  ‘=gO  ÑÒm∆∂         public/console.php›  ‘=g›  ¿˙0ø∂         public/index.php‹  ‘=g‹  \⁄}5∂      $   support/constants/firehub.Number.php8
+  ‘=g8
+  q6ü∂      '   support/enums/data/firehub.Category.phpp  ‘=gp  E	å∂      (   support/enums/data/firehub.Category.php~Ó  ‘=gÓ  …“®¥∂      +   support/enums/data/firehub.ResourceType.php>  ‘=g>  ùJ¨î∂      #   support/enums/data/firehub.Type.php´	  ‘=g´	  t∂      $   support/enums/data/firehub.Type.php~”	  ‘=g”	  ì.…§∂         support/enums/firehub.Order.php€  ‘=g€  ˘øzŒ∂         support/enums/firehub.Sort.php˙  ‘=g˙  ìπ∞∂      ,   support/enums/string/firehub.CaseFolding.php/  ‘=g/  ∆NΩ⁄∂      -   support/enums/string/firehub.CaseFolding.php~¶  ‘=g¶  Éy(€∂      @   support/exceptions/arr/firehub.ArrSizeInconsistentException.php~K  ‘=gK  π§Ó◊∂      ?   support/exceptions/arr/firehub.ChunkLengthTooSmallException.php1  ‘=g1  Z{Ü#∂      @   support/exceptions/arr/firehub.FailedSortMultiArrayException.phpB  ‘=gB  l¢£q∂      ;   support/exceptions/arr/firehub.FillOutOfRangeException.php~A  ‘=gA  —‰—ë∂      J   support/exceptions/arr/firehub.KeysAndValuesSameNumberOfElemsException.php{  ‘=g{  ÷cï–∂      6   support/exceptions/arr/firehub.OutOfRangeException.php!  ‘=g!  |\◊r∂      7   support/exceptions/arr/firehub.OutOfRangeException.php~+  ‘=g+  {pÄ∂      <   support/exceptions/arr/firehub.SizeInconsistentException.php7  ‘=g7  ]p©\∂      =   support/exceptions/arr/firehub.WalkArgumentCountException.phpQ  ‘=gQ  2
+7∂      >   support/exceptions/arr/firehub.WalkArgumentCountException.php~c  ‘=gc  ˆ∏¯∂      D   support/exceptions/autoload/firehub.AutoloadUnregisterException.php~k  ‘=gk  ≠´q∂      >   support/exceptions/autoload/firehub.ClassNotFoundException.phpÂ  ‘=gÂ  `$√˝∂      ?   support/exceptions/autoload/firehub.ClassNotFoundException.php~˜  ‘=g˜  ì;pK∂      C   support/exceptions/autoload/firehub.RegisterAutoloaderException.phpg  ‘=gg  òª◊Ë∂      E   support/exceptions/autoload/firehub.UnregisterAutoloaderException.phpm  ‘=gm  E∫iÏ∂      D   support/exceptions/data/firehub.ArrayToStringConversionException.phpJ  ‘=gJ  Wﬁ)4∂      E   support/exceptions/data/firehub.ArrayToStringConversionException.php~\  ‘=g\  ∏πe∂      <   support/exceptions/data/firehub.CannotSerializeException.php/  ‘=g/  £˙ƒª∂      <   support/exceptions/data/firehub.FailedToSetTypeException.php:  ‘=g:  ≥Û∂      =   support/exceptions/data/firehub.GetResourceTypeException.php~   ‘=g    eI∂      =   support/exceptions/data/firehub.ObjectConversionException.phpD  ‘=gD  ]2ÀP∂      >   support/exceptions/data/firehub.ObjectConversionException.php~V  ‘=gV  ,!›∂      :   support/exceptions/data/firehub.SetAsResourceException.php?  ‘=g?  Îÿ…√∂      ;   support/exceptions/data/firehub.SetAsResourceException.php~   ‘=g    eI∂      >   support/exceptions/data/firehub.UnserializeFailedException.php0  ‘=g0  ÏCXg∂      ?   support/exceptions/data/firehub.UnserializeFailedException.php~3  ‘=g3  Ã˜Kq∂      C   support/exceptions/data/firehub.UnserializeFalseOrNullException.phpl  ‘=gl  7VR
+∂      =   support/exceptions/data/firehub.ValueTypeUnknownException.php≥  ‘=g≥  Æ»HÊ∂      >   support/exceptions/data/firehub.ValueTypeUnknownException.php~¡  ‘=g¡  !1eG∂      +   support/exceptions/firehub.ArrException.php+  ‘=g+  r¶∂      0   support/exceptions/firehub.AutoloadException.php3  ‘=g3  π”ˇ∂      1   support/exceptions/firehub.AutoloadException.php~4  ‘=g4  «M’o∂      ,   support/exceptions/firehub.DataException.php+  ‘=g+  º°~>∂          support/lowlevel/firehub.Arr.php- ‘=g- Ïé{õ∂      !   support/lowlevel/firehub.Data.phpÜ$  ‘=gÜ$  €z´∂      "   support/lowlevel/firehub.Data.php~t$  ‘=gt$  e∫;q∂      #   support/lowlevel/firehub.DataIs.php&  ‘=g&  g}ô∂      &   support/lowlevel/firehub.NumFloat.php~  ‘=g  ,whÁ∂      (   support/lowlevel/firehub.SplAutoload.php[  ‘=g[  ŒGr∂      )   support/lowlevel/firehub.SplAutoload.php~X  ‘=gX  ˝‡ì
+∂      %   testing/phpmd/BooleanArgumentFlag.php•  ‘=g•  X$π∂      &   testing/phpmd/BooleanArgumentFlag.php~Å  ‘=gÅ  î±˜∞∂      '   testing/phpmd/ExcessiveClassLength.php~
+  ‘=g
+  ï\Àà∂         testing/phpmd/LongClass.phpa  ‘=ga  ™¯ ¢∂         testing/phpmd/LongClass.php~Ä  ‘=gÄ  C÷gp∂          testing/phpmd/TooManyMethods.phpC  ‘=gC  ≥xﬂ∂      &   testing/phpmd/TooManyPublicMethods.phpb  ‘=gb  €∂„∂      '   testing/phpmd/TooManyPublicMethods.php~–  ‘=g–  ⁄»Ù3∂      <?php declare(strict_types = 1);
 
 /**
  * This file is part of the FireHub Web Application Framework package
@@ -332,29 +338,57 @@ use Exception as InternalException;
  * ### Main Exception
  * @since 1.0.0
  */
-class Exception extends InternalException {}<?php declare(strict_types = 1);
+class Exception extends InternalException {
 
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Components
- *
- * @version GIT: $Id$ Blob checksum.
- */
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
 
-namespace FireHub\Core\Components\Error;
+        parent::__construct();
 
-use Exception;
+    }
 
-/**
- * ### Main Exception
- * @since 1.0.0
- */
-class AutoloadException extends Exception {}<?php declare(strict_types = 1);
+    /**
+     * ### Sets the exception message
+     * @since 1.0.0
+     *
+     * @param string $message <p>
+     * The exception message.
+     * </p>
+     *
+     * @return static This exception instance.
+     */
+    public function withMessage (string $message):self {
+
+        $this->message = $message;
+
+        return $this;
+
+    }
+
+    /**
+     * ### Sets the exception code
+     * @since 1.0.0
+     *
+     * @param int $code <p>
+     * The exception code.
+     * </p>
+     *
+     * @return static This exception instance.
+     */
+    public function withCode (int $code):self {
+
+        $this->code = $code;
+
+        return $this;
+
+    }
+
+}<?php declare(strict_types = 1);
 
 /**
  * This file is part of the FireHub Web Application Framework package
@@ -398,15 +432,966 @@ class AutoloadException extends Exception {}<?php declare(strict_types = 1);
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\LowLevel\Exceptions\Arr;
+namespace FireHub\Core\Support\Constants\Number;
 
-use FireHub\Core\Support\LowLevel\Exceptions\ArrException;
+use const INF as PHP_INF;
+use const NAN as PHP_NAN;
+use const PHP_FLOAT_DIG;
+use const PHP_FLOAT_EPSILON;
+use const PHP_FLOAT_MAX;
+use const PHP_FLOAT_MIN;
+use const PHP_INT_MAX;
+use const PHP_INT_MIN;
+use const PHP_INT_SIZE;
 
 /**
- * ### Array Exception
+ * ### The smallest integer supported in this build of PHP
+ *
+ * Usually int(-2147483648) in 32bit systems and int(-9223372036854775808) in 64bit systems.
+ * @since 1.0.0
+ *
+ * @var int \FireHub\Core\Support\Constants\Number\MIN
+ *
+ * @api
+ */
+const MIN = PHP_INT_MIN;
+
+/**
+ * ### The largest integer supported in this build of PHP
+ *
+ * Usually int(2147483647) in 32bit systems and int(9223372036854775807) in 64bit systems.
+ * @since 1.0.0
+ *
+ * @var int \FireHub\Core\Support\Constants\Number\MAX
+ *
+ * @api
+ */
+const MAX = PHP_INT_MAX;
+
+/**
+ * ### The smallest integer supported in a 32-bit build of PHP
+ * @since 1.0.0
+ *
+ * @var int \FireHub\Core\Support\Constants\Number\MIN
+ *
+ * @api
+ */
+const MIN_32_BIT = -2_147_483_648;
+
+/**
+ * ### The largest integer supported in a 32-bit build of PHP
+ * @since 1.0.0
+ *
+ * @var int \FireHub\Core\Support\Constants\Number\MAX
+ *
+ * @api
+ */
+const MAX_32_BIT = 2_147_483_648;
+
+/**
+ * ### The size of an integer in bytes in this build of PHP
+ * @since 1.0.0
+ *
+ * @var int \FireHub\Core\Support\Constants\Number\SIZE
+ *
+ * @api
+ */
+const SIZE = PHP_INT_SIZE;
+
+/**
+ * ### Number of decimal digits that can be rounded into a float and back without precision loss
+ * @since 1.0.0
+ *
+ * @var int \FireHub\Core\Support\Constants\Number\FLOAT_DIG
+ *
+ * @api
+ */
+const FLOAT_DIG = PHP_FLOAT_DIG;
+
+/**
+ * ### Smallest representable positive number x, so that x + 1.0 != 1.0
+ * @since 1.0.0
+ *
+ * @var float \FireHub\Core\Support\Constants\Number\PHP_FLOAT_EPSILON
+ *
+ * @api
+ */
+const FLOAT_EPSILON = PHP_FLOAT_EPSILON;
+
+/**
+ * ### Smallest representable positive floating point number
+ * @since 1.0.0
+ *
+ * @var float \FireHub\Core\Support\Constants\Number\FLOAT_MIN
+ *
+ * @api
+ */
+const FLOAT_MIN = PHP_FLOAT_MIN;
+
+/**
+ * ### Largest representable floating point number
+ * @since 1.0.0
+ *
+ * @var float \FireHub\Core\Support\Constants\Number\FLOAT_MAX
+ *
+ * @api
+ */
+const FLOAT_MAX = PHP_FLOAT_MAX;
+
+/**
+ * ### The infinite
+ * @since 1.0.0
+ *
+ * @var float \FireHub\Core\Support\Constants\Number\INF
+ *
+ * @api
+ */
+const INF = PHP_INF;
+
+/**
+ * ### Not A Number
+ * @since 1.0.0
+ *
+ * @var float \FireHub\Core\Support\Constants\Number\NAN
+ *
+ * @api
+ */
+const NAN = PHP_NAN;<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Enums\Data;
+
+/**
+ * ### Data category enum
+ *
+ * Data category defines the category of a data type.
  * @since 1.0.0
  */
-class ArrSizeInconsistentException extends ArrException {}<?php declare(strict_types = 1);
+enum Category {
+
+    /**
+     * ### Scalar (predefined) category can hold only a single value
+     * @since 1.0.0
+     */
+    case SCALAR;
+
+    /**
+     * ### Compound (user-defined) category can hold only multiple values
+     * @since 1.0.0
+     */
+    case COMPOUND;
+
+    /**
+     * ### Special type
+     * @since 1.0.0
+     */
+    case SPECIAL;
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Enums\Data;
+
+/**
+ * ### Data category enum
+ *
+ * Data category defines the category of a data type.
+ * @since 1.0.0
+ */
+enum Category implements InitEnum {
+
+    /**
+     * ### FireHub initial concrete enum trait
+     * @since 1.0.0
+     */
+    use ConcreteEnum;
+
+    /**
+     * ### Scalar (predefined) category can hold only a single value
+     * @since 1.0.0
+     */
+    case SCALAR;
+
+    /**
+     * ### Compound (user-defined) category can hold only multiple values
+     * @since 1.0.0
+     */
+    case COMPOUND;
+
+    /**
+     * ### Special type
+     * @since 1.0.0
+     */
+    case SPECIAL;
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Enums\Data;
+
+/**
+ * ### Resource type enum
+ *
+ * The following is a list of functions which create, use, or destroy PHP resources.
+ * @since 1.0.0
+ */
+enum ResourceType:string {
+
+    /**
+     * @since 1.0.0
+     */
+    case UNKNOWN = 'Unknown';
+
+    /**
+     * @since 1.0.0
+     */
+    case ADDRESS_INFO = 'AddressInfo';
+
+    /**
+     * @since 1.0.0
+     */
+    case BZIP2 = 'bzip2';
+
+    /**
+     * @since 1.0.0
+     */
+    case CUBRID_CONNECTION = 'cubrid connection';
+
+    /**
+     * @since 1.0.0
+     */
+    case PERSISTENT_CUBRID_CONNECTION = 'persistent cubrid connection';
+
+    /**
+     * @since 1.0.0
+     */
+    case CUBRID_REQUEST = 'cubrid request';
+
+    /**
+     * @since 1.0.0
+     */
+    case CUBRID_LOB = 'cubrid lob';
+
+    /**
+     * @since 1.0.0
+     */
+    case CUBRID_LOB2 = 'cubrid lob2';
+
+    /**
+     * @since 1.0.0
+     */
+    case CURL = 'curl';
+
+    /**
+     * @since 1.0.0
+     */
+    case CURL_MULTI = 'curl_multi';
+
+    /**
+     * @since 1.0.0
+     */
+    case CURL_SHARE = 'curl_share';
+
+    /**
+     * @since 1.0.0
+     */
+    case DBA = 'dba';
+
+    /**
+     * @since 1.0.0
+     */
+    case DBA_PERSISTENT = 'dba persistent';
+
+    /**
+     * @since 1.0.0
+     */
+    case DBASE = 'dbase';
+
+    /**
+     * @since 1.0.0
+     */
+    case ENCHANT_BROKER = 'enchant_broker';
+
+    /**
+     * @since 1.0.0
+     */
+    case ENCHANT_DICT = 'enchant_dict';
+
+    /**
+     * @since 1.0.0
+     */
+    case FDF = 'fdf';
+
+    /**
+     * @since 1.0.0
+     */
+    case FTP = 'ftp';
+
+    /**
+     * @since 1.0.0
+     */
+    case GD = 'gd';
+
+    /**
+     * @since 1.0.0
+     */
+    case GD_FONT = 'gd font';
+
+    /**
+     * @since 1.0.0
+     */
+    case IMAP = 'imap';
+
+    /**
+     * @since 1.0.0
+     */
+    case INTERBASE_BLOB = 'interbase blob';
+
+    /**
+     * @since 1.0.0
+     */
+    case INTERBASE_LINK = 'interbase link';
+
+    /**
+     * @since 1.0.0
+     */
+    case INTERBASE_LINK_PERSISTENT = 'interbase link persistent';
+
+    /**
+     * @since 1.0.0
+     */
+    case INTERBASE_QUERY = 'interbase query';
+
+    /**
+     * @since 1.0.0
+     */
+    case INTERBASE_RESULT = 'interbase result';
+
+    /**
+     * @since 1.0.0
+     */
+    case INTERBASE_TRANSACTION = 'interbase transaction';
+
+    /**
+     * @since 1.0.0
+     */
+    case LDAP_LINK = 'ldap link';
+
+    /**
+     * @since 1.0.0
+     */
+    case LDAP_RESULT = 'ldap result';
+
+    /**
+     * @since 1.0.0
+     */
+    case LDAP_RESULT_ENTRY = 'ldap result entry';
+
+    /**
+     * @since 1.0.0
+     */
+    case MAILPARSE_MAIL_STRUCTURE = 'mailparse_mail_structure';
+
+    /**
+     * @since 1.0.0
+     */
+    case MYSQL_LINK = 'mysql link';
+
+    /**
+     * @since 1.0.0
+     */
+    case MYSQL_LINK_PERSISTENT = 'mysql link persistent';
+
+    /**
+     * @since 1.0.0
+     */
+    case MYSQL_RESULT = 'mysql result';
+
+    /**
+     * @since 1.0.0
+     */
+    case OCI8_COLLECTION = 'oci8 collection';
+
+    /**
+     * @since 1.0.0
+     */
+    case OCI8_CONNECTION = 'oci8 connection';
+
+    /**
+     * @since 1.0.0
+     */
+    case OCI8_LOB = 'oci8 lob';
+
+    /**
+     * @since 1.0.0
+     */
+    case OCI8_STATEMENT = 'oci8 statement';
+
+    /**
+     * @since 1.0.0
+     */
+    case ODBC_LINK = 'odbc link';
+
+    /**
+     * @since 1.0.0
+     */
+    case ODBC_LINK_PERSISTENT = 'odbc link persistent';
+
+    /**
+     * @since 1.0.0
+     */
+    case ODBC_RESULT = 'odbc result';
+
+    /**
+     * @since 1.0.0
+     */
+    case BIRDSTEP_LINK = 'birdstep link';
+
+    /**
+     * @since 1.0.0
+     */
+    case BIRDSTEP_RESULT = 'birdstep result';
+
+    /**
+     * @since 1.0.0
+     */
+    case OPENSSL_KEY = 'OpenSSL key';
+
+    /**
+     * @since 1.0.0
+     */
+    case OPENSSL_X_509 = 'OpenSSL X.509';
+
+    /**
+     * @since 1.0.0
+     */
+    case PGSQL_LARGE_OBJECT = 'pgsql large object';
+
+    /**
+     * @since 1.0.0
+     */
+    case PGSQL_LINK = 'pgsql link';
+
+    /**
+     * @since 1.0.0
+     */
+    case PGSQL_LINK_PERSISTENT = 'pgsql link persistent';
+
+    /**
+     * @since 1.0.0
+     */
+    case PGSQL_RESULT = 'pgsql result';
+
+    /**
+     * @since 1.0.0
+     */
+    case PGSQL_STRING = 'pgsql string';
+
+    /**
+     * @since 1.0.0
+     */
+    case PSPELL = 'pspell';
+
+    /**
+     * @since 1.0.0
+     */
+    case PSPELL_CONFIG = 'pspell config';
+
+    /**
+     * @since 1.0.0
+     */
+    case SHMOP = 'shmop';
+
+    /**
+     * @since 1.0.0
+     */
+    case SOCKET = 'Socket';
+
+    /**
+     * @since 1.0.0
+     */
+    case STREAM = 'stream';
+
+    /**
+     * @since 1.0.0
+     */
+    case SSH2_SESSION = 'SSH2 Session';
+
+    /**
+     * @since 1.0.0
+     */
+    case SSH2_LISTENER = 'SSH2 Listener';
+
+    /**
+     * @since 1.0.0
+     */
+    case SSH2_SFTP = 'SSH2 SFTP';
+
+    /**
+     * @since 1.0.0
+     */
+    case SSH2_PUBLICKEY_SUBSYSTEM = 'SSH2 Publickey Subsystem';
+
+    /**
+     * @since 1.0.0
+     */
+    case SYSVMSG_QUEUE = 'sysvmsg queue';
+
+    /**
+     * @since 1.0.0
+     */
+    case SYSVSEM = 'sysvsem';
+
+    /**
+     * @since 1.0.0
+     */
+    case SYSVSHM = 'sysvshm';
+
+    /**
+     * @since 1.0.0
+     */
+    case WDDX = 'wddx';
+
+    /**
+     * @since 1.0.0
+     */
+    case XML = 'xml';
+
+    /**
+     * @since 1.0.0
+     */
+    case ZLIB = 'zlib';
+
+    /**
+     * @since 1.0.0
+     */
+    case ZLIB_DEFLATE = 'zlib.deflate';
+
+    /**
+     * @since 1.0.0
+     */
+    case ZLIB_INFLATE = 'zlib.inflate';
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Enums\Data;
+
+/**
+ * ### Data type enum
+ *
+ * Data type defines the type of data a variable can store.
+ * @since 1.0.0
+ */
+enum Type {
+
+    /**
+     * ### A bool expresses a truth value, it can be either true or false
+     * @since 1.0.0
+     */
+    case T_BOOL;
+
+    /**
+     * ### An int is a number of the set Z = {..., -2, -1, 0, 1, 2, ...}
+     * @since 1.0.0
+     */
+    case T_INT;
+
+    /**
+     * ### A floating-point number is represented approximately with a fixed number of significant digits
+     * @since 1.0.0
+     */
+    case T_FLOAT;
+
+    /**
+     * ### A string is a series of characters, where a character is the same as a byte
+     * @since 1.0.0
+     */
+    case T_STRING;
+
+    /**
+     * ### An ordered map where map is a type that associates values to keys
+     * @since 1.0.0
+     */
+    case T_ARRAY;
+
+    /**
+     * ### An object is an individual instance of the data structure defined by a class
+     * @since 1.0.0
+     */
+    case T_OBJECT;
+
+    /**
+     * ### The special null value represents a variable with no value
+     * @since 1.0.0
+     */
+    case T_NULL;
+
+    /**
+     * ### The special resource type is used to store references to some function call or to external PHP resources
+     * @since 1.0.0
+     */
+    case T_RESOURCE;
+
+    /**
+     * ## Gets the data type category
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Enums\Data\Category::SCALAR To check if this enum is a scalar type category.
+     * @uses \FireHub\Core\Support\Enums\Data\Category::COMPOUND To check if this enum is a compound type category.
+     * @uses \FireHub\Core\Support\Enums\Data\Category::SPECIAL To check if this enum is a special type category.
+     *
+     * @return \FireHub\Core\Support\Enums\Data\Category Data type category.
+     */
+    public function category ():Category {
+
+        return match ($this) {
+            self::T_BOOL, self::T_INT, self::T_FLOAT, self::T_STRING => Category::SCALAR,
+            self::T_ARRAY, self::T_OBJECT => Category::COMPOUND,
+            default => Category::SPECIAL
+        };
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Enums\Data;
+
+use const T_ARRAY;
+use const T_STRING;
+
+/**
+ * ### Data type enum
+ *
+ * Data type defines the type of data a variable can store.
+ * @since 1.0.0
+ */
+enum Type {
+
+    /**
+     * ### A bool expresses a truth value, it can be either true or false
+     * @since 1.0.0
+     */
+    case T_BOOL;
+
+    /**
+     * ### An int is a number of the set Z = {..., -2, -1, 0, 1, 2, ...}
+     * @since 1.0.0
+     */
+    case T_INT;
+
+    /**
+     * ### A floating-point number is represented approximately with a fixed number of significant digits
+     * @since 1.0.0
+     */
+    case T_FLOAT;
+
+    /**
+     * ### A string is a series of characters, where a character is the same as a byte
+     * @since 1.0.0
+     */
+    case T_STRING;
+
+    /**
+     * ### An ordered map where map is a type that associates values to keys
+     * @since 1.0.0
+     */
+    case T_ARRAY;
+
+    /**
+     * ### An object is an individual instance of the data structure defined by a class
+     * @since 1.0.0
+     */
+    case T_OBJECT;
+
+    /**
+     * ### The special null value represents a variable with no value
+     * @since 1.0.0
+     */
+    case T_NULL;
+
+    /**
+     * ### The special resource type is used to store references to some function call or to external PHP resources
+     * @since 1.0.0
+     */
+    case T_RESOURCE;
+
+    /**
+     * ## Gets the data type category
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Enums\Data\Category::SCALAR To check if this enum is a scalar type category.
+     * @uses \FireHub\Core\Support\Enums\Data\Category::COMPOUND To check if this enum is a compound type category.
+     * @uses \FireHub\Core\Support\Enums\Data\Category::SPECIAL To check if this enum is a special type category.
+     *
+     * @return \FireHub\Core\Support\Enums\Data\Category Data type category.
+     */
+    public function category ():Category {
+
+        return match ($this) {
+            self::T_BOOL, self::T_INT, self::T_FLOAT, self::T_STRING => Category::SCALAR,
+            self::T_ARRAY, self::T_OBJECT => Category::COMPOUND,
+            default => Category::SPECIAL
+        };
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Enums;
+
+/**
+ * ### Ordering enum
+ * @since 1.0.0
+ */
+enum Order:string {
+
+    /**
+     * ### Arranging in ascending order
+     * @since 1.0.0
+     */
+    case ASC = 'ASC';
+
+    /**
+     * ### Arranging in descending order
+     * @since 1.0.0
+     */
+    case DESC = 'DESC';
+
+    /**
+     * ### Get the reverse order
+     * @since 1.0.0
+     *
+     * @return \FireHub\Core\Support\Enums\Order Reversed order.
+     */
+    public function reverse ():Order {
+
+        return match ($this) {
+            self::ASC => self::DESC,
+            default => self::ASC
+        };
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Enums;
+
+/**
+ * ### Sorting enum
+ * @since 1.0.0
+ */
+enum Sort:int {
+
+    /**
+     * ### Compare items normally
+     * @since 1.0.0
+     */
+    case BY_REGULAR = 0;
+
+    /**
+     * ### Compare items numerically
+     * @since 1.0.0
+     */
+    case BY_NUMERIC = 1;
+
+    /**
+     * ### Compare items as strings
+     * @since 1.0.0
+     */
+    case BY_STRING = 2;
+
+    /**
+     * ### Compare items as strings, based on the current locale
+     * @since 1.0.0
+     */
+    case BY_LOCALE_STRING = 5;
+
+    /**
+     * ### Compare items as strings using "natural ordering" like natsort()
+     * @since 1.0.0
+     */
+    case BY_NATURAL = 6;
+
+    /**
+     * ### Sort strings case-insensitively
+     * @since 1.0.0
+     */
+    case BY_STRING_FLAG_CASE = 10;
+
+    /**
+     * ### Sort natural case-insensitively
+     * @since 1.0.0
+     */
+    case BY_NATURAL_FLAG_CASE = 14;
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Enums\String;
+
+/**
+ * ### String case folding enum
+ * @since 1.0.0
+ */
+enum CaseFolding:int {
+
+    /**
+     * ### Performs a full lower-case folding
+     * @since 1.0.0
+     */
+    case LOWER = 0;
+
+    /**
+     * ### Performs a full upper-case folding
+     * @since 1.0.0
+     */
+    case UPPER = 1;
+
+    /**
+     * ### Performs a full title-case folding
+     * @since 1.0.0
+     */
+    case TITLE = 2;
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Enums\String;
+
+/**
+ * ### String case folding enum
+ * @since 1.0.0
+ */
+enum CaseFolding:int {
+
+    /**
+     * ### FireHub initial concrete-backed enum trait
+     * @since 1.0.0
+     */
+    use ConcreteBackedEnum;
+
+    /**
+     * ### Performs a full lower-case folding
+     * @since 1.0.0
+     */
+    case LOWER = 0;
+
+    /**
+     * ### Performs a full upper-case folding
+     * @since 1.0.0
+     */
+    case UPPER = 1;
+
+    /**
+     * ### Performs a full title-case folding
+     * @since 1.0.0
+     */
+    case TITLE = 2;
+
+}<?php declare(strict_types = 1);
 
 /**
  * This file is part of the FireHub Web Application Framework package
@@ -425,10 +1410,102 @@ namespace FireHub\Core\Support\LowLevel\Exceptions\Arr;
 use FireHub\Core\Support\LowLevel\Exceptions\ArrException;
 
 /**
- * ### Array Exception
+ * ### Array size inconsistent Exception
  * @since 1.0.0
  */
-class FailedSortMultiArrayException extends ArrException {}<?php declare(strict_types = 1);
+class ArrSizeInconsistentException extends ArrException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Array sizes are inconsistent.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Arr;
+
+use FireHub\Core\Support\Exceptions\ArrException;
+
+/**
+ * ### Chunk length too small exception
+ * @since 1.0.0
+ */
+class ChunkLengthTooSmallException extends ArrException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'length is less than 1.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Arr;
+
+use FireHub\Core\Support\Exceptions\ArrException;
+
+/**
+ * ### Failed to sort multi-array exception
+ * @since 1.0.0
+ */
+class FailedSortMultiArrayException extends ArrException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Failed to sort a multi-sort array.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
 
 /**
  * This file is part of the FireHub Web Application Framework package
@@ -447,10 +1524,26 @@ namespace FireHub\Core\Support\LowLevel\Exceptions\Arr;
 use FireHub\Core\Support\LowLevel\Exceptions\ArrException;
 
 /**
- * ### Array Exception
+ * ### Array fill out of range exception
  * @since 1.0.0
  */
-class ArrSizeInconsistentException extends ArrException {}<?php declare(strict_types = 1);
+class FillOutOfRangeException extends ArrException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = '$length is out of range.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
 
 /**
  * This file is part of the FireHub Web Application Framework package
@@ -464,15 +1557,31 @@ class ArrSizeInconsistentException extends ArrException {}<?php declare(strict_t
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\LowLevel\Exceptions\Autoload;
+namespace FireHub\Core\Support\Exceptions\Arr;
 
-use FireHub\Core\Support\LowLevel\Exceptions\AutoloadException;
+use FireHub\Core\Support\Exceptions\ArrException;
 
 /**
- * ### Autoload Register Exception
+ * ### Keys and values must have the same number of elements exception
  * @since 1.0.0
  */
-class AutoloadRegisterException extends AutoloadException {}<?php declare(strict_types = 1);
+class KeysAndValuesSameNumberOfElemsException extends ArrException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Keys and values must have the same number of elements.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
 
 /**
  * This file is part of the FireHub Web Application Framework package
@@ -486,13 +1595,263 @@ class AutoloadRegisterException extends AutoloadException {}<?php declare(strict
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\LowLevel\Exceptions\Autoload;
+namespace FireHub\Core\Support\Exceptions\Arr;
+
+use FireHub\Core\Support\Exceptions\ArrException;
 
 /**
- * ### Autoload Register Exception
+ * ### Array is out of the range
  * @since 1.0.0
  */
-class AutoloadRegisterException extends AutoloadException {}<?php declare(strict_types = 1);
+class OutOfRangeException extends ArrException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Array is out of range.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Arr;
+
+use FireHub\Core\Support\Exceptions\ArrException;
+
+/**
+ * ### Array is out of the range exception
+ * @since 1.0.0
+ */
+class OutOfRangeException extends ArrException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Array is out of range.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Arr;
+
+use FireHub\Core\Support\Exceptions\ArrException;
+
+/**
+ * ### Array sizes inconsistent exception
+ * @since 1.0.0
+ */
+class SizeInconsistentException extends ArrException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Array sizes are inconsistent.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Arr;
+
+use FireHub\Core\Support\Exceptions\ArrException;
+
+/**
+ * ### Array walk argument count exception
+ * @since 1.0.0
+ */
+class WalkArgumentCountException extends ArrException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = '$callback function requires more than two parameters.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\LowLevel\Exceptions\Arr;
+
+use FireHub\Core\Support\LowLevel\Exceptions\ArrException;
+
+/**
+ * ### Array walk argument count exception
+ * @since 1.0.0
+ */
+class WalkArgumentCountException extends ArrException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = '$callback function requires more than two parameters.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Autoload;
+
+use FireHub\Core\Support\Exceptions\AutoloadException;
+
+/**
+ * ### Autoload Unregister Autoloader Exception
+ * @since 1.0.0
+ */
+class AutoloadUnregisterException extends AutoloadException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Failed to unregister a callback function as an autoloader.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Autoload;
+
+use FireHub\Core\Support\Exceptions\AutoloadException;
+
+/**
+ * ### Class not found exception
+ * @since 1.0.0
+ */
+class ClassNotFoundException extends AutoloadException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @param class-string $class <p>
+     * Fully qualified class name that is being called.
+     * </p>
+     *
+     * @return void
+     */
+    public function __construct (string $class) {
+
+        $this->message = "Class {$class} is not found and there are no other autoloaders registered.";
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
 
 /**
  * This file is part of the FireHub Web Application Framework package
@@ -514,7 +1873,27 @@ use FireHub\Core\Support\LowLevel\Exceptions\AutoloadException;
  * ### Class not found exception
  * @since 1.0.0
  */
-class ClassNotFoundException extends AutoloadException {}<?php declare(strict_types = 1);
+class ClassNotFoundException extends AutoloadException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @param class-string $class <p>
+     * Fully qualified class name that is being called.
+     * </p>
+     *
+     * @return void
+     */
+    public function __construct (string $class) {
+
+        $this->message = "Class {$class} is not found and there are no other autoloaders registered.";
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
 
 /**
  * This file is part of the FireHub Web Application Framework package
@@ -528,7 +1907,549 @@ class ClassNotFoundException extends AutoloadException {}<?php declare(strict_ty
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\LowLevel\Exceptions;
+namespace FireHub\Core\Support\Exceptions\Autoload;
+
+use FireHub\Core\Support\Exceptions\AutoloadException;
+
+/**
+ * ### Autoload Register Autoloader Exception
+ * @since 1.0.0
+ */
+class RegisterAutoloaderException extends AutoloadException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Failed to register a callback function as an autoloader.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Autoload;
+
+use FireHub\Core\Support\Exceptions\AutoloadException;
+
+/**
+ * ### Autoload Unregister Autoloader Exception
+ * @since 1.0.0
+ */
+class UnregisterAutoloaderException extends AutoloadException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Failed to unregister a callback function as an autoloader.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Data;
+
+use FireHub\Core\Support\Exceptions\DataException;
+
+/**
+ * ### Array to string data conversion exception
+ * @since 1.0.0
+ */
+class ArrayToStringConversionException extends DataException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Cannot convert array to string.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\LowLevel\Exceptions\Data;
+
+use FireHub\Core\Support\LowLevel\Exceptions\DataException;
+
+/**
+ * ### Array to string data conversion exception
+ * @since 1.0.0
+ */
+class ArrayToStringConversionException extends DataException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Cannot convert array to string.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Data;
+
+use FireHub\Core\Support\Exceptions\DataException;
+
+/**
+ * ### Cannot serialize data exception
+ * @since 1.0.0
+ */
+class CannotSerializeException extends DataException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Cannot serialize data.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Data;
+
+use FireHub\Core\Support\Exceptions\DataException;
+
+/**
+ * ### Failed to set data type exception
+ * @since 1.0.0
+ */
+class FailedToSetTypeException extends DataException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Failed to set a type for value.';
+
+        parent::__construct();
+
+    }
+
+}<?php
+<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Data;
+
+use FireHub\Core\Support\Exceptions\DataException;
+
+/**
+ * ### Object conversion exception
+ * @since 1.0.0
+ */
+class ObjectConversionException extends DataException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Cannot convert object to string, int or float.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\LowLevel\Exceptions\Data;
+
+use FireHub\Core\Support\LowLevel\Exceptions\DataException;
+
+/**
+ * ### Object conversion exception
+ * @since 1.0.0
+ */
+class ObjectConversionException extends DataException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Cannot convert object to string, int or float.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Data;
+
+use FireHub\Core\Support\Exceptions\DataException;
+
+/**
+ * ### Failed to set type as resource exception
+ * @since 1.0.0
+ */
+class SetAsResourceException extends DataException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Type cannot be set to resource.';
+
+        parent::__construct();
+
+    }
+
+}<?php
+<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Data;
+
+use FireHub\Core\Support\Exceptions\DataException;
+
+/**
+ * ### Unserialize failed exception
+ * @since 1.0.0
+ */
+class UnserializeFailedException extends DataException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Cannot unserialize data.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Exceptions
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Data;
+
+use FireHub\Core\Support\Exceptions\DataException;
+
+/**
+ * ### Unserialize failed exception
+ * @since 1.0.0
+ */
+class UnserializeFailedException extends DataException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Cannot unserialize data.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Data;
+
+use FireHub\Core\Support\Exceptions\DataException;
+
+/**
+ * ### Cannot unserialize false or null exception
+ * @since 1.0.0
+ */
+class UnserializeFalseOrNullException extends DataException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Cannot unserialize because data is already false or data is NULL.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Data;
+
+use FireHub\Core\Support\Exceptions\DataException;
+
+/**
+ * ### Data Exception
+ * @since 1.0.0
+ */
+class ValueTypeUnknownException extends DataException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @param string $internal_type <p>
+     * Internal type of value.
+     * </p>
+     *
+     * @return void
+     */
+    public function __construct (string $internal_type) {
+
+        $this->message = "Type of value is unknown. (internal type: {$internal_type})";
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Data;
+
+use FireHub\Core\Support\Exceptions\DataException;
+
+/**
+ * ### Data Exception
+ * @since 1.0.0
+ */
+class ValueTypeUnknownException extends DataException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @param string $internal_type <p>
+     * The variable being converted to type.
+     * </p>
+     *
+     * @return void
+     */
+    public function __construct (string $internal_type) {
+
+        $this->message = "Type of value is unknown. (internal type: {$internal_type})";
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions;
 
 use FireHub\Core\Components\Error\Exception;
 
@@ -550,7 +2471,29 @@ class ArrException extends Exception {}<?php declare(strict_types = 1);
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\LowLevel\Exceptions;
+namespace FireHub\Core\Support\Exceptions;
+
+use FireHub\Core\Components\Error\Exception;
+
+/**
+ * ### Autoload Exception
+ * @since 1.0.0
+ */
+class AutoloadException extends Exception {}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Suspport
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions;
 
 use FireHub\Core\Components\Error\Exception;
 
@@ -572,57 +2515,15 @@ class AutoloadException extends Exception {}<?php declare(strict_types = 1);
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\LowLevel\\Autoload;
+namespace FireHub\Core\Support\Exceptions;
 
 use FireHub\Core\Components\Error\Exception;
 
 /**
- * ### Autoload Exception
+ * ### Data Exception
  * @since 1.0.0
  */
-class AutoloadException extends Exception {}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\LowLevel\Exceptions;
-
-use Exception;
-
-/**
- * ### Autoload Register Exception
- * @since 1.0.0
- */
-class AutoloadRegisterException extends AutoloadException {}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\LowLevel\Exceptions;
-
-/**
- * ### Class not found exception
- * @since 1.0.0
- */
-final class ClassNotFoundException extends AutoloadException {}<?php declare(strict_types = 1);
+class DataException extends Exception {}<?php declare(strict_types = 1);
 
 /**
  * This file is part of the FireHub Web Application Framework package
@@ -638,15 +2539,91 @@ final class ClassNotFoundException extends AutoloadException {}<?php declare(str
 
 namespace FireHub\Core\Support\LowLevel;
 
-use FireHub\Core\Support\LowLevel\Exceptions\Arr\ {
-    ArrSizeInconsistentException, FailedSortMultiArrayException
+use FireHub\Core\Support\Enums\ {
+    Order, Sort, String\CaseFolding
+};
+use FireHub\Core\Support\Exceptions\Arr\ {
+    ChunkLengthTooSmallException, FailedSortMultiArrayException, KeysAndValuesSameNumberOfElemsException,
+    OutOfRangeException, SizeInconsistentException, WalkArgumentCountException
 };
 use ArgumentCountError, ValueError;
 
+use const FireHub\Core\Support\Constants\Number\MAX_32_BIT;
+use const ARRAY_FILTER_USE_BOTH;
+use const ARRAY_FILTER_USE_KEY;
+use const CASE_LOWER;
+use const CASE_UPPER;
+use const SORT_REGULAR;
+
+use function array_all; // @phpstan-ignore-line function.notFound (@todo fix on PHP 8.4)
+use function array_any; // @phpstan-ignore-line function.notFound (@todo fix on PHP 8.4)
+use function array_change_key_case;
+use function array_chunk;
+use function array_column;
+use function array_combine;
+use function array_count_values;
+use function array_diff;
+use function array_diff_assoc;
+use function array_diff_key;
+use function array_diff_uassoc;
+use function array_diff_ukey;
+use function array_fill;
+use function array_fill_keys;
+use function array_filter;
+use function array_find; // @phpstan-ignore-line function.notFound (@todo fix on PHP 8.4)
+use function array_find_key; // @phpstan-ignore-line function.notFound (@todo fix on PHP 8.4)
+use function array_flip;
+use function array_intersect;
+use function array_intersect_assoc;
+use function array_intersect_key;
+use function array_intersect_uassoc;
+use function array_intersect_ukey;
 use function array_is_list;
 use function array_key_exists;
+use function array_key_first;
+use function array_key_last;
+use function array_keys;
+use function array_map;
+use function array_merge;
+use function array_merge_recursive;
 use function array_multisort;
+use function array_pad;
+use function array_pop;
+use function array_product;
+use function array_push;
+use function array_rand;
+use function array_reduce;
+use function array_replace;
+use function array_replace_recursive;
+use function array_reverse;
+use function array_search;
+use function array_shift;
+use function array_slice;
+use function array_splice;
+use function array_sum;
+use function array_udiff;
+use function array_udiff_assoc;
+use function array_udiff_uassoc;
+use function array_uintersect;
+use function array_uintersect_assoc;
+use function array_uintersect_uassoc;
+use function array_unique;
+use function array_unshift;
+use function array_values;
+use function array_walk;
+use function array_walk_recursive;
+use function arsort;
+use function asort;
+use function rsort;
 use function in_array;
+use function krsort;
+use function ksort;
+use function range;
+use function shuffle;
+use function sort;
+use function uasort;
+use function uksort;
+use function usort;
 
 /**
  * ### Array low-level proxy class
@@ -655,6 +2632,50 @@ use function in_array;
  * @internal
  */
 final class Arr {
+
+    /**
+     * ### Checks if all array elements satisfy a callback function
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array that should be searched.
+     * </p>
+     * @param callable(TValue, TKey=):mixed $callback <p>
+     * The callback function to call to check each element.
+     * </p>
+     *
+     * @return bool True if callback returns true for all elements, false otherwise.
+     */
+    public static function all (array $array, callable $callback):bool {
+
+        return array_all($array, $callback); // @phpstan-ignore-line return.notFound (@todo fix on PHP 8.4)
+
+    }
+
+    /**
+     * ### Checks if at least one array element satisfies a callback function
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array that should be searched.
+     * </p>
+     * @param callable(TValue, TKey=):mixed $callback <p>
+     * The callback function to call to check each element.
+     * </p>
+     *
+     * @return bool True if there is at least one element for which callback returns true, false otherwise.
+     */
+    public static function any (array $array, callable $callback):bool {
+
+        return array_any($array, $callback); // @phpstan-ignore-line return.notFound (@todo fix on PHP 8.4)
+
+    }
 
     /**
      * ### Checks if the given key or index exists in the array
@@ -686,7 +2707,7 @@ final class Arr {
      *
      * @param mixed $value <p>
      * The searched value.
-     * note: If a needle is a string, the comparison is done in a case-sensitive manner.
+     * If a needle is a string, the comparison is done in a case-sensitive manner.
      * </p>
      * @param array<array-key, mixed> $array <p>
      * The array.
@@ -703,8 +2724,8 @@ final class Arr {
     /**
      * ### Checks whether a given array is a list
      *
-     * Determines if the given array is a list. An array is considered a list if its keys consist of consecutive
-     * numbers from 0 to count($array)-1.
+     * Determines if the given array is a list.
+     * An array is considered a list if its keys consist of consecutive numbers from 0 to count($array)-1.
      * @since 1.0.0
      *
      * @param array<array-key, mixed> $array <p>
@@ -729,8 +2750,8 @@ final class Arr {
      * A multidimensional array being sorted.
      * </p>
      *
-     * @throws \FireHub\Core\Support\LowLevel\Exceptions\Arr\FailedSortMultiArrayException Failed to sort a multi-sort array.
-     * @throws \FireHub\Core\Support\LowLevel\Exceptions\Arr\ArrSizeInconsistentException If array sizes are inconsistent.
+     * @throws \FireHub\Core\Support\Exceptions\Arr\FailedSortMultiArrayException Failed to sort a multi-sort array.
+     * @throws \FireHub\Core\Support\Exceptions\Arr\SizeInconsistentException If array sizes are inconsistent.
      *
      * @return bool True on success.
      *
@@ -744,11 +2765,11 @@ final class Arr {
         try {
 
             return array_multisort(...$array)
-                ?: throw new FailedSortMultiArrayException('Failed to sort a multi-sort array.');
+                ?: throw new FailedSortMultiArrayException;
 
         } catch (ValueError) {
 
-            throw new ArrSizeInconsistentException('Array sizes are inconsistent.');
+            throw new SizeInconsistentException;
 
         }
 
@@ -757,8 +2778,9 @@ final class Arr {
     /**
      * ### Apply a user function to every member of an array
      *
-     * Applies the user-defined callback function to each element of the array $array. Method is not affected by the
-     * internal array pointer of an array. Method will walk through the entire array regardless of pointer position.
+     * Applies the user-defined callback function to each element of the array $array.
+     * Method is not affected by the internal array pointer of an array. Method will walk through the entire array
+     * regardless of pointer position.
      * @since 1.0.0
      *
      * @template TKey of array-key
@@ -768,161 +2790,40 @@ final class Arr {
      * The array to apply a user function.
      * </p>
      * @param callable(TValue, TKey):mixed $callback <p>
-     * Typically, the function name takes on two parameters. The array parameter's value is the first, and the key/index
-     * second. If a function name needs to be working with the actual values of the array, specify the first
-     * parameter of the function name as a reference. Then, any changes made to those elements will be made in the
-     * original array itself. Users may not change the array itself from the callback function, for example, add/delete
-     * elements, unset elements, and so on.
+     * Typically, the function name takes on two parameters.
+     * The array parameter's value is the first, and the key/index second.
+     * If a function name needs to be working with the actual values of the array, specify the first parameter of the
+     * function name as a reference.
+     * Then, any changes made to those elements will be made in the original array itself.
+     * Users may not change the array itself from the callback function, for example, add/delete elements, unset
+     * elements, and so on.
      * </p>
      * @phpstan-param-out array<TKey, TValue> $array
      *
-     * @throws ArgumentCountError If the $callback function requires more than two parameters.
+     * @throws \FireHub\Core\Support\Exceptions\Arr\WalkArgumentCountException If the $callback function requires more
+     * than two parameters.
      *
      * @return true True on success.
      */
     public static function walk (array &$array, callable $callback):true {
 
-        return array_walk($array, $callback);
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\LowLevel;
-
-use FireHub\Core\Support\LowLevel\Exceptions\Arr\ {
-    ArrSizeInconsistentException, FailedSortMultiArrayException
-};
-use ArgumentCountError, ValueError;
-
-use function array_is_list;
-use function array_key_exists;
-use function array_multisort;
-use function in_array;
-
-/**
- * ### Array low-level proxy class
- * @since 1.0.0
- *
- * @internal
- */
-final class Arr {
-
-    /**
-     * ### Checks if the given key or index exists in the array
-     *
-     * Returns true if the given key is set in the array. Key can be any value possible for an array index.
-     * @since 1.0.0
-     *
-     * @param array-key $key <p>
-     * Key to check.
-     * </p>
-     * @param array<array-key, mixed> $array <p>
-     * An array with keys to check.
-     * </p>
-     *
-     * @return bool True if the key exists in an array, false otherwise.
-     *
-     * @note Method will search for the keys in the first dimension only. Nested keys in multidimensional arrays will
-     * not be found.
-     */
-    public static function keyExist (int|string $key, array $array):bool {
-
-        return array_key_exists($key, $array);
-
-    }
-
-    /**
-     * ### Checks if a value exists in an array
-     * @since 1.0.0
-     *
-     * @param mixed $value <p>
-     * The searched value.
-     * note: If a needle is a string, the comparison is done in a case-sensitive manner.
-     * </p>
-     * @param array<array-key, mixed> $array <p>
-     * The array.
-     * </p>
-     *
-     * @return bool True if a value is found in the array, false otherwise.
-     */
-    public static function inArray (mixed $value, array $array):bool {
-
-        return in_array($value, $array, true);
-
-    }
-
-    /**
-     * ### Checks whether a given array is a list
-     *
-     * Determines if the given array is a list. An array is considered a list if its keys consist of consecutive
-     * numbers from 0 to count($array)-1.
-     * @since 1.0.0
-     *
-     * @param array<array-key, mixed> $array <p>
-     * The array is being evaluated.
-     * </p>
-     *
-     * @return ($array is list ? true: false) True if an array is a list, false otherwise.
-     *
-     * @note This function returns true on empty arrays.
-     */
-    public static function isList (array $array):bool {
-
-        return array_is_list($array);
-
-    }
-
-    /**
-     * ### Sort multiple on multidimensional arrays
-     * @since 1.0.0
-     *
-     * @param array<array-key, array<array-key, mixed>> $array <p>
-     * A multidimensional array being sorted.
-     * </p>
-     *
-     * @throws \FireHub\Core\Support\LowLevel\Exceptions\Arr\FailedSortMultiArrayException Failed to sort a multi-sort array.
-     * @throws \FireHub\Core\Support\LowLevel\Exceptions\Arr\ArrSizeInconsistentException If array sizes are inconsistent.
-     *
-     * @return bool True on success.
-     *
-     * @caution Associative (string) keys will be maintained, but numeric keys will be re-indexed.
-     * @note Resets array's internal pointer to the first element.
-     *
-     * @phpstan-ignore return.phpDocType (PHPStan reports that the method could still return bool)
-     */
-    public static function multiSort (array $array):true {
-
         try {
 
-            return array_multisort(...$array)
-                ?: throw new FailedSortMultiArrayException('Failed to sort a multi-sort array.');
+            return array_walk($array, $callback);
 
-        } catch (ValueError) {
+        } catch (ArgumentCountError) {
 
-            throw new ArrSizeInconsistentException('Array sizes are inconsistent.');
+            throw new WalkArgumentCountException;
 
         }
 
     }
 
     /**
-     * ### Apply a user function to every member of an array
+     * ### Apply a user function recursively to every member of an array
      *
-     * Applies the user-defined callback function to each element of the array $array. Method is not affected by the
-     * internal array pointer of an array. Method will walk through the entire array regardless of pointer position.
+     * Applies the user-defined callback function to each element of the array. This function will recurse into
+     * deeper arrays.
      * @since 1.0.0
      *
      * @template TKey of array-key
@@ -931,23 +2832,1730 @@ final class Arr {
      * @param array<TKey, TValue> &$array <p>
      * The array to apply a user function.
      * </p>
-     * @param callable(TValue $value, TKey $key):mixed $callback <p>
-     * <code>callable (TValue $value, TKey $key):mixed</code>
-     * Typically, the function name takes on two parameters. The array parameter's value is the first, and the key/index
-     * second. If a function name needs to be working with the actual values of the array, specify the first
-     * parameter of the function name as a reference. Then, any changes made to those elements will be made in the
-     * original array itself. Users may not change the array itself from the callback function, for example, add/delete
-     * elements, unset elements, and so on.
+     * @param callable(TValue, TKey):mixed $callback <p>
+     * Typically, the function name takes on two parameters.
+     * The array parameter's value is the first, and the key/index second.
+     * If a function name needs to be working with the actual values of the array, specify the first parameter of the
+     * function name as a reference.
+     * Then, any changes made to those elements will be made in the original array itself.
+     * Users may not change the array itself from the callback function.
+     * For example, Add/delete elements, unset elements, and so on.
      * </p>
      * @phpstan-param-out array<TKey, TValue> $array
      *
-     * @throws ArgumentCountError If the $callback function requires more than two parameters.
+     * @throws \FireHub\Core\Support\Exceptions\Arr\WalkArgumentCountException If the $callback function requires more
+     * than two parameters.
      *
      * @return true True on success.
      */
-    public static function walk (array &$array, callable $callback):true {
+    public static function walkRecursive (array &$array, callable $callback):true {
 
-        return array_walk($array, $callback);
+        try {
+
+            return array_walk_recursive($array, $callback);
+
+        } catch (ArgumentCountError) {
+
+            throw new WalkArgumentCountException;
+
+        }
+
+    }
+
+    /**
+     * ### Counts the occurrences of each distinct value in an array
+     *
+     * Returns an array using the values of $array (which must be int-s or strings) as keys and their frequency in an
+     * $array as values.
+     * @since 1.0.0
+     *
+     * @template TValue of array-key
+     *
+     * @param array<array-key, TValue> $array <p>
+     * The array of values to count.
+     * </p>
+     *
+     * @return array<array-key, positive-int> An associative array of values from input as keys and their count as
+     * value.
+     */
+    public static function countValues (array $array):array {
+
+        return array_count_values($array);
+
+    }
+
+    /**
+     * ### Fill an array with values
+     *
+     * Fills an array with $length entries of the value for the $value parameter, keys starting at the $start_index
+     * parameter.
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Constants\Number\MAX_32_BIT As maximum length for $length parameter.
+     *
+     * @template TValue
+     *
+     * @param TValue $value <p>
+     * Value to use for filling.
+     * </p>
+     * @param int $start_index <p>
+     * The first index of the returned array.
+     * </p>
+     * @param int<0,2147483648> $length <p>
+     * Number of elements to insert. Must be greater than or equal to zero.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Arr\OutOfRangeException If $length is out of range.
+     *
+     * @return array<int, TValue> Filled array.
+     */
+    public static function fill (mixed $value, int $start_index, int $length):array {
+
+        return !($length < 0) && !($length >= MAX_32_BIT)
+            ? array_fill($start_index, $length, $value)
+            : throw new OutOfRangeException()->withMessage("Array is out of range with length: {$length}.");
+
+    }
+
+    /**
+     * ### Fill an array with values, specifying keys
+     *
+     * Fills an array with the value of the $value parameter, using the values of the $keys array as keys.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<array-key, TKey> $keys <p>
+     * Array of values that will be used as keys.
+     * Illegal values for a key will be converted to string.
+     * </p>
+     * @param TValue $value <p>
+     * Value to use for filling.
+     * </p>
+     *
+     * @return array<TKey, TValue> The filled array.
+     */
+    public static function fillKeys (array $keys, mixed $value):array {
+
+        return array_fill_keys($keys, $value);
+
+    }
+
+    /**
+     * ### Changes the case of all keys in an array
+     *
+     * Returns an array with all keys from an array lowercased or uppercased.
+     * Numbered indices are left as is.
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Enums\String\CaseFolding::LOWER As default parameter.
+     * @uses \FireHub\Core\Support\Enums\String\CaseFolding::UPPER To fold keys to uppercase.
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array to work on.
+     * </p>
+     * @param \FireHub\Core\Support\Enums\String\CaseFolding $case [optional] <p>
+     * Either LOWER or UPPER case folding.
+     * </p>
+     * @phpstan-param (
+     *  \FireHub\Core\Support\Enums\String\CaseFolding::LOWER
+     *  |\FireHub\Core\Support\Enums\String\CaseFolding::UPPER
+     * ) $case
+     *
+     * @return array<TKey, TValue> An array with its keys lower or uppercased.
+     */
+    public static function foldKeys (array $array, CaseFolding $case = CaseFolding::LOWER):array {
+
+        return array_change_key_case($array, $case === CaseFolding::UPPER ? CASE_UPPER : CASE_LOWER);
+
+    }
+
+    /**
+     * ### Split an array into chunks
+     *
+     * Chunks an array into arrays with $length elements. The last chunk may contain less than $length elements.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array.
+     * </p>
+     * @param positive-int $length <p>
+     * The size of each chunk.
+     * If the length is less than 1, it will default to 1.
+     * </p>
+     * @param bool $preserve_keys [optional] <p>
+     * When set to true, keys will be preserved.
+     * Default is false that will reindex the chunk numerically.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Arr\ChunkLengthTooSmallException If the length is less than 1.
+     *
+     * @return ($preserve_keys is true ? list<array<TKey, TValue>> : list<list<TValue>>) Multidimensional numerically
+     * indexed array, starting with zero, with each dimension contains $length elements.
+     */
+    public static function chunk (array $array, int $length, bool $preserve_keys = false):array {
+
+        return !($length < 1)
+            ? array_chunk($array, $length, $preserve_keys)
+            : throw new ChunkLengthTooSmallException;
+
+    }
+
+    /**
+     * ### Return the values from a single column in the input array
+     *
+     * Returns the values from a single column of the $array, identified by the $key.
+     * Optionally, an argument key may be provided to $index the values in the returned array by the values from the
+     * index argument column of the input array.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<array-key, array<TKey, TValue>> $array <p>
+     * A multidimensional array (record set) from which to pull a column of values.
+     * If an array of objects is provided, then public properties can be directly pulled.
+     * In order for protected or private properties to be pulled, the class must implement both the __get() and
+     * __isset() magic methods.
+     * </p>
+     * @param int|string $key <p>
+     * The column of values to return.
+     * This value may be an integer key of the column you wish to retrieve, or it may be a string key name for an
+     * associative array or property name.
+     * It may also be null to return complete arrays or objects (this is useful together with $index to reindex the
+     * array).
+     * </p>
+     * @param null|int|string $index [optional] <p>
+     * The column to use as the index/keys for the returned array.
+     * This value may be the integer key of the column, or it may be the string key name.
+     * The value is cast as usual for array keys.
+     * </p>
+     *
+     * @return ($index is null ? TValue[] : array<TValue, TValue>) Array of values representing a single column from
+     * the input array.
+     */
+    public static function column (array $array, int|string $key, null|int|string $index = null):array {
+
+        return array_column($array, $key, $index); // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * ### Creates an array by using one array for keys and another for its values
+     *
+     * Creates an array by using the values from the $keys array as keys and the values from the $values array as the
+     * corresponding values.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<array-key, TKey> $keys <p>
+     * Array of values to be used as keys.
+     * Illegal values for a key will be converted to string.
+     * </p>
+     * @param array<array-key, TValue> $values <p>
+     * Array of values to be used as values on a combined array.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Arr\KeysAndValuesSameNumberOfElemsException If arguments $keys and
+     * $values don't have the same number of elements.
+     *
+     * @return array<TKey, TValue> The combined array.
+     */
+    public static function combine (array $keys, array $values):array {
+
+        try {
+
+            return array_combine($keys, $values);
+
+        } catch (ValueError) {
+
+            throw new KeysAndValuesSameNumberOfElemsException;
+
+        }
+
+    }
+
+    /**
+     * ### Computes the difference of arrays using values for comparison
+     *
+     * Compares an array against one or more other arrays and returns the values in an array that aren't present in any
+     * of the other arrays.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array to compare from.
+     * </p>
+     * @param array<array-key, mixed> ...$excludes [optional] <p>
+     * An array to compare against.
+     * </p>
+     *
+     * @return array<TKey, TValue> An array containing all the entries from $array that aren't present in any of
+     * the other arrays.
+     *
+     * @note This function only checks one dimension of an n-dimensional array. You can check deeper dimensions by
+     * using [[Arr#difference($array1[0], $array2[0])]].
+     */
+    public static function difference (array $array, array ...$excludes):array {
+
+        return array_diff($array, ...$excludes);
+
+    }
+
+    /**
+     * ### Computes the difference of arrays using values for comparison by using a callback for comparison
+     *
+     * Computes the difference of arrays by using a callback function for data comparison.
+     * This is unlike [[Arr#difference()]] which uses an internal function for comparing the data.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array to compare from.
+     * </p>
+     * @param array<array-key, mixed> $excludes <p>
+     * An array to compare against.
+     * </p>
+     * @param callable(mixed, mixed):int<-1, 1> $callback <p>
+     * The comparison function must return an integer less than, equal to, or greater than zero if the first argument
+     * is considered to be respectively less than, equal to, or greater than the second.
+     * </p>
+     *
+     * @return array<TKey, TValue> An array containing all the entries from $array that aren't present in any of
+     * the other arrays.
+     *
+     * @caution Returning non-integer values from the comparison function, such as float, will result in an internal
+     * cast to int of the callback's return value.
+     * So values such as 0.99 and 0.1 will both be cast to an integer value of 0, which will compare such values as
+     * equal.
+     * @note Note that this function only checks one dimension of an n-dimensional array.
+     * Of course, you can check deeper dimensions by using
+     * [[Arr#differenceFunc($array1[0], $array2[0]), 'data_compare_func']].
+     */
+    public static function differenceFunc (array $array, array $excludes, callable $callback):array {
+
+        return array_udiff($array, $excludes, $callback);
+
+    }
+
+    /**
+     * ### Computes the difference of arrays using keys for comparison
+     *
+     * Compares the keys from an array against the keys from arrays and returns the difference.
+     * This function is like [[Arr#difference()]] except the comparison is done on the keys instead of the values.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array to compare from.
+     * </p>
+     * @param array<array-key, mixed> ...$excludes [optional] <p>
+     * An array to compare against.
+     * </p>
+     *
+     * @return array<TKey, TValue> Returns an array containing all the entries from an array whose keys are absent from
+     * all the other arrays.
+     *
+     * @note This function only checks one dimension of an n-dimensional array.
+     * Of course, you can check deeper dimensions by using [[Arr#differenceKey($array1[0], $array2[0])]].
+     */
+    public static function differenceKey (array $array, array ...$excludes):array {
+
+        return array_diff_key($array, ...$excludes);
+
+    }
+
+    /**
+     * ### Computes the difference of arrays using keys for comparison by using a callback for data comparison
+     *
+     * Compares the keys from an array against the keys from arrays and returns the difference.
+     * This function is like [[Arr#difference()]] except the comparison is done on the keys instead of the values.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array to compare from.
+     * </p>
+     * @param array<array-key, mixed> $excludes <p>
+     * An array to compare against.
+     * </p>
+     * @param callable(mixed, mixed):int<-1, 1> $callback <p>
+     * The comparison function.
+     * </p>
+     *
+     * @return array<TKey, TValue> An array containing all the entries from $array that aren't present in any of
+     * the other arrays.
+     *
+     * @caution Returning non-integer values from the comparison function, such as float, will result in an internal
+     * cast to int of the callback's return value.
+     * So values such as 0.99 and 0.1 will both be cast to an integer value of 0, which will compare such values as
+     * equal.
+     * @note This function only checks one dimension of an n-dimensional array.
+     * Of course, you can check deeper dimensions by using
+     * [[Arr#differenceKeyFunc($array1[0], $array2[0], 'callback_func')]].
+     */
+    public static function differenceKeyFunc (array $array, array $excludes, callable $callback):array {
+
+        return array_diff_ukey($array, $excludes, $callback);
+
+    }
+
+    /**
+     * ### Computes the difference of arrays with additional index check
+     *
+     * Compares an array against arrays and returns the difference.
+     * Unlike [[Arr#difference()]], the array keys are also used in the comparison.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array to compare from.
+     * </p>
+     * @param array<array-key, mixed> ...$excludes [optional] <p>
+     * An array to compare against.
+     * </p>
+     *
+     * @return array<TKey, TValue> An array containing all the entries from $array that aren't present in any of
+     * the other arrays.
+     *
+     * @note This function only checks one dimension of an n-dimensional array.
+     * It is possible to check deeper dimensions by using, for example, [[Arr#differenceAssoc($array1[0], $array2[0])]].
+     * @note Ensure arguments are passed in the correct order when comparing similar arrays with more keys.
+     * The new array should be the first in the list.
+     */
+    public static function differenceAssoc (array $array, array ...$excludes):array {
+
+        return array_diff_assoc($array, ...$excludes);
+
+    }
+
+    /**
+     * ### Computes the difference of arrays with additional index check by using a callback for value comparison
+     *
+     * Computes the difference of arrays with an additional index check, compares data by a callback function.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<array-key, TValue> $array <p>
+     * The array to compare from.
+     * </p>
+     * @param array<TKey, mixed> $excludes <p>
+     * An array to compare against.
+     * </p>
+     * @param callable(mixed, mixed):int<-1, 1> $callback <p>
+     * The comparison function.
+     * </p>
+     *
+     * @return TValue[] An array containing all the entries from $array that aren't present in any of the other
+     * arrays.
+     *
+     * @caution Returning non-integer values from the comparison function, such as float, will result in an internal
+     * cast to int of the callback's return value.
+     * So values such as 0.99 and 0.1 will both be cast to an integer value of 0, which will compare such values as
+     * equal.
+     * @note Note that this function only checks one dimension of an n-dimensional array.
+     * Of course, you can check deeper dimensions by using, for example,
+     * [[Arr#differenceAssocFuncValue($array1[0], $array2[0], 'some_comparison_func')]].
+     */
+    public static function differenceAssocFuncValue (array $array, array $excludes, callable $callback):array {
+
+        return array_udiff_assoc($array, $excludes, $callback);
+
+    }
+
+    /**
+     * ### Computes the difference of arrays with additional index check by using a callback for key comparison
+     *
+     * Compares an array against arrays and returns the difference.
+     * Unlike [[Arr#difference()]], the array keys are used in the comparison.
+     * Unlike [[Arr#differenceAssoc()]], a user-supplied callback function is used for the indices comparison, not an
+     * internal function.
+     * @since 1.0.0
+     *
+     * @template TKey
+     * @template TValue
+     *
+     * @param array<array-key, TValue> $array <p>
+     * The array to compare from.
+     * </p>
+     * @param array<TKey, mixed> $excludes <p>
+     * An array to compare against.
+     * </p>
+     * @param callable(mixed, mixed):int<-1, 1> $callback <p>
+     * The comparison function.
+     * </p>
+     *
+     * @return TValue[] Returns an array containing all the entries from $array that aren't present in any of
+     * the other arrays.
+     *
+     * @caution Returning non-integer values from the comparison function, such as float, will result in an internal
+     * cast to int of the callback's return value.
+     * So values such as 0.99 and 0.1 will both be cast to an integer value of 0, which will compare such values as
+     * equal.
+     * @note This function only checks one dimension of an n-dimensional array.
+     * It is possible to check deeper dimensions by using, for example,
+     * [[Arr#differenceAssocFuncKey($array1[0], $array2[0], 'key_compare_func')]].
+     */
+    public static function differenceAssocFuncKey (array $array, array $excludes, callable $callback):array {
+
+        return array_diff_uassoc($array, $excludes, $callback);
+
+    }
+
+    /**
+     * ### Computes the difference of arrays with additional index check by using a callback for key-value comparison
+     *
+     * Computes the difference of arrays with additional index check, compares data and indexes by a callback function.
+     * Note that the keys are used in the comparison unlike [[Arr#difference()]] and [[Arr#differenceFunc()]].
+     * @since 1.0.0
+     *
+     * @template TKey
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array to compare from.
+     * </p>
+     * @param array<array-key, mixed> $excludes <p>
+     * An array to compare against.
+     * </p>
+     * @param callable(mixed, mixed):int<-1, 1> $callback_value <p>
+     * The comparison function for value.
+     * </p>
+     * @param callable(mixed, mixed):int<-1, 1> $callback_key <p>
+     * The comparison function for key.
+     * </p>
+     *
+     * @return array<TKey, TValue> An array containing all the entries from $array that aren't present in any of
+     * the other arrays.
+     *
+     * @caution Returning non-integer values from the comparison function, such as float, will result in an internal
+     * cast to int of the callback's return value.
+     * So values such as 0.99 and 0.1 will both be cast to an integer value of 0, which will compare such values as
+     * equal.
+     * @note This function only checks one dimension of an n-dimensional array.
+     * It is possible to check deeper dimensions by using, for example,
+     * [[Arr#differenceAssocFuncKeyValue($array1[0], $array2[0], 'data_compare_func', 'key_compare_func')]].
+     */
+    public static function differenceAssocFuncKeyValue (array $array, array $excludes, callable $callback_value, callable $callback_key):array {
+
+        return array_udiff_uassoc($array, $excludes, $callback_value, $callback_key);
+
+    }
+
+    /**
+     * ### Computes the intersection of arrays using values for comparison
+     *
+     * Returns an array containing all the values of an array that are present in all the arguments.
+     * Note that keys are preserved.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array with main values to check.
+     * </p>
+     * @param array<array-key, mixed> ...$arrays [optional] <p>
+     * An array to compare values against.
+     * </p>
+     *
+     * @return array<TKey, TValue> The filtered array.
+     *
+     * @note Two elements are considered equal if and only if (string) $elem1 === (string) $elem2.
+     * In words: when the string representation is the same.
+     */
+    public static function intersect (array $array, array ...$arrays):array {
+
+        return array_intersect($array, ...$arrays);
+
+    }
+
+    /**
+     * ### Computes the intersection of arrays using values for comparison by using a callback for data comparison
+     *
+     * Computes the intersection of arrays, compares data by a callback function.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array to compare from.
+     * </p>
+     * @param array<array-key, mixed> $excludes <p>
+     * An array to compare against.
+     * </p>
+     * @param callable(mixed, mixed):int<-1, 1> $callback <p>
+     * The comparison function.
+     * </p>
+     *
+     * @return array<TKey, TValue> Arrays containing all the entries from $array that are present in any of the other
+     * arrays.
+     *
+     * @caution Returning non-integer values from the comparison function, such as float, will result in an internal
+     * cast to int of the callback's return value.
+     * So values such as 0.99 and 0.1 will both be cast to an integer value of 0, which will compare such values as
+     * equal.
+     * @note Two elements are considered equal if and only if (string) $elem1 === (string) $elem2.
+     * In words: when the string representation is the same.
+     */
+    public static function intersectFunc (array $array, array $excludes, callable $callback):array {
+
+        return array_uintersect($array, $excludes, $callback);
+
+    }
+
+    /**
+     * ### Computes the intersection of arrays using keys for comparison
+     *
+     * Returns an array containing all the entries of an array which have keys that are present in all the arguments.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array with main values to check.
+     * </p>
+     * @param array<array-key, mixed> ...$arrays [optional] <p>
+     * An array to compare values against.
+     * </p>
+     *
+     * @return array<TKey, TValue> The filtered array.
+     */
+    public static function intersectKey (array $array, array ...$arrays):array {
+
+        return array_intersect_key($array, ...$arrays);
+
+    }
+
+    /**
+     * ### Computes the intersection of arrays using keys for comparison by using a callback for data comparison
+     *
+     * Returns an array containing all the values of an array which have matching keys that are present in all the
+     * arguments.
+     * @since 1.0.0
+     *
+     * @template TKey
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array to compare from.
+     * </p>
+     * @param array<array-key, mixed> $excludes <p>
+     * An array to compare against.
+     * </p>
+     * @param callable(mixed, mixed):int<-1, 1> $callback <p>
+     * The comparison function.
+     * </p>
+     *
+     * @return array<TKey, TValue> An array containing all the entries from $array that are present in any of the other arrays.
+     *
+     * @caution Returning non-integer values from the comparison function, such as float, will result in an internal
+     * cast to int of the callback's return value.
+     * So values such as 0.99 and 0.1 will both be cast to an integer value of 0, which will compare such values as
+     * equal.
+     */
+    public static function intersectKeyFunc (array $array, array $excludes, callable $callback):array {
+
+        return array_intersect_ukey($array, $excludes, $callback);
+
+    }
+
+    /**
+     * ### Computes the intersection of arrays with additional index check
+     *
+     * Returns an array containing all the values of an array that are present in all the arguments.
+     * Note that the keys are also used in the comparison unlike in [[Arr#intersect()]].
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array with main values to check.
+     * </p>
+     * @param array<array-key, mixed> ...$arrays [optional] <p>
+     * An array to compare values against.
+     * </p>
+     *
+     * @return array<TKey, TValue> The filtered array.
+     *
+     * @note The two values from the key ‚Üí value pairs are considered equal only if (string) $elem1 === (string) $elem2.
+     * In other words, a strict type check is executed, so the string representation must be the same.
+     */
+    public static function intersectAssoc (array $array, array ...$arrays):array {
+
+        return array_intersect_assoc($array, ...$arrays);
+
+    }
+
+    /**
+     * ### Computes the intersection of arrays with additional index check by using a callback for value comparison
+     *
+     * Computes the intersection of arrays with additional index check, compares data by a callback function.
+     * Note that the keys are used in the comparison unlike in [[Arr#intersectFunc()]].
+     * The data is compared by using a callback function.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array to compare from.
+     * </p>
+     * @param array<array-key, mixed> $excludes <p>
+     * An array to compare against.
+     * </p>
+     * @param callable(mixed, mixed):int<-1, 1> $callback $callback <p>
+     * The comparison function.
+     * </p>
+     *
+     * @return array<TKey, TValue> An array containing all the entries from $array that are present in any of
+     * the other arrays.
+     *
+     * @caution Returning non-integer values from the comparison function, such as float, will result in an internal
+     * cast to int of the callback's return value.
+     * So values such as 0.99 and 0.1 will both be cast to an integer value of 0, which will compare such values as
+     * equal.
+     */
+    public static function intersectAssocFuncValue (array $array, array $excludes, callable $callback):array {
+
+        return array_uintersect_assoc($array, $excludes, $callback);
+
+    }
+
+    /**
+     * ### Computes the intersection of arrays with additional index check by using a callback for key comparison
+     *
+     * Computes the intersection of arrays with additional index check, compares data and indexes by separate
+     * callback functions.
+     * @since 1.0.0
+     *
+     * @template TKey
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array to compare from.
+     * </p>
+     * @param array<array-key, mixed> $excludes <p>
+     * An array to compare against.
+     * </p>
+     * @param callable(mixed, mixed):int<-1, 1> $callback <p>
+     * The comparison function.
+     * </p>
+     *
+     * @return array<TKey, TValue> An array containing all the entries from $array that are present in any of the other
+     * arrays.
+     *
+     * @caution Returning non-integer values from the comparison function, such as float, will result in an internal
+     * cast to int of the callback's return value.
+     * So values such as 0.99 and 0.1 will both be cast to an integer value of 0, which will compare such values as
+     * equal.
+     * @note The comparison function must return an integer less than, equal to, or greater than zero if the first
+     * argument is considered to be respectively less than, equal to, or greater than the second.
+     */
+    public static function intersectAssocFuncKey (array $array, array $excludes, callable $callback):array {
+
+        return array_intersect_uassoc($array, $excludes, $callback);
+
+    }
+
+    /**
+     * ### Computes the intersection of arrays with additional index check by using a callback for key-value comparison
+     *
+     * Computes the intersection of arrays with additional index check, compares data and indexes by separate
+     * callback functions.
+     * @since 1.0.0
+     *
+     * @template TKey
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array to compare from.
+     * </p>
+     * @param array<array-key, mixed> $excludes <p>
+     * An array to compare against.
+     * </p>
+     * @param callable(mixed, mixed):int<-1, 1> $callback_value <p>
+     * The comparison function for value.
+     * </p>
+     * @param callable(mixed, mixed):int<-1, 1> $callback_key <p>
+     * The comparison function for key.
+     * </p>
+     *
+     * @return array<TKey, TValue> An array containing all the entries from $array that are present in any of the other
+     * arrays.
+     *
+     * @caution Returning non-integer values from the comparison function, such as float, will result in an internal
+     * cast to int of the callback's return value.
+     * So values such as 0.99 and 0.1 will both be cast to an integer value of 0, which will compare such values as
+     * equal.
+     * @note The comparison function must return an integer less than, equal to, or greater than zero if the first
+     * argument is considered to be respectively less than, equal to, or greater than the second.
+     */
+    public static function intersectAssocFuncKeyValue (array $array, array $excludes, callable $callback_value, callable $callback_key):array {
+
+        return array_uintersect_uassoc($array, $excludes, $callback_value, $callback_key);
+
+    }
+
+    /**
+     * ### Filter elements in an array
+     *
+     * Iterates over each value in the $array, passing them to the $callback function.
+     * If the $callback function returns true, the current value from an $array is returned into the result array.
+     * Array keys are preserved and may result in gaps if the $array was indexed.
+     * The result array can be re-indexed using the [[Arr#values()]] function.
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::null To find whether a callable parameter is null.
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array to iterate over.
+     * </p>
+     * @param null|callable(TValue, TKey=):bool $callback [optional] <p>
+     * The callback function to use.
+     * If no callback is supplied, all empty and false entries of an array will be removed.
+     * </p>
+     * @param bool $pass_value [optional] <p>
+     * Pass value as the argument to callback.
+     * </p>
+     * @param bool $pass_key [optional] <p>
+     * Pass key as the argument to callback.
+     * </p>
+     *
+     * @return array<TKey, TValue> Filtered array.
+     *
+     * @caution If the array is changed from the callback function (for example, an element added, deleted, or unset),
+     * then the behavior of this function is undefined.
+     */
+    public static function filter (array $array, ?callable $callback = null, bool $pass_value = false, bool $pass_key = false):array {
+
+        if (DataIs::null($callback)) return array_filter($array);
+
+        return array_filter($array, $callback, match (true) {
+            $pass_value && $pass_key => ARRAY_FILTER_USE_BOTH,
+            $pass_key => ARRAY_FILTER_USE_KEY,
+            default => 0
+        });
+
+    }
+
+    /**
+     * ### Exchanges all keys with their associated values in an array
+     *
+     * Returns an array in flip order; in other words, keys from an $array become values, and values from an $array
+     * become keys.
+     * Note that the values of $array need to be valid keys; in other words, they need to be either int or string.
+     * A warning will be emitted if a value has the wrong type, and the key/value pair in question will not be
+     * included in the result.
+     * If a value has several occurrences, the latest key will be used as its value, and all others will be lost.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue of array-key
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array to flip.
+     * </p>
+     *
+     * @return array<TValue, TKey> The flipped array.
+     */
+    public static function flip (array $array):array {
+
+        return array_flip($array);
+
+    }
+
+    /**
+     * ### Return all the keys or a subset of the keys for an array
+     *
+     * Returns the keys, numeric, and string, from the $array.
+     * If a $filter is specified, then only the keys for that value are returned. Otherwise, all the keys from the
+     * array are returned.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     *
+     * @param array<TKey, mixed> $array <p>
+     * An array containing keys to return.
+     * </p>
+     * @param mixed $filter [optional] <p>
+     * If specified, then only keys containing these values are returned.
+     * </p>
+     *
+     * @return list<TKey> An array of all the keys in input.
+     */
+    public static function keys (array $array, mixed $filter = null):array {
+
+        return $filter
+            ? array_keys($array, $filter, true)
+            : array_keys($array);
+
+    }
+
+    /**
+     * ### Return all the values from an array
+     *
+     * Returns all the values from the array and indexes the array numerically.
+     * @since 1.0.0
+     *
+     * @template TValue
+     *
+     * @param array<array-key, TValue> $array <p>
+     * The array.
+     * </p>
+     *
+     * @return TValue[] An indexed array of values.
+     */
+    public static function values (array $array):array {
+
+        return array_values($array);
+
+    }
+
+    /**
+     * ### Applies the callback to the elements of the given array
+     *
+     * Returns an array containing the results of applying the $callback to the corresponding value of an $array used as
+     * arguments for the callback.
+     * The number of parameters that the $callback function accepts should match the number of arrays passed to
+     * [[Arr#map()]]. Excess input arrays are ignored.
+     * An ArgumentCountError is thrown if an insufficient number of arguments is provided.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * Array to run through the callback function.
+     * </p>
+     * @param callable(TValue):mixed $callback <p>
+     * Callback function to run for each element in each array.
+     * Null can be passed as a value to $callback to perform a zip operation on multiple arrays. If only an array is
+     * provided, [[Arr#map()]] will return the input array.
+     * </p>
+     *
+     * @return array<TKey, mixed> Array containing all the elements of arr1 after applying the callback function.
+     */
+    public static function map (array $array, callable $callback):array {
+
+        return array_map($callback, $array);
+
+    }
+
+    /**
+     * ### Merges the elements of one or more arrays
+     *
+     * Merges the elements of one or more arrays so that the values of one are appended to the end of the previous
+     * one.
+     * It returns the resulting array. If the input arrays have the same string keys, then the later value for that
+     * key will overwrite the previous one.
+     * If, however, the arrays contain numeric keys, the later value will not overwrite the original value but will
+     * be appended.
+     * Values in the input arrays with numeric keys will be renumbered with incrementing keys starting from zero in
+     * the result array.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> ...$arrays [optional] <p>
+     * Variable list of arrays to merge.
+     * </p>
+     *
+     * @return array<TKey, TValue> The resulting array.
+     *
+     * @note If the input arrays have the same string keys, then the later value for that key will overwrite the
+     * previous one.
+     * @note If the arrays contain numeric keys, the later value will be appended.
+     * @note Numeric keys will be renumbered.
+     */
+    public static function merge (array ...$arrays):array {
+
+        return array_merge(...$arrays);
+
+    }
+
+    /**
+     * ### Merge two or more arrays recursively
+     *
+     * Merges the elements of one or more arrays so that the values of one are appended to the end of the
+     * previous one.
+     * It returns the resulting array.
+     * If the input arrays have the same string keys, then the values for these keys are merged into an array.
+     * This is done recursively, so that if one of the values is an array itself, the function will merge it with a
+     * corresponding entry in another array too.
+     * If, however, the arrays have the same numeric key, the later value will not overwrite the original value but
+     * will be appended.
+     * @since 1.0.0
+     *
+     * @param array<array-key, mixed> ...$arrays [optional] <p>
+     * Variable list of arrays to recursively merge.
+     * </p>
+     *
+     * @return array<array-key, mixed> The resulting array.
+     */
+    public static function mergeRecursive (array ...$arrays):array {
+
+        return array_merge_recursive(...$arrays);
+
+    }
+
+    /**
+     * ### Pad array to the specified length with a value
+     *
+     * Returns a copy of the array padded to the size specified by $length with $value.
+     * If the length is positive, then the array is padded on the right if it is negative, then on the left.
+     * If the absolute value of length is less than or equal to the length of the array, then no padding takes place.
+     * It is possible to add at most 1,048,576 elements at a time.
+     * @since 1.0.0
+     *
+     * @param array<array-key, mixed> $array <p>
+     * Initial array of values to pad.
+     * </p>
+     * @param int $length <p>
+     * New size of the array.
+     * If the length is positive, then the array is padded on the right if it is negative, then on the left.
+     * If the absolute value of length is less than or equal to the length of the array, then no padding takes place.
+     * </p>
+     * @param mixed $value <p>
+     * Value to pad if input is less than length.
+     * </p>
+     *
+     * @return array<array-key, mixed> A copy of the input padded to size specified by $length with value $value.
+     *
+     * @caution Keys can be re-numbered.
+     */
+    public static function pad (array $array, int $length, mixed $value):array {
+
+        return array_pad($array, $length, $value);
+
+    }
+
+    /**
+     * ### Replaces elements from passed arrays into the first array
+     *
+     * Replaces the values of $array with values having the same keys in each of the following arrays.
+     * If a key from the first array exists in the second array, its value will be replaced by the value from the
+     * second array.
+     * If the key exists in the second array, and not the first, it will be created in the first array.
+     * If a key only exists in the first array, it will be left as is.
+     * If several arrays are passed for replacement, they will be processed in order, the later arrays overwriting
+     * the previous values.
+     * Method is not recursive, it will replace values in the first array by whatever type is in the second array.
+     * @since 1.0.0
+     *
+     * @template TValue
+     *
+     * @param array<TValue> $array <p>
+     * The array in which elements are replaced.
+     * </p>
+     * @param array<TValue> ...$replacements<p>
+     * Arrays from which elements will be extracted.
+     * Values from later arrays overwrite the previous values.
+     * </p>
+     *
+     * @return array<TValue> The resulting array.
+     */
+    public static function replace (array $array, array ...$replacements):array {
+
+        return array_replace($array, ...$replacements);
+
+    }
+
+    /**
+     * ### Replace two or more arrays recursively
+     *
+     * Replaces the values of $array with the same values from all the following arrays.
+     * If a key from the first array exists in the second array, its value will be replaced by the value from the
+     * second array.
+     * If the key exists in the second array, and not the first, it will be created in the first array.
+     * If a key only exists in the first array, it will be left as is.
+     * If several arrays are passed for replacement, they will be processed in order, the later array overwriting the
+     * previous values.
+     * When the value in the first array is scalar, it will be replaced by the value in the second array, may it be
+     * scalar or array.
+     * When the value in the first array and the second array are both arrays, [[Arr#replaceRecursive()]] will
+     * replace their respective values recursively.
+     * @since 1.0.0
+     *
+     * @template TValue
+     *
+     * @param array<TValue> $array <p>
+     * The array in which elements are replaced.
+     * </p>
+     * @param array<TValue> ...$replacements<p>
+     * Arrays from which elements will be extracted.
+     * Values from later arrays overwrite the previous values.
+     * </p>
+
+     * @return array<TValue> The resulting array.
+     */
+    public static function replaceRecursive (array $array, array ...$replacements):array {
+
+        return array_replace_recursive($array, ...$replacements);
+
+    }
+
+    /**
+     * ### Reverse the order of array items
+     *
+     * Takes an input array and returns a new array with the order of the elements reversed.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * Array to reverse.
+     * </p>
+     * @param bool $preserve_keys [optional] <p>
+     * Whether you want to preserve keys from an original array or not.
+     * Non-numeric keys aren't affected by this setting and will always be preserved.
+     * </p>
+     *
+     * @return ($preserve_keys is true ? array<TKey, TValue> : array<array-key, TValue>) The reversed array.
+     */
+    public static function reverse (array $array, bool $preserve_keys = false):array {
+
+        return array_reverse($array, $preserve_keys);
+
+    }
+
+    /**
+     * ### Extract a slice of the array
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The input array.
+     * </p>
+     * @param int $offset <p>
+     * If the offset is non-negative, the sequence will start at that offset in the array.
+     * If the offset is negative, the sequence will start that far from the end of the array.
+     * </p>
+     * @param null|int $length [optional] <p>
+     * If length is given and is positive, then the sequence will have that many elements in it.
+     * If length is given and is negative, then the sequence will stop that many elements from the end of the array.
+     * If it is omitted, then the sequence will have everything from offset up until the end of the array.
+     * </p>
+     * @param bool $preserve_keys [optional] <p>
+     * Note that array_slice will reorder and reset the array indices by default.
+     * You can change this behavior by setting preserve_keys to true.
+     * </p>
+     *
+     * @return ($preserve_keys is true ? array<TKey, TValue> : array<TKey|int, TValue>) Sliced array.
+     *
+     * @note Named keys will always retain their name.
+     */
+    public static function slice (array $array, int $offset, ?int $length = null, bool $preserve_keys = false):array {
+
+        return array_slice($array, $offset, $length, $preserve_keys);
+
+    }
+
+    /**
+     * ### Remove a portion of the array and replace it with something else
+     *
+     * Removes the elements designated by offset and length from the array $array, and replaces them with the elements
+     * of the replacement array, if supplied.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> &$array <p>
+     * Array to splice.
+     * </p>
+     * @param int $offset <p>
+     * If the offset is positive, then the start of the removed portion is at that offset from the beginning of the
+     * input array.
+     * If the offset is negative, then it starts that far from the end of the input array.
+     * </p>
+     * @param null|int $length [optional] <p>
+     * If the length is omitted, removes everything from offset to the end of the array.
+     * If the length is specified and is positive, then that many elements will be removed.
+     * If the length is specified and is negative, then the end of the removed portion will be that many elements from
+     * the end of the array.
+     * </p>
+     * @param mixed $replacement [optional] <p>
+     * If a replacement array is specified, then the removed elements will be replaced with elements from this array.
+     * If offset and length are such that nothing is removed, then the elements from the replacement array or array
+     * are inserted in the place specified by the offset.
+     * Keys in a replacement array aren't preserved.
+     * </p>
+     * @phpstan-param-out array<TKey, mixed> $array
+     *
+     * @return array<TKey, TValue> Spliced array.
+     *
+     * @note Numerical keys in an array aren't preserved.
+     * @note If the replacement is not an array, it will be typecast to one (in other words (array) $replacement).
+     * This may result in unexpected behavior when using an object or null replacement.
+     */
+    public static function splice (array &$array, int $offset, ?int $length = null, mixed $replacement = []):array {
+
+        return array_splice($array, $offset, $length, $replacement);
+
+    }
+
+    /**
+     * ### Removes duplicate values from an array
+     *
+     * Takes an input array and returns a new array without duplicate values.
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array to remove duplicates.
+     * </p>
+     *
+     * @return array<TKey, TValue> The filtered array.
+     *
+     * @note The new array will preserve keys.
+     * @note This method is not intended to work on multidimensional arrays.
+     */
+    public static function unique (array $array):array {
+
+        return array_unique($array, SORT_REGULAR);
+
+    }
+
+    /**
+     * ### Create an array containing a range of elements
+     * @since 1.0.0
+     *
+     * @param int|float|string $start <p>
+     * First value of the sequence.
+     * </p>
+     * @param int|float|string $end <p>
+     * The sequence is ended upon reaching the end value.
+     * </p>
+     * @param positive-int|float $step [optional] <p>
+     * If a step value is given, it will be used as the increment between elements in the sequence.
+     * Step should be given as a positive number. If not specified, a step will default to 1.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Arr\OutOfRangeException If $step is 0, $start, $end, or $step is not
+     * finite, or $step is negative, but the produced range is increasing (in other words, $start <= $end).
+     *
+     * @return array<int, int|float|string> An array of elements from start to end, inclusive, false otherwise.
+     *
+     * @note Character sequence values are limited to a length of one. If a length greater than one is entered.
+     * only the first character is used.
+     */
+    public static function range (int|float|string $start, int|float|string $end, int|float $step = 1):array {
+
+        try {
+
+            return range($start, $end, $step);
+
+        } catch (ValueError $error) {
+
+            throw new OutOfRangeException()->withMessage($error->getMessage());
+
+        }
+
+    }
+
+    /**
+     * ### Pick one or more random keys out of an array
+     *
+     * Picks one or more random entries out of an array and returns the key (or keys) of the random entries.
+     * @since 1.0.0
+     *
+     * @param array<array-key, mixed> $array <p>
+     * The input array.
+     * </p>
+     * @param positive-int $number [optional] <p>
+     * Specifies how many entries should be picked.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Arr\OutOfRangeException if $array is empty, or if $number is out of
+     * range.
+     *
+     * @return array<int, array-key>|int|string When picking only one entry, [[Arr#random()]] returns the key for
+     * a random entry.
+     * Otherwise, an array of keys for the random entries is returned.
+     *
+     * @caution This function doesn't generate cryptographically secure values and mustn't be used for cryptographic
+     * purposes, or purposes that require returned values to be unguessable.
+     */
+    public static function random (array $array, int $number = 1):int|string|array {
+
+        try {
+
+            return array_rand($array, $number);
+
+        } catch (ValueError $error) {
+
+            throw new OutOfRangeException()->withMessage($error->getMessage());
+
+        }
+
+    }
+
+    /**
+     * ### Iteratively reduce the array to a single value using a callback function
+     *
+     * Iteratively applies the $callback function to the elements of the $array, to reduce the array to a single value.
+     * @since 1.0.0
+     *
+     * @template TValue
+     *
+     * @param array<array-key, TValue> $array <p>
+     * The input array.
+     * </p>
+     * @param callable(mixed, TValue):mixed $callback <p>
+     * The callable function.
+     * </p>
+     * @param mixed $initial [optional] <p>
+     * If the optional initial is available, it will be used at the beginning of the process, or as a final result in
+     * case the array is empty.
+     * </p>
+     *
+     * @return mixed Resulting value or null if the array is empty and the initial is not passed.
+     */
+    public static function reduce (array $array, callable $callback, mixed $initial = null):mixed {
+
+        return array_reduce($array, $callback, $initial);
+
+    }
+
+    /**
+     * ### Pop the element off the end of an array
+     *
+     * Pops and returns the last element value of th $array, shortening the $array by one element.
+     * @since 1.0.0
+     *
+     * @template TValue
+     *
+     * @param array<array-key, TValue> &$array <p>
+     * The array to get the value from.
+     * </p>
+     * @phpstan-param-out array<array-key, TValue> $array
+     *
+     * @return TValue|null The last value of an array. If an array is empty (or is not an array), null will be returned.
+     *
+     * @note This function will reset the array pointer of the input array after use.
+     */
+    public static function pop (array &$array):mixed {
+
+        return array_pop($array);
+
+    }
+
+    /**
+     * ### Push elements onto the end of an array
+     *
+     * Method treats an array as a stack and pushes the passed variables onto the end of an array.
+     * The length of an array increases by the number of variables pushed.
+     * @since 1.0.0
+     *
+     * @template TValue
+     *
+     * @param array<array-key, TValue> &$array <p>
+     * The input array.
+     * </p>
+     * @param TValue ...$values [optional] <p>
+     * The values to push onto the end of the array.
+     * </p>
+     * @phpstan-param-out array<array-key, TValue> $array
+     *
+     * @return int The new number of elements in the array.
+     *
+     * @note If you use push to add one element to the array, it is better to use $array[] = because in that way there
+     * is no overhead of calling a function.
+     */
+    public static function push (array &$array, mixed ...$values):int {
+
+        return array_push($array, ...$values);
+
+    }
+
+    /**
+     * ### Removes an item at the beginning of an array
+     *
+     * Shifts the first value of the array off and returns it, shortening the array by one element and moving
+     * everything down. All numerical array keys will be modified to start counting from zero while literal keys won't
+     * be affected.
+     * @since 1.0.0
+     *
+     * @template TValue
+     *
+     * @param array<array-key, TValue> &$array <p>
+     * Array to shift.
+     * </p>
+     * @phpstan-param-out array<array-key, TValue> $array
+     *
+     * @return TValue|null The shifted value, or null if an array is empty or is not an array.
+     *
+     * @note This function will reset the array pointer of the input array after use.
+     */
+    public static function shift (array &$array):mixed {
+
+        return array_shift($array);
+
+    }
+
+    /**
+     * ### Prepend one or more elements to the beginning of an array
+     *
+     * Method prepends passed elements to the front of the array.
+     * Note that the list of elements is prepended as a whole so that the prepended elements stay in the same order.
+     * All numerical array keys will be modified to start counting from zero while literal keys won't be changed.
+     * @since 1.0.0
+     *
+     * @template TValue
+     *
+     * @param array<array-key, TValue> &$array <p>
+     * The input array.
+     * </p>
+     * @param TValue ...$values [optional] <p>
+     * The values to prepend.
+     * </p>
+     * @phpstan-param-out array<array-key, TValue> $array
+     *
+     * @return int The new number of elements in the array.
+     *
+     * @note Resets array's internal pointer to the first element.
+     */
+    public static function unshift (array &$array, mixed ...$values):int {
+
+        return array_unshift($array, ...$values);
+
+    }
+
+    /**
+     * ### Get the first key from an array
+     *
+     * Get the first key of the given $array without affecting the internal array pointer.
+     * @since 1.0.0
+     *
+     * @param array<array-key, mixed> $array <p>
+     * An array.
+     * </p>
+     *
+     * @return null|int|string First key from $array or null if an array is empty.
+     */
+    public static function firstKey (array $array):null|int|string {
+
+        return array_key_first($array);
+
+    }
+
+    /**
+     * ### Get the last key from an array
+     *
+     * Get the last key of the given $array without affecting the internal array pointer.
+     * @since 1.0.0
+     *
+     * @param array<array-key, mixed> $array <p>
+     * An array.
+     * </p>
+     *
+     * @return null|int|string Last key from $array or null if an array is empty.
+     */
+    public static function lastKey (array $array):null|int|string {
+
+        return array_key_last($array);
+
+    }
+
+    /**
+     * ### Calculate the product of values in an array
+     *
+     * Returns the product of values in an array.
+     * @since 1.0.0
+     *
+     * @param array<array-key, mixed> $array <p>
+     * The array.
+     * </p>
+     *
+     * @return int|float The product as an integer or float.
+     */
+    public static function product (array $array):int|float {
+
+        return array_product($array);
+
+    }
+
+    /**
+     * ### Calculate the sum of values in an array
+     * @since 1.0.0
+     *
+     * @param array<array-key, mixed> $array <p>
+     * The input array.
+     * </p>
+     *
+     * @return int|float The sum of values as an integer or float; 0 if the array is empty.
+     */
+    public static function sum (array $array):int|float {
+
+        return array_sum($array);
+
+    }
+
+    /**
+     * ### Searches the array for a given value and returns the first corresponding key if successful
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param mixed $value <p>
+     * The searched value.
+     * If $value is a string, the comparison is done in a case-sensitive manner.
+     * </p>
+     * @param array<TKey, TValue> $array <p>
+     * Array to search.
+     * </p>
+     *
+     * @return TKey|false The key for value if it is found in the array, false otherwise.
+     *
+     * @warning This method may return Boolean false but may also return a non-Boolean value which evaluates to false.
+     * Read the section on Booleans for more information.
+     * Use the === operator for testing the return value of this function.
+     */
+    public static function search (mixed $value, array $array):int|string|false {
+
+        return array_search($value, $array, true);
+
+    }
+
+    /**
+     * ### Returns the first element satisfying a callback function
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array that should be searched.
+     * </p>
+     * @param callable(TValue, TKey=):mixed $callback <p>
+     * The callback function to call to check each element.
+     * </p>
+     *
+     * @return null|TValue The value of the first element for which the callback returns true, null otherwise.
+     */
+    public static function find (array $array, callable $callback):mixed {
+
+        return array_find($array, $callback); // @phpstan-ignore-line function.notFound (@todo fix on PHP 8.4)
+
+    }
+
+    /**
+     * ### Returns the key of the first element satisfying a callback function
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
+     * The array that should be searched.
+     * </p>
+     * @param callable(TValue, TKey=):mixed $callback <p>
+     * The callback function to call to check each element.
+     * </p>
+     *
+     * @return null|TValue The key of the first element for which the callback returns true, null otherwise.
+     */
+    public static function findKey (array $array, callable $callback):mixed {
+
+        return array_find_key($array, $callback); // @phpstan-ignore-line function.notFound (@todo fix on PHP 8.4)
+
+    }
+
+    /**
+     * ### Shuffle array
+     *
+     * This function shuffles (randomizes the order of the elements in) an array.
+     * @since 1.0.0
+     *
+     * @template TValue
+     *
+     * @param array<array-key, TValue> &$array <p>
+     * The array.
+     * </p>
+     * @phpstan-param-out array<array-key, TValue> $array
+     *
+     * @return true Always returns true.
+     *
+     * @caution This function doesn't generate cryptographically secure values and mustn't be used for cryptographic
+     * purposes, or purposes that require returned values to be unguessable.
+     * @note This function assigns new keys to the elements in an array.
+     * It will remove any existing keys that may have been assigned, rather than reordering the keys.
+     * @note Resets array's internal pointer to the first element.
+     */
+    public static function shuffle (array &$array):true {
+
+        return shuffle($array);
+
+    }
+
+    /**
+     * ### Sorts array
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Enums\Order::ASC As default parameter.
+     * @uses \FireHub\Core\Support\Enums\Sort::BY_REGULAR As default parameter.
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<array-key, TValue> &$array <p>
+     * Array to sort.
+     * </p>
+     * @param \FireHub\Core\Support\Enums\Order $order [optional] <p>
+     * Order type.
+     * </p>
+     * @param \FireHub\Core\Support\Enums\Sort $flag [optional] <p>
+     * Sort flag.
+     * </p>
+     * @param bool $preserve_keys [optional] <p>
+     * Whether you want to preserve keys from an original array or not.
+     * </p>
+     * @phpstan-param array<TKey, TValue> &$array
+     * @phpstan-param-out array<TKey, TValue> $array
+     *
+     * @return true Always true.
+     *
+     * @note Resets array's internal pointer to the first element.
+     */
+    public static function sort (array &$array, Order $order = Order::ASC, Sort $flag = Sort::BY_REGULAR, bool $preserve_keys = false):true {
+
+        return $order === Order::ASC
+            ? ($preserve_keys
+                ? asort($array, $flag->value)
+                : sort($array, $flag->value))
+            : ($preserve_keys
+                ? arsort($array, $flag->value)
+                : rsort($array, $flag->value));
+
+    }
+
+    /**
+     * ### Sorts an array by key
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Enums\Order::ASC As default parameter.
+     * @uses \FireHub\Core\Support\Enums\Sort::BY_REGULAR As default parameter.
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> &$array <p>
+     * Array to sort.
+     * </p>
+     * @param \FireHub\Core\Support\Enums\Order $order [optional] <p>
+     * Order type.
+     * </p>
+     * @param \FireHub\Core\Support\Enums\Sort $flag [optional] <p>
+     * Sort flag.
+     * </p>
+     * @phpstan-param-out array<TKey, TValue> $array
+     *
+     * @return true Always true.
+     *
+     * @note Resets array's internal pointer to the first element.
+     */
+    public static function sortByKeys (array &$array, Order $order = Order::ASC, Sort $flag = Sort::BY_REGULAR):true {
+
+        return $order === Order::ASC
+            ? ksort($array, $flag->value)
+            : krsort($array, $flag->value);
+
+    }
+
+    /**
+     * ### Sorts an array by values using a user-defined comparison function
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> &$array <p>
+     * Array to sort.
+     * </p>
+     * @param callable(TValue, TValue):int<-1, 1> $callback <p>
+     * The comparison function must return an integer less than, equal to, or greater than zero if the first argument
+     * is considered to be respectively less than, equal to, or greater than the second.
+     * </p>
+     * @param bool $preserve_keys [optional] <p>
+     * Whether you want to preserve keys from an original array or not.
+     * </p>
+     * @phpstan-param-out array<TKey, TValue> $array
+     *
+     * @return true Always true.
+     *
+     * @caution Returning non-integer values from the comparison function, such as float, will result in an internal
+     * cast to int of the callback's return value.
+     * So values such as 0.99 and 0.1 will both be cast to an integer value of 0, which will compare such values as
+     * equal.
+     */
+    public static function sortBy (array &$array, callable $callback, bool $preserve_keys = false):true {
+
+        return $preserve_keys
+            ? uasort($array, $callback)
+            : usort($array, $callback);
+
+    }
+
+    /**
+     * ### Sorts an array by key using a user-defined comparison function
+     * @since 1.0.0
+     *
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> &$array <p>
+     * Array to sort.
+     * </p>
+     * @param callable(TKey, TKey):int<-1, 1> $callback <p>
+     * The callback comparison function.
+     * Function cmp_function should accept two parameters which will be filled by pairs of array keys.
+     * The comparison function must return an integer less than, equal to, or greater than zero if the first argument
+     * is considered to be respectively less than, equal to, or greater than the second.
+     * </p>
+     * @phpstan-param-out array<TKey, TValue> $array
+     *
+     * @return true Always true.
+     *
+     * @note Resets array's internal pointer to the first element.
+     */
+    public static function sortKeysBy (array &$array, callable $callback):true {
+
+        return uksort($array, $callback);
 
     }
 
@@ -967,8 +4575,806 @@ final class Arr {
 
 namespace FireHub\Core\Support\LowLevel;
 
-use FireHub\Core\Support\LowLevel\Exceptions\Autoload\ {
-    AutoloadRegisterException, ClassNotFoundException
+use FireHub\Core\Support\Enums\Data\ {
+    ResourceType, Type
+};
+use FireHub\Core\Support\Exceptions\Data\ {
+    ArrayToStringConversionException, CannotSerializeException, FailedToSetTypeException, ObjectConversionException,
+    SetAsResourceException, UnserializeFailedException, UnserializeFalseOrNullException, ValueTypeUnknownException
+};
+use Exception, Stringable;
+
+use function get_resource_type;
+use function gettype;
+use function serialize;
+use function settype;
+use function unserialize;
+
+/**
+ * ### Data low-level proxy class
+ *
+ * Class contains variable handling methods for data manipulation.
+ * @since 1.0.0
+ */
+final class Data {
+
+    /**
+     * ### Gets data type
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_BOOL As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_INT As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_FLOAT As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_STRING As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_ARRAY As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_OBJECT As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_NULL As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_RESOURCE As data type.
+     *
+     * @param mixed $value <p>
+     * The variable being type-checked.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Data\ValueTypeUnknownException If a type of value is unknown.
+     *
+     * @return \FireHub\Core\Support\Enums\Data\Type Type of data.
+     */
+    public static function getType (mixed $value):Type {
+
+        return match ($internal_type = gettype($value)) {
+            'boolean' => Type::T_BOOL,
+            'integer' => Type::T_INT,
+            'double' => Type::T_FLOAT,
+            'string' => Type::T_STRING,
+            'array' => Type::T_ARRAY,
+            'object' => Type::T_OBJECT,
+            'NULL' => Type::T_NULL,
+            'resource', 'resource (closed)' => Type::T_RESOURCE,
+            default => throw new ValueTypeUnknownException($internal_type)
+        };
+
+    }
+
+    /**
+     * ### Sets data type
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Data::getType() To get $value type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_BOOL As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_STRING As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_INT As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_FLOAT As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_ARRAY As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_OBJECT As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_NULL As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_RESOURCE As data type.
+     *
+     * @param mixed $value <p>
+     * The variable being converted to type.
+     * </p>
+     * @param \FireHub\Core\Support\Enums\Data\Type $type <p>
+     * Type to convert variable to.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Data\ValueTypeUnknownException If a type of value is unknown.
+     * @throws \FireHub\Core\Support\Exceptions\Data\ArrayToStringConversionException If trying to convert an array to
+     * string.
+     * @throws \FireHub\Core\Support\Exceptions\Data\FailedToSetTypeException If failed to set a type for value.
+     * @throws \FireHub\Core\Support\Exceptions\Data\ObjectConversionException If trying to convert an object to string,
+     * int or float.
+     * @throws \FireHub\Core\Support\Exceptions\Data\SetAsResourceException If trying to set a resource as a type.
+     *
+     * @return mixed Converted value.
+     * @phpstan-return (
+     *  $type is Type::T_ARRAY
+     *  ? array<array-key, mixed>
+     *  : ($type is Type::T_STRING
+     *      ? string
+     *      : ($type is Type::T_INT
+     *          ? int
+     *          : ($type is Type::T_FLOAT
+     *              ? float
+     *              : ($type is Type::T_OBJECT
+     *                  ? object
+     *                  : ($type is Type::T_BOOL
+     *                      ? bool
+     *                      : ($type is Type::T_NULL
+     *                          ? null
+     *                          : ($type is Type::T_RESOURCE
+     *                              ? false
+     *                              : mixed)))))))
+     * )
+     */
+    public static function setType (mixed $value, Type $type):mixed {
+
+        switch (true) {
+
+            case self::getType($value) === Type::T_ARRAY && $type === Type::T_STRING:
+
+                throw new ArrayToStringConversionException;
+
+            case self::getType($value) === Type::T_OBJECT && !$value instanceof Stringable
+                && (
+                    $type === Type::T_STRING
+                    || $type === Type::T_INT
+                    || $type === Type::T_FLOAT
+                ):
+
+                throw new ObjectConversionException;
+
+            case $type === Type::T_RESOURCE:
+
+                throw new SetAsResourceException;
+
+            default:
+
+                settype($value, match ($type) {
+                    Type::T_BOOL => 'boolean',
+                    Type::T_INT => 'integer',
+                    Type::T_FLOAT => 'double',
+                    Type::T_ARRAY => 'array',
+                    Type::T_OBJECT => 'object',
+                    Type::T_NULL => 'NULL',
+                    default => 'string'
+
+                }) ?: throw new FailedToSetTypeException;
+
+                return $value;
+
+        }
+
+    }
+
+    /**
+     * ### Gets the resource type
+     * @since 1.0.0
+     *
+     * @param resource $resource <p>
+     * The evaluated resource handle.
+     * </p>
+     *
+     * @return \FireHub\Core\Support\Enums\Data\ResourceType Resource type or null if is not a resource.
+     */
+    public static function getResourceType (mixed $resource):ResourceType {
+
+        return ResourceType::from(get_resource_type($resource));
+
+    }
+
+    /**
+     * ### Generates storable representation of data
+     *
+     * Generates a storable representation of a value.
+     * This is useful for storing or passing PHP values around without losing their type and structure.
+     * To make the serialized string into a PHP value again, use [[Data#unserialize()]].
+     * @since 1.0.0
+     *
+     * @param scalar|array<array-key, mixed>|object|null $value <p>
+     * The value is to be serialized.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Data\CannotSerializeException If try to serialize an anonymous class,
+     * function, or resource.
+     *
+     * @return string String containing a byte-stream representation of a value that can be stored anywhere.
+     *
+     * @warning When [[Data#serialize()]] serializes objects, the leading backslash is not included in the class name of
+     * namespaced classes for maximum compatibility.
+     * @note This is a binary string that may include null bytes and needs to be stored and handled as such. For
+     * example, [[Data#serialize()]] output should generally be stored in a BLOB field in a database, rather than a CHAR
+     * or TEXT field.
+     */
+    public static function serialize (string|int|float|bool|array|object|null $value):string {
+
+        try {
+
+            return serialize($value);
+
+        } catch (Exception) {
+
+            throw new CannotSerializeException()
+                ->withMessage("Anonymous classes, functions, and resources can't be serialized.");
+
+        }
+
+    }
+
+    /**
+     * ### Creates a PHP value from a stored representation
+     * @since 1.0.0
+     *
+     * @param non-empty-string $data <p>
+     * The serialized string.
+     * </p>
+     * @param bool|array<class-string> $allowed_classes [optional] <p>
+     * Either an array of class names which should be accepted, false to accept no classes, or true to accept all
+     * classes.
+     * </p>
+     * @param int $max_depth [optional] <p>
+     * The maximum depth of structures is permitted during unserialization and is intended to prevent stack overflows.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Data\UnserializeFalseOrNullException If $data is already false, or
+     * $data is NULL.
+     * @throws \FireHub\Core\Support\Exceptions\Data\UnserializeFailedException If couldn't unserialize data.
+     *
+     * @return mixed The converted value is returned.
+     */
+    public static function unserialize (string $data, bool|array $allowed_classes = false, int $max_depth = 4096):mixed {
+
+        return match ($data) {
+            'b:0;', 'N;' => throw new UnserializeFalseOrNullException,
+            default => ($unserialized_data = unserialize(
+                $data,
+                ['allowed_classes' => $allowed_classes, 'max_depth' => $max_depth])
+            ) ? $unserialized_data : throw new UnserializeFailedException
+        };
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\LowLevel;
+
+use FireHub\Core\Support\Enums\Data\ {
+    ResourceType, Type
+};
+use FireHub\Core\Support\Exceptions\Data\ {
+    ArrayToStringConversionException, CannotSerializeException, FailedToSetTypeException, ObjectConversionException,
+    SetAsResourceException, UnserializeFailedException, UnserializeFalseOrNullException, ValueTypeUnknownException
+};
+use Exception, Stringable;
+
+use function get_resource_type;
+use function gettype;
+use function serialize;
+use function settype;
+use function unserialize;
+
+/**
+ * ### Data low-level proxy class
+ *
+ * Class contains variable handling methods for data manipulation.
+ * @since 1.0.0
+ */
+final class Data {
+
+    /**
+     * ### Gets data type
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_BOOL As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_INT As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_FLOAT As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_STRING As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_ARRAY As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_OBJECT As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_NULL As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_RESOURCE As data type.
+     *
+     * @param mixed $value <p>
+     * The variable being type-checked.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Data\ValueTypeUnknownException If a type of value is unknown.
+     *
+     * @return \FireHub\Core\Support\Enums\Data\Type Type of data.
+     */
+    public static function getType (mixed $value):Type {
+
+        return match ($internal_type = gettype($value)) {
+            'boolean' => Type::T_BOOL,
+            'integer' => Type::T_INT,
+            'double' => Type::T_FLOAT,
+            'string' => Type::T_STRING,
+            'array' => Type::T_ARRAY,
+            'object' => Type::T_OBJECT,
+            'NULL' => Type::T_NULL,
+            'resource', 'resource (closed)' => Type::T_RESOURCE,
+            default => throw new ValueTypeUnknownException($internal_type)
+        };
+
+    }
+
+    /**
+     * ### Sets data type
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Data::getType() To get $value type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_BOOL As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_STRING As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_INT As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_FLOAT As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_ARRAY As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_OBJECT As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_NULL As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_RESOURCE As data type.
+     *
+     * @param mixed $value <p>
+     * The variable being converted to type.
+     * </p>
+     * @param \FireHub\Core\Support\Enums\Data\Type $type <p>
+     * Type to convert variable to.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Data\ValueTypeUnknownException If a type of value is unknown.
+     * @throws \FireHub\Core\Support\Exceptions\Data\ArrayToStringConversionException If trying to convert an array to
+     * string.
+     * @throws \FireHub\Core\Support\Exceptions\Data\FailedToSetTypeException If failed to set a type for value.
+     * @throws \FireHub\Core\Support\Exceptions\Data\ObjectConversionException If trying to convert an object to string,
+     * int or float.
+     * @throws \FireHub\Core\Support\Exceptions\Data\SetAsResourceException If trying to set a resource as a type.
+     *
+     * @return mixed Converted value.
+     * @phpstan-return (
+     *  $type is Type::T_ARRAY
+     *  ? array<array-key, mixed>
+     *  : ($type is Type::T_STRING
+     *      ? string
+     *      : ($type is Type::T_INT
+     *          ? int
+     *          : ($type is Type::T_FLOAT
+     *              ? float
+     *              : ($type is Type::T_OBJECT
+     *                  ? object
+     *                  : ($type is Type::T_BOOL
+     *                      ? bool
+     *                      : ($type is Type::T_NULL
+     *                          ? null
+     *                          : ($type is Type::T_RESOURCE
+     *                              ? false
+     *                              : mixed)))))))
+     * )
+     */
+    public static function setType (mixed $value, Type $type):mixed {
+
+        switch (true) {
+
+            case self::getType($value) === Type::T_ARRAY && $type === Type::T_STRING:
+
+                throw new ArrayToStringConversionException;
+
+            case self::getType($value) === Type::T_OBJECT && !$value instanceof Stringable
+                && (
+                    $type === Type::T_STRING
+                    || $type === Type::T_INT
+                    || $type === Type::T_FLOAT
+                ):
+
+                throw new ObjectConversionException;
+
+            case $type === Type::T_RESOURCE:
+
+                throw new SetAsResourceException;
+
+            default:
+
+                settype($value, match ($type) {
+                    Type::T_BOOL => 'boolean',
+                    Type::T_INT => 'integer',
+                    Type::T_FLOAT => 'double',
+                    Type::T_ARRAY => 'array',
+                    Type::T_OBJECT => 'object',
+                    Type::T_NULL => 'NULL',
+                    default => 'string'
+
+                }) ?: throw new FailedToSetTypeException;
+
+                return $value;
+
+        }
+
+    }
+
+    /**
+     * ### Gets the resource type
+     * @since 1.0.0
+     *
+     * @param resource $resource <p>
+     * The evaluated resource handle.
+     * </p>
+     *
+     * @return \FireHub\Core\Support\Enums\Data\ResourceType Resource type or null if is not a resource.
+     */
+    public static function getResourceType (mixed $resource):ResourceType {
+
+        return ResourceType::from(get_resource_type($resource));
+
+    }
+
+    /**
+     * ### Generates storable representation of data
+     *
+     * Generates a storable representation of a value.
+     * This is useful for storing or passing PHP values around without losing their type and structure.
+     * To make the serialized string into a PHP value again, use [[Data#unserialize()]].
+     * @since 1.0.0
+     *
+     * @param scalar|array<array-key, mixed>|object|null $value <p>
+     * The value is to be serialized.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Data\CannotSerializeException If try to serialize an anonymous class,
+     * function, or resource.
+     *
+     * @return string String containing a byte-stream representation of a value that can be stored anywhere.
+     *
+     * @warning When serialize() serializes objects, the leading backslash is not included in the class name of
+     * namespaced classes for maximum compatibility.
+     * @note This is a binary string that may include null bytes and needs to be stored and handled as such. For
+     * example, serialize() output should generally be stored in a BLOB field in a database, rather than a CHAR or
+     * TEXT field.
+     */
+    public static function serialize (string|int|float|bool|array|object|null $value):string {
+
+        try {
+
+            return serialize($value);
+
+        } catch (Exception) {
+
+            throw new CannotSerializeException()
+                ->withMessage("Anonymous classes, functions, and resources can't be serialized.");
+
+        }
+
+    }
+
+    /**
+     * ### Creates a PHP value from a stored representation
+     * @since 1.0.0
+     *
+     * @param non-empty-string $data <p>
+     * The serialized string.
+     * </p>
+     * @param bool|array<class-string> $allowed_classes [optional] <p>
+     * Either an array of class names which should be accepted, false to accept no classes, or true to accept all
+     * classes.
+     * </p>
+     * @param int $max_depth [optional] <p>
+     * The maximum depth of structures is permitted during unserialization and is intended to prevent stack overflows.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Data\UnserializeFalseOrNullException If $data is already false, or
+     * $data is NULL.
+     * @throws \FireHub\Core\Support\Exceptions\Data\UnserializeFailedException If couldn't unserialize data.
+     *
+     * @return mixed The converted value is returned.
+     */
+    public static function unserialize (string $data, bool|array $allowed_classes = false, int $max_depth = 4096):mixed {
+
+        return match ($data) {
+            'b:0;', 'N;' => throw new UnserializeFalseOrNullException,
+            default => ($unserialized_data = unserialize(
+                $data,
+                ['allowed_classes' => $allowed_classes, 'max_depth' => $max_depth])
+            ) ? $unserialized_data : throw new UnserializeFailedException
+        };
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\LowLevel;
+
+use Countable;
+
+use function is_array;
+use function is_bool;
+use function is_callable;
+use function is_countable;
+use function is_float;
+use function is_int;
+use function is_iterable;
+use function is_numeric;
+use function is_object;
+use function is_resource;
+use function is_scalar;
+use function is_string;
+
+/**
+ * ### Data type checker low-level proxy class
+ * @since 1.0.0
+ */
+final class DataIs {
+
+    /**
+     * ### Checks if value is array
+     * @since 1.0.0
+     *
+     * @param mixed $value <p>
+     * Value to check.
+     * </p>
+     *
+     * @return ($value is array ? true : false) True if value is an array, false otherwise.
+     */
+    public static function array (mixed $value):bool {
+
+        return is_array($value);
+
+    }
+
+    /**
+     * ### Checks if the value is boolean
+     * @since 1.0.0
+     *
+     * @param mixed $value <p>
+     * Value to check.
+     * </p>
+     *
+     * @return ($value is bool ? true : false) True if the value is boolean, false otherwise.
+     */
+    public static function bool (mixed $value):bool {
+
+        return is_bool($value);
+
+    }
+
+    /**
+     * ### Verify that the contents of a variable can be called as a function
+     * @since 1.0.0
+     *
+     * @param mixed $value <p>
+     * Value to check.
+     * </p>
+     *
+     * @return ($value is callable ? true : false) True if value is callable, false otherwise.
+     */
+    public static function callable (mixed $value):bool {
+
+        return is_callable($value);
+
+    }
+
+    /**
+     * ### Verify that the contents of a variable is a countable value
+     * @since 1.0.0
+     *
+     * @param mixed $value <p>
+     * Value to check.
+     * </p>
+     *
+     * @return ($value is array|Countable ? true : false) True if value is countable, false otherwise.
+     */
+    public static function countable (mixed $value):bool {
+
+        return is_countable($value);
+
+    }
+
+    /**
+     * ### Finds whether the type of variable is a float
+     * @since 1.0.0
+     *
+     * @param mixed $value <p>
+     * Value to check.
+     * </p>
+     *
+     * @return ($value is float ? true : false) True if value is float, false otherwise.
+     */
+    public static function float (mixed $value):bool {
+
+        return is_float($value);
+
+    }
+
+    /**
+     * ### Find whether the type of variable is an integer
+     * @since 1.0.0
+     *
+     * @param mixed $value <p>
+     * Value to check.
+     * </p>
+     *
+     * @return ($value is int ? true : false) True if value is integer, false otherwise.
+     */
+    public static function int (mixed $value):bool {
+
+        return is_int($value);
+
+    }
+
+    /**
+     * ### Verify that the contents of a variable is an iterable value
+     * @since 1.0.0
+     *
+     * @param mixed $value <p>
+     * Value to check.
+     * </p>
+     *
+     * @return ($value is iterable ? true : false) True if value is iterable, false otherwise.
+     */
+    public static function iterable (mixed $value):bool {
+
+        return is_iterable($value);
+
+    }
+
+    /**
+     * ### Finds whether a variable is null
+     * @since 1.0.0
+     *
+     * @param mixed $value <p>
+     * Value to check.
+     * </p>
+     *
+     * @return ($value is null ? true : false) True if value is null, false otherwise.
+     */
+    public static function null (mixed $value):bool {
+
+        return null === $value;
+
+    }
+
+    /**
+     * ### Finds whether a variable is a number or a numeric string
+     * @since 1.0.0
+     *
+     * @param mixed $value <p>
+     * Value to check.
+     * </p>
+     *
+     * @return ($value is numeric ? true : false) True if the value is numeric, false otherwise.
+     */
+    public static function numeric (mixed $value):bool {
+
+        return is_numeric($value);
+
+    }
+
+    /**
+     * ### Finds whether a variable is an object
+     * @since 1.0.0
+     *
+     * @param mixed $value <p>
+     * Value to check.
+     * </p>
+     *
+     * @return ($value is object ? true : false) True if value is an object, false otherwise.
+     */
+    public static function object (mixed $value):bool {
+
+        return is_object($value);
+
+    }
+
+    /**
+     * ### Finds whether a variable is a resource
+     * @since 1.0.0
+     *
+     * @param mixed $value <p>
+     * Value to check.
+     * </p>
+     *
+     * @return ($value is resource ? true : false) True if value is resource, false otherwise, or if the resource
+     * is closed.
+     */
+    public static function resource (mixed $value):bool {
+
+        return is_resource($value);
+
+    }
+
+    /**
+     * ### Finds whether a variable is a scalar
+     *
+     * Scalar values include: string, int, float, and bool.
+     * @since 1.0.0
+     *
+     * @param mixed $value <p>
+     * Value to check.
+     * </p>
+     *
+     * @return ($value is scalar ? true : false) True if the value is scalar, false otherwise.
+     */
+    public static function scalar (mixed $value):bool {
+
+        return is_scalar($value);
+
+    }
+
+    /**
+     * ### Find whether the type of variable is a string
+     * @since 1.0.0
+     *
+     * @param mixed $value <p>
+     * Value to check.
+     * </p>
+     *
+     * @return ($value is string ? true : false) True if value is string, false otherwise.
+     */
+    public static function string (mixed $value):bool {
+
+        return is_string($value);
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\LowLevel;
+
+use function acos;
+use function acosh;
+use function asin;
+use function asinh;
+use function atan;
+use function atan2;
+use function atanh;
+use function cos;
+use function cosh;
+use function fdiv;
+use function fmod;
+use function is_finite;
+use function is_infinite;
+use function is_nan;
+use function sin;
+use function sinh;
+use function tan;
+use function tanh;
+
+/**
+ * ### Float number low-level proxy class
+ *
+ * Floating point numbers (also known as "floats", "doubles", or "real numbers") can be specified using any of the
+ * following syntax: 1.234, 1.2e3, 7E-10, 1_234.567.
+ * @since 1.0.0
+ */
+final class NumFloat {
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\LowLevel;
+
+use FireHub\Core\Support\Exceptions\Autoload\ {
+    ClassNotFoundException, RegisterAutoloaderException, UnregisterAutoloaderException
 };
 use LogicException;
 
@@ -989,8 +5395,8 @@ final class SplAutoload {
      * ### Default autoload implementation
      *
      * This function is intended to be used as a default implementation for [[SplAutoload#register()]].
-     * If nothing else is specified and the register method is called without any parameters,
-     * then this function will be used for any later call to autoload.
+     * If nothing else is specified and the register method is called without any parameters, then this function will
+     * be used for any later call to autoload.
      * @since 1.0.0
      *
      * @param class-string $class <p>
@@ -1001,8 +5407,8 @@ final class SplAutoload {
      * filename extensions .inc and .php.
      * </p>
      *
-     * @throws \FireHub\Core\Support\LowLevel\Exceptions\Autoload\ClassNotFoundException When the class is not found
-     * and there are no other autoloaders registered.
+     * @throws \FireHub\Core\Support\Exceptions\Autoload\ClassNotFoundException When the class is not found and there
+     * are no other autoloaders registered.
      *
      * @return void
      */
@@ -1014,7 +5420,7 @@ final class SplAutoload {
 
         } catch (LogicException) {
 
-            throw new ClassNotFoundException('Failed to register a callback function as an autoloader.');
+            throw new ClassNotFoundException($class);
 
         }
 
@@ -1053,14 +5459,13 @@ final class SplAutoload {
      * @since 1.0.0
      *
      * @param null|callable(string):void $callback [optional] <p>
-     * The autoload function being registered. If no callback is provided, then the default autoloader
-     * will be used.
+     * The autoload function being registered. If no callback is provided, then the default autoloader will be used.
      * </p>
      * @param bool $prepend [optional] <p>
      * Whether to prepend the autoloader on the stack instead of appending it.
      * </p>
      *
-     * @throws \FireHub\Core\Support\LowLevel\Exceptions\Autoload\AutoloadRegisterException If failed to register a callback
+     * @throws \FireHub\Core\Support\Exceptions\Autoload\RegisterAutoloaderException If failed to register a callback
      * function as an autoloader.
      *
      * @return true True if autoloader was registered.
@@ -1068,7 +5473,7 @@ final class SplAutoload {
     public static function register (?callable $callback = null, bool $prepend = false):true {
 
         return spl_autoload_register($callback, true, $prepend)
-            ?: throw new AutoloadRegisterException('Failed to register a callback function as an autoloader.');
+            ?: throw new RegisterAutoloaderException;
 
     }
 
@@ -1076,192 +5481,16 @@ final class SplAutoload {
      * ### Unregister autoload implementation
      *
      * Removes a function from the autoloaded queue. If the queue is activated and empty after removing the given
-     * function, then it will be deactivated. When this function results in the queue being deactivated, any autoload
-     * function that previously existed will not be reactivated.
+     * function, then it will be deactivated.
+     * When this function results in the queue being deactivated, any autoload function that previously existed will
+     * not be reactivated.
      * @since 1.0.0
      *
      * @param callable(string):void $callback <p>
      * The autoload function that will be unregistered.
      * </p>
      *
-     * @throws \FireHub\Core\Support\LowLevel\Exceptions\Autoload\AutoloadRegisterException If failed to unregister
-     * autoloader implementation.
-     *
-     * @return true True if autoloader was unregistered.
-     */
-    public static function unregister (callable $callback):true {
-
-        return spl_autoload_unregister($callback)
-            ?: throw new AutoloadRegisterException('Failed to unregister autoload implementation.');
-
-    }
-
-    /**
-     * ### Get all registered autoload functions
-     * @since 1.0.0
-     *
-     * @return array<array-key, mixed> An array of all registered autoload functions.
-     * If no function is registered, or autoloaded queue is not activated, then the return value will be an empty array.
-     */
-    public static function functions ():array {
-
-        return spl_autoload_functions();
-
-    }
-
-    /**
-     * ### Try all registered autoload functions to load the requested class
-     * @since 1.0.0
-     *
-     * @param class-string $class <p>
-     * Fully qualified class name that is being called.
-     * </p>
-     *
-     * @return void
-     *
-     * @note This method can be used to manually search for a class or interface using the registered autoloader
-     * functions.
-     */
-    public static function load (string $class):void {
-
-        spl_autoload_call($class);
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\LowLevel;
-
-use FireHub\Core\Support\LowLevel\Exceptions\Autoload\ {
-    AutoloadRegisterException, ClassNotFoundException
-};
-use LogicException;
-
-use function spl_autoload;
-use function spl_autoload_extensions;
-use function spl_autoload_register;
-use function spl_autoload_unregister;
-
-/**
- * ### SPL Autoload low-level proxy class
- * @since 1.0.0
- *
- * @internal
- */
-final class SplAutoload {
-
-    /**
-     * ### Default autoload implementation
-     *
-     * This function is intended to be used as a default implementation for [[SplAutoload#register()]].
-     * If nothing else is specified and the register method is called without any parameters,
-     * then this function will be used for any later call to autoload.
-     * @since 1.0.0
-     *
-     * @param class-string $class <p>
-     * The name of the class (and namespace) being instantiated.
-     * </p>
-     * @param null|string $file_extensions [optional] <p>
-     * By default, it checks all include paths to contain filenames built up by the lowercase class name appended by the
-     * filename extensions .inc and .php.
-     * </p>
-     *
-     * @throws \FireHub\Core\Support\LowLevel\Exceptions\Autoload\ClassNotFoundException When the class is not found
-     * and there are no other autoloaders registered.
-     *
-     * @return void
-     */
-    public static function default (string $class, ?string $file_extensions = null):void {
-
-        try {
-
-            spl_autoload($class, $file_extensions);
-
-        } catch (LogicException) {
-
-            throw new ClassNotFoundException('Failed to register a callback function as an autoloader.');
-
-        }
-
-    }
-
-    /**
-     * ### Register and return file extensions for default autoload
-     *
-     * This function can modify and check the file extensions that the built-in autoload fallback function
-     * [[SplAutoload#default()]] will be using.
-     * @since 1.0.0
-     *
-     * @param null|non-empty-string $file_extensions [optional] <p>
-     * If null, it simply returns the current list of extensions, each separated by comma.
-     * To modify the list of file extensions, invoke the functions with the new list of file extensions to use
-     * in a single string with each extension separated by comma.
-     * </p>
-     *
-     * @return string A comma-delimited the list of default file extensions for default method.
-     *
-     * @note There shouldn't be a space between the defined file extensions.
-     */
-    public static function extensions (?string $file_extensions = null):string {
-
-        return spl_autoload_extensions($file_extensions);
-
-    }
-
-    /**
-     * ### Register a callback function as an autoloader
-     *
-     * Register a function with the spl provided autoloaded queue.
-     * If the queue is not yet activated, it will be activated.
-     * If there must be multiple autoload functions, this method allows for this.
-     * It effectively creates a queue of autoload functions and runs through each of them in the order they are defined.
-     * @since 1.0.0
-     *
-     * @param null|callable(string):void $callback [optional] <p>
-     * The autoload function being registered. If no callback is provided, then the default autoloader
-     * will be used.
-     * </p>
-     * @param bool $prepend [optional] <p>
-     * Whether to prepend the autoloader on the stack instead of appending it.
-     * </p>
-     *
-     * @throws \FireHub\Core\Support\LowLevel\Exceptions\Autoload\AutoloadRegisterException If failed to register a callback
-     * function as an autoloader.
-     *
-     * @return true True if autoloader was registered.
-     */
-    public static function register (?callable $callback = null, bool $prepend = false):true {
-
-        return spl_autoload_register($callback, true, $prepend)
-            ?: throw new AutoloadRegisterException('Failed to register a callback function as an autoloader.');
-
-    }
-
-    /**
-     * ### Unregister autoload implementation
-     *
-     * Removes a function from the autoloaded queue. If the queue is activated and empty after removing the given
-     * function, then it will be deactivated. When this function results in the queue being deactivated, any autoload
-     * function that previously existed will not be reactivated.
-     * @since 1.0.0
-     *
-     * @param callable(string):void $callback <p>
-     * The autoload function that will be unregistered.
-     * </p>
-     *
-     * @throws \FireHub\Core\Support\LowLevel\Exceptions\AutoloadRegisterException If failed to unregister autoloader
+     * @throws \FireHub\Core\Support\Exceptions\Autoload\UnregisterAutoloaderException If failed to unregister autoloader
      * implementation.
      *
      * @return true True if autoloader was unregistered.
@@ -1269,7 +5498,184 @@ final class SplAutoload {
     public static function unregister (callable $callback):true {
 
         return spl_autoload_unregister($callback)
-            ?: throw new AutoloadRegisterException('Failed to unregister autoload implementation.');
+            ?: throw new UnregisterAutoloaderException;
+
+    }
+
+    /**
+     * ### Get all registered autoload functions
+     * @since 1.0.0
+     *
+     * @return array<array-key, mixed> An array of all registered autoload functions, or if no function is registered,
+     * or autoloaded queue is not activated, then the return value will be an empty array.
+     */
+    public static function functions ():array {
+
+        return spl_autoload_functions();
+
+    }
+
+    /**
+     * ### Try all registered autoload functions to load the requested class
+     * @since 1.0.0
+     *
+     * @param class-string $class <p>
+     * Fully qualified class name that is being called.
+     * </p>
+     *
+     * @return void
+     *
+     * @note This method can be used to manually search for a class or interface using the registered autoloader
+     * functions.
+     */
+    public static function load (string $class):void {
+
+        spl_autoload_call($class);
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\LowLevel;
+
+use FireHub\Core\Support\Exceptions\Autoload\ {
+    ClassNotFoundException, RegisterAutoloaderException, UnregisterAutoloaderException
+};
+use LogicException;
+
+use function spl_autoload;
+use function spl_autoload_extensions;
+use function spl_autoload_register;
+use function spl_autoload_unregister;
+
+/**
+ * ### SPL Autoload low-level proxy class
+ * @since 1.0.0
+ *
+ * @internal
+ */
+final class SplAutoload {
+
+    /**
+     * ### Default autoload implementation
+     *
+     * This function is intended to be used as a default implementation for [[SplAutoload#register()]].
+     * If nothing else is specified and the register method is called without any parameters, then this function will
+     * be used for any later call to autoload.
+     * @since 1.0.0
+     *
+     * @param class-string $class <p>
+     * The name of the class (and namespace) being instantiated.
+     * </p>
+     * @param null|string $file_extensions [optional] <p>
+     * By default, it checks all include paths to contain filenames built up by the lowercase class name appended by the
+     * filename extensions .inc and .php.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Autoload\ClassNotFoundException When the class is not found and there
+     * are no other autoloaders registered.
+     *
+     * @return void
+     */
+    public static function default (string $class, ?string $file_extensions = null):void {
+
+        try {
+
+            spl_autoload($class, $file_extensions);
+
+        } catch (LogicException) {
+
+            throw new ClassNotFoundException($class);
+
+        }
+
+    }
+
+    /**
+     * ### Register and return file extensions for default autoload
+     *
+     * This function can modify and check the file extensions that the built-in autoload fallback function
+     * [[SplAutoload#default()]] will be using.
+     * @since 1.0.0
+     *
+     * @param null|non-empty-string $file_extensions [optional] <p>
+     * If null, it simply returns the current list of extensions, each separated by comma.
+     * To modify the list of file extensions, invoke the functions with the new list of file extensions to use
+     * in a single string with each extension separated by comma.
+     * </p>
+     *
+     * @return string A comma-delimited the list of default file extensions for default method.
+     *
+     * @note There shouldn't be a space between the defined file extensions.
+     */
+    public static function extensions (?string $file_extensions = null):string {
+
+        return spl_autoload_extensions($file_extensions);
+
+    }
+
+    /**
+     * ### Register a callback function as an autoloader
+     *
+     * Register a function with the spl provided autoloaded queue.
+     * If the queue is not yet activated, it will be activated.
+     * If there must be multiple autoload functions, this method allows for this.
+     * It effectively creates a queue of autoload functions and runs through each of them in the order they are defined.
+     * @since 1.0.0
+     *
+     * @param null|callable(string):void $callback [optional] <p>
+     * The autoload function being registered. If no callback is provided, then the default autoloader will be used.
+     * </p>
+     * @param bool $prepend [optional] <p>
+     * Whether to prepend the autoloader on the stack instead of appending it.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Autoload\RegisterAutoloaderException If failed to register a callback
+     * function as an autoloader.
+     *
+     * @return true True if autoloader was registered.
+     */
+    public static function register (?callable $callback = null, bool $prepend = false):true {
+
+        return spl_autoload_register($callback, true, $prepend)
+            ?: throw new RegisterAutoloaderException;
+
+    }
+
+    /**
+     * ### Unregister autoload implementation
+     *
+     * Removes a function from the autoloaded queue. If the queue is activated and empty after removing the given
+     * function, then it will be deactivated.
+     * When this function results in the queue being deactivated, any autoload function that previously existed will
+     * not be reactivated.
+     * @since 1.0.0
+     *
+     * @param callable(string):void $callback <p>
+     * The autoload function that will be unregistered.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Autoload\UnregisterAutoloaderException If failed to unregister autoloader
+     * implementation.
+     *
+     * @return true True if autoloader was unregistered.
+     */
+    public static function unregister (callable $callback):true {
+
+        return spl_autoload_unregister($callback)
+            ?: throw new UnregisterAutoloaderException;
 
     }
 
@@ -1306,6 +5712,76 @@ final class SplAutoload {
     }
 
 }<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Testing
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace src\testing\phpmd;
+
+use PHPMD\AbstractNode;
+use PHPMD\Rule\CleanCode\BooleanArgumentFlag as ParentBooleanArgumentFlag;
+use Override;
+
+use function in_array;
+
+/**
+ * ### Check for a boolean flag in the method/ function signature
+ *
+ * Boolean flags are signs for single responsibility principle violations.
+ * @since 1.0.0
+ */
+final class BooleanArgumentFlag extends ParentBooleanArgumentFlag {
+
+    /**
+     * ### Applies the rule to the given node.
+     *
+     * If the node's namespace matches the 'exclude_namespaces' property,
+     * the rule is not applied. Otherwise, the parent apply method is invoked.
+     * @since 1.0.0
+     *
+     * @param \PHPMD\AbstractNode $node <p>
+     * The node to which the rule is applied.
+     * </p>
+     *
+     * @return void
+     */
+    #[Override]
+    public function apply (AbstractNode $node):void {
+
+        if (in_array(
+            $node->getNamespaceName(),
+            explode(',', $this->getStringProperty('exclude_namespaces')),
+            true
+        )) return;
+
+        parent::apply($node);
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace src\testing\phpmd;
 
 use PHPMD\AbstractNode;
 use PHPMD\Rule\CleanCode\BooleanArgumentFlag as ParentBooleanArgumentFlag;
@@ -1316,7 +5792,7 @@ use PHPMD\Rule\CleanCode\BooleanArgumentFlag as ParentBooleanArgumentFlag;
  * Boolean flags are signs for single responsibility principle violations.
  * @since 1.0.0
  */
-final class src_testing_phpmd_BooleanArgumentFlag extends ParentBooleanArgumentFlag {
+final class BooleanArgumentFlag extends ParentBooleanArgumentFlag {
 
     /**
      * ### Applies the rule to the given node.
@@ -1344,14 +5820,317 @@ final class src_testing_phpmd_BooleanArgumentFlag extends ParentBooleanArgumentF
 
     }
 
-}YL4D≥VΩ{≥¶
-™¡¡∑ﬁä«{<¯ø’~√•∂$˛#ëUyûﬁn∞W[+K™i!˙4ÅZ:>⁄
-S™^@m«äYµ«Gã‹“)
-d¯#Ô∑(§0;jíÅFÌ∆p"7¢fÍ1_πÕâÿh°xe‘%ÏÃb<ﬂ|∏À‡ÊØî¶
-HS˜Á6£aÂ·üøˆJöı≥.ÿ»:e 1÷ò¯n™"{CÊE⁄#ﬁâÎù∂
-1¬Îë–E‚§ËÍò/ÓÔ2jÂÀB{tßÂò…(|l£‘¢≤8M~‘tëY“%ÆYçò|¡á8±€«Ò[ñÑoŸ¯Ò÷*ZGiq{˚V®4ßöæ¯`°J„)á&{®›˚*ëπu4>LBØË∑Ìôã_é7ÄT•ÓÜMg¬Á®®ŒdÀ
-Í*°iêê€uá1∑ˆk xŸ.€—=g/=o§Í˝€Mﬂ$iÜ8ÌÊK5‰À_≠ÙïÇ>≤ˆ±uNçÍ‘cJ0û⁄3*ˇ∫¬L∑ΩqZWpV‘H)Èw’1*‘èô®]v\⁄ˆ-´∆%úq∑S‡
-K
-q∂√i@®f£Ic<•≠g^E©‚
-q¸Vªÿã‹
-¨©{U&ü6ÏÁåiåæeÎ#Ñ¨b”ÌbÚsAZxô3*Ç!ÙCò*Ïôn      GBMB
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Testing
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace src\testing\phpmd;
+
+use PHPMD\AbstractNode;
+use PHPMD\Rule\Design\LongClass as ParentLongClass;
+use Override;
+
+use function in_array;
+
+/**
+ * ### Check for a boolean flag in the method/ function signature
+ *
+ * Boolean flags are signs for single responsibility principle violations.
+ * @since 1.0.0
+ */
+final class ExcessiveClassLength extends ParentLongClass {
+
+    /**
+     * ### Applies the rule to the given node.
+     *
+     * If the node's namespace matches the 'exclude_namespaces' property,
+     * the rule is not applied. Otherwise, the parent apply method is invoked.
+     * @since 1.0.0
+     *
+     * @param \PHPMD\AbstractNode $node <p>
+     * The node to which the rule is applied.
+     * </p>
+     *
+     * @return void
+     */
+    #[Override]
+    public function apply (AbstractNode $node):void {
+
+        if (in_array(
+            $node->getNamespaceName(),
+            explode(',', $this->getStringProperty('exclude_namespaces')),
+            true
+        )) return;
+
+        parent::apply($node);
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Testing
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace src\testing\phpmd;
+
+use PHPMD\AbstractNode;
+use PHPMD\Rule\Design\LongClass as ParentLongClass;
+use Override;
+
+use function in_array;
+
+/**
+ * ### Check for a long class size
+ *
+ * Long Class files are indications that the class may be trying to do too much.
+ * @since 1.0.0
+ */
+final class LongClass extends ParentLongClass {
+
+    /**
+     * ### Applies the rule to the given node.
+     *
+     * If the node's namespace matches the 'exclude_namespaces' property,
+     * the rule is not applied. Otherwise, the parent apply method is invoked.
+     * @since 1.0.0
+     *
+     * @param \PHPMD\AbstractNode $node <p>
+     * The node to which the rule is applied.
+     * </p>
+     *
+     * @return void
+     */
+    #[Override]
+    public function apply (AbstractNode $node):void {
+
+        if (in_array(
+            $node->getNamespaceName(),
+            explode(',', $this->getStringProperty('exclude_namespaces')),
+            true
+        )) return;
+
+        parent::apply($node);
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Testing
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace src\testing\phpmd;
+
+use PHPMD\AbstractNode;
+use PHPMD\Rule\Design\LongClass as ParentLongClass;
+use Override;
+
+use function in_array;
+
+/**
+ * ### Check for a boolean flag in the method/ function signature
+ *
+ * Long Class files are indications that the class may be trying to do too much.
+ * @since 1.0.0
+ */
+final class LongClass extends ParentLongClass {
+
+    /**
+     * ### Applies the rule to the given node.
+     *
+     * If the node's namespace matches the 'exclude_namespaces' property,
+     * the rule is not applied. Otherwise, the parent apply method is invoked.
+     * @since 1.0.0
+     *
+     * @param \PHPMD\AbstractNode $node <p>
+     * The node to which the rule is applied.
+     * </p>
+     *
+     * @return void
+     */
+    #[Override]
+    public function apply (AbstractNode $node):void {
+
+        if (in_array(
+            $node->getNamespaceName(),
+            explode(',', $this->getStringProperty('exclude_namespaces')),
+            true
+        )) return;
+
+        parent::apply($node);
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Testing
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace src\testing\phpmd;
+
+use PHPMD\AbstractNode;
+use PHPMD\Rule\Design\TooManyMethods as ParentTooManyMethods;
+use Override;
+
+use function in_array;
+
+/**
+ * ### This rule class will detect all classes with too many methods
+ * @since 1.0.0
+ */
+final class TooManyMethods extends ParentTooManyMethods {
+
+    /**
+     * ### Applies the rule to the given node.
+     *
+     * If the node's namespace matches the 'exclude_namespaces' property,
+     * the rule is not applied. Otherwise, the parent apply method is invoked.
+     * @since 1.0.0
+     *
+     * @param \PHPMD\AbstractNode $node <p>
+     * The node to which the rule is applied.
+     * </p>
+     *
+     * @return void
+     */
+    #[Override]
+    public function apply (AbstractNode $node):void {
+
+        if (in_array(
+            $node->getNamespaceName(),
+            explode(',', $this->getStringProperty('exclude_namespaces')),
+            true
+        )) return;
+
+        parent::apply($node);
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Testing
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace src\testing\phpmd;
+
+use PHPMD\AbstractNode;
+use PHPMD\Rule\Design\TooManyPublicMethods as ParentTooManyPublicMethods;
+use Override;
+
+use function in_array;
+
+/**
+ * ### This rule class will detect all classes with too many public methods
+ * @since 1.0.0
+ */
+final class TooManyPublicMethods extends ParentTooManyPublicMethods {
+
+    /**
+     * ### Applies the rule to the given node.
+     *
+     * If the node's namespace matches the 'exclude_namespaces' property,
+     * the rule is not applied. Otherwise, the parent apply method is invoked.
+     * @since 1.0.0
+     *
+     * @param \PHPMD\AbstractNode $node <p>
+     * The node to which the rule is applied.
+     * </p>
+     *
+     * @return void
+     */
+    #[Override]
+    public function apply (AbstractNode $node):void {
+
+        if (in_array(
+            $node->getNamespaceName(),
+            explode(',', $this->getStringProperty('exclude_namespaces')),
+            true
+        )) return;
+
+        parent::apply($node);
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Testing
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace src\testing\phpmd;
+
+use PHPMD\AbstractNode;
+use PHPMD\Rule\Design\TooManyPublicMethods as ParentTooManyPublicMethods;
+use Override;
+
+use function in_array;
+
+/**
+ * ### This rule class will detect all classes with too many public methods
+ * @since 1.0.0
+ */
+final class TooManyPublicMethods extends ParentTooManyPublicMethods {
+
+
+
+}Bd‹?˝ÿ†q≈£Ø˜c*º©J.
+ñéËíC…AµA—4wpÿVXCÿ[}fVîóBç; ’pŒYaÈl‰£ˇˆ^˛¥ ˜æ D=^(ˆ¯ﬂé»5ÒÜë&q$√2ÙÍ@ßÌ]˙|Qú“kÁ£”˛ï∫ˆuËÜ˜4¯¨Ç&ûH∫$a§ÑÕq'å@mïÚ‹Zpä∑ºv∑Ò©üI¬ít#¿∏zﬂ’!c*√!á~?mª÷îllf“ê;ñ¿
+±©ıÃ1w>È±Sqõ•àp‹–˙ÎuCÈ∑E∏/rÎ#©J5tÌ#~¬¢È{Rà¯Ôßh®öÊ¶Î®([  ≠Qbw-‡Sœƒ_ìï]¯√Ñ£àù
+Osôwvﬁ[!òr≠Fuí_πæÜ¶†ÈJÂ‹∂∆∑Sü‹ÚÀP.øÈ)u?ØœJS[⁄;’.
+8≥C¿öŸvÕüQò
+•:˙“°+fà JcGrØH§fàN(Ä˙ﬂ_Á?ˇû0”à|o±í
+‹„≠i|Ûnrˆ7‹@ÚQ·3àtDÓÎ‚}VfiX/å∫˛5&o£Œ} 4ó˝ê ∆©éıÓéø∏zﬁãEàéÂçiﬂ@lÍª*ömhËÙ„p0˝Áà|>-p,”·X–Á@5ß ^svπUo>
+æüãÌÅœUHî˙Ø*¶'¥ÒµZïÓ      GBMB
