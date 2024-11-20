@@ -12,9 +12,9 @@
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\LowLevel\Exceptions\Autoload;
+namespace FireHub\Core\Support\Exceptions\Autoload;
 
-use FireHub\Core\Support\LowLevel\Exceptions\AutoloadException;
+use FireHub\Core\Support\Exceptions\AutoloadException;
 
 /**
  * ### Class not found exception

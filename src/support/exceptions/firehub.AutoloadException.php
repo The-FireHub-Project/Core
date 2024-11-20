@@ -12,7 +12,7 @@
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\LowLevel\Exceptions;
+namespace FireHub\Core\Support\Exceptions;
 
 use FireHub\Core\Components\Error\Exception;
 

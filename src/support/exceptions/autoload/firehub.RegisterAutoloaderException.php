@@ -12,15 +12,15 @@
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\LowLevel\Exceptions\Autoload;
+namespace FireHub\Core\Support\Exceptions\Autoload;
 
-use FireHub\Core\Support\LowLevel\Exceptions\AutoloadException;
+use FireHub\Core\Support\Exceptions\AutoloadException;
 
 /**
- * ### Autoload Register Exception
+ * ### Autoload Register Autoloader Exception
  * @since 1.0.0
  */
-class AutoloadRegisterException extends AutoloadException {
+class RegisterAutoloaderException extends AutoloadException {
 
     /**
      * ### Constructor
