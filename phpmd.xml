@@ -7,6 +7,7 @@
     <description>PHPMD analyzes a PHP project for potential problems within its code.</description>
     <rule ref="rulesets/cleancode.xml">
         <exclude name="BooleanArgumentFlag" />
+        <exclude name="StaticAccess" />
     </rule>
     <rule ref="rulesets/codesize.xml">
         <exclude name="TooManyMethods" />
