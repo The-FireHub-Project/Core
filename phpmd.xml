@@ -11,6 +11,7 @@
     <rule ref="rulesets/codesize.xml">
         <exclude name="TooManyMethods" />
         <exclude name="TooManyPublicMethods" />
+        <exclude name="ExcessiveClassLength" />
     </rule>
     <rule ref="rulesets/controversial.xml">
         <exclude name="CamelCasePropertyName" />
@@ -51,6 +52,18 @@
         <properties>
             <property name="maxmethods" value="10" />
             <property name="ignorepattern" value="(^(set|get))i" />
+            <property name="exclude_namespaces"
+                      value="FireHub\Core\Support\LowLevel"
+                      description="Namespaces to exclude, seperated by comma." />
+        </properties>
+    </rule>
+    <rule name="ExcessiveClassLength"
+          message="The class {0} has {1} lines of code. Current threshold is {2}. Avoid really long classes."
+          class="src\testing\phpmd\LongClass">
+        <priority>1</priority>
+        <properties>
+            <property name="minimum" value="1000" />
+            <property name="ignore-whitespace" value="false" />
             <property name="exclude_namespaces"
                       value="FireHub\Core\Support\LowLevel"
                       description="Namespaces to exclude, seperated by comma." />
