@@ -633,6 +633,7 @@ return (new Config)
             ->in(__DIR__)
             ->notPath([
                 // @todo excluded paths until cs-fixer supports PHP 8.4
+                'src/support/lowlevel/firehub.Arr.php',
                 'src/support/lowlevel/firehub.Data.php',
             ])
     )

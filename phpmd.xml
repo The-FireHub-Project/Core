@@ -72,5 +72,6 @@
     </rule>
     <exclude-pattern>testing\phpmd\*.php</exclude-pattern>
     <!-- @todo excluded paths until cs-fixer supports PHP 8.4 -->
+    <exclude-pattern>support\lowlevel\firehub.Arr.php</exclude-pattern>
     <exclude-pattern>support\lowlevel\firehub.Data.php</exclude-pattern>
 </ruleset>
