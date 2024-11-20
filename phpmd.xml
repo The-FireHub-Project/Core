@@ -52,7 +52,7 @@
             <property name="maxmethods" value="10" />
             <property name="ignorepattern" value="(^(set|get))i" />
             <property name="exclude_namespaces"
-                      value="FireHub\Core\Support\LowLevell"
+                      value="FireHub\Core\Support\LowLevel"
                       description="Namespaces to exclude, seperated by comma." />
         </properties>
     </rule>
