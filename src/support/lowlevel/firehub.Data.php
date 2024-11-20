@@ -185,7 +185,7 @@ final class Data {
      *
      * Generates a storable representation of a value.
      * This is useful for storing or passing PHP values around without losing their type and structure.
-     * To make the serialized string into a PHP value again, use unserialize().
+     * To make the serialized string into a PHP value again, use [[Data#unserialize()]].
      * @since 1.0.0
      *
      * @param scalar|array<array-key, mixed>|object|null $value <p>
