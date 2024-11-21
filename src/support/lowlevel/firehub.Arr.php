@@ -376,7 +376,7 @@ final class Arr {
      * @param int $start_index <p>
      * The first index of the returned array.
      * </p>
-     * @param int<0,2147483648> $length <p>
+     * @param int<0, 2147483648> $length <p>
      * Number of elements to insert. Must be greater than or equal to zero.
      * </p>
      *
@@ -388,7 +388,8 @@ final class Arr {
 
         return !($length < 0) && !($length >= MAX_32_BIT)
             ? array_fill($start_index, $length, $value)
-            : throw new OutOfRangeException()->withMessage("Array is out of range with length: {$length}.");
+            : throw new OutOfRangeException()
+                ->appendMessage("Current length is: {$length}, but it must be greater than or equal to zero, but less than 2147483648.");
 
     }
 
@@ -479,7 +480,7 @@ final class Arr {
 
         return !($length < 1)
             ? array_chunk($array, $length, $preserve_keys)
-            : throw new ChunkLengthTooSmallException;
+            : throw new ChunkLengthTooSmallException($length);
 
     }
 
