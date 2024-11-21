@@ -53,6 +53,44 @@ class Exception extends InternalException {
     }
 
     /**
+     * ### Append a message to the exception message
+     * @since 1.0.0
+     *
+     * @param string $message <p>
+     * The appended exception message.
+     * </p>
+     *
+     * @return static This exception instance.
+     */
+    public function appendMessage (string $message):static {
+
+        $this->message .= ' '.$message; // @phpstan-ignore-line assignOp.invalid
+
+        return $this;
+
+    }
+
+    /**
+     * ### Append a message to the exception message only if $check exists
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Components\Error\Exception::appendMessage() To append an error message in case of $check
+     * assignment exists.
+     *
+     * @param mixed $check
+     * @param string $message <p>
+     * The appended exception message.
+     * </p>
+     *
+     * @return static This exception instance.
+     */
+    public function appendMessageIfExists (mixed $check, string $message):static {
+
+        return isset($check) ? $this->appendMessage($message) : $this;
+
+    }
+
+    /**
      * ### Sets the exception code
      * @since 1.0.0
      *
