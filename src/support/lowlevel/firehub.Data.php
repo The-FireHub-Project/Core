@@ -18,10 +18,10 @@ use FireHub\Core\Support\Enums\Data\ {
     ResourceType, Type
 };
 use FireHub\Core\Support\Exceptions\Data\ {
-    ArrayToStringConversionException, CannotSerializeException, FailedToSetTypeException, ObjectConversionException,
-    SetAsResourceException, UnserializeFailedException, UnserializeFalseOrNullException, ValueTypeUnknownException
+    ArrayToStringConversionException, CannotSerializeException, FailedToSetTypeException, SetAsResourceException,
+    TypeUnknownException, UnserializeFailedException
 };
-use Exception, Stringable;
+use Exception;
 
 use function get_resource_type;
 use function gettype;
@@ -54,7 +54,7 @@ final class Data {
      * The variable being type-checked.
      * </p>
      *
-     * @throws \FireHub\Core\Support\Exceptions\Data\ValueTypeUnknownException If a type of value is unknown.
+     * @throws \FireHub\Core\Support\Exceptions\Data\TypeUnknownException If a type of value is unknown.
      *
      * @return \FireHub\Core\Support\Enums\Data\Type Type of data.
      */
@@ -69,7 +69,7 @@ final class Data {
             'object' => Type::T_OBJECT,
             'NULL' => Type::T_NULL,
             'resource', 'resource (closed)' => Type::T_RESOURCE,
-            default => throw new ValueTypeUnknownException($internal_type)
+            default => throw new TypeUnknownException()->appendMessage("Tried to get type: {$internal_type}.")
         };
 
     }
@@ -95,12 +95,10 @@ final class Data {
      * Type to convert variable to.
      * </p>
      *
-     * @throws \FireHub\Core\Support\Exceptions\Data\ValueTypeUnknownException If a type of value is unknown.
+     * @throws \FireHub\Core\Support\Exceptions\Data\TypeUnknownException If a type of value is unknown.
      * @throws \FireHub\Core\Support\Exceptions\Data\ArrayToStringConversionException If trying to convert an array to
      * string.
      * @throws \FireHub\Core\Support\Exceptions\Data\FailedToSetTypeException If failed to set a type for value.
-     * @throws \FireHub\Core\Support\Exceptions\Data\ObjectConversionException If trying to convert an object to string,
-     * int or float.
      * @throws \FireHub\Core\Support\Exceptions\Data\SetAsResourceException If trying to set a resource as a type.
      *
      * @return mixed Converted value.
@@ -132,15 +130,6 @@ final class Data {
 
                 throw new ArrayToStringConversionException;
 
-            case self::getType($value) === Type::T_OBJECT && !$value instanceof Stringable
-                && (
-                    $type === Type::T_STRING
-                    || $type === Type::T_INT
-                    || $type === Type::T_FLOAT
-                ):
-
-                throw new ObjectConversionException;
-
             case $type === Type::T_RESOURCE:
 
                 throw new SetAsResourceException;
@@ -156,7 +145,7 @@ final class Data {
                     Type::T_NULL => 'NULL',
                     default => 'string'
 
-                }) ?: throw new FailedToSetTypeException;
+                }) ?: throw new FailedToSetTypeException($type);
 
                 return $value;
 
@@ -233,16 +222,16 @@ final class Data {
      * The maximum depth of structures is permitted during unserialization and is intended to prevent stack overflows.
      * </p>
      *
-     * @throws \FireHub\Core\Support\Exceptions\Data\UnserializeFalseOrNullException If $data is already false, or
-     * $data is NULL.
-     * @throws \FireHub\Core\Support\Exceptions\Data\UnserializeFailedException If couldn't unserialize data.
+     * @throws \FireHub\Core\Support\Exceptions\Data\UnserializeFailedException If couldn't unserialize data, $data is
+     * already false, or $data is NULL.
      *
      * @return mixed The converted value is returned.
      */
     public static function unserialize (string $data, bool|array $allowed_classes = false, int $max_depth = 4096):mixed {
 
         return match ($data) {
-            'b:0;', 'N;' => throw new UnserializeFalseOrNullException,
+            'b:0;', 'N;' => throw new UnserializeFailedException()
+                ->withMessage('Cannot unserialize because data is already false or data is NULL'),
             default => ($unserialized_data = unserialize(
                 $data,
                 ['allowed_classes' => $allowed_classes, 'max_depth' => $max_depth])

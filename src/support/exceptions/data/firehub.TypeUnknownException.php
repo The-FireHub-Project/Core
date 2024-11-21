@@ -17,10 +17,10 @@ namespace FireHub\Core\Support\Exceptions\Data;
 use FireHub\Core\Support\Exceptions\DataException;
 
 /**
- * ### Cannot unserialize false or null exception
+ * ### Data type is unknown
  * @since 1.0.0
  */
-class UnserializeFalseOrNullException extends DataException {
+class TypeUnknownException extends DataException {
 
     /**
      * ### Constructor
@@ -30,7 +30,7 @@ class UnserializeFalseOrNullException extends DataException {
      */
     public function __construct () {
 
-        $this->message = 'Cannot unserialize because data is already false or data is NULL.';
+        $this->message = 'Data type is unknown.';
 
         parent::__construct();
 

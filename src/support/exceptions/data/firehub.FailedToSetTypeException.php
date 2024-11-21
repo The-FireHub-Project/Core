@@ -14,6 +14,7 @@
 
 namespace FireHub\Core\Support\Exceptions\Data;
 
+use FireHub\Core\Support\Enums\Data\Type;
 use FireHub\Core\Support\Exceptions\DataException;
 
 /**
@@ -26,11 +27,17 @@ class FailedToSetTypeException extends DataException {
      * ### Constructor
      * @since 1.0.0
      *
+     * @param \FireHub\Core\Support\Enums\Data\Type $type <p>
+     * The type that failed to be set.
+     * </p>
+     *
      * @return void
      */
-    public function __construct () {
+    public function __construct (
+        protected Type $type
+    ) {
 
-        $this->message = 'Failed to set a type for value.';
+        $this->message = 'Failed to set a type to: '.$this->type::class.' for value.';
 
         parent::__construct();
 
