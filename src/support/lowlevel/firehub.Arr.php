@@ -30,8 +30,8 @@ use const CASE_LOWER;
 use const CASE_UPPER;
 use const SORT_REGULAR;
 
-use function array_all; // @phpstan-ignore-line function.notFound (@todo fix on PHP 8.4)
-use function array_any; // @phpstan-ignore-line function.notFound (@todo fix on PHP 8.4)
+use function array_all; // @phpstan-ignore function.notFound (@todo fix on PHP 8.4)
+use function array_any; // @phpstan-ignore function.notFound (@todo fix on PHP 8.4)
 use function array_change_key_case;
 use function array_chunk;
 use function array_column;
@@ -45,8 +45,8 @@ use function array_diff_ukey;
 use function array_fill;
 use function array_fill_keys;
 use function array_filter;
-use function array_find; // @phpstan-ignore-line function.notFound (@todo fix on PHP 8.4)
-use function array_find_key; // @phpstan-ignore-line function.notFound (@todo fix on PHP 8.4)
+use function array_find; // @phpstan-ignore function.notFound (@todo fix on PHP 8.4)
+use function array_find_key; // @phpstan-ignore function.notFound (@todo fix on PHP 8.4)
 use function array_flip;
 use function array_intersect;
 use function array_intersect_assoc;
@@ -126,7 +126,7 @@ final class Arr {
      */
     public static function all (array $array, callable $callback):bool {
 
-        return array_all($array, $callback); // @phpstan-ignore-line return.notFound (@todo fix on PHP 8.4)
+        return array_all($array, $callback); // @phpstan-ignore argument.type
 
     }
 
@@ -148,7 +148,7 @@ final class Arr {
      */
     public static function any (array $array, callable $callback):bool {
 
-        return array_any($array, $callback); // @phpstan-ignore-line return.notFound (@todo fix on PHP 8.4)
+        return array_any($array, $callback); // @phpstan-ignore argument.type
 
     }
 
@@ -1846,7 +1846,7 @@ final class Arr {
      */
     public static function find (array $array, callable $callback):mixed {
 
-        return array_find($array, $callback); // @phpstan-ignore-line function.notFound (@todo fix on PHP 8.4)
+        return array_find($array, $callback); // @phpstan-ignore argument.type
 
     }
 
@@ -1868,7 +1868,7 @@ final class Arr {
      */
     public static function findKey (array $array, callable $callback):mixed {
 
-        return array_find_key($array, $callback); // @phpstan-ignore-line function.notFound (@todo fix on PHP 8.4)
+        return array_find_key($array, $callback); // @phpstan-ignore argument.type, return.type
 
     }
 

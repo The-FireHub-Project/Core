@@ -64,7 +64,7 @@ class Exception extends InternalException {
      */
     public function appendMessage (string $message):static {
 
-        $this->message .= ' '.$message; // @phpstan-ignore-line assignOp.invalid
+        $this->message .= ' '.$message; // @phpstan-ignore assignOp.invalid
 
         return $this;
 
