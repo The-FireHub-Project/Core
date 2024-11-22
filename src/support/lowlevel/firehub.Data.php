@@ -34,6 +34,8 @@ use function unserialize;
  *
  * Class contains variable handling methods for data manipulation.
  * @since 1.0.0
+ *
+ * @internal
  */
 final class Data {
 

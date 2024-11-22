@@ -31,6 +31,8 @@ use function trait_exists;
  *
  * Class allows you to collect information about classes.
  * @since 1.0.0
+ *
+ * @internal
  */
 final class Cls extends ClsObj {
 

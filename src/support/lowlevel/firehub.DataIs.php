@@ -32,6 +32,8 @@ use function is_string;
 /**
  * ### Data type checker low-level proxy class
  * @since 1.0.0
+ *
+ * @internal
  */
 final class DataIs {
 

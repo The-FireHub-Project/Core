@@ -32,6 +32,8 @@ use function is_subclass_of;
  *
  * Class allows you to collect information about classes and objects.
  * @since 1.0.0
+ *
+ * @internal
  */
 abstract class ClsObj {
 
