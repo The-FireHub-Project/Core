@@ -12,25 +12,31 @@
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\Exceptions\Data;
+namespace FireHub\Core\Support\Exceptions;
 
-use FireHub\Core\Support\Exceptions\DataException;
+use FireHub\Core\Components\Error\Exception;
 
 /**
- * ### Object conversion exception
+ * ### Codepoint exception
  * @since 1.0.0
  */
-class ObjectConversionException extends DataException {
+class CodepointException extends Exception {
 
     /**
      * ### Constructor
      * @since 1.0.0
      *
+     * @param int $codepoint <p>
+     * The codepoint.
+     * </p>
+     *
      * @return void
      */
-    public function __construct () {
+    public function __construct (
+        protected int $codepoint
+    ) {
 
-        $this->message = 'Cannot convert object to string, int or float.';
+        $this->message = "Codepoint: {$this->codepoint} error.";
 
         parent::__construct();
 

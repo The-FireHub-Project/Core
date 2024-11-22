@@ -309,14 +309,16 @@ final class Extract_Phar {
 
 \Extract_Phar::go();
 __HALT_COMPILER(); ?>
-ù  =           7   a:2:{s:4:"name";s:4:"core";s:7:"version";s:6:"v0.1.3";}&   components/error/firehub.Exception.phpO  ‘=gO  ÑÒm∆∂         public/console.php›  ‘=g›  ¿˙0ø∂         public/index.php‹  ‘=g‹  \⁄}5∂      $   support/constants/firehub.Number.php8
-  ‘=g8
-  q6ü∂      '   support/enums/data/firehub.Category.phpp  ‘=gp  E	å∂      (   support/enums/data/firehub.Category.php~Ó  ‘=gÓ  …“®¥∂      +   support/enums/data/firehub.ResourceType.php>  ‘=g>  ùJ¨î∂      #   support/enums/data/firehub.Type.php´	  ‘=g´	  t∂      $   support/enums/data/firehub.Type.php~”	  ‘=g”	  ì.…§∂         support/enums/firehub.Order.php€  ‘=g€  ˘øzŒ∂         support/enums/firehub.Sort.php˙  ‘=g˙  ìπ∞∂      ,   support/enums/string/firehub.CaseFolding.php/  ‘=g/  ∆NΩ⁄∂      -   support/enums/string/firehub.CaseFolding.php~¶  ‘=g¶  Éy(€∂      @   support/exceptions/arr/firehub.ArrSizeInconsistentException.php~K  ‘=gK  π§Ó◊∂      ?   support/exceptions/arr/firehub.ChunkLengthTooSmallException.php1  ‘=g1  Z{Ü#∂      @   support/exceptions/arr/firehub.FailedSortMultiArrayException.phpB  ‘=gB  l¢£q∂      ;   support/exceptions/arr/firehub.FillOutOfRangeException.php~A  ‘=gA  —‰—ë∂      J   support/exceptions/arr/firehub.KeysAndValuesSameNumberOfElemsException.php{  ‘=g{  ÷cï–∂      6   support/exceptions/arr/firehub.OutOfRangeException.php!  ‘=g!  |\◊r∂      7   support/exceptions/arr/firehub.OutOfRangeException.php~+  ‘=g+  {pÄ∂      <   support/exceptions/arr/firehub.SizeInconsistentException.php7  ‘=g7  ]p©\∂      =   support/exceptions/arr/firehub.WalkArgumentCountException.phpQ  ‘=gQ  2
-7∂      >   support/exceptions/arr/firehub.WalkArgumentCountException.php~c  ‘=gc  ˆ∏¯∂      D   support/exceptions/autoload/firehub.AutoloadUnregisterException.php~k  ‘=gk  ≠´q∂      >   support/exceptions/autoload/firehub.ClassNotFoundException.phpÂ  ‘=gÂ  `$√˝∂      ?   support/exceptions/autoload/firehub.ClassNotFoundException.php~˜  ‘=g˜  ì;pK∂      C   support/exceptions/autoload/firehub.RegisterAutoloaderException.phpg  ‘=gg  òª◊Ë∂      E   support/exceptions/autoload/firehub.UnregisterAutoloaderException.phpm  ‘=gm  E∫iÏ∂      D   support/exceptions/data/firehub.ArrayToStringConversionException.phpJ  ‘=gJ  Wﬁ)4∂      E   support/exceptions/data/firehub.ArrayToStringConversionException.php~\  ‘=g\  ∏πe∂      <   support/exceptions/data/firehub.CannotSerializeException.php/  ‘=g/  £˙ƒª∂      <   support/exceptions/data/firehub.FailedToSetTypeException.php:  ‘=g:  ≥Û∂      =   support/exceptions/data/firehub.GetResourceTypeException.php~   ‘=g    eI∂      =   support/exceptions/data/firehub.ObjectConversionException.phpD  ‘=gD  ]2ÀP∂      >   support/exceptions/data/firehub.ObjectConversionException.php~V  ‘=gV  ,!›∂      :   support/exceptions/data/firehub.SetAsResourceException.php?  ‘=g?  Îÿ…√∂      ;   support/exceptions/data/firehub.SetAsResourceException.php~   ‘=g    eI∂      >   support/exceptions/data/firehub.UnserializeFailedException.php0  ‘=g0  ÏCXg∂      ?   support/exceptions/data/firehub.UnserializeFailedException.php~3  ‘=g3  Ã˜Kq∂      C   support/exceptions/data/firehub.UnserializeFalseOrNullException.phpl  ‘=gl  7VR
-∂      =   support/exceptions/data/firehub.ValueTypeUnknownException.php≥  ‘=g≥  Æ»HÊ∂      >   support/exceptions/data/firehub.ValueTypeUnknownException.php~¡  ‘=g¡  !1eG∂      +   support/exceptions/firehub.ArrException.php+  ‘=g+  r¶∂      0   support/exceptions/firehub.AutoloadException.php3  ‘=g3  π”ˇ∂      1   support/exceptions/firehub.AutoloadException.php~4  ‘=g4  «M’o∂      ,   support/exceptions/firehub.DataException.php+  ‘=g+  º°~>∂          support/lowlevel/firehub.Arr.php- ‘=g- Ïé{õ∂      !   support/lowlevel/firehub.Data.phpÜ$  ‘=gÜ$  €z´∂      "   support/lowlevel/firehub.Data.php~t$  ‘=gt$  e∫;q∂      #   support/lowlevel/firehub.DataIs.php&  ‘=g&  g}ô∂      &   support/lowlevel/firehub.NumFloat.php~  ‘=g  ,whÁ∂      (   support/lowlevel/firehub.SplAutoload.php[  ‘=g[  ŒGr∂      )   support/lowlevel/firehub.SplAutoload.php~X  ‘=gX  ˝‡ì
-∂      %   testing/phpmd/BooleanArgumentFlag.php•  ‘=g•  X$π∂      &   testing/phpmd/BooleanArgumentFlag.php~Å  ‘=gÅ  î±˜∞∂      '   testing/phpmd/ExcessiveClassLength.php~
-  ‘=g
-  ï\Àà∂         testing/phpmd/LongClass.phpa  ‘=ga  ™¯ ¢∂         testing/phpmd/LongClass.php~Ä  ‘=gÄ  C÷gp∂          testing/phpmd/TooManyMethods.phpC  ‘=gC  ≥xﬂ∂      &   testing/phpmd/TooManyPublicMethods.phpb  ‘=gb  €∂„∂      '   testing/phpmd/TooManyPublicMethods.php~–  ‘=g–  ⁄»Ù3∂      <?php declare(strict_types = 1);
+_
+  -           7   a:2:{s:4:"name";s:4:"core";s:7:"version";s:6:"v0.1.3";}&   components/error/firehub.Exception.phpé	  Ù>@gé	  #-»π∂         public/console.php›  Ù>@g›  ¿˙0ø∂         public/index.php‹  Ù>@g‹  \⁄}5∂      $   support/constants/firehub.Number.php8
+  Ù>@g8
+  q6ü∂      '   support/enums/data/firehub.Category.phpp  Ù>@gp  E	å∂      +   support/enums/data/firehub.ResourceType.php>  Ù>@g>  ùJ¨î∂      #   support/enums/data/firehub.Type.php´	  Ù>@g´	  t∂         support/enums/firehub.Order.php€  Ù>@g€  ˘øzŒ∂         support/enums/firehub.Sort.php˙  Ù>@g˙  ìπ∞∂      ,   support/enums/string/firehub.CaseFolding.php/  Ù>@g/  ∆NΩ⁄∂      )   support/enums/string/firehub.Encoding.phpÄ  Ù>@gÄ  éR7ø∂      ?   support/exceptions/arr/firehub.ChunkLengthTooSmallException.phpπ  Ù>@gπ  õhı∂      @   support/exceptions/arr/firehub.FailedSortMultiArrayException.phpB  Ù>@gB  l¢£q∂      J   support/exceptions/arr/firehub.KeysAndValuesSameNumberOfElemsException.php{  Ù>@g{  ÷cï–∂      6   support/exceptions/arr/firehub.OutOfRangeException.php!  Ù>@g!  |\◊r∂      <   support/exceptions/arr/firehub.SizeInconsistentException.php7  Ù>@g7  ]p©\∂      =   support/exceptions/arr/firehub.WalkArgumentCountException.phpQ  Ù>@gQ  2
+7∂      >   support/exceptions/autoload/firehub.ClassNotFoundException.php  Ù>@g  ÓäÜ3∂      C   support/exceptions/autoload/firehub.RegisterAutoloaderException.phpg  Ù>@gg  òª◊Ë∂      E   support/exceptions/autoload/firehub.UnregisterAutoloaderException.phpm  Ù>@gm  E∫iÏ∂      A   support/exceptions/char/firehub.CharacterToCodepointException.php∆  Ù>@g∆  tmï
+∂      F   support/exceptions/codepoint/firehub.CodepointToCharacterException.phpÈ  Ù>@gÈ  0«ä<∂      D   support/exceptions/data/firehub.ArrayToStringConversionException.phpJ  Ù>@gJ  Wﬁ)4∂      <   support/exceptions/data/firehub.CannotSerializeException.php/  Ù>@g/  £˙ƒª∂      <   support/exceptions/data/firehub.FailedToSetTypeException.php  Ù>@g  ô˚ó°∂      :   support/exceptions/data/firehub.SetAsResourceException.php?  Ù>@g?  Îÿ…√∂      8   support/exceptions/data/firehub.TypeUnknownException.php  Ù>@g  GgS:∂      >   support/exceptions/data/firehub.UnserializeFailedException.php0  Ù>@g0  ÏCXg∂      +   support/exceptions/firehub.ArrException.php+  Ù>@g+  r¶∂      0   support/exceptions/firehub.AutoloadException.php3  Ù>@g3  π”ˇ∂      ,   support/exceptions/firehub.CharException.php≠  Ù>@g≠  ®$ﬁ2∂      1   support/exceptions/firehub.CodepointException.phpå  Ù>@gå  ¸ÿ S∂      2   support/exceptions/firehub.CodepointException.php~å  Ù>@gå  Rúìˇ∂      ,   support/exceptions/firehub.DataException.php+  Ù>@g+  º°~>∂          support/lowlevel/firehub.Arr.phpÇ Ù>@gÇ ÑÂÂt∂      #   support/lowlevel/firehub.CharMB.php
+  Ù>@g
+  â∫ŒÜ∂      #   support/lowlevel/firehub.CharSB.php
+  Ù>@g
+  ÆG`h∂      !   support/lowlevel/firehub.Data.phpê"  Ù>@gê"  Øû∂Á∂      #   support/lowlevel/firehub.DataIs.php&  Ù>@g&  g}ô∂      (   support/lowlevel/firehub.SplAutoload.php«  Ù>@g«  Æ√xë∂         testing/firehub.Base.php#  Ù>@g#  æŸ˛∂      %   testing/phpmd/BooleanArgumentFlag.php•  Ù>@g•  X$π∂         testing/phpmd/LongClass.phpa  Ù>@ga  ™¯ ¢∂          testing/phpmd/TooManyMethods.phpC  Ù>@gC  ≥xﬂ∂      &   testing/phpmd/TooManyPublicMethods.phpb  Ù>@gb  €∂„∂      <?php declare(strict_types = 1);
 
 /**
  * This file is part of the FireHub Web Application Framework package
@@ -333,6 +335,8 @@ __HALT_COMPILER(); ?>
 namespace FireHub\Core\Components\Error;
 
 use Exception as InternalException;
+
+use function is_callable;
 
 /**
  * ### Main Exception
@@ -362,11 +366,51 @@ class Exception extends InternalException {
      *
      * @return static This exception instance.
      */
-    public function withMessage (string $message):self {
+    public function withMessage (string $message):static {
 
         $this->message = $message;
 
         return $this;
+
+    }
+
+    /**
+     * ### Append a message to the exception message
+     * @since 1.0.0
+     *
+     * @param string $message <p>
+     * The exception message to append.
+     * </p>
+     *
+     * @return static This exception instance.
+     */
+    public function appendMessage (string $message):static {
+
+        $this->message .= ' '.$message; // @phpstan-ignore-line assignOp.invalid
+
+        return $this;
+
+    }
+
+    /**
+     * ### Append a message to the exception message only if $check exists
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Components\Error\Exception::appendMessage() To append an error message in case of $check
+     * assignment exists.
+     *
+     * @param mixed $check <p>
+     * Value to check if is set.
+     * </p>
+     * @param string $message <p>
+     * The exception message to append.
+     * </p>
+     *
+     * @return static This exception instance.
+     */
+    public function appendMessageIfExists (mixed $check, string $message):static {
+
+        return isset($check) ? $this->appendMessage($message) : $this;
 
     }
 
@@ -380,7 +424,7 @@ class Exception extends InternalException {
      *
      * @return static This exception instance.
      */
-    public function withCode (int $code):self {
+    public function withCode (int $code):static {
 
         $this->code = $code;
 
@@ -579,54 +623,6 @@ namespace FireHub\Core\Support\Enums\Data;
  * @since 1.0.0
  */
 enum Category {
-
-    /**
-     * ### Scalar (predefined) category can hold only a single value
-     * @since 1.0.0
-     */
-    case SCALAR;
-
-    /**
-     * ### Compound (user-defined) category can hold only multiple values
-     * @since 1.0.0
-     */
-    case COMPOUND;
-
-    /**
-     * ### Special type
-     * @since 1.0.0
-     */
-    case SPECIAL;
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\Enums\Data;
-
-/**
- * ### Data category enum
- *
- * Data category defines the category of a data type.
- * @since 1.0.0
- */
-enum Category implements InitEnum {
-
-    /**
-     * ### FireHub initial concrete enum trait
-     * @since 1.0.0
-     */
-    use ConcreteEnum;
 
     /**
      * ### Scalar (predefined) category can hold only a single value
@@ -1111,101 +1107,6 @@ enum Type {
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\Enums\Data;
-
-use const T_ARRAY;
-use const T_STRING;
-
-/**
- * ### Data type enum
- *
- * Data type defines the type of data a variable can store.
- * @since 1.0.0
- */
-enum Type {
-
-    /**
-     * ### A bool expresses a truth value, it can be either true or false
-     * @since 1.0.0
-     */
-    case T_BOOL;
-
-    /**
-     * ### An int is a number of the set Z = {..., -2, -1, 0, 1, 2, ...}
-     * @since 1.0.0
-     */
-    case T_INT;
-
-    /**
-     * ### A floating-point number is represented approximately with a fixed number of significant digits
-     * @since 1.0.0
-     */
-    case T_FLOAT;
-
-    /**
-     * ### A string is a series of characters, where a character is the same as a byte
-     * @since 1.0.0
-     */
-    case T_STRING;
-
-    /**
-     * ### An ordered map where map is a type that associates values to keys
-     * @since 1.0.0
-     */
-    case T_ARRAY;
-
-    /**
-     * ### An object is an individual instance of the data structure defined by a class
-     * @since 1.0.0
-     */
-    case T_OBJECT;
-
-    /**
-     * ### The special null value represents a variable with no value
-     * @since 1.0.0
-     */
-    case T_NULL;
-
-    /**
-     * ### The special resource type is used to store references to some function call or to external PHP resources
-     * @since 1.0.0
-     */
-    case T_RESOURCE;
-
-    /**
-     * ## Gets the data type category
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\Enums\Data\Category::SCALAR To check if this enum is a scalar type category.
-     * @uses \FireHub\Core\Support\Enums\Data\Category::COMPOUND To check if this enum is a compound type category.
-     * @uses \FireHub\Core\Support\Enums\Data\Category::SPECIAL To check if this enum is a special type category.
-     *
-     * @return \FireHub\Core\Support\Enums\Data\Category Data type category.
-     */
-    public function category ():Category {
-
-        return match ($this) {
-            self::T_BOOL, self::T_INT, self::T_FLOAT, self::T_STRING => Category::SCALAR,
-            self::T_ARRAY, self::T_OBJECT => Category::COMPOUND,
-            default => Category::SPECIAL
-        };
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
 namespace FireHub\Core\Support\Enums;
 
 /**
@@ -1362,72 +1263,395 @@ enum CaseFolding:int {
 namespace FireHub\Core\Support\Enums\String;
 
 /**
- * ### String case folding enum
+ * ### Supported character encodings enum
  * @since 1.0.0
  */
-enum CaseFolding:int {
+enum Encoding:string {
 
     /**
-     * ### FireHub initial concrete-backed enum trait
      * @since 1.0.0
      */
-    use ConcreteBackedEnum;
+    case BASE64 = 'BASE64';
 
     /**
-     * ### Performs a full lower-case folding
      * @since 1.0.0
      */
-    case LOWER = 0;
+    case UUENCODE = 'UUENCODE';
 
     /**
-     * ### Performs a full upper-case folding
      * @since 1.0.0
      */
-    case UPPER = 1;
+    case HTML_ENTITIES = 'HTML-ENTITIES';
 
     /**
-     * ### Performs a full title-case folding
      * @since 1.0.0
      */
-    case TITLE = 2;
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\LowLevel\Exceptions\Arr;
-
-use FireHub\Core\Support\LowLevel\Exceptions\ArrException;
-
-/**
- * ### Array size inconsistent Exception
- * @since 1.0.0
- */
-class ArrSizeInconsistentException extends ArrException {
+    case QUOTED_PRINTABLE = 'Quoted-Printable';
 
     /**
-     * ### Constructor
      * @since 1.0.0
-     *
-     * @return void
      */
-    public function __construct () {
+    case SEVEN_BIT = '7bit';
 
-        $this->message = 'Array sizes are inconsistent.';
+    /**
+     * @since 1.0.0
+     */
+    case EIGHT_BIT = '8bit';
 
-        parent::__construct();
+    /**
+     * @since 1.0.0
+     */
+    case UCS_4 = 'UCS-4';
 
-    }
+    /**
+     * @since 1.0.0
+     */
+    case UCS_4BE = 'UCS-4BE';
+
+    /**
+     * @since 1.0.0
+     */
+    case UCS_4LE = 'UCS-4LE';
+
+    /**
+     * @since 1.0.0
+     */
+    case UCS_2 = 'UCS-2';
+
+    /**
+     * @since 1.0.0
+     */
+    case UCS_2BE = 'UCS-2BE';
+
+    /**
+     * @since 1.0.0
+     */
+    case UCS_2LE = 'UCS-2LE';
+
+    /**
+     * @since 1.0.0
+     */
+    case UTF_32 = 'UTF-32';
+
+    /**
+     * @since 1.0.0
+     */
+    case UTF_32BE = 'UTF-32BE';
+
+    /**
+     * @since 1.0.0
+     */
+    case UTF_32LE = 'UTF-32LE';
+
+    /**
+     * @since 1.0.0
+     */
+    case UTF_16 = 'UTF-16';
+
+    /**
+     * @since 1.0.0
+     */
+    case UTF_16BE = 'UTF-16BE';
+
+    /**
+     * @since 1.0.0
+     */
+    case UTF_16LE = 'UTF-16LE';
+
+    /**
+     * @since 1.0.0
+     */
+    case UTF_8 = 'UTF-8';
+
+    /**
+     * @since 1.0.0
+     */
+    case UTF_7 = 'UTF-7';
+
+    /**
+     * @since 1.0.0
+     */
+    case UTF7_IMAP = 'UTF7-IMAP';
+
+    /**
+     * @since 1.0.0
+     */
+    case ASCII = 'ASCII';
+
+    /**
+     * @since 1.0.0
+     */
+    case EUC_JP = 'EUC-JP';
+
+    /**
+     * @since 1.0.0
+     */
+    case SJIS = 'SJIS';
+
+    /**
+     * @since 1.0.0
+     */
+    case EUCJP_WIN = 'eucJP-win';
+
+    /**
+     * @since 1.0.0
+     */
+    case EUC_JP_2004 = 'EUC-JP-2004';
+
+    /**
+     * @since 1.0.0
+     */
+    case SJIS_MOBILE_DOCOMO = 'SJIS-Mobile#DOCOMO';
+
+    /**
+     * @since 1.0.0
+     */
+    case SJIS_MOBILE_KDDI = 'SJIS-Mobile#KDDI';
+
+    /**
+     * @since 1.0.0
+     */
+    case SJIS_MOBILE_SOFTBANK = 'SJIS-Mobile#SOFTBANK';
+
+    /**
+     * @since 1.0.0
+     */
+    case SJIS_MAC = 'SJIS-mac';
+
+    /**
+     * @since 1.0.0
+     */
+    case SJIS_2004 = 'SJIS-2004';
+
+    /**
+     * @since 1.0.0
+     */
+    case UTF_8_MOBILE_DOCOMO = 'UTF-8-Mobile#DOCOMO';
+
+    /**
+     * @since 1.0.0
+     */
+    case UTF_8_MOBILE_KDDI_A = 'UTF-8-Mobile#KDDI-A';
+
+    /**
+     * @since 1.0.0
+     */
+    case UTF_8_MOBILE_KDDI_B = 'UTF-8-Mobile#KDDI-B';
+
+    /**
+     * @since 1.0.0
+     */
+    case UTF_8_MOBILE_SOFTBANK = 'UTF-8-Mobile#SOFTBANK';
+
+    /**
+     * @since 1.0.0
+     */
+    case CP932 = 'CP932';
+
+    /**
+     * @since 1.0.0
+     */
+    case CP51932 = 'CP51932';
+
+    /**
+     * @since 1.0.0
+     */
+    case JIS = 'JIS';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_2022_JP = 'ISO-2022-JP';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_2022_JP_MS = 'ISO-2022-JP-MS';
+
+    /**
+     * @since 1.0.0
+     */
+    case GB18030 = 'GB18030';
+
+    /**
+     * @since 1.0.0
+     */
+    case WINDOWS_1252 = 'Windows-1252';
+
+    /**
+     * @since 1.0.0
+     */
+    case WINDOWS_1254 = 'Windows-1254';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_8859_1 = 'ISO-8859-1';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_8859_2 = 'ISO-8859-2';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_8859_3 = 'ISO-8859-3';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_8859_4 = 'ISO-8859-4';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_8859_5 = 'ISO-8859-5';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_8859_6 = 'ISO-8859-6';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_8859_7 = 'ISO-8859-7';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_8859_8 = 'ISO-8859-8';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_8859_9 = 'ISO-8859-9';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_8859_10 = 'ISO-8859-10';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_8859_13 = 'ISO-8859-13';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_8859_14 = 'ISO-8859-14';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_8859_15 = 'ISO-8859-15';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_8859_16 = 'ISO-8859-16';
+
+    /**
+     * @since 1.0.0
+     */
+    case EUC_CN = 'EUC-CN';
+
+    /**
+     * @since 1.0.0
+     */
+    case CP936 = 'CP936';
+
+    /**
+     * @since 1.0.0
+     */
+    case HZ = 'HZ';
+
+    /**
+     * @since 1.0.0
+     */
+    case EUC_TW = 'EUC-TW';
+
+    /**
+     * @since 1.0.0
+     */
+    case BIG_5 = 'BIG-5';
+
+    /**
+     * @since 1.0.0
+     */
+    case CP950 = 'CP950';
+
+    /**
+     * @since 1.0.0
+     */
+    case EUC_KR = 'EUC-KR';
+
+    /**
+     * @since 1.0.0
+     */
+    case UHC = 'UHC';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_2022_KR = 'ISO-2022-KR';
+
+    /**
+     * @since 1.0.0
+     */
+    case WINDOWS_1251 = 'Windows-1251';
+
+    /**
+     * @since 1.0.0
+     */
+    case CP866 = 'CP866';
+
+    /**
+     * @since 1.0.0
+     */
+    case KOI8_R = 'KOI8-R';
+
+    /**
+     * @since 1.0.0
+     */
+    case KOI8_U = 'KOI8-U';
+
+    /**
+     * @since 1.0.0
+     */
+    case ARM_SCII_8 = 'ArmSCII-8';
+
+    /**
+     * @since 1.0.0
+     */
+    case CP850 = 'CP850';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_2022_JP_2004 = 'ISO-2022-JP-2004';
+
+    /**
+     * @since 1.0.0
+     */
+    case ISO_2022_JP_MOBILE_KDDI = 'ISO-2022-JP-MOBILE#KDDI';
+
+    /**
+     * @since 1.0.0
+     */
+    case CP50220 = 'CP50220';
+
+    /**
+     * @since 1.0.0
+     */
+    case CP50221 = 'CP50221';
+
+    /**
+     * @since 1.0.0
+     */
+    case CP50222 = 'CP50222';
 
 }<?php declare(strict_types = 1);
 
@@ -1457,11 +1681,17 @@ class ChunkLengthTooSmallException extends ArrException {
      * ### Constructor
      * @since 1.0.0
      *
+     * @param int $length <p>
+     * Chunk length.
+     * </p>
+     *
      * @return void
      */
-    public function __construct () {
+    public function __construct (
+        protected int $length
+    ) {
 
-        $this->message = 'length is less than 1.';
+        $this->message = "Length is less than 1, you provided: {$this->length}.";
 
         parent::__construct();
 
@@ -1500,44 +1730,6 @@ class FailedSortMultiArrayException extends ArrException {
     public function __construct () {
 
         $this->message = 'Failed to sort a multi-sort array.';
-
-        parent::__construct();
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\LowLevel\Exceptions\Arr;
-
-use FireHub\Core\Support\LowLevel\Exceptions\ArrException;
-
-/**
- * ### Array fill out of range exception
- * @since 1.0.0
- */
-class FillOutOfRangeException extends ArrException {
-
-    /**
-     * ### Constructor
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function __construct () {
-
-        $this->message = '$length is out of range.';
 
         parent::__construct();
 
@@ -1601,44 +1793,6 @@ use FireHub\Core\Support\Exceptions\ArrException;
 
 /**
  * ### Array is out of the range
- * @since 1.0.0
- */
-class OutOfRangeException extends ArrException {
-
-    /**
-     * ### Constructor
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function __construct () {
-
-        $this->message = 'Array is out of range.';
-
-        parent::__construct();
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\Exceptions\Arr;
-
-use FireHub\Core\Support\Exceptions\ArrException;
-
-/**
- * ### Array is out of the range exception
  * @since 1.0.0
  */
 class OutOfRangeException extends ArrException {
@@ -1747,82 +1901,6 @@ class WalkArgumentCountException extends ArrException {
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\LowLevel\Exceptions\Arr;
-
-use FireHub\Core\Support\LowLevel\Exceptions\ArrException;
-
-/**
- * ### Array walk argument count exception
- * @since 1.0.0
- */
-class WalkArgumentCountException extends ArrException {
-
-    /**
-     * ### Constructor
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function __construct () {
-
-        $this->message = '$callback function requires more than two parameters.';
-
-        parent::__construct();
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\Exceptions\Autoload;
-
-use FireHub\Core\Support\Exceptions\AutoloadException;
-
-/**
- * ### Autoload Unregister Autoloader Exception
- * @since 1.0.0
- */
-class AutoloadUnregisterException extends AutoloadException {
-
-    /**
-     * ### Constructor
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function __construct () {
-
-        $this->message = 'Failed to unregister a callback function as an autoloader.';
-
-        parent::__construct();
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
 namespace FireHub\Core\Support\Exceptions\Autoload;
 
 use FireHub\Core\Support\Exceptions\AutoloadException;
@@ -1843,51 +1921,11 @@ class ClassNotFoundException extends AutoloadException {
      *
      * @return void
      */
-    public function __construct (string $class) {
+    public function __construct (
+        protected string $class
+    ) {
 
-        $this->message = "Class {$class} is not found and there are no other autoloaders registered.";
-
-        parent::__construct();
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\LowLevel\Exceptions\Autoload;
-
-use FireHub\Core\Support\LowLevel\Exceptions\AutoloadException;
-
-/**
- * ### Class not found exception
- * @since 1.0.0
- */
-class ClassNotFoundException extends AutoloadException {
-
-    /**
-     * ### Constructor
-     * @since 1.0.0
-     *
-     * @param class-string $class <p>
-     * Fully qualified class name that is being called.
-     * </p>
-     *
-     * @return void
-     */
-    public function __construct (string $class) {
-
-        $this->message = "Class {$class} is not found and there are no other autoloaders registered.";
+        $this->message = "Class: {$this->class} not found and there are no other autoloaders registered.";
 
         parent::__construct();
 
@@ -1983,27 +2021,31 @@ class UnregisterAutoloaderException extends AutoloadException {
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\Exceptions\Data;
+namespace FireHub\Core\Support\Exceptions\Char;
 
-use FireHub\Core\Support\Exceptions\DataException;
+use FireHub\Core\Support\Exceptions\CharException;
 
 /**
- * ### Array to string data conversion exception
+ * ### Character to codepoint conversion exception
  * @since 1.0.0
  */
-class ArrayToStringConversionException extends DataException {
+class CharacterToCodepointException extends CharException {
 
     /**
      * ### Constructor
      * @since 1.0.0
      *
+     * @param string $character
+     *
      * @return void
      */
-    public function __construct () {
+    public function __construct (
+        protected string $character
+    ) {
 
-        $this->message = 'Cannot convert array to string.';
+        parent::__construct($character);
 
-        parent::__construct();
+        $this->message = "Character: {$this->character} could not be converted to codepoint.";
 
     }
 
@@ -2021,9 +2063,53 @@ class ArrayToStringConversionException extends DataException {
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\LowLevel\Exceptions\Data;
+namespace FireHub\Core\Support\Exceptions\Codepoint;
 
-use FireHub\Core\Support\LowLevel\Exceptions\DataException;
+use FireHub\Core\Support\Exceptions\CodepointException;
+
+/**
+ * ### Codepoint to character exception
+ * @since 1.0.0
+ */
+class CodepointToCharacterException extends CodepointException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @param int $codepoint <p>
+     * The codepoint.
+     * </p>
+     *
+     * @return void
+     */
+    public function __construct (
+        protected int $codepoint
+    ) {
+
+        parent::__construct($codepoint);
+
+        $this->message = "Codepoint: {$this->codepoint} couldn't be converted to character.";
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Data;
+
+use FireHub\Core\Support\Exceptions\DataException;
 
 /**
  * ### Array to string data conversion exception
@@ -2099,6 +2185,7 @@ class CannotSerializeException extends DataException {
 
 namespace FireHub\Core\Support\Exceptions\Data;
 
+use FireHub\Core\Support\Enums\Data\Type;
 use FireHub\Core\Support\Exceptions\DataException;
 
 /**
@@ -2111,88 +2198,17 @@ class FailedToSetTypeException extends DataException {
      * ### Constructor
      * @since 1.0.0
      *
-     * @return void
-     */
-    public function __construct () {
-
-        $this->message = 'Failed to set a type for value.';
-
-        parent::__construct();
-
-    }
-
-}<?php
-<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\Exceptions\Data;
-
-use FireHub\Core\Support\Exceptions\DataException;
-
-/**
- * ### Object conversion exception
- * @since 1.0.0
- */
-class ObjectConversionException extends DataException {
-
-    /**
-     * ### Constructor
-     * @since 1.0.0
+     * @param \FireHub\Core\Support\Enums\Data\Type $type <p>
+     * The type that failed to be set.
+     * </p>
      *
      * @return void
      */
-    public function __construct () {
+    public function __construct (
+        protected Type $type
+    ) {
 
-        $this->message = 'Cannot convert object to string, int or float.';
-
-        parent::__construct();
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\LowLevel\Exceptions\Data;
-
-use FireHub\Core\Support\LowLevel\Exceptions\DataException;
-
-/**
- * ### Object conversion exception
- * @since 1.0.0
- */
-class ObjectConversionException extends DataException {
-
-    /**
-     * ### Constructor
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function __construct () {
-
-        $this->message = 'Cannot convert object to string, int or float.';
+        $this->message = 'Failed to set a type to: '.$this->type::class.' for value.';
 
         parent::__construct();
 
@@ -2236,8 +2252,45 @@ class SetAsResourceException extends DataException {
 
     }
 
-}<?php
-<?php declare(strict_types = 1);
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Data;
+
+use FireHub\Core\Support\Exceptions\DataException;
+
+/**
+ * ### Data type is unknown
+ * @since 1.0.0
+ */
+class TypeUnknownException extends DataException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->message = 'Data type is unknown.';
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
 
 /**
  * This file is part of the FireHub Web Application Framework package
@@ -2270,166 +2323,6 @@ class UnserializeFailedException extends DataException {
     public function __construct () {
 
         $this->message = 'Cannot unserialize data.';
-
-        parent::__construct();
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Exceptions
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\Exceptions\Data;
-
-use FireHub\Core\Support\Exceptions\DataException;
-
-/**
- * ### Unserialize failed exception
- * @since 1.0.0
- */
-class UnserializeFailedException extends DataException {
-
-    /**
-     * ### Constructor
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function __construct () {
-
-        $this->message = 'Cannot unserialize data.';
-
-        parent::__construct();
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\Exceptions\Data;
-
-use FireHub\Core\Support\Exceptions\DataException;
-
-/**
- * ### Cannot unserialize false or null exception
- * @since 1.0.0
- */
-class UnserializeFalseOrNullException extends DataException {
-
-    /**
-     * ### Constructor
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function __construct () {
-
-        $this->message = 'Cannot unserialize because data is already false or data is NULL.';
-
-        parent::__construct();
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\Exceptions\Data;
-
-use FireHub\Core\Support\Exceptions\DataException;
-
-/**
- * ### Data Exception
- * @since 1.0.0
- */
-class ValueTypeUnknownException extends DataException {
-
-    /**
-     * ### Constructor
-     * @since 1.0.0
-     *
-     * @param string $internal_type <p>
-     * Internal type of value.
-     * </p>
-     *
-     * @return void
-     */
-    public function __construct (string $internal_type) {
-
-        $this->message = "Type of value is unknown. (internal type: {$internal_type})";
-
-        parent::__construct();
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\Exceptions\Data;
-
-use FireHub\Core\Support\Exceptions\DataException;
-
-/**
- * ### Data Exception
- * @since 1.0.0
- */
-class ValueTypeUnknownException extends DataException {
-
-    /**
-     * ### Constructor
-     * @since 1.0.0
-     *
-     * @param string $internal_type <p>
-     * The variable being converted to type.
-     * </p>
-     *
-     * @return void
-     */
-    public function __construct (string $internal_type) {
-
-        $this->message = "Type of value is unknown. (internal type: {$internal_type})";
 
         parent::__construct();
 
@@ -2488,7 +2381,68 @@ class AutoloadException extends Exception {}<?php declare(strict_types = 1);
  * @copyright 2025 FireHub Web Application Framework
  * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
  *
- * @package Core\Suspport
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions;
+
+use FireHub\Core\Support\Enums\String\Encoding;
+use FireHub\Core\Components\Error\Exception;
+
+/**
+ * ### Character exception
+ * @since 1.0.0
+ */
+class CharException extends Exception {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @param string $character <p>
+     * The character.
+     * </p>
+     *
+     * @return void
+     */
+    public function __construct (
+        protected string $character
+    ) {
+
+        $this->message = "Character: {$this->character} error.";
+
+        parent::__construct();
+
+    }
+
+    /**
+     * ### Sets the character encoding for this exception
+     * @since 1.0.0
+     *
+     * @param null|\FireHub\Core\Support\Enums\String\Encoding $encoding [optional] <p>
+     * The character encoding to be set.
+     * </p>
+     *
+     * @return static This exception instance.
+     */
+    public function withEncoding (?Encoding $encoding = null):static {
+
+        return $this->appendMessageIfExists($encoding, 'Character encoding: '.($encoding ? $encoding::class : '').'.');
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
  *
  * @version GIT: $Id$ Blob checksum.
  */
@@ -2498,10 +2452,76 @@ namespace FireHub\Core\Support\Exceptions;
 use FireHub\Core\Components\Error\Exception;
 
 /**
- * ### Autoload Exception
+ * ### Codepoint exception
  * @since 1.0.0
  */
-class AutoloadException extends Exception {}<?php declare(strict_types = 1);
+class CodepointException extends Exception {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @param int $codepoint <p>
+     * The codepoint.
+     * </p>
+     *
+     * @return void
+     */
+    public function __construct (
+        protected int $codepoint
+    ) {
+
+        $this->message = "Codepoint: {$this->codepoint} error.";
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions;
+
+use FireHub\Core\Components\Error\Exception;
+
+/**
+ * ### Codepoint exception
+ * @since 1.0.0
+ */
+class CodepointException extends Exception {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @param int $codepoint <p>
+     * The codepoint.
+     * </p>
+     *
+     * @return void
+     */
+    public function __construct (
+        protected int $codepoint
+    ) {
+
+        $this->message = "Character: {$this->codepoint} error.";
+
+        parent::__construct();
+
+    }
+
+}<?php declare(strict_types = 1);
 
 /**
  * This file is part of the FireHub Web Application Framework package
@@ -2901,7 +2921,7 @@ final class Arr {
      * @param int $start_index <p>
      * The first index of the returned array.
      * </p>
-     * @param int<0,2147483648> $length <p>
+     * @param int<0, 2147483648> $length <p>
      * Number of elements to insert. Must be greater than or equal to zero.
      * </p>
      *
@@ -2913,7 +2933,8 @@ final class Arr {
 
         return !($length < 0) && !($length >= MAX_32_BIT)
             ? array_fill($start_index, $length, $value)
-            : throw new OutOfRangeException()->withMessage("Array is out of range with length: {$length}.");
+            : throw new OutOfRangeException()
+                ->appendMessage("Current length is: {$length}, but it must be greater than or equal to zero, but less than 2147483648.");
 
     }
 
@@ -3004,7 +3025,7 @@ final class Arr {
 
         return !($length < 1)
             ? array_chunk($array, $length, $preserve_keys)
-            : throw new ChunkLengthTooSmallException;
+            : throw new ChunkLengthTooSmallException($length);
 
     }
 
@@ -4575,14 +4596,186 @@ final class Arr {
 
 namespace FireHub\Core\Support\LowLevel;
 
+use FireHub\Core\Support\Enums\String\Encoding;
+use FireHub\Core\Support\Exceptions\ {
+    Codepoint\CodepointToCharacterException, Char\CharacterToCodepointException
+};
+
+use function mb_chr;
+use function mb_ord;
+
+/**
+ * ### Multibyte character low-level proxy class
+ *
+ * Class provides multibyte specific character functions that help you deal with multibyte encodings.
+ * @since 1.0.0
+ */
+final class CharMB {
+
+    /**
+     * ### Return character by Unicode code point value
+     *
+     * Returns a string containing the character specified by the Unicode code point value, encoded in the specified
+     * encoding.
+     * This function complements [[CharMB#ord()]].
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Enums\String\Encoding As parameter.
+     *
+     * @param int $codepoint <p>
+     * The codepoint value.
+     * </p>
+     * @param null|\FireHub\Core\Support\Enums\String\Encoding $encoding [optional] <p>
+     * Character encoding.
+     * If it is null, the internal character encoding value will be used.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Codepoint\CodepointToCharacterException If codepoint couldn't be
+     * converted to character.
+     *
+     * @return string string A string containing the requested character.
+     *
+     * @link https://en.wikipedia.org/wiki/List_of_Unicode_characters List of codepoint values.
+     *
+     */
+    public static function chr (int $codepoint, ?Encoding $encoding = null):string {
+
+        return ($chr = mb_chr($codepoint, $encoding?->value)) !== false
+            ? $chr : throw new CodepointToCharacterException($codepoint);
+
+    }
+
+    /**
+     * ### Get Unicode code point of character
+     *
+     * Returns the Unicode code point value of the given character.
+     * This function complements [[CharMB#chr()]].
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Enums\String\Encoding As parameter.
+     *
+     * @param non-empty-string $character <p>
+     * A character.
+     * </p>
+     * @param null|\FireHub\Core\Support\Enums\String\Encoding $encoding [optional] <p>
+     * Character encoding.
+     * If it is null, the internal character encoding value will be used.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Char\CharacterToCodepointException If character couldn't be converted to
+     * codepoint, or character is empty.
+     *
+     * @return int The Unicode code point for the first character of string.
+     */
+    public static function ord (string $character, ?Encoding $encoding = null):int {
+
+        if (empty($character))
+            throw new CharacterToCodepointException($character)
+                ->withMessage('Cannot convert empty character to codepoint.');
+
+        return ($ord = mb_ord($character, $encoding?->value)) !== false
+            ? $ord : throw new CharacterToCodepointException($character)
+                ->withEncoding($encoding);
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\LowLevel;
+
+use function chr;
+use function ord;
+
+/**
+ * ### Single-byte character low-level proxy class
+ *
+ * Class allows you to manipulate characters in various ways.
+ * @since 1.0.0
+ */
+final class CharSB {
+
+    /**
+     * ### Generate a single-byte string from a number
+     *
+     * Returns a one-character string containing the character specified by interpreting $codepoint as an unsigned
+     * integer.
+     * This can be used to create a one-character string in a single-byte encoding such as ASCII, ISO-8859, or
+     * Windows 1252, by passing the position of a desired character in the encoding's mapping table.
+     * However, note that this function is not aware of any string encoding, and in particular can't be passed a
+     * Unicode code point value to generate a string in a multibyte encoding like UTF-8 or UTF-16.
+     * This function complements [[CharSB#ord()]].
+     * @since 1.0.0
+     *
+     * @link https://www.man7.org/linux/man-pages/man7/ascii.7.html List of codepoint values
+     * @param int<0, 255> $codepoint <p>
+     * An integer between 0 and 255.
+     * </p>
+     * @return string A single-character string containing the specified byte.
+     */
+    public static function chr (int $codepoint):string {
+
+        return chr($codepoint);
+
+    }
+
+    /**
+     * ### Convert the first byte of a string to a value between 0 and 255
+     *
+     * Interprets the binary value of the first byte from $character as an unsigned integer between 0 and 255.
+     * If the string is in a single-byte encoding, such as ASCII, ISO-8859, or Windows 1252, this is equivalent to
+     * returning the position of a character in the character set's mapping table.
+     * However, note that this function is not aware of any string encoding, and in particular will never identify a
+     * Unicode code point in a multibyte encoding such as UTF-8 or UTF-16. This function complements [[CharSB#chr()]].
+     * @since 1.0.0
+     *
+     * @param string $character <p>
+     * A character.
+     * </p>
+     *
+     * @return int<0, 255> An integer between 0 and 255.
+     */
+    public static function ord (string $character):int {
+
+        return ord($character);
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\LowLevel;
+
 use FireHub\Core\Support\Enums\Data\ {
     ResourceType, Type
 };
 use FireHub\Core\Support\Exceptions\Data\ {
-    ArrayToStringConversionException, CannotSerializeException, FailedToSetTypeException, ObjectConversionException,
-    SetAsResourceException, UnserializeFailedException, UnserializeFalseOrNullException, ValueTypeUnknownException
+    ArrayToStringConversionException, CannotSerializeException, FailedToSetTypeException, SetAsResourceException,
+    TypeUnknownException, UnserializeFailedException
 };
-use Exception, Stringable;
+use Exception;
 
 use function get_resource_type;
 use function gettype;
@@ -4615,7 +4808,7 @@ final class Data {
      * The variable being type-checked.
      * </p>
      *
-     * @throws \FireHub\Core\Support\Exceptions\Data\ValueTypeUnknownException If a type of value is unknown.
+     * @throws \FireHub\Core\Support\Exceptions\Data\TypeUnknownException If a type of value is unknown.
      *
      * @return \FireHub\Core\Support\Enums\Data\Type Type of data.
      */
@@ -4630,7 +4823,7 @@ final class Data {
             'object' => Type::T_OBJECT,
             'NULL' => Type::T_NULL,
             'resource', 'resource (closed)' => Type::T_RESOURCE,
-            default => throw new ValueTypeUnknownException($internal_type)
+            default => throw new TypeUnknownException()->appendMessage("Tried to get type: {$internal_type}.")
         };
 
     }
@@ -4656,12 +4849,10 @@ final class Data {
      * Type to convert variable to.
      * </p>
      *
-     * @throws \FireHub\Core\Support\Exceptions\Data\ValueTypeUnknownException If a type of value is unknown.
+     * @throws \FireHub\Core\Support\Exceptions\Data\TypeUnknownException If a type of value is unknown.
      * @throws \FireHub\Core\Support\Exceptions\Data\ArrayToStringConversionException If trying to convert an array to
      * string.
      * @throws \FireHub\Core\Support\Exceptions\Data\FailedToSetTypeException If failed to set a type for value.
-     * @throws \FireHub\Core\Support\Exceptions\Data\ObjectConversionException If trying to convert an object to string,
-     * int or float.
      * @throws \FireHub\Core\Support\Exceptions\Data\SetAsResourceException If trying to set a resource as a type.
      *
      * @return mixed Converted value.
@@ -4693,15 +4884,6 @@ final class Data {
 
                 throw new ArrayToStringConversionException;
 
-            case self::getType($value) === Type::T_OBJECT && !$value instanceof Stringable
-                && (
-                    $type === Type::T_STRING
-                    || $type === Type::T_INT
-                    || $type === Type::T_FLOAT
-                ):
-
-                throw new ObjectConversionException;
-
             case $type === Type::T_RESOURCE:
 
                 throw new SetAsResourceException;
@@ -4717,7 +4899,7 @@ final class Data {
                     Type::T_NULL => 'NULL',
                     default => 'string'
 
-                }) ?: throw new FailedToSetTypeException;
+                }) ?: throw new FailedToSetTypeException($type);
 
                 return $value;
 
@@ -4794,269 +4976,16 @@ final class Data {
      * The maximum depth of structures is permitted during unserialization and is intended to prevent stack overflows.
      * </p>
      *
-     * @throws \FireHub\Core\Support\Exceptions\Data\UnserializeFalseOrNullException If $data is already false, or
-     * $data is NULL.
-     * @throws \FireHub\Core\Support\Exceptions\Data\UnserializeFailedException If couldn't unserialize data.
+     * @throws \FireHub\Core\Support\Exceptions\Data\UnserializeFailedException If couldn't unserialize data, $data is
+     * already false, or $data is NULL.
      *
      * @return mixed The converted value is returned.
      */
     public static function unserialize (string $data, bool|array $allowed_classes = false, int $max_depth = 4096):mixed {
 
         return match ($data) {
-            'b:0;', 'N;' => throw new UnserializeFalseOrNullException,
-            default => ($unserialized_data = unserialize(
-                $data,
-                ['allowed_classes' => $allowed_classes, 'max_depth' => $max_depth])
-            ) ? $unserialized_data : throw new UnserializeFailedException
-        };
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\LowLevel;
-
-use FireHub\Core\Support\Enums\Data\ {
-    ResourceType, Type
-};
-use FireHub\Core\Support\Exceptions\Data\ {
-    ArrayToStringConversionException, CannotSerializeException, FailedToSetTypeException, ObjectConversionException,
-    SetAsResourceException, UnserializeFailedException, UnserializeFalseOrNullException, ValueTypeUnknownException
-};
-use Exception, Stringable;
-
-use function get_resource_type;
-use function gettype;
-use function serialize;
-use function settype;
-use function unserialize;
-
-/**
- * ### Data low-level proxy class
- *
- * Class contains variable handling methods for data manipulation.
- * @since 1.0.0
- */
-final class Data {
-
-    /**
-     * ### Gets data type
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_BOOL As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_INT As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_FLOAT As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_STRING As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_ARRAY As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_OBJECT As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_NULL As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_RESOURCE As data type.
-     *
-     * @param mixed $value <p>
-     * The variable being type-checked.
-     * </p>
-     *
-     * @throws \FireHub\Core\Support\Exceptions\Data\ValueTypeUnknownException If a type of value is unknown.
-     *
-     * @return \FireHub\Core\Support\Enums\Data\Type Type of data.
-     */
-    public static function getType (mixed $value):Type {
-
-        return match ($internal_type = gettype($value)) {
-            'boolean' => Type::T_BOOL,
-            'integer' => Type::T_INT,
-            'double' => Type::T_FLOAT,
-            'string' => Type::T_STRING,
-            'array' => Type::T_ARRAY,
-            'object' => Type::T_OBJECT,
-            'NULL' => Type::T_NULL,
-            'resource', 'resource (closed)' => Type::T_RESOURCE,
-            default => throw new ValueTypeUnknownException($internal_type)
-        };
-
-    }
-
-    /**
-     * ### Sets data type
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\LowLevel\Data::getType() To get $value type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_BOOL As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_STRING As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_INT As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_FLOAT As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_ARRAY As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_OBJECT As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_NULL As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_RESOURCE As data type.
-     *
-     * @param mixed $value <p>
-     * The variable being converted to type.
-     * </p>
-     * @param \FireHub\Core\Support\Enums\Data\Type $type <p>
-     * Type to convert variable to.
-     * </p>
-     *
-     * @throws \FireHub\Core\Support\Exceptions\Data\ValueTypeUnknownException If a type of value is unknown.
-     * @throws \FireHub\Core\Support\Exceptions\Data\ArrayToStringConversionException If trying to convert an array to
-     * string.
-     * @throws \FireHub\Core\Support\Exceptions\Data\FailedToSetTypeException If failed to set a type for value.
-     * @throws \FireHub\Core\Support\Exceptions\Data\ObjectConversionException If trying to convert an object to string,
-     * int or float.
-     * @throws \FireHub\Core\Support\Exceptions\Data\SetAsResourceException If trying to set a resource as a type.
-     *
-     * @return mixed Converted value.
-     * @phpstan-return (
-     *  $type is Type::T_ARRAY
-     *  ? array<array-key, mixed>
-     *  : ($type is Type::T_STRING
-     *      ? string
-     *      : ($type is Type::T_INT
-     *          ? int
-     *          : ($type is Type::T_FLOAT
-     *              ? float
-     *              : ($type is Type::T_OBJECT
-     *                  ? object
-     *                  : ($type is Type::T_BOOL
-     *                      ? bool
-     *                      : ($type is Type::T_NULL
-     *                          ? null
-     *                          : ($type is Type::T_RESOURCE
-     *                              ? false
-     *                              : mixed)))))))
-     * )
-     */
-    public static function setType (mixed $value, Type $type):mixed {
-
-        switch (true) {
-
-            case self::getType($value) === Type::T_ARRAY && $type === Type::T_STRING:
-
-                throw new ArrayToStringConversionException;
-
-            case self::getType($value) === Type::T_OBJECT && !$value instanceof Stringable
-                && (
-                    $type === Type::T_STRING
-                    || $type === Type::T_INT
-                    || $type === Type::T_FLOAT
-                ):
-
-                throw new ObjectConversionException;
-
-            case $type === Type::T_RESOURCE:
-
-                throw new SetAsResourceException;
-
-            default:
-
-                settype($value, match ($type) {
-                    Type::T_BOOL => 'boolean',
-                    Type::T_INT => 'integer',
-                    Type::T_FLOAT => 'double',
-                    Type::T_ARRAY => 'array',
-                    Type::T_OBJECT => 'object',
-                    Type::T_NULL => 'NULL',
-                    default => 'string'
-
-                }) ?: throw new FailedToSetTypeException;
-
-                return $value;
-
-        }
-
-    }
-
-    /**
-     * ### Gets the resource type
-     * @since 1.0.0
-     *
-     * @param resource $resource <p>
-     * The evaluated resource handle.
-     * </p>
-     *
-     * @return \FireHub\Core\Support\Enums\Data\ResourceType Resource type or null if is not a resource.
-     */
-    public static function getResourceType (mixed $resource):ResourceType {
-
-        return ResourceType::from(get_resource_type($resource));
-
-    }
-
-    /**
-     * ### Generates storable representation of data
-     *
-     * Generates a storable representation of a value.
-     * This is useful for storing or passing PHP values around without losing their type and structure.
-     * To make the serialized string into a PHP value again, use [[Data#unserialize()]].
-     * @since 1.0.0
-     *
-     * @param scalar|array<array-key, mixed>|object|null $value <p>
-     * The value is to be serialized.
-     * </p>
-     *
-     * @throws \FireHub\Core\Support\Exceptions\Data\CannotSerializeException If try to serialize an anonymous class,
-     * function, or resource.
-     *
-     * @return string String containing a byte-stream representation of a value that can be stored anywhere.
-     *
-     * @warning When serialize() serializes objects, the leading backslash is not included in the class name of
-     * namespaced classes for maximum compatibility.
-     * @note This is a binary string that may include null bytes and needs to be stored and handled as such. For
-     * example, serialize() output should generally be stored in a BLOB field in a database, rather than a CHAR or
-     * TEXT field.
-     */
-    public static function serialize (string|int|float|bool|array|object|null $value):string {
-
-        try {
-
-            return serialize($value);
-
-        } catch (Exception) {
-
-            throw new CannotSerializeException()
-                ->withMessage("Anonymous classes, functions, and resources can't be serialized.");
-
-        }
-
-    }
-
-    /**
-     * ### Creates a PHP value from a stored representation
-     * @since 1.0.0
-     *
-     * @param non-empty-string $data <p>
-     * The serialized string.
-     * </p>
-     * @param bool|array<class-string> $allowed_classes [optional] <p>
-     * Either an array of class names which should be accepted, false to accept no classes, or true to accept all
-     * classes.
-     * </p>
-     * @param int $max_depth [optional] <p>
-     * The maximum depth of structures is permitted during unserialization and is intended to prevent stack overflows.
-     * </p>
-     *
-     * @throws \FireHub\Core\Support\Exceptions\Data\UnserializeFalseOrNullException If $data is already false, or
-     * $data is NULL.
-     * @throws \FireHub\Core\Support\Exceptions\Data\UnserializeFailedException If couldn't unserialize data.
-     *
-     * @return mixed The converted value is returned.
-     */
-    public static function unserialize (string $data, bool|array $allowed_classes = false, int $max_depth = 4096):mixed {
-
-        return match ($data) {
-            'b:0;', 'N;' => throw new UnserializeFalseOrNullException,
+            'b:0;', 'N;' => throw new UnserializeFailedException()
+                ->withMessage('Cannot unserialize because data is already false or data is NULL'),
             default => ($unserialized_data = unserialize(
                 $data,
                 ['allowed_classes' => $allowed_classes, 'max_depth' => $max_depth])
@@ -5329,50 +5258,6 @@ final class DataIs {
 
 namespace FireHub\Core\Support\LowLevel;
 
-use function acos;
-use function acosh;
-use function asin;
-use function asinh;
-use function atan;
-use function atan2;
-use function atanh;
-use function cos;
-use function cosh;
-use function fdiv;
-use function fmod;
-use function is_finite;
-use function is_infinite;
-use function is_nan;
-use function sin;
-use function sinh;
-use function tan;
-use function tanh;
-
-/**
- * ### Float number low-level proxy class
- *
- * Floating point numbers (also known as "floats", "doubles", or "real numbers") can be specified using any of the
- * following syntax: 1.234, 1.2e3, 7E-10, 1_234.567.
- * @since 1.0.0
- */
-final class NumFloat {
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace FireHub\Core\Support\LowLevel;
-
 use FireHub\Core\Support\Exceptions\Autoload\ {
     ClassNotFoundException, RegisterAutoloaderException, UnregisterAutoloaderException
 };
@@ -5420,7 +5305,8 @@ final class SplAutoload {
 
         } catch (LogicException) {
 
-            throw new ClassNotFoundException($class);
+            throw new ClassNotFoundException($class)
+                ->appendMessageIfExists($file_extensions, "Tried with file extension: {$file_extensions}.");
 
         }
 
@@ -5543,175 +5429,22 @@ final class SplAutoload {
  * @copyright 2025 FireHub Web Application Framework
  * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
  *
- * @package Core\Support
+ * @package Core\Testing
  *
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\LowLevel;
+namespace FireHub\Core\Testing;
 
-use FireHub\Core\Support\Exceptions\Autoload\ {
-    ClassNotFoundException, RegisterAutoloaderException, UnregisterAutoloaderException
-};
-use LogicException;
-
-use function spl_autoload;
-use function spl_autoload_extensions;
-use function spl_autoload_register;
-use function spl_autoload_unregister;
+use PHPUnit\Framework\TestCase;
 
 /**
- * ### SPL Autoload low-level proxy class
+ * ### Base test class
  * @since 1.0.0
  *
  * @internal
  */
-final class SplAutoload {
-
-    /**
-     * ### Default autoload implementation
-     *
-     * This function is intended to be used as a default implementation for [[SplAutoload#register()]].
-     * If nothing else is specified and the register method is called without any parameters, then this function will
-     * be used for any later call to autoload.
-     * @since 1.0.0
-     *
-     * @param class-string $class <p>
-     * The name of the class (and namespace) being instantiated.
-     * </p>
-     * @param null|string $file_extensions [optional] <p>
-     * By default, it checks all include paths to contain filenames built up by the lowercase class name appended by the
-     * filename extensions .inc and .php.
-     * </p>
-     *
-     * @throws \FireHub\Core\Support\Exceptions\Autoload\ClassNotFoundException When the class is not found and there
-     * are no other autoloaders registered.
-     *
-     * @return void
-     */
-    public static function default (string $class, ?string $file_extensions = null):void {
-
-        try {
-
-            spl_autoload($class, $file_extensions);
-
-        } catch (LogicException) {
-
-            throw new ClassNotFoundException($class);
-
-        }
-
-    }
-
-    /**
-     * ### Register and return file extensions for default autoload
-     *
-     * This function can modify and check the file extensions that the built-in autoload fallback function
-     * [[SplAutoload#default()]] will be using.
-     * @since 1.0.0
-     *
-     * @param null|non-empty-string $file_extensions [optional] <p>
-     * If null, it simply returns the current list of extensions, each separated by comma.
-     * To modify the list of file extensions, invoke the functions with the new list of file extensions to use
-     * in a single string with each extension separated by comma.
-     * </p>
-     *
-     * @return string A comma-delimited the list of default file extensions for default method.
-     *
-     * @note There shouldn't be a space between the defined file extensions.
-     */
-    public static function extensions (?string $file_extensions = null):string {
-
-        return spl_autoload_extensions($file_extensions);
-
-    }
-
-    /**
-     * ### Register a callback function as an autoloader
-     *
-     * Register a function with the spl provided autoloaded queue.
-     * If the queue is not yet activated, it will be activated.
-     * If there must be multiple autoload functions, this method allows for this.
-     * It effectively creates a queue of autoload functions and runs through each of them in the order they are defined.
-     * @since 1.0.0
-     *
-     * @param null|callable(string):void $callback [optional] <p>
-     * The autoload function being registered. If no callback is provided, then the default autoloader will be used.
-     * </p>
-     * @param bool $prepend [optional] <p>
-     * Whether to prepend the autoloader on the stack instead of appending it.
-     * </p>
-     *
-     * @throws \FireHub\Core\Support\Exceptions\Autoload\RegisterAutoloaderException If failed to register a callback
-     * function as an autoloader.
-     *
-     * @return true True if autoloader was registered.
-     */
-    public static function register (?callable $callback = null, bool $prepend = false):true {
-
-        return spl_autoload_register($callback, true, $prepend)
-            ?: throw new RegisterAutoloaderException;
-
-    }
-
-    /**
-     * ### Unregister autoload implementation
-     *
-     * Removes a function from the autoloaded queue. If the queue is activated and empty after removing the given
-     * function, then it will be deactivated.
-     * When this function results in the queue being deactivated, any autoload function that previously existed will
-     * not be reactivated.
-     * @since 1.0.0
-     *
-     * @param callable(string):void $callback <p>
-     * The autoload function that will be unregistered.
-     * </p>
-     *
-     * @throws \FireHub\Core\Support\Exceptions\Autoload\UnregisterAutoloaderException If failed to unregister autoloader
-     * implementation.
-     *
-     * @return true True if autoloader was unregistered.
-     */
-    public static function unregister (callable $callback):true {
-
-        return spl_autoload_unregister($callback)
-            ?: throw new UnregisterAutoloaderException;
-
-    }
-
-    /**
-     * ### Get all registered autoload functions
-     * @since 1.0.0
-     *
-     * @return array<array-key, mixed> An array of all registered autoload functions.
-     * If no function is registered, or autoloaded queue is not activated, then the return value will be an empty array.
-     */
-    public static function functions ():array {
-
-        return spl_autoload_functions();
-
-    }
-
-    /**
-     * ### Try all registered autoload functions to load the requested class
-     * @since 1.0.0
-     *
-     * @param class-string $class <p>
-     * Fully qualified class name that is being called.
-     * </p>
-     *
-     * @return void
-     *
-     * @note This method can be used to manually search for a class or interface using the registered autoloader
-     * functions.
-     */
-    public static function load (string $class):void {
-
-        spl_autoload_call($class);
-
-    }
-
-}<?php declare(strict_types = 1);
+abstract class Base extends TestCase {}<?php declare(strict_types = 1);
 
 /**
  * This file is part of the FireHub Web Application Framework package
@@ -5740,115 +5473,6 @@ use function in_array;
  * @since 1.0.0
  */
 final class BooleanArgumentFlag extends ParentBooleanArgumentFlag {
-
-    /**
-     * ### Applies the rule to the given node.
-     *
-     * If the node's namespace matches the 'exclude_namespaces' property,
-     * the rule is not applied. Otherwise, the parent apply method is invoked.
-     * @since 1.0.0
-     *
-     * @param \PHPMD\AbstractNode $node <p>
-     * The node to which the rule is applied.
-     * </p>
-     *
-     * @return void
-     */
-    #[Override]
-    public function apply (AbstractNode $node):void {
-
-        if (in_array(
-            $node->getNamespaceName(),
-            explode(',', $this->getStringProperty('exclude_namespaces')),
-            true
-        )) return;
-
-        parent::apply($node);
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Support
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace src\testing\phpmd;
-
-use PHPMD\AbstractNode;
-use PHPMD\Rule\CleanCode\BooleanArgumentFlag as ParentBooleanArgumentFlag;
-
-/**
- * ### Check for a boolean flag in the method/ function signature
- *
- * Boolean flags are signs for single responsibility principle violations.
- * @since 1.0.0
- */
-final class BooleanArgumentFlag extends ParentBooleanArgumentFlag {
-
-    /**
-     * ### Applies the rule to the given node.
-     *
-     * If the node's namespace matches the 'exclude_namespaces' property,
-     * the rule is not applied. Otherwise, the parent apply method is invoked.
-     * @since 1.0.0
-     *
-     * @param \PHPMD\AbstractNode $node <p>
-     * The node to which the rule is applied.
-     * </p>
-     *
-     * @return void
-     */
-    #[\Override]
-    public function apply (AbstractNode $node):void {
-
-        if (\in_array(
-            $node->getNamespaceName(),
-            explode(',', $this->getStringProperty('exclude_namespaces')),
-            true
-        )) return;
-
-        parent::apply($node);
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Testing
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace src\testing\phpmd;
-
-use PHPMD\AbstractNode;
-use PHPMD\Rule\Design\LongClass as ParentLongClass;
-use Override;
-
-use function in_array;
-
-/**
- * ### Check for a boolean flag in the method/ function signature
- *
- * Boolean flags are signs for single responsibility principle violations.
- * @since 1.0.0
- */
-final class ExcessiveClassLength extends ParentLongClass {
 
     /**
      * ### Applies the rule to the given node.
@@ -5900,62 +5524,6 @@ use function in_array;
 
 /**
  * ### Check for a long class size
- *
- * Long Class files are indications that the class may be trying to do too much.
- * @since 1.0.0
- */
-final class LongClass extends ParentLongClass {
-
-    /**
-     * ### Applies the rule to the given node.
-     *
-     * If the node's namespace matches the 'exclude_namespaces' property,
-     * the rule is not applied. Otherwise, the parent apply method is invoked.
-     * @since 1.0.0
-     *
-     * @param \PHPMD\AbstractNode $node <p>
-     * The node to which the rule is applied.
-     * </p>
-     *
-     * @return void
-     */
-    #[Override]
-    public function apply (AbstractNode $node):void {
-
-        if (in_array(
-            $node->getNamespaceName(),
-            explode(',', $this->getStringProperty('exclude_namespaces')),
-            true
-        )) return;
-
-        parent::apply($node);
-
-    }
-
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Testing
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace src\testing\phpmd;
-
-use PHPMD\AbstractNode;
-use PHPMD\Rule\Design\LongClass as ParentLongClass;
-use Override;
-
-use function in_array;
-
-/**
- * ### Check for a boolean flag in the method/ function signature
  *
  * Long Class files are indications that the class may be trying to do too much.
  * @since 1.0.0
@@ -6096,41 +5664,19 @@ final class TooManyPublicMethods extends ParentTooManyPublicMethods {
 
     }
 
-}<?php declare(strict_types = 1);
-
-/**
- * This file is part of the FireHub Web Application Framework package
- *
- * @author Danijel Galiƒá <danijel.galic@outlook.com>
- * @copyright 2025 FireHub Web Application Framework
- * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
- *
- * @package Core\Testing
- *
- * @version GIT: $Id$ Blob checksum.
- */
-
-namespace src\testing\phpmd;
-
-use PHPMD\AbstractNode;
-use PHPMD\Rule\Design\TooManyPublicMethods as ParentTooManyPublicMethods;
-use Override;
-
-use function in_array;
-
-/**
- * ### This rule class will detect all classes with too many public methods
- * @since 1.0.0
- */
-final class TooManyPublicMethods extends ParentTooManyPublicMethods {
-
-
-
-}Bd‹?˝ÿ†q≈£Ø˜c*º©J.
-ñéËíC…AµA—4wpÿVXCÿ[}fVîóBç; ’pŒYaÈl‰£ˇˆ^˛¥ ˜æ D=^(ˆ¯ﬂé»5ÒÜë&q$√2ÙÍ@ßÌ]˙|Qú“kÁ£”˛ï∫ˆuËÜ˜4¯¨Ç&ûH∫$a§ÑÕq'å@mïÚ‹Zpä∑ºv∑Ò©üI¬ít#¿∏zﬂ’!c*√!á~?mª÷îllf“ê;ñ¿
-±©ıÃ1w>È±Sqõ•àp‹–˙ÎuCÈ∑E∏/rÎ#©J5tÌ#~¬¢È{Rà¯Ôßh®öÊ¶Î®([  ≠Qbw-‡Sœƒ_ìï]¯√Ñ£àù
-Osôwvﬁ[!òr≠Fuí_πæÜ¶†ÈJÂ‹∂∆∑Sü‹ÚÀP.øÈ)u?ØœJS[⁄;’.
-8≥C¿öŸvÕüQò
-•:˙“°+fà JcGrØH§fàN(Ä˙ﬂ_Á?ˇû0”à|o±í
-‹„≠i|Ûnrˆ7‹@ÚQ·3àtDÓÎ‚}VfiX/å∫˛5&o£Œ} 4ó˝ê ∆©éıÓéø∏zﬁãEàéÂçiﬂ@lÍª*ömhËÙ„p0˝Áà|>-p,”·X–Á@5ß ^svπUo>
-æüãÌÅœUHî˙Ø*¶'¥ÒµZïÓ      GBMB
+}:å6U∞€ßBÔÿù-P∂ÜŸ,´÷/ú!$hoÔo
+©ﬁ«WV¨ZOM8.#bì»PÅL§dÃ±âÊ2^~`£∏ [Ûá◊<ﬁËtêL(‚˘ì
+eèR#ZZ/Í
+iá›Æ[ß-»ÇU%±+–=_c@æHê
+ÿ∞ï·ﬂ∆·Ÿ¡]}Z«dƒÈ‰}√ä=_Ä™iy£‚ﬂJ0Äç∂VŒ‡ à¿?Ñd˘Kqbï∞}Í;\·ÑÛâ›£æ·-©q6
+;'l#ùºç%Å:∑Døº≥ÿ€ŒÓÁ“Íªs≈sﬂ›‘∆‡
+™e-ì~º
+wË£ë˘¡ÕuªãæΩ—®.ƒc‘≥ê‚¿…1…ﬁ {√s0Ü˛ıÒtk
+nNÚ˘q¢V¥ÔÑq)≈≤+»to≥çãõÙjÒò‡Õ≈ª®#ºkÌ ™N®{ø§*n≠x
+Ã^ã≥5 ±ÌY‹7ÃK5
+„¶ØÚm
+Èûß
+@ª´1k›π∆≈◊1XÃ∫æ™«r≤ΩgË\çä
+*Ìz)¶D¬>gàxDﬂ”X∆å‹ ÅYŒml•Ìm85πõÍû´÷%i·î7 º5=√ÄØUãw]i)aP<Â<≈{°‹Yrú¶Ú~øﬁoƒN“=q(á1ü¡'@î¶9EòKÿ6ÈîΩ
+›Âƒƒ^ sÑ]zù
+øTWË-[3QØÑ˙E;µM˙¡      GBMB
