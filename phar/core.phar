@@ -309,16 +309,16 @@ final class Extract_Phar {
 
 \Extract_Phar::go();
 __HALT_COMPILER(); ?>
-_
-  -           7   a:2:{s:4:"name";s:4:"core";s:7:"version";s:6:"v0.1.3";}&   components/error/firehub.Exception.phpé	  Ù>@gé	  #-»π∂         public/console.php›  Ù>@g›  ¿˙0ø∂         public/index.php‹  Ù>@g‹  \⁄}5∂      $   support/constants/firehub.Number.php8
-  Ù>@g8
-  q6ü∂      '   support/enums/data/firehub.Category.phpp  Ù>@gp  E	å∂      +   support/enums/data/firehub.ResourceType.php>  Ù>@g>  ùJ¨î∂      #   support/enums/data/firehub.Type.php´	  Ù>@g´	  t∂         support/enums/firehub.Order.php€  Ù>@g€  ˘øzŒ∂         support/enums/firehub.Sort.php˙  Ù>@g˙  ìπ∞∂      ,   support/enums/string/firehub.CaseFolding.php/  Ù>@g/  ∆NΩ⁄∂      )   support/enums/string/firehub.Encoding.phpÄ  Ù>@gÄ  éR7ø∂      ?   support/exceptions/arr/firehub.ChunkLengthTooSmallException.phpπ  Ù>@gπ  õhı∂      @   support/exceptions/arr/firehub.FailedSortMultiArrayException.phpB  Ù>@gB  l¢£q∂      J   support/exceptions/arr/firehub.KeysAndValuesSameNumberOfElemsException.php{  Ù>@g{  ÷cï–∂      6   support/exceptions/arr/firehub.OutOfRangeException.php!  Ù>@g!  |\◊r∂      <   support/exceptions/arr/firehub.SizeInconsistentException.php7  Ù>@g7  ]p©\∂      =   support/exceptions/arr/firehub.WalkArgumentCountException.phpQ  Ù>@gQ  2
-7∂      >   support/exceptions/autoload/firehub.ClassNotFoundException.php  Ù>@g  ÓäÜ3∂      C   support/exceptions/autoload/firehub.RegisterAutoloaderException.phpg  Ù>@gg  òª◊Ë∂      E   support/exceptions/autoload/firehub.UnregisterAutoloaderException.phpm  Ù>@gm  E∫iÏ∂      A   support/exceptions/char/firehub.CharacterToCodepointException.php∆  Ù>@g∆  tmï
-∂      F   support/exceptions/codepoint/firehub.CodepointToCharacterException.phpÈ  Ù>@gÈ  0«ä<∂      D   support/exceptions/data/firehub.ArrayToStringConversionException.phpJ  Ù>@gJ  Wﬁ)4∂      <   support/exceptions/data/firehub.CannotSerializeException.php/  Ù>@g/  £˙ƒª∂      <   support/exceptions/data/firehub.FailedToSetTypeException.php  Ù>@g  ô˚ó°∂      :   support/exceptions/data/firehub.SetAsResourceException.php?  Ù>@g?  Îÿ…√∂      8   support/exceptions/data/firehub.TypeUnknownException.php  Ù>@g  GgS:∂      >   support/exceptions/data/firehub.UnserializeFailedException.php0  Ù>@g0  ÏCXg∂      +   support/exceptions/firehub.ArrException.php+  Ù>@g+  r¶∂      0   support/exceptions/firehub.AutoloadException.php3  Ù>@g3  π”ˇ∂      ,   support/exceptions/firehub.CharException.php≠  Ù>@g≠  ®$ﬁ2∂      1   support/exceptions/firehub.CodepointException.phpå  Ù>@gå  ¸ÿ S∂      2   support/exceptions/firehub.CodepointException.php~å  Ù>@gå  Rúìˇ∂      ,   support/exceptions/firehub.DataException.php+  Ù>@g+  º°~>∂          support/lowlevel/firehub.Arr.phpÇ Ù>@gÇ ÑÂÂt∂      #   support/lowlevel/firehub.CharMB.php
-  Ù>@g
+∫  2           7   a:2:{s:4:"name";s:4:"core";s:7:"version";s:6:"v0.1.3";}&   components/error/firehub.Exception.phps	  !e@gs	  É}c!∂         public/console.php›  !e@g›  ¿˙0ø∂         public/index.php‹  !e@g‹  \⁄}5∂      $   support/constants/firehub.Number.php8
+  !e@g8
+  q6ü∂      '   support/enums/data/firehub.Category.phpp  !e@gp  E	å∂      +   support/enums/data/firehub.ResourceType.php>  !e@g>  ùJ¨î∂      #   support/enums/data/firehub.Type.php´	  !e@g´	  t∂         support/enums/firehub.Order.php€  !e@g€  ˘øzŒ∂         support/enums/firehub.Sort.php˙  !e@g˙  ìπ∞∂      ,   support/enums/string/firehub.CaseFolding.php/  !e@g/  ∆NΩ⁄∂      )   support/enums/string/firehub.Encoding.phpÄ  !e@gÄ  éR7ø∂      ?   support/exceptions/arr/firehub.ChunkLengthTooSmallException.phpπ  !e@gπ  õhı∂      @   support/exceptions/arr/firehub.FailedSortMultiArrayException.phpB  !e@gB  l¢£q∂      J   support/exceptions/arr/firehub.KeysAndValuesSameNumberOfElemsException.php{  !e@g{  ÷cï–∂      6   support/exceptions/arr/firehub.OutOfRangeException.php!  !e@g!  |\◊r∂      <   support/exceptions/arr/firehub.SizeInconsistentException.php7  !e@g7  ]p©\∂      =   support/exceptions/arr/firehub.WalkArgumentCountException.phpQ  !e@gQ  2
+7∂      >   support/exceptions/autoload/firehub.ClassNotFoundException.php  !e@g  ÓäÜ3∂      C   support/exceptions/autoload/firehub.RegisterAutoloaderException.phpg  !e@gg  òª◊Ë∂      E   support/exceptions/autoload/firehub.UnregisterAutoloaderException.phpm  !e@gm  E∫iÏ∂      A   support/exceptions/char/firehub.CharacterToCodepointException.php∆  !e@g∆  tmï
+∂      ?   support/exceptions/cls/firehub.FailedToCreateAliasException.phpI  !e@gI  Øç∞O∂      4   support/exceptions/cls/firehub.NotFoundException.phpô  !e@gô  5å∂      F   support/exceptions/codepoint/firehub.CodepointToCharacterException.phpÈ  !e@gÈ  0«ä<∂      D   support/exceptions/data/firehub.ArrayToStringConversionException.phpJ  !e@gJ  Wﬁ)4∂      <   support/exceptions/data/firehub.CannotSerializeException.php/  !e@g/  £˙ƒª∂      <   support/exceptions/data/firehub.FailedToSetTypeException.php  !e@g  ô˚ó°∂      :   support/exceptions/data/firehub.SetAsResourceException.php?  !e@g?  Îÿ…√∂      8   support/exceptions/data/firehub.TypeUnknownException.php  !e@g  GgS:∂      >   support/exceptions/data/firehub.UnserializeFailedException.php0  !e@g0  ÏCXg∂      +   support/exceptions/firehub.ArrException.php+  !e@g+  r¶∂      0   support/exceptions/firehub.AutoloadException.php3  !e@g3  π”ˇ∂      ,   support/exceptions/firehub.CharException.php≠  !e@g≠  ®$ﬁ2∂      +   support/exceptions/firehub.ClsException.phpz  !e@gz  
+ÄÈ∂      1   support/exceptions/firehub.CodepointException.phpå  !e@gå  ¸ÿ S∂      ,   support/exceptions/firehub.DataException.php+  !e@g+  º°~>∂          support/lowlevel/firehub.Arr.phpÇ !e@gÇ ÑÂÂt∂      #   support/lowlevel/firehub.CharMB.php
+  !e@g
   â∫ŒÜ∂      #   support/lowlevel/firehub.CharSB.php
-  Ù>@g
-  ÆG`h∂      !   support/lowlevel/firehub.Data.phpê"  Ù>@gê"  Øû∂Á∂      #   support/lowlevel/firehub.DataIs.php&  Ù>@g&  g}ô∂      (   support/lowlevel/firehub.SplAutoload.php«  Ù>@g«  Æ√xë∂         testing/firehub.Base.php#  Ù>@g#  æŸ˛∂      %   testing/phpmd/BooleanArgumentFlag.php•  Ù>@g•  X$π∂         testing/phpmd/LongClass.phpa  Ù>@ga  ™¯ ¢∂          testing/phpmd/TooManyMethods.phpC  Ù>@gC  ≥xﬂ∂      &   testing/phpmd/TooManyPublicMethods.phpb  Ù>@gb  €∂„∂      <?php declare(strict_types = 1);
+  !e@g
+  ÆG`h∂          support/lowlevel/firehub.Cls.php…  !e@g…  ΩŒA•∂      #   support/lowlevel/firehub.ClsObj.phpz'  !e@gz'  mˇ˛∂      !   support/lowlevel/firehub.Data.phpê"  !e@gê"  Øû∂Á∂      #   support/lowlevel/firehub.DataIs.php&  !e@g&  g}ô∂          support/lowlevel/firehub.Obj.php√  !e@g√  äI˚á∂      (   support/lowlevel/firehub.SplAutoload.php«  !e@g«  Æ√xë∂         testing/firehub.Base.php#  !e@g#  æŸ˛∂      %   testing/phpmd/BooleanArgumentFlag.php•  !e@g•  X$π∂         testing/phpmd/LongClass.phpa  !e@ga  ™¯ ¢∂          testing/phpmd/TooManyMethods.phpC  !e@gC  ≥xﬂ∂      &   testing/phpmd/TooManyPublicMethods.phpb  !e@gb  €∂„∂      <?php declare(strict_types = 1);
 
 /**
  * This file is part of the FireHub Web Application Framework package
@@ -335,8 +335,6 @@ _
 namespace FireHub\Core\Components\Error;
 
 use Exception as InternalException;
-
-use function is_callable;
 
 /**
  * ### Main Exception
@@ -2063,6 +2061,98 @@ class CharacterToCodepointException extends CharException {
  * @version GIT: $Id$ Blob checksum.
  */
 
+namespace FireHub\Core\Support\Exceptions\Cls;
+
+use FireHub\Core\Support\Exceptions\ClsException;
+
+/**
+ * ### Failed to create alias exception
+ * @since 1.0.0
+ */
+class FailedToCreateAliasException extends ClsException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @param class-string $class <p>
+     * Class FQN.
+     * </p>
+     * @param class-string $alias <p>
+     * The alias name for the class.
+     * </p>
+     *
+     * @return void
+     */
+    public function __construct (
+        protected string $class,
+        protected string $alias
+    ) {
+
+        parent::__construct($class);
+
+        $this->message = "Failed to create alias: {$this->alias} for class {$this->class}.";
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\Exceptions\Cls;
+
+use FireHub\Core\Support\Exceptions\ClsException;
+
+/**
+ * ### Not found exception
+ * @since 1.0.0
+ */
+class NotFoundException extends ClsException {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @param class-string $class <p>
+     * Class FQN.
+     * </p>
+     *
+     * @return void
+     */
+    public function __construct (
+        protected string $class
+    ) {
+
+        parent::__construct($class);
+
+        $this->message = "Class: {$this->class} not found.";
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
 namespace FireHub\Core\Support\Exceptions\Codepoint;
 
 use FireHub\Core\Support\Exceptions\CodepointException;
@@ -2452,26 +2542,26 @@ namespace FireHub\Core\Support\Exceptions;
 use FireHub\Core\Components\Error\Exception;
 
 /**
- * ### Codepoint exception
+ * ### Class exception
  * @since 1.0.0
  */
-class CodepointException extends Exception {
+class ClsException extends Exception {
 
     /**
      * ### Constructor
      * @since 1.0.0
      *
-     * @param int $codepoint <p>
-     * The codepoint.
+     * @param class-string $class <p>
+     * Class FQN.
      * </p>
      *
      * @return void
      */
     public function __construct (
-        protected int $codepoint
+        protected string $class
     ) {
 
-        $this->message = "Codepoint: {$this->codepoint} error.";
+        $this->message = "Class: {$this->class} error.";
 
         parent::__construct();
 
@@ -2515,7 +2605,7 @@ class CodepointException extends Exception {
         protected int $codepoint
     ) {
 
-        $this->message = "Character: {$this->codepoint} error.";
+        $this->message = "Codepoint: {$this->codepoint} error.";
 
         parent::__construct();
 
@@ -4768,6 +4858,472 @@ final class CharSB {
 
 namespace FireHub\Core\Support\LowLevel;
 
+use FireHub\Core\Support\Exceptions\Cls\ {
+    FailedToCreateAliasException, NotFoundException
+};
+use TypeError;
+
+use function class_alias;
+use function class_exists;
+use function enum_exists;
+use function get_class_vars;
+use function interface_exists;
+use function trait_exists;
+
+/**
+ * ### Class low-level proxy class
+ *
+ * Class allows you to collect information about classes.
+ * @since 1.0.0
+ */
+final class Cls extends ClsObj {
+
+    /**
+     * ### Checks if a class name exists
+     *
+     * This method checks whether the given class has been defined.
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Cls::isEnum() To check if $name is enum.
+     *
+     * @param string $name <p>
+     * The class name.
+     * </p>
+     * @param bool $autoload [optional] <p>
+     * Whether to autoload if not already loaded.
+     * </p>
+     *
+     * @return bool True if class exist, false otherwise.
+     */
+    public static function isClass (string $name, bool $autoload = true):bool {
+
+        return class_exists($name, $autoload) && !self::isEnum($name, $autoload);
+
+    }
+
+    /**
+     * ### Checks if interface name exists
+     *
+     * Checks if the given interface has been defined.
+     * @since 1.0.0
+     *
+     * @param string $name <p>
+     * The interface name.
+     * </p>
+     * @param bool $autoload [optional] <p>
+     * Whether to autoload if not already loaded.
+     * </p>
+     *
+     * @return bool True if the interface exists, false otherwise.
+     */
+    public static function isInterface (string $name, bool $autoload = true):bool {
+
+        return interface_exists($name, $autoload);
+
+    }
+
+    /**
+     * ### Checks if enum name exists
+     *
+     * This method checks whether the given enum has been defined.
+     * @since 1.0.0
+     *
+     * @param string $name <p>
+     * The enum name.
+     * </p>
+     * @param bool $autoload [optional] <p>
+     * Whether to autoload if not already loaded.
+     * </p>
+     *
+     * @return bool True if enum exists, false otherwise.
+     */
+    public static function isEnum (string $name, bool $autoload = true):bool {
+
+        return enum_exists($name, $autoload);
+
+    }
+
+    /**
+     * ### Checks if trait name exist
+     * @since 1.0.0
+     *
+     * @param string $name <p>
+     * The trait name.
+     * </p>
+     * @param bool $autoload [optional] <p>
+     * Whether to autoload if not already loaded.
+     * </p>
+     *
+     * @return bool True if the trait exists, false otherwise.
+     */
+    public static function isTrait (string $name, bool $autoload = true):bool {
+
+        return trait_exists($name, $autoload);
+
+    }
+
+    /**
+     * ### Creates an alias for a class
+     *
+     * Creates an alias named alias based on the user-defined class. The aliased class is exactly the same as the
+     * original class.
+     * @since 1.0.0
+     *
+     * @param class-string $class <p>
+     * The original class.
+     * </p>
+     * @param class-string $alias <p>
+     * The alias name for the class.
+     * </p>
+     * @param bool $autoload [optional] <p>
+     * Whether to autoload if the original class is not found.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Cls\FailedToCreateAliasException If failed to create alias for
+     * the class.
+     *
+     * @return true True on success.
+     *
+     * @note Class names are case-insensitive in PHP, and this is reflected in this function. Aliases created by
+     * [[Cls#alias()]] are declared in lowercase.
+     * This means that for a class MyClass, the [[Cls#alias('MyClass', 'My_Class_Alias')]] call will declare a new
+     * class alias named my_class_alias.
+     */
+    public static function alias (string $class, string $alias, bool $autoload = true):true {
+
+        return class_alias($class, $alias, $autoload)
+            ?: throw new FailedToCreateAliasException($class, $alias);
+
+    }
+
+    /**
+     * ### Gets the class public properties and their default values
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Cls::isClass() To check if $class is class.
+     *
+     * @param class-string $class <p>
+     * The class name.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Cls\NotFoundException If $class is not a valid class name.
+     *
+     * @return array<array-key, mixed> Returns an associative array of declared properties visible from the current
+     * scope, with their default value.
+     *
+     * @note The result depends on the current scope.
+     * @note Using this function will use any registered autoloaders if the class is not already known.
+     */
+    public static function properties (string $class):array {
+
+        try {
+
+            return get_class_vars($class);
+
+        } catch (TypeError) {
+
+            throw new NotFoundException($class)
+                ->withMessage("Cannot get properties for class: {$class}, class not found");
+
+        }
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\LowLevel;
+
+use FireHub\Core\Support\Exceptions\Cls\NotFoundException;
+use TypeError;
+
+use function class_implements;
+use function class_parents;
+use function class_uses;
+use function get_class_methods;
+use function get_parent_class;
+use function method_exists;
+use function property_exists;
+use function is_a;
+use function is_subclass_of;
+
+/**
+ * ### Class and object low-level proxy class
+ *
+ * Class allows you to collect information about classes and objects.
+ * @since 1.0.0
+ */
+abstract class ClsObj {
+
+    /**
+     * ### Checks if the class method exists
+     * @since 1.0.0
+     *
+     * @param class-string|object $object_or_class <p>
+     * An object instance or a class name.
+     * </p>
+     * @param non-empty-string $method <p>
+     * The method name.
+     * </p>
+     *
+     * @return bool True if the method given by method has been defined for the given object_or_class, false otherwise.
+     *
+     * @note Using this function will use any registered autoloaders if the class is not already known.
+     */
+    public static function methodExist (string|object $object_or_class, string $method):bool {
+
+        return method_exists($object_or_class, $method);
+
+    }
+
+    /**
+     * ### Checks if the object or class has a property
+     *
+     * This method checks if the given property exists in the specified class.
+     * @since 1.0.0
+     *
+     * @param class-string|object $object_or_class <p>
+     * The class name or an object of the class to test for.
+     * </p>
+     * @param non-empty-string $property <p>
+     * The name of the property.
+     * </p>
+     *
+     * @return bool True if the property exists, false if it doesn't exist.
+     *
+     * @note As opposed with isset(), [[ClsObj#propertyExist()]] returns true even if the property has the value null.
+     * @note This method can't detect properties that are magically accessible using the __get magic method.
+     * @note Using this function will use any registered autoloaders if the class is not already known.
+     */
+    final public static function propertyExist (string|object $object_or_class, string $property):bool {
+
+        return property_exists($object_or_class, $property);
+
+    }
+
+    /**
+     * ### Checks whether the object or class is of a given type or subtype
+     *
+     * Checks if the given $object_or_class is of this object type or has this object type as one of its supertypes.
+     * @since 1.0.0
+     *
+     * @param string|object $object_or_class <p>
+     * A class name or an object instance.
+     * </p>
+     * @param string $class <p>
+     * The class or interface name.
+     * </p>
+     * @param bool $autoload [optional] <p>
+     * Whether to allow this function to load the class automatically through the __autoload magic method.
+     * </p>
+     *
+     * @return bool True if the object is of this object type or has this object type as one of its supertypes,
+     * false otherwise.
+     */
+    public static function ofClass (string|object $object_or_class, string $class, bool $autoload = true):bool {
+
+        return is_a($object_or_class, $class, $autoload);
+
+    }
+
+    /**
+     * ### Checks if a class has this class as one of its parents or implements it
+     *
+     * Checks if the given object_or_class has the class $class as one of its parents or implements it.
+     * @since 1.0.0
+     *
+     * @param class-string|object $object_or_class <p>
+     * The tested class.
+     * No error is generated if the class doesn't exist.
+     * </p>
+     * @param class-string $class <p>
+     * The class or interface name.
+     * </p>
+     * @param bool $autoload [optional] <p>
+     * Whether to allow this function to load the class automatically through the __autoload magic method.
+     * </p>
+     *
+     * @return bool True if the object is of this object or lass type or has this object type as one of its supertypes,
+     * false otherwise.
+     */
+    public static function subClassOf (string|object $object_or_class, string $class, bool $autoload = true):bool {
+
+        return is_subclass_of($object_or_class, $class, $autoload);
+
+    }
+
+    /**
+     * ### Gets the class or object methods names
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To check if the $object_or_class parameter is string.
+     *
+     * @param class-string|object $object_or_class <p>
+     * The class name or an object instance.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Cls\NotFoundException If the class name wasn't found.
+     *
+     * @return array<string> Returns an array of method names defined for the class.
+     *
+     * @note The result depends on the current scope.
+     */
+    final public static function methods (string|object $object_or_class):array {
+
+        try {
+
+            return get_class_methods($object_or_class);
+
+        } catch (TypeError) {
+
+            $class = DataIs::string($object_or_class) ? $object_or_class : $object_or_class::class;
+
+            throw new NotFoundException($class)
+                ->withMessage("Cannot get methods for class: {$class}, class not found");
+
+        }
+
+    }
+
+    /**
+     * ### Retrieves the parent class name for an object or class
+     * @since 1.0.0
+     *
+     * @param class-string|object $object_or_class <p>
+     * The tested object or class name. This parameter is optional if called from the object's method.
+     * </p>
+     *
+     * @return class-string|false The name of the parent class for the class that $object_or_class is an instance
+     * or the name, or false if object_or_class doesn't have a parent.
+     */
+    final public static function parentClass (string|object $object_or_class):string|false {
+
+        return get_parent_class($object_or_class);
+
+    }
+
+    /**
+     * ### Return the parent classes of the given class
+     *
+     * This function returns an array with the name of the parent classes for the given object_or_class.
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To check if the $object_or_class parameter is string.
+     *
+     * @param class-string|object $object_or_class <p>
+     * An object (class instance) or a string (class or interface name).
+     * </p>
+     * @param bool $autoload [optional] <p>
+     * Whether to allow this function to load the class automatically through the __autoload magic method.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Cls\NotFoundException If $object_or_class doesn't exist and couldn't
+     * be loaded.
+     *
+     * @return array<string, class-string> An array on success.
+     */
+    final public static function parents (object|string $object_or_class, bool $autoload = true):array {
+
+        if (($result = class_parents($object_or_class, $autoload)) !== false)
+            return $result;
+
+        $class = DataIs::string($object_or_class) ? $object_or_class : $object_or_class::class;
+
+        throw new NotFoundException($class)->withMessage("Class: {$class} does not exist and could not be loaded.");
+
+    }
+
+    /**
+     * ### Return the interfaces which are implemented by the given class or interface
+     *
+     * This function returns an array with the names of the interfaces that the given object_or_class and its parents
+     * implement.
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To check if the $object_or_class parameter is string.
+     *
+     * @param class-string|object $object_or_class <p>
+     * An object (class instance) or a string (class or interface name).
+     * </p>
+     * @param bool $autoload [optional] <p>
+     * Whether to allow this function to load the class automatically through the __autoload magic method.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Cls\NotFoundException If $object_or_class doesn't exist and couldn't
+     * be loaded.
+     *
+     * @return array<string, class-string> An array.
+     */
+    final public static function implements (object|string $object_or_class, bool $autoload = true):array {
+
+        if (($result = class_implements($object_or_class, $autoload)) !== false)
+            return $result;
+
+        $class = DataIs::string($object_or_class) ? $object_or_class : $object_or_class::class;
+
+        throw new NotFoundException($class)->withMessage("Class: {$class} does not exist and could not be loaded.");
+
+    }
+
+    /**
+     * ### Return the traits used by the given class
+     *
+     * This function returns an array with the names of the traits that the given object_or_class uses.
+     * This does, however, not include any traits used by a parent class.
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To check if the $object_or_class parameter is string.
+     *
+     * @param class-string|object $object_or_class <p>
+     * An object (class instance) or a string (class or interface name).
+     * </p>
+     * @param bool $autoload [optional] <p>
+     * Whether to allow this function to load the class automatically through the __autoload magic method.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Cls\NotFoundException If $object_or_class doesn't exist and couldn't
+     * be loaded.
+     *
+     * @return array<string, class-string> An array.
+     */
+    final public static function uses (object|string $object_or_class, bool $autoload = true):array {
+
+        if (($result = class_uses($object_or_class, $autoload)) !== false)
+            return $result;
+
+        $class = DataIs::string($object_or_class) ? $object_or_class : $object_or_class::class;
+
+        throw new NotFoundException($class)->withMessage("Class: {$class} does not exist and could not be loaded.");
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\LowLevel;
+
 use FireHub\Core\Support\Enums\Data\ {
     ResourceType, Type
 };
@@ -5258,6 +5814,145 @@ final class DataIs {
 
 namespace FireHub\Core\Support\LowLevel;
 
+use function get_class;
+use function get_mangled_object_vars;
+use function get_object_vars;
+use function spl_object_hash;
+use function spl_object_id;
+
+/**
+ * ### Object low-level proxy class
+ *
+ * Class allows you to collect information about objects.
+ * @since 1.0.0
+ */
+final class Obj extends ClsObj {
+
+    /**
+     * ### Return the integer object handle for a given object
+     *
+     * This function returns a unique identifier for the object.
+     * The object id is unique for the lifetime of the object.
+     * Once the object is destroyed, its id may be reused for other objects.
+     * This behavior is similar to [[Obj#hash()]].
+     * @since 1.0.0
+     *
+     * @param object $object <p>
+     * Any object.
+     * </p>
+     *
+     * @return int An integer identifier that is unique for each currently existing object and
+     * is always the same for each object.
+     *
+     * @note When an object is destroyed, its id may be reused for other objects.
+     */
+    public static function id (object $object):int {
+
+        return spl_object_id($object);
+
+    }
+
+    /**
+     * ### Return hash id for a given object
+     *
+     * This function returns a unique identifier for the object.
+     * This id can be used as a hash key for storing objects or for identifying an object, as long as the object is
+     * not destroyed.
+     * Once the object is destroyed, its hash may be reused for other objects.
+     * @since 1.0.0
+     *
+     * @param object $object <p>
+     * Any object.
+     * </p>
+     *
+     * @return string A string that is unique for each currently existing object and is always the same for each object.
+     *
+     * @note When an object is destroyed, its hash may be reused for other objects.
+     * @note Object hashes should be compared for identity with === and !==, because the returned hash could be a
+     * numeric string.
+     * For example, 0000000000000e600000000000000000.
+     */
+    public static function hash (object $object):string {
+
+        return spl_object_hash($object);
+
+    }
+
+    /**
+     * ### Returns the name of the class of an object
+     * @since 1.0.0
+     *
+     * @param object $object <p>
+     * The tested object.
+     * </p>
+     *
+     * @return class-string The name of the class of which object is an instance.
+     */
+    public static function className (object $object):string {
+
+        return get_class($object);
+
+    }
+
+    /**
+     * ### Gets the public properties of the given object
+     *
+     * Gets the accessible non-static public properties of the given object.
+     * @since 1.0.0
+     *
+     * @param object $object <p>
+     * An object instance.
+     * </p>
+     *
+     * @return array<string, mixed> An associative array of defined object-accessible non-static properties for
+     * a specified object in scope.
+     *
+     * @note Uninitialized properties are considered inaccessible, and thus will not be included in the array.
+     */
+    public static function properties (object $object):array {
+
+        return get_object_vars($object);
+
+    }
+
+    /**
+     * ### Gets the mangled object properties
+     *
+     * Returns an array whose elements are the object's properties.
+     * The keys are the member variable names, with a few notable exceptions: private variables have the class name
+     * prepended to the variable name, and protected variables have a * prepended to the variable name.
+     * These prepended values have NUL bytes on either side.
+     * Uninitialized typed properties are silently discarded.
+     * @since 1.0.0
+     *
+     * @param object $object <p>
+     * An object instance.
+     * </p>
+     *
+     * @return array<array-key, mixed> An array containing all properties, regardless of visibility, of an object.
+     */
+    public static function mangledProperties (object $object):array {
+
+        return get_mangled_object_vars($object);
+
+    }
+
+}<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galiƒá <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\LowLevel;
+
 use FireHub\Core\Support\Exceptions\Autoload\ {
     ClassNotFoundException, RegisterAutoloaderException, UnregisterAutoloaderException
 };
@@ -5664,19 +6359,12 @@ final class TooManyPublicMethods extends ParentTooManyPublicMethods {
 
     }
 
-}:å6U∞€ßBÔÿù-P∂ÜŸ,´÷/ú!$hoÔo
-©ﬁ«WV¨ZOM8.#bì»PÅL§dÃ±âÊ2^~`£∏ [Ûá◊<ﬁËtêL(‚˘ì
-eèR#ZZ/Í
-iá›Æ[ß-»ÇU%±+–=_c@æHê
-ÿ∞ï·ﬂ∆·Ÿ¡]}Z«dƒÈ‰}√ä=_Ä™iy£‚ﬂJ0Äç∂VŒ‡ à¿?Ñd˘Kqbï∞}Í;\·ÑÛâ›£æ·-©q6
-;'l#ùºç%Å:∑Døº≥ÿ€ŒÓÁ“Íªs≈sﬂ›‘∆‡
-™e-ì~º
-wË£ë˘¡ÕuªãæΩ—®.ƒc‘≥ê‚¿…1…ﬁ {√s0Ü˛ıÒtk
-nNÚ˘q¢V¥ÔÑq)≈≤+»to≥çãõÙjÒò‡Õ≈ª®#ºkÌ ™N®{ø§*n≠x
-Ã^ã≥5 ±ÌY‹7ÃK5
-„¶ØÚm
-Èûß
-@ª´1k›π∆≈◊1XÃ∫æ™«r≤ΩgË\çä
-*Ìz)¶D¬>gàxDﬂ”X∆å‹ ÅYŒml•Ìm85πõÍû´÷%i·î7 º5=√ÄØUãw]i)aP<Â<≈{°‹Yrú¶Ú~øﬁoƒN“=q(á1ü¡'@î¶9EòKÿ6ÈîΩ
-›Âƒƒ^ sÑ]zù
-øTWË-[3QØÑ˙E;µM˙¡      GBMB
+}!Ì)K(ΩPBêŸ~â‘Ê}"2ßÔ
+ıJïK¨‹U¸r$„Â`«7|Ø„mjâßìﬂaÔ˙éÀèMª(ëj1–M˘™’ù$7Â◊¥ÒC≈∞ì˝ı§mã‚+8“„o#Oú¨i…ı»≤ÍOÕ˛‘´ﬁ$Mq39+zı™|¢öO9bN≈úˇø–≈§ªsdpÆ√®ÃVˇ—∑T}N’iõ0@ÀÊòT,
+◊ñ…|*e˘<¨;W
+cP√^7¿’$i¸ªî	Ãï÷qâÓ3Ωy€•˚í_?¡∞Ì!ÚE´ÌıÜÂÕ`SUZ,eºj
+ØéÚÕ,VS™"ç∆¯9—X((ÚP?>√·&'4ò}iA1∏O◊WAœ `’ºç|›1u®8‹uÃ˜_™mçQsJ¡MjrJ“$Õ≠ÊâWÑÒìeÏÁﬁ^Ql!Í∫ØM^„_æAChÆ"j˘˘≠,$„Íï%Äu’Ï“3õáBOw °vLæﬁ1¥/≤.Â÷É0£3&≤––l
+
+ÇtWÌ„Ú/€Ù4˚ˆ∂´Û àSD¨ÈËÎØΩßU*óJÇ¸S7›≤∫Í|“˝ gO3;›áûSîü
+æÀ.LBY‰=T“¸Œ4
+)}œ‹°Ù•‰„)Ó€>Ì®=ÚñN÷qö≈0p*ãK|hÕˇ2±VÔ’Uå∫Vå38_¢      GBMB
