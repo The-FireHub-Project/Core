@@ -2,10 +2,10 @@ name: PHP Coding Standards Check and Fix
 on:
   push:
     branches:
-      - '*'
+      - 'none'
   pull_request:
     branches:
-      - '*'
+      - 'none'
   pull_request_target:
 jobs:
   php-cs-fixer:
