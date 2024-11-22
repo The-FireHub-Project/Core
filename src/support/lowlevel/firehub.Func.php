@@ -16,6 +16,8 @@ namespace FireHub\Core\Support\LowLevel;
 
 use FireHub\Core\Support\Exceptions\Func\RegisterTickFailedException;
 
+use function call_user_func;
+use function call_user_func_array;
 use function function_exists;
 use function register_shutdown_function;
 use function register_tick_function;
@@ -75,7 +77,7 @@ final class Func {
      */
     public static function call (callable $callback, mixed ...$arguments):mixed {
 
-        return $callback(...$arguments);
+        return call_user_func($callback, ...$arguments);
 
     }
 
@@ -101,7 +103,7 @@ final class Func {
      */
     public static function callWithArray (callable $callback, array $arguments):mixed {
 
-        return $callback(...$arguments); // @phpstan-ignore-line
+        return call_user_func_array($callback, $arguments); // @phpstan-ignore-line
 
     }
 
