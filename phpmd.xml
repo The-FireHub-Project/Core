@@ -75,4 +75,5 @@
     <exclude-pattern>support\lowlevel\firehub.Arr.php</exclude-pattern>
     <exclude-pattern>support\lowlevel\firehub.CharMB.php</exclude-pattern>
     <exclude-pattern>support\lowlevel\firehub.Data.php</exclude-pattern>
+    <exclude-pattern>support\lowlevel\firehub.SplAutoload.php</exclude-pattern>
 </ruleset>

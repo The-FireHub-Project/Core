@@ -636,6 +636,7 @@ return (new Config)
                 'src/support/lowlevel/firehub.Arr.php',
                 'src/support/lowlevel/firehub.CharMB.php',
                 'src/support/lowlevel/firehub.Data.php',
+                'src/support/lowlevel/firehub.SplAutoload.php'
             ])
     )
 ;
