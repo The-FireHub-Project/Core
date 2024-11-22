@@ -57,7 +57,7 @@ class Exception extends InternalException {
      * @since 1.0.0
      *
      * @param string $message <p>
-     * The appended exception message.
+     * The exception message to append.
      * </p>
      *
      * @return static This exception instance.
@@ -77,9 +77,11 @@ class Exception extends InternalException {
      * @uses \FireHub\Core\Components\Error\Exception::appendMessage() To append an error message in case of $check
      * assignment exists.
      *
-     * @param mixed $check
+     * @param mixed $check <p>
+     * Value to check if is set.
+     * </p>
      * @param string $message <p>
-     * The appended exception message.
+     * The exception message to append.
      * </p>
      *
      * @return static This exception instance.
