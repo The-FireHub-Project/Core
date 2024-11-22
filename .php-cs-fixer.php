@@ -631,6 +631,6 @@ return (new Config)
     ->setFinder(
         Finder::create()
             //->in(__DIR__) @todo excluded paths until cs-fixer supports PHP 8.4
-            ->in('x')
+            ->in('phar')
     )
 ;
