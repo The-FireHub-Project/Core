@@ -34,7 +34,7 @@ final class Declared {
      * ### Gets the declared classes
      * @since 1.0.0
      *
-     * @return array<class-string> Array of the names for the declared classes in the current script.
+     * @return list<class-string> Array of the names for the declared classes in the current script.
      *
      * @note Note that depending on what extensions you've compiled or loaded into PHP, additional classes could be
      * present.
@@ -50,7 +50,7 @@ final class Declared {
      * ### Gets the declared interfaces
      * @since 1.0.0
      *
-     * @return array<class-string> Array of the names for the declared interfaces in the current script.
+     * @return list<class-string> Array of the names for the declared interfaces in the current script.
      */
     public static function interfaces ():array {
 
@@ -62,7 +62,7 @@ final class Declared {
      * ### Gets the declared traits
      * @since 1.0.0
      *
-     * @return array<class-string> Array of the names for the declared traits in the current script.
+     * @return list<class-string> Array of the names for the declared traits in the current script.
      */
     public static function traits ():array {
 
@@ -82,7 +82,7 @@ final class Declared {
      * and constants and their values in the second dimension.
      * </p>
      *
-     * @return ($categorize is true ? array<string, array<non-empty-string, mixed>> : array<mixed>) Array of constant
+     * @return ($categorize is true ? array<string, array<non-empty-string, mixed>> : list<mixed>) Array of constant
      * name => constant value array, optionally grouped by extension name registering the constant.
      */
     public static function constants (bool $categorize = false):array {
