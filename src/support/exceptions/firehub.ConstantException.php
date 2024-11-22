@@ -26,7 +26,7 @@ class ConstantException extends Exception {
      * ### Constructor
      * @since 1.0.0
      *
-     * @param class-string $constant <p>
+     * @param string $constant <p>
      * Constant name.
      * </p>
      *
