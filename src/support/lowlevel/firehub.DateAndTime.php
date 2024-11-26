@@ -41,6 +41,8 @@ use function time;
  *
  * Class allows you to represent date/time information.
  * @since 1.0.0
+ *
+ * @internal
  */
 final class DateAndTime {
 
