@@ -454,7 +454,7 @@ final class StrMB extends StrSafe {
      *
      * @uses \FireHub\Core\Support\Enums\String\Encoding The encoding parameter for character encoding.
      *
-     * @param null|\FireHub\Core\Support\Enums\String\Encoding $encoding <p>
+     * @param null|\FireHub\Core\Support\Enums\String\Encoding $encoding [optional] <p>
      * Encoding is the character encoding name used for the HTTP input character encoding conversion, HTTP output
      * character encoding conversion, and the default character encoding for string functions defined by the mbstring
      * module.

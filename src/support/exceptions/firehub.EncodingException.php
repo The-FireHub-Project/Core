@@ -27,6 +27,10 @@ class EncodingException extends Exception {
      * ### Constructor
      * @since 1.0.0
      *
+     * @param null|\FireHub\Core\Support\Enums\String\Encoding $encoding [optional] <p>
+     * Encoding parameter.
+     * </p>
+     *
      * @return void
      */
     public function __construct (
