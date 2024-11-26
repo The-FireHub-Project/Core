@@ -80,6 +80,7 @@
     <exclude-pattern>support\lowlevel\firehub.NumInt.php</exclude-pattern>>
     <exclude-pattern>support\lowlevel\firehub.Obj.php</exclude-pattern>
     <exclude-pattern>support\lowlevel\firehub.SplAutoload.php</exclude-pattern>
+    <exclude-pattern>support\lowlevel\firehub.StrMB.php</exclude-pattern>
     <exclude-pattern>support\lowlevel\firehub.StrSafe.php</exclude-pattern>
     <exclude-pattern>support\lowlevel\firehub.StrSB.php</exclude-pattern>
 </ruleset>

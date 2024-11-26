@@ -18,44 +18,40 @@ use FireHub\Core\Support\Enums\String\Encoding;
 use FireHub\Core\Components\Error\Exception;
 
 /**
- * ### String exception
+ * ### Encoding exception
  * @since 1.0.0
  */
-class StrException extends Exception {
+class EncodingException extends Exception {
 
     /**
      * ### Constructor
      * @since 1.0.0
      *
-     * @param string $string <p>
-     * The string.
-     * </p>
-     *
      * @return void
      */
     public function __construct (
-        protected string $string
+        protected ?Encoding $encoding = null
     ) {
 
         parent::__construct();
 
-        $this->message = "String: {$this->string} error.";
+        $this->message = 'Encoding error.';
 
     }
 
     /**
-     * ### Sets the string encoding for this exception
+     * ### Sets the character encoding for this exception
      * @since 1.0.0
      *
      * @param null|\FireHub\Core\Support\Enums\String\Encoding $encoding [optional] <p>
-     * The string encoding to be set.
+     * The character encoding to be set.
      * </p>
      *
      * @return static This exception instance.
      */
     public function withEncoding (?Encoding $encoding = null):static {
 
-        return $this->appendMessageIfExists($encoding, 'String encoding: '.($encoding ? $encoding::class : '').'.');
+        return $this->appendMessageIfExists($encoding, 'With encoding: '.($encoding ? $encoding::class : '').'.');
 
     }
 
