@@ -77,6 +77,9 @@
     <exclude-pattern>support\lowlevel\firehub.Cls.php</exclude-pattern>
     <exclude-pattern>support\lowlevel\firehub.ClsObj.php</exclude-pattern>
     <exclude-pattern>support\lowlevel\firehub.Data.php</exclude-pattern>
+    <exclude-pattern>support\lowlevel\firehub.NumInt.php</exclude-pattern>>
     <exclude-pattern>support\lowlevel\firehub.Obj.php</exclude-pattern>
     <exclude-pattern>support\lowlevel\firehub.SplAutoload.php</exclude-pattern>
+    <exclude-pattern>support\lowlevel\firehub.StrSafe.php</exclude-pattern>
+    <exclude-pattern>support\lowlevel\firehub.StrSB.php</exclude-pattern>
 </ruleset>
