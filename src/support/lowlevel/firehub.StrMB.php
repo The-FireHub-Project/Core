@@ -27,6 +27,7 @@ use function mb_convert_case;
 use function mb_convert_encoding;
 use function mb_detect_encoding;
 use function mb_internal_encoding;
+use function mb_lcfirst;
 use function mb_ltrim;
 use function mb_rtrim;
 use function mb_str_split;
@@ -42,6 +43,7 @@ use function mb_strstr;
 use function mb_substr;
 use function mb_substr_count;
 use function mb_trim;
+use function mb_ucfirst;
 
 /**
  * ### Multibyte string low-level proxy class
@@ -83,6 +85,41 @@ final class StrMB extends StrSafe {
             CaseFolding::LOWER => 1,
             default => 2
         }, $encoding?->value);
+
+    }
+
+    /**
+     * ### Make the first character of string uppercased
+     * @since 1.0.0
+     *
+     * @param string $string <p>
+     * The string being converted.
+     * </p>
+     *
+     * @return string String with the first character uppercased.
+     */
+    public static function capitalize (string $string):string {
+
+        return mb_ucfirst($string);
+
+    }
+
+    /**
+     * ### Make a first character of string lowercased
+     *
+     * Returns a string with the first character of $string lowercased if that character is an ASCII character in the
+     * range "A" (0x41) to "Z" (0x5a).
+     * @since 1.0.0
+     *
+     * @param string $string <p>
+     * The string being converted.
+     * </p>
+     *
+     * @return string String with the first character lowercased.
+     */
+    public static function deCapitalize (string $string):string {
+
+        return mb_lcfirst($string);
 
     }
 
