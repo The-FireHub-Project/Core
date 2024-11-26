@@ -41,6 +41,8 @@ use function tanh;
  * @since 1.0.0
  *
  * @internal
+ *
+ * @SuppressWarnings(PHPMD.ShortVariable)
  */
 final class NumFloat extends Num {
 

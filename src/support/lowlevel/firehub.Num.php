@@ -41,6 +41,8 @@ use function sqrt;
  * @since 1.0.0
  *
  * @internal
+ *
+ * @SuppressWarnings(PHPMD.ShortVariable)
  */
 abstract class Num {
 
