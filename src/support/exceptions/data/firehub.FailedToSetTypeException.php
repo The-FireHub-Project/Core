@@ -37,9 +37,9 @@ class FailedToSetTypeException extends DataException {
         protected Type $type
     ) {
 
-        $this->message = 'Failed to set a type to: '.$this->type::class.' for value.';
-
         parent::__construct();
+
+        $this->message = 'Failed to set a type to: '.$this->type::class.' for value.';
 
     }
 

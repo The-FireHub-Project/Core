@@ -30,9 +30,9 @@ class SetAsResourceException extends DataException {
      */
     public function __construct () {
 
-        $this->message = 'Type cannot be set to resource.';
-
         parent::__construct();
+
+        $this->message = 'Type cannot be set to resource.';
 
     }
 

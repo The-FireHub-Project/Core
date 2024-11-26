@@ -30,9 +30,9 @@ class RegisterAutoloaderException extends AutoloadException {
      */
     public function __construct () {
 
-        $this->message = 'Failed to register a callback function as an autoloader.';
-
         parent::__construct();
+
+        $this->message = 'Failed to register a callback function as an autoloader.';
 
     }
 

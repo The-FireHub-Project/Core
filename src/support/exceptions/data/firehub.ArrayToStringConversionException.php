@@ -30,9 +30,9 @@ class ArrayToStringConversionException extends DataException {
      */
     public function __construct () {
 
-        $this->message = 'Cannot convert array to string.';
-
         parent::__construct();
+
+        $this->message = 'Cannot convert array to string.';
 
     }
 

@@ -36,9 +36,9 @@ class CodepointException extends Exception {
         protected int $codepoint
     ) {
 
-        $this->message = "Codepoint: {$this->codepoint} error.";
-
         parent::__construct();
+
+        $this->message = "Codepoint: {$this->codepoint} error.";
 
     }
 

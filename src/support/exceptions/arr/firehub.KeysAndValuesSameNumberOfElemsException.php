@@ -30,9 +30,9 @@ class KeysAndValuesSameNumberOfElemsException extends ArrException {
      */
     public function __construct () {
 
-        $this->message = 'Keys and values must have the same number of elements.';
-
         parent::__construct();
+
+        $this->message = 'Keys and values must have the same number of elements.';
 
     }
 

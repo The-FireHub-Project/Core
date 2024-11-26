@@ -36,9 +36,9 @@ class NumException extends Exception {
         protected int|float $number
     ) {
 
-        $this->message = "Number: {$this->number} error.";
-
         parent::__construct();
+
+        $this->message = "Number: {$this->number} error.";
 
     }
 

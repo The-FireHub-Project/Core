@@ -30,9 +30,9 @@ class SizeInconsistentException extends ArrException {
      */
     public function __construct () {
 
-        $this->message = 'Array sizes are inconsistent.';
-
         parent::__construct();
+
+        $this->message = 'Array sizes are inconsistent.';
 
     }
 

@@ -30,9 +30,9 @@ class TypeUnknownException extends DataException {
      */
     public function __construct () {
 
-        $this->message = 'Data type is unknown.';
-
         parent::__construct();
+
+        $this->message = 'Data type is unknown.';
 
     }
 

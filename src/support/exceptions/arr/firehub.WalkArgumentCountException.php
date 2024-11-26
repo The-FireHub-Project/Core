@@ -30,9 +30,9 @@ class WalkArgumentCountException extends ArrException {
      */
     public function __construct () {
 
-        $this->message = '$callback function requires more than two parameters.';
-
         parent::__construct();
+
+        $this->message = '$callback function requires more than two parameters.';
 
     }
 

@@ -30,9 +30,9 @@ class OutOfRangeException extends ArrException {
      */
     public function __construct () {
 
-        $this->message = 'Array is out of range.';
-
         parent::__construct();
+
+        $this->message = 'Array is out of range.';
 
     }
 

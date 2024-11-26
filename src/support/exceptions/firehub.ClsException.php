@@ -36,9 +36,9 @@ class ClsException extends Exception {
         protected string $class
     ) {
 
-        $this->message = "Class: {$this->class} error.";
-
         parent::__construct();
+
+        $this->message = "Class: {$this->class} error.";
 
     }
 

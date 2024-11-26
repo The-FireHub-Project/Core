@@ -36,9 +36,9 @@ class ClassNotFoundException extends AutoloadException {
         protected string $class
     ) {
 
-        $this->message = "Class: {$this->class} not found and there are no other autoloaders registered.";
-
         parent::__construct();
+
+        $this->message = "Class: {$this->class} not found and there are no other autoloaders registered.";
 
     }
 

@@ -36,9 +36,9 @@ class DivideByZeroException extends NumException {
         protected int|float $number
     ) {
 
-        $this->message = "Number: {$this->number} cannot be divided with zero.";
-
         parent::__construct($number);
+
+        $this->message = "Number: {$this->number} cannot be divided with zero.";
 
     }
 

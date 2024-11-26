@@ -30,9 +30,9 @@ class UnserializeFailedException extends DataException {
      */
     public function __construct () {
 
-        $this->message = 'Cannot unserialize data.';
-
         parent::__construct();
+
+        $this->message = 'Cannot unserialize data.';
 
     }
 

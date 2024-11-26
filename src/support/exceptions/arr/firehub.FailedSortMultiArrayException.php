@@ -30,9 +30,9 @@ class FailedSortMultiArrayException extends ArrException {
      */
     public function __construct () {
 
-        $this->message = 'Failed to sort a multi-sort array.';
-
         parent::__construct();
+
+        $this->message = 'Failed to sort a multi-sort array.';
 
     }
 

@@ -30,9 +30,9 @@ class CannotSerializeException extends DataException {
      */
     public function __construct () {
 
-        $this->message = 'Cannot serialize data.';
-
         parent::__construct();
+
+        $this->message = 'Cannot serialize data.';
 
     }
 

@@ -36,9 +36,9 @@ class ChunkLengthTooSmallException extends ArrException {
         protected int $length
     ) {
 
-        $this->message = "Length is less than 1, you provided: {$this->length}.";
-
         parent::__construct();
+
+        $this->message = "Length is less than 1, you provided: {$this->length}.";
 
     }
 

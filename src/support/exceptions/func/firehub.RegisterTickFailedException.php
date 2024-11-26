@@ -30,9 +30,9 @@ class RegisterTickFailedException extends FuncException {
      */
     public function __construct () {
 
-        $this->message = 'Failed to register tick function.';
-
         parent::__construct();
+
+        $this->message = 'Failed to register tick function.';
 
     }
 

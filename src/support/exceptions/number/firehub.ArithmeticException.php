@@ -36,9 +36,9 @@ class ArithmeticException extends NumException {
         protected int|float $number
     ) {
 
-        $this->message = "Number: {$this->number} has arithmetic error.";
-
         parent::__construct($number);
+
+        $this->message = "Number: {$this->number} has arithmetic error.";
 
     }
 

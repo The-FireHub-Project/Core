@@ -36,9 +36,9 @@ class FailedToDefineException extends ConstantException {
         protected string $constant
     ) {
 
-        $this->message = "Failed to define constant: {$this->constant}.";
-
         parent::__construct($constant);
+
+        $this->message = "Failed to define constant: {$this->constant}.";
 
     }
 

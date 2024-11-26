@@ -36,9 +36,9 @@ class ConstantException extends Exception {
         protected string $constant
     ) {
 
-        $this->message = "Constant: {$this->constant} error.";
-
         parent::__construct();
+
+        $this->message = "Constant: {$this->constant} error.";
 
     }
 
