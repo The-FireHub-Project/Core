@@ -42,7 +42,7 @@ use function tanh;
  *
  * @internal
  *
- * @SuppressWarnings(PHPMD.ShortVariable)
+ * @SuppressWarnings("PHPMD.ShortVariable")
  */
 final class NumFloat extends Num {
 

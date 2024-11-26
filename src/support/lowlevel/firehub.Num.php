@@ -42,7 +42,7 @@ use function sqrt;
  *
  * @internal
  *
- * @SuppressWarnings(PHPMD.ShortVariable)
+ * @SuppressWarnings("PHPMD.ShortVariable")
  */
 abstract class Num {
 
