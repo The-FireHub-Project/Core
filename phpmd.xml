@@ -77,6 +77,8 @@
     <exclude-pattern>support\lowlevel\firehub.Cls.php</exclude-pattern>
     <exclude-pattern>support\lowlevel\firehub.ClsObj.php</exclude-pattern>
     <exclude-pattern>support\lowlevel\firehub.Data.php</exclude-pattern>
+    <exclude-pattern>support\lowlevel\firehub.DateAndTime.php</exclude-pattern>
+    <exclude-pattern>support\lowlevel\firehub.DateAndTimeZone.php</exclude-pattern>
     <exclude-pattern>support\lowlevel\firehub.NumInt.php</exclude-pattern>>
     <exclude-pattern>support\lowlevel\firehub.Obj.php</exclude-pattern>
     <exclude-pattern>support\lowlevel\firehub.SplAutoload.php</exclude-pattern>
