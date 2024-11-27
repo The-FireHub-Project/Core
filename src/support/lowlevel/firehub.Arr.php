@@ -437,10 +437,6 @@ final class Arr {
      * @param (\FireHub\Core\Support\Enums\String\CaseFolding::LOWER|\FireHub\Core\Support\Enums\String\CaseFolding::UPPER) $case [optional] <p>
      * Either LOWER or UPPER case folding.
      * </p>
-     * @phpstan-param (
-     *  \FireHub\Core\Support\Enums\String\CaseFolding::LOWER
-     *  |\FireHub\Core\Support\Enums\String\CaseFolding::UPPER
-     * ) $case
      *
      * @return array<TKey, TValue> An array with its keys lower or uppercased.
      */
