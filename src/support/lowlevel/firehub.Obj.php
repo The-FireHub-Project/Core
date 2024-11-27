@@ -80,22 +80,6 @@ final class Obj extends ClsObj {
     }
 
     /**
-     * ### Returns the name of the class of an object
-     * @since 1.0.0
-     *
-     * @param object $object <p>
-     * The tested object.
-     * </p>
-     *
-     * @return class-string The name of the class of which object is an instance.
-     */
-    public static function className (object $object):string {
-
-        return $object::class;
-
-    }
-
-    /**
      * ### Gets the public properties of the given object
      *
      * Gets the accessible non-static public properties of the given object.
