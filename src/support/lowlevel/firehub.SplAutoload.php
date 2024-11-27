@@ -122,8 +122,8 @@ final class SplAutoload {
     /**
      * ### Unregister autoload implementation
      *
-     * Removes a function from the autoloaded queue. If the queue is activated and empty after removing the given
-     * function, then it will be deactivated.
+     * Removes a function from the autoloaded queue.
+     * If the queue is activated and empty after removing the given function, then it will be deactivated.
      * When this function results in the queue being deactivated, any autoload function that previously existed will
      * not be reactivated.
      * @since 1.0.0

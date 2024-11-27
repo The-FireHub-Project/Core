@@ -172,7 +172,8 @@ abstract class ClsObj {
      * @since 1.0.0
      *
      * @param class-string|object $object_or_class <p>
-     * The tested object or class name. This parameter is optional if called from the object's method.
+     * The tested object or class name.
+     * This parameter is optional if called from the object's method.
      * </p>
      *
      * @return class-string|false The name of the parent class for the class that $object_or_class is an instance

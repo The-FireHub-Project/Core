@@ -74,7 +74,8 @@ class FileSystem {
      *
      * @note Because PHP's integer type is signed and many platforms use 32bit integers, some filesystem functions
      * may return unexpected results for files which are larger than 2GB.
-     * @note The results of this function are cached. See [[FileSystem#clearCache()]] for more details.
+     * @note The results of this function are cached.
+     * See [[FileSystem#clearCache()]] for more details.
      *
      * @tip On windows, use //computer_name/share/filename or \\computer_name\share\filename to check files on network
      * shares.
@@ -150,9 +151,9 @@ class FileSystem {
     /**
      * ### Renames a file or directory
      *
-     * Attempts to rename $path to $new_name, moving it between directories if necessary. If renaming a file and
-     * $new_name exists, it will be overwritten. If renaming a directory and $new_name exists, this function will
-     * emit a warning.
+     * Attempts to rename $path to $new_name, moving it between directories if necessary.
+     * If renaming a file and $new_name exists, it will be overwritten.
+     * If renaming a directory and $new_name exists, this function will emit a warning.
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\LowLevel\FileSystem::parent() To return a parent folder path.
@@ -197,8 +198,9 @@ class FileSystem {
      * @return string The base name of the given path.
      *
      * @caution Method is locale-aware, so for it to see the correct basename with multibyte character paths,
-     * the matching locale must be set using the setlocale() function. If a path contains characters which are invalid
-     * for the current locale, the behavior of [[FileSystem#basename()]] is undefined.
+     * the matching locale must be set using the setlocale() function.
+     * If a path contains characters which are invalid for the current locale, the behavior of
+     * [[FileSystem#basename()]] is undefined.
      * @note Method operates naively on the input string and is not aware of the actual filesystem or path
      * components such as "..".
      */
@@ -338,8 +340,9 @@ class FileSystem {
     /**
      * ### Changes file or folder group
      *
-     * Attempts to change the group of the files or folder $path to $group. Only the superuser may change the group of
-     * files arbitrarily; other users may change the group of files to any group of which that user is a member.
+     * Attempts to change the group of the files or folder $path to $group.
+     * Only the superuser may change the group of files arbitrarily; other users may change the group of files to any
+     * group of which that user is a member.
      * @since 1.0.0
      *
      * @param non-empty-string $path <p>

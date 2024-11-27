@@ -49,18 +49,19 @@ final class DateAndTime {
     /**
      * ### Check for valid date
      *
-     * Checks the validity of the date formed by the arguments. A date is considered valid if each parameter is
-     * properly defined.
+     * Checks the validity of the date formed by the arguments.
+     * A date is considered valid if each parameter is properly defined.
      * @since 1.0.0
      *
      * @param int<1, 32767> $year <p>
-     * The year is between 1 and 32,767 inclusive
+     * The year is between 1 and 32,767 inclusive.
      * </p>
      * @param int<1, 12> $month <p>
      * The month is between 1 and 12 inclusive.
      * </p>
      * @param int<1, 31> $day <p>
-     * The day is within the allowed number of days for the given month. Leap years are taken into consideration.
+     * The day is within the allowed number of days for the given month.
+     * Leap years are taken into consideration.
      * </p>
      *
      * @return bool True, if the date given is valid, otherwise returns false.
@@ -300,8 +301,9 @@ final class DateAndTime {
     /**
      * ### Format a Unix timestamp
      *
-     * Returns the Unix timestamp corresponding to the arguments given. This timestamp is a long integer containing
-     * the number of seconds between the Unix Epoch (January, 1 1970 00:00:00 GMT) and the time specified.
+     * Returns the Unix timestamp corresponding to the arguments given.
+     * This timestamp is a long integer containing the number of seconds between the Unix Epoch (January, 1 1970
+     * 00:00:00 GMT) and the time specified.
      * @since 1.0.0
      *
      * @param int $hour <p>
@@ -324,9 +326,9 @@ final class DateAndTime {
      * </p>
      * @param null|int $month <p>
      * The number of the month relative to the end of the previous year.
-     * Values 1 to 12 reference the normal calendar months of the year in question. Values less than 1 (including
-     * negative values) reference the months in the previous year in reverse order, so 0 is December, -1 is November,
-     * and so on.
+     * Values 1 to 12 reference the normal calendar months of the year in question.
+     * Values less than 1 (including negative values) reference the months in the previous year in reverse order, so
+     * 0 is December, -1 is November, and so on.
      * Values greater than 12 reference the appropriate month in the following year(s).
      * </p>
      * @param null|int $day <p>

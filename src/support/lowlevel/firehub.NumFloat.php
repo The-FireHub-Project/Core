@@ -128,8 +128,8 @@ final class NumFloat extends Num {
      * ### Get the floating point remainder (modulo) of the division of the arguments
      *
      * Returns the floating point remainder of dividing the dividend ($dividend) by the divisor ($divisor).
-     * The remainder (r) is defined as: $dividend = i * $divisor + r, for some integer i. If $divisor is non-zero, r has
-     * the same sign as $dividend and a magnitude less than the size of $divisor.
+     * The remainder (r) is defined as: $dividend = i * $divisor + r, for some integer i.
+     * If $divisor is non-zero, r has the same sign as $dividend and a magnitude less than the size of $divisor.
      * @since 1.0.0
      *
      * @param float $dividend <p>
@@ -245,9 +245,10 @@ final class NumFloat extends Num {
     /**
      * ### Arc sine
      *
-     * Returns the arc sine of $number in radians. [[NumFloat#sineArc()]] is the inverse function of
-     * [[NumFloat#sine()]], which means that $num == [[NumFloat#sine([[NumFloat#sineArc($number)]])]] for every value
-     * of a that is within [[NumFloat#sineArc()]] range.
+     * Returns the arc sine of $number in radians.
+     * [[NumFloat#sineArc()]] is the inverse function of [[NumFloat#sine()]], which means that $num ==
+     * [[NumFloat#sine([[NumFloat#sineArc($number)]])]] for every value of a that is within [[NumFloat#sineArc()]]
+     * range.
      * @since 1.0.0
      *
      * @param float $number <p>
@@ -320,9 +321,10 @@ final class NumFloat extends Num {
     /**
      * ### Arc tangent
      *
-     * Returns the arc tangent of num in radians. [[NumFloat#tangentArc()]] is the inverse function of
-     * [[NumFloat#tangent()]], which means that $num == [[NumFloat#tangent([[NumFloat#tangentArc($number)]])]] for
-     * every value of a that is within [[NumFloat#tangentArc()]] range.
+     * Returns the arc tangent of num in radians.
+     * [[NumFloat#tangentArc()]] is the inverse function of [[NumFloat#tangent()]], which means that $num ==
+     * [[NumFloat#tangent([[NumFloat#tangentArc($number)]])]] for every value of a that is within
+     * [[NumFloat#tangentArc()]] range.
      * @since 1.0.0
      *
      * @param float $number <p>

@@ -155,7 +155,8 @@ final class Arr {
     /**
      * ### Checks if the given key or index exists in the array
      *
-     * Returns true if the given key is set in the array. Key can be any value possible for an array index.
+     * Returns true if the given key is set in the array.
+     * Key can be any value possible for an array index.
      * @since 1.0.0
      *
      * @param array-key $key <p>
@@ -167,8 +168,8 @@ final class Arr {
      *
      * @return bool True if the key exists in an array, false otherwise.
      *
-     * @note Method will search for the keys in the first dimension only. Nested keys in multidimensional arrays will
-     * not be found.
+     * @note Method will search for the keys in the first dimension only.
+     * Nested keys in multidimensional arrays will not be found.
      */
     public static function keyExist (int|string $key, array $array):bool {
 
@@ -254,8 +255,8 @@ final class Arr {
      * ### Apply a user function to every member of an array
      *
      * Applies the user-defined callback function to each element of the array $array.
-     * Method is not affected by the internal array pointer of an array. Method will walk through the entire array
-     * regardless of pointer position.
+     * Method is not affected by the internal array pointer of an array.
+     * Method will walk through the entire array regardless of pointer position.
      * @since 1.0.0
      *
      * @template TKey of array-key
@@ -297,8 +298,8 @@ final class Arr {
     /**
      * ### Apply a user function recursively to every member of an array
      *
-     * Applies the user-defined callback function to each element of the array. This function will recurse into
-     * deeper arrays.
+     * Applies the user-defined callback function to each element of the array.
+     * This function will recurse into deeper arrays.
      * @since 1.0.0
      *
      * @template TKey of array-key
@@ -449,7 +450,8 @@ final class Arr {
     /**
      * ### Split an array into chunks
      *
-     * Chunks an array into arrays with $length elements. The last chunk may contain less than $length elements.
+     * Chunks an array into arrays with $length elements.
+     * The last chunk may contain less than $length elements.
      * @since 1.0.0
      *
      * @template TKey of array-key
@@ -576,8 +578,8 @@ final class Arr {
      * @return array<TKey, TValue> An array containing all the entries from $array that aren't present in any of
      * the other arrays.
      *
-     * @note This function only checks one dimension of an n-dimensional array. You can check deeper dimensions by
-     * using [[Arr#difference($array1[0], $array2[0])]].
+     * @note This function only checks one dimension of an n-dimensional array.
+     * You can check deeper dimensions by using [[Arr#difference($array1[0], $array2[0])]].
      */
     public static function difference (array $array, array ...$excludes):array {
 
@@ -1168,8 +1170,8 @@ final class Arr {
      * ### Return all the keys or a subset of the keys for an array
      *
      * Returns the keys, numeric, and string, from the $array.
-     * If a $filter is specified, then only the keys for that value are returned. Otherwise, all the keys from the
-     * array are returned.
+     * If a $filter is specified, then only the keys for that value are returned.
+     * Otherwise, all the keys from the array are returned.
      * @since 1.0.0
      *
      * @template TKey of array-key
@@ -1246,8 +1248,8 @@ final class Arr {
      *
      * Merges the elements of one or more arrays so that the values of one are appended to the end of the previous
      * one.
-     * It returns the resulting array. If the input arrays have the same string keys, then the later value for that
-     * key will overwrite the previous one.
+     * It returns the resulting array.
+     * If the input arrays have the same string keys, then the later value for that key will overwrite the previous one.
      * If, however, the arrays contain numeric keys, the later value will not overwrite the original value but will
      * be appended.
      * Values in the input arrays with numeric keys will be renumbered with incrementing keys starting from zero in
@@ -1678,8 +1680,8 @@ final class Arr {
      * ### Removes an item at the beginning of an array
      *
      * Shifts the first value of the array off and returns it, shortening the array by one element and moving
-     * everything down. All numerical array keys will be modified to start counting from zero while literal keys won't
-     * be affected.
+     * everything down.
+     * All numerical array keys will be modified to start counting from zero while literal keys won't be affected.
      * @since 1.0.0
      *
      * @template TValue

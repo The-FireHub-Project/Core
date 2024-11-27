@@ -123,8 +123,8 @@ final class Cls extends ClsObj {
     /**
      * ### Creates an alias for a class
      *
-     * Creates an alias named alias based on the user-defined class. The aliased class is exactly the same as the
-     * original class.
+     * Creates an alias named alias based on the user-defined class.
+     * The aliased class is exactly the same as the original class.
      * @since 1.0.0
      *
      * @param class-string $class <p>
@@ -142,8 +142,8 @@ final class Cls extends ClsObj {
      *
      * @return true True on success.
      *
-     * @note Class names are case-insensitive in PHP, and this is reflected in this function. Aliases created by
-     * [[Cls#alias()]] are declared in lowercase.
+     * @note Class names are case-insensitive in PHP, and this is reflected in this function.
+     * Aliases created by [[Cls#alias()]] are declared in lowercase.
      * This means that for a class MyClass, the [[Cls#alias('MyClass', 'My_Class_Alias')]] call will declare a new
      * class alias named my_class_alias.
      */

@@ -467,8 +467,8 @@ final class StrSB extends StrSafe {
      * If the start is negative, the returned string will start at the start character from the end of the string.
      * </p>
      * @param null|int $length [optional] <p>
-     * Maximum number of characters to use from string. If omitted or NULL is passed, extract all characters to the
-     * end of the string.
+     * Maximum number of characters to use from string.
+     * If omitted or NULL is passed, extract all characters to the end of the string.
      * </p>
      *
      * @return string The portion of string specified by the start and length parameters.
@@ -794,7 +794,8 @@ final class StrSB extends StrSafe {
      * String to compare with.
      * </p>
      * @param int $offset <p>
-     * The start position for the comparison. If negative, it starts counting from the end of the string.
+     * The start position for the comparison.
+     * If negative, it starts counting from the end of the string.
      * </p>
      * @param null|int $length [optional] <p>
      * The length of the comparison. The default value is the largest of the length for the needle compared to the

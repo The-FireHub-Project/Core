@@ -128,7 +128,8 @@ final class StrMB extends StrSafe {
      *
      * Performs a multibyte safe [[StrSB#part()]] operation based on the number of characters.
      * Position is counted from the beginning of $string.
-     * The first character's position is 0. The second character's position is 1, and so on.
+     * The first character's position is 0.
+     * The second character's position is 1, and so on.
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\Enums\String\Encoding The encoding parameter for character encoding.

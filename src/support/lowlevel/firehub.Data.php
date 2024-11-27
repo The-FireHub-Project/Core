@@ -189,9 +189,9 @@ final class Data {
      *
      * @warning When [[Data#serialize()]] serializes objects, the leading backslash is not included in the class name of
      * namespaced classes for maximum compatibility.
-     * @note This is a binary string that may include null bytes and needs to be stored and handled as such. For
-     * example, [[Data#serialize()]] output should generally be stored in a BLOB field in a database, rather than a CHAR
-     * or TEXT field.
+     * @note This is a binary string that may include null bytes and needs to be stored and handled as such.
+     * For example, [[Data#serialize()]] output should generally be stored in a BLOB field in a database, rather than
+     * a CHAR or TEXT field.
      */
     public static function serialize (string|int|float|bool|array|object|null $value):string {
 
