@@ -103,8 +103,7 @@ final class Data {
      * @throws \FireHub\Core\Support\Exceptions\Data\FailedToSetTypeException If failed to set a type for value.
      * @throws \FireHub\Core\Support\Exceptions\Data\SetAsResourceException If trying to set a resource as a type.
      *
-     * @return mixed Converted value.
-     * @phpstan-return (
+     * @return (
      *  $type is Type::T_ARRAY
      *  ? array<array-key, mixed>
      *  : ($type is Type::T_STRING
@@ -122,7 +121,7 @@ final class Data {
      *                          : ($type is Type::T_RESOURCE
      *                              ? false
      *                              : mixed)))))))
-     * )
+     * ) Converted value.
      */
     public static function setType (mixed $value, Type $type):mixed {
 
