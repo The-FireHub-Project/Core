@@ -434,7 +434,7 @@ final class Arr {
      * @param array<TKey, TValue> $array <p>
      * The array to work on.
      * </p>
-     * @param \FireHub\Core\Support\Enums\String\CaseFolding $case [optional] <p>
+     * @param (\FireHub\Core\Support\Enums\String\CaseFolding::LOWER|\FireHub\Core\Support\Enums\String\CaseFolding::UPPER) $case [optional] <p>
      * Either LOWER or UPPER case folding.
      * </p>
      * @phpstan-param (
@@ -1909,7 +1909,7 @@ final class Arr {
      * @template TKey of array-key
      * @template TValue
      *
-     * @param array<array-key, TValue> &$array <p>
+     * @param array<TKey, TValue> &$array <p>
      * Array to sort.
      * </p>
      * @param \FireHub\Core\Support\Enums\Order $order [optional] <p>
@@ -1921,7 +1921,6 @@ final class Arr {
      * @param bool $preserve_keys [optional] <p>
      * Whether you want to preserve keys from an original array or not.
      * </p>
-     * @phpstan-param array<TKey, TValue> &$array
      * @phpstan-param-out array<TKey, TValue> $array
      *
      * @return true Always true.
