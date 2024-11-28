@@ -23,22 +23,15 @@ use FireHub\Core\Support\Exceptions\NumException;
 class ArithmeticException extends NumException {
 
     /**
-     * ### Constructor
+     * @inheritDoc
+     *
      * @since 1.0.0
-     *
-     * @param float|int $number $number <p>
-     * The number.
-     * </p>
-     *
-     * @return void
      */
-    public function __construct (
-        protected int|float $number
-    ) {
+    public function __construct () {
 
-        parent::__construct($number);
+        parent::__construct();
 
-        $this->message = "Number: {$this->number} has arithmetic error.";
+        $this->message = 'Number has arithmetic error.';
 
     }
 

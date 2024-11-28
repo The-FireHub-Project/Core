@@ -14,7 +14,6 @@
 
 namespace FireHub\Core\Support\Exceptions;
 
-use FireHub\Core\Support\Enums\String\Encoding;
 use FireHub\Core\Components\Error\Exception;
 
 /**
@@ -24,38 +23,15 @@ use FireHub\Core\Components\Error\Exception;
 class EncodingException extends Exception {
 
     /**
-     * ### Constructor
+     * @inheritDoc
+     *
      * @since 1.0.0
-     *
-     * @param null|\FireHub\Core\Support\Enums\String\Encoding $encoding [optional] <p>
-     * Encoding parameter.
-     * </p>
-     *
-     * @return void
      */
-    public function __construct (
-        protected ?Encoding $encoding = null
-    ) {
+    public function __construct () {
 
         parent::__construct();
 
         $this->message = 'Encoding error.';
-
-    }
-
-    /**
-     * ### Sets the character encoding for this exception
-     * @since 1.0.0
-     *
-     * @param null|\FireHub\Core\Support\Enums\String\Encoding $encoding [optional] <p>
-     * The character encoding to be set.
-     * </p>
-     *
-     * @return static This exception instance.
-     */
-    public function withEncoding (?Encoding $encoding = null):static {
-
-        return $this->appendMessageIfExists($encoding, 'With encoding: '.($encoding ? $encoding::class : '').'.');
 
     }
 

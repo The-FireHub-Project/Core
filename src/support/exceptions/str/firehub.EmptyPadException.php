@@ -23,20 +23,13 @@ use FireHub\Core\Support\Exceptions\StrException;
 class EmptyPadException extends StrException {
 
     /**
-     * ### Constructor
+     * @inheritDoc
+     *
      * @since 1.0.0
-     *
-     * @param string $string <p>
-     * The string.
-     * </p>
-     *
-     * @return void
      */
-    public function __construct (
-        protected string $string
-    ) {
+    public function __construct () {
 
-        parent::__construct($string);
+        parent::__construct();
 
         $this->message = 'Pad cannot be empty.';
 

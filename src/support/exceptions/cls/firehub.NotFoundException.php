@@ -19,26 +19,34 @@ use FireHub\Core\Support\Exceptions\ClsException;
 /**
  * ### Not found exception
  * @since 1.0.0
+ *
+ * @method $this withAutoload (?bool $autoload) ### Autoload
  */
 class NotFoundException extends ClsException {
 
     /**
-     * ### Constructor
+     * ### Autoload
      * @since 1.0.0
      *
-     * @param class-string $class <p>
-     * Class FQN.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $class
-    ) {
+    public ?string $autoload = null {
+        set {
+            $this->autoload = $value;
+            $this->appendMessage("Autoload is: {$this->autoload}.");
+        }
+    }
 
-        parent::__construct($class);
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
 
-        $this->message = "Class: {$this->class} not found.";
+        parent::__construct();
+
+        $this->message = 'Class not found.';
 
     }
 

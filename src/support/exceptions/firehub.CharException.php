@@ -20,43 +20,36 @@ use FireHub\Core\Components\Error\Exception;
 /**
  * ### Character exception
  * @since 1.0.0
+ *
+ * @method $this withCharacter (?string $character) ### Character
+ * @method $this withEncoding (?Encoding $encoding) ### Encoding
  */
 class CharException extends Exception {
 
     /**
-     * ### Constructor
+     * ### Character
      * @since 1.0.0
      *
-     * @param string $character <p>
-     * The character.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $character
-    ) {
-
-        $this->message = "Character: {$this->character} error.";
-
-        parent::__construct();
-
+    public ?string $character = null {
+        set {
+            $this->character = $value;
+            $this->appendMessage("Using character: {$this->character}.");
+        }
     }
 
     /**
-     * ### Sets the character encoding for this exception
+     * ### Encoding
      * @since 1.0.0
      *
-     * @param null|\FireHub\Core\Support\Enums\String\Encoding $encoding [optional] <p>
-     * The character encoding to be set.
-     * </p>
-     *
-     * @return static This exception instance.
+     * @var null|non-empty-string
      */
-    public function withEncoding (?Encoding $encoding = null):static {
-
-        return $this->appendMessageIfExists($encoding, 'Character encoding: '.($encoding ? $encoding::class : '').'.');
-
+    public ?string $encoding = null {
+        set {
+            $this->encoding = $value;
+            $this->appendMessage("Using encoding: {$this->encoding}.");
+        }
     }
 
 }

@@ -119,8 +119,10 @@ final class DateAndTime {
 
         } catch (ValueError) {
 
-            throw new ParseFromFormatException($format, $datetime)
-                ->appendMessage('Format contains NULL-bytes');
+            throw new ParseFromFormatException()
+                ->appendMessage('Format contains NULL-bytes')
+                ->withFormat($format)
+                ->withDatetime($datetime);
 
         }
 
@@ -182,7 +184,8 @@ final class DateAndTime {
 
         return ($i_date = idate($format, $timestamp)) !== false
             ? $i_date
-            : throw new FailedToFormatTimestampAsIntException($format)
+            : throw new FailedToFormatTimestampAsIntException()
+                ->withFormat($format)
                 ->withTimestamp($timestamp);
 
     }
@@ -255,7 +258,10 @@ final class DateAndTime {
     public static function sunInfo (int $timestamp, float $latitude, float $longitude):array {
 
         return date_sun_info($timestamp, $latitude, $longitude) // @phpstan-ignore ternary.alwaysTrue
-            ?: throw new SunsetTwilightException($timestamp, $latitude, $longitude);
+            ?: throw new SunsetTwilightException()
+                ->withTimestamp($timestamp)
+                ->withLatitude($latitude)
+                ->withLongitude($longitude);
 
     }
 
@@ -293,7 +299,8 @@ final class DateAndTime {
     public static function stringToTimestamp (string $datetime, ?int $timestamp = null):int {
 
         return ($str_to_time = strtotime($datetime, $timestamp)) !== false
-            ? $str_to_time : throw new StringToTimestampException($datetime)
+            ? $str_to_time : throw new StringToTimestampException()
+                ->withDatetime($datetime)
                 ->withTimestamp($timestamp);
 
     }
@@ -353,7 +360,7 @@ final class DateAndTime {
         $timestamp = $gmt
             ? gmmktime($hour, $minute, $second, $month, $day, $year)
             : mktime($hour, $minute, $second, $month, $day, $year)
-        ) !== false ? $timestamp : throw new TimestampException(0)
+        ) !== false ? $timestamp : throw new TimestampException()
             ->withMessage("Timestamp doesn't fit in a PHP integer.");
 
     }

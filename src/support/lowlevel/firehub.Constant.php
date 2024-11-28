@@ -51,7 +51,7 @@ final class Constant {
     public static function define (string $name, null|array|bool|float|int|string $value):true {
 
         return define($name, $value)
-            ?: throw new FailedToDefineException($name);
+            ?: throw new FailedToDefineException()->withName($name);
 
     }
 

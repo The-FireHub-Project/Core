@@ -23,22 +23,15 @@ use FireHub\Core\Support\Exceptions\FileSystemException;
 class GetAbsolutePathException extends FileSystemException {
 
     /**
-     * ### Constructor
+     * @inheritDoc
+     *
      * @since 1.0.0
-     *
-     * @param string $path <p>
-     * The path.
-     * </p>
-     *
-     * @return void
      */
-    public function __construct (
-        protected string $path
-    ) {
+    public function __construct () {
 
-        parent::__construct($path);
+        parent::__construct();
 
-        $this->message = "Cannot get absolute path for path: {$this->path}, path or file might not exist, or a script doesn't have executable permissions.";
+        $this->message = "Cannot get absolute path, path or file might not exist, or a script doesn't have executable permissions.";
 
     }
 

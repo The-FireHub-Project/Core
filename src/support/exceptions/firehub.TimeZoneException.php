@@ -14,43 +14,10 @@
 
 namespace FireHub\Core\Support\Exceptions;
 
-use FireHub\Core\Support\Enums\DateTime\Zone;
 use FireHub\Core\Components\Error\Exception;
 
 /**
  * ### Timezone exception
  * @since 1.0.0
  */
-class TimeZoneException extends Exception {
-
-    /**
-     * ### Constructor
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function __construct () {
-
-        parent::__construct();
-
-        $this->message = 'Timezone error.';
-
-    }
-
-    /**
-     * ### Sets the character encoding for this exception
-     * @since 1.0.0
-     *
-     * @param null|\FireHub\Core\Support\Enums\DateTime\Zone $zone [optional] <p>
-     * The zone to be set.
-     * </p>
-     *
-     * @return static This exception instance.
-     */
-    public function withTimezone (?Zone $zone = null):static {
-
-        return $this->appendMessageIfExists($zone, 'With zone: '.($zone ? $zone::class : '').'.');
-
-    }
-
-}
+class TimeZoneException extends Exception {}

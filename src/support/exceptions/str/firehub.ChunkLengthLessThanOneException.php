@@ -19,30 +19,34 @@ use FireHub\Core\Support\Exceptions\StrException;
 /**
  * ### Chunk length less than one exception
  * @since 1.0.0
+ *
+ * @method $this withLength (?int $length) ### Length
  */
 class ChunkLengthLessThanOneException extends StrException {
 
     /**
-     * ### Constructor
+     * ### Length
      * @since 1.0.0
      *
-     * @param string $string <p>
-     * The string.
-     * </p>
-     * @param int $length <p>
-     * Chunk length.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $string,
-        protected int $length
-    ) {
+    public ?string $length = null {
+        set {
+            $this->length = $value;
+            $this->appendMessage("Using length: {$this->length}.");
+        }
+    }
 
-        parent::__construct($string);
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
 
-        $this->message = "Length cannot be less (current length: {$this->length}) than one for string: {$this->string}.";
+        parent::__construct();
+
+        $this->message = 'Length cannot be less than one for string.';
 
     }
 

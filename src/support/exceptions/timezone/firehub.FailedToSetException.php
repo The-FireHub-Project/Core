@@ -20,26 +20,34 @@ use FireHub\Core\Support\Exceptions\TimeZoneException;
 /**
  * ### Failed to set timezone exception
  * @since 1.0.0
+ *
+ * @method $this withZone (?Zone $zone) ### Zone
  */
 class FailedToSetException extends TimeZoneException {
 
     /**
-     * ### Constructor
+     * ### Zone
      * @since 1.0.0
      *
-     * @param \FireHub\Core\Support\Enums\DateTime\Zone $zone <p>
-     * Timezone parameter.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected Zone $zone
-    ) {
+    public ?string $zone = null {
+        set {
+            $this->zone = $value;
+            $this->appendMessage("Tried with zone: {$this->zone}.");
+        }
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
 
         parent::__construct();
 
-        $this->message = 'Failed to set timezone to.'. $this->zone::class;
+        $this->message = 'Failed to set timezone';
 
     }
 

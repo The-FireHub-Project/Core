@@ -19,14 +19,28 @@ use FireHub\Core\Support\Exceptions\DataException;
 /**
  * ### Data type is unknown
  * @since 1.0.0
+ *
+ * @method $this withInternalType (?string $internal_type) ### Internal type
  */
 class TypeUnknownException extends DataException {
 
     /**
-     * ### Constructor
+     * ### Internal type
      * @since 1.0.0
      *
-     * @return void
+     * @var null|non-empty-string
+     */
+    public ?string $internal_type = null {
+        set {
+            $this->internal_type = $value;
+            $this->appendMessage("Internal type is: {$this->internal_type}.");
+        }
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
      */
     public function __construct () {
 

@@ -19,26 +19,34 @@ use FireHub\Core\Components\Error\Exception;
 /**
  * ### Timestamp exception
  * @since 1.0.0
+ *
+ * @method $this withTimestamp (?int $timestamp) ### Timestamp
  */
 class TimestampException extends Exception {
 
     /**
-     * ### Constructor
+     * ### Timestamp
      * @since 1.0.0
      *
-     * @param int $timestamp <p>
-     * The timestamp.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected int $timestamp
-    ) {
+    public ?string $timestamp = null {
+        set {
+            $this->timestamp = $value;
+            $this->appendMessage("With timestamp: {$this->timestamp}.");
+        }
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
 
         parent::__construct();
 
-        $this->message = "Timestamp: {$this->timestamp} error.";
+        $this->message = 'Timestamp error.';
 
     }
 

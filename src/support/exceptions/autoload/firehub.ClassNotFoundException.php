@@ -19,26 +19,48 @@ use FireHub\Core\Support\Exceptions\AutoloadException;
 /**
  * ### Class not found exception
  * @since 1.0.0
+ *
+ * @method $this withClass (?string $class) ### Class name
+ * @method $this withFileExtensions (?string $extension) ### File extensions
  */
 class ClassNotFoundException extends AutoloadException {
 
     /**
-     * ### Constructor
+     * ### Class name
      * @since 1.0.0
      *
-     * @param class-string $class <p>
-     * Fully qualified class name that is being called.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $class
-    ) {
+    public ?string $class = null {
+        set {
+            $this->class = $value;
+            $this->appendMessage("Tried to load class: {$this->class}.");
+        }
+    }
+
+    /**
+     * ### File extensions
+     * @since 1.0.0
+     *
+     * @var null|non-empty-string
+     */
+    public ?string $file_extensions = null {
+        set {
+            $this->file_extensions = $value;
+            $this->appendMessage("Tried with custom file extensions: {$this->file_extensions}.");
+        }
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
 
         parent::__construct();
 
-        $this->message = "Class: {$this->class} not found and there are no other autoloaders registered.";
+        $this->message = 'Class not found and there are no other autoloaders registered.';
 
     }
 

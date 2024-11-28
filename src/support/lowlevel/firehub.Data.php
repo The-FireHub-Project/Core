@@ -71,7 +71,7 @@ final class Data {
             'object' => Type::T_OBJECT,
             'NULL' => Type::T_NULL,
             'resource', 'resource (closed)' => Type::T_RESOURCE,
-            default => throw new TypeUnknownException()->appendMessage("Tried to get type: {$internal_type}.")
+            default => throw new TypeUnknownException()->withInternalType($internal_type)
         };
 
     }
@@ -146,7 +146,7 @@ final class Data {
                     Type::T_NULL => 'NULL',
                     default => 'string'
 
-                }) ?: throw new FailedToSetTypeException($type);
+                }) ?: throw new FailedToSetTypeException()->withVal($value)->withType($type);
 
                 return $value;
 

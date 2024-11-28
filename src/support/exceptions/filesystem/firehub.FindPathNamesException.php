@@ -19,26 +19,48 @@ use FireHub\Core\Support\Exceptions\FileSystemException;
 /**
  * ### Find path names exception
  * @since 1.0.0
+ *
+ * @method $this withPattern (?string $pattern) ### Pattern
+ * @method $this withOnlyFolders (?bool $only_folders) ### Only folders
  */
 class FindPathNamesException extends FileSystemException {
 
     /**
-     * ### Constructor
+     * ### Pattern
      * @since 1.0.0
      *
-     * @param string $pattern <p>
-     * The pattern.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $pattern
-    ) {
+    public ?string $pattern = null {
+        set {
+            $this->pattern = $value;
+            $this->appendMessage("With pattern: {$this->pattern}.");
+        }
+    }
 
-        parent::__construct($pattern);
+    /**
+     * ### Only folders
+     * @since 1.0.0
+     *
+     * @var null|non-empty-string
+     */
+    public ?string $only_folders = null {
+        set {
+            $this->only_folders = $value;
+            $this->appendMessage("Only folders is: {$this->only_folders}.");
+        }
+    }
 
-        $this->message = "Error while searching for pattern: {$this->pattern}.";
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
+
+        parent::__construct();
+
+        $this->message = 'Error while searching for pattern.';
 
     }
 

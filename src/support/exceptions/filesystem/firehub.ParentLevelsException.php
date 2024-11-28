@@ -19,26 +19,34 @@ use FireHub\Core\Support\Exceptions\FileSystemException;
 /**
  * ### Parent levels exception
  * @since 1.0.0
+ *
+ * @method $this withLevels (?int $levels) ### Levels
  */
 class ParentLevelsException extends FileSystemException {
 
     /**
-     * ### Constructor
+     * ### Levels
      * @since 1.0.0
      *
-     * @param string $path <p>
-     * The path.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $path
-    ) {
+    public ?string $levels = null {
+        set {
+            $this->levels = $value;
+            $this->appendMessage("Levels is: {$this->levels}.");
+        }
+    }
 
-        parent::__construct($path);
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
 
-        $this->message = "Path: {$this->path} parent levels error.";
+        parent::__construct();
+
+        $this->message = 'Path parent levels error.';
 
     }
 

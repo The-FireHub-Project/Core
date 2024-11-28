@@ -19,58 +19,48 @@ use FireHub\Core\Support\Exceptions\FileSystemException;
 /**
  * ### Set last access and modification exception
  * @since 1.0.0
+ *
+ * @method $this withLastAccessed (?int $timestamp) ### Last accessed
+ * @method $this withLastModified (?int $timestamp) ### Last modified
  */
 class SetLastAccessAndModifyException extends FileSystemException {
 
     /**
-     * ### Constructor
+     * ### Last accessed
      * @since 1.0.0
      *
-     * @param string $path <p>
-     * The path.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $path
-    ) {
-
-        parent::__construct($path);
-
-        $this->message = "Cannot set last access and modification time for path: {$this->path}.";
-
+    public ?string $last_accessed = null {
+        set {
+            $this->last_accessed = $value;
+            $this->appendMessage("Last accessed on: {$this->last_accessed}.");
+        }
     }
 
     /**
-     * ### Sets the last accessed for this exception
+     * ### Last modified
      * @since 1.0.0
      *
-     * @param null|int $last_accessed [optional] <p>
-     * The last accessed.
-     * </p>
-     *
-     * @return static This exception instance.
+     * @var null|non-empty-string
      */
-    public function withLastAccessed (?int $last_accessed = null):static {
-
-        return $this->appendMessageIfExists($last_accessed, 'With last accessed: '.($last_accessed ?? '').'.');
-
+    public ?string $last_modified = null {
+        set {
+            $this->last_modified = $value;
+            $this->appendMessage("Last modified on: {$this->last_modified}.");
+        }
     }
 
     /**
-     * ### Sets the last modified for this exception
+     * @inheritDoc
+     *
      * @since 1.0.0
-     *
-     * @param null|int $last_modified [optional] <p>
-     * The last modified.
-     * </p>
-     *
-     * @return static This exception instance.
      */
-    public function withLastModified (?int $last_modified = null):static {
+    public function __construct () {
 
-        return $this->appendMessageIfExists($last_modified, 'With last modified: '.($last_modified ?? '').'.');
+        parent::__construct();
+
+        $this->message = 'Cannot set last access and modification time for path.';
 
     }
 

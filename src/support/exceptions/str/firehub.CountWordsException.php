@@ -19,46 +19,48 @@ use FireHub\Core\Support\Exceptions\StrException;
 /**
  * ### Count words exception
  * @since 1.0.0
+ *
+ * @method $this withCharacters (?string $characters) ### Characters
+ * @method $this withFormat (?int $format) ### Format
  */
 class CountWordsException extends StrException {
 
     /**
-     * ### Constructor
+     * ### Characters
      * @since 1.0.0
      *
-     * @param string $string <p>
-     * The string.
-     * </p>
-     * @param 0|1|2 $format<p>
-     * The format.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $string,
-        protected int $format
-    ) {
-
-        parent::__construct($string);
-
-        $this->message = "Failed to count words for string: {$this->string}, with format {$this->format}.";
-
+    public ?string $characters = null {
+        set {
+            $this->characters = $value;
+            $this->appendMessage("Using characters: {$this->characters}.");
+        }
     }
 
     /**
-     * ### Sets the characters for this exception
+     * ### Format
      * @since 1.0.0
      *
-     * @param null|string $characters [optional] <p>
-     * Stripped characters.
-     * </p>
-     *
-     * @return static This exception instance.
+     * @var null|non-empty-string
      */
-    public function withCharacters (?string $characters = null):static {
+    public ?string $format = null {
+        set {
+            $this->format = $value;
+            $this->appendMessage("Using format: {$this->format}.");
+        }
+    }
 
-        return $this->appendMessageIfExists($characters, 'Using characters: '.($characters ?? '').'.');
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
+
+        parent::__construct();
+
+        $this->message = 'Failed to count words for string.';
 
     }
 

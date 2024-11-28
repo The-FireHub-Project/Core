@@ -160,7 +160,8 @@ abstract class ClsObj {
 
             $class = DataIs::string($object_or_class) ? $object_or_class : $object_or_class::class;
 
-            throw new NotFoundException($class)
+            throw new NotFoundException()
+                ->withClass($class)
                 ->withMessage("Cannot get methods for class: {$class}, class not found");
 
         }
@@ -212,7 +213,10 @@ abstract class ClsObj {
 
         $class = DataIs::string($object_or_class) ? $object_or_class : $object_or_class::class;
 
-        throw new NotFoundException($class)->withMessage("Class: {$class} does not exist and could not be loaded.");
+        throw new NotFoundException()
+            ->withClass($class)
+            ->withMessage("Class: {$class} does not exist and could not be loaded.")
+            ->withAutoload($autoload);
 
     }
 
@@ -244,7 +248,10 @@ abstract class ClsObj {
 
         $class = DataIs::string($object_or_class) ? $object_or_class : $object_or_class::class;
 
-        throw new NotFoundException($class)->withMessage("Class: {$class} does not exist and could not be loaded.");
+        throw new NotFoundException()
+            ->withClass($class)
+            ->withMessage("Class: {$class} does not exist and could not be loaded.")
+            ->withAutoload($autoload);
 
     }
 
@@ -276,7 +283,10 @@ abstract class ClsObj {
 
         $class = DataIs::string($object_or_class) ? $object_or_class : $object_or_class::class;
 
-        throw new NotFoundException($class)->withMessage("Class: {$class} does not exist and could not be loaded.");
+        throw new NotFoundException()
+            ->withClass($class)
+            ->withMessage("Class: {$class} does not exist and could not be loaded.")
+            ->withAutoload($autoload);
 
     }
 

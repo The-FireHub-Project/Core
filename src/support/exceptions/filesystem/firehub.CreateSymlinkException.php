@@ -19,30 +19,34 @@ use FireHub\Core\Support\Exceptions\FileSystemException;
 /**
  * ### Create symlink exception
  * @since 1.0.0
+ *
+ * @method $this withLink (?string $link) ### Symlink
  */
 class CreateSymlinkException extends FileSystemException {
 
     /**
-     * ### Constructor
+     * ### Symlink
      * @since 1.0.0
      *
-     * @param string $path <p>
-     * The path.
-     * </p>
-     * @param string $link <p>
-     * The path.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $path,
-        protected string $link
-    ) {
+    public ?string $link = null {
+        set {
+            $this->link = $value;
+            $this->appendMessage("With symlink: {$this->link}.");
+        }
+    }
 
-        parent::__construct($path);
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
 
-        $this->message = "Cannot create symlink: {$this->link} for path: {$this->path}.";
+        parent::__construct();
+
+        $this->message = 'Cannot create symlink for path.';
 
     }
 

@@ -19,42 +19,48 @@ use FireHub\Core\Support\Exceptions\DateTimeException;
 /**
  * ### String to timestamp exception
  * @since 1.0.0
+ *
+ * @method $this withDatetime (?string $datetime) ### Datetime
+ * @method $this withTimestamp (?int $timestamp) ### Timestamp
  */
 class StringToTimestampException extends DateTimeException {
 
     /**
-     * ### Constructor
+     * ### Datetime
      * @since 1.0.0
      *
-     * @param string $datetime <p>
-     * Date/time string.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $datetime
-    ) {
-
-        parent::__construct();
-
-        $this->message = "Could not convert string: {$this->datetime} to timestamp.";
-
+    public ?string $datetime = null {
+        set {
+            $this->datetime = $value;
+            $this->appendMessage("With datetime: {$this->datetime}.");
+        }
     }
 
     /**
-     * ### Sets the timestamp for this exception
+     * ### Timestamp
      * @since 1.0.0
      *
-     * @param null|int $timestamp [optional] <p>
-     * The timestamp.
-     * </p>
-     *
-     * @return static This exception instance.
+     * @var null|non-empty-string
      */
-    public function withTimestamp (?int $timestamp = null):static {
+    public ?string $timestamp = null {
+        set {
+            $this->timestamp = $value;
+            $this->appendMessage("With timestamp: {$this->timestamp}.");
+        }
+    }
 
-        return $this->appendMessageIfExists($timestamp, 'With timestamp: '.($timestamp ?? '').'.');
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
+
+        parent::__construct();
+
+        $this->message = 'Could not convert string to timestamp.';
 
     }
 

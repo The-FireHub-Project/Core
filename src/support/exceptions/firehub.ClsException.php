@@ -19,27 +19,22 @@ use FireHub\Core\Components\Error\Exception;
 /**
  * ### Class exception
  * @since 1.0.0
+ *
+ * @method $this withClass (?string $class) ### Class
  */
 class ClsException extends Exception {
 
     /**
-     * ### Constructor
+     * ### Class
      * @since 1.0.0
      *
-     * @param class-string $class <p>
-     * Class FQN.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $class
-    ) {
-
-        parent::__construct();
-
-        $this->message = "Class: {$this->class} error.";
-
+    public ?string $class = null {
+        set {
+            $this->class = $value;
+            $this->appendMessage("Using class: {$this->class}.");
+        }
     }
 
 }

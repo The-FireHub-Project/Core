@@ -103,8 +103,13 @@ final class Folder extends FileSystem {
 
         return DataIs::int($permissions = octdec('0'.$owner->value.$owner_group->value.$global->value))
         && mkdir($path, $permissions, $recursive)
-            ?: throw new CreateFolderException($path, $permissions)
-                ->appendMessageIfExists($recursive, 'Recursive argument is on.');
+            ?: throw new CreateFolderException()
+                ->withPath($path)
+                ->withPermissions($permissions)
+                ->withOwner($owner)
+                ->withOwnerGroup($owner_group)
+                ->withGlobal($global)
+                ->withRecursive($recursive);
 
     }
 
@@ -125,7 +130,7 @@ final class Folder extends FileSystem {
     public static function delete (string $path):true {
 
         return rmdir($path)
-            ?: throw new DeleteFolderException($path);
+            ?: throw new DeleteFolderException()->withPath($path);
 
     }
 
@@ -154,7 +159,9 @@ final class Folder extends FileSystem {
             Order::ASC => SCANDIR_SORT_ASCENDING,
             Order::DESC => SCANDIR_SORT_DESCENDING,
             default => SCANDIR_SORT_NONE
-        }) ?: throw new CannotListException($folder);
+        }) ?: throw new CannotListException()
+                ->withPath($folder)
+                ->withOrder($order);
 
     }
 
@@ -190,8 +197,9 @@ final class Folder extends FileSystem {
     public static function search (string $pattern, bool $only_folders = false):array {
 
         return glob($pattern, $only_folders ? GLOB_ONLYDIR : 0)
-            ?: throw new FindPathNamesException($pattern)
-                ->appendMessageIfExists($only_folders, 'Only folder argument is on.');
+            ?: throw new FindPathNamesException()
+                ->withPattern($pattern)
+                ->withOnlyFolders($only_folders);
 
     }
 
@@ -215,7 +223,8 @@ final class Folder extends FileSystem {
     public static function totalSpace (string $path):float {
 
         return disk_total_space($path)
-            ?: throw new DiskSpaceException($path)
+            ?: throw new DiskSpaceException()
+                ->withPath($path)
                 ->withMessage("Could not get disk space for path: {$path}.");
 
     }
@@ -240,7 +249,8 @@ final class Folder extends FileSystem {
     public static function freeSpace (string $path):float {
 
         return disk_free_space($path)
-            ?: throw new DiskSpaceException($path)
+            ?: throw new DiskSpaceException()
+                ->withPath($path)
                 ->withMessage("Could not get free disk space for path: {$path}.");
 
     }

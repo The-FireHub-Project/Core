@@ -61,8 +61,9 @@ final class SplAutoload {
 
         } catch (LogicException) {
 
-            throw new ClassNotFoundException($class)
-                ->appendMessageIfExists($file_extensions, "Tried with file extension: {$file_extensions}.");
+            throw new ClassNotFoundException()
+                ->withClass($class)
+                ->withFileExtensions($file_extensions);
 
         }
 

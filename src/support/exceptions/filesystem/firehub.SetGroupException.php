@@ -19,30 +19,34 @@ use FireHub\Core\Support\Exceptions\FileSystemException;
 /**
  * ### Set group exception
  * @since 1.0.0
+ *
+ * @method $this withGroup (null|string|int $group) ### Group
  */
 class SetGroupException extends FileSystemException {
 
     /**
-     * ### Constructor
+     * ### Group
      * @since 1.0.0
      *
-     * @param string $path <p>
-     * The path.
-     * </p>
-     * @param string|int $group <p>
-     * A group name or number.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $path,
-        protected string|int $group
-    ) {
+    public ?string $group = null {
+        set {
+            $this->group = $value;
+            $this->appendMessage("With group: {$this->group}.");
+        }
+    }
 
-        parent::__construct($path);
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
 
-        $this->message = "Cannot set group: {$this->group} for path: {$this->path}.";
+        parent::__construct();
+
+        $this->message = 'Cannot set group for path.';
 
     }
 

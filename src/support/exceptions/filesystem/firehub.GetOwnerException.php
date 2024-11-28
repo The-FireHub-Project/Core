@@ -23,22 +23,14 @@ use FireHub\Core\Support\Exceptions\FileSystemException;
 class GetOwnerException extends FileSystemException {
 
     /**
-     * ### Constructor
+     * @inheritDoc
+     *
      * @since 1.0.0
-     *
-     * @param string $path <p>
-     * The path.
-     * </p>
-     *
-     * @return void
      */
-    public function __construct (
-        protected string $path
-    ) {
+    public function __construct () {
 
-        parent::__construct($path);
 
-        $this->message = "Cannot get owner for path: {$this->path}.";
+        $this->message = 'Cannot get owner for path.';
 
     }
 

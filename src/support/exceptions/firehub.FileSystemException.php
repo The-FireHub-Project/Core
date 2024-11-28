@@ -19,27 +19,22 @@ use FireHub\Core\Components\Error\Exception;
 /**
  * ### File system exception
  * @since 1.0.0
+ *
+ * @method $this withPath (?string $path) ### Path
  */
 class FileSystemException extends Exception {
 
     /**
-     * ### Constructor
+     * ### Path
      * @since 1.0.0
      *
-     * @param string $path <p>
-     * The path.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $path
-    ) {
-
-        parent::__construct();
-
-        $this->message = "Path: {$this->path} error.";
-
+    public ?string $path = null {
+        set {
+            $this->path = $value;
+            $this->appendMessage("With path: {$this->path}.");
+        }
     }
 
 }

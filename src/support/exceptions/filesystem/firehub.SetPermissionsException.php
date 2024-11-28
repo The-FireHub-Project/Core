@@ -14,35 +14,82 @@
 
 namespace FireHub\Core\Support\Exceptions\FileSystem;
 
+use FireHub\Core\Support\Enums\FileSystem\Permission;
 use FireHub\Core\Support\Exceptions\FileSystemException;
 
 /**
  * ### Set permissions exception
  * @since 1.0.0
+ *
+ * @method $this withPermissions (null|int|float $permissions) ### Permissions
+ * @method $this withOwner (?Permission $permissions) ### Owner
+ * @method $this withOwnerGroup (?Permission $permissions) ### Owner group
+ * @method $this withGlobal (?Permission $permissions) ### Global
  */
 class SetPermissionsException extends FileSystemException {
 
     /**
-     * ### Constructor
+     * ### Permissions
      * @since 1.0.0
      *
-     * @param string $path <p>
-     * The path.
-     * </p>
-     * @param float|int $permissions <p>
-     * The permissions.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $path,
-        protected float|int $permissions
-    ) {
+    public ?string $permissions = null {
+        set {
+            $this->permissions = $value;
+            $this->appendMessage("With permissions: {$this->permissions}.");
+        }
+    }
 
-        parent::__construct($path);
+    /**
+     * ### Owner
+     * @since 1.0.0
+     *
+     * @var null|non-empty-string
+     */
+    public ?string $owner = null {
+        set {
+            $this->owner = $value;
+            $this->appendMessage("With owner permissions: {$this->owner}.");
+        }
+    }
 
-        $this->message = "Cannot set permissions: {$this->permissions} for path: {$this->path}.";
+    /**
+     * ### Owner group
+     * @since 1.0.0
+     *
+     * @var null|non-empty-string
+     */
+    public ?string $owner_group = null {
+        set {
+            $this->owner_group = $value;
+            $this->appendMessage("With owner_group permissions: {$this->owner_group}.");
+        }
+    }
+
+    /**
+     * ### Global
+     * @since 1.0.0
+     *
+     * @var null|non-empty-string
+     */
+    public ?string $global = null {
+        set {
+            $this->global = $value;
+            $this->appendMessage("With global permissions: {$this->global}.");
+        }
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
+
+        parent::__construct();
+
+        $this->message = 'Cannot set permissions for path.';
 
     }
 

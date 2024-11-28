@@ -19,34 +19,62 @@ use FireHub\Core\Support\Exceptions\DateTimeException;
 /**
  * ### Sunset and twilight exception
  * @since 1.0.0
+ *
+ * @method $this withTimestamp (?int $timestamp) ### Timestamp
+ * @method $this withLatitude (?float $latitude) ### Latitude
+ * @method $this withLongitude (?float $longitude) ### Longitude
  */
 class SunsetTwilightException extends DateTimeException {
 
     /**
-     * ### Constructor
+     * ### Timestamp
      * @since 1.0.0
      *
-     * @param int $timestamp <p>
-     * Unix timestamp.
-     * </p>
-     * @param float $latitude <p>
-     * Latitude in degrees.
-     * </p>
-     * @param float $longitude <p>
-     * Longitude in degrees.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected int $timestamp,
-        protected float $latitude,
-        protected float $longitude
-    ) {
+    public ?string $timestamp = null {
+        set {
+            $this->timestamp = $value;
+            $this->appendMessage("With timestamp: {$this->timestamp}.");
+        }
+    }
+
+    /**
+     * ### Latitude
+     * @since 1.0.0
+     *
+     * @var null|non-empty-string
+     */
+    public ?string $latitude = null {
+        set {
+            $this->latitude = $value;
+            $this->appendMessage("With latitude: {$this->latitude}.");
+        }
+    }
+
+    /**
+     * ### Longitude
+     * @since 1.0.0
+     *
+     * @var null|non-empty-string
+     */
+    public ?string $longitude = null {
+        set {
+            $this->longitude = $value;
+            $this->appendMessage("With longitude: {$this->longitude}.");
+        }
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
 
         parent::__construct();
 
-        $this->message = "Could not get information about sunset and twilight for timestamp: {$this->timestamp} with latitude: {$this->latitude} and longitude : {$this->longitude}.";
+        $this->message = 'Could not get information about sunset and twilight for timestamp';
 
     }
 

@@ -19,30 +19,34 @@ use FireHub\Core\Support\Exceptions\ClsException;
 /**
  * ### Failed to create alias exception
  * @since 1.0.0
+ *
+ * @method $this withAlias (?string $alias) ### Alias
  */
 class FailedToCreateAliasException extends ClsException {
 
     /**
-     * ### Constructor
+     * ### Alias
      * @since 1.0.0
      *
-     * @param class-string $class <p>
-     * Class FQN.
-     * </p>
-     * @param class-string $alias <p>
-     * The alias name for the class.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $class,
-        protected string $alias
-    ) {
+    public ?string $alias = null {
+        set {
+            $this->alias = $value;
+            $this->appendMessage("Using alias: {$this->alias}.");
+        }
+    }
 
-        parent::__construct($class);
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
 
-        $this->message = "Failed to create alias: {$this->alias} for class {$this->class}.";
+        parent::__construct();
+
+        $this->message = 'Failed to create alias for class.';
 
     }
 

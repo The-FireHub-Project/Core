@@ -61,7 +61,9 @@ final class CharMB {
     public static function chr (int $codepoint, ?Encoding $encoding = null):string {
 
         return ($chr = mb_chr($codepoint, $encoding?->value)) !== false
-            ? $chr : throw new CodepointToCharacterException($codepoint);
+            ? $chr : throw new CodepointToCharacterException()
+                ->withCodepoint($codepoint)
+                ->withEncoding($encoding);
 
     }
 
@@ -90,11 +92,12 @@ final class CharMB {
     public static function ord (string $character, ?Encoding $encoding = null):int {
 
         if (empty($character))
-            throw new CharacterToCodepointException($character)
+            throw new CharacterToCodepointException()
                 ->withMessage('Cannot convert empty character to codepoint.');
 
         return ($ord = mb_ord($character, $encoding?->value)) !== false
-            ? $ord : throw new CharacterToCodepointException($character)
+            ? $ord : throw new CharacterToCodepointException()
+                ->withCharacter($character)
                 ->withEncoding($encoding);
 
     }

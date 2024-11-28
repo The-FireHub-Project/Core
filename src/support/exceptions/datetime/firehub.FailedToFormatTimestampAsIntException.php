@@ -19,42 +19,48 @@ use FireHub\Core\Support\Exceptions\DateTimeException;
 /**
  * ### Failed to format integer exception
  * @since 1.0.0
+ *
+ * @method $this withFormat (?string $format) ### Format
+ * @method $this withTimestamp (?int $timestamp) ### Timestamp
  */
 class FailedToFormatTimestampAsIntException extends DateTimeException {
 
     /**
-     * ### Constructor
+     * ### Format
      * @since 1.0.0
      *
-     * @param string $format <p>
-     * Single format character.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $format
-    ) {
-
-        parent::__construct();
-
-        $this->message = "Failed to format: {$this->format} a Unix timestamp as integer.";
-
+    public ?string $format = null {
+        set {
+            $this->format = $value;
+            $this->appendMessage("Using format: {$this->format}.");
+        }
     }
 
     /**
-     * ### Sets the timestamp for this exception
+     * ### Timestamp
      * @since 1.0.0
      *
-     * @param null|int $timestamp [optional] <p>
-     * The timestamp.
-     * </p>
-     *
-     * @return static This exception instance.
+     * @var null|non-empty-string
      */
-    public function withTimestamp (?int $timestamp = null):static {
+    public ?string $timestamp = null {
+        set {
+            $this->timestamp = $value;
+            $this->appendMessage("With timestamp: {$this->timestamp}.");
+        }
+    }
 
-        return $this->appendMessageIfExists($timestamp, 'With timestamp: '.($timestamp ?? '').'.');
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
+
+        parent::__construct();
+
+        $this->message = 'Failed to format a Unix timestamp as integer.';
 
     }
 

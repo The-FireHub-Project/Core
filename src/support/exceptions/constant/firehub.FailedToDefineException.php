@@ -23,22 +23,15 @@ use FireHub\Core\Support\Exceptions\ConstantException;
 class FailedToDefineException extends ConstantException {
 
     /**
-     * ### Constructor
+     * @inheritDoc
+     *
      * @since 1.0.0
-     *
-     * @param string $constant <p>
-     * Constant name.
-     * </p>
-     *
-     * @return void
      */
-    public function __construct (
-        protected string $constant
-    ) {
+    public function __construct () {
 
-        parent::__construct($constant);
+        parent::__construct();
 
-        $this->message = "Failed to define constant: {$this->constant}.";
+        $this->message = 'Failed to define constant.';
 
     }
 

@@ -19,26 +19,76 @@ use FireHub\Core\Support\Exceptions\StrException;
 /**
  * ### Compare part exception
  * @since 1.0.0
+ *
+ * @method $this withString2 (?string $string_2) ### String 2
+ * @method $this withOffset (?int $offset) ### Offset
+ * @method $this withLength (?int $length) ### Length
+ * @method $this withCaseSensitive (?bool $case_sensitive) ### Case sensitive
  */
 class ComparePartException extends StrException {
 
     /**
-     * ### Constructor
+     * ### String 2
      * @since 1.0.0
      *
-     * @param string $string <p>
-     * The string.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $string
-    ) {
+    public ?string $string_2 = null {
+        set {
+            $this->string_2 = $value;
+            $this->appendMessage("Comparing with: {$this->string_2}.");
+        }
+    }
 
-        parent::__construct($string);
+    /**
+     * ### Offset
+     * @since 1.0.0
+     *
+     * @var null|non-empty-string
+     */
+    public ?string $offset = null {
+        set {
+            $this->offset = $value;
+            $this->appendMessage("With offset: {$this->offset}.");
+        }
+    }
 
-        $this->message = "Failed to compare part of the sting: {$this->string}.";
+    /**
+     * ### Length
+     * @since 1.0.0
+     *
+     * @var null|non-empty-string
+     */
+    public ?string $length = null {
+        set {
+            $this->length = $value;
+            $this->appendMessage("Using length: {$this->length}.");
+        }
+    }
+
+    /**
+     * ### Case sensitive
+     * @since 1.0.0
+     *
+     * @var null|non-empty-string
+     */
+    public ?string $case_sensitive = null {
+        set {
+            $this->case_sensitive = $value;
+            $this->appendMessage("Case sensitive: {$this->case_sensitive}.");
+        }
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
+
+        parent::__construct();
+
+        $this->message = 'Failed to compare part of the sting.';
 
     }
 

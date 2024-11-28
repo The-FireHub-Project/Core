@@ -23,22 +23,15 @@ use FireHub\Core\Support\Exceptions\FileSystemException;
 class DeleteFolderException extends FileSystemException {
 
     /**
-     * ### Constructor
+     * @inheritDoc
+     *
      * @since 1.0.0
-     *
-     * @param string $path <p>
-     * The path.
-     * </p>
-     *
-     * @return void
      */
-    public function __construct (
-        protected string $path
-    ) {
+    public function __construct () {
 
-        parent::__construct($path);
+        parent::__construct();
 
-        $this->message = "Cannot delete folder: {$this->path}.";
+        $this->message = 'Cannot delete folder';
 
     }
 

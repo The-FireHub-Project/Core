@@ -293,7 +293,7 @@ abstract class StrSafe {
 
         } catch (ValueError) {
 
-            throw new EmptySeparatorException($string);
+            throw new EmptySeparatorException()->withString($string);
 
 
         }

@@ -19,30 +19,48 @@ use FireHub\Core\Support\Exceptions\DateTimeException;
 /**
  * ### Parse from format exception
  * @since 1.0.0
+ *
+ * @method $this withFormat (?string $format) ### Format
+ * @method $this withDatetime (?string $datetime) ### Datetime
  */
 class ParseFromFormatException extends DateTimeException {
 
     /**
-     * ### Constructor
+     * ### Format
      * @since 1.0.0
      *
-     * @param string $format <p>
-     * The date/time format.
-     * </p>
-     * @param string $datetime <p>
-     * Date/time string.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $format,
-        protected string $datetime
-    ) {
+    public ?string $format = null {
+        set {
+            $this->format = $value;
+            $this->appendMessage("Using format: {$this->format}.");
+        }
+    }
+
+    /**
+     * ### Datetime
+     * @since 1.0.0
+     *
+     * @var null|non-empty-string
+     */
+    public ?string $datetime = null {
+        set {
+            $this->datetime = $value;
+            $this->appendMessage("With datetime: {$this->datetime}.");
+        }
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
 
         parent::__construct();
 
-        $this->message = "Parse from format: {$this->format} for datetime: {$this->datetime}.";
+        $this->message = 'Error parsing datetime from format.';
 
     }
 

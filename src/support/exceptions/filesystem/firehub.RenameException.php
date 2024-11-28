@@ -19,30 +19,34 @@ use FireHub\Core\Support\Exceptions\FileSystemException;
 /**
  * ### Rename exception
  * @since 1.0.0
+ *
+ * @method $this withNewPath (?string $path) ### New path
  */
 class RenameException extends FileSystemException {
 
     /**
-     * ### Constructor
+     * ### New path
      * @since 1.0.0
      *
-     * @param string $path <p>
-     * The path.
-     * </p>
-     * @param string $new_path <p>
-     * The new path.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $path,
-        protected string $new_path
-    ) {
+    public ?string $new_path = null {
+        set {
+            $this->new_path = $value;
+            $this->appendMessage("With new path: {$this->new_path}.");
+        }
+    }
 
-        parent::__construct($path);
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
 
-        $this->message = "Cannot rename path: {$this->path} to new path: {$this->new_path}.";
+        parent::__construct();
+
+        $this->message = 'Cannot rename path';
 
     }
 

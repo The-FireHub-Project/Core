@@ -19,27 +19,22 @@ use FireHub\Core\Components\Error\Exception;
 /**
  * ### Number exception
  * @since 1.0.0
+ *
+ * @method $this withNumber (null|int|float $number) ### Number
  */
 class NumException extends Exception {
 
     /**
-     * ### Constructor
+     * ### Number
      * @since 1.0.0
      *
-     * @param float|int $number $number <p>
-     * The number.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected int|float $number
-    ) {
-
-        parent::__construct();
-
-        $this->message = "Number: {$this->number} error.";
-
+    public ?string $number = null {
+        set {
+            $this->number = $value;
+            $this->appendMessage("With number: {$this->number}.");
+        }
     }
 
 }

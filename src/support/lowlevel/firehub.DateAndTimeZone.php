@@ -15,8 +15,8 @@
 namespace FireHub\Core\Support\LowLevel;
 
 use FireHub\Core\Support\Enums\DateTime\Zone;
-use FireHub\Core\Support\Exceptions\ {
-    TimeZoneException, TimeZone\FailedToSetException
+use FireHub\Core\Support\Exceptions\TimeZone\ {
+    FailedToGetException, FailedToSetException
 };
 
 use function date_default_timezone_get;
@@ -44,15 +44,15 @@ final class DateAndTimeZone {
      *
      * @uses \FireHub\Core\Support\Enums\DateTime\Zone To check for a valid timezone.
      *
-     * @throws \FireHub\Core\Support\Exceptions\TimeZoneException If we can't get the default timezone.
+     * @throws \FireHub\Core\Support\Exceptions\TimeZone\FailedToGetException If we can't get the default timezone.
      *
      * @return \FireHub\Core\Support\Enums\DateTime\Zone Timezone enum.
      */
     public static function getDefaultTimezone ():Zone {
 
-        return ($time_zone = Zone::tryFrom(date_default_timezone_get()))
+        return ($time_zone = Zone::tryFrom($internal_timezone = date_default_timezone_get()))
             ? $time_zone
-            : throw new TimeZoneException()->withMessage('Cannot get default timezone.');
+            : throw new FailedToGetException()->withInternal($internal_timezone);
 
     }
 
@@ -75,7 +75,7 @@ final class DateAndTimeZone {
     public static function setDefaultTimezone (Zone $zone):true {
 
         return date_default_timezone_set($zone->value)
-            ?: throw new FailedToSetException($zone);
+            ?: throw new FailedToSetException()->withZone($zone);
 
     }
 

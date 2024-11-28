@@ -20,26 +20,48 @@ use FireHub\Core\Support\Exceptions\DataException;
 /**
  * ### Failed to set data type exception
  * @since 1.0.0
+ *
+ * @method $this withVal (mixed $value) ### Value
+ * @method $this withType (?Type $type) ### Type
  */
 class FailedToSetTypeException extends DataException {
 
     /**
-     * ### Constructor
+     * ### Value
      * @since 1.0.0
      *
-     * @param \FireHub\Core\Support\Enums\Data\Type $type <p>
-     * The type that failed to be set.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected Type $type
-    ) {
+    public ?string $val = null {
+        set {
+            $this->val= $value;
+            $this->appendMessage("Tried to from value: {$this->val}.");
+        }
+    }
+
+    /**
+     * ### Type
+     * @since 1.0.0
+     *
+     * @var null|non-empty-string
+     */
+    public ?string $type = null {
+        set {
+            $this->type= $value;
+            $this->appendMessage("Tried to set type: {$this->type}.");
+        }
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
 
         parent::__construct();
 
-        $this->message = 'Failed to set a type to: '.$this->type::class.' for value.';
+        $this->message = 'Failed to set a type to for value.';
 
     }
 

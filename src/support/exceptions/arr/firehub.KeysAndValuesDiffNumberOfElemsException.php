@@ -20,13 +20,12 @@ use FireHub\Core\Support\Exceptions\ArrException;
  * ### Keys and values must have the same number of elements exception
  * @since 1.0.0
  */
-class KeysAndValuesSameNumberOfElemsException extends ArrException {
+class KeysAndValuesDiffNumberOfElemsException extends ArrException {
 
     /**
-     * ### Constructor
-     * @since 1.0.0
+     * @inheritDoc
      *
-     * @return void
+     * @since 1.0.0
      */
     public function __construct () {
 

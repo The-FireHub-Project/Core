@@ -23,22 +23,15 @@ use FireHub\Core\Support\Exceptions\FileSystemException;
 class DiskSpaceException extends FileSystemException {
 
     /**
-     * ### Constructor
+     * @inheritDoc
+     *
      * @since 1.0.0
-     *
-     * @param string $path <p>
-     * The path.
-     * </p>
-     *
-     * @return void
      */
-    public function __construct (
-        protected string $path
-    ) {
+    public function __construct () {
 
-        parent::__construct($path);
+        parent::__construct();
 
-        $this->message = "Disk space error with path: {$this->path}.";
+        $this->message = 'Disk space error.';
 
     }
 

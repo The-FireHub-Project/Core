@@ -23,22 +23,15 @@ use FireHub\Core\Support\Exceptions\StrException;
 class EmptySeparatorException extends StrException {
 
     /**
-     * ### Constructor
+     * @inheritDoc
+     *
      * @since 1.0.0
-     *
-     * @param string $string <p>
-     * The string.
-     * </p>
-     *
-     * @return void
      */
-    public function __construct (
-        protected string $string
-    ) {
+    public function __construct () {
 
-        parent::__construct($string);
+        parent::__construct();
 
-        $this->message = "Separator cannot be empty for string: {$this->string}.";
+        $this->message = 'Separator cannot be empty.';
 
     }
 

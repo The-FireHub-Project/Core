@@ -150,7 +150,8 @@ final class Cls extends ClsObj {
     public static function alias (string $class, string $alias, bool $autoload = true):true {
 
         return class_alias($class, $alias, $autoload)
-            ?: throw new FailedToCreateAliasException($class, $alias);
+            ?: throw new FailedToCreateAliasException()
+                ->withClass($class)->withAlias($alias);
 
     }
 
@@ -180,7 +181,8 @@ final class Cls extends ClsObj {
 
         } catch (TypeError) {
 
-            throw new NotFoundException($class)
+            throw new NotFoundException()
+                ->withClass($class)
                 ->withMessage("Cannot get properties for class: {$class}, class not found");
 
         }

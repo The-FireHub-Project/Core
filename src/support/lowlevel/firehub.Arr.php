@@ -18,7 +18,7 @@ use FireHub\Core\Support\Enums\ {
     Order, Sort, String\CaseFolding
 };
 use FireHub\Core\Support\Exceptions\Arr\ {
-    ChunkLengthTooSmallException, FailedSortMultiArrayException, KeysAndValuesSameNumberOfElemsException,
+    ChunkLengthTooSmallException, FailedSortMultiArrayException, KeysAndValuesDiffNumberOfElemsException,
     OutOfRangeException, SizeInconsistentException, WalkArgumentCountException
 };
 use ArgumentCountError, ValueError;
@@ -478,7 +478,7 @@ final class Arr {
 
         return !($length < 1)
             ? array_chunk($array, $length, $preserve_keys)
-            : throw new ChunkLengthTooSmallException($length);
+            : throw new ChunkLengthTooSmallException()->withLength($length);
 
     }
 
@@ -539,7 +539,7 @@ final class Arr {
      * Array of values to be used as values on a combined array.
      * </p>
      *
-     * @throws \FireHub\Core\Support\Exceptions\Arr\KeysAndValuesSameNumberOfElemsException If arguments $keys and
+     * @throws \FireHub\Core\Support\Exceptions\Arr\KeysAndValuesDiffNumberOfElemsException If arguments $keys and
      * $values don't have the same number of elements.
      *
      * @return array<TKey, TValue> The combined array.
@@ -552,7 +552,7 @@ final class Arr {
 
         } catch (ValueError) {
 
-            throw new KeysAndValuesSameNumberOfElemsException;
+            throw new KeysAndValuesDiffNumberOfElemsException;
 
         }
 

@@ -14,31 +14,40 @@
 
 namespace FireHub\Core\Support\Exceptions\FileSystem;
 
+use FireHub\Core\Support\Enums\Order;
 use FireHub\Core\Support\Exceptions\FileSystemException;
 
 /**
  * ### Can't list exception
  * @since 1.0.0
+ *
+ * @method $this withOrder (?Order $order) ### Order
  */
 class CannotListException extends FileSystemException {
 
     /**
-     * ### Constructor
+     * ### Order
      * @since 1.0.0
      *
-     * @param string $folder <p>
-     * The folder.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $folder
-    ) {
+    public ?string $order = null {
+        set {
+            $this->order = $value;
+            $this->appendMessage("With order: {$this->order}.");
+        }
+    }
 
-        parent::__construct($folder);
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
 
-        $this->message = "Could not list files and directories inside the specified folder: {$this->folder}.";
+        parent::__construct();
+
+        $this->message = 'Could not list files and directories inside the specified folder.';
 
     }
 

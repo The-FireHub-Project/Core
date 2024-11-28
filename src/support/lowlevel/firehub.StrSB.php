@@ -118,7 +118,9 @@ final class StrSB extends StrSafe {
 
         return $length >= 1
             ? chunk_split($string, $length, $separator)
-            : throw new ChunkLengthLessThanOneException($string, $length);
+            : throw new ChunkLengthLessThanOneException()
+                ->withString($string)
+                ->withLength($length);
 
     }
 
@@ -158,7 +160,7 @@ final class StrSB extends StrSafe {
             Side::LEFT => 0,
             Side::RIGHT => 1,
             default => 2
-        }) : throw new EmptyPadException($string);
+        }) : throw new EmptyPadException()->withString($string);
 
     }
 
@@ -586,7 +588,9 @@ final class StrSB extends StrSafe {
 
         return !$length < 1
             ? str_split($string, $length)
-            : throw new ChunkLengthLessThanOneException($string, $length);
+            : throw new ChunkLengthLessThanOneException()
+                ->withString($string)
+                ->withLength($length);
 
     }
 
@@ -622,7 +626,11 @@ final class StrSB extends StrSafe {
     public static function countWords (string $string, ?string $characters = null, int $format = 0):int|array {
 
         return str_word_count($string, $format, $characters)
-            ?: throw new CountWordsException($string, $format)->withCharacters($characters);
+            ?: throw new CountWordsException()
+                ->withString($string)
+                ->withCharacters($characters)
+                ->withFormat($format)
+            ;
 
     }
 
@@ -823,7 +831,13 @@ final class StrSB extends StrSafe {
 
         } catch (ValueError $error) {
 
-            throw new ComparePartException($string_1)->withMessage($error->getMessage());
+            throw new ComparePartException()
+                ->withString($string_1)
+                ->withString2($string_2)
+                ->withOffset($offset)
+                ->withLength($length)
+                ->withCaseSensitive($case_sensitive)
+                ->withMessage($error->getMessage());
 
         }
 

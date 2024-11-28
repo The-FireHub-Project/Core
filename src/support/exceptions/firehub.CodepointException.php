@@ -14,32 +14,43 @@
 
 namespace FireHub\Core\Support\Exceptions;
 
+use FireHub\Core\Support\Enums\String\Encoding;
 use FireHub\Core\Components\Error\Exception;
+
 
 /**
  * ### Codepoint exception
  * @since 1.0.0
+ *
+ * @method $this withCodepoint (?int $codepoint) ### Codepoint
+ * @method $this withEncoding (?Encoding $encoding) ### Encoding
  */
 class CodepointException extends Exception {
 
     /**
-     * ### Constructor
+     * ### Codepoint
      * @since 1.0.0
      *
-     * @param int $codepoint <p>
-     * The codepoint.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected int $codepoint
-    ) {
+    public ?string $codepoint = null {
+        set {
+            $this->codepoint = $value;
+            $this->appendMessage("Using codepoint: {$this->codepoint}.");
+        }
+    }
 
-        parent::__construct();
-
-        $this->message = "Codepoint: {$this->codepoint} error.";
-
+    /**
+     * ### Encoding
+     * @since 1.0.0
+     *
+     * @var null|non-empty-string
+     */
+    public ?string $encoding = null {
+        set {
+            $this->encoding = $value;
+            $this->appendMessage("Using encoding: {$this->encoding}.");
+        }
     }
 
 }

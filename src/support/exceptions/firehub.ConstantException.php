@@ -19,27 +19,22 @@ use FireHub\Core\Components\Error\Exception;
 /**
  * ### Constant exception
  * @since 1.0.0
+ *
+ * @method $this withName (?string $name) ### Constant name
  */
 class ConstantException extends Exception {
 
     /**
-     * ### Constructor
+     * Constant name
      * @since 1.0.0
      *
-     * @param string $constant <p>
-     * Constant name.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $constant
-    ) {
-
-        parent::__construct();
-
-        $this->message = "Constant: {$this->constant} error.";
-
+    public ?string $name = null {
+        set {
+            $this->name = $value;
+            $this->appendMessage("Constant name: {$this->name}.");
+        }
     }
 
 }

@@ -12,28 +12,28 @@
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\Exceptions\Arr;
+namespace FireHub\Core\Support\Exceptions\TimeZone;
 
-use FireHub\Core\Support\Exceptions\ArrException;
+use FireHub\Core\Support\Exceptions\TimeZoneException;
 
 /**
- * ### Chunk length too small exception
+ * ### Failed to get timezone exception
  * @since 1.0.0
  *
- * @method $this withLength (?int $length) ### Chunk length
+ * @method $this withInternal (?string $internal) ### Internal timezone
  */
-class ChunkLengthTooSmallException extends ArrException {
+class FailedToGetException extends TimeZoneException {
 
     /**
-     * ### Chunk length
+     * ### Internal timezone
      * @since 1.0.0
      *
      * @var null|non-empty-string
      */
-    public ?string $length = null {
+    public ?string $internal = null {
         set {
-            $this->length = $value;
-            $this->appendMessage("You provided: {$this->length}.");
+            $this->internal = $value;
+            $this->appendMessage("Internal timezone: {$this->internal}.");
         }
     }
 
@@ -46,7 +46,7 @@ class ChunkLengthTooSmallException extends ArrException {
 
         parent::__construct();
 
-        $this->message = 'Length is less than 1.';
+        $this->message = 'Failed to get timezone';
 
     }
 

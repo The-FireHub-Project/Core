@@ -23,10 +23,9 @@ use FireHub\Core\Support\Exceptions\AutoloadException;
 class RegisterAutoloaderException extends AutoloadException {
 
     /**
-     * ### Constructor
-     * @since 1.0.0
+     * @inheritDoc
      *
-     * @return void
+     * @since 1.0.0
      */
     public function __construct () {
 

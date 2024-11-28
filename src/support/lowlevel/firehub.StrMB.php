@@ -329,7 +329,9 @@ final class StrMB extends StrSafe {
 
         return !$length < 1 // @phpstan-ignore return.type (Since length is more than one, it must be non-empty-string)
             ? mb_str_split($string, $length, $encoding?->value)
-            : throw new ChunkLengthLessThanOneException($string, $length)
+            : throw new ChunkLengthLessThanOneException()
+                ->withString($string)
+                ->withLength($length)
                 ->withEncoding($encoding);
 
     }

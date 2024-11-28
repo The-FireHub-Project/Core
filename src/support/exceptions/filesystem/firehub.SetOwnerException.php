@@ -19,30 +19,34 @@ use FireHub\Core\Support\Exceptions\FileSystemException;
 /**
  * ### Set owner exception
  * @since 1.0.0
+ *
+ * @method $this withUser (null|string|int $user) ### User
  */
 class SetOwnerException extends FileSystemException {
 
     /**
-     * ### Constructor
+     * ### User
      * @since 1.0.0
      *
-     * @param string $path <p>
-     * The path.
-     * </p>
-     * @param string|int $user <p>
-     * A username or number.
-     * </p>
-     *
-     * @return void
+     * @var null|non-empty-string
      */
-    public function __construct (
-        protected string $path,
-        protected string|int $user
-    ) {
+    public ?string $user = null {
+        set {
+            $this->user = $value;
+            $this->appendMessage("With user: {$this->user}.");
+        }
+    }
 
-        parent::__construct($path);
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct () {
 
-        $this->message = "Cannot set user: {$this->user} for path: {$this->path}.";
+        parent::__construct();
+
+        $this->message = 'Cannot set user for path.';
 
     }
 

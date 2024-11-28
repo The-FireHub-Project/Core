@@ -52,7 +52,7 @@ final class NumInt extends Num {
      */
     public static function divide (int $dividend, int $divisor):int {
 
-        if ($divisor === 0) throw new DivideByZeroException($dividend);
+        if ($divisor === 0) throw new DivideByZeroException()->withNumber($dividend);
 
         try {
 
@@ -60,7 +60,9 @@ final class NumInt extends Num {
 
         } catch (ArithmeticError $error) {
 
-            throw new ArithmeticException($dividend)->withMessage($error->getMessage());
+            throw new ArithmeticException()
+                ->withNumber($dividend)
+                ->withMessage($error->getMessage());
 
         }
 

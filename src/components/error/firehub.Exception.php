@@ -16,6 +16,12 @@ namespace FireHub\Core\Components\Error;
 
 use Exception as InternalException;
 
+use function FireHub\Core\Support\Helpers\Data\toString;
+use function ltrim;
+use function preg_replace;
+use function property_exists;
+use function strtolower;
+
 /**
  * ### Main Exception
  * @since 1.0.0
@@ -71,28 +77,6 @@ class Exception extends InternalException {
     }
 
     /**
-     * ### Append a message to the exception message only if $check exists
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Components\Error\Exception::appendMessage() To append an error message in case of $check
-     * assignment exists.
-     *
-     * @param mixed $check <p>
-     * Value to check if is set.
-     * </p>
-     * @param string $message <p>
-     * The exception message to append.
-     * </p>
-     *
-     * @return static This exception instance.
-     */
-    public function appendMessageIfExists (mixed $check, string $message):static {
-
-        return isset($check) ? $this->appendMessage($message) : $this;
-
-    }
-
-    /**
      * ### Sets the exception code
      * @since 1.0.0
      *
@@ -105,6 +89,40 @@ class Exception extends InternalException {
     public function withCode (int $code):static {
 
         $this->code = $code;
+
+        return $this;
+
+    }
+
+    /**
+     * ### Invoking methods to set property
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Data\toString() To shown argument as string.
+     *
+     * @param non-empty-string $method <p>
+     * Method name.
+     * </p>
+     * @param array<array-key, mixed> $arguments <p>
+     * List of arguments.
+     * </p>
+     *
+     * @return static Method return.
+     */
+    public function __call (string $method, array $arguments):static {
+
+        if (
+            property_exists(
+                $this,
+                $method = strtolower(
+                    ltrim(
+                        preg_replace('~[a-z]\K(?=[A-Z])~', '_', $method) ?? '',
+                        'with_'
+                    )
+                )
+            )
+            && isset($arguments[0])
+        ) $this->$method = toString($arguments[0], '{unknown value}');
 
         return $this;
 

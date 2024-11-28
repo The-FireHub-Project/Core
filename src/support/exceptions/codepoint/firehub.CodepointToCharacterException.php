@@ -23,22 +23,15 @@ use FireHub\Core\Support\Exceptions\CodepointException;
 class CodepointToCharacterException extends CodepointException {
 
     /**
-     * ### Constructor
+     * @inheritDoc
+     *
      * @since 1.0.0
-     *
-     * @param int $codepoint <p>
-     * The codepoint.
-     * </p>
-     *
-     * @return void
      */
-    public function __construct (
-        protected int $codepoint
-    ) {
+    public function __construct () {
 
-        parent::__construct($codepoint);
+        parent::__construct();
 
-        $this->message = "Codepoint: {$this->codepoint} couldn't be converted to character.";
+        $this->message = "Codepoint couldn't be converted to character.";
 
     }
 

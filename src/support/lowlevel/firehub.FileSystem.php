@@ -177,7 +177,9 @@ class FileSystem {
     public static function rename (string $path, string $new_name):true {
 
         return rename($path, self::parent($path).DS.$new_name)
-            ?: throw new RenameException($path, $new_name);
+            ?: throw new RenameException()
+                ->withPath($path)
+                ->withNewPath($new_name);
 
     }
 
@@ -276,7 +278,7 @@ class FileSystem {
     final public static function absolutePath (string $path):string {
 
         return realpath($path)
-            ?: throw new GetAbsolutePathException($path);
+            ?: throw new GetAbsolutePathException()->withPath($path);
 
     }
 
@@ -307,7 +309,11 @@ class FileSystem {
 
         return $levels >= 1
             ? dirname($path, $levels)
-            : throw new ParentLevelsException($path)->withMessage("$levels are less than 1 for path: {$path}.");
+            : throw new ParentLevelsException()
+                ->withMessage('Levels is less than 1 for path.')
+                ->withPath($path)
+                ->withLevels($levels)
+            ;
 
     }
 
@@ -333,7 +339,7 @@ class FileSystem {
     final public static function getGroup (string $path):int {
 
         return filegroup($path)
-            ?: throw new GetGroupException($path);
+            ?: throw new GetGroupException()->withPath($path);
 
     }
 
@@ -362,7 +368,9 @@ class FileSystem {
     final public static function setGroup (string $path, string|int $group):true {
 
         return chgrp($path, $group)
-            ?: throw new SetGroupException($path, $group);
+            ?: throw new SetGroupException()
+                ->withPath($path)
+                ->withGroup($group);
 
     }
 
@@ -387,7 +395,7 @@ class FileSystem {
     final public static function getOwner (string $path):int {
 
         return fileowner($path)
-            ?: throw new GetOwnerException($path);
+            ?: throw new GetOwnerException()->withPath($path);
 
     }
 
@@ -415,7 +423,9 @@ class FileSystem {
     final public static function setOwner (string $path, string|int $user):true {
 
         return chown($path, $user)
-            ?: throw new SetOwnerException($path, $user);
+            ?: throw new SetOwnerException()
+                ->withPath($path)
+                ->withUser($user);
 
     }
 
@@ -445,7 +455,7 @@ class FileSystem {
 
         return DataIs::int($permissions = fileperms($path))
             ? StrSB::part(decoct($permissions), -4)
-            : throw new GetPermissionsException($path);
+            : throw new GetPermissionsException()->withPath($path);
 
     }
 
@@ -488,7 +498,12 @@ class FileSystem {
 
         return DataIs::int($permissions = octdec('0'.$owner->value.$owner_group->value.$global->value))
             && chmod($path, $permissions)
-            ?: throw new SetPermissionsException($path, $permissions);
+            ?: throw new SetPermissionsException()
+                ->withPath($path)
+                ->withOwner($owner)
+                ->withOwnerGroup($owner_group)
+                ->withGlobal($global)
+                ->withPermissions($permissions);
 
     }
 
@@ -519,7 +534,7 @@ class FileSystem {
     final public static function lastAccessed (string $path):int {
 
         return ($time = fileatime($path)) !== false
-            ? $time : throw new GetLastAccessedException($path);
+            ? $time : throw new GetLastAccessedException()->withPath($path);
 
     }
 
@@ -547,7 +562,7 @@ class FileSystem {
     final public static function lastModified (string $path):int {
 
         return ($time = filemtime($path)) !== false
-            ? $time : throw new GetLastModifiedException($path);
+            ? $time : throw new GetLastModifiedException()->withPath($path);
 
     }
 
@@ -580,7 +595,7 @@ class FileSystem {
     final public static function lastChanged (string $path):int {
 
         return ($time = filectime($path)) !== false
-            ? $time : throw new GetLastChangedException($path);
+            ? $time : throw new GetLastChangedException()->withPath($path);
 
     }
 
@@ -615,7 +630,8 @@ class FileSystem {
     final public static function setLastAccessedAndModification (string $path, ?int $last_accessed = null, ?int $last_modified = null):true {
 
         return touch($path, $last_modified, $last_accessed)
-            ?: throw new SetLastAccessAndModifyException($path)
+            ?: throw new SetLastAccessAndModifyException()
+                ->withPath($path)
                 ->withLastAccessed($last_accessed)
                 ->withLastModified($last_modified);
 
@@ -641,7 +657,7 @@ class FileSystem {
     final public static function inode (string $path):int {
 
         return fileinode($path)
-            ?: throw new GetInodeException($path);
+            ?: throw new GetInodeException()->withPath($path);
 
     }
 
@@ -666,7 +682,9 @@ class FileSystem {
     final public static function symlink (string $path, string $link):true {
 
         return symlink($path, $link)
-            ?: throw new CreateSymlinkException($path, $link);
+            ?: throw new CreateSymlinkException()
+                ->withPath($path)
+                ->withLink($link);
 
     }
 
@@ -685,7 +703,7 @@ class FileSystem {
     final public static function getSymlink (string $path):string {
 
         return readlink($path)
-            ?: throw new GetSymlinkException($path);
+            ?: throw new GetSymlinkException()->withPath($path);
 
     }
 
@@ -717,7 +735,9 @@ class FileSystem {
     final public static function symlinkGroup (string $path, string|int $group):true {
 
         return lchgrp($path, $group)
-            ?: throw new ChangeSymlinkGroupException($path, $group);
+            ?: throw new ChangeSymlinkGroupException()
+                ->withPath($path)
+                ->withGroup($group);
 
     }
 
@@ -749,7 +769,9 @@ class FileSystem {
     final public static function symlinkOwner (string $path, string|int $user):true {
 
         return lchown($path, $user)
-            ?: throw new ChangeSymlinkOwnerException($path, $user);
+            ?: throw new ChangeSymlinkOwnerException()
+                ->withPath($path)
+                ->withUser($user);
 
     }
 
@@ -782,7 +804,7 @@ class FileSystem {
         return Arr::filter(
             ($statistics = $symlink ? lstat($path) : stat($path))
                 ? $statistics
-                : throw new GetStatisticsException($path),
+                : throw new GetStatisticsException()->withPath($path),
             fn($value, $key) => DataIs::string($key), // @phpstan-ignore argument.type
             true
         );
