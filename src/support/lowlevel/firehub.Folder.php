@@ -18,7 +18,7 @@ use FireHub\Core\Support\Enums\ {
     Order, FileSystem\Permission
 };
 use FireHub\Core\Support\Exceptions\FileSystem\ {
-    CannotListException, CreateFolderException, DeleteFolderException, DiskSpaceException, FindPathNamesException
+    CannotListException, CreateFolderException, DeletePathException, DiskSpaceException, FindPathNamesException
 };
 
 use const GLOB_ONLYDIR;
@@ -123,14 +123,14 @@ final class Folder extends FileSystem {
      * Path to folder.
      * </p>
      *
-     * @throws \FireHub\Core\Support\Exceptions\FileSystem\DeleteFolderException If we couldn't delete the folder.
+     * @throws \FireHub\Core\Support\Exceptions\FileSystem\DeletePathException If we couldn't delete the folder.
      *
      * @return true True on success.
      */
     public static function delete (string $path):true {
 
         return rmdir($path)
-            ?: throw new DeleteFolderException()->withPath($path);
+            ?: throw new DeletePathException()->withPath($path);
 
     }
 
