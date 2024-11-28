@@ -41,7 +41,7 @@ use const PHP_SYSCONFDIR;
  *
  * @var string \FireHub\Core\Support\Constants\Path\DS
  *
- * @link https://www.php.net/manual/en/dir.constants.php To find more info for DIRECTORY_SEPARATOR constant.
+ * @see https://www.php.net/manual/en/dir.constants.php To find more info for DIRECTORY_SEPARATOR constant.
  *
  * @api
  */
@@ -53,7 +53,7 @@ const DS = DIRECTORY_SEPARATOR;
  *
  * @var string \FireHub\Core\Support\Constants\Path\SEPARATOR
  *
- * @link https://www.php.net/manual/en/dir.constants.php To find more info for PATH_SEPARATOR constant.
+ * @see https://www.php.net/manual/en/dir.constants.php To find more info for PATH_SEPARATOR constant.
  *
  * @api
  */

@@ -39,11 +39,12 @@ final class CharSB {
      * This function complements [[CharSB#ord()]].
      * @since 1.0.0
      *
-     * @link https://www.man7.org/linux/man-pages/man7/ascii.7.html List of codepoint values
      * @param int<0, 255> $codepoint <p>
      * An integer between 0 and 255.
      * </p>
      * @return string A single-character string containing the specified byte.
+     *
+     * @see https://www.man7.org/linux/man-pages/man7/ascii.7.html List of codepoint values
      */
     public static function chr (int $codepoint):string {
 

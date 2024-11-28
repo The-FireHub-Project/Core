@@ -55,7 +55,7 @@ final class CharMB {
      *
      * @return string string A string containing the requested character.
      *
-     * @link https://en.wikipedia.org/wiki/List_of_Unicode_characters List of codepoint values.
+     * @see https://en.wikipedia.org/wiki/List_of_Unicode_characters List of codepoint values.
      *
      */
     public static function chr (int $codepoint, ?Encoding $encoding = null):string {

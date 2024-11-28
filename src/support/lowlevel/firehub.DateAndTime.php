@@ -147,7 +147,7 @@ final class DateAndTime {
      *
      * @return string String formatted according to the given format string using the given integer timestamp.
      *
-     * @link https://www.php.net/manual/en/datetime.format.php To check valid $format formats.
+     * @see https://www.php.net/manual/en/datetime.format.php To check valid $format formats.
      */
     public static function format (string $format = 'Y-m-d H:i:s.u', ?int $timestamp = null, bool $gmt = false):string {
 
@@ -176,7 +176,7 @@ final class DateAndTime {
      *
      * @return int Formatted date as integer.
      *
-     * @link https://www.php.net/manual/en/function.idate.phP
+     * @see https://www.php.net/manual/en/function.idate.phP
      */
     public static function formatInteger (string $format, ?int $timestamp = null):int {
 
@@ -279,7 +279,7 @@ final class DateAndTime {
      *
      * @return int A timestamp.
      *
-     * @link https://www.php.net/manual/en/datetime.formats.php To check how to pass $datetime parameter.
+     * @see https://www.php.net/manual/en/datetime.formats.php To check how to pass $datetime parameter.
      *
      * @note If the number of the year is specified in a two-digit format, the values between 00-69 are mapped to
      * 2000-2069 and 70-99 to 1970-1999.
