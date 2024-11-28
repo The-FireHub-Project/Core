@@ -17,10 +17,25 @@ namespace FireHub\Core\Support\Exceptions\FileSystem;
 use FireHub\Core\Support\Exceptions\FileSystemException;
 
 /**
- * ### Delete folder exception
+ * ### Move uploaded file exception
  * @since 1.0.0
+ *
+ * @method $this withDestination (?string $to) ### Destination
  */
-class DeleteFolderException extends FileSystemException {
+class MoveUploadedFileException extends FileSystemException {
+
+    /**
+     * ### Destination
+     * @since 1.0.0
+     *
+     * @var null|non-empty-string
+     */
+    public ?string $destination = null {
+        set {
+            $this->destination = $value;
+            $this->appendMessage("To destination: {$this->destination}.");
+        }
+    }
 
     /**
      * @inheritDoc
@@ -31,7 +46,7 @@ class DeleteFolderException extends FileSystemException {
 
         parent::__construct();
 
-        $this->message = 'Cannot delete folder';
+        $this->message = 'Could not move uploaded file.';
 
     }
 
