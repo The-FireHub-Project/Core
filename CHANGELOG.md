@@ -17,6 +17,11 @@
 - Create Iterator low-level proxy class ([#8](https://github.com/The-FireHub-Project/Core/issues/8), [70e2044](https://github.com/The-FireHub-Project/Core/pull/4/commits/70e2044))
 - Create Num low-level proxy class ([#8](https://github.com/The-FireHub-Project/Core/issues/8), [b4374cf](https://github.com/The-FireHub-Project/Core/pull/4/commits/b4374cf))
 - Create Str low-level proxy class ([#8](https://github.com/The-FireHub-Project/Core/issues/8), [f29d5ae](https://github.com/The-FireHub-Project/Core/pull/4/commits/f29d5ae))
+- Create DateAndTime and DateAndTimeZone low-level proxy classes ([#8](https://github.com/The-FireHub-Project/Core/issues/8), [eefc937](https://github.com/The-FireHub-Project/Core/pull/4/commits/eefc937))
+- Create Folder and FileSystem low-level proxy classes ([#8](https://github.com/The-FireHub-Project/Core/issues/8), [269ac13](https://github.com/The-FireHub-Project/Core/pull/4/commits/269ac13))
+- Create File low-level proxy class ([#8](https://github.com/The-FireHub-Project/Core/issues/8), [1a91ad2](https://github.com/The-FireHub-Project/Core/pull/4/commits/1a91ad2))
+- Create Regex low-level support proxy class ([#8](https://github.com/The-FireHub-Project/Core/issues/8), [68de7c9](https://github.com/The-FireHub-Project/Core/pull/4/commits/68de7c9))
+- Create PHP low-level support proxy class ([#8](https://github.com/The-FireHub-Project/Core/issues/8), [ee95393](https://github.com/The-FireHub-Project/Core/pull/4/commits/ee95393))
 
 ## [v0.1.2](https://github.com/The-FireHub-Project/Core/compare/v0.1.1...v0.1.2) – (2024-11-13)
 
