@@ -6,7 +6,7 @@
     "homepage": "https://the-firehub-project.github.io/Core/",
     "license": "OSL-3.0",
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "ext-mbstring": "*"
     },
     "require-dev": {
@@ -18,7 +18,7 @@
         "ext-openssl": "*"
     },
     "suggest": {
-        "php-64bit": "^8.3"
+        "php-64bit": "^8.4"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
