@@ -1,6 +1,11 @@
 # Release Notes for v0.x.x.pre-alpha
 
-## [Unreleased](https://github.com/The-FireHub-Project/Core/compare/v0.1.3...develop-pre-alpha-m1)
+## [Unreleased](https://github.com/The-FireHub-Project/Core/compare/v0.1.4...develop-pre-alpha-m1)
+
+# [v0.1.4](https://github.com/The-FireHub-Project/Core/compare/v0.1.3...v0.1.4) – (2024-12-03)
+
+### Added
+- Create Kernel ([#13](https://github.com/The-FireHub-Project/Core/issues/13), [9d18931](https://github.com/The-FireHub-Project/Core/pull/4/commits/9d18931))
 
 # [v0.1.3](https://github.com/The-FireHub-Project/Core/compare/v0.1.2...v0.1.3) – (2024-11-29)
 
