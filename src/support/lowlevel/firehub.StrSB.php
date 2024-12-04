@@ -520,12 +520,15 @@ final class StrSB extends StrSafe {
      * @param string $string <p>
      * The string being searched.
      * </p>
+     * @param bool $before_needle [optional] <p>
+     * If true, return the part of the string before the last occurrence (excluding the find string).
+     * </p>
      *
      * @return string|false The portion of string, or false if the needle is not found.
      */
-    public static function lastPart (string $find, string $string):string|false {
+    public static function lastPart (string $find, string $string, bool $before_needle = false):string|false {
 
-        return strrchr($string, $find);
+        return strrchr($string, $find, $before_needle);
 
     }
 
