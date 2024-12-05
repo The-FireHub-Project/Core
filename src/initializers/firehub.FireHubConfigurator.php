@@ -16,6 +16,7 @@ namespace FireHub\Core\Initializers;
 
 use FireHub\Core\FireHub;
 use FireHub\Core\Kernel\Http;
+use FireHub\Core\Initializers\Autoload\Loaders\Preloader;
 
 /**
  * ### FireHub application configuration
@@ -29,7 +30,7 @@ final class FireHubConfigurator {
      *
      * @var string
      */
-    const string HOME_FOLDER = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR;
+    private const string HOME_FOLDER = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR;
 
     /**
      * ### Files needed to be preloaded before autoload is hit
@@ -38,17 +39,21 @@ final class FireHubConfigurator {
      * @var string[]
      */
     private array $preloaders = [
-        self::HOME_FOLDER.'firehub.FireHub.php',
-        self::HOME_FOLDER.'components'.DIRECTORY_SEPARATOR.'error'.DIRECTORY_SEPARATOR.'firehub.Exception.php',
-        self::HOME_FOLDER.'support'.DIRECTORY_SEPARATOR.'lowlevel'.DIRECTORY_SEPARATOR.'firehub.DataIs.php',
-        self::HOME_FOLDER.'support'.DIRECTORY_SEPARATOR.'lowlevel'.DIRECTORY_SEPARATOR.'firehub.ClsObj.php',
-        self::HOME_FOLDER.'support'.DIRECTORY_SEPARATOR.'lowlevel'.DIRECTORY_SEPARATOR.'firehub.Cls.php',
-        self::HOME_FOLDER.'initializers'.DIRECTORY_SEPARATOR.'firehub.Bootloader.php',
-        self::HOME_FOLDER.'initializers'.DIRECTORY_SEPARATOR.'exceptions'.DIRECTORY_SEPARATOR.'firehub.FailedToLoadBootloaderException.php',
-        self::HOME_FOLDER.'initializers'.DIRECTORY_SEPARATOR.'exceptions'.DIRECTORY_SEPARATOR.'firehub.NotBootloaderException.php',
-        self::HOME_FOLDER.'initializers'.DIRECTORY_SEPARATOR.'bootloaders'.DIRECTORY_SEPARATOR.'firehub.RegisterConstants.php',
-        self::HOME_FOLDER.'initializers'.DIRECTORY_SEPARATOR.'bootloaders'.DIRECTORY_SEPARATOR.'firehub.RegisterHelpers.php'
+        __DIR__.DIRECTORY_SEPARATOR.'firehub.Autoload.php',
+        __DIR__.DIRECTORY_SEPARATOR.'autoload'.DIRECTORY_SEPARATOR.'firehub.Loader.php',
+        __DIR__.DIRECTORY_SEPARATOR.'autoload'.DIRECTORY_SEPARATOR.'loaders'.DIRECTORY_SEPARATOR.'firehub.Preloader.php',
+        self::HOME_FOLDER.'support'.DIRECTORY_SEPARATOR.'lowlevel'.DIRECTORY_SEPARATOR.'firehub.SplAutoload.php',
+        self::HOME_FOLDER.'support'.DIRECTORY_SEPARATOR.'lowlevel'.DIRECTORY_SEPARATOR.'firehub.FileSystem.php',
+        self::HOME_FOLDER.'support'.DIRECTORY_SEPARATOR.'lowlevel'.DIRECTORY_SEPARATOR.'firehub.File.php'
     ];
+
+    /**
+     * ### Preloader
+     * @since 1.0.0
+     *
+     * @var \FireHub\Core\Initializers\Autoload
+     */
+    private(set) Autoload $preloader;
 
     /**
      * ### Bootloaders
@@ -70,11 +75,18 @@ final class FireHubConfigurator {
      * ### Constructor
      * @since 1.0.0
      *
+     * @uses \FireHub\Core\Initializers\Autoload::prepend() To register a new autoloaded implementation
+     * at the beginning of the queue.
+     * @uses \FireHub\Core\Initializers\Autoload\Loaders\Preloader As preloader for finding a class path for main
+     * classes – before the main autoloader is hit.
+     *
      * @return void
      */
     public function __construct () {
 
         foreach ($this->preloaders as $preloader) require $preloader;
+
+        $this->preloader = Autoload::prepend(new Preloader(class_prefix: 'firehub.'));
 
     }
 

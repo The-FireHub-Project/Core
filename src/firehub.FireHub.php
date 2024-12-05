@@ -38,7 +38,8 @@ final class FireHub {
      */
     private array $bootloaders = [
         \FireHub\Core\Initializers\Bootloaders\RegisterConstants::class,
-        \FireHub\Core\Initializers\Bootloaders\RegisterHelpers::class
+        \FireHub\Core\Initializers\Bootloaders\RegisterHelpers::class,
+        \FireHub\Core\Initializers\Bootloaders\RegisterAutoloaders::class,
     ];
 
     /**
