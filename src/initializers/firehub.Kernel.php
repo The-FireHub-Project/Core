@@ -18,7 +18,9 @@ use FireHub\Core\Kernel\Bootstrap;
 use FireHub\Core\Kernel\Exceptions\ {
     FailedToLoadBootstrapException, NotBootstrapException
 };
-use FireHub\Core\Support\LowLevel\Cls;
+use FireHub\Core\Support\LowLevel\ {
+    Cls, DataIs
+};
 
 /**
  * ### Abstract Kernel
@@ -32,7 +34,8 @@ abstract class Kernel {
      * ### Default bootstraps
      * @since 1.0.0
      *
-     * @var class-string<\FireHub\Core\Kernel\Bootstrap>[]
+     * @var array<int|class-string<\FireHub\Core\Kernel\Bootstrap>,
+     *     class-string<\FireHub\Core\Kernel\Bootstrap>|array<array-key, mixed>>
      */
     protected array $bootstraps = [];
 
@@ -60,7 +63,7 @@ abstract class Kernel {
      * Bootstraps will be loaded before after the kernel is loaded.
      * @since 1.0.0
      *
-     * @param class-string<\FireHub\Core\Kernel\Bootstrap>[] $bootstraps <p>
+     * @param array<int|class-string<\FireHub\Core\Kernel\Bootstrap>, class-string<\FireHub\Core\Kernel\Bootstrap>|array<array-key, mixed>> $bootstraps <p>
      * List of bootstraps needed to load.
      * </p>
      *
@@ -87,6 +90,9 @@ abstract class Kernel {
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\LowLevel\Cls::ofClass() To check if all provided bootstraps are a real bootstrap.
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To check if $key or $value of bootstraps is a string.
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::array() To check if $value of bootstraps is an array.
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::object() To check if $value of bootstraps is an object.
      *
      * @throws \FireHub\Core\Kernel\Exceptions\FailedToLoadBootstrapException If failed to load bootstrap.
      * @throws \FireHub\Core\Kernel\Exceptions\NotBootstrapException If any of the provided classes is not bootstrap.
@@ -95,10 +101,14 @@ abstract class Kernel {
      */
     private function loadBootstraps ():self {
 
-        foreach ($this->bootstraps as $bootstrap)
-            Cls::ofClass($bootstrap, Bootstrap::class)
-                ? (new $bootstrap()->load() ?: throw new FailedToLoadBootstrapException()->withClass($bootstrap))
-                : throw new NotBootstrapException()->withClass($bootstrap);
+        foreach ($this->bootstraps as $key => $value)
+            match (true) {
+                DataIs::string($key) && DataIs::array($value) && Cls::ofClass($key, Bootstrap::class)
+                    => new $key(...$value)->load() ?: throw new FailedToLoadBootstrapException()->withClass($key),
+                (DataIs::string($value) || DataIs::object($value)) && Cls::ofClass($value, Bootstrap::class)
+                    => new $value()->load() ?: throw new FailedToLoadBootstrapException()->withClass($value),
+                default => throw new NotBootstrapException()->withClass($value)
+            };
 
         return $this;
 

@@ -20,7 +20,9 @@ use FireHub\Core\Initializers\ {
 use FireHub\Core\Initializers\Exceptions\ {
     FailedToLoadBootloaderException, NotBootloaderException, NotKernelException
 };
-use FireHub\Core\Support\LowLevel\Cls;
+use FireHub\Core\Support\LowLevel\ {
+    Cls, DataIs
+};
 
 /**
  * ### Main FireHub class for bootstrapping
@@ -34,12 +36,13 @@ final class FireHub {
      * ### Default bootloaders
      * @since 1.0.0
      *
-     * @var class-string<\FireHub\Core\Initializers\Bootloader>[]
+     * @var array<int|class-string<\FireHub\Core\Initializers\Bootloader>,
+     *     class-string<\FireHub\Core\Initializers\Bootloader>|array<array-key, mixed>>
      */
     private array $bootloaders = [
         \FireHub\Core\Initializers\Bootloaders\RegisterConstants::class,
         \FireHub\Core\Initializers\Bootloaders\RegisterHelpers::class,
-        \FireHub\Core\Initializers\Bootloaders\RegisterAutoloaders::class,
+        \FireHub\Core\Initializers\Bootloaders\RegisterAutoloaders::class
     ];
 
     /**
@@ -92,6 +95,9 @@ final class FireHub {
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\LowLevel\Cls::ofClass() To check if all provided bootloaders are a real bootloader.
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To check if $key or $value of bootloaders is a string.
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::array() To check if $value of bootloaders is an array.
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::object() To check if $value of bootloaders is an object.
      *
      * @throws \FireHub\Core\Initializers\Exceptions\FailedToLoadBootloaderException If failed to load bootloader.
      * @throws \FireHub\Core\Initializers\Exceptions\NotBootloaderException If any of the provided classes is not
@@ -101,10 +107,14 @@ final class FireHub {
      */
     private function loadBootloaders ():self {
 
-        foreach ([...$this->bootloaders, ...$this->configurator->bootloaders] as $bootloader)
-            Cls::ofClass($bootloader, Bootloader::class)
-                ? (new $bootloader()->load() ?: throw new FailedToLoadBootloaderException()->withClass($bootloader))
-                : throw new NotBootloaderException()->withClass($bootloader);
+        foreach ([...$this->bootloaders, ...$this->configurator->bootloaders] as $key => $value)
+            match (true) {
+                DataIs::string($key) && DataIs::array($value) && Cls::ofClass($key, Bootloader::class)
+                    => new $key(...$value)->load() ?: throw new FailedToLoadBootloaderException()->withClass($key),
+                (DataIs::string($value) || DataIs::object($value)) && Cls::ofClass($value, Bootloader::class)
+                    => new $value()->load() ?: throw new FailedToLoadBootloaderException()->withClass($value),
+                default => throw new NotBootloaderException()->withClass($value)
+            };
 
         return $this;
 

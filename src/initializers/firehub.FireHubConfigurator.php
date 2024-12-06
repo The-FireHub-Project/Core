@@ -48,18 +48,11 @@ final class FireHubConfigurator {
     ];
 
     /**
-     * ### Preloader
-     * @since 1.0.0
-     *
-     * @var \FireHub\Core\Initializers\Autoload
-     */
-    private(set) Autoload $preloader;
-
-    /**
      * ### Bootloaders
      * @since 1.0.0
      *
-     * @var class-string<\FireHub\Core\Initializers\Bootloader>[]
+     * @var array<int|class-string<\FireHub\Core\Initializers\Bootloader>,
+     *     class-string<\FireHub\Core\Initializers\Bootloader>|array<array-key, mixed>>
      */
     private(set) array $bootloaders = [];
 
@@ -80,13 +73,19 @@ final class FireHubConfigurator {
      * @uses \FireHub\Core\Initializers\Autoload\Loaders\Preloader As preloader for finding a class path for main
      * classes – before the main autoloader is hit.
      *
+     * @param string $app_path <p>
+     * Base path of your application.
+     * </p>
+     *
      * @return void
      */
-    public function __construct () {
+    public function __construct (
+        private(set) readonly string $app_path
+    ) {
 
         foreach ($this->preloaders as $preloader) require $preloader;
 
-        $this->preloader = Autoload::prepend(new Preloader(class_prefix: 'firehub.'));
+        Autoload::prepend(new Preloader(class_prefix: 'firehub.'));
 
     }
 
@@ -97,7 +96,7 @@ final class FireHubConfigurator {
      * Bootloaders will be loaded before the kernel is loaded.
      * @since 1.0.0
      *
-     * @param class-string<\FireHub\Core\Initializers\Bootloader>[] $bootloaders <p>
+     * @param array<int|class-string<\FireHub\Core\Initializers\Bootloader>, class-string<\FireHub\Core\Initializers\Bootloader>|array<array-key, mixed>> $bootloaders <p>
      * List of bootloaders needed to load.
      * </p>
      *
