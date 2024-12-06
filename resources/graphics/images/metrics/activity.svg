@@ -30,11 +30,33 @@
                                 <div class="details">
                                     <div>on branch <span class="code">develop-pre-alpha-m1</span></div>
                                     <div class="commit">
-                                        <div class="sha">#205d012</div>
-                                        <div class="message">Update the return type description on a functions method (#14)</div>
+                                        <div class="sha">#7bc026f</div>
+                                        <div class="message">Added app to public files (#14)</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">5 Dec 2024, 09:03:15</div>
+                                <div class="timestamp">6 Dec 2024, 11:17:20</div>
+                            </section>
+                        </div>
+                        <div class="row fill-width">
+                            <section class="activity">
+                                <div class="field">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+                                        <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
+                                    </svg>
+                                    <div class="content">
+                                        <span class="user">dieselxxx</span>
+                                        pushed 1 commit in
+                                        <span class="repo">The-FireHub-Project/Core</span>
+                                    </div>
+                                </div>
+                                <div class="details">
+                                    <div>on branch <span class="code">develop-pre-alpha-m1</span></div>
+                                    <div class="commit">
+                                        <div class="sha">#c96a981</div>
+                                        <div class="message">Import core functions (#14)</div>
+                                    </div>
+                                </div>
+                                <div class="timestamp">6 Dec 2024, 08:52:15</div>
                             </section>
                         </div>
                         <div class="row fill-width">
@@ -52,11 +74,11 @@
                                 <div class="details">
                                     <div>on branch <span class="code">docs</span></div>
                                     <div class="commit">
-                                        <div class="sha">#919f9ca</div>
+                                        <div class="sha">#01bbe65</div>
                                         <div class="message">Update languages metrics</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">4 Dec 2024, 23:45:08</div>
+                                <div class="timestamp">5 Dec 2024, 23:42:46</div>
                             </section>
                         </div>
                         <div class="row fill-width">
@@ -74,33 +96,11 @@
                                 <div class="details">
                                     <div>on branch <span class="code">docs</span></div>
                                     <div class="commit">
-                                        <div class="sha">#61855a7</div>
-                                        <div class="message">Update followup metrics</div>
-                                    </div>
-                                </div>
-                                <div class="timestamp">4 Dec 2024, 23:44:54</div>
-                            </section>
-                        </div>
-                        <div class="row fill-width">
-                            <section class="activity">
-                                <div class="field">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
-                                        <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
-                                    </svg>
-                                    <div class="content">
-                                        <span class="user">github-actions[bot]</span>
-                                        pushed 1 commit in
-                                        <span class="repo">The-FireHub-Project/Core</span>
-                                    </div>
-                                </div>
-                                <div class="details">
-                                    <div>on branch <span class="code">docs</span></div>
-                                    <div class="commit">
-                                        <div class="sha">#8563bbe</div>
+                                        <div class="sha">#345ca32</div>
                                         <div class="message">Update activity metrics</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">4 Dec 2024, 23:44:24</div>
+                                <div class="timestamp">5 Dec 2024, 23:42:04</div>
                             </section>
                         </div>
                         <div class="row fill-width">
@@ -118,11 +118,11 @@
                                 <div class="details">
                                     <div>on branch <span class="code">docs</span></div>
                                     <div class="commit">
-                                        <div class="sha">#9cffeaf</div>
+                                        <div class="sha">#33bd4f9</div>
                                         <div class="message">Update base metrics</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">4 Dec 2024, 23:44:12</div>
+                                <div class="timestamp">5 Dec 2024, 23:41:52</div>
                             </section>
                         </div>
                     </section>
