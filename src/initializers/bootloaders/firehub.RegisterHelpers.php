@@ -17,6 +17,10 @@ namespace FireHub\Core\Initializers\Bootloaders;
 use FireHub\Core\Initializers\Bootloader;
 use DirectoryIterator, UnexpectedValueException;
 
+use const DIRECTORY_SEPARATOR;
+
+use function implode;
+
 /**
  * ### Autoload all necessary helpers
  * @since 1.0.0
