@@ -14,3 +14,22 @@
  *
  * @version GIT: $Id$ Blob checksum.
  */
+
+require __DIR__.'/../initializers/firehub.FireHubConfigurator.php';
+
+use FireHub\Core\Initializers\FireHubConfigurator;
+use FireHub\Core\Kernel\Console;
+
+/**
+ * ### Let there be light
+ * @since 1.0.0
+ *
+ * @return \FireHub\Core\FireHub
+ */
+return new FireHubConfigurator()
+    ->withBootloaders([
+        //
+    ])
+    ->withKernel(Console::class)
+    ->create()
+    ->boot();
