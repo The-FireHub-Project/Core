@@ -26,7 +26,7 @@ use FireHub\Core\Kernel\Http;
  *
  * @return \FireHub\Core\FireHub
  */
-return new FireHubConfigurator()
+return new FireHubConfigurator(__DIR__)
     ->withBootloaders([
         //
     ])
