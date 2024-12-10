@@ -16,7 +16,9 @@ namespace FireHub\Core\Initializers;
 
 use FireHub\Core\FireHub;
 use FireHub\Core\Kernel\Http;
-use FireHub\Core\Initializers\Autoload\Loaders\Preloader;
+use FireHub\Core\Initializers\Autoload\ {
+    Cache, Loaders\Preloader
+};
 
 /**
  * ### FireHub application configuration
@@ -55,6 +57,14 @@ final class FireHubConfigurator {
      *     class-string<\FireHub\Core\Initializers\Bootloader>|array<array-key, mixed>>
      */
     private(set) array $bootloaders = [];
+
+    /**
+     * ### Autoload loader cache for finding classes
+     * @since 1.0.0
+     *
+     * @var null|\FireHub\Core\Initializers\Autoload\Cache
+     */
+    private(set) ?Cache $autoload_cache = null;
 
     /**
      * ### Default Kernel
@@ -105,6 +115,24 @@ final class FireHubConfigurator {
     public function withBootloaders (array $bootloaders):self {
 
         $this->bootloaders = $bootloaders;
+
+        return $this;
+
+    }
+
+    /**
+     * ### Set autoload loader cache for finding classes
+     * @since 1.0.0
+     *
+     * @param \FireHub\Core\Initializers\Autoload\Cache $cache <p>
+     * Autoload loader cache for finding classes.
+     * </p>
+     *
+     * @return $this This object.
+     */
+    public function withAutoloadCache (Cache $cache):self {
+
+        $this->autoload_cache = $cache;
 
         return $this;
 
