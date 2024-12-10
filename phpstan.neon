@@ -20,5 +20,5 @@ parameters:
     reportUnmatchedIgnoredErrors: false
     checkUninitializedProperties: true
     checkImplicitMixed: true
-    #checkMissingOverrideMethodAttribute: true
+    checkMissingOverrideMethodAttribute: true
     tipsOfTheDay: false
