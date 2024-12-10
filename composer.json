@@ -18,7 +18,8 @@
         "ext-openssl": "*"
     },
     "suggest": {
-        "php-64bit": "^8.4"
+        "php-64bit": "^8.4",
+        "ext-apcu": "*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
