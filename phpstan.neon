@@ -7,6 +7,7 @@ parameters:
     excludePaths:
         analyseAndScan:
             - src/testing/
+            - /usr/local/bin/phpstan/stubs/
     treatPhpDocTypesAsCertain: false
     checkExplicitMixedMissingReturn: true
     checkFunctionNameCase: true
