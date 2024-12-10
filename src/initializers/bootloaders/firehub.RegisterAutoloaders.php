@@ -15,16 +15,33 @@
 namespace FireHub\Core\Initializers\Bootloaders;
 
 use FireHub\Core\Initializers\ {
-    Autoload, Bootloader
+    Autoload, Bootloader, Autoload\Cache
 };
 use FireHub\Core\Initializers\Autoload\Loaders\Psr4;
+
 use const FireHub\Core\Support\Constants\Path\DS;
 
 /**
  * ### Register autoloaders
  * @since 1.0.0
  */
-final class RegisterAutoloaders implements Bootloader {
+final readonly class RegisterAutoloaders implements Bootloader {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Initializers\Autoload\Cache As parameter.
+     *
+     * @param null|\FireHub\Core\Initializers\Autoload\Cache $cache <p>
+     * The loader cache for finding classes.
+     * </p>
+     *
+     * @return void
+     */
+    public function __construct (
+        private ?Cache $cache
+    ) {}
 
     /**
      * @inheritDoc
@@ -38,7 +55,7 @@ final class RegisterAutoloaders implements Bootloader {
      */
     public function load ():bool {
 
-        $loader = new Psr4(class_prefix: 'firehub.');
+        $loader = new Psr4($this->cache ?? null, 'firehub.');
         $loader->addNamespace('FireHub\Core', __DIR__.DS.'..'.DS.'..');
 
         Autoload::prepend($loader);
