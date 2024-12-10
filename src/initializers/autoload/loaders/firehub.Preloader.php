@@ -78,7 +78,7 @@ final class Preloader implements Loader {
         array_shift($class_components);
         array_shift($class_components);
 
-        $classname = $class_components[array_key_last($class_components)];
+        $classname = $class_components[array_key_last($class_components)] ?? '';
         array_pop($class_components);
 
         foreach ($class_components as $key => $value) $class_components[$key] = strtolower($value);
