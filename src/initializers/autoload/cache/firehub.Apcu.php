@@ -19,6 +19,9 @@ use FireHub\Core\Initializers\Exceptions\CacheExtensionNotLoadedException;
 use FireHub\Core\Support\LowLevel\DataIs;
 use FireHub\Core\Support\LowLevel\PHP;
 
+use function apcu_fetch;
+use function apcu_store;
+
 /**
  * The cache for finding classes from APCu
  * @since 1.0.0
