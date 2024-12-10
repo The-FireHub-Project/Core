@@ -1,6 +1,14 @@
 # Release Notes for v0.x.x.pre-alpha
 
-## [Unreleased](https://github.com/The-FireHub-Project/Core/compare/v0.1.4...develop-pre-alpha-m1)
+## [Unreleased](https://github.com/The-FireHub-Project/Core/compare/v0.1.5...develop-pre-alpha-m1)
+
+# [v0.1.5](https://github.com/The-FireHub-Project/Core/compare/v0.1.3...v0.1.5) – (2024-12-10)
+
+### Changed
+- Added $before_needle argument to the lastPart method ([#14](https://github.com/The-FireHub-Project/Core/issues/14), [7a25fc6](https://github.com/The-FireHub-Project/Core/pull/4/commits/7a25fc6))
+
+### Added
+- Create Autoload component ([#14](https://github.com/The-FireHub-Project/Core/issues/14), [5b2cef4](https://github.com/The-FireHub-Project/Core/pull/4/commits/5b2cef4))
 
 # [v0.1.4](https://github.com/The-FireHub-Project/Core/compare/v0.1.3...v0.1.4) – (2024-12-03)
 
