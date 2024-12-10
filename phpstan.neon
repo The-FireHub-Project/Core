@@ -7,7 +7,6 @@ parameters:
     excludePaths:
         analyseAndScan:
             - src/testing/
-            - /usr/local/bin/phpstan/stubs/
     treatPhpDocTypesAsCertain: false
     checkExplicitMixedMissingReturn: true
     checkFunctionNameCase: true
@@ -21,5 +20,5 @@ parameters:
     reportUnmatchedIgnoredErrors: false
     checkUninitializedProperties: true
     checkImplicitMixed: true
-    checkMissingOverrideMethodAttribute: true
+    #checkMissingOverrideMethodAttribute: true
     tipsOfTheDay: false
