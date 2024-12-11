@@ -34,6 +34,7 @@ use PHPUnit\Framework\Attributes\ {
 #[Small]
 #[Group('lowlevel')]
 #[CoversClass(Arr::class)]
+#[CoversClass(Order::class)]
 final class ArrTest extends Base {
 
     public array $empty_arr = [];
