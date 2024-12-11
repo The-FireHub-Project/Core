@@ -25,7 +25,6 @@ use FireHub\Core\Support\LowLevel\ {
 use PHPUnit\Framework\Attributes\ {
     CoversClass, DataProvider, Depends, Group, Small
 };
-use ArithmeticError, DivisionByZeroError;
 
 /**
  * ### Test integer number low-level proxy class
