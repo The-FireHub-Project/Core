@@ -101,6 +101,24 @@ final class NumFloatTest extends Base {
         $this->assertSame(-0.4, NumFloat::round(-0.35, 1, Round::HALF_EVEN));
         $this->assertSame(0.46, NumFloat::round(0.455, 2, Round::HALF_EVEN));
 
+        $this->assertSame(1, NumFloat::round(1.5, 0, Round::TOWARDS_ZERO));
+        $this->assertSame(0, NumFloat::round(0.5, 0, Round::TOWARDS_ZERO));
+        $this->assertSame(0, NumFloat::round(0.49, 0, Round::TOWARDS_ZERO));
+        $this->assertSame(-0.3, NumFloat::round(-0.35, 1, Round::TOWARDS_ZERO));
+        $this->assertSame(0.45, NumFloat::round(0.455, 2, Round::TOWARDS_ZERO));
+
+        $this->assertSame(2, NumFloat::round(1.5, 0, Round::AWAY_FROM_ZERO));
+        $this->assertSame(1, NumFloat::round(0.5, 0, Round::AWAY_FROM_ZERO));
+        $this->assertSame(1, NumFloat::round(0.49, 0, Round::AWAY_FROM_ZERO));
+        $this->assertSame(-0.4, NumFloat::round(-0.35, 1, Round::AWAY_FROM_ZERO));
+        $this->assertSame(0.46, NumFloat::round(0.455, 2, Round::AWAY_FROM_ZERO));
+
+        $this->assertSame(1, NumFloat::round(1.5, 0, Round::NEGATIVE_INFINITY));
+        $this->assertSame(0, NumFloat::round(0.5, 0, Round::NEGATIVE_INFINITY));
+        $this->assertSame(0, NumFloat::round(0.49, 0, Round::NEGATIVE_INFINITY));
+        $this->assertSame(-0.4, NumFloat::round(-0.35, 1, Round::NEGATIVE_INFINITY));
+        $this->assertSame(0.45, NumFloat::round(0.455, 2, Round::NEGATIVE_INFINITY));
+
     }
 
     /**
