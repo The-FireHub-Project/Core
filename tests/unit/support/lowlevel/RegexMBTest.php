@@ -15,8 +15,8 @@
 namespace support\lowlevel;
 
 use FireHub\Core\Testing\Base;
-use FireHub\Core\Support\LowLevel\RegexMB;
 use FireHub\Core\Support\Enums\String\Encoding;
+use FireHub\Core\Support\LowLevel\RegexMB;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Depends, Group, Small
 };

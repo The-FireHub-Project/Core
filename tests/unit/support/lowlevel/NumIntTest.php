@@ -16,6 +16,7 @@ namespace support\lowlevel;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\Enums\Number\LogBase;
+use FireHub\Core\Support\Exceptions\NumException;
 use FireHub\Core\Support\Exceptions\Number\ {
     ArithmeticException, DivideByZeroException
 };
@@ -35,6 +36,9 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Num::class)]
 #[CoversClass(NumInt::class)]
 #[CoversClass(LogBase::class)]
+#[CoversClass(NumException::class)]
+#[CoversClass(ArithmeticException::class)]
+#[CoversClass(DivideByZeroException::class)]
 final class NumIntTest extends Base {
 
     /**

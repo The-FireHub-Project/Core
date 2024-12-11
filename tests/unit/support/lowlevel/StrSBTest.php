@@ -17,10 +17,10 @@ namespace support\lowlevel;
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\Enums\Side;
 use FireHub\Core\Support\Exceptions\ {
-    DataException, Str\EmptySeparatorException
+    DataException, StrException
 };
 use FireHub\Core\Support\Exceptions\Str\ {
-    ChunkLengthLessThanOneException, ComparePartException, CountWordsException, EmptyPadException
+    ChunkLengthLessThanOneException, ComparePartException, CountWordsException, EmptyPadException, EmptySeparatorException
 };
 use FireHub\Core\Support\LowLevel\ {
     StrSB, StrSafe
@@ -38,6 +38,13 @@ use Stringable;
 #[Group('lowlevel')]
 #[CoversClass(StrSB::class)]
 #[CoversClass(StrSafe::class)]
+#[CoversClass(DataException::class)]
+#[CoversClass(StrException::class)]
+#[CoversClass(ChunkLengthLessThanOneException::class)]
+#[CoversClass(ComparePartException::class)]
+#[CoversClass(CountWordsException::class)]
+#[CoversClass(EmptyPadException::class)]
+#[CoversClass(EmptySeparatorException::class)]
 final class StrSBTest extends Base {
 
     public string $empty_string = '';

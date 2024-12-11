@@ -18,6 +18,7 @@ use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\Enums\ {
     Order, Sort, String\CaseFolding
 };
+use FireHub\Core\Support\Exceptions\ArrException;
 use FireHub\Core\Support\Exceptions\Arr\ {
     ChunkLengthTooSmallException, KeysAndValuesDiffNumberOfElemsException, OutOfRangeException,
     SizeInconsistentException, WalkArgumentCountException
@@ -35,6 +36,12 @@ use PHPUnit\Framework\Attributes\ {
 #[Group('lowlevel')]
 #[CoversClass(Arr::class)]
 #[CoversClass(Order::class)]
+#[CoversClass(ArrException::class)]
+#[CoversClass(ChunkLengthTooSmallException::class)]
+#[CoversClass(KeysAndValuesDiffNumberOfElemsException::class)]
+#[CoversClass(OutOfRangeException::class)]
+#[CoversClass(SizeInconsistentException::class)]
+#[CoversClass(WalkArgumentCountException::class)]
 final class ArrTest extends Base {
 
     public array $empty_arr = [];

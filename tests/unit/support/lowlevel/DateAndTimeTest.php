@@ -16,7 +16,8 @@ namespace support\lowlevel;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\LowLevel\DateAndTime;
-use \FireHub\Core\Support\Exceptions\DateTime\ {
+use FireHub\Core\Support\Exceptions\DateTimeException;
+use FireHub\Core\Support\Exceptions\DateTime\ {
     ParseFromFormatException, StringToTimestampException
 };
 use PHPUnit\Framework\Attributes\ {
@@ -29,6 +30,9 @@ use PHPUnit\Framework\Attributes\ {
 #[Small]
 #[Group('lowlevel')]
 #[CoversClass(DateAndTime::class)]
+#[CoversClass(DateTimeException::class)]
+#[CoversClass(ParseFromFormatException::class)]
+#[CoversClass(StringToTimestampException::class)]
 final class DateAndTimeTest extends Base {
 
     /**

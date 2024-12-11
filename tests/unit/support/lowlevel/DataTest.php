@@ -18,6 +18,7 @@ use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\Enums\Data\ {
     Category, Type, ResourceType
 };
+use FireHub\Core\Support\Exceptions\DataException;
 use FireHub\Core\Support\Exceptions\Data\ {
     ArrayToStringConversionException, CannotSerializeException, SetAsResourceException, UnserializeFailedException
 };
@@ -40,6 +41,11 @@ use Countable, Error, IteratorAggregate, Stringable, Traversable;
 #[CoversClass(Category::class)]
 #[CoversClass(ResourceType::class)]
 #[CoversClass(Type::class)]
+#[CoversClass(DataException::class)]
+#[CoversClass(ArrayToStringConversionException::class)]
+#[CoversClass(CannotSerializeException::class)]
+#[CoversClass(SetAsResourceException::class)]
+#[CoversClass(UnserializeFailedException::class)]
 final class DataTest extends Base {
 
     public array $empty_arr = [];

@@ -15,7 +15,6 @@
 namespace support\lowlevel;
 
 use FireHub\Core\Testing\Base;
-use FireHub\Core\Support\Exceptions\Constant\FailedToDefineException;
 use FireHub\Core\Support\LowLevel\Constant;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, DataProvider, Depends, Group, Small
@@ -48,21 +47,7 @@ final class ConstantTest extends Base {
     /**
      * @since 1.0.0
      *
-     * @return void
-     */
-    /*public function testDefineFailed ():void {
-
-        $this->expectException(FailedToDefineException::class);
-
-        Constant::define('__LINE__', 'value');
-
-    }*/
-
-    /**
-     * @since 1.0.0
-     *
      * @param string $string
-     * @param null|array|bool|float|int|string $value
      *
      * @return void
      */

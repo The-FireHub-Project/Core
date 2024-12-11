@@ -16,7 +16,9 @@ namespace support\lowlevel;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\Enums\Side;
-use FireHub\Core\Support\Exceptions\Cls\NotFoundException;
+use FireHub\Core\Support\Exceptions\ {
+    ClsException, Cls\NotFoundException
+};
 use FireHub\Core\Support\LowLevel\ {
     Cls, ClsObj
 };
@@ -33,6 +35,8 @@ use Countable, DateInterval, DateTime, DateTimeInterface;
 #[Group('lowlevel')]
 #[CoversClass(ClsObj::class)]
 #[CoversClass(Cls::class)]
+#[CoversClass(ClsException::class)]
+#[CoversClass(NotFoundException::class)]
 final class ClsTest extends Base {
 
     /**

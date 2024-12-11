@@ -18,7 +18,9 @@ use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\Enums\ {
     Side, String\CaseFolding, String\Encoding
 };
-use FireHub\Core\Support\Exceptions\DataException;
+use FireHub\Core\Support\Exceptions\ {
+    DataException, StrException
+};
 use FireHub\Core\Support\Exceptions\Str\ {
     ChunkLengthLessThanOneException, EmptySeparatorException
 };
@@ -37,6 +39,10 @@ use PHPUnit\Framework\Attributes\ {
 #[Group('lowlevel')]
 #[CoversClass(StrSafe::class)]
 #[CoversClass(StrMB::class)]
+#[CoversClass(DataException::class)]
+#[CoversClass(StrException::class)]
+#[CoversClass(ChunkLengthLessThanOneException::class)]
+#[CoversClass(EmptySeparatorException::class)]
 final class StrMBTest extends Base {
 
     public string $empty_string = '';

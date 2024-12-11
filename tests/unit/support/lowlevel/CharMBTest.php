@@ -16,6 +16,9 @@ namespace support\lowlevel;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\Enums\String\Encoding;
+use FireHub\Core\Support\Exceptions\ {
+    CharException, CodepointException
+};
 use FireHub\Core\Support\Exceptions\Char\CharacterToCodepointException;
 use FireHub\Core\Support\Exceptions\Codepoint\CodepointToCharacterException;
 use FireHub\Core\Support\LowLevel\CharMB;
@@ -31,6 +34,10 @@ use PHPUnit\Framework\Attributes\ {
 #[Small]
 #[Group('lowlevel')]
 #[CoversClass(CharMB::class)]
+#[CoversClass(CharException::class)]
+#[CoversClass(CharacterToCodepointException::class)]
+#[CoversClass(CodepointException::class)]
+#[CoversClass(CodepointToCharacterException::class)]
 final class CharMBTest extends Base {
 
     /**
