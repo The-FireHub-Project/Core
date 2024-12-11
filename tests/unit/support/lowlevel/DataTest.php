@@ -1202,7 +1202,7 @@ final class DataTest extends Base {
      */
     private static function resource ():mixed {
 
-        return fopen("php://stdout", "w");
+        return fopen('php://stdout', 'w');
 
     }
 
