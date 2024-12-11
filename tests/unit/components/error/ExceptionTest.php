@@ -21,7 +21,7 @@ use PHPUnit\Framework\Attributes\ {
 };
 
 /**
- * ### Test timezone low-level proxy class
+ * ### Test exception component class
  * @since 1.0.0
  */
 #[Small]
