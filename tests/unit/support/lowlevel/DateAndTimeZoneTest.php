@@ -22,7 +22,7 @@ use PHPUnit\Framework\Attributes\ {
 };
 
 /**
- * ### Test timezone character low-level proxy class
+ * ### Test timezone low-level proxy class
  * @since 1.0.0
  */
 #[Small]

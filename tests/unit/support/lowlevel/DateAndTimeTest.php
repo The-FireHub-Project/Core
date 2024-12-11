@@ -17,13 +17,13 @@ namespace support\lowlevel;
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\LowLevel\DateAndTime;
 use \FireHub\Core\Support\Exceptions\DateTime\ {
-    FailedToGetMicrotimeException, ParseFromFormatException, StringToTimestampException
+    ParseFromFormatException, StringToTimestampException
 };
 use PHPUnit\Framework\Attributes\ {
     CoversClass, DataProvider, Group, Small
 };
 /**
- * ### Test date and time character low-level proxy class
+ * ### Test date and time low-level proxy class
  * @since 1.0.0
  */
 #[Small]
