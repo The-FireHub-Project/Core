@@ -37,7 +37,7 @@ final class Iterator {
      * @template TKey of array-key
      * @template TValue
      *
-     * @param Traversable<TKey, TValue> $iterator <p>
+     * @param iterable<TKey, TValue> $iterator <p>
      * The iterator being copied.
      * </p>
      * @param bool $preserve_keys [optional] <p>
@@ -68,7 +68,7 @@ final class Iterator {
      * Method is not guaranteed to retain the current position of the iterator.
      * @since 1.0.0
      *
-     * @param Traversable<mixed, mixed> $iterator <p>
+     * @param iterable<mixed, mixed> $iterator <p>
      * The iterator being counted.
      * </p>
      *
