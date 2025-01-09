@@ -39,13 +39,13 @@ final class FireHub {
      * @var array<int|class-string<\FireHub\Core\Initializers\Bootloader>,
      *     class-string<\FireHub\Core\Initializers\Bootloader>|array<array-key, mixed>>
      */
-    private array $bootloaders {
-        get => [
+    private array $bootloaders = [] {
+        get => [...$this->bootloaders, ...[
             \FireHub\Core\Initializers\Bootloaders\RegisterConstants::class,
             \FireHub\Core\Initializers\Bootloaders\RegisterHelpers::class,
             \FireHub\Core\Initializers\Bootloaders\RegisterAutoloaders::class => [
                 'cache' => $this->configurator->autoload_cache
-            ]
+            ]]
         ];
     }
 
