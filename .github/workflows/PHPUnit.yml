@@ -22,7 +22,7 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: mbstring
-          tools: phpunit:11.4
+          tools: phpunit:11.x
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Run PHPUnit
