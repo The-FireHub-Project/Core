@@ -21,6 +21,6 @@ jobs:
       - name: Run PHP CS Fixer
         uses: docker://oskarstark/php-cs-fixer-ga
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5.0.1
+        uses: stefanzweifel/git-auto-commit-action@v5.1.0
         with:
           commit_message: Apply PHP-CS-Fixer changes
