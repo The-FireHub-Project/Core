@@ -2,6 +2,12 @@
 
 ## [Unreleased](https://github.com/The-FireHub-Project/Core/compare/v0.1.5...develop-pre-alpha-m1)
 
+### Added
+- Create support contracts ([#18](https://github.com/The-FireHub-Project/Core/issues/18), [a95bd28](https://github.com/The-FireHub-Project/Core/pull/4/commits/a95bd28))
+- Create ArrayAccessible interface ([#18](https://github.com/The-FireHub-Project/Core/issues/18), [ac959c2](https://github.com/The-FireHub-Project/Core/pull/4/commits/ac959c2))
+- Create JSON low-level proxy class ([#18](https://github.com/The-FireHub-Project/Core/issues/18), [4a176e8](https://github.com/The-FireHub-Project/Core/pull/4/commits/4a176e8))
+- Create first steps for Data structures ([#18](https://github.com/The-FireHub-Project/Core/issues/18), [25c1f5e](https://github.com/The-FireHub-Project/Core/pull/4/commits/25c1f5e))
+
 # [v0.1.5](https://github.com/The-FireHub-Project/Core/compare/v0.1.3...v0.1.5) – (2024-12-10)
 
 ### Changed
