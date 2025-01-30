@@ -25,12 +25,12 @@
                                         <span class="user">dieselxxx</span>
                                         deleted
                       branch
-                                        <span class="code">dependabot/github_actions/github/codeql-action-3.28.6</span>
+                                        <span class="code">dependabot/github_actions/github/codeql-action-3.28.7</span>
                                         in
                                         <span class="repo">The-FireHub-Project/Core</span>
                                     </div>
                                 </div>
-                                <div class="timestamp">29 Jan 2025, 09:35:02</div>
+                                <div class="timestamp">30 Jan 2025, 07:10:37</div>
                             </section>
                         </div>
                         <div class="row fill-width">
@@ -48,13 +48,13 @@
                                 <div class="details">
                                     <div>on branch <span class="code">master</span></div>
                                     <div class="commit">
-                                        <div class="sha">#8347b5d</div>
-                                        <div class="message">Bump github/codeql-action from 3.28.4 to 3.28.6 (#31)
+                                        <div class="sha">#dc313ca</div>
+                                        <div class="message">Bump github/codeql-action from 3.28.6 to 3.28.7 (#32)
 
-Bumps [github/codeql-action](https://github.com/github/codeql-action) from 3.28.4 to 3.28.6.
+Bumps [github/codeql-action](https://github.com/github/codeql-action) from 3.28.6 to 3.28.7.
 - [Release notes](https://github.com/github/codeql-action/releases)
 - [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)
-- [Commits](https://github.com/github/codeql-action/compare/v3.28.4...v3.28.6)
+- [Commits](https://github.com/github/codeql-action/compare/v3.28.6...v3.28.7)
 
 ---
 updated-dependencies:
@@ -67,7 +67,7 @@ Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
 Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt;</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">29 Jan 2025, 09:35:00</div>
+                                <div class="timestamp">30 Jan 2025, 07:10:36</div>
                             </section>
                         </div>
                         <div class="row fill-width">
@@ -85,11 +85,11 @@ Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.githu
                                 <div class="details">
                                     <div>on branch <span class="code">docs</span></div>
                                     <div class="commit">
-                                        <div class="sha">#193fe73</div>
+                                        <div class="sha">#b423398</div>
                                         <div class="message">Update languages metrics</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">28 Jan 2025, 23:40:51</div>
+                                <div class="timestamp">29 Jan 2025, 23:40:17</div>
                             </section>
                         </div>
                         <div class="row fill-width">
@@ -107,11 +107,11 @@ Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.githu
                                 <div class="details">
                                     <div>on branch <span class="code">docs</span></div>
                                     <div class="commit">
-                                        <div class="sha">#f2ab7f7</div>
+                                        <div class="sha">#c18eb77</div>
                                         <div class="message">Update followup metrics</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">28 Jan 2025, 23:40:36</div>
+                                <div class="timestamp">29 Jan 2025, 23:40:03</div>
                             </section>
                         </div>
                         <div class="row fill-width">
@@ -129,11 +129,11 @@ Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.githu
                                 <div class="details">
                                     <div>on branch <span class="code">docs</span></div>
                                     <div class="commit">
-                                        <div class="sha">#9d1754e</div>
+                                        <div class="sha">#b64df9c</div>
                                         <div class="message">Update activity metrics</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">28 Jan 2025, 23:40:05</div>
+                                <div class="timestamp">29 Jan 2025, 23:39:36</div>
                             </section>
                         </div>
                     </section>
