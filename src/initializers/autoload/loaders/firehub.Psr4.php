@@ -94,19 +94,19 @@ final class Psr4 implements Loader {
      *
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Initializers\Autoload\Loaders\Psr4::fromCache() To load class from cache if cache exists.
+     * @uses \FireHub\Core\Initializers\Autoload\Loaders\Psr4::fromCache() To load a class from cache if cache exists.
      * @uses \FireHub\Core\Initializers\Autoload\Loaders\Psr4::toCache() To save class name and path
      * to cache if a cache exists.
      * @uses \FireHub\Core\Initializers\Autoload\Loaders\Psr4::requireFile() To include a file.
      * @uses \FireHub\Core\Initializers\Autoload\Loaders\Psr4::getPath() To get a class path.
-     * @uses \FireHub\Core\Support\LowLevel\StrSB::firstPosition() To check if a namespace key is correct.
+     * @uses \FireHub\Core\Support\LowLevel\StrSB::startsWith() To check if a namespace key is correct.
      */
     public function __invoke (string $class):void {
 
         if ($this->fromCache($class)) return;
 
         foreach ($this->namespaces as $namespace_prefix => $folders)
-            if (StrSB::firstPosition($namespace_prefix, $class) === 0) {
+            if (StrSB::startsWith($namespace_prefix.'\\', $class)) {
 
                 $path = $this->getPath($class, $namespace_prefix);
 
@@ -127,7 +127,7 @@ final class Psr4 implements Loader {
      * ### Get class path
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\LowLevel\StrSB::part() To get part of the $class..
+     * @uses \FireHub\Core\Support\LowLevel\StrSB::part() To get part of the $class.
      * @uses \FireHub\Core\Support\LowLevel\StrSB::length() To check the length of a namespace key.
      * @uses \FireHub\Core\Support\LowLevel\StrSB::toLower() To lowercase namespace.
      * @uses \FireHub\Core\Support\LowLevel\StrSB::lastPart() To get $class parts for namespace and classname.
