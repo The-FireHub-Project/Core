@@ -18,6 +18,8 @@ use FireHub\Core\Initializers\ {
     Autoload, Bootloader, Autoload\Cache
 };
 use FireHub\Core\Initializers\Autoload\Loaders\Psr4;
+use FireHub\Core\Support\LowLevel\Folder;
+use Phar;
 
 use const FireHub\Core\Support\Constants\Path\DS;
 
@@ -52,11 +54,26 @@ final readonly class RegisterAutoloaders implements Bootloader {
      * at the beginning of the queue.
      * @uses \FireHub\Core\Initializers\Autoload\Loaders\Psr4::addNamespace() To add a base folder for a namespace
      * prefix.
+     * @uses \FireHub\Core\Support\LowLevel\Folder::parent() To get the parent folder.
+     *
+     * @throws \FireHub\Core\Support\Exceptions\FileSystem\ParentLevelsException If $levels are less than 1.
      */
     public function load ():bool {
 
         $loader = new Psr4($this->cache ?? null, 'firehub.');
         $loader->addNamespace('FireHub\Core', __DIR__.DS.'..'.DS.'..');
+
+        $dir = 'phar://'.Folder::parent(Phar::running(false), 0).DS.'..'.DS.'..'.DS.'core-enterprise/phar/core.phar';
+        $loader->addNamespace('FireHub\Core_Enterprise', $dir);
+
+        $dir = Folder::parent(Phar::running(false)).DS.'..'.DS.'..'.DS.'..'.DS.'..'.DS.'src';
+        $loader->addNamespace('FireHub\Core_Enterprise', $dir);
+
+        $dir = 'phar://'.Folder::parent(Phar::running(false)).DS.'..'.DS.'..'.DS.'core-professional/phar/core.phar';
+        $loader->addNamespace('FireHub\Core_Professional', $dir);
+
+        $dir = Folder::parent(Phar::running(false)).DS.'..'.DS.'..'.DS.'..'.DS.'..'.DS.'src';
+        $loader->addNamespace('FireHub\Core_Professional', $dir);
 
         Autoload::prepend($loader);
 
