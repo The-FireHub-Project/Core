@@ -2,8 +2,7 @@
 <phpunit bootstrap = "src/public/console.php"
          colors="true"
          cacheDirectory="vendor/phpunit/.phpunit.cache"
-         displayDetailsOnTestsThatTriggerWarnings="true"
-         addUncoveredFilesFromWhitelist="false">
+         displayDetailsOnTestsThatTriggerWarnings="true">
     <testsuites>
         <testsuite name="unit">
             <directory>tests/unit</directory>
