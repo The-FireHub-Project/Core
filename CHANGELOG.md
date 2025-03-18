@@ -8,6 +8,9 @@
 - Create JSON low-level proxy class ([#18](https://github.com/The-FireHub-Project/Core/issues/18), [4a176e8](https://github.com/The-FireHub-Project/Core/pull/4/commits/4a176e8))
 - Create first steps for Data structures ([#18](https://github.com/The-FireHub-Project/Core/issues/18), [25c1f5e](https://github.com/The-FireHub-Project/Core/pull/4/commits/25c1f5e))
 
+### Changed
+- Added Enterprise and Professional paths for autoloader ([#18](https://github.com/The-FireHub-Project/Core/issues/18), [ec57a6a](https://github.com/The-FireHub-Project/Core/pull/4/commits/ec57a6a))
+
 ### Fixed
 - Fixed Psr4 file path checking ([#18](https://github.com/The-FireHub-Project/Core/issues/18), [d2fdeb7](https://github.com/The-FireHub-Project/Core/pull/4/commits/d2fdeb7))
 

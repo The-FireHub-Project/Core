@@ -63,7 +63,7 @@ final readonly class RegisterAutoloaders implements Bootloader {
         $loader = new Psr4($this->cache ?? null, 'firehub.');
         $loader->addNamespace('FireHub\Core', __DIR__.DS.'..'.DS.'..');
 
-        $dir = 'phar://'.Folder::parent(Phar::running(false), 0).DS.'..'.DS.'..'.DS.'core-enterprise/phar/core.phar';
+        $dir = 'phar://'.Folder::parent(Phar::running(false)).DS.'..'.DS.'..'.DS.'core-enterprise/phar/core.phar';
         $loader->addNamespace('FireHub\Core_Enterprise', $dir);
 
         $dir = Folder::parent(Phar::running(false)).DS.'..'.DS.'..'.DS.'..'.DS.'..'.DS.'src';
