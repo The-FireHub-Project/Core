@@ -17,7 +17,7 @@ jobs:
         with:
           php-version: '8.4'
           extensions: mbstring, zip, apcu
-          tools: phpunit:11.4
+          tools: phpunit:11.x
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Install composer dependencies
