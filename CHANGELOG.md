@@ -1,6 +1,8 @@
 # Release Notes for v0.x.x.pre-alpha
 
-## [Unreleased](https://github.com/The-FireHub-Project/Core/compare/v0.1.5...develop-pre-alpha-m1)
+## [Unreleased](https://github.com/The-FireHub-Project/Core/compare/v0.1.6...develop-pre-alpha-m1)
+
+# [v0.1.6](https://github.com/The-FireHub-Project/Core/compare/v0.1.5...v0.1.6) – (2025-03-18)
 
 ### Added
 - Create support contracts ([#18](https://github.com/The-FireHub-Project/Core/issues/18), [a95bd28](https://github.com/The-FireHub-Project/Core/pull/4/commits/a95bd28))
@@ -14,7 +16,7 @@
 ### Fixed
 - Fixed Psr4 file path checking ([#18](https://github.com/The-FireHub-Project/Core/issues/18), [d2fdeb7](https://github.com/The-FireHub-Project/Core/pull/4/commits/d2fdeb7))
 
-# [v0.1.5](https://github.com/The-FireHub-Project/Core/compare/v0.1.3...v0.1.5) – (2024-12-10)
+# [v0.1.5](https://github.com/The-FireHub-Project/Core/compare/v0.1.4...v0.1.5) – (2024-12-10)
 
 ### Changed
 - Added $before_needle argument to the lastPart method ([#14](https://github.com/The-FireHub-Project/Core/issues/14), [7a25fc6](https://github.com/The-FireHub-Project/Core/pull/4/commits/7a25fc6))
