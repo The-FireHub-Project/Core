@@ -20,8 +20,6 @@ jobs:
           tools: phpunit:11.x
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      - name: Run PHPUnit and collect coverage
-        run: phpunit --log-junit junit.xml --coverage-clover coverage.xml .
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         env:
