@@ -61,19 +61,27 @@ final readonly class RegisterAutoloaders implements Bootloader {
     public function load ():bool {
 
         $loader = new Psr4($this->cache ?? null, 'firehub.');
-        $loader->addNamespace('FireHub\Core', __DIR__.DS.'..'.DS.'..');
 
-        $dir = 'phar://'.Folder::parent(Phar::running(false)).DS.'..'.DS.'..'.DS.'core-enterprise/phar/core.phar';
-        $loader->addNamespace('FireHub\Core_Enterprise', $dir);
-
-        $dir = Folder::parent(Phar::running(false)).DS.'..'.DS.'..'.DS.'..'.DS.'..'.DS.'src';
-        $loader->addNamespace('FireHub\Core_Enterprise', $dir);
-
-        $dir = 'phar://'.Folder::parent(Phar::running(false)).DS.'..'.DS.'..'.DS.'core-professional/phar/core.phar';
-        $loader->addNamespace('FireHub\Core_Professional', $dir);
-
-        $dir = Folder::parent(Phar::running(false)).DS.'..'.DS.'..'.DS.'..'.DS.'..'.DS.'src';
-        $loader->addNamespace('FireHub\Core_Professional', $dir);
+        $loader->addNamespace(
+            'FireHub\Core',
+            __DIR__.DS.'..'.DS.'..'
+        );
+        $loader->addNamespace(
+            'FireHub\Core_Enterprise',
+            'phar://'.Folder::parent(Phar::running(false)).DS.'..'.DS.'..'.DS.'core-enterprise/phar/core.phar' // @phpstan-ignore argument.type
+        );
+        $loader->addNamespace(
+            'FireHub\Core_Enterprise',
+            Folder::parent(Phar::running(false)).DS.'..'.DS.'..'.DS.'..'.DS.'..'.DS.'src' // @phpstan-ignore argument.type
+        );
+        $loader->addNamespace(
+            'FireHub\Core_Professional',
+            'phar://'.Folder::parent(Phar::running(false)).DS.'..'.DS.'..'.DS.'core-professional/phar/core.phar' // @phpstan-ignore argument.type
+        );
+        $loader->addNamespace(
+            'FireHub\Core_Professional',
+            Folder::parent(Phar::running(false)).DS.'..'.DS.'..'.DS.'..'.DS.'..'.DS.'src' // @phpstan-ignore argument.type
+        );
 
         Autoload::prepend($loader);
 
