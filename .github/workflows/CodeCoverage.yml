@@ -23,7 +23,7 @@ jobs:
       - name: Install composer dependencies
         run: composer install  --no-interaction --no-progress --prefer-dist
       - name: Run PHPUnit and collect coverage
-        run: phpunit
+        run: phpunit --log-junit junit.xml --coverage-clover coverage.xml .
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         env:
