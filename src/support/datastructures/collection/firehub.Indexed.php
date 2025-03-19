@@ -83,12 +83,49 @@ class Indexed implements Collection, JsonSerializable {
     }
 
     /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->toArray();
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']
+     * ```
+     *
+     * @return array<TValue> Collection as an array.
+     */
+    public function toArray ():array {
+
+        return $this->storage;
+
+    }
+
+    /**
      * ### Get JSON representation for the data structure
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\LowLevel\JSON::encode() To encode data structure to JSON.
      *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->toJSON();
+     *
+     * // ["John","Jane","Jane","Jane","Richard","Richard"]
+     * ```
+     *
      * @throws \FireHub\Core\Support\Exceptions\JSONException If JSON encoding throws an error.
+     *
+     * @return string JSON representation for the data structure.
      */
     public function toJSON ():string {
 

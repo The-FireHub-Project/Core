@@ -84,6 +84,47 @@ class Obj implements Collection {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Obj;
+     *
+     * $collection = new Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection[$cls1] = 'data 1';
+     * $collection[$cls2] = 'data 2';
+     * $collection[$cls3] = 'data 3';
+     *
+     * $collection->toArray();
+     *
+     * // [
+     * // ['info' => 'data 1', 'object' => object(stdClass)]
+     * // ['info' => 'data 2', 'object' => object(stdClass)]
+     * // ['info' => 'data 3', 'object' => object(stdClass)]
+     * // ]
+     * ```
+     *
+     * @return list<array{info: TValue, object: TKey}> Collection as an array.
+     */
+    public function toArray ():array {
+
+        $result = [];
+
+        foreach ($this->storage as $obj)
+            $result[] = ['info' => $this->storage->getInfo(), 'object' => $obj];
+
+        return $result;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
      */
     public function offsetExists (mixed $offset):bool {
 

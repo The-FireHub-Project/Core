@@ -30,7 +30,7 @@ interface JsonSerializable extends InternalJsonSerializable {
      * Serializes the object to a value that can be serialized natively by json_encode().
      * @since 1.0.0
      *
-     * @return array<array-key, mixed> Data which can be serialized by json_encode(), which is a value of any type
+     * @return array<array-key, mixed> Data, which can be serialized by json_encode(), which is a value of any type
      * other than a resource.
      */
     public function jsonSerialize ():array;

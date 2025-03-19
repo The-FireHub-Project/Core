@@ -30,4 +30,12 @@ use FireHub\Core\Support\Contracts\ArrayAccessible;
  */
 interface Collection extends Dynamic, ArrayAccessible {
 
+    /**
+     * ### Get collection items as an array
+     * @since 1.0.0
+     *
+     * @return array<array-key, mixed> Collection as an array.
+     */
+    public function toArray ():array;
+
 }

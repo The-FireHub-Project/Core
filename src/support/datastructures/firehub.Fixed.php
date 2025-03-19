@@ -89,7 +89,24 @@ class Fixed implements FixedContract, JsonSerializable {
      *
      * @uses \FireHub\Core\Support\LowLevel\JSON::encode() To encode data structure to JSON.
      *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $collection->toJSON();
+     *
+     * // ["one","two","three"]
+     * ```
+     *
      * @throws \FireHub\Core\Support\Exceptions\JSONException If JSON encoding throws an error.
+     *
+     * @return string JSON representation for the data structure.
      */
     public function toJSON ():string {
 

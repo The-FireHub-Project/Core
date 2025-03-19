@@ -87,12 +87,49 @@ class Associative implements Collection, JsonSerializable {
     }
 
     /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->toArray();
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]
+     * ```
+     *
+     * @return array<TKey, TValue> Collection as an array.
+     */
+    public function toArray ():array {
+
+        return $this->storage;
+
+    }
+
+    /**
      * ### Get JSON representation for the data structure
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\LowLevel\JSON::encode() To encode data structure to JSON.
      *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->toJSON();
+     *
+     * // {"firstname":{},"lastname":"Doe","age":25,"10":2}
+     * ```
+     *
      * @throws \FireHub\Core\Support\Exceptions\JSONException If JSON encoding throws an error.
+     *
+     * @return string JSON representation for the data structure.
      */
     public function toJSON ():string {
 
