@@ -61,7 +61,6 @@ class Lazy implements LazyContract {
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy::elements() To count elements in a data structure.
-     * ```
      */
     public function count ():int {
 
