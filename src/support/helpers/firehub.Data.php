@@ -7,7 +7,7 @@
  * @copyright 2025 FireHub Web Application Framework
  * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
  *
- * @package Core\Components
+ * @package Core\Support
  *
  * @version GIT: $Id$ Blob checksum.
  */
@@ -24,7 +24,7 @@ use Stringable;
  * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To convert $value to string.
  * @uses \FireHub\Core\Support\LowLevel\DataIs::numeric() To convert $value to string.
  * @uses \FireHub\Core\Support\LowLevel\DataIs::array() To convert $value to string.
- * @uses \FireHub\Core\Support\LowLevel\DataIs::object() To convert $value to object.
+ * @uses \FireHub\Core\Support\LowLevel\DataIs::object() To convert $value to an object.
  * @uses \FireHub\Core\Support\LowLevel\DataIs::resource() To convert $value to resource.
  *
  * @example
