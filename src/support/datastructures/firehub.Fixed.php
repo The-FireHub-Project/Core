@@ -39,7 +39,7 @@ class Fixed implements FixedContract, JsonSerializable {
      *
      * @var SplFixedArray<TValue>
      */
-    protected SplFixedArray $storage;
+    private SplFixedArray $storage;
 
     /**
      * ### Constructor

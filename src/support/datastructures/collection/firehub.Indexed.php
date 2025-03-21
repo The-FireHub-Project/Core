@@ -20,6 +20,10 @@ use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use FireHub\Core\Support\LowLevel\JSON;
 use Closure, Traversable;
 
+use function FireHub\Core\Support\Helpers\Arr\ {
+    first, last
+};
+
 /**
  * ### Indexed array collection type
  *
@@ -38,7 +42,7 @@ class Indexed implements Collection, JsonSerializable {
      *
      * @var array<TValue>
      */
-    protected array $storage;
+    private array $storage;
 
     /**
      * ### Constructor
@@ -79,6 +83,98 @@ class Indexed implements Collection, JsonSerializable {
     public function countBy ():CountBy {
 
         return new CountBy($this);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Arr\first() To get the first value from a collection.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->first();
+     *
+     * // 'John'
+     * ```
+     * @example With $callback parameter.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->first(function ($value) {
+     *  return $values !== 'John';
+     * });
+     *
+     * // 'Jane'
+     * ```
+     */
+    public function first (?callable $callback = null):mixed {
+
+        if ($callback) {
+
+            foreach ($this->storage as $value)
+                if ($callback($value)) return $value;
+
+            return null;
+
+        }
+
+        return first($this->storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Arr\last() To get the last value from a collection.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->last();
+     *
+     * // 'Richard'
+     * ```
+     * @example With $callback parameter.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->last(function ($value) {
+     *  return $value !== 'Richard';
+     * });
+     *
+     * // 'Jane'
+     * ```
+     */
+    public function last (?callable $callback = null):mixed {
+
+        if ($callback) {
+
+            $found = null;
+
+            foreach ($this->storage as $value)
+                if ($callback($value)) $found = $value;
+
+            return $found;
+
+        }
+
+        return last($this->storage);
 
     }
 

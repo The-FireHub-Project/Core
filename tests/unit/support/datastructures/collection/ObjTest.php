@@ -95,4 +95,40 @@ final class ObjTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFirst ():void {
+
+        $this->assertEquals('data for object 1', $this->collection->first());
+
+        $this->assertEquals('data for object 1', $this->collection->first(function ($info, $object) {
+            return $object === $this->cls1;
+        }));
+
+        $this->assertNull($this->collection->first(function ($info) {
+            return $info === 'x';
+        }));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testLast ():void {
+
+        $this->assertEquals(20, $this->collection->last());
+
+        $this->assertEquals([1, 2, 3], $this->collection->last(function ($info) {
+            return $info !== 20;
+        }));
+
+        $this->assertNull($this->empty->last());
+
+    }
+
 }

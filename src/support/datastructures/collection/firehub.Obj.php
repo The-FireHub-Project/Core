@@ -40,7 +40,7 @@ class Obj implements Collection {
      *
      * @var SplObjectStorage<TKey, TValue>
      */
-    protected SplObjectStorage $storage;
+    private SplObjectStorage $storage;
 
     /**
      * ### Constructor
@@ -95,6 +95,136 @@ class Obj implements Collection {
      * $cls2 = new stdClass();
      * $cls3 = new stdClass();
      *
+     * $collection[$cls1] = 'data for object 1';
+     * $collection[$cls2] = [1,2,3];
+     * $collection[$cls3] = 20;
+     *
+     * $collection->first();
+     *
+     * // 'data for object 1'
+     * ```
+     * @example With $callback parameter.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Obj;
+     *
+     * $collection = new Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection[$cls1] = 'data for object 1';
+     * $collection[$cls2] = [1,2,3];
+     * $collection[$cls3] = 20;
+     *
+     * $collection->first(function ($info, $object) use ($cls1) {
+     *  return $object === $cls1;
+     * });
+     *
+     * // 'data for object 1'
+     * ```
+     */
+    public function first (?callable $callback = null):mixed {
+
+        if ($callback) {
+
+            foreach ($this->storage as $object)
+                if ($callback($this->storage[$object], $object)) return $this->storage[$object];
+
+            return null;
+
+        }
+
+        $this->storage->rewind();
+
+        return $this->storage->valid() ? $this->storage->getInfo() : null;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Collection\Obj::count() To count elements in the iterator.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Obj;
+     *
+     * $collection = new Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection[$cls1] = 'data for object 1';
+     * $collection[$cls2] = [1,2,3];
+     * $collection[$cls3] = 20;
+     *
+     * $collection->last();
+     *
+     * // 20
+     * ```
+     * @example With $callback parameter.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Obj;
+     *
+     * $collection = new Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection[$cls1] = 'data for object 1';
+     * $collection[$cls2] = [1,2,3];
+     * $collection[$cls3] = 20;
+     *
+     * $collection->last(function ($info) use ($cls1) {
+     *  return $info !== 20;
+     * });
+     *
+     * // [1,2,3]
+     * ```
+     */
+    public function last (?callable $callback = null):mixed {
+
+        if ($callback) {
+
+            $found = null;
+
+            foreach ($this->storage as $object)
+                if ($callback($this->storage[$object], $object)) $found = $this->storage[$object];
+
+            return $found;
+
+        }
+
+        $counter = 0;
+
+        $count = $this->count();
+
+        foreach ($this->storage as $object) if (++$counter === $count) return $this->storage[$object];
+
+        return null;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Obj;
+     *
+     * $collection = new Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
      * $collection[$cls1] = 'data 1';
      * $collection[$cls2] = 'data 2';
      * $collection[$cls3] = 'data 3';
@@ -114,8 +244,9 @@ class Obj implements Collection {
 
         $result = [];
 
-        foreach ($this->storage as $obj)
-            $result[] = ['info' => $this->storage->getInfo(), 'object' => $obj];
+        foreach ($this as $object => $data) {
+            $result[] = ['info' => $data, 'object' => $object];
+        }
 
         return $result;
 

@@ -37,7 +37,7 @@ class Lazy implements LazyContract {
      *
      * @var Generator<TKey, TValue>
      */
-    protected Generator $storage;
+    private Generator $storage;
 
     /**
      * ### Constructor

@@ -98,6 +98,40 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testFirst ():void {
+
+        $this->assertSame('John', $this->collection->first());
+
+        $this->assertSame('Doe', $this->collection->first(function ($value, $key) {
+            return $key !== 'firstname';
+        }));
+
+        $this->assertNull($this->collection->first(function ($value) {
+            return $value === 'Jack';
+        }));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testLast ():void {
+
+        $this->assertSame(2, $this->collection->last());
+
+        $this->assertSame(25, $this->collection->last(function ($value, $key) {
+            return $key !== 10;
+        }));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testToJson ():void {
 
         $this->assertSame(

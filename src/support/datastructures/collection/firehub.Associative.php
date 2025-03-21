@@ -14,11 +14,7 @@
 
 namespace FireHub\Core\Support\DataStructures\Collection;
 
-use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Collection;
-use FireHub\Core\Support\Contracts\JsonSerializable;
-use FireHub\Core\Support\DataStructures\Operation\CountBy;
-use FireHub\Core\Support\LowLevel\JSON;
-use Closure, Traversable;
+use Closure;
 
 /**
  * ### Associative array collection type
@@ -29,11 +25,11 @@ use Closure, Traversable;
  * @template TKey of array-key
  * @template TValue
  *
- * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Collection<TKey, TValue>
+ * @extends \FireHub\Core\Support\DataStructures\Collection\Indexed<TValue>
  *
  * @api
  */
-class Associative implements Collection, JsonSerializable {
+class Associative extends Indexed {
 
     /**
      * ### Underlying storage data
@@ -41,7 +37,7 @@ class Associative implements Collection, JsonSerializable {
      *
      * @var array<TKey, TValue>
      */
-    protected array $storage;
+    private array $storage;
 
     /**
      * ### Constructor
@@ -57,6 +53,8 @@ class Associative implements Collection, JsonSerializable {
 
         $array instanceof Closure ? $this->storage = ($array)() : $this->storage = $array;
 
+        parent::__construct($array);
+
     }
 
     /**
@@ -64,12 +62,43 @@ class Associative implements Collection, JsonSerializable {
      *
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy::elements() To count elements in a data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Collection\Indexed::first() As a parent method if $callback doesn't exist.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->first();
+     *
+     * // 'John'
+     * ```
+     * @example With $callback parameter.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->first(function ($value, $key) {
+     *  return $key !== 'firstname';
+     * });
+     *
+     * // 'Doe'
      * ```
      */
-    public function count ():int {
+    public function first (?callable $callback = null):mixed {
 
-        return new CountBy($this)->elements();
+        if ($callback) {
+
+            foreach ($this->storage as $key => $value)
+                if ($callback($value, $key)) return $value;
+
+            return null;
+
+        }
+
+        return parent::first();
 
     }
 
@@ -78,11 +107,45 @@ class Associative implements Collection, JsonSerializable {
      *
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy As return.
+     * @uses \FireHub\Core\Support\DataStructures\Collection\Indexed::last() As a parent method if $callback doesn't exist.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->last();
+     *
+     * // 2
+     * ```
+     * @example With $callback parameter.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->last(function ($value, $key) {
+     *  return $key !== 10;
+     * });
+     *
+     * // 25
+     * ```
      */
-    public function countBy ():CountBy {
+    public function last (?callable $callback = null):mixed {
 
-        return new CountBy($this);
+        if ($callback) {
+
+            $found = null;
+
+            foreach ($this->storage as $key => $value)
+                if ($callback($value, $key)) $found = $value;
+
+            return $found;
+
+        }
+
+        return parent::last();
 
     }
 
@@ -111,33 +174,6 @@ class Associative implements Collection, JsonSerializable {
     }
 
     /**
-     * ### Get JSON representation for the data structure
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\LowLevel\JSON::encode() To encode data structure to JSON.
-     *
-     * @example
-     * ```php
-     * use FireHub\Core\Support\DataStructures\Collection\Associative;
-     *
-     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
-     *
-     * $collection->toJSON();
-     *
-     * // {"firstname":{},"lastname":"Doe","age":25,"10":2}
-     * ```
-     *
-     * @throws \FireHub\Core\Support\Exceptions\JSONException If JSON encoding throws an error.
-     *
-     * @return string JSON representation for the data structure.
-     */
-    public function toJSON ():string {
-
-        return JSON::encode($this) ?: '[]';
-
-    }
-
-    /**
      * @inheritDoc
      *
      * @since 1.0.0
@@ -155,53 +191,9 @@ class Associative implements Collection, JsonSerializable {
      *
      * @since 1.0.0
      */
-    public function offsetExists (mixed $offset):bool {
-
-        return isset($this->storage[$offset]);
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     */
-    public function offsetGet (mixed $offset):mixed {
-
-        return $this->storage[$offset];
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     */
     public function offsetSet (mixed $offset, mixed $value):void {
 
         $this->storage[$offset] = $value;
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     */
-    public function offsetUnset (mixed $offset):void {
-
-        unset($this->storage[$offset]);
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     */
-    public function getIterator ():Traversable {
-
-        yield from $this->storage;
 
     }
 
