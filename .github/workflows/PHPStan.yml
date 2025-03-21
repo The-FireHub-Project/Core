@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest, windows-latest, macOS-latest]
-        php-versions: ['8.3']
+        php-versions: ['8.4']
     name: Run PHPStan with PHP ${{ matrix.php-versions }} on ${{ matrix.operating-system }}
     steps:
       - name: Checkout
@@ -21,7 +21,11 @@ jobs:
         uses: shivammathur/setup-php@2.31.1
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: mbstring
-          tools: phpstan
+          extensions: mbstring, zip, apcu
+          tools: phpstan:2.x
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Install composer dependencies
+        run: composer install  --no-interaction --no-progress --prefer-dist
       - name: Run PHPStan
         run: phpstan analyse --memory-limit=256M
