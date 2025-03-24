@@ -13,6 +13,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Checkout
-        uses: fossas/fossa-action@v1.5.0
+        uses: fossas/fossa-action@v1.6.0
         with:
           api-key: ${{ secrets.FOSSA_TOKEN }}
