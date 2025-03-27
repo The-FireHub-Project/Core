@@ -1735,11 +1735,14 @@ final class Arr {
      * Get the first key of the given $array without affecting the internal array pointer.
      * @since 1.0.0
      *
-     * @param array<array-key, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * An array.
      * </p>
      *
-     * @return null|int|string First key from $array or null if an array is empty.
+     * @return null|TKey First key from $array or null if an array is empty.
      */
     public static function firstKey (array $array):null|int|string {
 
@@ -1753,11 +1756,14 @@ final class Arr {
      * Get the last key of the given $array without affecting the internal array pointer.
      * @since 1.0.0
      *
-     * @param array<array-key, mixed> $array <p>
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param array<TKey, TValue> $array <p>
      * An array.
      * </p>
      *
-     * @return null|int|string Last key from $array or null if an array is empty.
+     * @return null|TKey Last key from $array or null if an array is empty.
      */
     public static function lastKey (array $array):null|int|string {
 
