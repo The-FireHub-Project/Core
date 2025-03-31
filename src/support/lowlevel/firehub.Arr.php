@@ -30,8 +30,8 @@ use const CASE_LOWER;
 use const CASE_UPPER;
 use const SORT_REGULAR;
 
-use function array_all; // @phpstan-ignore function.notFound (@todo fix on PHP 8.4)
-use function array_any; // @phpstan-ignore function.notFound (@todo fix on PHP 8.4)
+use function array_all;
+use function array_any;
 use function array_change_key_case;
 use function array_chunk;
 use function array_column;
@@ -45,8 +45,8 @@ use function array_diff_ukey;
 use function array_fill;
 use function array_fill_keys;
 use function array_filter;
-use function array_find; // @phpstan-ignore function.notFound (@todo fix on PHP 8.4)
-use function array_find_key; // @phpstan-ignore function.notFound (@todo fix on PHP 8.4)
+use function array_find;
+use function array_find_key;
 use function array_flip;
 use function array_intersect;
 use function array_intersect_assoc;
