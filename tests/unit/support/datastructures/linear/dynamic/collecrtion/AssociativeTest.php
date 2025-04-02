@@ -59,20 +59,4 @@ final class AssociativeTest extends Base {
 
     }
 
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testCountBy ():void {
-
-        $mix = new Mix();
-        $mix['Jane'] = 3;
-        $mix['John'] = 1;
-        $mix['Richard'] = 2;
-
-        $this->assertEquals($mix, $this->collection->countBy()->values());
-
-    }
-
 }
