@@ -15,7 +15,6 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
-use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use SplObjectStorage, Traversable;
 
 /**

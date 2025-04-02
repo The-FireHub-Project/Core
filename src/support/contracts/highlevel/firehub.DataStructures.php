@@ -16,6 +16,7 @@ namespace FireHub\Core\Support\Contracts\HighLevel;
 
 use FireHub\Core\Support\Contracts\Countable;
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
+use FireHub\Core\Support\DataStructures\Operation\CountBy;
 
 /**
  * ### Data structures
@@ -27,5 +28,15 @@ use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
  * @extends \FireHub\Core\Support\Contracts\Iterator\IteratorAggregate<TKey, TValue>
  */
 interface DataStructures extends Countable, IteratorAggregate {
+
+    /**
+     * ### Count operations for iterable
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy As return.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Operation\CountBy<TKey, TValue> Count operation class.
+     */
+    public function countBy ():CountBy;
 
 }

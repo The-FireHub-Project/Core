@@ -15,7 +15,9 @@
 namespace support\datastructures\collection;
 
 use FireHub\Core\Testing\Base;
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
+    Indexed, Mix
+};
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -52,6 +54,22 @@ final class IndexedTest extends Base {
     public function testCount ():void {
 
         $this->assertSame(6, $this->collection->count());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCountBy ():void {
+
+        $mix = new Mix();
+        $mix['Jane'] = 3;
+        $mix['John'] = 1;
+        $mix['Richard'] = 2;
+
+        $this->assertEquals($mix, $this->collection->countBy()->values());
 
     }
 

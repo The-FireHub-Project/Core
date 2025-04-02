@@ -15,7 +15,9 @@
 namespace support\datastructures\collection;
 
 use FireHub\Core\Testing\Base;
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
+    Obj, Mix
+};
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small

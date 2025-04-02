@@ -15,25 +15,24 @@
 namespace support\datastructures\collection;
 
 use FireHub\Core\Testing\Base;
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
-    Associative, Mix
-};
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix;
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
+use stdClass;
 
 /**
- * ### Test Associative array collection class
+ * ### Test Mixed collection class
  * @since 1.0.0
  */
 #[Small]
 #[Group('collection')]
-#[CoversClass(Associative::class)]
+#[CoversClass(Mix::class)]
 #[CoversClass(CountBy::class)]
-final class AssociativeTest extends Base {
+final class MixTest extends Base {
 
-    public Associative $collection;
+    public Mix $collection;
 
     /**
      * @since 1.0.0
@@ -42,9 +41,9 @@ final class AssociativeTest extends Base {
      */
     public function setUp ():void {
 
-        $this->collection = new Associative(
-            ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]
-        );
+        $this->collection = new Mix();
+        $this->collection['one'] = 1;
+        $this->collection[new stdClass()] = 'two';
 
     }
 
@@ -55,23 +54,7 @@ final class AssociativeTest extends Base {
      */
     public function testCount ():void {
 
-        $this->assertSame(4, $this->collection->count());
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testCountBy ():void {
-
-        $mix = new Mix();
-        $mix['Jane'] = 3;
-        $mix['John'] = 1;
-        $mix['Richard'] = 2;
-
-        $this->assertEquals($mix, $this->collection->countBy()->values());
+        $this->assertSame(2, $this->collection->count());
 
     }
 

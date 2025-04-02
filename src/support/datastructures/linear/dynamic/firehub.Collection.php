@@ -34,10 +34,26 @@ abstract class Collection implements Dynamic, ArrayAccessible {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection::countBy() To count elements in
+     * a data structure.
      */
     public function count ():int {
 
-        return new CountBy($this)->elements();
+        return $this->countBy()->elements();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy As return.
+     */
+    public function countBy ():CountBy {
+
+        return new CountBy($this);
 
     }
 

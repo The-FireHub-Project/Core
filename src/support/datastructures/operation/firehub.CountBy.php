@@ -15,6 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Operation;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix;
 use FireHub\Core\Support\LowLevel\Iterator;
 
 /**
@@ -65,6 +66,38 @@ readonly class CountBy {
     public function elements ():int {
 
         return Iterator::count($this->data_structure);
+
+    }
+
+    /**
+     * ### Count elements by values
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative As return.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * use FireHub\Core\Support\DataStructures\Collection\Operations\CountBy;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * new CountBy($collection)->values();
+     *
+     * // ['Jane' => 3, 'John' => 1, 'Richard' => 2]
+     * ```
+     *
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix<TValue, positive-int>
+     * Number of elements of a data structure.
+     */
+    public function values ():Mix {
+
+        $storage = new Mix();
+
+        foreach ($this->data_structure as $value)
+            $storage[$value] = ($storage[$value] ?? 0) + 1; // @phpstan-ignore binaryOp.invalid
+
+        return $storage; // @phpstan-ignore return.type
 
     }
 

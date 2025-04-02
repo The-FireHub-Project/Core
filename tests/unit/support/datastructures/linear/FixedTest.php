@@ -16,6 +16,7 @@ namespace support\datastructures;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Fixed;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix;
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
