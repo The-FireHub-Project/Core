@@ -14,7 +14,9 @@
 
 namespace FireHub\Core\Support\Helpers\Data;
 
-use FireHub\Core\Support\LowLevel\DataIs;
+use FireHub\Core\Support\LowLevel\{
+    DataIs, Obj, Resources
+};
 use Stringable;
 
 /**
@@ -26,6 +28,9 @@ use Stringable;
  * @uses \FireHub\Core\Support\LowLevel\DataIs::array() To convert $value to string.
  * @uses \FireHub\Core\Support\LowLevel\DataIs::object() To convert $value to an object.
  * @uses \FireHub\Core\Support\LowLevel\DataIs::resource() To convert $value to resource.
+ * @uses \FireHub\Core\Support\LowLevel\Obj::id() To get ID from an object.
+ * @uses \FireHub\Core\Support\LowLevel\Resources::id() To get ID from resource.
+ * @uses \FireHub\Core\Support\LowLevel\Resources::type() To get a type from resource.
  *
  * @example
  * ```php
@@ -60,12 +65,15 @@ use Stringable;
  * @param string $default_value [optional] <p>
  * Default value in case $value couldn't be shown as string.
  * </p>
+ * @param bool $detailed [optional] <p>
+ * If true, objects and resources will have their ID and type if one exists.
+ * </p>
  *
  * @return string Value converted to string.
  *
  * @api
  */
-function toString (mixed $value, string $default_value = ''):string {
+function toString (mixed $value, string $default_value = '', bool $detailed = false):string {
 
     return match (true) {
         $value === true => 'true',
@@ -75,8 +83,12 @@ function toString (mixed $value, string $default_value = ''):string {
         DataIs::numeric($value) => (string)$value,
         DataIs::array($value) => 'array',
         $value instanceof Stringable => $value->__toString(),
-        DataIs::object($value) => $value::class,
-        DataIs::resource($value) => 'resource',
+        DataIs::object($value) => $detailed
+            ? $value::class.'('.Obj::id($value).')'
+            : $value::class,
+        DataIs::resource($value) => $detailed
+            ? 'resource('.Resources::id($value).', '.Resources::type($value)->value.')'
+            : 'resource',
         default => $default_value
     };
 
