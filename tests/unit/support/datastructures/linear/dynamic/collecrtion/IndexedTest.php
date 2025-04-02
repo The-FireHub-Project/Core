@@ -71,6 +71,17 @@ final class IndexedTest extends Base {
 
         $this->assertEquals($mix, $this->collection->countBy()->values());
 
+        $mix = new Mix();
+        $mix[true] = 3;
+        $mix[false] = 3;
+
+        $this->assertEquals(
+            $mix,
+            $this->collection->countBy()->func(
+                fn($value) => $value === 'Jane'
+            )
+        );
+
     }
 
 }

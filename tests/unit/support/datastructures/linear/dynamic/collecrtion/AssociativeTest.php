@@ -19,6 +19,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
     Associative, Mix
 };
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\Enums\Data\Type;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -76,6 +77,14 @@ final class AssociativeTest extends Base {
             $this->collection->countBy()->funcAssoc(
                 fn($value, $key) => substr((string)$value, 0, 1)
             )
+        );
+
+        $mix = new Mix();
+        $mix[Type::T_STRING] = 2;
+        $mix[Type::T_INT] = 2;
+
+        $this->assertEquals(
+            $mix, $this->collection->countBy()->type()
         );
 
     }

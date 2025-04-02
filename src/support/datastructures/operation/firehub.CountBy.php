@@ -16,7 +16,10 @@ namespace FireHub\Core\Support\DataStructures\Operation;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix;
-use FireHub\Core\Support\LowLevel\Iterator;
+use FireHub\Core\Support\Exceptions\Data\TypeUnknownException;
+use FireHub\Core\Support\LowLevel\ {
+    Data, Iterator
+};
 
 /**
  * ### Count operations for data structures
@@ -96,6 +99,45 @@ readonly class CountBy {
 
         foreach ($this->data_structure as $value)
             $storage[$value] = ($storage[$value] ?? 0) + 1; // @phpstan-ignore binaryOp.invalid
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * ### Count elements by value type
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix As return.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * use FireHub\Core\Support\DataStructures\Operations\CountBy;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * new CountBy($collection)->values();
+     *
+     * // ['Jane' => 3, 'John' => 1, 'Richard' => 2]
+     * ```
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Data\TypeUnknownException If a type of value is unknown.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix<\FireHub\Core\Support\Enums\Data\Type, positive-int>
+     * Number of elements of a data structure.
+     */
+    public function type ():Mix {
+
+        $storage = new Mix();
+
+        foreach ($this->data_structure as $value) {
+
+            $type = Data::getType($value);
+
+            $storage[$type] = ($storage[$type] ?? 0) + 1; // @phpstan-ignore binaryOp.invalid
+
+        }
 
         return $storage; // @phpstan-ignore return.type
 
