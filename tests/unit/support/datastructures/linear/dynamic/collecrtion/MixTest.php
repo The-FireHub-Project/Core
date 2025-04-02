@@ -58,4 +58,24 @@ final class MixTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCountBy ():void {
+
+        $mix = new Mix();
+        $mix[1] = 1;
+        $mix['t'] = 1;
+
+        $this->assertEquals(
+            $mix,
+            $this->collection->countBy()->funcAssoc(
+                fn($value, $key) => substr((string)$value, 0, 1)
+            )
+        );
+
+    }
+
 }

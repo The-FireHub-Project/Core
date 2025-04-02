@@ -60,4 +60,25 @@ final class FixedTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCountBy ():void {
+
+        $mix = new Mix();
+        $mix['o'] = 1;
+        $mix['t'] = 2;
+
+        $this->assertEquals(
+            $mix,
+            $this->collection->countBy()->funcAssoc(
+                fn($value, $key) => substr((string)$value, 0, 1)
+            )
+        );
+
+    }
+
+
 }

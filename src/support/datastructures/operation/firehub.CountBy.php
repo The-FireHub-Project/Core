@@ -73,12 +73,12 @@ readonly class CountBy {
      * ### Count elements by values
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative As return.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix As return.
      *
      * @example
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
-     * use FireHub\Core\Support\DataStructures\Collection\Operations\CountBy;
+     * use FireHub\Core\Support\DataStructures\Operations\CountBy;
      *
      * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
      *
@@ -96,6 +96,80 @@ readonly class CountBy {
 
         foreach ($this->data_structure as $value)
             $storage[$value] = ($storage[$value] ?? 0) + 1; // @phpstan-ignore binaryOp.invalid
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * ### Count elements by user-defined function
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix As return.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * use FireHub\Core\Support\DataStructures\Operations\CountBy;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * new CountBy($collection)->func(fn($value) => fn($value) => $value === 'Jane');
+     *
+     * // [0 => 3, 1 => 3]
+     * ```
+     *
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix<TValue, positive-int>
+     * Number of elements of a data structure.
+     */
+    public function func (callable $callback):Mix {
+
+        $storage = new Mix();
+
+        foreach ($this->data_structure as $value) {
+
+            $callable = $callback($value);
+
+            $storage[$callable] = ($storage[$callable] ?? 0) + 1; // @phpstan-ignore binaryOp.invalid
+
+        }
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * ### Count elements by user-defined function with additional index check
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix As return.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * use FireHub\Core\Support\DataStructures\Operations\CountBy;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * new CountBy($collection)->funcAssoc(fn($value, $key) => substr((string)$value, 0, 1));
+     *
+     * // ['J' => 1, 'D' => 1, 2 => 2]
+     * ```
+     *
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix<TValue, positive-int>
+     * Number of elements of a data structure.
+     */
+    public function funcAssoc (callable $callback):Mix {
+
+        $storage = new Mix();
+
+        foreach ($this->data_structure as $key => $value) {
+
+            $callable = $callback($value, $key);
+
+            $storage[$callable] = ($storage[$callable] ?? 0) + 1; // @phpstan-ignore binaryOp.invalid
+
+        }
 
         return $storage; // @phpstan-ignore return.type
 

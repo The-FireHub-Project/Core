@@ -35,6 +35,7 @@ use stdClass;
 final class ObjTest extends Base {
 
     public Obj $collection;
+    public Obj $simple;
 
     public stdClass $cls1;
     public stdClass $cls2;
@@ -52,10 +53,13 @@ final class ObjTest extends Base {
         $this->cls3 = new stdClass();
 
         $this->collection = new Obj;
-
         $this->collection[$this->cls1] = 'data for object 1';
         $this->collection[$this->cls2] = [1, 2, 3];
         $this->collection[$this->cls3] = 20;
+
+        $this->simple = new Obj;
+        $this->simple[$this->cls1] = 'data for object 1';
+        $this->simple[$this->cls2] = 'data for object 2';
 
     }
 
@@ -67,6 +71,25 @@ final class ObjTest extends Base {
     public function testCount ():void {
 
         $this->assertSame(3, $this->collection->count());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCountBy ():void {
+
+        $mix = new Mix();
+        $mix['d'] = 2;
+
+        $this->assertEquals(
+            $mix,
+            $this->simple->countBy()->funcAssoc(
+                fn($value, $key) => substr((string)$value, 0, 1)
+            )
+        );
 
     }
 
