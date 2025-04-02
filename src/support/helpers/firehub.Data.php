@@ -84,7 +84,7 @@ function toString (mixed $value, string $default_value = '', bool $detailed = fa
         DataIs::array($value) => 'array',
         $value instanceof Stringable => $value->__toString(),
         DataIs::object($value) => $detailed
-            ? $value::class.'('.Obj::id($value).')'
+            ? 'object('.$value::class.')['.Obj::id($value).']'
             : $value::class,
         DataIs::resource($value) => $detailed
             ? 'resource('.Resources::id($value).', '.Resources::type($value)->value.')'
