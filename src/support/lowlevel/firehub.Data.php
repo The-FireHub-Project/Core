@@ -14,16 +14,13 @@
 
 namespace FireHub\Core\Support\LowLevel;
 
-use FireHub\Core\Support\Enums\Data\ {
-    ResourceType, Type
-};
+use FireHub\Core\Support\Enums\Data\Type;
 use FireHub\Core\Support\Exceptions\Data\ {
     ArrayToStringConversionException, CannotSerializeException, FailedToSetTypeException, SetAsResourceException,
     TypeUnknownException, UnserializeFailedException
 };
 use Exception;
 
-use function get_resource_type;
 use function gettype;
 use function serialize;
 use function settype;
@@ -151,22 +148,6 @@ final class Data {
                 return $value;
 
         }
-
-    }
-
-    /**
-     * ### Gets the resource type
-     * @since 1.0.0
-     *
-     * @param resource $resource <p>
-     * The evaluated resource handle.
-     * </p>
-     *
-     * @return \FireHub\Core\Support\Enums\Data\ResourceType Resource type or null if is not a resource.
-     */
-    public static function getResourceType (mixed $resource):ResourceType {
-
-        return ResourceType::from(get_resource_type($resource));
 
     }
 

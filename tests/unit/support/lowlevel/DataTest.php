@@ -994,17 +994,6 @@ final class DataTest extends Base {
      *
      * @return void
      */
-    public function testGetResourceType ():void {
-
-        $this->assertSame(ResourceType::STREAM, Data::getResourceType($this->resource()));
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
     public function testSerialize ():void {
 
         $this->assertSame(
