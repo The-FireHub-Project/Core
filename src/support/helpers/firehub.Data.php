@@ -72,7 +72,7 @@ function toString (mixed $value, string $default_value = ''):string {
         $value === false => 'false',
         $value === null => 'null',
         DataIs::string($value) => $value,
-        DataIs::numeric($value) => "$value",
+        DataIs::numeric($value) => (string)$value,
         DataIs::array($value) => 'array',
         $value instanceof Stringable => $value->__toString(),
         DataIs::object($value) => $value::class,
