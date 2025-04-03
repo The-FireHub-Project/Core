@@ -59,6 +59,119 @@ class Associative extends Collection implements Overloadable {
     }
 
     /**
+     * ### Check if item exist in collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetExists() Checks
+     * whether an offset exists.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->exist('firstname');
+     *
+     * // true
+     * ```
+     *
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @return bool True on success, false otherwise.
+     */
+    public function exist (int|string $key):bool {
+
+        return $this->offsetExists($key);
+
+    }
+
+    /**
+     * ### Gets item from collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetGet() As offset
+     * to retrieve.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->get('firstname');
+     *
+     * // 'John'
+     * ```
+     *
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @return null|TValue Item from a collection.
+     */
+    public function get (int|string $key):mixed {
+
+        return $this->offsetGet($key);
+
+    }
+
+    /**
+     * ### Add or replace item in collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetSet() To assign a
+     * value to the specified offset.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->set('Jane', 'firstname');
+     * $collection->set('female', 'gender');
+     *
+     * // ['firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']
+     * ```
+     *
+     * @param TValue $value <p>
+     * Collection value.
+     * </p>
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @return void
+     */
+    public function set (mixed $value, int|string $key):void {
+
+        $this->offsetSet($key, $value);
+
+    }
+
+    /**
+     * ### Removes item from collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetUnset() To unset
+     * an offset.
+     *
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @return void
+     */
+    public function remove (int|string $key):void {
+
+        $this->offsetUnset($key);
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0
@@ -117,28 +230,9 @@ class Associative extends Collection implements Overloadable {
      * @inheritDoc
      *
      * @since 1.0.0
-     */
-    public function __get (int|string $name):mixed {
-
-        return $this->offsetGet($name);
-
-    }
-
-    /**
-     * @inheritDoc
      *
-     * @since 1.0.0
-     */
-    public function __set (int|string $name, mixed $value):void {
-
-        $this->offsetSet($name, $value);
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetExists() Checks
+     * whether an offset exists.
      */
     public function __isset (int|string $name):bool {
 
@@ -150,6 +244,37 @@ class Associative extends Collection implements Overloadable {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetGet() As offset
+     * to retrieve.
+     */
+    public function __get (int|string $name):mixed {
+
+        return $this->offsetGet($name);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetSet() To assign a
+     * value to the specified offset.
+     */
+    public function __set (int|string $name, mixed $value):void {
+
+        $this->offsetSet($name, $value);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetUnset() To unset
+     * an offset.
      */
     public function __unset (int|string $name):void {
 

@@ -188,7 +188,7 @@ readonly class CountBy {
      *
      * @example
      * ```php
-     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
      * use FireHub\Core\Support\DataStructures\Operations\CountBy;
      *
      * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
