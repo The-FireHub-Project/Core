@@ -15,6 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use FireHub\Core\Support\DataStructures\Contracts\Overloadable;
 use Closure, Traversable;
 
 /**
@@ -27,10 +28,11 @@ use Closure, Traversable;
  * @template TValue
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Overloadable<TKey, TValue>
  *
  * @api
  */
-class Associative extends Collection {
+class Associative extends Collection implements Overloadable {
 
     /**
      * ### Underlying storage data
@@ -108,6 +110,50 @@ class Associative extends Collection {
     public function getIterator ():Traversable {
 
         yield from $this->storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __get (int|string $name):mixed {
+
+        return $this->offsetGet($name);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __set (int|string $name, mixed $value):void {
+
+        $this->offsetSet($name, $value);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __isset (int|string $name):bool {
+
+        return $this->offsetExists($name);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __unset (int|string $name):void {
+
+        $this->offsetUnset($name);
 
     }
 
