@@ -16,7 +16,6 @@ namespace FireHub\Core\Support\DataStructures\Operation;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix;
-use FireHub\Core\Support\Exceptions\Data\TypeUnknownException;
 use FireHub\Core\Support\LowLevel\ {
     Data, Iterator
 };

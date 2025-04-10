@@ -15,7 +15,8 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
-use SplObjectStorage, Traversable;
+use FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException;
+use Closure, SplObjectStorage, Traversable, TypeError;
 
 /**
  * ### Object collection type
@@ -45,9 +46,17 @@ class Obj extends Collection {
      * ### Constructor
      * @since 1.0.0
      *
+     * @param null|Closure(SplObjectStorage<object, mixed>):void $storage [optional] <p>
+     * Underlying storage data.
+     * </p>
+     *
      * @return void
      */
-    public function __construct () {
+    public function __construct (?Closure $storage = null) {
+
+        $object = new SplObjectStorage();
+
+        if(isset($storage)) $storage($object);
 
         $this->storage = new SplObjectStorage();
 
@@ -57,10 +66,21 @@ class Obj extends Collection {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function offsetExists (mixed $offset):bool {
 
-        return isset($this->storage[$offset]);
+        try {
+
+            return isset($this->storage[$offset]);
+
+        } catch (TypeError) {
+
+            throw new CannotAccessOffsetException()->withValue($offset);
+
+        }
 
     }
 
@@ -68,10 +88,21 @@ class Obj extends Collection {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function offsetGet (mixed $offset):mixed {
 
-        return $this->storage[$offset];
+        try {
+
+            return $this->storage[$offset];
+
+        } catch (TypeError) {
+
+            throw new CannotAccessOffsetException()->withValue($offset);
+
+        }
 
     }
 
@@ -79,10 +110,21 @@ class Obj extends Collection {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function offsetSet (mixed $offset, mixed $value):void {
 
-        $this->storage[$offset] = $value;
+        try {
+
+            $this->storage[$offset] = $value;
+
+        } catch (TypeError) {
+
+            throw new CannotAccessOffsetException()->withValue($offset);
+
+        }
 
     }
 
@@ -90,10 +132,21 @@ class Obj extends Collection {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function offsetUnset (mixed $offset):void {
 
-        unset($this->storage[$offset]);
+        try {
+
+            unset($this->storage[$offset]);
+
+        } catch (TypeError) {
+
+            throw new CannotAccessOffsetException()->withValue($offset);
+
+        }
 
     }
 

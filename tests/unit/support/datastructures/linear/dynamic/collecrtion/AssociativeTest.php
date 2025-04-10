@@ -152,6 +152,36 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testAdd ():void {
+
+        $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']);
+
+        $this->collection->add('female', 'gender');
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testReplace ():void {
+
+        $collection = new Associative(['firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+
+        $this->collection->replace('Jane', 'firstname');
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testRemove ():void {
 
         $collection = new Associative(['lastname' => 'Doe', 'age' => 25, 10 => 2]);

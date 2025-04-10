@@ -112,7 +112,8 @@ class Exception extends InternalException {
     public function __call (string $method, array $arguments):static {
 
         if (
-            property_exists(
+            isset($arguments[0])
+            && property_exists(
                 $this,
                 $method = strtolower(
                     ltrim(
@@ -121,8 +122,7 @@ class Exception extends InternalException {
                     )
                 )
             )
-            && isset($arguments[0])
-        ) $this->$method = toString($arguments[0], '{unknown value}');
+        ) $this->$method = toString($arguments[0], '{unknown value}', true);
 
         return $this;
 

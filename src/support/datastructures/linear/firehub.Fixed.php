@@ -17,7 +17,8 @@ namespace FireHub\Core\Support\DataStructures\Linear;
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
 use FireHub\Core\Support\Contracts\ArrayAccessible;
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
-use SplFixedArray, Traversable;
+use FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException;
+use Closure, SplFixedArray, Traversable, TypeError;
 
 /**
  * ### Fixed data structure type
@@ -50,12 +51,19 @@ class Fixed implements FixedContract, ArrayAccessible {
      * @param positive-int $size <p>
      * Size of the data structure.
      * </p>
+     * @param null|Closure(SplFixedArray<mixed>):void $storage [optional] <p>
+     * Underlying storage data.
+     * </p>
      *
      * @return void
      */
-    public function __construct (int $size) {
+    public function __construct (int $size, ?Closure $storage = null) {
 
-        $this->storage = new SplFixedArray($size);
+        $fixed = new SplFixedArray($size);
+
+        if(isset($storage)) $storage($fixed);
+
+        $this->storage = $fixed; // @phpstan-ignore assign.propertyType
 
     }
 
@@ -91,10 +99,21 @@ class Fixed implements FixedContract, ArrayAccessible {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function offsetExists (mixed $offset):bool {
 
-        return isset($this->storage[$offset]);
+        try {
+
+            return isset($this->storage[$offset]);
+
+        } catch (TypeError) {
+
+            throw new CannotAccessOffsetException()->withValue($offset);
+
+        }
 
     }
 
@@ -102,10 +121,21 @@ class Fixed implements FixedContract, ArrayAccessible {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function offsetGet (mixed $offset):mixed {
 
-        return $this->storage[$offset];
+        try {
+
+            return $this->storage[$offset];
+
+        } catch (TypeError) {
+
+            throw new CannotAccessOffsetException()->withValue($offset);
+
+        }
 
     }
 
@@ -113,10 +143,21 @@ class Fixed implements FixedContract, ArrayAccessible {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function offsetSet (mixed $offset, mixed $value):void {
 
-        $this->storage[$offset] = $value;
+        try {
+
+            $this->storage[$offset] = $value;
+
+        } catch (TypeError) {
+
+            throw new CannotAccessOffsetException()->withValue($offset);
+
+        }
 
     }
 
@@ -124,10 +165,21 @@ class Fixed implements FixedContract, ArrayAccessible {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function offsetUnset (mixed $offset):void {
 
-        unset($this->storage[$offset]);
+        try {
+
+            unset($this->storage[$offset]);
+
+        } catch (TypeError) {
+
+            throw new CannotAccessOffsetException()->withValue($offset);
+
+        }
 
     }
 

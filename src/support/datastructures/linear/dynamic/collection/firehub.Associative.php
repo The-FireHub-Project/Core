@@ -16,7 +16,10 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Contracts\Overloadable;
-use Closure, Traversable;
+use FireHub\Core\Support\DataStructures\Exceptions\ {
+    CannotAccessOffsetException, KeyAlreadyExistException
+};
+use Closure, Traversable, TypeError;
 
 /**
  * ### Associative array collection type
@@ -80,6 +83,9 @@ class Associative extends Collection implements Overloadable {
      * Collection key.
      * </p>
      *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
+     *
      * @return bool True on success, false otherwise.
      */
     public function exist (int|string $key):bool {
@@ -110,6 +116,9 @@ class Associative extends Collection implements Overloadable {
      * Collection key.
      * </p>
      *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
+     *
      * @return null|TValue Item from a collection.
      */
     public function get (int|string $key):mixed {
@@ -119,7 +128,7 @@ class Associative extends Collection implements Overloadable {
     }
 
     /**
-     * ### Add or replace item in collection
+     * ### Adds or replaces item in collection
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetSet() To assign a
@@ -144,11 +153,98 @@ class Associative extends Collection implements Overloadable {
      * Collection key.
      * </p>
      *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
+     *
      * @return void
      */
     public function set (mixed $value, int|string $key):void {
 
         $this->offsetSet($key, $value);
+
+    }
+
+    /**
+     * ### Adds item in collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetExists() To check
+     * whether an offset exists.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetSet() To assign a
+     * value to the specified offset.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->add('female', 'gender');
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']
+     * ```
+     *
+     * @param TValue $value <p>
+     * Collection value.
+     * </p>
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyAlreadyExistException If the key already exists in
+     * the collection.
+     *
+     * @return void
+     */
+    public function add (mixed $value, int|string $key):void {
+
+        !$this->offsetExists($key)
+            ? $this->offsetSet($key, $value)
+            : throw new KeyAlreadyExistException()->withKey($key);
+
+    }
+
+    /**
+     * ### Replaces item in collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetExists() To check
+     * whether an offset exists.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetSet() To assign a
+     * value to the specified offset.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->replace('Jane', 'firstname');
+     *
+     * // ['firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']
+     * ```
+     *
+     * @param TValue $value <p>
+     * Collection value.
+     * </p>
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyAlreadyExistException If the key doesn't exists in
+     * the collection.
+     *
+     * @return void
+     */
+    public function replace (mixed $value, int|string $key):void {
+
+        $this->offsetExists($key)
+            ? $this->offsetSet($key, $value)
+            : throw new KeyAlreadyExistException()->withKey($key);
 
     }
 
@@ -163,6 +259,9 @@ class Associative extends Collection implements Overloadable {
      * Collection key.
      * </p>
      *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
+     *
      * @return void
      */
     public function remove (int|string $key):void {
@@ -175,10 +274,21 @@ class Associative extends Collection implements Overloadable {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function offsetExists (mixed $offset):bool {
 
-        return isset($this->storage[$offset]);
+        try {
+
+            return isset($this->storage[$offset]);
+
+        } catch (TypeError) {
+
+            throw new CannotAccessOffsetException()->withValue($offset);
+
+        }
 
     }
 
@@ -186,10 +296,21 @@ class Associative extends Collection implements Overloadable {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function offsetGet (mixed $offset):mixed {
 
-        return $this->storage[$offset];
+        try {
+
+            return $this->storage[$offset];
+
+        } catch (TypeError) {
+
+            throw new CannotAccessOffsetException()->withValue($offset);
+
+        }
 
     }
 
@@ -197,10 +318,21 @@ class Associative extends Collection implements Overloadable {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function offsetSet (mixed $offset, mixed $value):void {
 
-        $this->storage[$offset] = $value;
+        try {
+
+            $this->storage[$offset] = $value;
+
+        } catch (TypeError) {
+
+            throw new CannotAccessOffsetException()->withValue($offset);
+
+        }
 
     }
 
@@ -208,10 +340,21 @@ class Associative extends Collection implements Overloadable {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function offsetUnset (mixed $offset):void {
 
-        unset($this->storage[$offset]);
+        try {
+
+            unset($this->storage[$offset]);
+
+        } catch (TypeError) {
+
+            throw new CannotAccessOffsetException()->withValue($offset);
+
+        }
 
     }
 
@@ -233,6 +376,9 @@ class Associative extends Collection implements Overloadable {
      *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetExists() Checks
      * whether an offset exists.
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function __isset (int|string $name):bool {
 
@@ -247,6 +393,9 @@ class Associative extends Collection implements Overloadable {
      *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetGet() As offset
      * to retrieve.
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function __get (int|string $name):mixed {
 
@@ -261,6 +410,9 @@ class Associative extends Collection implements Overloadable {
      *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetSet() To assign a
      * value to the specified offset.
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function __set (int|string $name, mixed $value):void {
 
@@ -275,6 +427,9 @@ class Associative extends Collection implements Overloadable {
      *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetUnset() To unset
      * an offset.
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function __unset (int|string $name):void {
 

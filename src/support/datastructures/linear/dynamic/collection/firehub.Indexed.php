@@ -15,8 +15,9 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException;
 use FireHub\Core\Support\LowLevel\Arr;
-use Closure, Traversable;
+use Closure, Traversable, TypeError;
 
 
 /**
@@ -65,10 +66,21 @@ class Indexed extends Collection {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function offsetExists (mixed $offset):bool {
 
-        return isset($this->storage[$offset]);
+        try {
+
+            return isset($this->storage[$offset]);
+
+        } catch (TypeError) {
+
+            throw new CannotAccessOffsetException()->withValue($offset);
+
+        }
 
     }
 
@@ -76,10 +88,21 @@ class Indexed extends Collection {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function offsetGet (mixed $offset):mixed {
 
-        return $this->storage[$offset];
+        try {
+
+            return $this->storage[$offset];
+
+        } catch (TypeError) {
+
+            throw new CannotAccessOffsetException()->withValue($offset);
+
+        }
 
     }
 
@@ -98,10 +121,21 @@ class Indexed extends Collection {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
      */
     public function offsetUnset (mixed $offset):void {
 
-        unset($this->storage[$offset]);
+        try {
+
+            unset($this->storage[$offset]);
+
+        } catch (TypeError) {
+
+            throw new CannotAccessOffsetException()->withValue($offset);
+
+        }
 
     }
 
