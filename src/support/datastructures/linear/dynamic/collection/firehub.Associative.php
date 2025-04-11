@@ -17,7 +17,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Contracts\Overloadable;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
-    CannotAccessOffsetException, KeyAlreadyExistException
+    CannotAccessOffsetException, KeyAlreadyExistException, KeyDoesntExistException
 };
 use Closure, Traversable, TypeError;
 
@@ -235,7 +235,7 @@ class Associative extends Collection implements Overloadable {
      *
      * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
      * access offset.
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyAlreadyExistException If the key doesn't exists in
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException If the key doesn't exist in
      * the collection.
      *
      * @return void
@@ -244,7 +244,7 @@ class Associative extends Collection implements Overloadable {
 
         $this->offsetExists($key)
             ? $this->offsetSet($key, $value)
-            : throw new KeyAlreadyExistException()->withKey($key);
+            : throw new KeyDoesntExistException()->withKey($key);
 
     }
 
@@ -254,6 +254,17 @@ class Associative extends Collection implements Overloadable {
      *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetUnset() To unset
      * an offset.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->remove('firstname');
+     *
+     * // ['lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']
+     * ```
      *
      * @param TKey $key <p>
      * Collection key.

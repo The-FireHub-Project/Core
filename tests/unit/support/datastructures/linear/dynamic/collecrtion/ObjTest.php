@@ -19,6 +19,9 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
     Obj, Mix
 };
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\DataStructures\Exceptions\ {
+    CannotAccessOffsetException, KeyAlreadyExistException, KeyDoesntExistException
+};
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -90,6 +93,185 @@ final class ObjTest extends Base {
                 fn($value, $key) => substr((string)$value, 0, 1)
             )
         );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testExist ():void {
+
+        $this->assertTrue($this->collection->exist($this->cls1));
+        $this->assertFalse($this->collection->exist(new stdClass()));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testExistException ():void {
+
+        $this->expectException(CannotAccessOffsetException::class);
+
+        $this->collection->offsetExists(10);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testGet ():void {
+
+        $this->assertEquals('data for object 1', $this->collection->get($this->cls1));
+        $this->assertNull($this->collection->get(new stdClass()));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testGetException ():void {
+
+        $this->expectException(CannotAccessOffsetException::class);
+
+        $this->collection->offsetGet(10);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSet ():void {
+
+        $cls4 = new stdClass();
+
+        $collection = new Obj;
+        $collection[$this->cls1] = 'the data for object 1';
+        $collection[$this->cls2] = [1, 2, 3];
+        $collection[$this->cls3] = 20;
+        $collection[$cls4] = 'the data for object 1';
+
+        $this->collection->set('the data for object 1', $cls4);
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSetException ():void {
+
+        $this->expectException(CannotAccessOffsetException::class);
+
+        $this->collection->offsetSet(10, 10);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAdd ():void {
+
+        $cls4 = new stdClass();
+
+        $collection = new Obj;
+        $collection[$this->cls1] = 'the data for object 1';
+        $collection[$this->cls2] = [1, 2, 3];
+        $collection[$this->cls3] = 20;
+        $collection[$cls4] = 'the data for object 1';
+
+        $this->collection->add('the data for object 1', $cls4);
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAddException ():void {
+
+        $this->expectException(KeyAlreadyExistException::class);
+
+        $this->collection->add(10, $this->cls1);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testReplace ():void {
+
+        $collection = new Obj;
+        $collection[$this->cls1] = 'the data for object 1';
+        $collection[$this->cls2] = [1, 2, 3];
+        $collection[$this->cls3] = 20;
+
+        $this->collection->replace('the data for object 1', $this->cls1);
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testReplaceException ():void {
+
+        $this->expectException(KeyDoesntExistException::class);
+
+        $this->collection->replace(10, new stdClass);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testRemove ():void {
+
+        $collection = new Obj;
+        $collection[$this->cls2] = [1, 2, 3];
+        $collection[$this->cls3] = 20;
+
+        $this->collection->remove($this->cls1);
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testRemoveException ():void {
+
+        $this->expectException(CannotAccessOffsetException::class);
+
+        $this->collection->offsetUnset(10);
 
     }
 

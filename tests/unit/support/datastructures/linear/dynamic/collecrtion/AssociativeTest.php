@@ -20,9 +20,13 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
 };
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use FireHub\Core\Support\Enums\Data\Type;
+use FireHub\Core\Support\DataStructures\Exceptions\ {
+    CannotAccessOffsetException, KeyAlreadyExistException, KeyDoesntExistException
+};
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
+use stdClass;
 
 /**
  * ### Test Associative array collection class
@@ -117,6 +121,20 @@ final class AssociativeTest extends Base {
     public function testExist ():void {
 
         $this->assertTrue($this->collection->exist('firstname'));
+        $this->assertFalse($this->collection->exist('gander'));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testExistException ():void {
+
+        $this->expectException(CannotAccessOffsetException::class);
+
+        $this->collection->offsetExists(new stdClass());
 
     }
 
@@ -128,6 +146,20 @@ final class AssociativeTest extends Base {
     public function testGet ():void {
 
         $this->assertSame('John', $this->collection->get('firstname'));
+        $this->assertNull($this->collection->get('gender'));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testGetException ():void {
+
+        $this->expectException(CannotAccessOffsetException::class);
+
+        $this->collection->offsetGet(new stdClass());
 
     }
 
@@ -152,6 +184,19 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testSetException ():void {
+
+        $this->expectException(CannotAccessOffsetException::class);
+
+        $this->collection->offsetSet(new stdClass(), 10);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testAdd ():void {
 
         $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']);
@@ -159,6 +204,19 @@ final class AssociativeTest extends Base {
         $this->collection->add('female', 'gender');
 
         $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAddException ():void {
+
+        $this->expectException(KeyAlreadyExistException::class);
+
+        $this->collection->add('Jane', 'firstname');
 
     }
 
@@ -182,6 +240,19 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testReplaceException ():void {
+
+        $this->expectException(KeyDoesntExistException::class);
+
+        $this->collection->replace('male', 'gender');
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testRemove ():void {
 
         $collection = new Associative(['lastname' => 'Doe', 'age' => 25, 10 => 2]);
@@ -189,6 +260,19 @@ final class AssociativeTest extends Base {
         $this->collection->remove('firstname');
 
         $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testRemoveException ():void {
+
+        $this->expectException(CannotAccessOffsetException::class);
+
+        $this->collection->offsetUnset(new stdClass());
 
     }
 
