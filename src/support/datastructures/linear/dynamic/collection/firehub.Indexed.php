@@ -14,6 +14,7 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
+use FireHub\Core\Support\DataStructures\Contracts\Listable;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException;
 use FireHub\Core\Support\LowLevel\Arr;
@@ -29,10 +30,11 @@ use Closure, Traversable, TypeError;
  * @template TValue
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<int, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Listable<int, TValue>
  *
  * @api
  */
-class Indexed extends Collection {
+class Indexed extends Collection implements Listable {
 
     /**
      * ### Underlying storage data
@@ -59,6 +61,108 @@ class Indexed extends Collection {
         $array instanceof Closure ? $this->storage = ($array)() : $this->storage = $array;
 
         $this->storage = Arr::values($this->storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->shift();
+     *
+     * // ['Jane', 'Jane', 'Jane', 'Richard', 'Richard']
+     * ```
+     */
+    public function shift ():void {
+
+        Arr::shift($this->storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->unshift('Johnie', 'Janie', 'Baby');
+     *
+     * // ['Johnie', 'Janie', 'Baby', 'John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']
+     * ```
+     *
+     * @param TValue $value <p>
+     * Value to unshift.
+     * </p>
+     * @param TValue ...$and_values [optional] <p>
+     * List of values to unshift.
+     * </p>
+     */
+    public function unshift (mixed $value, mixed ...$and_values):void {
+
+        Arr::unshift($this->storage, $value, ...$and_values);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->pop();
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard']
+     * ```
+     */
+    public function pop ():void {
+
+        Arr::pop($this->storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->push('Johnie', 'Janie', 'Baby');
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie', 'Baby']
+     * ```
+     *
+     * @param TValue $value <p>
+     * Value to push.
+     * </p>
+     * @param TValue ...$and_values [optional] <p>
+     * List of values to push.
+     * </p>
+     */
+    public function push (mixed $value, mixed ...$and_values):void {
+
+        Arr::push($this->storage, $value, ...$and_values);
 
     }
 
