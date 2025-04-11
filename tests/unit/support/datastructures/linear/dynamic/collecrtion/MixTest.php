@@ -17,6 +17,9 @@ namespace support\datastructures\collection;
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix;
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\DataStructures\Exceptions\ {
+    KeyAlreadyExistException, KeyDoesntExistException
+};
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -34,6 +37,8 @@ final class MixTest extends Base {
 
     public Mix $collection;
 
+    public stdClass $cls1;
+
     /**
      * @since 1.0.0
      *
@@ -41,9 +46,11 @@ final class MixTest extends Base {
      */
     public function setUp ():void {
 
+        $this->cls1 = new stdClass();
+
         $this->collection = new Mix();
         $this->collection['one'] = 1;
-        $this->collection[new stdClass()] = 'two';
+        $this->collection[$this->cls1] = 'two';
 
     }
 
@@ -75,6 +82,126 @@ final class MixTest extends Base {
                 fn($value, $key) => substr((string)$value, 0, 1)
             )
         );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testExist ():void {
+
+        $this->assertTrue($this->collection->exist('one'));
+        $this->assertFalse($this->collection->exist('two'));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testGet ():void {
+
+        $this->assertSame(1, $this->collection->get('one'));
+        $this->assertNull($this->collection->get('two'));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSet ():void {
+
+        $collection = new Mix();
+        $collection['one'] = 2;
+        $collection['three'] = 3;
+        $collection[$this->cls1] = 'two';
+
+        $this->collection->set(2, 'one');
+        $this->collection->set(3, 'three');
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAdd ():void {
+
+        $collection = new Mix();
+        $collection['one'] = 1;
+        $collection[$this->cls1] = 'two';
+        $collection['three'] = 3;
+
+        $this->collection->add(3, 'three');
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAddException ():void {
+
+        $this->expectException(KeyAlreadyExistException::class);
+
+        $this->collection->add(2, 'one');
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testReplace ():void {
+
+        $collection = new Mix();
+        $collection['one'] = 2;
+        $collection[$this->cls1] = 'two';
+
+        $this->collection->replace(2, 'one');
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testReplaceException ():void {
+
+        $this->expectException(KeyDoesntExistException::class);
+
+        $this->collection->replace(2, 'three');
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testRemove ():void {
+
+        $collection = new Mix();
+        $collection[$this->cls1] = 'two';
+
+        $this->collection->remove('one');
+
+        $this->assertEquals($collection, $this->collection);
 
     }
 
