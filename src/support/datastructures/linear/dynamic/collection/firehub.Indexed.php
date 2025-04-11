@@ -65,9 +65,34 @@ class Indexed extends Collection implements Listable {
     }
 
     /**
+     * ### Get data structure data as an array
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->toArray();
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']
+     * ```
+     *
+     * @return array<TValue> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        return $this->storage;
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::shift() To remove an item at the beginning of the storage.
      *
      * @example
      * ```php
@@ -90,6 +115,8 @@ class Indexed extends Collection implements Listable {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::unshift() To push an item at the beginning of the storage.
      *
      * @example
      * ```php
@@ -120,6 +147,8 @@ class Indexed extends Collection implements Listable {
      *
      * @since 1.0.0
      *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::pop() To pop an item at the end of the storage.
+     *
      * @example
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
@@ -141,6 +170,8 @@ class Indexed extends Collection implements Listable {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::push() To push an item at the end of the storage.
      *
      * @example
      * ```php

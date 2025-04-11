@@ -62,6 +62,29 @@ class Associative extends Collection implements Overloadable {
     }
 
     /**
+     * ### Get data structure data as an array
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->toArray();
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]
+     * ```
+     *
+     * @return array<TKey, TValue> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        return $this->storage;
+
+    }
+
+    /**
      * ### Check if item exist in collection
      * @since 1.0.0
      *

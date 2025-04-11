@@ -53,6 +53,17 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testToArray ():void {
+
+        $this->assertSame(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard'], $this->collection->toArray());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testCount ():void {
 
         $this->assertSame(6, $this->collection->count());

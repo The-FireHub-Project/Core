@@ -20,6 +20,7 @@ use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     CannotAccessOffsetException, KeyOutOfBoundsException
 };
+use FireHub\Core\Support\LowLevel\Iterator;
 use Closure, OutOfBoundsException, SplFixedArray, Traversable, TypeError;
 
 /**
@@ -70,6 +71,32 @@ class Fixed implements FixedContract, ArrayAccessible {
     }
 
     /**
+     * ### Get data structure data as an array
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $collection->exist(0);
+     *
+     * // ['one', 'two', 'three']
+     * ```
+     *
+     * @return array<int, null|TValue> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        return Iterator::toArray($this);
+
+    }
+
     /**
      * @inheritDoc
      *

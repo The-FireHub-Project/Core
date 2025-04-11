@@ -57,6 +57,17 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testToArray ():void {
+
+        $this->assertSame(['one', 'two', 'three'], $this->collection->toArray());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testCount ():void {
 
         $this->assertSame(3, $this->collection->count());
