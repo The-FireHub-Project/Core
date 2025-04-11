@@ -18,6 +18,9 @@ use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Fixed;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix;
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\DataStructures\Exceptions\ {
+    CannotAccessOffsetException, KeyOutOfBoundsException
+};
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -80,5 +83,152 @@ final class FixedTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testExist ():void {
+
+        $this->assertTrue($this->collection->exist(0));
+        $this->assertFalse($this->collection->exist(3));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testExistException ():void {
+
+        $this->expectException(CannotAccessOffsetException::class);
+
+        $this->collection->offsetExists('one');
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testGet ():void {
+
+        $this->assertSame('one', $this->collection->get(0));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testGetException ():void {
+
+        $this->expectException(CannotAccessOffsetException::class);
+
+        $this->collection->offsetGet('one');
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testGetOutOfBoundsException ():void {
+
+        $this->expectException(KeyOutOfBoundsException::class);
+
+        $this->collection->offsetGet(3);
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSet ():void {
+
+        $collection = new Fixed(3);
+        $collection[0] = 1;
+        $collection[1] = 'two';
+        $collection[2] = 'three';
+
+        $this->collection->set(1, 0);
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSetException ():void {
+
+        $this->expectException(CannotAccessOffsetException::class);
+
+        $this->collection->offsetSet('one', 10);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSetOutOfBoundsException ():void {
+
+        $this->expectException(KeyOutOfBoundsException::class);
+
+        $this->collection->offsetSet(3, 'three');
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testRemove ():void {
+
+        $collection = new Fixed(3);
+        $collection[0] = 'one';
+        $collection[1] = 'two';
+
+        $this->collection->remove(2);
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testRemoveException ():void {
+
+        $this->expectException(CannotAccessOffsetException::class);
+
+        $this->collection->offsetUnset('one');
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testRemoveOutOfBoundsException ():void {
+
+        $this->expectException(KeyOutOfBoundsException::class);
+
+        $this->collection->offsetUnset(3);
+
+    }
 
 }

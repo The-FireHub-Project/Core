@@ -17,8 +17,10 @@ namespace FireHub\Core\Support\DataStructures\Linear;
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
 use FireHub\Core\Support\Contracts\ArrayAccessible;
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
-use FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException;
-use Closure, SplFixedArray, Traversable, TypeError;
+use FireHub\Core\Support\DataStructures\Exceptions\ {
+    CannotAccessOffsetException, KeyOutOfBoundsException
+};
+use Closure, OutOfBoundsException, SplFixedArray, Traversable, TypeError;
 
 /**
  * ### Fixed data structure type
@@ -96,6 +98,155 @@ class Fixed implements FixedContract, ArrayAccessible {
     }
 
     /**
+     * ### Check if item exist in collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::offsetExists() Checks whether
+     * an offset exists.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $collection->exist(0);
+     *
+     * // true
+     * ```
+     *
+     * @param int $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
+     *
+     * @return bool True on success, false otherwise.
+     */
+    public function exist (int $key):bool {
+
+        return $this->offsetExists($key);
+
+    }
+
+    /**
+     * ### Gets item from collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::offsetGet() As offset to retrieve.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $collection->get(0);
+     *
+     * // 'one'
+     * ```
+     *
+     * @param int $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if key is out of bounds.
+     *
+     * @return null|TValue Item from a collection.
+     */
+    public function get (int $key):mixed {
+
+        return $this->offsetGet($key);
+
+    }
+
+    /**
+     * ### Adds or replaces item in collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::offsetSet() To assign a value to the specified offset.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $collection->set(1, 0);
+     *
+     * // [0 => 1, 1 => 'two', 2 => 'three']
+     * ```
+     *
+     * @param TValue $value <p>
+     * Collection value.
+     * </p>
+     * @param int $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if key is out of bounds.
+     *
+     * @return void
+     */
+    public function set (mixed $value, int $key):void {
+
+        $this->offsetSet($key, $value);
+
+    }
+
+    /**
+     * ### Removes item from collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::offsetUnset() To unset an offset.
+     *
+     * @example
+     * ```php
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $collection->remove(2);
+     *
+     * // [0 => 'one', 1 => 'two']
+     * ```
+     *
+     * @param int $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
+     * access offset.
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if key is out of bounds.
+     *
+     * @return void
+     */
+    public function remove (int $key):void {
+
+        $this->offsetUnset($key);
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0
@@ -124,6 +275,7 @@ class Fixed implements FixedContract, ArrayAccessible {
      *
      * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
      * access offset.
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if key is out of bounds.
      */
     public function offsetGet (mixed $offset):mixed {
 
@@ -135,6 +287,10 @@ class Fixed implements FixedContract, ArrayAccessible {
 
             throw new CannotAccessOffsetException()->withValue($offset);
 
+        } catch (OutOfBoundsException) {
+
+            throw new KeyOutOfBoundsException()->withKey($offset);
+
         }
 
     }
@@ -146,6 +302,7 @@ class Fixed implements FixedContract, ArrayAccessible {
      *
      * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
      * access offset.
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if key is out of bounds.
      */
     public function offsetSet (mixed $offset, mixed $value):void {
 
@@ -157,6 +314,10 @@ class Fixed implements FixedContract, ArrayAccessible {
 
             throw new CannotAccessOffsetException()->withValue($offset);
 
+        } catch (OutOfBoundsException) {
+
+            throw new KeyOutOfBoundsException()->withKey($offset);
+
         }
 
     }
@@ -168,6 +329,7 @@ class Fixed implements FixedContract, ArrayAccessible {
      *
      * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
      * access offset.
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if key is out of bounds.
      */
     public function offsetUnset (mixed $offset):void {
 
@@ -178,6 +340,10 @@ class Fixed implements FixedContract, ArrayAccessible {
         } catch (TypeError) {
 
             throw new CannotAccessOffsetException()->withValue($offset);
+
+        } catch (OutOfBoundsException) {
+
+            throw new KeyOutOfBoundsException()->withKey($offset);
 
         }
 
