@@ -497,4 +497,19 @@ class Associative extends Collection implements Overloadable {
 
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @param array<TKey, TValue> $data <p>
+     * Serialized data.
+     * </p>
+     */
+    public function __unserialize (array $data):void {
+
+        $this->storage = $data;
+
+    }
+
 }

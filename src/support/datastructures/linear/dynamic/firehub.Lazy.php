@@ -36,28 +36,18 @@ use Closure, Generator, Traversable;
 class Lazy implements Dynamic {
 
     /**
-     * ### Underlying storage data
-     * @since 1.0.0
-     *
-     * @var Generator<TKey, TValue>
-     */
-    protected Generator $storage;
-
-    /**
      * ### Constructor
      * @since 1.0.0
      *
-     * @param Closure():Generator<TKey, TValue> $callable <p>
+     * @param Closure():Generator<TKey, TValue> $storage <p>
      * Underlying storage data.
      * </p>
      *
      * @return void
      */
-    public function __construct (Closure $callable) {
-
-        $this->storage = ($callable)();
-
-    }
+    public function __construct (
+        protected Closure $storage
+    ) {}
 
     /**
      * ### Create data structure from an array
@@ -151,10 +141,76 @@ class Lazy implements Dynamic {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy::invoke() To invoke storage.
      */
     public function getIterator ():Traversable {
 
-        yield from $this->storage;
+        return $this->invoke();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy::toArray() To get data structure an array.
+     */
+    public function jsonSerialize ():array {
+
+        return $this->toArray();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy::toArray() To get data structure an array.
+     */
+    public function __serialize ():array {
+
+        return $this->toArray();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy::invoke() To invoke storage.
+     *
+     * @param array<array{key: TKey, value: TValue}> $data <p>
+     * Serialized data.
+     * </p>
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    public function __unserialize (array $data):void {
+
+        $this->storage = static function () use ($data) {
+
+            foreach ($data as $item)
+                yield $item['key'] => $item['value'];
+
+        };
+
+        $this->invoke();
+
+    }
+
+    /**
+     * ### Invoke storage
+     * @since 1.0.0
+     *
+     * @return Generator<TKey, TValue> Storage data.
+     */
+    private function invoke ():Generator {
+
+        yield from ($this->storage)();
 
     }
 

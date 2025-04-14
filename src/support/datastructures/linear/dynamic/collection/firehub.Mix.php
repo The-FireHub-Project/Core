@@ -401,6 +401,30 @@ class Mix extends Collection {
     }
 
     /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix::key() To resolve key.
+     *
+     * @param array<string, array{key: ?TKey, value: TValue}> $data <p>
+     * Serialized data.
+     * </p>
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    public function __unserialize (array $data):void {
+
+        $storage = [];
+
+        foreach ($data as $item)
+            $storage[$this->key($item['key'])] = ['key' => $item['key'], 'value' => $item['value']];
+
+        $this->storage = $storage;
+
+    }
+
+    /**
      * ### Get resolved key
      * @since 1.0.0
      *

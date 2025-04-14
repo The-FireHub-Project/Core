@@ -517,4 +517,26 @@ class Obj extends Collection {
 
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @param array<array{key: TKey, value: TValue}> $data <p>
+     * Serialized data.
+     * </p>
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    public function __unserialize (array $data):void {
+
+        $storage = new SplObjectStorage();
+
+        foreach ($data as $item)
+            $storage[$item['key']] = $item['value'];
+
+        $this->storage = $storage; // @phpstan-ignore assign.propertyType
+
+    }
+
 }

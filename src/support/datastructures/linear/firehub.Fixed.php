@@ -223,7 +223,7 @@ class Fixed implements FixedContract, ArrayAccessible {
      *
      * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
      * access offset.
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if key is out of bounds.
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if the key is out of bounds.
      *
      * @return null|TValue Item from a collection.
      */
@@ -263,7 +263,7 @@ class Fixed implements FixedContract, ArrayAccessible {
      *
      * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
      * access offset.
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if key is out of bounds.
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if the key is out of bounds.
      *
      * @return void
      */
@@ -298,7 +298,7 @@ class Fixed implements FixedContract, ArrayAccessible {
      *
      * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
      * access offset.
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if key is out of bounds.
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if the key is out of bounds.
      *
      * @return void
      */
@@ -337,7 +337,7 @@ class Fixed implements FixedContract, ArrayAccessible {
      *
      * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
      * access offset.
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if key is out of bounds.
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if the key is out of bounds.
      */
     public function offsetGet (mixed $offset):mixed {
 
@@ -364,7 +364,7 @@ class Fixed implements FixedContract, ArrayAccessible {
      *
      * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
      * access offset.
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if key is out of bounds.
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if the key is out of bounds.
      */
     public function offsetSet (mixed $offset, mixed $value):void {
 
@@ -391,7 +391,7 @@ class Fixed implements FixedContract, ArrayAccessible {
      *
      * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
      * access offset.
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException if key is out of bounds.
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyOutOfBoundsException If the key is out of bounds.
      */
     public function offsetUnset (mixed $offset):void {
 
@@ -419,6 +419,57 @@ class Fixed implements FixedContract, ArrayAccessible {
     public function getIterator ():Traversable {
 
         yield from $this->storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::toArray() To get data structure an array.
+     */
+    public function jsonSerialize ():array {
+
+        return $this->toArray();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::toArray() To get data structure an array.
+     */
+    public function __serialize ():array {
+
+        return $this->toArray();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count array parameter items.
+     *
+     * @param array<int, null|TValue> $data <p>
+     * Serialized data.
+     * </p>
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    public function __unserialize (array $data):void {
+
+        $storage = new SplFixedArray(Iterables::count($data));
+
+        $i = 0;
+        foreach ($data as $item)
+            $storage[$i++] = $item;
+
+        $this->storage = $storage; // @phpstan-ignore assign.propertyType
 
     }
 
