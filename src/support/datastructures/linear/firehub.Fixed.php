@@ -20,7 +20,9 @@ use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     CannotAccessOffsetException, KeyOutOfBoundsException
 };
-use FireHub\Core\Support\LowLevel\Iterator;
+use FireHub\Core\Support\LowLevel\ {
+    Iterables, Iterator
+};
 use Closure, OutOfBoundsException, SplFixedArray, Traversable, TypeError;
 
 /**
@@ -34,6 +36,8 @@ use Closure, OutOfBoundsException, SplFixedArray, Traversable, TypeError;
  *
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed<int, ?TValue>
  * @implements \FireHub\Core\Support\Contracts\ArrayAccessible<int, ?TValue>
+ *
+ * @phpstan-consistent-constructor
  *
  * @api
  */
@@ -67,6 +71,37 @@ class Fixed implements FixedContract, ArrayAccessible {
         if(isset($storage)) $storage($fixed);
 
         $this->storage = $fixed; // @phpstan-ignore assign.propertyType
+
+    }
+
+    /**
+     * ### Create data structure from an array
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count array parameter items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = Obj::fromArray(['one', 'two', 'three']);
+     * ```
+     *
+     * @param array<int, null|TValue> $array <p>
+     * Data for data structure.
+     * </p>
+     *
+     * @return static<TValue> Data structure from an array.
+     */
+    public static function fromArray (array $array):static {
+
+        return new static(Iterables::count($array), function (SplFixedArray $storage) use ($array) { // @phpstan-ignore return.type
+
+            $i = 0;
+            foreach ($array as $item)
+                $storage[$i++] = $item;
+
+        });
 
     }
 

@@ -47,8 +47,22 @@ final class AssociativeTest extends Base {
      */
     public function setUp ():void {
 
-        $this->collection = new Associative(
+        $this->collection = Associative::fromArray(
             ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFromArray ():void {
+
+        $this->assertEquals(
+            Associative::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]),
+            $this->collection
         );
 
     }
@@ -111,7 +125,7 @@ final class AssociativeTest extends Base {
      */
     public function testOverload ():void {
 
-        $collection = new Associative(
+        $collection = Associative::fromArray(
             ['lastname' => 'Doe', 'age' => 25, 10 => 2, 'middlename' => 'Marry']
         );
 
@@ -181,7 +195,7 @@ final class AssociativeTest extends Base {
      */
     public function testSet ():void {
 
-        $collection = new Associative(['firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']);
+        $collection = Associative::fromArray(['firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']);
 
         $this->collection->set('Jane', 'firstname');
         $this->collection->set('female', 'gender');
@@ -210,7 +224,7 @@ final class AssociativeTest extends Base {
      */
     public function testAdd ():void {
 
-        $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']);
+        $collection = Associative::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']);
 
         $this->collection->add('female', 'gender');
 
@@ -238,7 +252,7 @@ final class AssociativeTest extends Base {
      */
     public function testReplace ():void {
 
-        $collection = new Associative(['firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+        $collection = Associative::fromArray(['firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
 
         $this->collection->replace('Jane', 'firstname');
 
@@ -266,7 +280,7 @@ final class AssociativeTest extends Base {
      */
     public function testRemove ():void {
 
-        $collection = new Associative(['lastname' => 'Doe', 'age' => 25, 10 => 2]);
+        $collection = Associative::fromArray(['lastname' => 'Doe', 'age' => 25, 10 => 2]);
 
         $this->collection->remove('firstname');
 

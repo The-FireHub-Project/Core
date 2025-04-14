@@ -71,6 +71,24 @@ final class ObjTest extends Base {
      *
      * @return void
      */
+    public function testFromArray ():void {
+
+        $this->assertEquals(
+            Obj::fromArray([
+                ['key' => $this->cls1, 'data for object 1'],
+                ['key' => $this->cls2, [1, 2, 3]],
+                ['key' => $this->cls3, 20]
+            ]),
+            $this->collection
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testToArray ():void {
 
         $this->assertSame([

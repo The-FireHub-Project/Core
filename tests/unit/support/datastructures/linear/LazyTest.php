@@ -53,6 +53,20 @@ final class LazyTest extends Base {
      *
      * @return void
      */
+    public function testFromArray ():void {
+
+        $this->assertEquals(
+            Lazy::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]),
+            $this->collection
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testToArray ():void {
 
         $this->assertSame([

@@ -32,6 +32,8 @@ use Closure, UnexpectedValueException, SplObjectStorage, Traversable, TypeError;
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
  *
+ * @phpstan-consistent-constructor
+ *
  * @api
  */
 class Obj extends Collection {
@@ -60,7 +62,39 @@ class Obj extends Collection {
 
         if(isset($storage)) $storage($object);
 
-        $this->storage = new SplObjectStorage();
+        $this->storage = $object; // @phpstan-ignore assign.propertyType
+
+    }
+
+    /**
+     * ### Create data structure from an array
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $collection = Obj::fromArray([
+     *  ['key' => new stdClass, 'value' => 'data for object 1'],
+     *  ['key' => new stdClass, 'value' => [1, 2, 3]],
+     *  ['key' => new stdClass, 'value' => 20]
+     * ]);
+     * ```
+     *
+     * @param array<array{key: TKey, value: TValue}> $array <p>
+     * Data for data structure.
+     * </p>
+     *
+     * @return static<TKey, TValue> Data structure from an array.
+     */
+    public static function fromArray (array $array):static {
+
+        return new static(function (SplObjectStorage $storage) use ($array) { // @phpstan-ignore return.type
+
+            foreach ($array as $item)
+                $storage[$item['key']] = $item['value'];
+
+        });
 
     }
 

@@ -29,6 +29,8 @@ use Closure, Generator, Traversable;
  *
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic<TKey, TValue>
  *
+ * @phpstan-consistent-constructor
+ *
  * @api
  */
 class Lazy implements Dynamic {
@@ -58,13 +60,40 @@ class Lazy implements Dynamic {
     }
 
     /**
+     * ### Create data structure from an array
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = Lazy::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * ```
+     * @param array<array{key: TKey, value: TValue}> $array <p>
+     * Data for data structure.
+     * </p>
+     *
+     * @return static<TKey, TValue> Data structure from an array.
+     */
+    public static function fromArray (array $array):static {
+
+        return new static(function () use ($array) {
+
+            foreach ($array as $item)
+                yield $item['key'] => $item['value'];
+
+        });
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0
      *
      * @example
      * ```php
-     * use FireHub\Core\Support\DataStructures\Linear\Lazy;
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
      *
      * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
      *

@@ -33,6 +33,8 @@ use function FireHub\Core\Support\Helpers\Data\toString;
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
  *
+ * @phpstan-consistent-constructor
+ *
  * @api
  */
 class Mix extends Collection {
@@ -44,6 +46,44 @@ class Mix extends Collection {
      * @var array<string, array{key: ?TKey, value: TValue}>
      */
     protected array $storage = [];
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function __construct () {}
+
+    /**
+     * ### Create data structure from an array
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix;
+     *
+     * $collection = Mix::fromArray([
+     *  'one' => ['key' => 'one', 'value' => 1],
+     *  'stdClass' => ['key' => stdClass, 'value' => 'two']
+     * ]);
+     * ```
+     * @param array<string, array{key: ?TKey, value: TValue}> $array <p>
+     * Data for data structure.
+     * </p>
+     *
+     * @return static<TKey, TValue> Data structure from an array.
+     */
+    public static function fromArray (array $array):static {
+
+        $storage = new static();
+
+        foreach ($array as $item)
+            $storage[$item['key']] = $item['value'];
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
 
     /**
      * @inheritDoc

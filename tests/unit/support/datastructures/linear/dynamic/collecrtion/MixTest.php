@@ -64,6 +64,23 @@ final class MixTest extends Base {
      *
      * @return void
      */
+    public function testFromArray ():void {
+
+        $this->assertEquals(
+            Mix::fromArray([
+                'one' => ['key' => 'one', 'value' => 1],
+                'two' => ['key' => 'two', 'value' => 2]
+            ]),
+            $this->simple
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testToArray ():void {
 
         $this->assertSame([

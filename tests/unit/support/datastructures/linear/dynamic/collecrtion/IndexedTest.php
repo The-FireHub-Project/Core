@@ -44,7 +44,21 @@ final class IndexedTest extends Base {
      */
     public function setUp ():void {
 
-        $this->collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+        $this->collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFromArray ():void {
+
+        $this->assertEquals(
+            Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']),
+            $this->collection
+        );
 
     }
 
@@ -104,7 +118,7 @@ final class IndexedTest extends Base {
      */
     public function testShift ():void {
 
-        $collection = new Indexed(['Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+        $collection = Indexed::fromArray(['Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
 
         $this->collection->shift();
 
@@ -119,7 +133,7 @@ final class IndexedTest extends Base {
      */
     public function testUnshift ():void {
 
-        $collection = new Indexed(['Johnie', 'Janie', 'Baby', 'John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+        $collection = Indexed::fromArray(['Johnie', 'Janie', 'Baby', 'John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
 
         $this->collection->unshift('Johnie', 'Janie', 'Baby');
 
@@ -134,7 +148,7 @@ final class IndexedTest extends Base {
      */
     public function testPop ():void {
 
-        $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard']);
+        $collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard']);
 
         $this->collection->pop();
 
@@ -149,7 +163,7 @@ final class IndexedTest extends Base {
      */
     public function testPush ():void {
 
-        $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie', 'Baby']);
+        $collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie', 'Baby']);
 
         $this->collection->push('Johnie', 'Janie', 'Baby');
 
@@ -214,7 +228,7 @@ final class IndexedTest extends Base {
      */
     public function testSet ():void {
 
-        $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie']);
+        $collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie']);
 
         $this->collection->offsetSet(0, 'Johnie');
         $this->collection->offsetSet(5, 'Janie');
@@ -230,7 +244,7 @@ final class IndexedTest extends Base {
      */
     public function testRemove ():void {
 
-        $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard']);
+        $collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard']);
 
         $this->collection->offsetUnset(5);
 

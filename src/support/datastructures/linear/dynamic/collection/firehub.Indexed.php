@@ -20,7 +20,6 @@ use FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException;
 use FireHub\Core\Support\LowLevel\Arr;
 use Closure, Traversable, TypeError;
 
-
 /**
  * ### Indexed array collection type
  *
@@ -31,6 +30,8 @@ use Closure, Traversable, TypeError;
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<int, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Listable<int, TValue>
+ *
+ * @phpstan-consistent-constructor
  *
  * @api
  */
@@ -50,17 +51,37 @@ class Indexed extends Collection implements Listable {
      *
      * @uses \FireHub\Core\Support\Helpers\Arr\values() To get all values from a provided array.
      *
-     * @param array<TValue>|Closure():array<TValue> $array <p>
+     * @param Closure():array<TValue> $storage <p>
      * Underlying storage data.
      * </p>
      *
      * @return void
      */
-    public function __construct (array|Closure $array) {
+    public function __construct (Closure $storage) {
 
-        $array instanceof Closure ? $this->storage = ($array)() : $this->storage = $array;
+        $this->storage = ($storage)();
 
-        $this->storage = Arr::values($this->storage);
+    }
+
+    /**
+     * ### Create data structure from an array
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * ```
+     * @param array<TValue> $array <p>
+     * Data for data structure.
+     * </p>
+     *
+     * @return static<TValue> Data structure from an array.
+     */
+    public static function fromArray (array $array):static {
+
+        return new static(fn() => $array);
 
     }
 
@@ -73,7 +94,7 @@ class Indexed extends Collection implements Listable {
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
      *
-     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
      *
      * $collection->toArray();
      *
@@ -99,7 +120,7 @@ class Indexed extends Collection implements Listable {
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
      *
-     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
      *
      * $collection->shift();
      *
@@ -123,7 +144,7 @@ class Indexed extends Collection implements Listable {
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
      *
-     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
      *
      * $collection->unshift('Johnie', 'Janie', 'Baby');
      *
@@ -154,7 +175,7 @@ class Indexed extends Collection implements Listable {
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
      *
-     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
      *
      * $collection->pop();
      *
@@ -178,7 +199,7 @@ class Indexed extends Collection implements Listable {
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
      *
-     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
      *
      * $collection->push('Johnie', 'Janie', 'Baby');
      *

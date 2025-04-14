@@ -33,6 +33,8 @@ use Closure, Traversable, TypeError;
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Overloadable<TKey, TValue>
  *
+ * @phpstan-consistent-constructor
+ *
  * @api
  */
 class Associative extends Collection implements Overloadable {
@@ -49,15 +51,38 @@ class Associative extends Collection implements Overloadable {
      * ### Constructor
      * @since 1.0.0
      *
-     * @param array<TKey, TValue>|Closure():array<TKey, TValue> $array <p>
+     * @param Closure():array<TKey, TValue> $storage <p>
      * Underlying storage data.
      * </p>
      *
      * @return void
      */
-    public function __construct (array|Closure $array) {
+    public function __construct (Closure $storage) {
 
-        $array instanceof Closure ? $this->storage = ($array)() : $this->storage = $array;
+        $this->storage = ($storage)();
+
+    }
+
+    /**
+     * ### Create data structure from an array
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = Associative::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * ```
+     *
+     * @param array<TKey, TValue> $array <p>
+     * Data for data structure.
+     * </p>
+     *
+     * @return static<TKey, TValue> Data structure from an array.
+     */
+    public static function fromArray (array $array):static {
+
+        return new static(fn() => $array);
 
     }
 
@@ -70,7 +95,7 @@ class Associative extends Collection implements Overloadable {
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
      *
-     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection = Associative::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
      *
      * $collection->toArray();
      *
@@ -96,7 +121,7 @@ class Associative extends Collection implements Overloadable {
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
      *
-     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection = Associative::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
      *
      * $collection->exist('firstname');
      *
@@ -129,7 +154,7 @@ class Associative extends Collection implements Overloadable {
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
      *
-     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection = Associative::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
      *
      * $collection->get('firstname');
      *
@@ -162,7 +187,7 @@ class Associative extends Collection implements Overloadable {
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
      *
-     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection = Associative::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
      *
      * $collection->set('Jane', 'firstname');
      * $collection->set('female', 'gender');
@@ -201,7 +226,7 @@ class Associative extends Collection implements Overloadable {
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
      *
-     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection = Associative::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
      *
      * $collection->add('female', 'gender');
      *
@@ -243,7 +268,7 @@ class Associative extends Collection implements Overloadable {
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
      *
-     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection = Associative::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
      *
      * $collection->replace('Jane', 'firstname');
      *
@@ -283,7 +308,7 @@ class Associative extends Collection implements Overloadable {
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
      *
-     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection = Associative::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
      *
      * $collection->remove('firstname');
      *
