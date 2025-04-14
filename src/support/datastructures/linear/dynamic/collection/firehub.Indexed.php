@@ -65,7 +65,8 @@ class Indexed extends Collection implements Listable {
     }
 
     /**
-     * ### Get data structure data as an array
+     * @inheritDoc
+     *
      * @since 1.0.0
      *
      * @example

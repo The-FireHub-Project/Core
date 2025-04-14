@@ -25,7 +25,7 @@ use function FireHub\Core\Support\Helpers\Data\toString;
 /**
  * ### Mixed collection type
  *
- * Object collection provides a map from mixed data types.
+ * Object collection provides a map of mixed data types.
  * @since 1.0.0
  *
  * @template TKey
@@ -44,6 +44,36 @@ class Mix extends Collection {
      * @var array<string, array{key: ?TKey, value: TValue}>
      */
     protected array $storage = [];
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix;
+     *
+     * $collection = new Mix();
+     *
+     * $collection['one'] = 1;
+     * $collection[new stdClass()] = 'two';
+     *
+     * $collection->toArray();
+     *
+     * // [
+     * //   'one' => ['key' => 'one', 'value' => 1],
+     * //   'stdClass' => ['key' => stdClass, 'value' => 'two']
+     * // ]
+     * ```
+     *
+     * @return array<string, array{key: ?TKey, value: TValue}> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        return $this->storage;
+
+    }
 
     /**
      * ### Check if item exist in collection

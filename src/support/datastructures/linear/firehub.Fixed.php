@@ -84,7 +84,7 @@ class Fixed implements FixedContract, ArrayAccessible {
      * $collection[1] = 'two';
      * $collection[2] = 'three';
      *
-     * $collection->exist(0);
+     * $collection->toArray();
      *
      * // ['one', 'two', 'three']
      * ```

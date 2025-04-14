@@ -30,6 +30,14 @@ use FireHub\Core\Support\DataStructures\Operation\CountBy;
 interface DataStructures extends Countable, IteratorAggregate {
 
     /**
+     * ### Get data structure data as an array
+     * @since 1.0.0
+     *
+     * @return array<array-key, mixed> Data structure data as an array.
+     */
+    public function toArray ():array;
+
+    /**
      * ### Count operations for iterable
      * @since 1.0.0
      *

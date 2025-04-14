@@ -36,6 +36,7 @@ use stdClass;
 final class MixTest extends Base {
 
     public Mix $collection;
+    public Mix $simple;
 
     public stdClass $cls1;
 
@@ -51,6 +52,24 @@ final class MixTest extends Base {
         $this->collection = new Mix();
         $this->collection['one'] = 1;
         $this->collection[$this->cls1] = 'two';
+
+        $this->simple = new Mix();
+        $this->simple['one'] = 1;
+        $this->simple['two'] = 2;
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testToArray ():void {
+
+        $this->assertSame([
+            'one' => ['key' => 'one', 'value' => 1],
+            'two' => ['key' => 'two', 'value' => 2]
+        ], $this->simple->toArray());
 
     }
 
