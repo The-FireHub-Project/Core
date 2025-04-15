@@ -66,11 +66,13 @@ final class JSON {
      * @return non-empty-string|false JSON encoded string on success or false on failure.
      *
      * @note All string data for $value parameter must be UTF-8 encoded.
+     * @note Method already includes Flag::JSON_THROW_ON_ERROR.
      */
     public static function encode (mixed $value, int $depth = 512, Flag|Encode ...$flags):string|false {
 
         $bitmap = 0;
-        foreach ($flags as $flag) $bitmap += $flag->value;
+        foreach ($flags as $flag)
+            if ($flag !== Flag::THROW_ON_ERROR) $bitmap += $flag->value;
 
         try {
 
@@ -109,11 +111,13 @@ final class JSON {
      * or if the encoded data is deeper than the nesting limit.
      *
      * @note All string data for $json parameter must be UTF-8 encoded.
+     * @note Method already includes Flag::JSON_THROW_ON_ERROR.
      */
     public static function decode (string $json, int $depth = 512, Flag|Decode ...$flags):mixed {
 
         $bitmap = 0;
-        foreach ($flags as $flag) $bitmap += $flag->value;
+        foreach ($flags as $flag)
+            if ($flag !== Flag::THROW_ON_ERROR) $bitmap += $flag->value;
 
         try {
 
@@ -130,7 +134,7 @@ final class JSON {
     /**
      * ### Checks if a string contains valid JSON
      *
-     * [[JSON#validate]] uses less memory than [[JSON#decode]] if the decoded JSON payload is not used, because
+     * [[JSON#validate]] uses less memory than [[JSON#decode]] if the decoded JSON payload is not used because
      * it doesn't need to build the array or object structure containing the payload.
      * @since 1.0.0
      *
