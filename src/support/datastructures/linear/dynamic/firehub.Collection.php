@@ -16,9 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
 use FireHub\Core\Support\Contracts\ArrayAccessible;
-use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, When
-};
+use FireHub\Core\Support\DataStructures\DataStructure;
 
 /**
  * ### Abstract collection type
@@ -27,50 +25,11 @@ use FireHub\Core\Support\DataStructures\Operation\ {
  * @template TKey
  * @template TValue
  *
+ * @extends \FireHub\Core\Support\DataStructures\DataStructure<TKey, TValue>
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic<TKey, TValue>
  * @implements \FireHub\Core\Support\Contracts\ArrayAccessible<TKey, TValue>
  */
-abstract class Collection implements Dynamic, ArrayAccessible {
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection::countBy() To count elements in
-     * a data structure.
-     */
-    public function count ():int {
-
-        return $this->countBy()->elements();
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy As return.
-     */
-    public function countBy ():CountBy {
-
-        return new CountBy($this);
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Operation\When<static> As return.
-     */
-    public function when ():When {
-
-        return new When($this);
-
-    }
+abstract class Collection extends DataStructure implements Dynamic, ArrayAccessible {
 
     /**
      * @inheritDoc

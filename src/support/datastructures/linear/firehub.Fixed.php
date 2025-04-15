@@ -16,9 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
 use FireHub\Core\Support\Contracts\ArrayAccessible;
-use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, When
-};
+use FireHub\Core\Support\DataStructures\DataStructure;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     CannotAccessOffsetException, KeyOutOfBoundsException
 };
@@ -36,6 +34,7 @@ use Closure, OutOfBoundsException, SplFixedArray, Traversable, TypeError;
  *
  * @template TValue
  *
+ * @extends \FireHub\Core\Support\DataStructures\DataStructure<int, ?TValue>
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed<int, ?TValue>
  * @implements \FireHub\Core\Support\Contracts\ArrayAccessible<int, ?TValue>
  *
@@ -43,7 +42,7 @@ use Closure, OutOfBoundsException, SplFixedArray, Traversable, TypeError;
  *
  * @api
  */
-class Fixed implements FixedContract, ArrayAccessible {
+class Fixed extends DataStructure implements FixedContract, ArrayAccessible {
 
     /**
      * ### Underlying storage data
@@ -131,46 +130,6 @@ class Fixed implements FixedContract, ArrayAccessible {
     public function toArray ():array {
 
         return Iterator::toArray($this);
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection::countBy() To count elements in
-     * a data structure.
-     */
-    public function count ():int {
-
-        return $this->countBy()->elements();
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy As return.
-     */
-    public function countBy ():CountBy {
-
-        return new CountBy($this);
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Operation\When<static> As return.
-     */
-    public function when ():When {
-
-        return new When($this);
 
     }
 

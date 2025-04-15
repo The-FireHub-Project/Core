@@ -15,9 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
-use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, When
-};
+use FireHub\Core\Support\DataStructures\DataStructure;
 use Closure, Generator, Traversable;
 
 /**
@@ -29,13 +27,14 @@ use Closure, Generator, Traversable;
  * @template TKey
  * @template TValue
  *
+ * @extends \FireHub\Core\Support\DataStructures\DataStructure<TKey, TValue>
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic<TKey, TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Lazy implements Dynamic {
+class Lazy extends DataStructure implements Dynamic {
 
     /**
      * ### Constructor
@@ -109,46 +108,6 @@ class Lazy implements Dynamic {
             $result[] = ['key' => $key, 'value' => $value];
 
         return $result;
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection::countBy() To count elements in
-     * a data structure.
-     */
-    public function count ():int {
-
-        return $this->countBy()->elements();
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy As return.
-     */
-    public function countBy ():CountBy {
-
-        return new CountBy($this);
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Operation\When<static> As return.
-     */
-    public function when ():When {
-
-        return new When($this);
 
     }
 
