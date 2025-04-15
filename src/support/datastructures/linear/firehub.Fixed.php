@@ -426,12 +426,10 @@ class Fixed implements FixedContract, ArrayAccessible {
      * @inheritDoc
      *
      * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::toArray() To get data structure an array.
      */
     public function jsonSerialize ():array {
 
-        return $this->toArray();
+        return $this->storage->jsonSerialize();
 
     }
 
@@ -439,12 +437,10 @@ class Fixed implements FixedContract, ArrayAccessible {
      * @inheritDoc
      *
      * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::toArray() To get data structure an array.
      */
     public function __serialize ():array {
 
-        return $this->toArray();
+        return $this->storage->jsonSerialize();
 
     }
 
