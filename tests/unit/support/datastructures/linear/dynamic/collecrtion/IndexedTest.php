@@ -19,7 +19,9 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
     Indexed, Mix
 };
 use FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException;
-use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\DataStructures\Operation\ {
+    CountBy, When
+};
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -33,6 +35,7 @@ use stdClass;
 #[Group('collection')]
 #[CoversClass(Indexed::class)]
 #[CoversClass(CountBy::class)]
+#[CoversClass(When::class)]
 final class IndexedTest extends Base {
 
     public Indexed $collection;
@@ -106,6 +109,43 @@ final class IndexedTest extends Base {
             $mix,
             $this->collection->countBy()->func(
                 fn($value) => $value === 'Jane'
+            )
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testWhen ():void {
+
+        $this->assertEquals(
+            Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 10]),
+            $this->collection->when()->is(
+                true, fn(Indexed $ds) => $ds[] = 10, fn(Indexed $ds) => $ds[] = 11
+            )
+        );
+
+        $this->assertEquals(
+            Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 10, 11]),
+            $this->collection->when()->is(
+                false, fn(Indexed $ds) => $ds[] = 10, fn(Indexed $ds) => $ds[] = 11
+            )
+        );
+
+        $this->assertEquals(
+            Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 10, 11, 11]),
+            $this->collection->when()->unless(
+                true, fn(Indexed $ds) => $ds[] = 10, fn(Indexed $ds) => $ds[] = 11
+            )
+        );
+
+        $this->assertEquals(
+            Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 10, 11, 11, 10]),
+            $this->collection->when()->unless(
+                false, fn(Indexed $ds) => $ds[] = 10, fn(Indexed $ds) => $ds[] = 11
             )
         );
 

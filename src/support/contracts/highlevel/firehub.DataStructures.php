@@ -19,7 +19,9 @@ use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 use FireHub\Core\Support\Contracts\Magic\ {
     JsonSerializable, Serializable
 };
-use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\DataStructures\Operation\ {
+    CountBy, When
+};
 
 /**
  * ### Data structures
@@ -41,7 +43,7 @@ interface DataStructures extends Countable, IteratorAggregate, JsonSerializable,
     public function toArray ():array;
 
     /**
-     * ### Count operations for iterable
+     * ### Count operations for data structures
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy As return.
@@ -49,5 +51,15 @@ interface DataStructures extends Countable, IteratorAggregate, JsonSerializable,
      * @return \FireHub\Core\Support\DataStructures\Operation\CountBy<TKey, TValue> Count operation class.
      */
     public function countBy ():CountBy;
+
+    /**
+     * ### Conditionable methods for data structures
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\When As return.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Operation\When<$this> Count operation class.
+     */
+    public function when ():When;
 
 }

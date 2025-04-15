@@ -17,7 +17,9 @@ namespace support\datastructures;
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Fixed;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix;
-use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\DataStructures\Operation\ {
+    CountBy, When
+};
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     CannotAccessOffsetException, KeyOutOfBoundsException
 };
@@ -33,6 +35,7 @@ use PHPUnit\Framework\Attributes\ {
 #[Group('collection')]
 #[CoversClass(Fixed::class)]
 #[CoversClass(CountBy::class)]
+#[CoversClass(When::class)]
 final class FixedTest extends Base {
 
     public Fixed $collection;
@@ -103,6 +106,29 @@ final class FixedTest extends Base {
             $mix,
             $this->collection->countBy()->funcAssoc(
                 fn($value, $key) => substr((string)$value, 0, 1)
+            )
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testWhen ():void {
+
+        $this->assertEquals(
+            Fixed::fromArray(['one', 'two', '10']),
+            $this->collection->when()->is(
+                true, fn(Fixed $ds) => $ds[2] = 10, fn(Fixed $ds) => $ds[2] = 11
+            )
+        );
+
+        $this->assertEquals(
+            Fixed::fromArray(['one', 'two', '11']),
+            $this->collection->when()->is(
+                false, fn(Fixed $ds) => $ds[2] = 10, fn(Fixed $ds) => $ds[2] = 11
             )
         );
 

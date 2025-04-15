@@ -16,7 +16,9 @@ namespace FireHub\Core\Support\DataStructures\Linear;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
 use FireHub\Core\Support\Contracts\ArrayAccessible;
-use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\DataStructures\Operation\ {
+    CountBy, When
+};
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     CannotAccessOffsetException, KeyOutOfBoundsException
 };
@@ -156,6 +158,19 @@ class Fixed implements FixedContract, ArrayAccessible {
     public function countBy ():CountBy {
 
         return new CountBy($this);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\When<static> As return.
+     */
+    public function when ():When {
+
+        return new When($this);
 
     }
 

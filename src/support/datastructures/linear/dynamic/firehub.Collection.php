@@ -16,7 +16,9 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
 use FireHub\Core\Support\Contracts\ArrayAccessible;
-use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\DataStructures\Operation\ {
+    CountBy, When
+};
 
 /**
  * ### Abstract collection type
@@ -54,6 +56,19 @@ abstract class Collection implements Dynamic, ArrayAccessible {
     public function countBy ():CountBy {
 
         return new CountBy($this);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\When<static> As return.
+     */
+    public function when ():When {
+
+        return new When($this);
 
     }
 

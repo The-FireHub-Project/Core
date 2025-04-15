@@ -17,7 +17,9 @@ namespace support\datastructures;
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Mix;
-use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\DataStructures\Operation\ {
+    CountBy, When
+};
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -31,6 +33,7 @@ use Generator;
 #[Group('collection')]
 #[CoversClass(Lazy::class)]
 #[CoversClass(CountBy::class)]
+#[CoversClass(When::class)]
 final class LazyTest extends Base {
 
     public Lazy $collection;
@@ -86,6 +89,29 @@ final class LazyTest extends Base {
     public function testCount ():void {
 
         $this->assertSame(4, $this->collection->count());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testWhen ():void {
+
+        $this->assertEquals(
+            Lazy::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'male']),
+            $this->collection->when()->is(
+                true, fn(Lazy $ds) => yield 'gender' => 'male', fn(Lazy $ds) => yield 'gender' => 'female'
+            )
+        );
+
+        $this->assertEquals(
+            Lazy::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']),
+            $this->collection->when()->is(
+                false, fn(Lazy $ds) => yield 'gender' => 'male', fn(Lazy $ds) => yield 'gender' => 'female'
+            )
+        );
 
     }
 
