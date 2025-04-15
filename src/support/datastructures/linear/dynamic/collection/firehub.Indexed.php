@@ -59,7 +59,7 @@ class Indexed extends Collection implements Listable {
      */
     public function __construct (Closure $storage) {
 
-        $this->storage = ($storage)();
+        $this->storage = Arr::values(($storage)());
 
     }
 
