@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\ {
 };
 
 use function FireHub\Core\Support\Helpers\Arr\ {
-    first, last
+    first, last, isEmpty
 };
 
 /**
@@ -31,7 +31,20 @@ use function FireHub\Core\Support\Helpers\Arr\ {
 #[Group('helpers')]
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\first')]
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\last')]
+#[CoversFunction('\FireHub\Core\Support\Helpers\Arr\isEmpty')]
 final class ArrTest extends Base {
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testIsEmpty ():void {
+
+        $this->assertTrue(isEmpty([]));
+        $this->assertFalse(isEmpty([1, 2, 3]));
+
+    }
 
     /**
      * @since 1.0.0

@@ -14,11 +14,11 @@
 
 namespace FireHub\Core\Support\Contracts\HighLevel;
 
-use FireHub\Core\Support\Contracts\Countable;
-use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
-use FireHub\Core\Support\Contracts\Magic\ {
-    JsonSerializable, Serializable
+use FireHub\Core\Support\Contracts\ {
+    Countable, JsonSerializable
 };
+use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
+use FireHub\Core\Support\Contracts\Magic\Serializable;
 use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, When
 };
