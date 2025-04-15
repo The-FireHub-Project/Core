@@ -70,4 +70,30 @@ abstract class DataStructure implements DataStructures {
 
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\DataStructure::count() To count data structure items.
+     */
+    public function isEmpty ():bool {
+
+        return $this->count() === 0;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\DataStructure::isEmpty() To check if the data structure is empty.
+     */
+    public function isNotEmpty ():bool {
+
+        return !$this->isEmpty();
+
+    }
+
 }

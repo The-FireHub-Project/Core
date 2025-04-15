@@ -97,6 +97,27 @@ final class LazyTest extends Base {
      *
      * @return void
      */
+    public function testCountBy ():void {
+
+        $mix = new Mix();
+        $mix['J'] = 1;
+        $mix['D'] = 1;
+        $mix[2] = 2;
+
+        $this->assertEquals(
+            $mix,
+            $this->collection->countBy()->funcAssoc(
+                fn($value, $key) => substr((string)$value, 0, 1)
+            )
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testWhen ():void {
 
         $this->assertEquals(
@@ -120,19 +141,20 @@ final class LazyTest extends Base {
      *
      * @return void
      */
-    public function testCountBy ():void {
+    public function testIsEmpty ():void {
 
-        $mix = new Mix();
-        $mix['J'] = 1;
-        $mix['D'] = 1;
-        $mix[2] = 2;
+        $this->assertFalse($this->collection->isEmpty());
 
-        $this->assertEquals(
-            $mix,
-            $this->collection->countBy()->funcAssoc(
-                fn($value, $key) => substr((string)$value, 0, 1)
-            )
-        );
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testIsNotEmpty ():void {
+
+        $this->assertTrue($this->collection->isNotEmpty());
 
     }
 

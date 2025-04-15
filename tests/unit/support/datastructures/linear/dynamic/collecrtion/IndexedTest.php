@@ -39,6 +39,7 @@ use stdClass;
 final class IndexedTest extends Base {
 
     public Indexed $collection;
+    public Indexed $empty;
 
     /**
      * @since 1.0.0
@@ -48,6 +49,8 @@ final class IndexedTest extends Base {
     public function setUp ():void {
 
         $this->collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+
+        $this->empty = Indexed::fromArray([]);
 
     }
 
@@ -148,6 +151,30 @@ final class IndexedTest extends Base {
                 false, fn(Indexed $ds) => $ds[] = 10, fn(Indexed $ds) => $ds[] = 11
             )
         );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testIsEmpty ():void {
+
+        $this->assertFalse($this->collection->isEmpty());
+        $this->assertTrue($this->empty->isEmpty());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testIsNotEmpty ():void {
+
+        $this->assertTrue($this->collection->isNotEmpty());
+        $this->assertFalse($this->empty->isNotEmpty());
 
     }
 

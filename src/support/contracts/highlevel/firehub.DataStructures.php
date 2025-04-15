@@ -62,4 +62,20 @@ interface DataStructures extends Countable, IteratorAggregate, JsonSerializable,
      */
     public function when ():When;
 
+    /**
+     * ### Check if a data structure is empty
+     * @since 1.0.0
+     *
+     * @return bool True if a data structure is empty, false otherwise.
+     */
+    public function isEmpty ():bool;
+
+    /**
+     * ### Check if a data structure is not empty
+     * @since 1.0.0
+     *
+     * @return bool True if a data structure is not empty, false otherwise.
+     */
+    public function isNotEmpty ():bool;
+
 }
