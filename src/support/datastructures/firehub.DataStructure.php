@@ -96,4 +96,58 @@ abstract class DataStructure implements DataStructures {
 
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function each (callable $callback, int $limit = 1_000_000):static {
+
+        $counter = 1;
+
+        foreach ($this as $key => $value) {
+            if ($counter++ > $limit) break;
+            $callback($value, $key);
+        }
+
+        return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function all (callable $callback, int $limit = 1_000_000):bool {
+
+        $counter = 1;
+
+        foreach ($this as $key => $value) {
+            if ($counter++ > $limit) break;
+            else if ($callback($value, $key) === false) return false;
+        }
+
+        return true;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function any (callable $callback, int $limit = 1_000_000):bool {
+
+        $counter = 1;
+
+        foreach ($this as $key => $value) {
+            if ($counter++ > $limit) break;
+            else if ($callback($value, $key)) return true;
+        }
+
+        return false;
+
+    }
+
 }

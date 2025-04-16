@@ -148,6 +148,48 @@ final class MixTest extends Base {
      *
      * @return void
      */
+    public function testEach ():void {
+
+        $collection = new Mix;
+        $collection['one'] = 2;
+        $collection[$this->cls1] = 'two';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->each(fn($value, $key) => $this->collection[$key] = $value + 1, 1)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAll ():void {
+
+        $this->assertTrue($this->collection->all(fn($value, $key) => $key !== 2));
+        $this->assertFalse($this->collection->all(fn($value, $key) => $key !== $this->cls1));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAny ():void {
+
+        $this->assertFalse($this->collection->any(fn($value, $key) => $key === 2));
+        $this->assertTrue($this->collection->any(fn($value, $key) => $key === $this->cls1));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testExist ():void {
 
         $this->assertTrue($this->collection->exist('one'));

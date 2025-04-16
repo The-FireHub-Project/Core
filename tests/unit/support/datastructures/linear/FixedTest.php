@@ -173,6 +173,50 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testEach ():void {
+
+        $collection = new Fixed(3);
+
+        $collection[0] = 'one.';
+        $collection[1] = 'two.';
+        $collection[2] = 'three';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->each(fn($value, $key) => $this->collection[$key] = $value.'.', 2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAll ():void {
+
+        $this->assertTrue($this->collection->all(fn($value, $key) => $key !== 3));
+        $this->assertFalse($this->collection->all(fn($value, $key) => $key !== 2));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAny ():void {
+
+        $this->assertFalse($this->collection->any(fn($value, $key) => $key === 3));
+        $this->assertTrue($this->collection->any(fn($value, $key) => $key === 2));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testExistException ():void {
 
         $this->expectException(CannotAccessOffsetException::class);

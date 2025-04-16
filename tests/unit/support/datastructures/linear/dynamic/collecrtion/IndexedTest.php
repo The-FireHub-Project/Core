@@ -183,6 +183,46 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testEach ():void {
+
+        $this->assertEquals(
+            Indexed::fromArray(['John.', 'Jane.', 'Jane.', 'Jane.', 'Richard', 'Richard']),
+            $this->collection->each(fn($value, $key) => $this->collection[$key] = $value.'.', 4)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAll ():void {
+
+        $this->assertTrue($this->collection->all(fn($value, $key) => $key !== 6));
+        $this->assertFalse($this->collection->all(fn($value, $key) => $key !== 5));
+        $this->assertTrue($this->collection->all(fn($value, $key) => $key !== 5, 4));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAny ():void {
+
+        $this->assertFalse($this->collection->any(fn($value, $key) => $key === 6));
+        $this->assertTrue($this->collection->any(fn($value, $key) => $key === 5));
+        $this->assertFalse($this->collection->all(fn($value, $key) => $key === 5, 4));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testShift ():void {
 
         $collection = Indexed::fromArray(['Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
@@ -295,7 +335,7 @@ final class IndexedTest extends Base {
      */
     public function testSet ():void {
 
-        $collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie']);
+        $collection = Indexed::fromArray(['Johnie', 'Jane', 'Jane', 'Jane', 'Richard', 'Janie']);
 
         $this->collection->offsetSet(0, 'Johnie');
         $this->collection->offsetSet(5, 'Janie');

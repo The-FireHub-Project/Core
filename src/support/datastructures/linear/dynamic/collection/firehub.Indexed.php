@@ -270,7 +270,9 @@ class Indexed extends Collection implements Listable {
      */
     public function offsetSet (mixed $offset, mixed $value):void {
 
-        $this->storage[] = $value;
+        isset($offset)
+            ? $this->storage[$offset] = $value
+            : $this->storage[] = $value;
 
     }
 

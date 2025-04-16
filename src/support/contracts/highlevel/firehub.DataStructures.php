@@ -78,4 +78,49 @@ interface DataStructures extends Countable, IteratorAggregate, JsonSerializable,
      */
     public function isNotEmpty ():bool;
 
+    /**
+     * ### Call user-generated function on each item in data structure
+     * @since 1.0.0
+     *
+     * @param callable(TValue, TKey):void $callback <p>
+     * Function to call on each item in a data structure.
+     * </p>
+     * @param positive-int $limit [optional] <p>
+     * Maximum number of elements that is allowed to be iterated.
+     * </p>
+     *
+     * @return $this
+     */
+    public function each (callable $callback, int $limit = 1_000_000):self;
+
+    /**
+     * ### Verify that all items of a data structure pass a given truth test
+     * @since 1.0.0
+     *
+     * @param callable(TValue, TKey):bool $callback <p>
+     * Function to call on each item in a data structure.
+     * </p>
+     * @param positive-int $limit [optional] <p>
+     * Maximum number of elements that is allowed to be iterated.
+     * </p>
+     *
+     * @return bool True if each item in the data structure passes a given truth test, false otherwise.
+     */
+    public function all (callable $callback, int $limit = 1_000_000):bool;
+
+    /**
+     * ### Verify that any item of a data structure pass a given truth test
+     * @since 1.0.0
+     *
+     * @param callable(TValue, TKey):bool $callback <p>
+     * Function to call on each item in a data structure.
+     * </p>
+     * @param positive-int $limit [optional] <p>
+     * Maximum number of elements that is allowed to be iterated.
+     * </p>
+     *
+     * @return bool True if any item in the data structure passes a given truth test, false otherwise.
+     */
+    public function any (callable $callback, int $limit = 1_000_000):bool;
+
 }

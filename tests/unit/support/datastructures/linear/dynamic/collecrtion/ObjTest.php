@@ -156,6 +156,49 @@ final class ObjTest extends Base {
      *
      * @return void
      */
+    public function testEach ():void {
+
+        $collection = new Obj;
+        $collection[$this->cls1] = 'the data for object 1';
+        $collection[$this->cls2] = [1, 2, 3];
+        $collection[$this->cls3] = 20;
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->each(fn($value, $key) => $this->collection[$key] = $value.'the ', 1)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAll ():void {
+
+        $this->assertTrue($this->collection->all(fn($value, $key) => $key !== new stdClass()));
+        $this->assertFalse($this->collection->all(fn($value, $key) => $key !== $this->cls3));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAny ():void {
+
+        $this->assertFalse($this->collection->any(fn($value, $key) => $key === new stdClass()));
+        $this->assertTrue($this->collection->any(fn($value, $key) => $key === $this->cls3));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testExist ():void {
 
         $this->assertTrue($this->collection->exist($this->cls1));

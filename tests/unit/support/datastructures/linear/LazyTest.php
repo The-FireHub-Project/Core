@@ -158,4 +158,28 @@ final class LazyTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAll ():void {
+
+        $this->assertTrue($this->collection->all(fn($value, $key) => $key !== 'gender'));
+        $this->assertFalse($this->collection->all(fn($value, $key) => $key !== 'lastname'));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAny ():void {
+
+        $this->assertFalse($this->collection->any(fn($value, $key) => $key === 'gender'));
+        $this->assertTrue($this->collection->any(fn($value, $key) => $key === 'lastname'));
+
+    }
+
 }
