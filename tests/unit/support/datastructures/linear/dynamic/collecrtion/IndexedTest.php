@@ -372,4 +372,29 @@ final class IndexedTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testJsonSerialize ():void {
+
+        $json = $this->collection->toJson();
+
+        $this->assertSame('["John","Jane","Jane","Jane","Richard","Richard"]', $json);
+        $this->assertEquals($this->collection, Indexed::fromJson($json));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSerialize ():void {
+
+        $this->assertEquals($this->collection, Indexed::unserialize($this->collection->serialize()));
+
+    }
+
 }

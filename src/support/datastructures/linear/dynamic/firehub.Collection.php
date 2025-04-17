@@ -31,30 +31,4 @@ use FireHub\Core\Support\DataStructures\DataStructure;
  */
 abstract class Collection extends DataStructure implements Dynamic, ArrayAccessible {
 
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection::toArray() To get data structure an array.
-     */
-    public function jsonSerialize ():array {
-
-        return $this->toArray();
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection::toArray() To get data structure an array.
-     */
-    public function __serialize ():array {
-
-        return $this->toArray();
-
-    }
-
 }

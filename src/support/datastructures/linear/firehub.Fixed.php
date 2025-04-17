@@ -107,7 +107,8 @@ class Fixed extends DataStructure implements FixedContract, ArrayAccessible {
     }
 
     /**
-     * ### Get data structure data as an array
+     * @inheritDoc
+     *
      * @since 1.0.0
      *
      * @example
@@ -440,6 +441,33 @@ class Fixed extends DataStructure implements FixedContract, ArrayAccessible {
             $storage[$i++] = $item;
 
         $this->storage = $storage; // @phpstan-ignore assign.propertyType
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count array parameter items.
+     *
+     * @param array<int, null|TValue> $data <p>
+     * Decoded JSON string as an array.
+     * </p>
+     *
+     * @return static<mixed> Object from JSON encoded parameter.
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    protected static function jsonToObject (array $data):static {
+
+        $storage = new static(Iterables::count($data));
+
+        $i = 0;
+        foreach ($data as $item)
+            $storage[$i++] = $item;
+
+        return $storage;
 
     }
 

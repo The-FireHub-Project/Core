@@ -16,7 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
-    CannotAccessOffsetException, KeyAlreadyExistException, KeyDoesntExistException
+    CannotAccessOffsetException, KeyAlreadyExistException, KeyDoesntExistException, StorageMissingDataException
 };
 use Closure, UnexpectedValueException, SplObjectStorage, Traversable, TypeError;
 
@@ -85,6 +85,9 @@ class Obj extends Collection {
      * Data for data structure.
      * </p>
      *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing
+     * storage datak
+     *
      * @return static<TKey, TValue> Data structure from an array.
      */
     public static function fromArray (array $array):static {
@@ -92,7 +95,12 @@ class Obj extends Collection {
         return new static(function (SplObjectStorage $storage) use ($array) { // @phpstan-ignore return.type
 
             foreach ($array as $item)
-                $storage[$item['key']] = $item['value'];
+
+                $storage[
+                    $item['key']
+                    ?? throw new StorageMissingDataException()->withData($item)->withKey('key')
+                ] = $item['value']
+                    ?? throw new StorageMissingDataException()->withData($item)->withKey('value');
 
         });
 
@@ -526,6 +534,9 @@ class Obj extends Collection {
      * Serialized data.
      * </p>
      *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing
+     * storage data.
+     *
      * @phpstan-ignore-next-line method.childParameterType
      */
     public function __unserialize (array $data):void {
@@ -533,9 +544,44 @@ class Obj extends Collection {
         $storage = new SplObjectStorage();
 
         foreach ($data as $item)
-            $storage[$item['key']] = $item['value'];
+            $storage[
+                $item['key']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('key')
+            ] = $item['value']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('value');
 
         $this->storage = $storage; // @phpstan-ignore assign.propertyType
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @param array<array{key: TKey, value: TValue}> $data <p>
+     * Decoded JSON string as an array.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing
+     * storage data.
+     *
+     * @return static<object, mixed> Object from JSON encoded parameter.
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    protected static function jsonToObject (array $data):static {
+
+        $storage = new static();
+
+        foreach ($data as $item)
+            $storage[
+                $item['key']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('key')
+            ] = $item['value']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('value');
+
+        return $storage;
 
     }
 

@@ -16,7 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
-    KeyAlreadyExistException, KeyDoesntExistException
+    KeyAlreadyExistException, KeyDoesntExistException, StorageMissingDataException
 };
 use Generator, Traversable;
 
@@ -72,6 +72,9 @@ class Mix extends Collection {
      * Data for data structure.
      * </p>
      *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing
+     * storage data.
+     *
      * @return static<TKey, TValue> Data structure from an array.
      */
     public static function fromArray (array $array):static {
@@ -79,7 +82,11 @@ class Mix extends Collection {
         $storage = new static();
 
         foreach ($array as $item)
-            $storage[$item['key']] = $item['value'];
+            $storage[
+                $item['key']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('key')
+            ] = $item['value']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('value');
 
         return $storage; // @phpstan-ignore return.type
 
@@ -344,7 +351,7 @@ class Mix extends Collection {
      */
     public function offsetExists (mixed $offset):bool {
 
-        return isset($this->storage[$this->key($offset)]);
+        return isset($this->storage[self::key($offset)]);
 
     }
 
@@ -357,7 +364,7 @@ class Mix extends Collection {
      */
     public function offsetGet (mixed $offset):mixed {
 
-        return $this->storage[$this->key($offset)]['value'];
+        return $this->storage[self::key($offset)]['value'];
 
     }
 
@@ -370,7 +377,7 @@ class Mix extends Collection {
      */
     public function offsetSet (mixed $offset, mixed $value):void {
 
-        $this->storage[$this->key($offset)] = ['key' => $offset, 'value' => $value];
+        $this->storage[self::key($offset)] = ['key' => $offset, 'value' => $value];
 
     }
 
@@ -383,7 +390,7 @@ class Mix extends Collection {
      */
     public function offsetUnset (mixed $offset):void {
 
-        unset($this->storage[$this->key($offset)]);
+        unset($this->storage[self::key($offset)]);
 
     }
 
@@ -411,6 +418,9 @@ class Mix extends Collection {
      * Serialized data.
      * </p>
      *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing
+     * storage data.
+     *
      * @phpstan-ignore-next-line method.childParameterType
      */
     public function __unserialize (array $data):void {
@@ -418,9 +428,46 @@ class Mix extends Collection {
         $storage = [];
 
         foreach ($data as $item)
-            $storage[$this->key($item['key'])] = ['key' => $item['key'], 'value' => $item['value']];
+            $storage[self::key(
+                $item['key']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('key')
+            )] = [
+                'key' => $item['key'] ?? throw new StorageMissingDataException()->withData($item)->withKey('key'),
+                'value' => $item['value'] ?? throw new StorageMissingDataException()->withData($item)->withKey('value')
+            ];
 
         $this->storage = $storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @param array<string, array{key: ?TKey, value: TValue}> $data <p>
+     * Decoded JSON string as an array.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing
+     * storage data.
+     *
+     * @return static<mixed, mixed> Object from JSON encoded parameter.
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    protected static function jsonToObject (array $data):static {
+
+        $storage = new static();
+
+        foreach ($data as $item)
+            $storage[
+                $item['key']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('key')
+            ] = $item['value']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('value');
+
+        return $storage;
 
     }
 
@@ -436,7 +483,7 @@ class Mix extends Collection {
      *
      * @return string Resolved key.
      */
-    private function key (mixed $offset):string {
+    private static function key (mixed $offset):string {
 
         return toString($offset, detailed: true);
 

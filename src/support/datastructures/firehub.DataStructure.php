@@ -18,6 +18,9 @@ use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, When
 };
+use FireHub\Core\Support\Traits\ {
+    Jsonable, Serializable
+};
 
 /**
  * ### Abstract collection type
@@ -29,6 +32,17 @@ use FireHub\Core\Support\DataStructures\Operation\ {
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures<TKey, TValue>
  */
 abstract class DataStructure implements DataStructures {
+
+    use Jsonable;
+
+    use Serializable;
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    abstract public function toArray ():array;
 
     /**
      * @inheritDoc
@@ -149,5 +163,38 @@ abstract class DataStructure implements DataStructures {
         return false;
 
     }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\DataStructure::toArray() To get data structure an array.
+     */
+    public function jsonSerialize ():array {
+
+        return $this->toArray();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\DataStructure::toArray() To get data structure an array.
+     */
+    public function __serialize ():array {
+
+        return $this->toArray();
+
+    }
+
+    /**
+     * @inheritDoC
+     *
+     * @since 1.0.0
+     */
+    abstract protected static function jsonToObject (array $data):static;
 
 }

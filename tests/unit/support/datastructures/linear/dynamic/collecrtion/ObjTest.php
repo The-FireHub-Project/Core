@@ -75,9 +75,9 @@ final class ObjTest extends Base {
 
         $this->assertEquals(
             Obj::fromArray([
-                ['key' => $this->cls1, 'data for object 1'],
-                ['key' => $this->cls2, [1, 2, 3]],
-                ['key' => $this->cls3, 20]
+                ['key' => $this->cls1, 'value' => 'data for object 1'],
+                ['key' => $this->cls2, 'value' => [1, 2, 3]],
+                ['key' => $this->cls3, 'value' => 20]
             ]),
             $this->collection
         );
@@ -370,6 +370,19 @@ final class ObjTest extends Base {
         $this->expectException(CannotAccessOffsetException::class);
 
         $this->collection->offsetUnset(10);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testJsonSerialize ():void {
+
+        $json = $this->collection->toJson();
+
+        $this->assertSame('[{"key":{},"value":"data for object 1"},{"key":{},"value":[1,2,3]},{"key":{},"value":20}]', $json);
 
     }
 

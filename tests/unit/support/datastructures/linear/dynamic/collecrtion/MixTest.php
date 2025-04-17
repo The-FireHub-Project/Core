@@ -305,4 +305,28 @@ final class MixTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testJsonSerialize ():void {
+
+        $json = $this->simple->toJson();
+
+        $this->assertEquals($this->simple, Mix::fromJson($json));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSerialize ():void {
+
+        $this->assertEquals($this->simple, Mix::unserialize($this->simple->serialize()));
+
+    }
+
 }

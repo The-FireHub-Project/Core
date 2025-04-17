@@ -54,7 +54,7 @@ final class JSON {
      * The value being encoded.
      * Can be any type except a resource.
      * </p>
-     * @param positive-int $depth <p>
+     * @param positive-int $depth [optional] <p>
      * Set the maximum depth.
      * </p>
      * @param \FireHub\Core\Support\Enums\JSON\Flag|\FireHub\Core\Support\Enums\JSON\Flags\Encode ...$flags <p>
@@ -98,7 +98,10 @@ final class JSON {
      * @param string $json <p>
      * The JSON string being decoded.
      * </p>
-     * @param positive-int $depth <p>
+     * @param bool $as_array [optional] <p>
+     * If true method will return decoded JSON string as an associative array, otherwise it will return an object.
+     * </p>
+     * @param positive-int $depth [optional] <p>
      * Set the maximum depth.
      * </p>
      * @param \FireHub\Core\Support\Enums\JSON\Flag|\FireHub\Core\Support\Enums\JSON\Flags\Decode ...$flags <p>
@@ -113,7 +116,7 @@ final class JSON {
      * @note All string data for $json parameter must be UTF-8 encoded.
      * @note Method already includes Flag::JSON_THROW_ON_ERROR.
      */
-    public static function decode (string $json, int $depth = 512, Flag|Decode ...$flags):mixed {
+    public static function decode (string $json, bool $as_array = false, int $depth = 512, Flag|Decode ...$flags):mixed {
 
         $bitmap = 0;
         foreach ($flags as $flag)
@@ -121,7 +124,7 @@ final class JSON {
 
         try {
 
-            return json_decode($json, null, $depth, $bitmap + JSON_THROW_ON_ERROR);
+            return json_decode($json, $as_array, $depth, $bitmap + JSON_THROW_ON_ERROR);
 
         } catch (JsonException $error) {
 
@@ -141,7 +144,7 @@ final class JSON {
      * @param string $json <p>
      * The string to validate.
      * </p>
-     * @param positive-int $depth <p>
+     * @param positive-int $depth [optional] <p>
      * Set the maximum depth.
      * </p>
      * @param \FireHub\Core\Support\Enums\JSON\Flags\Validate ...$flags <p>

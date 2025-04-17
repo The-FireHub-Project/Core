@@ -324,4 +324,23 @@ class Indexed extends Collection implements Listable {
 
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @param array<TValue> $data <p>
+     * Decoded JSON string as an array.
+     * </p>
+     *
+     * @return static<mixed> Object from JSON encoded parameter.
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    protected static function jsonToObject (array $data):static {
+
+        return new static(fn() => $data);
+
+    }
+
 }
