@@ -15,17 +15,17 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@2.31.1
         with:
-          php-version: '8.3'
-          extensions: mbstring
-          tools: phpunit
-      - name: Run PHPUnit and collect coverage
-        run: phpunit --log-junit junit.xml --coverage-clover coverage.xml .
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+          php-version: '8.4'
+          extensions: mbstring, zip, apcu
+          tools: phpunit:11.x
         env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       - name: Upload test results to Codecov
         if: ${{ !cancelled() }}
         uses: codecov/test-results-action@v1
         with:
-          token: ${{ secrets.CODECOV }}
+          token: ${{ secrets.CODECOV_TOKEN }}
