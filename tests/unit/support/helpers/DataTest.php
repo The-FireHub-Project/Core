@@ -15,12 +15,17 @@
 namespace support\helpers;
 
 use FireHub\Core\Testing\Base;
+use FireHub\Core\Support\Enums\Data\ {
+    Category, Type
+};
 use PHPUnit\Framework\Attributes\ {
     CoversFunction, Group, Small
 };
 use stdClass, Stringable;
 
-use function FireHub\Core\Support\Helpers\Data\toString;
+use function FireHub\Core\Support\Helpers\Data\ {
+    toString, isType
+};
 
 /**
  * ### Test Data functions
@@ -29,6 +34,7 @@ use function FireHub\Core\Support\Helpers\Data\toString;
 #[Small]
 #[Group('helpers')]
 #[CoversFunction('\FireHub\Core\Support\Helpers\Data\toString')]
+#[CoversFunction('\FireHub\Core\Support\Helpers\Data\isType')]
 final class DataTest extends Base {
 
     /**
@@ -51,6 +57,19 @@ final class DataTest extends Base {
             }
         }));
         $this->assertSame('resource', toString(fopen('php://stdout', 'w')));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testIsType ():void {
+
+        $this->assertTrue(isType(10, Type::T_INT));
+        $this->assertTrue(isType(10, Category::SCALAR));
+        $this->assertFalse(isType(10, Type::T_FLOAT));
 
     }
 

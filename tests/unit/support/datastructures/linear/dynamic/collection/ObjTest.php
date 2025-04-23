@@ -199,6 +199,18 @@ final class ObjTest extends Base {
      *
      * @return void
      */
+    public function testNone ():void {
+
+        $this->assertTrue($this->collection->none(fn($value, $key) => $key === new stdClass()));
+        $this->assertFalse($this->collection->none(fn($value, $key) => $key === $this->cls3));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testExist ():void {
 
         $this->assertTrue($this->collection->exist($this->cls1));

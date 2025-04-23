@@ -14,8 +14,11 @@
 
 namespace FireHub\Core\Support\Helpers\Data;
 
+use FireHub\Core\Support\Enums\Data\ {
+    Category, Type
+};
 use FireHub\Core\Support\LowLevel\{
-    DataIs, Obj, Resources
+    Data, DataIs, Obj, Resources
 };
 use Stringable;
 
@@ -91,5 +94,47 @@ function toString (mixed $value, string $default_value = '', bool $detailed = fa
             : 'resource',
         default => $default_value
     };
+
+}
+
+/**
+ * ### Checks if the value is of a type
+ * @since 1.0.0
+ *
+ * @uses \FireHub\Core\Support\Enums\Data\Category As parameter.
+ * @uses \FireHub\Core\Support\Enums\Data\Type As parameter.
+ * @uses \FireHub\Core\Support\Enums\Data\Type::category() To get a data type category.
+ * @uses \FireHub\Core\Support\LowLevel\Data::getType() To get a data type.
+ *
+ * @example
+ * ```php
+ * use FireHub\Core\Support\Enums\Data\Type;
+ * use function FireHub\Core\Support\Helpers\Data\isType;
+ *
+ * isType(10, Type::T_INT);
+ *
+ * // true
+ * ```
+ *
+ * @param mixed $value <p>
+ * The variable being type-checked.
+ * </p>
+ * @param \FireHub\Core\Support\Enums\Data\Category|\FireHub\Core\Support\Enums\Data\Type $type <p>
+ * Type or type category to compare to.
+ * </p>
+ *
+ * @throws \FireHub\Core\Support\Exceptions\Data\TypeUnknownException If a type of value is unknown.
+ *
+ * @return bool True if values is of a type, false otherwise.
+ *
+ * @api
+ */
+function isType (mixed $value, Category|Type $type):bool {
+
+    return $type === (
+        $type instanceof Category
+            ? Data::getType($value)->category()
+            : Data::getType($value)
+    );
 
 }

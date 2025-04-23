@@ -217,6 +217,18 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testNone ():void {
+
+        $this->assertTrue($this->collection->none(fn($value, $key) => $key === 3));
+        $this->assertFalse($this->collection->none(fn($value, $key) => $key === 2));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testExistException ():void {
 
         $this->expectException(CannotAccessOffsetException::class);

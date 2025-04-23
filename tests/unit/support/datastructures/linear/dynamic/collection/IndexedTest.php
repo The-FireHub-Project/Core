@@ -20,7 +20,10 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
 };
 use FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException;
 use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, When
+    CountBy, Ensure, When
+};
+use FireHub\Core\Support\Enums\Data\ {
+    Category, Type
 };
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -36,10 +39,16 @@ use stdClass;
 #[CoversClass(Indexed::class)]
 #[CoversClass(CountBy::class)]
 #[CoversClass(When::class)]
+#[CoversClass(Ensure::class)]
+#[CoversClass(Type::class)]
+#[CoversClass(Category::class)]
 final class IndexedTest extends Base {
 
     public Indexed $collection;
     public Indexed $empty;
+    public Indexed $mix;
+
+    public stdClass $cls1;
 
     /**
      * @since 1.0.0
@@ -48,9 +57,13 @@ final class IndexedTest extends Base {
      */
     public function setUp ():void {
 
+        $this->cls1 = new stdClass();
+
         $this->collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
 
         $this->empty = Indexed::fromArray([]);
+
+        $this->mix = Indexed::fromArray([$this->cls1, 0, 1, 'one', false, true, null]);
 
     }
 
@@ -159,6 +172,23 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testEnsure ():void {
+
+        $this->assertTrue($this->collection->ensure()->all(Type::T_STRING));
+        $this->assertTrue($this->collection->ensure()->any(Type::T_STRING));
+        $this->assertTrue($this->collection->ensure()->none(Category::COMPOUND));
+
+        $this->assertTrue($this->mix->ensure()->any(stdClass::class));
+        $this->assertTrue($this->mix->ensure()->none(Indexed::class));
+        $this->assertFalse($this->mix->ensure()->all(Indexed::class));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testIsEmpty ():void {
 
         $this->assertFalse($this->collection->isEmpty());
@@ -215,6 +245,19 @@ final class IndexedTest extends Base {
         $this->assertFalse($this->collection->any(fn($value, $key) => $key === 6));
         $this->assertTrue($this->collection->any(fn($value, $key) => $key === 5));
         $this->assertFalse($this->collection->all(fn($value, $key) => $key === 5, 4));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testNone ():void {
+
+        $this->assertTrue($this->collection->none(fn($value, $key) => $key === 6));
+        $this->assertFalse($this->collection->none(fn($value, $key) => $key === 5));
+        $this->assertTrue($this->collection->none(fn($value, $key) => $key === 5, 4));
 
     }
 

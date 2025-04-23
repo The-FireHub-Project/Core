@@ -20,8 +20,10 @@ use FireHub\Core\Support\Contracts\ {
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 use FireHub\Core\Support\Contracts\Magic\Serializable;
 use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, When
+    CountBy, Ensure, When
 };
+
+use const FireHub\Core\Support\Constants\Number\MAX;
 
 /**
  * ### Data structures
@@ -63,6 +65,16 @@ interface DataStructures extends Countable, IteratorAggregate, JsonSerializable,
     public function when ():When;
 
     /**
+     * ### Methods to ensure data structure items is of a certain type
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Ensure As return.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Operation\Ensure Count operation class.
+     */
+    public function ensure ():Ensure;
+
+    /**
      * ### Check if a data structure is empty
      * @since 1.0.0
      *
@@ -79,8 +91,10 @@ interface DataStructures extends Countable, IteratorAggregate, JsonSerializable,
     public function isNotEmpty ():bool;
 
     /**
-     * ### Call user-generated function on each item in data structure
+     * ### Call a user-generated function on each item in data structure
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Constants\Number\MAX As default limit.
      *
      * @param callable(TValue, TKey):void $callback <p>
      * Function to call on each item in a data structure.
@@ -91,11 +105,13 @@ interface DataStructures extends Countable, IteratorAggregate, JsonSerializable,
      *
      * @return $this
      */
-    public function each (callable $callback, int $limit = 1_000_000):self;
+    public function each (callable $callback, int $limit = MAX):self;
 
     /**
      * ### Verify that all items of a data structure pass a given truth test
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Constants\Number\MAX As default limit.
      *
      * @param callable(TValue, TKey):bool $callback <p>
      * Function to call on each item in a data structure.
@@ -106,11 +122,13 @@ interface DataStructures extends Countable, IteratorAggregate, JsonSerializable,
      *
      * @return bool True if each item in the data structure passes a given truth test, false otherwise.
      */
-    public function all (callable $callback, int $limit = 1_000_000):bool;
+    public function all (callable $callback, int $limit = MAX):bool;
 
     /**
      * ### Verify that any item of a data structure pass a given truth test
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Constants\Number\MAX As default limit.
      *
      * @param callable(TValue, TKey):bool $callback <p>
      * Function to call on each item in a data structure.
@@ -121,6 +139,23 @@ interface DataStructures extends Countable, IteratorAggregate, JsonSerializable,
      *
      * @return bool True if any item in the data structure passes a given truth test, false otherwise.
      */
-    public function any (callable $callback, int $limit = 1_000_000):bool;
+    public function any (callable $callback, int $limit = MAX):bool;
+
+    /**
+     * ### Verify that none of the items in a data structure pass a given truth test
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Constants\Number\MAX As default limit.
+     *
+     * @param callable(TValue, TKey):bool $callback <p>
+     * Function to call on each item in a data structure.
+     * </p>
+     * @param positive-int $limit [optional] <p>
+     * Maximum number of elements that is allowed to be iterated.
+     * </p>
+     *
+     * @return bool True if none of the items in a data structure pass a given truth test, false otherwise.
+     */
+    public function none (callable $callback, int $limit = MAX):bool;
 
 }

@@ -16,11 +16,13 @@ namespace FireHub\Core\Support\DataStructures;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, When
+    CountBy, Ensure, When
 };
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
 };
+
+use const FireHub\Core\Support\Constants\Number\MAX;
 
 /**
  * ### Abstract collection type
@@ -33,8 +35,16 @@ use FireHub\Core\Support\Traits\ {
  */
 abstract class DataStructure implements DataStructures {
 
+    /**
+     * ### Trait contains all common JSON methods
+     * @since 1.0.0
+     */
     use Jsonable;
 
+    /**
+     * ### Trait contains all common serialize and unserialize methods
+     * @since 1.0.0
+     */
     use Serializable;
 
     /**
@@ -89,6 +99,19 @@ abstract class DataStructure implements DataStructures {
      *
      * @since 1.0.0
      *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Ensure As return.
+     */
+    public function ensure ():Ensure {
+
+        return new Ensure($this);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @uses \FireHub\Core\Support\DataStructures\DataStructure::count() To count data structure items.
      */
     public function isEmpty ():bool {
@@ -114,8 +137,10 @@ abstract class DataStructure implements DataStructures {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Constants\Number\MAX As default limit.
      */
-    public function each (callable $callback, int $limit = 1_000_000):static {
+    public function each (callable $callback, int $limit = MAX):static {
 
         $counter = 1;
 
@@ -132,8 +157,10 @@ abstract class DataStructure implements DataStructures {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Constants\Number\MAX As default limit.
      */
-    public function all (callable $callback, int $limit = 1_000_000):bool {
+    public function all (callable $callback, int $limit = MAX):bool {
 
         $counter = 1;
 
@@ -150,8 +177,10 @@ abstract class DataStructure implements DataStructures {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Constants\Number\MAX As default limit.
      */
-    public function any (callable $callback, int $limit = 1_000_000):bool {
+    public function any (callable $callback, int $limit = MAX):bool {
 
         $counter = 1;
 
@@ -161,6 +190,26 @@ abstract class DataStructure implements DataStructures {
         }
 
         return false;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Constants\Number\MAX As default limit.
+     */
+    public function none (callable $callback, int $limit = MAX):bool {
+
+        $counter = 1;
+
+        foreach ($this as $key => $value) {
+            if ($counter++ > $limit) break;
+            else if ($callback($value, $key) === true) return false;
+        }
+
+        return true;
 
     }
 
