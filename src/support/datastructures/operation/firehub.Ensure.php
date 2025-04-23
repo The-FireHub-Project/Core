@@ -18,8 +18,9 @@ use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\Enums\Data\ {
     Category, Type
 };
-use FireHub\Core\Support\LowLevel\DataIs;
-use FireHub\Core\Support\LowLevel\Obj;
+use FireHub\Core\Support\LowLevel\ {
+    DataIs, Obj
+};
 
 use function FireHub\Core\Support\Helpers\Data\isType;
 
@@ -58,6 +59,18 @@ readonly class Ensure {
      * @uses \FireHub\Core\Support\LowLevel\Obj::ofClass() To check if value is of class.
      * @uses \FireHub\Core\Support\Helpers\Data\isType() To check a data structure value type.
      *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * use FireHub\Core\Support\Enums\Data\Type;
+     *
+     * $collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->ensure()->all(Type::T_STRING);
+     *
+     * // true
+     * ```
+     *
      * @param class-string|\FireHub\Core\Support\Enums\Data\Type|\FireHub\Core\Support\Enums\Data\Category $type <p>
      * Type to check on all data structure items.
      * </p>
@@ -87,6 +100,18 @@ readonly class Ensure {
      * @uses \FireHub\Core\Support\LowLevel\Obj::ofClass() To check if value is of class.
      * @uses \FireHub\Core\Support\Helpers\Data\isType() To check a data structure value type.
      *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * use FireHub\Core\Support\Enums\Data\Type;
+     *
+     * $collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->ensure()->any(Type::T_STRING);
+     *
+     * // true
+     * ```
+     *
      * @param class-string|\FireHub\Core\Support\Enums\Data\Type|\FireHub\Core\Support\Enums\Data\Category $type <p>
      * Type to check on all data structure items.
      * </p>
@@ -115,6 +140,18 @@ readonly class Ensure {
      * @uses \FireHub\Core\Support\LowLevel\DataIs::object() To check if the value is an object.
      * @uses \FireHub\Core\Support\LowLevel\Obj::ofClass() To check if value is of class.
      * @uses \FireHub\Core\Support\Helpers\Data\isType() To check a data structure value type.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * use FireHub\Core\Support\Enums\Data\Type;
+     *
+     * $collection = Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->ensure()->none(Type::T_STRING);
+     *
+     * // true
+     * ```
      *
      * @param class-string|\FireHub\Core\Support\Enums\Data\Type|\FireHub\Core\Support\Enums\Data\Category $type <p>
      * Type to check on all data structure items.
