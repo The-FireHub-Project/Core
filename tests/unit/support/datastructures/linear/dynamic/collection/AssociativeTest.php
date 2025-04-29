@@ -28,4 +28,19 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Associative::class)]
 final class AssociativeTest extends Base {
 
+    public Associative $collection;
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function setUp ():void {
+
+        $this->collection = new Associative(
+            ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]
+        );
+
+    }
+
 }

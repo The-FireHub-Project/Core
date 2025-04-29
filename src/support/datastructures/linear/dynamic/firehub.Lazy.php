@@ -16,7 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
 use FireHub\Core\Support\DataStructures\Traits\Common;
-use Closure, Generator;
+use Closure, Generator, Traversable;
 
 /**
  * ### Lazy data structure type
@@ -56,5 +56,30 @@ class Lazy implements Dynamic {
     public function __construct (
         protected Closure $storage
     ) {}
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy::invoke() To invoke storage.
+     */
+    public function getIterator ():Traversable {
+
+        return $this->invoke();
+
+    }
+
+    /**
+     * ### Invoke storage
+     * @since 1.0.0
+     *
+     * @return Generator<TKey, TValue> Storage data.
+     */
+    private function invoke ():Generator {
+
+        yield from ($this->storage)();
+
+    }
 
 }

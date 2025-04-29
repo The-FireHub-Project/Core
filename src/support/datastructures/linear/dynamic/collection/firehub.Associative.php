@@ -15,6 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use Traversable;
 
 /**
  * ### Associative array collection type
@@ -46,5 +47,16 @@ class Associative extends Collection {
     public function __construct (
         protected array $storage = []
     ) {}
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function getIterator ():Traversable {
+
+        yield from $this->storage;
+
+    }
 
 }

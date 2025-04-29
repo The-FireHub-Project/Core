@@ -60,4 +60,34 @@ class Fixed extends SplFixedArray implements FixedContract {
 
     }
 
+    /**
+     * ### Get the size of the data structure
+     * @since 1.0.0
+     *
+     * @return non-negative-int Size of the data structure.
+     */
+    public function getSize ():int {
+
+        return parent::getSize() > 0 ? parent::getSize() : 0;
+
+    }
+
+    /**
+     * ### Change the size of the data structure
+     * @since 1.0.0
+     *
+     * @param non-negative-int $size <p>
+     * Size of the data structure.
+     * </p>
+     *
+     * @return true Always true.
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    public function setSize (int $size):true {
+
+        return parent::setSize($size); // @phpstan-ignore return.type
+
+    }
+
 }

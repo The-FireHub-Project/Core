@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
-use SplObjectStorage;
+use SplObjectStorage, Traversable;
 
 /**
  * ### Object collection type
@@ -52,6 +52,18 @@ class Obj extends Collection {
     public function __construct () {
 
         $this->storage = new SplObjectStorage();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function getIterator ():Traversable {
+
+        foreach ($this->storage as $object)
+            yield $object => $this->storage[$object];
 
     }
 

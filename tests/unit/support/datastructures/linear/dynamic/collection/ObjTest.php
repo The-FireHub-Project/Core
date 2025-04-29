@@ -19,6 +19,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
+use stdClass;
 
 /**
  * ### Test Object array collection class
@@ -28,5 +29,30 @@ use PHPUnit\Framework\Attributes\ {
 #[Group('collection')]
 #[CoversClass(Obj::class)]
 final class ObjTest extends Base {
+
+    public Obj $collection;
+    public Obj $simple;
+
+    public stdClass $cls1;
+    public stdClass $cls2;
+    public stdClass $cls3;
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function setUp ():void {
+
+        $this->cls1 = new stdClass();
+        $this->cls2 = new stdClass();
+        $this->cls3 = new stdClass();
+
+        $this->collection = new Obj;
+        $this->collection[$this->cls1] = 'data for object 1';
+        $this->collection[$this->cls2] = [1, 2, 3];
+        $this->collection[$this->cls3] = 20;
+
+    }
 
 }

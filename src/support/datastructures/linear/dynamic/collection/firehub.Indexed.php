@@ -16,6 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\LowLevel\Arr;
+use Traversable;
 
 /**
  * ### Indexed array collection type
@@ -56,6 +57,17 @@ class Indexed extends Collection {
     public function __construct (array $storage = []) {
 
         $this->storage = Arr::values($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function getIterator ():Traversable {
+
+        yield from $this->storage;
 
     }
 

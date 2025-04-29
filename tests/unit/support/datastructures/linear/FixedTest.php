@@ -29,4 +29,45 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Fixed::class)]
 final class FixedTest extends Base {
 
+    public Fixed $collection;
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function setUp ():void {
+
+        $this->collection = new Fixed(3);
+
+        $this->collection[0] = 'one';
+        $this->collection[1] = 'two';
+        $this->collection[2] = 'three';
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testGetSize ():void {
+
+        $this->assertSame(3, $this->collection->getSize());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSetSize ():void {
+
+        $this->collection->setSize(4);
+
+        $this->assertSame(4, $this->collection->getSize());
+
+    }
+
 }

@@ -27,4 +27,21 @@ use PHPUnit\Framework\Attributes\ {
 #[Small]
 #[Group('collection')]
 #[CoversClass(Indexed::class)]
-final class IndexedTest extends Base {}
+final class IndexedTest extends Base {
+
+    public Indexed $collection;
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function setUp ():void {
+
+        $this->collection = new Indexed(
+            ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']
+        );
+
+    }
+
+}

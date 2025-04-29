@@ -14,13 +14,17 @@
 
 namespace FireHub\Core\Support\Contracts\HighLevel;
 
+use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
+
 /**
  * ### Data structures
  * @since 1.0.0
  *
  * @template TKey
  * @template TValue
+ *
+ * @extends \FireHub\Core\Support\Contracts\Iterator\IteratorAggregate<TKey, TValue>
  */
-interface DataStructures {
+interface DataStructures extends IteratorAggregate {
 
 }
