@@ -14,6 +14,7 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
+use FireHub\Core\Support\DataStructures\Contracts\Overloadable;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
@@ -31,12 +32,13 @@ use Traversable;
  * @template TValue
  *
  * @implements \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Overloadable<TKey, TValue>
  *
  * @api
  *
  * @phpstan-consistent-constructor
  */
-class Arr implements Collection {
+class Arr implements Collection, Overloadable {
 
     /**
      * ### Constructor
@@ -393,6 +395,60 @@ class Arr implements Collection {
     public function getIterator ():Traversable {
 
         yield from $this->storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Arr::offsetExists() Checks whether an
+     * offset exists.
+     */
+    public function __isset (int|string $name):bool {
+
+        return $this->offsetExists($name);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Arr::offsetGet() As offset to retrieve.
+     */
+    public function __get (int|string $name):mixed {
+
+        return $this->offsetGet($name);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Arr::offsetSet() To assign a value to the
+     * specified offset.
+     */
+    public function __set (int|string $name, mixed $value):void {
+
+        $this->offsetSet($name, $value);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Arr::offsetUnset() To unset an offset.
+     */
+    public function __unset (int|string $name):void {
+
+        $this->offsetUnset($name);
 
     }
 

@@ -263,4 +263,24 @@ final class ArrTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testOverload ():void {
+
+        $collection = new Arr(
+            ['lastname' => 'Doe', 'age' => 25, 10 => 2, 'middlename' => 'Marry']
+        );
+
+        $this->associative->middlename = 'Marry';
+        unset($this->associative->firstname);
+
+        $this->assertTrue(isset($this->associative->lastname));
+        $this->assertSame(25, $this->associative->age);
+        $this->assertEquals($collection, $this->associative);
+
+    }
+
 }
