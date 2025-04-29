@@ -7,24 +7,24 @@
  * @copyright 2025 FireHub Web Application Framework
  * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
  *
- * @package Core\Support
+ * @package Core\Test
  *
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\Contracts\HighLevel;
+namespace support\datastructures\linear\dynamic;
 
-use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
+use FireHub\Core\Testing\Base;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+use PHPUnit\Framework\Attributes\ {
+    CoversClass, Group, Small
+};
 
 /**
- * ### Data structures
+ * ### Test Lazy data structure class
  * @since 1.0.0
- *
- * @template TKey
- * @template TValue
- *
- * @extends \FireHub\Core\Support\Contracts\Iterator\IteratorAggregate<TKey, TValue>
  */
-interface DataStructures extends IteratorAggregate {
-
-}
+#[Small]
+#[Group('collection')]
+#[CoversClass(Lazy::class)]
+final class LazyTest extends Base {}

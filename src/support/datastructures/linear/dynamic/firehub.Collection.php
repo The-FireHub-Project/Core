@@ -16,19 +16,17 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
 use FireHub\Core\Support\Contracts\ArrayAccessible;
-use FireHub\Core\Support\DataStructures\DataStructure;
 
 /**
- * ### Abstract collection type
+ * ### Collection data structure
  * @since 1.0.0
  *
  * @template TKey
  * @template TValue
  *
- * @extends \FireHub\Core\Support\DataStructures\DataStructure<TKey, TValue>
- * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic<TKey, TValue>
- * @implements \FireHub\Core\Support\Contracts\ArrayAccessible<TKey, TValue>
+ * @extends \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic<TKey, TValue>
+ * @extends \FireHub\Core\Support\Contracts\ArrayAccessible<TKey, TValue>
  */
-abstract class Collection extends DataStructure implements Dynamic, ArrayAccessible {
+interface Collection extends Dynamic, ArrayAccessible {
 
 }

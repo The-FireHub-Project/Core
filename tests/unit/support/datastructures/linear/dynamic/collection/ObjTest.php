@@ -12,15 +12,12 @@
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace support\datastructures\collection;
+namespace support\datastructures\linear\dynamic;
 
 use FireHub\Core\Testing\Base;
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
-    Obj, Mix
-};
-use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
-    CannotAccessOffsetException, KeyAlreadyExistException, KeyDoesntExistException
+    KeyAlreadyExistException, KeyDoesntExistException
 };
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -28,13 +25,12 @@ use PHPUnit\Framework\Attributes\ {
 use stdClass;
 
 /**
- * ### Test Object array collection class
+ * ### Test Object data structure class
  * @since 1.0.0
  */
 #[Small]
 #[Group('collection')]
 #[CoversClass(Obj::class)]
-#[CoversClass(CountBy::class)]
 final class ObjTest extends Base {
 
     public Obj $collection;
@@ -71,146 +67,6 @@ final class ObjTest extends Base {
      *
      * @return void
      */
-    public function testFromArray ():void {
-
-        $this->assertEquals(
-            Obj::fromArray([
-                ['key' => $this->cls1, 'value' => 'data for object 1'],
-                ['key' => $this->cls2, 'value' => [1, 2, 3]],
-                ['key' => $this->cls3, 'value' => 20]
-            ]),
-            $this->collection
-        );
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testToArray ():void {
-
-        $this->assertSame([
-            ['key' => $this->cls1, 'value' => 'data for object 1'],
-            ['key' => $this->cls2, 'value' => [1, 2, 3]],
-            ['key' => $this->cls3, 'value' => 20],
-        ], $this->collection->toArray());
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testCount ():void {
-
-        $this->assertSame(3, $this->collection->count());
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testCountBy ():void {
-
-        $mix = new Mix();
-        $mix['d'] = 2;
-
-        $this->assertEquals(
-            $mix,
-            $this->simple->countBy()->funcAssoc(
-                fn($value, $key) => substr((string)$value, 0, 1)
-            )
-        );
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testIsEmpty ():void {
-
-        $this->assertFalse($this->collection->isEmpty());
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testIsNotEmpty ():void {
-
-        $this->assertTrue($this->collection->isNotEmpty());
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testEach ():void {
-
-        $collection = new Obj;
-        $collection[$this->cls1] = 'the data for object 1';
-        $collection[$this->cls2] = [1, 2, 3];
-        $collection[$this->cls3] = 20;
-
-        $this->assertEquals(
-            $collection,
-            $this->collection->each(fn($value, $key) => $this->collection[$key] = $value.'the ', 1)
-        );
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testAll ():void {
-
-        $this->assertTrue($this->collection->all(fn($value, $key) => $key !== new stdClass()));
-        $this->assertFalse($this->collection->all(fn($value, $key) => $key !== $this->cls3));
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testAny ():void {
-
-        $this->assertFalse($this->collection->any(fn($value, $key) => $key === new stdClass()));
-        $this->assertTrue($this->collection->any(fn($value, $key) => $key === $this->cls3));
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testNone ():void {
-
-        $this->assertTrue($this->collection->none(fn($value, $key) => $key === new stdClass()));
-        $this->assertFalse($this->collection->none(fn($value, $key) => $key === $this->cls3));
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
     public function testExist ():void {
 
         $this->assertTrue($this->collection->exist($this->cls1));
@@ -223,23 +79,9 @@ final class ObjTest extends Base {
      *
      * @return void
      */
-    public function testExistException ():void {
-
-        $this->expectException(CannotAccessOffsetException::class);
-
-        $this->collection->offsetExists(10);
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
     public function testGet ():void {
 
         $this->assertEquals('data for object 1', $this->collection->get($this->cls1));
-        $this->assertNull($this->collection->get(new stdClass()));
 
     }
 
@@ -250,9 +92,9 @@ final class ObjTest extends Base {
      */
     public function testGetException ():void {
 
-        $this->expectException(CannotAccessOffsetException::class);
+        $this->expectException(KeyDoesntExistException::class);
 
-        $this->collection->offsetGet(10);
+        $this->collection->get(new stdClass());
 
     }
 
@@ -274,19 +116,6 @@ final class ObjTest extends Base {
         $this->collection->set('the data for object 1', $cls4);
 
         $this->assertEquals($collection, $this->collection);
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testSetException ():void {
-
-        $this->expectException(CannotAccessOffsetException::class);
-
-        $this->collection->offsetSet(10, 10);
 
     }
 
@@ -369,32 +198,6 @@ final class ObjTest extends Base {
         $this->collection->remove($this->cls1);
 
         $this->assertEquals($collection, $this->collection);
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testRemoveException ():void {
-
-        $this->expectException(CannotAccessOffsetException::class);
-
-        $this->collection->offsetUnset(10);
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testJsonSerialize ():void {
-
-        $json = $this->collection->toJson();
-
-        $this->assertSame('[{"key":{},"value":"data for object 1"},{"key":{},"value":[1,2,3]},{"key":{},"value":20}]', $json);
 
     }
 

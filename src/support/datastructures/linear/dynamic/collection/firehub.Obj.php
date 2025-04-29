@@ -16,9 +16,9 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
-    CannotAccessOffsetException, KeyAlreadyExistException, KeyDoesntExistException, StorageMissingDataException
+    KeyAlreadyExistException, KeyDoesntExistException
 };
-use Closure, UnexpectedValueException, SplObjectStorage, Traversable, TypeError;
+use SplObjectStorage, Traversable;
 
 /**
  * ### Object collection type
@@ -30,13 +30,11 @@ use Closure, UnexpectedValueException, SplObjectStorage, Traversable, TypeError;
  * @template TKey of object
  * @template TValue
  *
- * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
- *
- * @phpstan-consistent-constructor
+ * @implements \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
  *
  * @api
  */
-class Obj extends Collection {
+class Obj implements Collection {
 
     /**
      * ### Underlying storage data
@@ -50,99 +48,11 @@ class Obj extends Collection {
      * ### Constructor
      * @since 1.0.0
      *
-     * @param null|Closure(SplObjectStorage<object, mixed>):void $storage [optional] <p>
-     * Underlying storage data.
-     * </p>
-     *
      * @return void
      */
-    public function __construct (?Closure $storage = null) {
+    public function __construct () {
 
-        $object = new SplObjectStorage();
-
-        if(isset($storage)) $storage($object);
-
-        $this->storage = $object; // @phpstan-ignore assign.propertyType
-
-    }
-
-    /**
-     * ### Create data structure from an array
-     * @since 1.0.0
-     *
-     * @example
-     * ```php
-     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
-     *
-     * $collection = Obj::fromArray([
-     *  ['key' => new stdClass, 'value' => 'data for object 1'],
-     *  ['key' => new stdClass, 'value' => [1, 2, 3]],
-     *  ['key' => new stdClass, 'value' => 20]
-     * ]);
-     * ```
-     *
-     * @param array<array{key: TKey, value: TValue}> $array <p>
-     * Data for data structure.
-     * </p>
-     *
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing
-     * storage datak
-     *
-     * @return static<TKey, TValue> Data structure from an array.
-     */
-    public static function fromArray (array $array):static {
-
-        return new static(function (SplObjectStorage $storage) use ($array) { // @phpstan-ignore return.type
-
-            foreach ($array as $item)
-
-                $storage[
-                    $item['key']
-                    ?? throw new StorageMissingDataException()->withData($item)->withKey('key')
-                ] = $item['value']
-                    ?? throw new StorageMissingDataException()->withData($item)->withKey('value');
-
-        });
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
-     * @example
-     * ```php
-     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
-     *
-     * $cls1 = new stdClass();
-     * $cls2 = new stdClass();
-     * $cls3 = new stdClass();
-     *
-     * $collection = new Obj();
-     * $collection[$cls1] = 'data for object 1';
-     * $collection[$cls2] = [1,2,3];
-     * $collection[$cls3] = 20;
-     *
-     * $collection->toArray();
-     *
-     * // [
-     * //   ['key' => stdClass, 'value' => 'data for object 1'],
-     * //   ['key' => stdClass, 'value' => [1, 2, 3]],
-     * //   ['key' => stdClass, 'value' => 20]
-     * // ]
-     * ```
-     *
-     * @return array<array{key: TKey, value: TValue}> Data structure data as an array.
-     */
-    public function toArray ():array {
-
-        $result = [];
-
-        foreach ($this as $key => $value)
-            $result[] = ['key' => $key, 'value' => $value];
-
-        return $result;
+        $this->storage = new SplObjectStorage();
 
     }
 
@@ -174,9 +84,6 @@ class Obj extends Collection {
      * @param TKey $key <p>
      * Collection key.
      * </p>
-     *
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
-     * access offset.
      *
      * @return bool True on success, false otherwise.
      */
@@ -214,14 +121,16 @@ class Obj extends Collection {
      * Collection key.
      * </p>
      *
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
-     * access offset.
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException If the key doesn't exist in
+     * the collection.
      *
      * @return null|TValue Item from a collection.
      */
     public function get (object $key):mixed {
 
-        return $this->offsetGet($key);
+        return $this->offsetExists($key)
+            ? $this->offsetGet($key)
+            : throw new KeyDoesntExistException()->withKey($key);
 
     }
 
@@ -260,9 +169,6 @@ class Obj extends Collection {
      * @param TKey $key <p>
      * Collection key.
      * </p>
-     *
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
-     * access offset.
      *
      * @return void
      */
@@ -311,8 +217,6 @@ class Obj extends Collection {
      * Collection key.
      * </p>
      *
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
-     * access offset.
      * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyAlreadyExistException If the key already exists in
      * the collection.
      *
@@ -364,8 +268,6 @@ class Obj extends Collection {
      * Collection key.
      * </p>
      *
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
-     * access offset.
      * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException If the key doesn't exist in
      * the collection.
      *
@@ -410,9 +312,6 @@ class Obj extends Collection {
      * Collection key.
      * </p>
      *
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
-     * access offset.
-     *
      * @return void
      */
     public function remove (object $key):void {
@@ -425,21 +324,10 @@ class Obj extends Collection {
      * @inheritDoc
      *
      * @since 1.0.0
-     *
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
-     * access offset.
      */
     public function offsetExists (mixed $offset):bool {
 
-        try {
-
-            return isset($this->storage[$offset]);
-
-        } catch (TypeError) {
-
-            throw new CannotAccessOffsetException()->withValue($offset);
-
-        }
+        return isset($this->storage[$offset]);
 
     }
 
@@ -447,25 +335,10 @@ class Obj extends Collection {
      * @inheritDoc
      *
      * @since 1.0.0
-     *
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
-     * access offset.
      */
     public function offsetGet (mixed $offset):mixed {
 
-        try {
-
-            return $this->storage[$offset];
-
-        } catch (TypeError) {
-
-            throw new CannotAccessOffsetException()->withValue($offset);
-
-        } catch (UnexpectedValueException) {
-
-            return null;
-
-        }
+        return $this->storage[$offset];
 
     }
 
@@ -473,21 +346,10 @@ class Obj extends Collection {
      * @inheritDoc
      *
      * @since 1.0.0
-     *
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
-     * access offset.
      */
     public function offsetSet (mixed $offset, mixed $value):void {
 
-        try {
-
-            $this->storage[$offset] = $value;
-
-        } catch (TypeError) {
-
-            throw new CannotAccessOffsetException()->withValue($offset);
-
-        }
+        $this->storage[$offset] = $value;
 
     }
 
@@ -495,21 +357,10 @@ class Obj extends Collection {
      * @inheritDoc
      *
      * @since 1.0.0
-     *
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\CannotAccessOffsetException If data structure can't
-     * access offset.
      */
     public function offsetUnset (mixed $offset):void {
 
-        try {
-
-            unset($this->storage[$offset]);
-
-        } catch (TypeError) {
-
-            throw new CannotAccessOffsetException()->withValue($offset);
-
-        }
+        unset($this->storage[$offset]);
 
     }
 
@@ -522,66 +373,6 @@ class Obj extends Collection {
 
         foreach ($this->storage as $object)
             yield $object => $this->storage[$object];
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
-     * @param array<array{key: TKey, value: TValue}> $data <p>
-     * Serialized data.
-     * </p>
-     *
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing
-     * storage data.
-     *
-     * @phpstan-ignore-next-line method.childParameterType
-     */
-    public function __unserialize (array $data):void {
-
-        $storage = new SplObjectStorage();
-
-        foreach ($data as $item)
-            $storage[
-                $item['key']
-                ?? throw new StorageMissingDataException()->withData($item)->withKey('key')
-            ] = $item['value']
-                ?? throw new StorageMissingDataException()->withData($item)->withKey('value');
-
-        $this->storage = $storage; // @phpstan-ignore assign.propertyType
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
-     * @param array<array{key: TKey, value: TValue}> $data <p>
-     * Decoded JSON string as an array.
-     * </p>
-     *
-     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing
-     * storage data.
-     *
-     * @return static<object, mixed> Object from JSON encoded parameter.
-     *
-     * @phpstan-ignore-next-line method.childParameterType
-     */
-    protected static function jsonToObject (array $data):static {
-
-        $storage = new static();
-
-        foreach ($data as $item)
-            $storage[
-                $item['key']
-                ?? throw new StorageMissingDataException()->withData($item)->withKey('key')
-            ] = $item['value']
-                ?? throw new StorageMissingDataException()->withData($item)->withKey('value');
-
-        return $storage;
 
     }
 
