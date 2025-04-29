@@ -42,14 +42,14 @@ class Arr implements Collection {
      * ### Constructor
      * @since 1.0.0
      *
-     * @param array<TKey, TValue> $storage <p>
+     * @param array<TKey, TValue> $storage [optional] <p>
      * Underlying storage data.
      * </p>
      *
      * @return void
      */
     public function __construct (
-        protected array $storage
+        protected array $storage = []
     ) {}
 
     /**

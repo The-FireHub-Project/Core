@@ -15,8 +15,11 @@
 namespace support\datastructures\linear\dynamic;
 
 use FireHub\Core\Testing\Base;
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Arr;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
+    Arr, Obj
+};
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\Enums\Data\Type;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
@@ -97,6 +100,32 @@ final class ArrTest extends Base {
         $this->assertSame(4, $this->associative->count());
 
     }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCountBy ():void {
+
+        $this->assertEquals(
+            new Arr(['Jane' => 3, 'John' => 1, 'Richard' => 2]),
+            $this->indexed->countBy()->values()
+        );
+
+        $mix = new Obj();
+        $mix[Type::T_STRING] = 2;
+        $mix[Type::T_INT] = 2;
+
+        $this->assertEquals($mix, $this->associative->countBy()->type());
+
+        $this->assertEquals(
+            new Arr(['J' => 1, 'D' => 1, 2 => 2]),
+            $this->associative->countBy()->func(fn($value, $key) => substr((string)$value, 0, 1))
+        );
+
+    }
+
 
     /**
      * @since 1.0.0
