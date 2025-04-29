@@ -88,4 +88,29 @@ final class LazyTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testJsonSerialize ():void {
+
+        $json = $this->collection->toJson();
+
+        $this->assertSame('[{"key":"firstname","value":"John"},{"key":"lastname","value":"Doe"},{"key":"age","value":25},{"key":10,"value":2}]', $json);
+        $this->assertEquals($this->collection, Lazy::fromJson($json));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSerialize ():void {
+
+        $this->assertEquals($this->collection, Lazy::unserialize($this->collection->serialize()));
+
+    }
+
 }

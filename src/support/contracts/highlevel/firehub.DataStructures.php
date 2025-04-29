@@ -14,8 +14,11 @@
 
 namespace FireHub\Core\Support\Contracts\HighLevel;
 
-use FireHub\Core\Support\Contracts\Countable;
+use FireHub\Core\Support\Contracts\ {
+    Countable, JsonSerializable
+};
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
+use FireHub\Core\Support\Contracts\Magic\Serializable;
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
 
 /**
@@ -27,7 +30,7 @@ use FireHub\Core\Support\DataStructures\Operation\CountBy;
  *
  * @extends \FireHub\Core\Support\Contracts\Iterator\IteratorAggregate<TKey, TValue>
  */
-interface DataStructures extends Countable, IteratorAggregate {
+interface DataStructures extends Countable, IteratorAggregate, JsonSerializable, Serializable {
 
     /**
      * ### Get data structure data as an array

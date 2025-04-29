@@ -17,6 +17,9 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Contracts\Overloadable;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\Traits\ {
+    Jsonable, Serializable
+};
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
@@ -39,6 +42,18 @@ use Traversable;
  * @phpstan-consistent-constructor
  */
 class Arr implements Collection, Overloadable {
+
+    /**
+     * ### Trait contains all common JSON methods
+     * @since 1.0.0
+     */
+    use Jsonable;
+
+    /**
+     * ### Trait contains all common serialize and unserialize methods
+     * @since 1.0.0
+     */
+    use Serializable;
 
     /**
      * ### Constructor
@@ -372,7 +387,9 @@ class Arr implements Collection, Overloadable {
      */
     public function offsetSet (mixed $offset, mixed $value):void {
 
-        $this->storage[$offset] = $value;
+        isset($offset)
+            ? $this->storage[$offset] = $value
+            : $this->storage[] = $value;
 
     }
 
@@ -403,8 +420,57 @@ class Arr implements Collection, Overloadable {
      *
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Arr::offsetExists() Checks whether an
-     * offset exists.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Arr::toArray() To get data structure
+     * an array.
+     *
+     * @return array<TKey, TValue> Data which can be serialized by json_encode(), which is a value of any type other
+     * than a resource.
+     */
+    public function jsonSerialize ():array {
+
+        return $this->toArray();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Arr::toArray() To get data structure
+     * an array.
+     *
+     * @return array<TKey, TValue> An associative array of key/value pairs that represent the serialized form
+     * of the object.
+     */
+    public function __serialize ():array {
+
+        return $this->jsonSerialize();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @param array<TKey, TValue> $data <p>
+     * Serialized data.
+     * </p>
+     */
+    public function __unserialize (array $data):void {
+
+        $this->storage = $data;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Arr::offsetExists() Checks whether
+     * an offset exists.
      */
     public function __isset (int|string $name):bool {
 
@@ -449,6 +515,25 @@ class Arr implements Collection, Overloadable {
     public function __unset (int|string $name):void {
 
         $this->offsetUnset($name);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @param array<TKey, TValue> $data <p>
+     * Decoded JSON string as an array.
+     * </p>
+     *
+     * @return static<array-key, mixed> Object from JSON encoded parameter.
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    protected static function jsonToObject (array $data):static {
+
+        return new static($data);
 
     }
 

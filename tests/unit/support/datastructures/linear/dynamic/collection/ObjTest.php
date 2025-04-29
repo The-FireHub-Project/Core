@@ -247,4 +247,17 @@ final class ObjTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testJsonSerialize ():void {
+
+        $json = $this->collection->toJson();
+
+        $this->assertSame('[{"key":{},"value":"data for object 1"},{"key":{},"value":[1,2,3]},{"key":{},"value":20}]', $json);
+
+    }
+
 }

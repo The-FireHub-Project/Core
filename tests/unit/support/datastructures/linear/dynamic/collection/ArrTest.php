@@ -268,6 +268,31 @@ final class ArrTest extends Base {
      *
      * @return void
      */
+    public function testJsonSerialize ():void {
+
+        $json = $this->associative->toJson();
+
+        $this->assertSame('{"firstname":"John","lastname":"Doe","age":25,"10":2}', $json);
+        $this->assertEquals($this->associative, Arr::fromJson($json));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSerialize ():void {
+
+        $this->assertEquals($this->associative, Arr::unserialize($this->associative->serialize()));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testOverload ():void {
 
         $collection = new Arr(

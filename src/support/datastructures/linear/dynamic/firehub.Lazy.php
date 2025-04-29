@@ -16,6 +16,9 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\Traits\ {
+    Jsonable, Serializable
+};
 use FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException;
 use Closure, Generator, Traversable;
 
@@ -35,6 +38,18 @@ use Closure, Generator, Traversable;
  * @phpstan-consistent-constructor
  */
 class Lazy implements Dynamic {
+
+    /**
+     * ### Trait contains all common JSON methods
+     * @since 1.0.0
+     */
+    use Jsonable;
+
+    /**
+     * ### Trait contains all common serialize and unserialize methods
+     * @since 1.0.0
+     */
+    use Serializable;
 
     /**
      * ### Constructor
@@ -154,6 +169,97 @@ class Lazy implements Dynamic {
     public function getIterator ():Traversable {
 
         return $this->invoke();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy::toArray() To get data structure an array.
+     *
+     * @return array<array{key: TKey, value: TValue}> Data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize ():array {
+
+        return $this->toArray();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy::toArray() To get data structure an array.
+     *
+     * @return array<array{key: TKey, value: TValue}> An associative array of key/value pairs that represent
+     * the serialized form of the object.
+     */
+    public function __serialize ():array {
+
+        return $this->toArray();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy::invoke() To invoke storage.
+     *
+     * @param array<array{key: TKey, value: TValue}> $data <p>
+     * Serialized data.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing
+     * storage data.
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    public function __unserialize (array $data):void {
+
+        $this->storage = static function () use ($data) {
+
+            foreach ($data as $item)
+                yield $item['key']
+                    ?? throw new StorageMissingDataException()->withData($item)->withKey('key')
+                => $item['value']
+                    ?? throw new StorageMissingDataException()->withData($item)->withKey('value');
+
+        };
+
+        $this->invoke();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @param array<array{key: TKey, value: TValue}> $data <p>
+     * Decoded JSON string as an array.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing
+     * storage data.
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    protected static function jsonToObject (array $data):static {
+
+        return new static(function () use ($data) {
+            foreach ($data as $item)
+                yield $item['key']
+                    ?? throw new StorageMissingDataException()->withData($item)->withKey('key')
+                => $item['value']
+                    ?? throw new StorageMissingDataException()->withData($item)->withKey('value');
+
+        });
 
     }
 
