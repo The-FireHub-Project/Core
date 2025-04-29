@@ -65,7 +65,7 @@ final class ArrTest extends Base {
     public function testFromArray ():void {
 
         $this->assertEquals(
-            new Arr(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]),
+            Arr::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]),
             $this->associative
         );
 
