@@ -16,6 +16,7 @@ namespace support\datastructures\linear\dynamic;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
@@ -31,6 +32,7 @@ use stdClass;
 #[Small]
 #[Group('collection')]
 #[CoversClass(Obj::class)]
+#[CoversClass(CountBy::class)]
 final class ObjTest extends Base {
 
     public Obj $collection;
@@ -92,6 +94,17 @@ final class ObjTest extends Base {
             ['key' => $this->cls2, 'value' => [1, 2, 3]],
             ['key' => $this->cls3, 'value' => 20],
         ], $this->collection->toArray());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCount ():void {
+
+        $this->assertSame(3, $this->collection->count());
 
     }
 

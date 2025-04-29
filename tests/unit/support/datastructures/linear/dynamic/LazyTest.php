@@ -16,6 +16,7 @@ namespace support\datastructures\linear\dynamic;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -28,6 +29,7 @@ use Generator;
 #[Small]
 #[Group('collection')]
 #[CoversClass(Lazy::class)]
+#[CoversClass(CountBy::class)]
 final class LazyTest extends Base {
 
     public Lazy $collection;
@@ -72,6 +74,17 @@ final class LazyTest extends Base {
             ['key' => 'age', 'value' => 25],
             ['key' => 10, 'value' => 2]
         ], $this->collection->toArray());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCount ():void {
+
+        $this->assertSame(4, $this->collection->count());
 
     }
 

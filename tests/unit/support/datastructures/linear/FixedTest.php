@@ -16,6 +16,7 @@ namespace support\datastructures\linear;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Fixed;
+use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -27,6 +28,7 @@ use PHPUnit\Framework\Attributes\ {
 #[Small]
 #[Group('collection')]
 #[CoversClass(Fixed::class)]
+#[CoversClass(CountBy::class)]
 final class FixedTest extends Base {
 
     public Fixed $collection;
@@ -58,6 +60,16 @@ final class FixedTest extends Base {
             $this->collection
         );
 
+        $storage = new Fixed(3);
+        $storage[0] = 'three';
+        $storage[1] = 'one';
+        $storage[2] = 'two';
+
+        $this->assertEquals(
+            Fixed::fromArray([1 => 'one', 2 => 'two', 0 => 'three'], true),
+            $storage
+        );
+
     }
 
     /**
@@ -68,6 +80,41 @@ final class FixedTest extends Base {
     public function testToArray ():void {
 
         $this->assertSame(['one', 'two', 'three'], $this->collection->toArray());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testGetSize ():void {
+
+        $this->assertSame(3, $this->collection->getSize());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSetSize ():void {
+
+        $this->collection->setSize(4);
+
+        $this->assertSame(4, $this->collection->getSize());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCount ():void {
+
+        $this->assertSame(3, $this->collection->count());
 
     }
 

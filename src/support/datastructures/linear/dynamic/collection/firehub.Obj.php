@@ -15,6 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException, StorageMissingDataException
 };
@@ -134,6 +135,33 @@ class Obj implements Collection {
             $result[] = ['key' => $key, 'value' => $value];
 
         return $result;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection::countBy() To count elements in
+     * a data structure.
+     */
+    public function count ():int {
+
+        return $this->countBy()->elements();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy As return.
+     */
+    public function countBy ():CountBy {
+
+        return new CountBy($this);
 
     }
 

@@ -16,6 +16,7 @@ namespace support\datastructures\linear\dynamic;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Arr;
+use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
@@ -31,6 +32,7 @@ use stdClass;
 #[Small]
 #[Group('collection')]
 #[CoversClass(Arr::class)]
+#[CoversClass(CountBy::class)]
 final class ArrTest extends Base {
 
     public Arr $indexed;
@@ -82,6 +84,17 @@ final class ArrTest extends Base {
             ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2],
             $this->associative->toArray()
         );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCount ():void {
+
+        $this->assertSame(4, $this->associative->count());
 
     }
 

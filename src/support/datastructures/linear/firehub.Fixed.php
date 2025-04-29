@@ -15,6 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
+use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use FireHub\Core\Support\Contracts\ArrayAccessible;
 use FireHub\Core\Support\LowLevel\ {
     Iterables, Iterator
@@ -101,6 +102,34 @@ class Fixed extends SplFixedArray implements FixedContract, ArrayAccessible {
     }
 
     /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $collection->toArray();
+     *
+     * // ['one', 'two', 'three']
+     * ```
+     *
+     * @return array<int, null|TValue> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        return Iterator::toArray($this);
+
+    }
+
+    /**
      * ### Get the size of the data structure
      * @since 1.0.0
      *
@@ -135,26 +164,25 @@ class Fixed extends SplFixedArray implements FixedContract, ArrayAccessible {
      *
      * @since 1.0.0
      *
-     * @example
-     * ```php
-     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
-     *
-     * $collection = new Fixed(3);
-     *
-     * $collection[0] = 'one';
-     * $collection[1] = 'two';
-     * $collection[2] = 'three';
-     *
-     * $collection->toArray();
-     *
-     * // ['one', 'two', 'three']
-     * ```
-     *
-     * @return array<int, null|TValue> Data structure data as an array.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection::countBy() To count elements in
+     * a data structure.
      */
-    public function toArray ():array {
+    public function count ():int {
 
-        return Iterator::toArray($this);
+        return $this->countBy()->elements();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy As return.
+     */
+    public function countBy ():CountBy {
+
+        return new CountBy($this);
 
     }
 
