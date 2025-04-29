@@ -16,6 +16,9 @@ namespace FireHub\Core\Support\DataStructures\Linear;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
 use FireHub\Core\Support\Contracts\ArrayAccessible;
+use FireHub\Core\Support\LowLevel\ {
+    Iterables, Iterator
+};
 use SplFixedArray;
 
 /**
@@ -32,8 +35,128 @@ use SplFixedArray;
  * @implements \FireHub\Core\Support\Contracts\ArrayAccessible<int, ?TValue>
  *
  * @api
+ *
+ * @phpstan-consistent-constructor
  */
 class Fixed extends SplFixedArray implements FixedContract, ArrayAccessible {
+
+    /**
+     * ### Constructor
+     * @since 1.0.0
+     *
+     * @param non-negative-int $size <p>
+     * Size of the data structure.
+     * </p>
+     *
+     * @return void
+     */
+    public function __construct (int $size) {
+
+        parent::__construct($size);
+
+    }
+
+    /**
+     * ### Create data structure from an array
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count array parameter items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = Obj::fromArray(['one', 'two', 'three']);
+     * ```
+     *
+     * @param array<int, null|TValue> $array <p>
+     * Data for data structure.
+     * </p>
+     * @param bool $preserve_keys [optional] <p>
+     * Try to save the numeric indexes used in the original array.
+     * </p>
+     *
+     * @return static<TValue> Data structure from an array.
+     */
+    public static function fromArray (array $array, bool $preserve_keys = false):static {
+
+        $storage = new static(Iterables::count($array));
+
+        if ($preserve_keys) {
+
+            foreach ($array as $key => $item)
+                $storage[$key] = $item;
+
+        } else {
+
+            $i = 0;
+
+            foreach ($array as $item)
+                $storage[$i++] = $item;
+
+        }
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * ### Get the size of the data structure
+     * @since 1.0.0
+     *
+     * @return non-negative-int Size of the data structure.
+     */
+    public function getSize ():int {
+
+        return parent::getSize() > 0 ? parent::getSize() : 0;
+
+    }
+
+    /**
+     * ### Change the size of the data structure
+     * @since 1.0.0
+     *
+     * @param non-negative-int $size <p>
+     * Size of the data structure.
+     * </p>
+     *
+     * @return true Always true.
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    public function setSize (int $size):true {
+
+        return parent::setSize($size); // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $collection->toArray();
+     *
+     * // ['one', 'two', 'three']
+     * ```
+     *
+     * @return array<int, null|TValue> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        return Iterator::toArray($this);
+
+    }
 
     /**
      * ### Check if item exist in collection

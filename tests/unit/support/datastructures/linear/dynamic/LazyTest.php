@@ -19,6 +19,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
+use Generator;
 
 /**
  * ### Test Lazy data structure class
@@ -27,4 +28,51 @@ use PHPUnit\Framework\Attributes\ {
 #[Small]
 #[Group('collection')]
 #[CoversClass(Lazy::class)]
-final class LazyTest extends Base {}
+final class LazyTest extends Base {
+
+    public Lazy $collection;
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function setUp ():void {
+
+        $this->collection = new Lazy(
+            fn():Generator => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFromArray ():void {
+
+        $this->assertEquals(
+            Lazy::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]),
+            $this->collection
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testToArray ():void {
+
+        $this->assertSame([
+            ['key' => 'firstname', 'value' => 'John'],
+            ['key' => 'lastname', 'value' => 'Doe'],
+            ['key' => 'age', 'value' => 25],
+            ['key' => 10, 'value' => 2]
+        ], $this->collection->toArray());
+
+    }
+
+}

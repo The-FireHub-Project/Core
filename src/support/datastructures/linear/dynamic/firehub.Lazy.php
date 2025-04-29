@@ -15,6 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
+use FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException;
 use Closure, Generator, Traversable;
 
 /**
@@ -29,6 +30,8 @@ use Closure, Generator, Traversable;
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic<TKey, TValue>
  *
  * @api
+ *
+ * @phpstan-consistent-constructor
  */
 class Lazy implements Dynamic {
 
@@ -45,6 +48,73 @@ class Lazy implements Dynamic {
     public function __construct (
         protected Closure $storage
     ) {}
+
+    /**
+     * ### Create data structure from an array
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = Lazy::fromArray(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * ```
+     * @param array<array{key: TKey, value: TValue}> $array <p>
+     * Data for data structure.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing
+     * storage data.
+     *
+     * @return static<TKey, TValue> Data structure from an array.
+     */
+    public static function fromArray (array $array):static {
+
+        return new static(function () use ($array) {
+
+            foreach ($array as $item)
+                yield $item['key']
+                    ?? throw new StorageMissingDataException()->withData($item)->withKey('key')
+                => $item['value']
+                    ?? throw new StorageMissingDataException()->withData($item)->withKey('value');
+
+        });
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->exist(0);
+     *
+     * // [
+     * //   ['key' => 'firstname' => 'firstname', 'value' => 'John'],
+     * //   ['key' => 'lastname', 'value' => 'Doe'],
+     * //   ['key' => 'age', 'value' => 25],
+     * //   ['key' => 10, 'value' => 2]
+     * // ]
+     * ```
+     *
+     * @return array<array{key: TKey, value: TValue}> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        $result = [];
+
+        foreach ($this as $key => $value)
+            $result[] = ['key' => $key, 'value' => $value];
+
+        return $result;
+
+    }
 
     /**
      * @inheritDoc

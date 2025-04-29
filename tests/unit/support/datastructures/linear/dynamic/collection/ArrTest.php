@@ -62,6 +62,34 @@ final class ArrTest extends Base {
      *
      * @return void
      */
+    public function testFromArray ():void {
+
+        $this->assertEquals(
+            new Arr(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]),
+            $this->associative
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testToArray ():void {
+
+        $this->assertSame(
+            ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2],
+            $this->associative->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testExist ():void {
 
         $this->assertTrue($this->associative->exist('firstname'));
