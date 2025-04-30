@@ -16,6 +16,9 @@ namespace support\datastructures\linear\dynamic\collection;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+use FireHub\Core\Support\DataStructures\Exceptions\ {
+    KeyAlreadyExistException, KeyDoesntExistException
+};
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -54,6 +57,142 @@ final class AssociativeTest extends Base {
             ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2],
             $this->collection->toArray()
         );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testExist ():void {
+
+        $this->assertTrue($this->collection->exist('firstname'));
+        $this->assertFalse($this->collection->exist('gander'));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testGet ():void {
+
+        $this->assertSame('John', $this->collection->get('firstname'));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testGetException ():void {
+
+        $this->expectException(KeyDoesntExistException::class);
+
+        $this->collection->get('gender');
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSet ():void {
+
+        $collection = new Associative(['firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']);
+
+        $this->collection->set('Jane', 'firstname');
+        $this->collection->set('female', 'gender');
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAdd ():void {
+
+        $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']);
+
+        $this->collection->add('female', 'gender');
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAddException ():void {
+
+        $this->expectException(KeyAlreadyExistException::class);
+
+        $this->collection->add('Jane', 'firstname');
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testReplace ():void {
+
+        $collection = new Associative(['firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+
+        $this->collection->replace('Jane', 'firstname');
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testReplaceException ():void {
+
+        $this->expectException(KeyDoesntExistException::class);
+
+        $this->collection->replace('male', 'gender');
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testRemove ():void {
+
+        $collection = new Associative(['lastname' => 'Doe', 'age' => 25, 10 => 2]);
+
+        $this->collection->remove('firstname');
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testRemoveException ():void {
+
+        $this->expectException(KeyDoesntExistException::class);
+
+        $this->collection->remove('middlename');
 
     }
 

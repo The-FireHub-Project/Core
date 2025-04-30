@@ -17,6 +17,9 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\Contracts\ArrayAccessible;
 use FireHub\Core\Support\DataStructures\Contracts\Overloadable;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use FireHub\Core\Support\DataStructures\Exceptions\ {
+    KeyAlreadyExistException, KeyDoesntExistException
+};
 use Traversable;
 
 /**
@@ -73,6 +76,220 @@ class Associative extends Collection implements ArrayAccessible, Overloadable {
     public function toArray ():array {
 
         return $this->storage;
+
+    }
+
+    /**
+     * ### Check if item exist in collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetExists() Checks
+     * whether an offset exists.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->exist('firstname');
+     *
+     * // true
+     * ```
+     *
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @return bool True on success, false otherwise.
+     */
+    public function exist (int|string $key):bool {
+
+        return $this->offsetExists($key);
+
+    }
+
+    /**
+     * ### Gets item from collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetGet() As offset
+     * to retrieve.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->get('firstname');
+     *
+     * // 'John'
+     * ```
+     *
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException If the key doesn't exist in
+     * the collection.
+     *
+     * @return TValue Item from a collection.
+     */
+    public function get (int|string $key):mixed {
+
+        return $this->offsetExists($key) // @phpstan-ignore return.type
+            ? $this->offsetGet($key)
+            : throw new KeyDoesntExistException()->withKey($key);
+
+    }
+
+    /**
+     * ### Adds or replaces item in collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetSet() To assign a
+     * value to the specified offset.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->set('Jane', 'firstname');
+     * $collection->set('female', 'gender');
+     *
+     * // ['firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']
+     * ```
+     *
+     * @param TValue $value <p>
+     * Collection value.
+     * </p>
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @return void
+     */
+    public function set (mixed $value, int|string $key):void {
+
+        $this->offsetSet($key, $value);
+
+    }
+
+    /**
+     * ### Adds item in collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetExists() To check
+     * whether an offset exists.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetSet() To assign a
+     * value to the specified offset.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->add('female', 'gender');
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']
+     * ```
+     *
+     * @param TValue $value <p>
+     * Collection value.
+     * </p>
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyAlreadyExistException If the key already exists in
+     * the collection.
+     *
+     * @return void
+     */
+    public function add (mixed $value, int|string $key):void {
+
+        !$this->offsetExists($key)
+            ? $this->offsetSet($key, $value)
+            : throw new KeyAlreadyExistException()->withKey($key);
+
+    }
+
+    /**
+     * ### Replaces item in collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetExists() To check
+     * whether an offset exists.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetSet() To assign a
+     * value to the specified offset.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->replace('Jane', 'firstname');
+     *
+     * // ['firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']
+     * ```
+     *
+     * @param TValue $value <p>
+     * Collection value.
+     * </p>
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException If the key doesn't exist in
+     * the collection.
+     *
+     * @return void
+     */
+    public function replace (mixed $value, int|string $key):void {
+
+        $this->offsetExists($key)
+            ? $this->offsetSet($key, $value)
+            : throw new KeyDoesntExistException()->withKey($key);
+
+    }
+
+    /**
+     * ### Removes item from collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetUnset() To unset
+     * an offset.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->remove('firstname');
+     *
+     * // ['lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']
+     * ```
+     *
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException If the key doesn't exist in
+     * the collection.
+     *
+     * @return void
+     */
+    public function remove (int|string $key):void {
+
+        $this->offsetExists($key)
+            ? $this->offsetUnset($key)
+            : throw new KeyDoesntExistException()->withKey($key);
 
     }
 
