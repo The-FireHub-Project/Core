@@ -15,12 +15,12 @@
 namespace FireHub\Core\Support\DataStructures\Traits;
 
 /**
- * ### Common data structure methods
+ * ### Enumerable data structure methods that every element meets a given criterion
  * @since 1.0.0
  *
  * @template TKey
  * @template TValue
  */
-trait Common {
+trait Enumerable {
 
 }

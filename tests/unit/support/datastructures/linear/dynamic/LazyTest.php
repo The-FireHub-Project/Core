@@ -45,4 +45,20 @@ final class LazyTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testToArray ():void {
+
+        $this->assertSame([
+            ['key' => 'firstname', 'value' => 'John'],
+            ['key' => 'lastname', 'value' => 'Doe'],
+            ['key' => 'age', 'value' => 25],
+            ['key' => 10, 'value' => 2]
+        ], $this->collection->toArray());
+
+    }
+
 }

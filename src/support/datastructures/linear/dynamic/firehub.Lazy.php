@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
-use FireHub\Core\Support\DataStructures\Traits\Common;
+use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 use Closure, Generator, Traversable;
 
 /**
@@ -36,12 +36,12 @@ use Closure, Generator, Traversable;
 class Lazy implements Dynamic {
 
     /**
-     * ### Common data structure methods
+     * ### Enumerable data structure methods that every element meets a given criterion
      * @since 1.0.0
      *
-     * @use \FireHub\Core\Support\DataStructures\Traits\Common<TKey, TValue>
+     * @use \FireHub\Core\Support\DataStructures\Traits\Enumerable<TKey, TValue>
      */
-    use Common;
+    use Enumerable;
 
     /**
      * ### Constructor
@@ -56,6 +56,40 @@ class Lazy implements Dynamic {
     public function __construct (
         protected Closure $storage
     ) {}
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->exist(0);
+     *
+     * // [
+     * //   ['key' => 'firstname' => 'firstname', 'value' => 'John'],
+     * //   ['key' => 'lastname', 'value' => 'Doe'],
+     * //   ['key' => 'age', 'value' => 25],
+     * //   ['key' => 10, 'value' => 2]
+     * // ]
+     * ```
+     *
+     * @return array<array{key: TKey, value: TValue}> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        $result = [];
+
+        foreach ($this as $key => $value)
+            $result[] = ['key' => $key, 'value' => $value];
+
+        return $result;
+
+    }
 
     /**
      * @inheritDoc

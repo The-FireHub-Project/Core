@@ -64,6 +64,30 @@ class Indexed extends Collection {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->toArray();
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']
+     * ```
+     *
+     * @return array<TValue> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        return $this->storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
      */
     public function getIterator ():Traversable {
 

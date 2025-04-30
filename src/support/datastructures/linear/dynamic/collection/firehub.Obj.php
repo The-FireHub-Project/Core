@@ -15,6 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use FireHub\Core\Support\Contracts\ArrayAccessible;
 use SplObjectStorage, Traversable;
 
 /**
@@ -28,12 +29,13 @@ use SplObjectStorage, Traversable;
  * @template TValue
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
+ * @implements \FireHub\Core\Support\Contracts\ArrayAccessible<TKey, TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Obj extends Collection {
+class Obj extends Collection implements ArrayAccessible {
 
     /**
      * ### Underlying storage data
@@ -52,6 +54,90 @@ class Obj extends Collection {
     public function __construct () {
 
         $this->storage = new SplObjectStorage();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection = new Obj();
+     * $collection[$cls1] = 'data for object 1';
+     * $collection[$cls2] = [1,2,3];
+     * $collection[$cls3] = 20;
+     *
+     * $collection->toArray();
+     *
+     * // [
+     * //   ['key' => stdClass, 'value' => 'data for object 1'],
+     * //   ['key' => stdClass, 'value' => [1, 2, 3]],
+     * //   ['key' => stdClass, 'value' => 20]
+     * // ]
+     * ```
+     *
+     * @return array<array{key: TKey, value: TValue}> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        $result = [];
+
+        foreach ($this as $key => $value)
+            $result[] = ['key' => $key, 'value' => $value];
+
+        return $result;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function offsetExists (mixed $offset):bool {
+
+        return isset($this->storage[$offset]);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function offsetGet (mixed $offset):mixed {
+
+        return $this->storage[$offset];
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function offsetSet (mixed $offset, mixed $value):void {
+
+        $this->storage[$offset] = $value;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function offsetUnset (mixed $offset):void {
+
+        unset($this->storage[$offset]);
 
     }
 

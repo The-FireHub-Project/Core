@@ -15,6 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use FireHub\Core\Support\Contracts\ArrayAccessible;
 use Traversable;
 
 /**
@@ -27,12 +28,13 @@ use Traversable;
  * @template TValue
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
+ * @implements \FireHub\Core\Support\Contracts\ArrayAccessible<TKey, TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Associative extends Collection {
+class Associative extends Collection implements ArrayAccessible {
 
     /**
      * ### Constructor
@@ -47,6 +49,74 @@ class Associative extends Collection {
     public function __construct (
         protected array $storage = []
     ) {}
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->toArray();
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]
+     * ```
+     *
+     * @return array<TKey, TValue> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        return $this->storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function offsetExists (mixed $offset):bool {
+
+        return isset($this->storage[$offset]);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function offsetGet (mixed $offset):mixed {
+
+        return $this->storage[$offset];
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function offsetSet (mixed $offset, mixed $value):void {
+
+        $this->storage[$offset] = $value;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function offsetUnset (mixed $offset):void {
+
+        unset($this->storage[$offset]);
+
+    }
 
     /**
      * @inheritDoc

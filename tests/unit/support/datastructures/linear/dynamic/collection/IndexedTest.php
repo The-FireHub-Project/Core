@@ -44,4 +44,18 @@ final class IndexedTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testToArray ():void {
+
+        $this->assertSame(
+            ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard'],
+            $this->collection->toArray()
+        );
+
+    }
+
 }

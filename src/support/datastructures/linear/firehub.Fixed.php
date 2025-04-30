@@ -15,34 +15,38 @@
 namespace FireHub\Core\Support\DataStructures\Linear;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
-use FireHub\Core\Support\DataStructures\Traits\Common;
+use FireHub\Core\Support\Contracts\ArrayAccessible;
+use FireHub\Core\Support\DataStructures\Traits\Enumerable;
+use FireHub\Core\Support\LowLevel\Iterator;
 use SplFixedArray;
 
 /**
  * ### Fixed data structure type
  *
- * Fixed data structure allows only integers as keys, but it is faster and uses less memory than an array collection.
- * This collection type must be resized manually and allows only integers within the range as indexes.
+ * Fixed data structure allows only integers as keys, but it is faster and uses less memory than an array data
+ * structure.
+ * This data structure type must be resized manually and allows only integers within the range as indexes.
  * @since 1.0.0
  *
  * @template TValue
  *
  * @extends SplFixedArray<TValue>
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed<int, ?TValue>
+ * @implements \FireHub\Core\Support\Contracts\ArrayAccessible<int, ?TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Fixed extends SplFixedArray implements FixedContract {
+class Fixed extends SplFixedArray implements FixedContract, ArrayAccessible {
 
     /**
-     * ### Common data structure methods
+     * ### Enumerable data structure methods that every element meets a given criterion
      * @since 1.0.0
      *
-     * @use \FireHub\Core\Support\DataStructures\Traits\Common<int, ?TValue>
+     * @use \FireHub\Core\Support\DataStructures\Traits\Enumerable<int, ?TValue>
      */
-    use Common;
+    use Enumerable;
 
     /**
      * ### Constructor
@@ -87,6 +91,34 @@ class Fixed extends SplFixedArray implements FixedContract {
     public function setSize (int $size):true {
 
         return parent::setSize($size); // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $collection->toArray();
+     *
+     * // ['one', 'two', 'three']
+     * ```
+     *
+     * @return array<int, null|TValue> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        return Iterator::toArray($this);
 
     }
 
