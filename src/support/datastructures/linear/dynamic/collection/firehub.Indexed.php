@@ -15,6 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use FireHub\Core\Support\DataStructures\Contracts\Sequantionable;
 use FireHub\Core\Support\LowLevel\Arr;
 use Traversable;
 
@@ -27,12 +28,13 @@ use Traversable;
  * @template TValue
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<int, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Sequantionable<TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Indexed extends Collection {
+class Indexed extends Collection implements Sequantionable {
 
     /**
      * ### Underlying storage data
@@ -81,6 +83,76 @@ class Indexed extends Collection {
     public function toArray ():array {
 
         return $this->storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::shift() To remove an item at the beginning of the data structure if
+     * $items value is 5 or less.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::splice() To remove an item at the beginning of the data structure if
+     * $items value is more than 5.
+     */
+    public function shift (int $items = 1):void {
+
+        if ($items <= 5) {
+
+            for ($i = 0; $i < $items; $i++) Arr::shift($this->storage);
+
+        } else {
+
+            Arr::splice($this->storage, 0, $items);
+
+        }
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::pop() To remove an item at the end of the data collection if
+     * $items value is 5 or less.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::splice() To remove an item at the end of the data collection if
+     * $items value is greater than 5.
+     */
+    public function pop (int $items = 1):void {
+
+        if ($items <= 5) {
+
+            for ($i = 0; $i < $items; $i++) Arr::pop($this->storage);
+
+        } else {
+
+            Arr::splice($this->storage, -$items);
+
+        }
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function append (mixed ...$values):void {
+
+        $this->storage = [...$this->storage, ...$values];
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function prepend (mixed ...$values):void {
+
+        $this->storage = [...$values, ...$this->storage];
 
     }
 

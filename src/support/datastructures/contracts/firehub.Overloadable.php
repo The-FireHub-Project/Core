@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 /**
- * This file is part of FireHub Web Application Framework package
+ * This file is part of the FireHub Web Application Framework package
  *
  * @author Danijel Galić <danijel.galic@outlook.com>
  * @copyright 2024 FireHub Web Application Framework
@@ -17,7 +17,7 @@ namespace FireHub\Core\Support\DataStructures\Contracts;
 use FireHub\Core\Support\Contracts\Magic\Overloadable as MagicOverloadable;
 
 /**
- * ### Overloadable data structure contract
+ * ### Data structure that can be accessed dynamically by invoking properties as key-value pairs.
  * @since 1.0.0
  *
  * @template TKey of array-key
