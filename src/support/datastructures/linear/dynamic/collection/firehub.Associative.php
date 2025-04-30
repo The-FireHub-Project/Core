@@ -14,8 +14,9 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\Contracts\ArrayAccessible;
+use FireHub\Core\Support\DataStructures\Contracts\Overloadable;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use Traversable;
 
 /**
@@ -29,12 +30,13 @@ use Traversable;
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
  * @implements \FireHub\Core\Support\Contracts\ArrayAccessible<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Overloadable<TKey, TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Associative extends Collection implements ArrayAccessible {
+class Associative extends Collection implements ArrayAccessible, Overloadable {
 
     /**
      * ### Constructor
@@ -126,6 +128,62 @@ class Associative extends Collection implements ArrayAccessible {
     public function getIterator ():Traversable {
 
         yield from $this->storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetExists() Checks
+     * whether an offset exists.
+     */
+    public function __isset (int|string $name):bool {
+
+        return $this->offsetExists($name);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetGet() As offset
+     * to retrieve.
+     */
+    public function __get (int|string $name):mixed {
+
+        return $this->offsetGet($name);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetSet() To assign a
+     * value to the specified offset.
+     */
+    public function __set (int|string $name, mixed $value):void {
+
+        $this->offsetSet($name, $value);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::offsetUnset() To unset
+     * an offset.
+     */
+    public function __unset (int|string $name):void {
+
+        $this->offsetUnset($name);
 
     }
 
