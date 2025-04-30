@@ -15,7 +15,6 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
-use FireHub\Core\Support\Contracts\ArrayAccessible;
 use SplObjectStorage, Traversable;
 
 /**
@@ -29,13 +28,12 @@ use SplObjectStorage, Traversable;
  * @template TValue
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
- * @implements \FireHub\Core\Support\Contracts\ArrayAccessible<TKey, TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Obj extends Collection implements ArrayAccessible {
+class Obj extends Collection {
 
     /**
      * ### Underlying storage data
@@ -71,9 +69,9 @@ class Obj extends Collection implements ArrayAccessible {
      * $cls3 = new stdClass();
      *
      * $collection = new Obj();
-     * $collection[$cls1] = 'data for object 1';
-     * $collection[$cls2] = [1,2,3];
-     * $collection[$cls3] = 20;
+     * $collection->attach($cls1, 'data for object 1');
+     * $collection->attach($cls2, [1,2,3]);
+     * $collection->attach($cls3, 20);
      *
      * $collection->toArray();
      *
@@ -98,46 +96,127 @@ class Obj extends Collection implements ArrayAccessible {
     }
 
     /**
-     * @inheritDoc
-     *
+     * ### Checks if an object exists in the storage
      * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     *
+     * $collection = new Obj();
+     *
+     * $collection->attach($cls1, 'data for object 1');
+     *
+     * $collection->exist($cls1);
+     *
+     * // true
+     * ```
+     *
+     * @param TKey $object <p>
+     * The object to check.
+     * </p>
+     *
+     * @return void
      */
-    public function offsetExists (mixed $offset):bool {
+    public function exist (object $object):void {
 
-        return isset($this->storage[$offset]);
+        $this->storage->contains($object);
 
     }
 
     /**
-     * @inheritDoc
-     *
+     * ### Gets an object from the storage
      * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     *
+     * $collection = new Obj();
+     *
+     * $collection->attach($cls1, 'data for object 1');
+     *
+     * $collection->get($cls1);
+     *
+     * // 'data for object 1'
+     * ```
+     *
+     * @param TKey $object <p>
+     * Object to get.
+     * </p>
+     *
+     * @return void
      */
-    public function offsetGet (mixed $offset):mixed {
+    public function get (object $object):void {
 
-        return $this->storage[$offset];
+        $this->storage->offsetGet($object);
 
     }
 
     /**
-     * @inheritDoc
-     *
+     * ### Adds an object in the storage
      * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     *
+     * $collection = new Obj();
+     *
+     * $collection->attach($cls1, 'data for object 1');
+     *
+     * // [
+     * //   ['key' => stdClass, 'value' => 'data for object 1']
+     * // ]
+     * ```
+     *
+     * @param TKey $object <p>
+     * The object to add.
+     * </p>
+     * @param TValue $data <p>
+     * The data to associate with the object.
+     * </p>
+     *
+     * @return void
      */
-    public function offsetSet (mixed $offset, mixed $value):void {
+    public function attach (object $object, mixed $data = null):void {
 
-        $this->storage[$offset] = $value;
+        $this->storage->attach($object, $data);
 
     }
 
     /**
-     * @inheritDoc
-     *
+     * ### Removes an object from the storage
      * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     *
+     * $collection = new Obj();
+     *
+     * $collection->attach($cls1, 'data for object 1');
+     *
+     * $collection->detach($cls1);
+     * ```
+     *
+     * @param TKey $object <p>
+     * The object to remove.
+     * </p>
+     *
+     * @return void
      */
-    public function offsetUnset (mixed $offset):void {
+    public function detach (object $object):void {
 
-        unset($this->storage[$offset]);
+        $this->storage->detach($object);
 
     }
 

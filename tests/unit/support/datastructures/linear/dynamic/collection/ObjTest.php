@@ -49,9 +49,9 @@ final class ObjTest extends Base {
         $this->cls3 = new stdClass();
 
         $this->collection = new Obj;
-        $this->collection[$this->cls1] = 'data for object 1';
-        $this->collection[$this->cls2] = [1, 2, 3];
-        $this->collection[$this->cls3] = 20;
+        $this->collection->attach($this->cls1, 'data for object 1');
+        $this->collection->attach($this->cls2, [1, 2, 3]);
+        $this->collection->attach($this->cls3, 20);
 
     }
 
