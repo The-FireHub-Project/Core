@@ -56,7 +56,7 @@ interface Sequantionable {
      *
      * @return void
      */
-    public function append (mixed ...$values):void;
+    public function prepend (mixed ...$values):void;
 
     /**
      * ### Add items at the end of the data collection
@@ -68,6 +68,6 @@ interface Sequantionable {
      *
      * @return void
      */
-    public function prepend (mixed ...$values):void;
+    public function append (mixed ...$values):void;
 
 }

@@ -95,6 +95,27 @@ class Indexed extends Collection implements Sequantionable {
      * $items value is 5 or less.
      * @uses \FireHub\Core\Support\LowLevel\Arr::splice() To remove an item at the beginning of the data structure if
      * $items value is more than 5.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->shift();
+     *
+     * // ['Jane', 'Jane', 'Jane', 'Richard', 'Richard']
+     * ```
+     * @example Removing more than one item.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->shift(3);
+     *
+     * // ['Jane', 'Richard', 'Richard']
+     * ```
      */
     public function shift (int $items = 1):void {
 
@@ -119,6 +140,27 @@ class Indexed extends Collection implements Sequantionable {
      * $items value is 5 or less.
      * @uses \FireHub\Core\Support\LowLevel\Arr::splice() To remove an item at the end of the data collection if
      * $items value is greater than 5.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->pop();
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard']
+     * ```
+     * @example Removing more than one item.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->pop(3);
+     *
+     * // ['John', 'Jane', 'Jane']
+     * ```
      */
     public function pop (int $items = 1):void {
 
@@ -138,10 +180,21 @@ class Indexed extends Collection implements Sequantionable {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->prepend('Johnie', 'Janie', 'Baby');
+     *
+     * // ['Johnie', 'Janie', 'Baby', 'John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']
+     * ```
      */
-    public function append (mixed ...$values):void {
+    public function prepend (mixed ...$values):void {
 
-        $this->storage = [...$this->storage, ...$values];
+        $this->storage = [...$values, ...$this->storage];
 
     }
 
@@ -149,10 +202,21 @@ class Indexed extends Collection implements Sequantionable {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->append('Johnie', 'Janie', 'Baby');
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie', 'Baby']
+     * ```
      */
-    public function prepend (mixed ...$values):void {
+    public function append (mixed ...$values):void {
 
-        $this->storage = [...$values, ...$this->storage];
+        $this->storage = [...$this->storage, ...$values];
 
     }
 
