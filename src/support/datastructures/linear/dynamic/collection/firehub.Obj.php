@@ -15,7 +15,8 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
-use SplObjectStorage, Traversable;
+use FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException;
+use SplObjectStorage, Traversable, UnexpectedValueException;
 
 /**
  * ### Object collection type
@@ -118,11 +119,11 @@ class Obj extends Collection {
      * The object to check.
      * </p>
      *
-     * @return void
+     * @return bool True if the object is in the storage, false otherwise.
      */
-    public function exist (object $object):void {
+    public function exist (object $object):bool {
 
-        $this->storage->contains($object);
+        return $this->storage->contains($object);
 
     }
 
@@ -149,11 +150,22 @@ class Obj extends Collection {
      * Object to get.
      * </p>
      *
-     * @return void
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException If the key doesn't exist
+     * in the collection.
+     *
+     * @return TValue The data previously associated with the object in the storage.
      */
-    public function get (object $object):void {
+    public function get (object $object):mixed {
 
-        $this->storage->offsetGet($object);
+        try {
+
+            return $this->storage->offsetGet($object);
+
+        } catch (UnexpectedValueException) {
+
+            throw new KeyDoesntExistException()->withKey($object);
+
+        }
 
     }
 
