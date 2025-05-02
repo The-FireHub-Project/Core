@@ -57,6 +57,31 @@ class Associative extends Collection implements ArrayAccessible, Overloadable {
     ) {}
 
     /**
+     * ### Create a data structure from an array
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $array = ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2];
+     *
+     * $collection = Associative::fromArray($array);
+     * ```
+     *
+     * @param array<TKey, TValue> $array <p>
+     * Data for data structure.
+     * </p>
+     *
+     * @return static<TKey, TValue> Data structure from an array.
+     */
+    public static function fromArray (array $array):static {
+
+        return new static($array);
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0

@@ -16,7 +16,9 @@ namespace support\datastructures\linear\dynamic\collection;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
-use FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException;
+use FireHub\Core\Support\DataStructures\Exceptions\ {
+    KeyDoesntExistException, StorageMissingDataException
+};
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -53,6 +55,58 @@ final class ObjTest extends Base {
         $this->collection->attach($this->cls1, 'data for object 1');
         $this->collection->attach($this->cls2, [1, 2, 3]);
         $this->collection->attach($this->cls3, 20);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFromArray ():void {
+
+        $this->assertEquals(
+            Obj::fromArray([
+                ['key' => $this->cls1, 'value' => 'data for object 1'],
+                ['key' => $this->cls2, 'value' => [1, 2, 3]],
+                ['key' => $this->cls3, 'value' => 20]
+            ]),
+            $this->collection
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFromArrayMissingDataKey ():void {
+
+        $this->expectException(StorageMissingDataException::class);
+
+        Obj::fromArray([
+            ['value' => 'data for object 1'],
+            ['key' => $this->cls2, 'value' => [1, 2, 3]],
+            ['key' => $this->cls3, 'value' => 20]
+        ]);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFromArrayMissingDataValue ():void {
+
+        $this->expectException(StorageMissingDataException::class);
+
+        Obj::fromArray([
+            ['key' => $this->cls1],
+            ['key' => $this->cls2, 'value' => [1, 2, 3]],
+            ['key' => $this->cls3, 'value' => 20]
+        ]);
 
     }
 

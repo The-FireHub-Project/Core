@@ -16,6 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
+use FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException;
 use FireHub\Core\Support\LowLevel\Iterator;
 use Closure, Generator, Traversable;
 
@@ -57,6 +58,41 @@ class Lazy implements Dynamic {
     public function __construct (
         protected Closure $storage
     ) {}
+
+    /**
+     * ### Create a data structure from an array
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $array = ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2];
+     *
+     * $collection = Lazy::fromArray($array);
+     * ```
+     * @param array<array{key: TKey, value: TValue}> $array <p>
+     * Data for data structure.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing
+     * storage data.
+     *
+     * @return static<TKey, TValue> Data structure from an array.
+     */
+    public static function fromArray (array $array):static {
+
+        return new static(function () use ($array) {
+
+            foreach ($array as $item)
+                yield $item['key']
+                    ?? throw new StorageMissingDataException()->withData($item)->withKey('key')
+                => $item['value']
+                    ?? throw new StorageMissingDataException()->withData($item)->withKey('value');
+
+        });
+
+    }
 
     /**
      * @inheritDoc

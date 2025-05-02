@@ -17,7 +17,9 @@ namespace FireHub\Core\Support\DataStructures\Linear;
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
 use FireHub\Core\Support\Contracts\ArrayAccessible;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
-use FireHub\Core\Support\LowLevel\Iterator;
+use FireHub\Core\Support\LowLevel\ {
+    Iterables, Iterator
+};
 use SplFixedArray;
 
 /**
@@ -91,6 +93,52 @@ class Fixed extends SplFixedArray implements FixedContract, ArrayAccessible {
     public function setSize (int $size):true {
 
         return parent::setSize($size); // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * ### Create a data structure from an array
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count array parameter items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $array = ['one', 'two', 'three'];
+     *
+     * $collection = Fixed::fromArray($array);
+     * ```
+     *
+     * @param array<int, null|TValue> $array <p>
+     * Data for data structure.
+     * </p>
+     * @param bool $preserve_keys [optional] <p>
+     * Try to save the numeric indexes used in the original array.
+     * </p>
+     *
+     * @return static<TValue> Data structure from an array.
+     */
+    public static function fromArray (array $array, bool $preserve_keys = false):static {
+
+        $storage = new static(Iterables::count($array));
+
+        if ($preserve_keys) {
+
+            foreach ($array as $key => $item)
+                $storage[$key] = $item;
+
+        } else {
+
+            $i = 0;
+
+            foreach ($array as $item)
+                $storage[$i++] = $item;
+
+        }
+
+        return $storage; // @phpstan-ignore return.type
 
     }
 
