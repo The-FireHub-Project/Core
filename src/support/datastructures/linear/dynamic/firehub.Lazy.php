@@ -16,6 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
+use FireHub\Core\Support\LowLevel\Iterator;
 use Closure, Generator, Traversable;
 
 /**
@@ -88,6 +89,30 @@ class Lazy implements Dynamic {
             $result[] = ['key' => $key, 'value' => $value];
 
         return $result;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Iterator::count() To count storage items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->count();
+     *
+     * // 4
+     * ```
+     */
+    public function count ():int {
+
+        return Iterator::count($this);
 
     }
 

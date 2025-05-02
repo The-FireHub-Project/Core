@@ -16,7 +16,9 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Contracts\Sequantionable;
-use FireHub\Core\Support\LowLevel\Arr;
+use FireHub\Core\Support\LowLevel\ {
+    Arr, Iterables
+};
 use Traversable;
 
 use function FireHub\Core\Support\Helpers\Arr\ {
@@ -87,6 +89,30 @@ class Indexed extends Collection implements Sequantionable {
     public function toArray ():array {
 
         return $this->storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count storage items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->count();
+     *
+     * // 6
+     * ```
+     */
+    public function count ():int {
+
+        return Iterables::count($this->storage);
 
     }
 
@@ -230,6 +256,17 @@ class Indexed extends Collection implements Sequantionable {
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\Helpers\Arr\first() To get the first value from the storage.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->head()
+     *
+     * // 'John'
+     * ```
      */
     public function head ():mixed {
 
@@ -243,6 +280,17 @@ class Indexed extends Collection implements Sequantionable {
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\Helpers\Arr\last() To get the last value from the storage.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->tail()
+     *
+     * // 'Richard'
+     * ```
      */
     public function tail ():mixed {
 

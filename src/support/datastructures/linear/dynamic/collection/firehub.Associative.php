@@ -20,6 +20,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
+use FireHub\Core\Support\LowLevel\Iterables;
 use Traversable;
 
 /**
@@ -76,6 +77,30 @@ class Associative extends Collection implements ArrayAccessible, Overloadable {
     public function toArray ():array {
 
         return $this->storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count storage items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->count();
+     *
+     * // 4
+     * ```
+     */
+    public function count ():int {
+
+        return Iterables::count($this->storage);
 
     }
 

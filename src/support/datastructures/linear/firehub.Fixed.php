@@ -122,4 +122,30 @@ class Fixed extends SplFixedArray implements FixedContract, ArrayAccessible {
 
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $collection->count();
+     *
+     * // 3
+     * ```
+     */
+    public function count ():int {
+
+        return parent::count();
+
+    }
+
 }

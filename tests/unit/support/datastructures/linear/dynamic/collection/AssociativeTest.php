@@ -65,6 +65,17 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testCount ():void {
+
+        $this->assertSame(4, $this->collection->count());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testExist ():void {
 
         $this->assertTrue($this->collection->exist('firstname'));

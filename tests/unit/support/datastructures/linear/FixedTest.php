@@ -81,4 +81,15 @@ final class FixedTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCount ():void {
+
+        $this->assertSame(3, $this->collection->count());
+
+    }
+
 }

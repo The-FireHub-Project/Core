@@ -14,6 +14,8 @@
 
 namespace FireHub\Core\Support\DataStructures\Traits;
 
+use FireHub\Core\Support\DataStructures\Operation\CountBy;
+
 /**
  * ### Enumerable data structure methods that every element meets a given criterion
  * @since 1.0.0
@@ -22,5 +24,16 @@ namespace FireHub\Core\Support\DataStructures\Traits;
  * @template TValue
  */
 trait Enumerable {
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function countBy ():CountBy {
+
+        return new CountBy($this);
+
+    }
 
 }
