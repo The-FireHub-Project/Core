@@ -30,6 +30,7 @@ use PHPUnit\Framework\Attributes\ {
 final class IndexedTest extends Base {
 
     public Indexed $collection;
+    public Indexed $empty;
 
     /**
      * @since 1.0.0
@@ -41,6 +42,8 @@ final class IndexedTest extends Base {
         $this->collection = new Indexed(
             ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']
         );
+
+        $this->empty = new Indexed([]);
 
     }
 
@@ -121,6 +124,32 @@ final class IndexedTest extends Base {
         $this->collection->append('Johnie', 'Janie', 'Baby');
 
         $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testHead ():void {
+
+        $this->assertSame('John', $this->collection->head());
+
+        $this->assertNull($this->empty->head());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testTail ():void {
+
+        $this->assertSame('Richard', $this->collection->tail());
+
+        $this->assertNull($this->empty->tail());
 
     }
 

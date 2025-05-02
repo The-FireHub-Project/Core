@@ -19,6 +19,10 @@ use FireHub\Core\Support\DataStructures\Contracts\Sequantionable;
 use FireHub\Core\Support\LowLevel\Arr;
 use Traversable;
 
+use function FireHub\Core\Support\Helpers\Arr\ {
+    first, last
+};
+
 /**
  * ### Indexed array collection type
  *
@@ -217,6 +221,32 @@ class Indexed extends Collection implements Sequantionable {
     public function append (mixed ...$values):void {
 
         $this->storage = [...$this->storage, ...$values];
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Arr\first() To get the first value from the storage.
+     */
+    public function head ():mixed {
+
+        return first($this->storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Arr\last() To get the last value from the storage.
+     */
+    public function tail ():mixed {
+
+        return last($this->storage);
 
     }
 

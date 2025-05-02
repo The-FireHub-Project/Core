@@ -70,4 +70,20 @@ interface Sequantionable {
      */
     public function append (mixed ...$values):void;
 
+    /**
+     * ### Get first item from data structure
+     * @since 1.0.0
+     *
+     * @return null|TValue
+     */
+    public function head ():mixed;
+
+    /**
+     * ### Get last item from data structure
+     * @since 1.0.0
+     *
+     * @return null|TValue
+     */
+    public function tail ():mixed;
+
 }
