@@ -22,19 +22,19 @@
                                         <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
                                     </svg>
                                     <div class="content">
-                                        <span class="user">github-actions[bot]</span>
+                                        <span class="user">dieselxxx</span>
                                         pushed 1 commit in
                                         <span class="repo">The-FireHub-Project/Core</span>
                                     </div>
                                 </div>
                                 <div class="details">
-                                    <div>on branch <span class="code">docs</span></div>
+                                    <div>on branch <span class="code">develop-pre-alpha-m1</span></div>
                                     <div class="commit">
-                                        <div class="sha">#00b840d</div>
-                                        <div class="message">Update base metrics</div>
+                                        <div class="sha">#55b51c8</div>
+                                        <div class="message">Create contains operation for data structures (#18)</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">4 May 2025, 23:41:08</div>
+                                <div class="timestamp">5 May 2025, 13:28:25</div>
                             </section>
                         </div>
                         <div class="row fill-width">
@@ -44,19 +44,19 @@
                                         <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
                                     </svg>
                                     <div class="content">
-                                        <span class="user">github-actions[bot]</span>
+                                        <span class="user">dieselxxx</span>
                                         pushed 1 commit in
                                         <span class="repo">The-FireHub-Project/Core</span>
                                     </div>
                                 </div>
                                 <div class="details">
-                                    <div>on branch <span class="code">docs</span></div>
+                                    <div>on branch <span class="code">develop-pre-alpha-m1</span></div>
                                     <div class="commit">
-                                        <div class="sha">#81677e8</div>
-                                        <div class="message">Update languages metrics</div>
+                                        <div class="sha">#5454359</div>
+                                        <div class="message">Update param (#18)</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">3 May 2025, 23:41:46</div>
+                                <div class="timestamp">5 May 2025, 13:21:48</div>
                             </section>
                         </div>
                         <div class="row fill-width">
@@ -66,19 +66,19 @@
                                         <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
                                     </svg>
                                     <div class="content">
-                                        <span class="user">github-actions[bot]</span>
+                                        <span class="user">dieselxxx</span>
                                         pushed 1 commit in
                                         <span class="repo">The-FireHub-Project/Core</span>
                                     </div>
                                 </div>
                                 <div class="details">
-                                    <div>on branch <span class="code">docs</span></div>
+                                    <div>on branch <span class="code">develop-pre-alpha-m1</span></div>
                                     <div class="commit">
-                                        <div class="sha">#8adb3a4</div>
-                                        <div class="message">Update activity metrics</div>
+                                        <div class="sha">#9ab401d</div>
+                                        <div class="message">Changed method func to where (#18)</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">3 May 2025, 23:41:07</div>
+                                <div class="timestamp">5 May 2025, 12:19:33</div>
                             </section>
                         </div>
                         <div class="row fill-width">
@@ -88,19 +88,19 @@
                                         <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
                                     </svg>
                                     <div class="content">
-                                        <span class="user">github-actions[bot]</span>
+                                        <span class="user">dieselxxx</span>
                                         pushed 1 commit in
                                         <span class="repo">The-FireHub-Project/Core</span>
                                     </div>
                                 </div>
                                 <div class="details">
-                                    <div>on branch <span class="code">docs</span></div>
+                                    <div>on branch <span class="code">develop-pre-alpha-m1</span></div>
                                     <div class="commit">
-                                        <div class="sha">#05072f9</div>
-                                        <div class="message">Update base metrics</div>
+                                        <div class="sha">#48b292b</div>
+                                        <div class="message">Create more tests for Find operation (#18)</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">3 May 2025, 23:40:56</div>
+                                <div class="timestamp">5 May 2025, 11:16:22</div>
                             </section>
                         </div>
                         <div class="row fill-width">
@@ -110,19 +110,19 @@
                                         <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
                                     </svg>
                                     <div class="content">
-                                        <span class="user">github-actions[bot]</span>
+                                        <span class="user">dieselxxx</span>
                                         pushed 1 commit in
                                         <span class="repo">The-FireHub-Project/Core</span>
                                     </div>
                                 </div>
                                 <div class="details">
-                                    <div>on branch <span class="code">docs</span></div>
+                                    <div>on branch <span class="code">develop-pre-alpha-m1</span></div>
                                     <div class="commit">
-                                        <div class="sha">#b475ba4</div>
-                                        <div class="message">Update languages metrics</div>
+                                        <div class="sha">#f3cabc1</div>
+                                        <div class="message">Create Find data structure operation (#18)</div>
                                     </div>
                                 </div>
-                                <div class="timestamp">2 May 2025, 23:42:37</div>
+                                <div class="timestamp">5 May 2025, 11:08:51</div>
                             </section>
                         </div>
                     </section>
