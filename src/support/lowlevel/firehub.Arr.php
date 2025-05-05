@@ -140,7 +140,7 @@ final class Arr {
      * @param array<TKey, TValue> $array <p>
      * The array that should be searched.
      * </p>
-     * @param callable(TValue, TKey=):mixed $callback <p>
+     * @param callable(TValue, TKey):bool $callback <p>
      * The callback function to call to check each element.
      * </p>
      *
@@ -148,7 +148,7 @@ final class Arr {
      */
     public static function any (array $array, callable $callback):bool {
 
-        return array_any($array, $callback); // @phpstan-ignore argument.type
+        return array_any($array, $callback);
 
     }
 
