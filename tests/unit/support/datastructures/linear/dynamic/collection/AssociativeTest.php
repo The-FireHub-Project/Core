@@ -95,16 +95,22 @@ final class AssociativeTest extends Base {
     public function testFind ():void {
 
         $this->assertEquals('lastname', $this->collection->find()->key('Doe'));
+        $this->assertNull($this->collection->find()->key('Jane'));
 
         $this->assertEquals('Doe', $this->collection->find()->value('lastname'));
+        $this->assertNull($this->collection->find()->value('middlename'));
 
         $this->assertEquals('Doe', $this->collection->find()->first(fn($value, $key) => $key !== 'firstname'));
+        $this->assertNull($this->collection->find()->first(fn($value, $key) => $key === 'Jane'));
 
         $this->assertEquals('lastname', $this->collection->find()->firstKey(fn($value, $key) => $value !== 'John'));
+        $this->assertNull($this->collection->find()->firstKey(fn($value, $key) => $value === 'middlename'));
 
         $this->assertEquals(25, $this->collection->find()->last(fn($value, $key) => $key !== 10));
+        $this->assertNull($this->collection->find()->last(fn($value, $key) => $key === 'Jane'));
 
         $this->assertEquals('age', $this->collection->find()->lastKey(fn($value, $key) => $value !== 2));
+        $this->assertNull($this->collection->find()->lastKey(fn($value, $key) => $value === 'middlename'));
 
     }
 
