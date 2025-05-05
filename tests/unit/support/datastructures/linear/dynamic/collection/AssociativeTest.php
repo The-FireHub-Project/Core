@@ -16,7 +16,9 @@ namespace support\datastructures\linear\dynamic\collection;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
-use FireHub\Core\Support\DataStructures\Operation\Find;
+use FireHub\Core\Support\DataStructures\Operation\ {
+    Contains, Find
+};
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
@@ -30,6 +32,7 @@ use PHPUnit\Framework\Attributes\ {
 #[Small]
 #[Group('collection')]
 #[CoversClass(Associative::class)]
+#[CoversClass(Contains::class)]
 #[CoversClass(Find::class)]
 final class AssociativeTest extends Base {
 
@@ -84,6 +87,24 @@ final class AssociativeTest extends Base {
     public function testCount ():void {
 
         $this->assertSame(4, $this->collection->count());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testContains ():void {
+
+        $this->assertTrue($this->collection->contains()->key('firstname'));
+        $this->assertFalse($this->collection->contains()->key('middlename'));
+
+        $this->assertTrue($this->collection->contains()->value('John'));
+        $this->assertFalse($this->collection->contains()->value('Richard'));
+
+        $this->assertTrue($this->collection->contains()->where(fn($value, $key) => $value === 'John'));
+        $this->assertFalse($this->collection->contains()->where(fn($value, $key) => $value === 'Richard'));
 
     }
 

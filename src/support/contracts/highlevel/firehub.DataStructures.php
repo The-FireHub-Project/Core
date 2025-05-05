@@ -15,12 +15,12 @@
 namespace FireHub\Core\Support\Contracts\HighLevel;
 
 use FireHub\Core\Support\Contracts\ {
-    Countable, JsonSerializable
+    Arrayable, Countable, JsonSerializable
 };
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 use FireHub\Core\Support\Contracts\Magic\Serializable;
 use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, Find
+    CountBy, Contains, Find
 };
 
 /**
@@ -32,15 +32,7 @@ use FireHub\Core\Support\DataStructures\Operation\ {
  *
  * @extends \FireHub\Core\Support\Contracts\Iterator\IteratorAggregate<TKey, TValue>
  */
-interface DataStructures extends Countable, IteratorAggregate, JsonSerializable, Serializable {
-
-    /**
-     * ### Get data structure data as an array
-     * @since 1.0.0
-     *
-     * @return array<array-key, mixed> Data structure data as an array.
-     */
-    public function toArray ():array;
+interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSerializable, Serializable {
 
     /**
      * ### Count operations for data structures
@@ -51,6 +43,16 @@ interface DataStructures extends Countable, IteratorAggregate, JsonSerializable,
      * @return \FireHub\Core\Support\DataStructures\Operation\CountBy<TKey, TValue> Count operation class.
      */
     public function countBy ():CountBy;
+
+    /**
+     * ### Determines whether a data structure contains
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Contains As return.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Operation\Contains<TKey, TValue> Contains operation class.
+     */
+    public function contains ():Contains;
 
     /**
      * ### Find in the data structure

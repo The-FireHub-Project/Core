@@ -15,7 +15,9 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\Contracts\ArrayAccessible;
-use FireHub\Core\Support\DataStructures\Contracts\Overloadable;
+use FireHub\Core\Support\DataStructures\Contracts\ {
+    ArrayableStorage, Overloadable
+};
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
@@ -37,13 +39,14 @@ use Traversable;
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
  * @implements \FireHub\Core\Support\Contracts\ArrayAccessible<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\ArrayableStorage<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Overloadable<TKey, TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Associative extends Collection implements ArrayAccessible, Overloadable {
+class Associative extends Collection implements ArrayAccessible, ArrayableStorage, Overloadable {
 
     /**
      * ### Trait contains all common JSON methods

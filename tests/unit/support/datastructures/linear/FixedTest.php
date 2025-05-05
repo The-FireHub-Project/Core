@@ -16,6 +16,7 @@ namespace support\datastructures\linear;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Fixed;
+use FireHub\Core\Support\DataStructures\Operation\Contains;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -27,6 +28,7 @@ use PHPUnit\Framework\Attributes\ {
 #[Small]
 #[Group('collection')]
 #[CoversClass(Fixed::class)]
+#[CoversClass(Contains::class)]
 final class FixedTest extends Base {
 
     public Fixed $collection;
@@ -113,6 +115,24 @@ final class FixedTest extends Base {
     public function testCount ():void {
 
         $this->assertSame(3, $this->collection->count());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testContains ():void {
+
+        $this->assertTrue($this->collection->contains()->key(0));
+        $this->assertFalse($this->collection->contains()->key(3));
+
+        $this->assertTrue($this->collection->contains()->value('one'));
+        $this->assertFalse($this->collection->contains()->value('four'));
+
+        $this->assertTrue($this->collection->contains()->where(fn($value, $key) => $value === 'one'));
+        $this->assertFalse($this->collection->contains()->where(fn($value, $key) => $value === 'four'));
 
     }
 
