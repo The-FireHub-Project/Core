@@ -17,6 +17,9 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\Contracts\ArrayAccessible;
 use FireHub\Core\Support\DataStructures\Contracts\Overloadable;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use FireHub\Core\Support\Traits\ {
+    Jsonable, Serializable
+};
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
@@ -43,6 +46,18 @@ use Traversable;
 class Associative extends Collection implements ArrayAccessible, Overloadable {
 
     /**
+     * ### Trait contains all common JSON methods
+     * @since 1.0.0
+     */
+    use Jsonable;
+
+    /**
+     * ### Trait contains all common serialize and unserialize methods
+     * @since 1.0.0
+     */
+    use Serializable;
+
+    /**
      * ### Constructor
      * @since 1.0.0
      *
@@ -57,7 +72,8 @@ class Associative extends Collection implements ArrayAccessible, Overloadable {
     ) {}
 
     /**
-     * ### Create a data structure from an array
+     * @inheritDoc
+     *
      * @since 1.0.0
      *
      * @example
@@ -451,6 +467,55 @@ class Associative extends Collection implements ArrayAccessible, Overloadable {
     public function __unset (int|string $name):void {
 
         $this->offsetUnset($name);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Arr::toArray() To get data structure
+     * an array.
+     *
+     * @return array<TKey, TValue> Data which can be serialized by json_encode(), which is a value of any type
+     * other than a resource.
+     */
+    public function jsonSerialize ():array {
+
+        return $this->toArray();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Arr::toArray() To get data structure
+     * an array.
+     *
+     * @return array<TKey, TValue> An associative array of key/value pairs that represent the serialized form
+     * of the object.
+     */
+    public function __serialize ():array {
+
+        return $this->storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @param array<TKey, TValue> $data <p>
+     * Serialized data.
+     * </p>
+     */
+    public function __unserialize (array $data):void {
+
+        $this->storage = $data;
 
     }
 

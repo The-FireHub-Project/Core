@@ -15,6 +15,9 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use FireHub\Core\Support\Traits\ {
+    Jsonable, Serializable
+};
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyDoesntExistException, StorageMissingDataException
 };
@@ -40,6 +43,18 @@ use SplObjectStorage, Traversable, UnexpectedValueException;
 class Obj extends Collection {
 
     /**
+     * ### Trait contains all common JSON methods
+     * @since 1.0.0
+     */
+    use Jsonable;
+
+    /**
+     * ### Trait contains all common serialize and unserialize methods
+     * @since 1.0.0
+     */
+    use Serializable;
+
+    /**
      * ### Underlying storage data
      * @since 1.0.0
      *
@@ -60,11 +75,12 @@ class Obj extends Collection {
     }
 
     /**
-     * ### Create a data structure from an array
+     * @inheritDoc
+     *
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::attach() To add array items to the
-     * data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::attach() To add an object
+     * in the storage.
      *
      * @example
      * ```php
@@ -87,6 +103,8 @@ class Obj extends Collection {
      * storage data.
      *
      * @return static<TKey, TValue> Data structure from an array.
+     *
+     * @phpstan-ignore method.childParameterType
      */
     public static function fromArray (array $array):static {
 
@@ -95,9 +113,9 @@ class Obj extends Collection {
         foreach ($array as $item)
             $storage->attach(
                 $item['key']
-                    ?? throw new StorageMissingDataException()->withData($item)->withKey('key'),
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('key'),
                 $item['value']
-                    ?? throw new StorageMissingDataException()->withData($item)->withKey('value')
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('value')
             );
 
         return $storage; // @phpstan-ignore return.type
@@ -320,6 +338,70 @@ class Obj extends Collection {
 
         foreach ($this->storage as $object)
             yield $object => $this->storage[$object];
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::toArray() To get data structure
+     * an array.
+     *
+     * @return array<array{key: TKey, value: TValue}> Data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize ():array {
+
+        return $this->toArray();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::toArray() To get data structure
+     * an array.
+     *
+     * @return array<array{key: TKey, value: TValue}> An associative array of key/value pairs that represent
+     * the serialized form of the object.
+     */
+    public function __serialize ():array {
+
+        return $this->toArray();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @param array<array{key: TKey, value: TValue}> $data <p>
+     * Serialized data.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing
+     * storage data.
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    public function __unserialize (array $data):void {
+
+        $storage = new SplObjectStorage();
+
+        foreach ($data as $item)
+            $storage->attach(
+                $item['key']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('key'),
+                $item['value']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('value')
+            );
+
+        $this->storage = $storage; // @phpstan-ignore assign.propertyType
 
     }
 
