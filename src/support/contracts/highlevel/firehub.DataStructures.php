@@ -19,7 +19,9 @@ use FireHub\Core\Support\Contracts\ {
 };
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 use FireHub\Core\Support\Contracts\Magic\Serializable;
-use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\DataStructures\Operation\ {
+    CountBy, Find
+};
 
 /**
  * ### Data structures
@@ -49,5 +51,15 @@ interface DataStructures extends Countable, IteratorAggregate, JsonSerializable,
      * @return \FireHub\Core\Support\DataStructures\Operation\CountBy<TKey, TValue> Count operation class.
      */
     public function countBy ():CountBy;
+
+    /**
+     * ### Find in the data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Find As return.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Operation\Find<TKey, TValue> Find operation class.
+     */
+    public function find ():Find;
 
 }

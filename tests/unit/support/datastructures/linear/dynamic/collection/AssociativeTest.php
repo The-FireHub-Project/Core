@@ -16,6 +16,7 @@ namespace support\datastructures\linear\dynamic\collection;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+use FireHub\Core\Support\DataStructures\Operation\Find;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
@@ -29,6 +30,7 @@ use PHPUnit\Framework\Attributes\ {
 #[Small]
 #[Group('collection')]
 #[CoversClass(Associative::class)]
+#[CoversClass(Find::class)]
 final class AssociativeTest extends Base {
 
     public Associative $collection;
@@ -82,6 +84,27 @@ final class AssociativeTest extends Base {
     public function testCount ():void {
 
         $this->assertSame(4, $this->collection->count());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFind ():void {
+
+        $this->assertEquals('lastname', $this->collection->find()->key('Doe'));
+
+        $this->assertEquals('Doe', $this->collection->find()->value('lastname'));
+
+        $this->assertEquals('Doe', $this->collection->find()->first(fn($value, $key) => $key !== 'firstname'));
+
+        $this->assertEquals('lastname', $this->collection->find()->firstKey(fn($value, $key) => $value !== 'John'));
+
+        $this->assertEquals(25, $this->collection->find()->last(fn($value, $key) => $key !== 10));
+
+        $this->assertEquals('age', $this->collection->find()->lastKey(fn($value, $key) => $value !== 2));
 
     }
 

@@ -14,7 +14,9 @@
 
 namespace FireHub\Core\Support\DataStructures\Traits;
 
-use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\DataStructures\Operation\ {
+    CountBy, Find
+};
 
 /**
  * ### Enumerable data structure methods that every element meets a given criterion
@@ -33,6 +35,17 @@ trait Enumerable {
     public function countBy ():CountBy {
 
         return new CountBy($this);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function find ():Find {
+
+        return new Find($this);
 
     }
 
