@@ -175,7 +175,7 @@ readonly class CountBy {
      *
      * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
      *
-     * new CountBy($collection)->func(fn($value, $key) => substr((string)$value, 0, 1));
+     * new CountBy($collection)->where(fn($value, $key) => substr((string)$value, 0, 1));
      *
      * // ['J' => 4, 'R' => 2]
      * ```
@@ -187,7 +187,7 @@ readonly class CountBy {
      * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative<string, positive-int> Number
      * of elements of a data structure by user-defined function.
      */
-    public function func (callable $callback):Associative {
+    public function where (callable $callback):Associative {
 
         $storage = [];
 

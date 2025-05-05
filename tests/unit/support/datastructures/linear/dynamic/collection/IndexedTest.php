@@ -130,7 +130,7 @@ final class IndexedTest extends Base {
 
         $this->assertEquals(
             new Associative(['J' => 4, 'R' => 2]),
-            $this->collection->countBy()->func(fn($value, $key) => substr((string)$value, 0, 1))
+            $this->collection->countBy()->where(fn($value, $key) => substr((string)$value, 0, 1))
         );
 
     }
