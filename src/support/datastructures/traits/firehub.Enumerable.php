@@ -14,9 +14,11 @@
 
 namespace FireHub\Core\Support\DataStructures\Traits;
 
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
 use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Contains, Ensure, Find, Is
 };
+use FireHub\Core\Support\LowLevel\DataIs;
 
 use const FireHub\Core\Support\Constants\Number\MAX;
 
@@ -110,6 +112,82 @@ trait Enumerable {
         }
 
         return $this;
+
+    }
+
+    /**
+     * ### Get keys from the data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed As return.
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::null To check if the $with_value parameter is passed.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->keys();
+     *
+     * // ['firstname', 'lastname', 'age', 10]
+     * ```
+     * @example With value filter.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->keys('John');
+     *
+     * // ['firstname']
+     * ```
+     *
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed<TKey> Keys from the data
+     * structure.
+     */
+    public function keys (mixed $with_value = null):Indexed {
+
+        $array = [];
+
+        if (DataIs::null($with_value))
+            foreach ($this as $key => $value) $array[] = $key;
+
+        else foreach ($this as $key => $value)
+            if ($value === $with_value) $array[] = $key;
+
+        return new Indexed($array);
+
+    }
+
+    /**
+     * ### Get values from the data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed As return.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->values();
+     *
+     * // ['John', 'Doe', 25, 2]
+     * ```
+     *
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed<TValue> Values from the data
+     * structure.
+     */
+    public function values ():Indexed {
+
+        $array = [];
+
+        foreach ($this as $value)
+            $array[] = $value;
+
+        return new Indexed($array);
 
     }
 

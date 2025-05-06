@@ -15,7 +15,9 @@
 namespace support\datastructures\linear\dynamic\collection;
 
 use FireHub\Core\Testing\Base;
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
+    Associative, Indexed
+};
 use FireHub\Core\Support\DataStructures\Operation\ {
     Contains, Find, Is
 };
@@ -191,6 +193,39 @@ final class AssociativeTest extends Base {
         $this->assertEquals(
             Associative::fromArray(['firstname.' => 'John', 'lastname.' => 'Doe', 'age.' => 25, '10.' => 2]),
             $this->collection->applyToKeys(fn($value, $key) => $key.'.')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testKeys ():void {
+
+        $this->assertEquals(
+            Indexed::fromArray(['firstname', 'lastname', 'age', 10]),
+            $this->collection->keys()
+        );
+
+        $this->assertEquals(
+            Indexed::fromArray(['firstname']),
+            $this->collection->keys('John')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testValues ():void {
+
+        $this->assertEquals(
+            Indexed::fromArray(['John', 'Doe', 25, 2]),
+            $this->collection->values()
         );
 
     }

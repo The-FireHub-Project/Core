@@ -14,6 +14,7 @@
 
 namespace FireHub\Core\Support\DataStructures\Traits;
 
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
 use FireHub\Core\Support\LowLevel\ {
     Arr, Iterables
 };
@@ -105,6 +106,32 @@ trait Arrayable {
             return new static($storage);
 
         }
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::keys To return all the keys or a subset of the keys for an array.
+     */
+    public function keys (mixed $with_value = null):Indexed {
+
+        return new Indexed(Arr::keys($this->storage, $with_value));
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::values To return all the values from an array.
+     */
+    public function values ():Indexed {
+
+        return new Indexed(Arr::values($this->storage));
 
     }
 

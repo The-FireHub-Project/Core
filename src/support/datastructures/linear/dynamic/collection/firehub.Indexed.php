@@ -78,6 +78,10 @@ class Indexed extends Collection implements ArrayableStorage, Sequantionable {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @param array<TValue> $storage [optional] <p>
+     * Underlying storage data.
+     * </p>
      */
     public function __construct (array $storage = []) {
 

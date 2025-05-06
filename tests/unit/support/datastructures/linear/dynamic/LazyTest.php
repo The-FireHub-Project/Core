@@ -16,6 +16,7 @@ namespace support\datastructures\linear\dynamic;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
 use FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -143,6 +144,39 @@ final class LazyTest extends Base {
                 ['key' => 10, 'value' => '2.']
             ]),
             $this->collection->apply(fn($value) => $value.'.')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testKeys ():void {
+
+        $this->assertEquals(
+            Indexed::fromArray(['firstname', 'lastname', 'age', 10]),
+            $this->collection->keys()
+        );
+
+        $this->assertEquals(
+            Indexed::fromArray(['firstname']),
+            $this->collection->keys('John')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testValues ():void {
+
+        $this->assertEquals(
+            Indexed::fromArray(['John', 'Doe', 25, 2]),
+            $this->collection->values()
         );
 
     }
