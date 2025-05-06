@@ -131,6 +131,38 @@ class Associative extends Collection implements ArrayAccessible, ArrayableStorag
     }
 
     /**
+     * ### Applies the callback to the keys of the data structure
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $new_collection = $collection->applyToKeys(fn($value, $key) => $key.'.');
+     *
+     * // ['firstname.' => 'John', 'lastname.' => 'Doe', 'age.' => 25, '10.' => 2]
+     * ```
+     *
+     * @param callable(TValue, TKey):array-key $callback <p>
+     * A callable to run for each key in a data structure.
+     * </p>
+     *
+     * @return static<array-key, TValue> New data structure containing the results of applying the callback function to the
+     * corresponding keys of a data structure.
+     */
+    public function applyToKeys (callable $callback):static {
+
+        $storage = [];
+
+        foreach ($this->storage as $key => $value) $storage[$callback($value, $key)] = $value;
+
+        return new static($storage);
+
+    }
+
+    /**
      * ### Check if item exist in collection
      * @since 1.0.0
      *

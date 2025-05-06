@@ -186,6 +186,20 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testApplyToKeys ():void {
+
+        $this->assertEquals(
+            Associative::fromArray(['firstname.' => 'John', 'lastname.' => 'Doe', 'age.' => 25, '10.' => 2]),
+            $this->collection->applyToKeys(fn($value, $key) => $key.'.')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testExist ():void {
 
         $this->assertTrue($this->collection->exist('firstname'));
