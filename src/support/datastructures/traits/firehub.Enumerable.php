@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Traits;
 
 use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, Contains, Find
+    CountBy, Contains, Find, Is
 };
 
 /**
@@ -57,6 +57,17 @@ trait Enumerable {
     public function find ():Find {
 
         return new Find($this);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function is ():Is {
+
+        return new Is($this);
 
     }
 

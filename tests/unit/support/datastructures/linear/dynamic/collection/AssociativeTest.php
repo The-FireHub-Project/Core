@@ -17,7 +17,7 @@ namespace support\datastructures\linear\dynamic\collection;
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
 use FireHub\Core\Support\DataStructures\Operation\ {
-    Contains, Find
+    Contains, Find, Is
 };
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
@@ -34,6 +34,7 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Associative::class)]
 #[CoversClass(Contains::class)]
 #[CoversClass(Find::class)]
+#[CoversClass(Is::class)]
 final class AssociativeTest extends Base {
 
     public Associative $collection;
@@ -132,6 +133,18 @@ final class AssociativeTest extends Base {
 
         $this->assertEquals('age', $this->collection->find()->lastKey(fn($value, $key) => $value !== 2));
         $this->assertNull($this->collection->find()->lastKey(fn($value, $key) => $value === 'middlename'));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testIs ():void {
+
+        $this->assertFalse($this->collection->is()->empty());
+        $this->assertTrue($this->collection->is()->notEmpty());
 
     }
 
