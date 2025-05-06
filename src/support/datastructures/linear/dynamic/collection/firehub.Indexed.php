@@ -143,30 +143,6 @@ class Indexed extends Collection implements ArrayableStorage, Sequantionable {
      *
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count storage items.
-     *
-     * @example
-     * ```php
-     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
-     *
-     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
-     *
-     * $collection->count();
-     *
-     * // 6
-     * ```
-     */
-    public function count ():int {
-
-        return Iterables::count($this->storage);
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
      * @uses \FireHub\Core\Support\LowLevel\Arr::shift() To remove an item at the beginning of the data structure if
      * $items value is 5 or less.
      * @uses \FireHub\Core\Support\LowLevel\Arr::splice() To remove an item at the beginning of the data structure if
@@ -348,17 +324,6 @@ class Indexed extends Collection implements ArrayableStorage, Sequantionable {
      * @inheritDoc
      *
      * @since 1.0.0
-     */
-    public function getIterator ():Traversable {
-
-        yield from $this->storage;
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Arr::toArray() To get data structure
      * an array.
@@ -376,9 +341,6 @@ class Indexed extends Collection implements ArrayableStorage, Sequantionable {
      * @inheritDoc
      *
      * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Arr::toArray() To get data structure
-     * an array.
      *
      * @return array<TValue> An associative array of key/value pairs that represent the serialized form of the object.
      */

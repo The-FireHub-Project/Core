@@ -131,30 +131,6 @@ class Associative extends Collection implements ArrayAccessible, ArrayableStorag
     }
 
     /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count storage items.
-     *
-     * @example
-     * ```php
-     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
-     *
-     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
-     *
-     * $collection->count();
-     *
-     * // 4
-     * ```
-     */
-    public function count ():int {
-
-        return Iterables::count($this->storage);
-
-    }
-
-    /**
      * ### Check if item exist in collection
      * @since 1.0.0
      *
@@ -409,17 +385,6 @@ class Associative extends Collection implements ArrayAccessible, ArrayableStorag
     public function offsetUnset (mixed $offset):void {
 
         unset($this->storage[$offset]);
-
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     */
-    public function getIterator ():Traversable {
-
-        yield from $this->storage;
 
     }
 

@@ -14,8 +14,10 @@
 
 namespace FireHub\Core\Support\DataStructures\Traits;
 
-use FireHub\Core\Support\LowLevel\Arr;
-use ArgumentCountError;
+use FireHub\Core\Support\LowLevel\ {
+    Arr, Iterables
+};
+use ArgumentCountError, Traversable;
 
 /**
  * ### Arrayable data structure methods have an array as storage
@@ -51,6 +53,30 @@ trait Arrayable {
      *
      * @since 1.0.0
      *
+     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count storage items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->count();
+     *
+     * // 6
+     * ```
+     */
+    public function count ():int {
+
+        return Iterables::count($this->storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @uses \FireHub\Core\Support\LowLevel\Arr::map() To apply the callback to the elements of the given array.
      *
      * @example
@@ -79,6 +105,17 @@ trait Arrayable {
             return new static($storage);
 
         }
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function getIterator ():Traversable {
+
+        yield from $this->storage;
 
     }
 
