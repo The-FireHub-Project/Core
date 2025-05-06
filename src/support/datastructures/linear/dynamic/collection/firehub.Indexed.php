@@ -331,7 +331,7 @@ class Indexed extends Collection implements ArrayableStorage, Sequantionable {
      *
      * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
      *
-     * $collection->tail()
+     * $collection->tail();
      *
      * // 'Richard'
      * ```
