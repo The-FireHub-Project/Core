@@ -43,8 +43,6 @@ use function unlink;
  *
  * Class contains methods related to files.
  * @since 1.0.0
- *
- * @internal
  */
 final class File extends FileSystem {
 
@@ -210,8 +208,8 @@ final class File extends FileSystem {
      *
      * @return true True on success.
      *
-     * @note This function will not work on remote files as the file to be examined must be accessible via the
-     * server's filesystem.
+     * @note This function will not work on remote files as the file to be examined must be accessible via
+     * the server's filesystem.
      * @note For Windows only: This function requires PHP to run in an elevated mode or with the UAC disabled.
      */
     public static function link (string $path, string $link):true {
@@ -246,7 +244,7 @@ final class File extends FileSystem {
      *
      * @return string The read data.
      *
-     * @note If you're opening an URI with special characters, such as spaces, you need to encode the URI with
+     * @note If you're opening a URI with special characters, such as spaces, you need to encode the URI with
      * urlencode().
      */
     public static function getContent (string $path, int $offset = 0, ?int $length = null):string {

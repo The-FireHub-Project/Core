@@ -22,8 +22,6 @@ use function ord;
  *
  * Class allows you to manipulate characters in various ways.
  * @since 1.0.0
- *
- * @internal
  */
 final class CharSB {
 

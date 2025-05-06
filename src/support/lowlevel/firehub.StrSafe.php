@@ -39,13 +39,11 @@ use function strtr;
  *
  * Class contains methods that are safe to use on normal as well as on multibyte encoding.
  * @since 1.0.0
- *
- * @internal
  */
 abstract class StrSafe {
 
     /**
-     * ### Checks if string contains a value
+     * ### Checks if a string contains a value
      *
      * Performs a case-sensitive check indicating if $string is contained in $string.
      * @since 1.0.0
@@ -283,7 +281,7 @@ abstract class StrSafe {
      *
      * @return string[] If a delimiter contains a value not contained in string, and a negative limit is used,
      * then an empty array will be returned.
-     * For any other limit, an array containing string will be returned.
+     * For any other limit, an array containing a string will be returned.
      */
     final public static function explode (string $string, string $separator, int $limit = MAX):array {
 

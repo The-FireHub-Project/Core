@@ -24,8 +24,6 @@ use function spl_object_id;
  *
  * Class allows you to collect information about objects.
  * @since 1.0.0
- *
- * @internal
  */
 final class Obj extends ClsObj {
 
@@ -42,8 +40,8 @@ final class Obj extends ClsObj {
      * Any object.
      * </p>
      *
-     * @return int An integer identifier that is unique for each currently existing object and
-     * is always the same for each object.
+     * @return int An integer identifier that is unique for each currently existing object and is always the same for
+     * each object.
      *
      * @note When an object is destroyed, its id may be reused for other objects.
      */

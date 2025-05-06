@@ -41,13 +41,11 @@ use function time;
  *
  * Class allows you to represent date/time information.
  * @since 1.0.0
- *
- * @internal
  */
 final class DateAndTime {
 
     /**
-     * ### Check for valid date
+     * ### Check for a valid date
      *
      * Checks the validity of the date formed by the arguments.
      * A date is considered valid if each parameter is properly defined.
@@ -176,7 +174,7 @@ final class DateAndTime {
      * @throws \FireHub\Core\Support\Exceptions\DateTime\FailedToFormatTimestampAsIntException If failed to format
      * a Unix timestamp as integer.
      *
-     * @return int Formatted date as integer.
+     * @return int Formatted date as an integer.
      *
      * @see https://www.php.net/manual/en/function.idate.phP
      */
@@ -319,7 +317,7 @@ final class DateAndTime {
      * Values greater than 23 reference the appropriate hour on the following day(s).
      * </p>
      * @param null|int $minute <p>
-     * The number of the minute relative to the start of the hour.
+     * The number of the minutes relative to the start of the hour.
      * Negative values reference the minute in the previous hour.
      * Values greater than reference 59 the appropriate minute in the following hour(s).
      * </p>
@@ -390,7 +388,7 @@ final class DateAndTime {
      *
      * @uses \FireHub\Core\Support\LowLevel\StrSB::explode() To split microtime function.
      * @uses \FireHub\Core\Support\LowLevel\Data::setType() To set microtime to another type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_INT To set microtime as integer.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_INT To set microtime as an integer.
      * @uses \FireHub\Core\Support\LowLevel\StrSB::part() To get part of microtime.
      *
      * @throws \FireHub\Core\Support\Exceptions\DateTime\FailedToGetMicrotimeException If failed to get microtime.

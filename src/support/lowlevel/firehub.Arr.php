@@ -103,8 +103,6 @@ use function usort;
 /**
  * ### Array low-level proxy class
  * @since 1.0.0
- *
- * @internal
  */
 final class Arr {
 
@@ -817,7 +815,7 @@ final class Arr {
      * The comparison function for value.
      * </p>
      * @param callable(mixed, mixed):int<-1, 1> $callback_key <p>
-     * The comparison function for key.
+     * The comparison function for a key.
      * </p>
      *
      * @return array<TKey, TValue> An array containing all the entries from $array that aren't present in any of
@@ -961,7 +959,7 @@ final class Arr {
      * ### Computes the intersection of arrays with additional index check
      *
      * Returns an array containing all the values of an array that are present in all the arguments.
-     * Note that the keys are also used in the comparison unlike in [[Arr#intersect()]].
+     * Note that the keys are also used in the comparison, unlike in [[Arr#intersect()]].
      * @since 1.0.0
      *
      * @template TKey of array-key
@@ -1076,7 +1074,7 @@ final class Arr {
      * The comparison function for value.
      * </p>
      * @param callable(mixed, mixed):int<-1, 1> $callback_key <p>
-     * The comparison function for key.
+     * The comparison function for a key.
      * </p>
      *
      * @return array<TKey, TValue> An array containing all the entries from $array that are present in any of the other
@@ -1183,7 +1181,7 @@ final class Arr {
      * If specified, then only keys containing these values are returned.
      * </p>
      *
-     * @return list<TKey> An array of all the keys in input.
+     * @return list<TKey> An array of all the keys in the input.
      */
     public static function keys (array $array, mixed $filter = null):array {
 
@@ -1265,8 +1263,8 @@ final class Arr {
      *
      * @return array<TKey, TValue> The resulting array.
      *
-     * @note If the input arrays have the same string keys, then the later value for that key will overwrite the
-     * previous one.
+     * @note If the input arrays have the same string keys, then the later value for that key will overwrite
+     * the previous one.
      * @note If the arrays contain numeric keys, the later value will be appended.
      * @note Numeric keys will be renumbered.
      */
@@ -1306,7 +1304,7 @@ final class Arr {
      *
      * Returns a copy of the array padded to the size specified by $length with $value.
      * If the length is positive, then the array is padded on the right if it is negative, then on the left.
-     * If the absolute value of length is less than or equal to the length of the array, then no padding takes place.
+     * If the absolute value of a length is less than or equal to the length of the array, then no padding takes place.
      * It is possible to add at most 1,048,576 elements at a time.
      * @since 1.0.0
      *
@@ -1316,7 +1314,7 @@ final class Arr {
      * @param int $length <p>
      * New size of the array.
      * If the length is positive, then the array is padded on the right if it is negative, then on the left.
-     * If the absolute value of length is less than or equal to the length of the array, then no padding takes place.
+     * If the absolute value of a length is less than or equal to the length of the array, then no padding takes place.
      * </p>
      * @param mixed $value <p>
      * Value to pad if input is less than length.
@@ -1706,7 +1704,7 @@ final class Arr {
      *
      * Method prepends passed elements to the front of the array.
      * Note that the list of elements is prepended as a whole so that the prepended elements stay in the same order.
-     * All numerical array keys will be modified to start counting from zero while literal keys won't be changed.
+     * All numerical array keys will be modified to start counting from zero, while literal keys won't be changed.
      * @since 1.0.0
      *
      * @template TValue

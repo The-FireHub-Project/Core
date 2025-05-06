@@ -27,8 +27,6 @@ use function spl_autoload_unregister;
 /**
  * ### SPL Autoload low-level proxy class
  * @since 1.0.0
- *
- * @internal
  */
 final class SplAutoload {
 

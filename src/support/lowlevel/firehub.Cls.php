@@ -31,8 +31,6 @@ use function trait_exists;
  *
  * Class allows you to collect information about classes.
  * @since 1.0.0
- *
- * @internal
  */
 final class Cls extends ClsObj {
 
@@ -81,7 +79,7 @@ final class Cls extends ClsObj {
     }
 
     /**
-     * ### Checks if enum name exists
+     * ### Checks if an enum name exists
      *
      * This method checks whether the given enum has been defined.
      * @since 1.0.0

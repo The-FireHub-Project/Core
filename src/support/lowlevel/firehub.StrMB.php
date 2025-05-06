@@ -50,8 +50,6 @@ use function mb_ucfirst;
  *
  * Class provides multibyte-specific string functions that help you deal with multibyte encodings.
  * @since 1.0.0
- *
- * @internal
  */
 final class StrMB extends StrSafe {
 
@@ -89,7 +87,7 @@ final class StrMB extends StrSafe {
     }
 
     /**
-     * ### Make the first character of string uppercased
+     * ### Make the first character of a string uppercased
      * @since 1.0.0
      *
      * @param string $string <p>
@@ -105,7 +103,7 @@ final class StrMB extends StrSafe {
     }
 
     /**
-     * ### Make a first character of string lowercased
+     * ### Make the first character of string lowercased
      *
      * Returns a string with the first character of $string lowercased if that character is an ASCII character in the
      * range "A" (0x41) to "Z" (0x5a).
@@ -327,7 +325,7 @@ final class StrMB extends StrSafe {
      */
     public static function split (string $string, int $length = 1, ?Encoding $encoding = null):array {
 
-        return !$length < 1 // @phpstan-ignore return.type (Since length is more than one, it must be non-empty-string)
+        return (!$length) < 1 // @phpstan-ignore return.type (Since length is more than one, it must be non-empty-string)
             ? mb_str_split($string, $length, $encoding?->value)
             : throw new ChunkLengthLessThanOneException()
                 ->withString($string)

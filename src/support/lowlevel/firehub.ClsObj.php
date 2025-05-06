@@ -32,8 +32,6 @@ use function is_subclass_of;
  *
  * Class allows you to collect information about classes and objects.
  * @since 1.0.0
- *
- * @internal
  */
 abstract class ClsObj {
 
@@ -138,7 +136,7 @@ abstract class ClsObj {
      * ### Gets the class or object methods names
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To check if the $object_or_class parameter is string.
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To check if the $object_or_class parameter is a string.
      *
      * @param class-string|object $object_or_class <p>
      * The class name or an object instance.
@@ -192,7 +190,7 @@ abstract class ClsObj {
      * This function returns an array with the name of the parent classes for the given object_or_class.
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To check if the $object_or_class parameter is string.
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To check if the $object_or_class parameter is a string.
      *
      * @param class-string|object $object_or_class <p>
      * An object (class instance) or a string (class or interface name).
@@ -227,7 +225,7 @@ abstract class ClsObj {
      * implement.
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To check if the $object_or_class parameter is string.
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To check if the $object_or_class parameter is a string.
      *
      * @param class-string|object $object_or_class <p>
      * An object (class instance) or a string (class or interface name).
@@ -262,7 +260,7 @@ abstract class ClsObj {
      * This does, however, not include any traits used by a parent class.
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To check if the $object_or_class parameter is string.
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To check if the $object_or_class parameter is a string.
      *
      * @param class-string|object $object_or_class <p>
      * An object (class instance) or a string (class or interface name).

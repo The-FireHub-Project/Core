@@ -25,8 +25,6 @@ use function get_resources;
  *
  * Class allows you to collect information about resources.
  * @since 1.0.0
- *
- * @internal
  */
 final class Resources {
 
@@ -71,7 +69,7 @@ final class Resources {
      * @since 1.0.0
      *
      * @param null|\FireHub\Core\Support\Enums\Data\ResourceType $type [optional] <p>
-     * If defined, this will cause method to only return resources of the given type.
+     * If defined, this will cause the method to only return resources of the given type.
      * </p>
      *
      * @return array<int, resource> Resource type or null if is not a resource.

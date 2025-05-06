@@ -24,6 +24,8 @@ use function implode;
 /**
  * ### Autoload all necessary constants
  * @since 1.0.0
+ *
+ * @internal
  */
 final class RegisterConstants implements Bootloader {
 

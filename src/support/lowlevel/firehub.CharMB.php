@@ -27,8 +27,6 @@ use function mb_ord;
  *
  * Class provides multibyte specific character functions that help you deal with multibyte encodings.
  * @since 1.0.0
- *
- * @internal
  */
 final class CharMB {
 

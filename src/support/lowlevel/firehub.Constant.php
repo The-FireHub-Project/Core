@@ -26,8 +26,6 @@ use function defined;
  *
  * Class allows you to collect information about constants.
  * @since 1.0.0
- *
- * @internal
  */
 final class Constant {
 
@@ -65,7 +63,7 @@ final class Constant {
      * The constant name.
      * </p>
      *
-     * @return bool True if the named constant given by name parameter has been defined, false otherwise.
+     * @return bool True if the named constant given by the name parameter has been defined, false otherwise.
      *
      * @note This function works also with class constants and enum cases.
      */

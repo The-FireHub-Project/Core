@@ -63,8 +63,6 @@ use function wordwrap;
  *
  * Class allows you to manipulate strings in various ways.
  * @since 1.0.0
- *
- * @internal
  */
 final class StrSB extends StrSafe {
 
@@ -73,7 +71,7 @@ final class StrSB extends StrSafe {
      *
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\LowLevel\StrSafe::addSlashes() To call parent method if the $character parameter
+     * @uses \FireHub\Core\Support\LowLevel\StrSafe::addSlashes() To call a parent method if the $character parameter
      * wasn't provided.
      *
      * @param string $string <p>
@@ -226,8 +224,8 @@ final class StrSB extends StrSafe {
      * If it is negative, it represents the number of characters from the end of the string at which to stop replacing.
      * If it is not given, then it will default to [[StrSB#length(string)]]; in other words, end the replacing at the
      * end of the string.
-     * Of course, if length is zero, then this function will have the effect of inserting $replace into string at the
-     * given offset.
+     * Of course, if the length is zero, then this function will have the effect of inserting $replace into string
+     * at the given offset.
      * </p>
      *
      * @return string String with the replaced values.
@@ -419,7 +417,7 @@ final class StrSB extends StrSafe {
     }
 
     /**
-     * ### Make the first character of string uppercased
+     * ### Make the first character of a string uppercased
      * @since 1.0.0
      *
      * @param string $string <p>
@@ -435,7 +433,7 @@ final class StrSB extends StrSafe {
     }
 
     /**
-     * ### Make a first character of string lowercased
+     * ### Make the first character of string lowercased
      *
      * Returns a string with the first character of $string lowercased if that character is an ASCII character in the
      * range "A" (0x41) to "Z" (0x5a).
@@ -589,7 +587,7 @@ final class StrSB extends StrSafe {
      */
     public static function split (string $string, int $length = 1):array {
 
-        return !$length < 1
+        return (!$length) < 1
             ? str_split($string, $length)
             : throw new ChunkLengthLessThanOneException()
                 ->withString($string)
@@ -598,7 +596,7 @@ final class StrSB extends StrSafe {
     }
 
     /**
-     * ### Count number of words in string
+     * ### Count the number of words in string
      *
      * Counts the number of words inside a string.
      * If the optional format is not specified, then the return value will be an integer representing the number of

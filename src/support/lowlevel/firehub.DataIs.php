@@ -32,20 +32,18 @@ use function is_string;
 /**
  * ### Data type checker low-level proxy class
  * @since 1.0.0
- *
- * @internal
  */
 final class DataIs {
 
     /**
-     * ### Checks if value is array
+     * ### Checks if the value is an array
      * @since 1.0.0
      *
      * @param mixed $value <p>
      * Value to check.
      * </p>
      *
-     * @return ($value is array ? true : false) True if value is an array, false otherwise.
+     * @return ($value is array ? true : false) True if the value is an array, false otherwise.
      */
     public static function array (mixed $value):bool {
 
@@ -77,7 +75,7 @@ final class DataIs {
      * Value to check.
      * </p>
      *
-     * @return ($value is callable ? true : false) True if value is callable, false otherwise.
+     * @return ($value is callable ? true : false) True if the value is callable, false otherwise.
      */
     public static function callable (mixed $value):bool {
 
@@ -125,7 +123,7 @@ final class DataIs {
      * Value to check.
      * </p>
      *
-     * @return ($value is int ? true : false) True if value is integer, false otherwise.
+     * @return ($value is int ? true : false) True if the value is integer, false otherwise.
      */
     public static function int (mixed $value):bool {
 
@@ -157,7 +155,7 @@ final class DataIs {
      * Value to check.
      * </p>
      *
-     * @return ($value is null ? true : false) True if value is null, false otherwise.
+     * @return ($value is null ? true : false) True if the value is null, false otherwise.
      */
     public static function null (mixed $value):bool {
 
@@ -205,8 +203,8 @@ final class DataIs {
      * Value to check.
      * </p>
      *
-     * @return ($value is resource ? true : false) True if value is resource, false otherwise, or if the resource
-     * is closed.
+     * @return ($value is resource ? true : false) True if value is a resource, false otherwise, or if the resource is
+     * closed.
      */
     public static function resource (mixed $value):bool {
 

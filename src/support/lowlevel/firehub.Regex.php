@@ -36,8 +36,6 @@ use function preg_quote;
  * If the delimiter character has to be used in the expression itself, it needs to be escaped by backslash.
  * Perl style (), {}, [], and <> matching delimiters may also be used.
  * @since 1.0.0
- *
- * @internal
  */
 final class Regex {
 

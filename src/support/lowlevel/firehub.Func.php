@@ -28,8 +28,6 @@ use function unregister_tick_function;
  *
  * Class allows you to collect information about functions.
  * @since 1.0.0
- *
- * @internal
  */
 final class Func {
 

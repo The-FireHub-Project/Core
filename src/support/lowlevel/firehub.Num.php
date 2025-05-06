@@ -40,8 +40,6 @@ use function sqrt;
  * Class contains methods that are used on all number types.
  * @since 1.0.0
  *
- * @internal
- *
  * @SuppressWarnings("PHPMD.ShortVariable")
  */
 abstract class Num {
@@ -70,7 +68,7 @@ abstract class Num {
      * Returns the next highest integer value by rounding up $number if necessary.
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\LowLevel\NumFloat::round() To round $number parameter.
+     * @uses \FireHub\Core\Support\LowLevel\NumFloat::round() To round the $number parameter.
      *
      * @param float|int $number <p>
      * The value to round up.
@@ -90,7 +88,7 @@ abstract class Num {
      * Returns the next lowest integer value (as float) by rounding down $number if necessary.
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\LowLevel\NumFloat::round() To round $number parameter.
+     * @uses \FireHub\Core\Support\LowLevel\NumFloat::round() To round the $number parameter.
      *
      * @param float|int $number <p>
      * The value to round down.
@@ -392,7 +390,7 @@ abstract class Num {
      * The argument to process.
      * </p>
      *
-     * @return float The square root of num or the special value NAN for negative numbers.
+     * @return float The square root of a num or the special value NAN for negative numbers.
      */
     public static function squareRoot (int|float $number):float {
 

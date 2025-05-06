@@ -28,8 +28,6 @@ use function intdiv;
  * Int can be specified in decimal (base 10), hexadecimal (base 16), octal (base 8) or binary (base 2) notation.
  * The negation operator can be used to denote a negative int.
  * @since 1.0.0
- *
- * @internal
  */
 final class NumInt extends Num {
 

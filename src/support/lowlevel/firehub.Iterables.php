@@ -30,8 +30,6 @@ use function reset;
 /**
  * ### Array or Traversable low-level proxy class
  * @since 1.0.0
- *
- * @internal
  */
 final class Iterables {
 

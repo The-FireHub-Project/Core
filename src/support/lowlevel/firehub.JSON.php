@@ -31,8 +31,6 @@ use function json_validate;
  *
  * Class allows you to collect information about objects.
  * @since 1.0.0
- *
- * @internal
  */
 final class JSON {
 
@@ -99,7 +97,7 @@ final class JSON {
      * The JSON string being decoded.
      * </p>
      * @param bool $as_array [optional] <p>
-     * If true method will return decoded JSON string as an associative array, otherwise it will return an object.
+     * If true, the method will return a decoded JSON string as an associative array, otherwise it will return an object.
      * </p>
      * @param positive-int $depth [optional] <p>
      * Set the maximum depth.

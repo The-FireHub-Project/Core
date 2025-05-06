@@ -32,7 +32,7 @@ final class Apcu implements Cache {
      * ### Constructor
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\LowLevel\PHP::isExtensionLoaded() To check if APCu extension is loaded.
+     * @uses \FireHub\Core\Support\LowLevel\PHP::isExtensionLoaded() To check if the APCu extension is loaded.
      *
      * @throws \FireHub\Core\Initializers\Exceptions\CacheExtensionNotLoadedException If APCu extension is not loaded.
      *

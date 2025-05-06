@@ -57,8 +57,6 @@ use function touch;
  *
  * Class contains methods related to a file system.
  * @since 1.0.0
- *
- * @internal
  */
 class FileSystem {
 

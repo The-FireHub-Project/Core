@@ -40,8 +40,6 @@ use function tanh;
  * following syntax: 1.234, 1.2e3, 7E-10, 1_234.567.
  * @since 1.0.0
  *
- * @internal
- *
  * @SuppressWarnings("PHPMD.ShortVariable")
  */
 final class NumFloat extends Num {
@@ -68,7 +66,7 @@ final class NumFloat extends Num {
     /**
      * ### Finds whether a value is infinite
      *
-     * Returns true if num is infinite (positive or negative), like the result of log(0) or any value too big to fit
+     * Returns true if a num is infinite (positive or negative), like the result of log(0) or any value too big to fit
      * into a float on this platform.
      * @since 1.0.0
      *
@@ -179,7 +177,7 @@ final class NumFloat extends Num {
      * The argument to process.
      * </p>
      *
-     * @return float The arc cosine of number in radians.
+     * @return float The arc cosine of the number in radians.
      */
     public static function cosineArc (float $number):float {
 

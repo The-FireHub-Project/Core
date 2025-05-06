@@ -23,8 +23,6 @@ use function iterator_to_array;
 /**
  * ### Iterator low-level proxy class
  * @since 1.0.0
- *
- * @internal
  */
 final class Iterator {
 

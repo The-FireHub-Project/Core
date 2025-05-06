@@ -46,8 +46,6 @@ use function zend_version;
  * This method enables you to get a lot of information about PHP itself, for example, runtime configuration,
  * loaded extensions, version, and much more.
  * @since 1.0.0
- *
- * @internal
  */
 final class PHP {
 
@@ -198,7 +196,7 @@ final class PHP {
      * ### Gets all configuration options
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\Enums\PHP\IniAccessLevel To set access level.
+     * @uses \FireHub\Core\Support\Enums\PHP\IniAccessLevel To set an access level.
      *
      * @param null|non-empty-string $extension <p>
      * An optional extension name.
@@ -206,7 +204,7 @@ final class PHP {
      * </p>
      *
      * @return array<non-empty-string, array{global_value: null|int|string, local_value: null|int|string, access: \FireHub\Core\Support\Enums\PHP\IniAccessLevel}>|false
-     * Associative array with directive name as the array key.
+     * Associative array with a directive name as the array key.
      * Returns false and raises an E_WARNING level error if the extension doesn't exist.
      *
      * @note Method ignores "array" ini options such as pdo.dsn.*.

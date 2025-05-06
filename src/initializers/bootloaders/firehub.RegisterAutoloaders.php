@@ -26,6 +26,8 @@ use const FireHub\Core\Support\Constants\Path\DS;
 /**
  * ### Register autoloaders
  * @since 1.0.0
+ *
+ * @internal
  */
 final readonly class RegisterAutoloaders implements Bootloader {
 

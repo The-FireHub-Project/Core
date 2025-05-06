@@ -25,8 +25,6 @@ use function get_defined_functions;
  *
  * Class allows you to get information about declared classes and objects.
  * @since 1.0.0
- *
- * @internal
  */
 final class Declared {
 

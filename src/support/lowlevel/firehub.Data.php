@@ -31,8 +31,6 @@ use function unserialize;
  *
  * Class contains variable handling methods for data manipulation.
  * @since 1.0.0
- *
- * @internal
  */
 final class Data {
 
@@ -40,14 +38,14 @@ final class Data {
      * ### Gets data type
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_BOOL As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_INT As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_FLOAT As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_STRING As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_ARRAY As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_OBJECT As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_NULL As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_RESOURCE As data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_BOOL As a data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_INT As a data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_FLOAT As a data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_STRING As a data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_ARRAY As a data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_OBJECT As a data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_NULL As a data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_RESOURCE As a data type.
      *
      * @param mixed $value <p>
      * The variable being type-checked.
@@ -77,15 +75,15 @@ final class Data {
      * ### Sets data type
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\LowLevel\Data::getType() To get $value type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_BOOL As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_STRING As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_INT As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_FLOAT As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_ARRAY As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_OBJECT As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_NULL As data type.
-     * @uses \FireHub\Core\Support\Enums\Data\Type::T_RESOURCE As data type.
+     * @uses \FireHub\Core\Support\LowLevel\Data::getType() To get the $ value type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_BOOL As a data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_STRING As a data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_INT As a data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_FLOAT As a data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_ARRAY As a data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_OBJECT As a data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_NULL As a data type.
+     * @uses \FireHub\Core\Support\Enums\Data\Type::T_RESOURCE As a data type.
      *
      * @param mixed $value <p>
      * The variable being converted to type.

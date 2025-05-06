@@ -39,8 +39,6 @@ use function scandir;
  *
  * Class contains methods related to folders.
  * @since 1.0.0
- *
- * @internal
  */
 final class Folder extends FileSystem {
 

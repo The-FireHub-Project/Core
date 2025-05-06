@@ -28,8 +28,6 @@ use function timezone_abbreviations_list;
  *
  * A time zone is an area that observes a uniform standard time for legal, commercial, and social purposes.
  * @since 1.0.0
- *
- * @internal
  */
 final class DateAndTimeZone {
 
