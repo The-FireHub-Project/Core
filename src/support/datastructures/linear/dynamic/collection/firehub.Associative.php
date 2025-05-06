@@ -19,14 +19,17 @@ use FireHub\Core\Support\DataStructures\Contracts\ {
     ArrayableStorage, Overloadable
 };
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use FireHub\Core\Support\DataStructures\Traits\Arrayable;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
 };
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
-use FireHub\Core\Support\LowLevel\Iterables;
-use Traversable;
+use FireHub\Core\Support\LowLevel\ {
+    Arr, Iterables
+};
+use ArgumentCountError, Traversable;
 
 /**
  * ### Associative array collection type
@@ -49,6 +52,14 @@ use Traversable;
 class Associative extends Collection implements ArrayAccessible, ArrayableStorage, Overloadable {
 
     /**
+     * ### Arrayable data structure methods have an array as storage
+     * @since 1.0.0
+     *
+     * @use \FireHub\Core\Support\DataStructures\Traits\Arrayable<TKey, TValue>
+     */
+    use Arrayable;
+
+    /**
      * ### Trait contains all common JSON methods
      * @since 1.0.0
      */
@@ -61,14 +72,9 @@ class Associative extends Collection implements ArrayAccessible, ArrayableStorag
     use Serializable;
 
     /**
-     * ### Constructor
+     * @inheritDoc
+     *
      * @since 1.0.0
-     *
-     * @param array<TKey, TValue> $storage [optional] <p>
-     * Underlying storage data.
-     * </p>
-     *
-     * @return void
      */
     public function __construct (
         protected array $storage = []

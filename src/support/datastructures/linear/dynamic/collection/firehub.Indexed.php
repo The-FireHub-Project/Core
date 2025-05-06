@@ -18,6 +18,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Contracts\ {
     ArrayableStorage, Sequantionable
 };
+use FireHub\Core\Support\DataStructures\Traits\Arrayable;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
 };
@@ -49,6 +50,14 @@ use function FireHub\Core\Support\Helpers\Arr\ {
 class Indexed extends Collection implements ArrayableStorage, Sequantionable {
 
     /**
+     * ### Arrayable data structure methods have an array as storage
+     * @since 1.0.0
+     *
+     * @use \FireHub\Core\Support\DataStructures\Traits\Arrayable<int, TValue>
+     */
+    use Arrayable;
+
+    /**
      * ### Trait contains all common JSON methods
      * @since 1.0.0
      */
@@ -69,16 +78,9 @@ class Indexed extends Collection implements ArrayableStorage, Sequantionable {
     protected array $storage;
 
     /**
-     * ### Constructor
+     * @inheritDoc
+     *
      * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\Helpers\Arr\values() To get all values from a provided array.
-     *
-     * @param TValue[] $storage [optional] <p>
-     * Underlying storage data.
-     * </p>
-     *
-     * @return void
      */
     public function __construct (array $storage = []) {
 

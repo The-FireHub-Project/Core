@@ -141,6 +141,24 @@ final class ObjTest extends Base {
      *
      * @return void
      */
+    public function testApply ():void {
+
+        $this->assertEquals(
+            [
+                ['key' => $this->cls1, 'value' => 'data for object 1'],
+                ['key' => $this->cls2, 'value' => [1, 2, 3]],
+                ['key' => $this->cls3, 'value' => 21],
+            ],
+            $this->collection->apply(fn($info, $object) => $object !== $this->cls3 ? $info : $info + 1)->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testExist ():void {
 
         $this->assertTrue($this->collection->exist($this->cls1));

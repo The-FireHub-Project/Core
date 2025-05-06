@@ -103,4 +103,17 @@ interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSe
      */
     public function each (callable $callback, int $limit = MAX):self;
 
+    /**
+     * ### Applies the callback to the elements of the data structure
+     * @since 1.0.0
+     *
+     * @param callable(TValue, TKey=):mixed $callback <p>
+     * A callable to run for each element in a data structure.
+     * </p>
+     *
+     * @return static<TKey, mixed> New data structure containing the results of applying the callback function to the
+     * corresponding values of a data structure.
+     */
+    public function apply (callable $callback):static;
+
 }

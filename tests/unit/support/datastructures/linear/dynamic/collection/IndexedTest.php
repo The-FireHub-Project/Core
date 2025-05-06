@@ -156,6 +156,20 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testApply ():void {
+
+        $this->assertEquals(
+            Indexed::fromArray(['John.', 'Jane.', 'Jane.', 'Jane.', 'Richard.', 'Richard.']),
+            $this->collection->apply(fn($value) => $value.'.')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testShift ():void {
 
         $collection = new Indexed(['Jane', 'Jane', 'Jane', 'Richard', 'Richard']);

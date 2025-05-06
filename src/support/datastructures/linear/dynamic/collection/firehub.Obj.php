@@ -194,6 +194,38 @@ class Obj extends Collection {
     }
 
     /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection = new Obj();
+     * $collection->attach($cls1, 'data for object 1');
+     * $collection->attach($cls2, [1,2,3]);
+     * $collection->attach($cls3, 20);
+     *
+     * $new_collection = $collection->apply(fn($info, $object) => $object !== $cls3 ? $info : $info + 1);
+     * ```
+     */
+    public function apply (callable $callback):static {
+
+        $storage = new static();
+
+        foreach ($this as $object => $info)
+            $storage->attach($object, $callback($info, $object));
+
+        return $storage; // @phpstan-ignore  return.type
+
+    }
+
+    /**
      * ### Checks if an object exists in the storage
      * @since 1.0.0
      *

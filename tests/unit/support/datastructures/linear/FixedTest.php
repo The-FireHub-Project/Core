@@ -158,6 +158,20 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testApply ():void {
+
+        $this->assertEquals(
+            Fixed::fromArray(['one.', 'two.', 'three.']),
+            $this->collection->apply(fn($value) => $value.'.')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJsonSerialize ():void {
 
         $json = $this->collection->toJson();

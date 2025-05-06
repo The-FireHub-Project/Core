@@ -219,6 +219,38 @@ class Fixed extends SplFixedArray implements FixedContract, ArrayAccessible {
      *
      * @since 1.0.0
      *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::map() To apply the callback to the elements of the given array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $new_collection = $collection->apply(fn($value, $key) => $value.'.');
+     *
+     * // ['one.', 'two.', 'three.']
+     * ```
+     */
+    public function apply (callable $callback):static {
+
+        $storage = new static($this->getSize());
+
+        foreach ($this as $key => $value) $storage[$key] = $callback($value);
+
+        return $storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @return array<TValue> Data which can be serialized by json_encode(), which is a value of any type other than a
      * resource.
      */

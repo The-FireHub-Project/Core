@@ -175,6 +175,34 @@ class Lazy implements Dynamic {
      *
      * @since 1.0.0
      *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::map() To apply the callback to the elements of the given array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $new_collection = $collection->apply(fn($value, $key) => $value.'.');
+     *
+     * // ['firstname' => 'John.', 'lastname' => 'Doe.', 'age' => '25.', 10 => '2.']
+     * ```
+     */
+    public function apply (callable $callback):static {
+
+        return new static(function () use ($callback):Generator {
+
+            foreach ($this as $key => $value) yield $key => $callback($value, $key);
+
+        });
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy::invoke() To invoke storage.
      */
     public function getIterator ():Traversable {
