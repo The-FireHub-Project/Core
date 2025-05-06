@@ -18,7 +18,9 @@ use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
     Indexed, Associative, Obj
 };
-use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\DataStructures\Operation\ {
+    CountBy, Ensure
+};
 use FireHub\Core\Support\Enums\Data\Type;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -33,6 +35,7 @@ use stdClass;
 #[Group('collection')]
 #[CoversClass(Indexed::class)]
 #[CoversClass(CountBy::class)]
+#[CoversClass(Ensure::class)]
 final class IndexedTest extends Base {
 
     public Indexed $collection;
@@ -132,6 +135,19 @@ final class IndexedTest extends Base {
             new Associative(['J' => 4, 'R' => 2]),
             $this->collection->countBy()->where(fn($value, $key) => substr((string)$value, 0, 1))
         );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testEnsure ():void {
+
+        $this->assertTrue($this->collection->ensure()->all(fn($value) => is_string($value)));
+
+        $this->assertFalse($this->collection->ensure()->none(fn($value) => is_string($value)));
 
     }
 

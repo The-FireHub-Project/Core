@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Traits;
 
 use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, Contains, Find, Is
+    CountBy, Contains, Ensure, Find, Is
 };
 
 use const FireHub\Core\Support\Constants\Number\MAX;
@@ -48,6 +48,17 @@ trait Enumerable {
     public function contains ():Contains {
 
         return new Contains($this);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function ensure ():Ensure {
+
+        return new Ensure($this);
 
     }
 
