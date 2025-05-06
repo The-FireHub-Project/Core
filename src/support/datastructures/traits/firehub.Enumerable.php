@@ -143,6 +143,10 @@ trait Enumerable {
      * // ['firstname']
      * ```
      *
+     * @param mixed $with_value [optional] <p>
+     * If specified, then only keys containing these values are returned.
+     * </p>
+     *
      * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed<TKey> Keys from the data
      * structure.
      */
