@@ -27,4 +27,20 @@ use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
  */
 interface Linear extends DataStructures {
 
+    /**
+     * ### Reduces the collection to a single value, passing the result of each iteration into the subsequent iteration
+     * @since 1.0.0
+     *
+     * @param callable(mixed, TValue):mixed $callback <p>
+     * The callable function.
+     * </p>
+     * @param mixed $initial [optional] <p>
+     * If the optional initial is available, it will be used at the beginning of the process,
+     * or as a final result in case the array is empty.
+     * </p>
+     *
+     * @return mixed Reduced value.
+     */
+    public function reduce (callable $callback, mixed $initial = null):mixed;
+
 }

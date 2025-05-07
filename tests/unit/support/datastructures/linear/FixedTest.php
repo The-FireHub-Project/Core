@@ -19,6 +19,7 @@ use FireHub\Core\Support\DataStructures\Linear\Fixed;
 use FireHub\Core\Support\DataStructures\Operation\ {
     Contains, Ensure
 };
+use FireHub\Core\Support\DataStructures\Function\Reduce;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -32,6 +33,7 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Fixed::class)]
 #[CoversClass(Contains::class)]
 #[CoversClass(Ensure::class)]
+#[CoversClass(Reduce::class)]
 final class FixedTest extends Base {
 
     public Fixed $collection;
@@ -163,6 +165,20 @@ final class FixedTest extends Base {
         $this->assertEquals(
             Fixed::fromArray(['one.', 'two.', 'three.']),
             $this->collection->apply(fn($value) => $value.'.')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testReduce ():void {
+
+        $this->assertSame(
+            'one-two-three-',
+            $this->collection->reduce(fn($carry, $value) => $carry.$value.'-')
         );
 
     }

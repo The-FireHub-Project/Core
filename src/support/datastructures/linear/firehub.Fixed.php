@@ -16,6 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
 use FireHub\Core\Support\Contracts\ArrayAccessible;
+use FireHub\Core\Support\DataStructures\Function\Reduce;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
@@ -243,6 +244,34 @@ class Fixed extends SplFixedArray implements FixedContract, ArrayAccessible {
         foreach ($this as $key => $value) $storage[$key] = $callback($value);
 
         return $storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Function\Reduce As reduce function.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $collection->reduce(fn($carry, $value) => $carry.'-'.$value);
+     *
+     * // 'one-two-three-'
+     * ```
+     */
+    public function reduce (callable $callback, mixed $initial = null):mixed {
+
+        return new Reduce($this)($callback, $initial);
 
     }
 

@@ -21,6 +21,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
 use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Ensure
 };
+use FireHub\Core\Support\DataStructures\Function\Reduce;
 use FireHub\Core\Support\Enums\Data\Type;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -36,6 +37,7 @@ use stdClass;
 #[CoversClass(Indexed::class)]
 #[CoversClass(CountBy::class)]
 #[CoversClass(Ensure::class)]
+#[CoversClass(Reduce::class)]
 final class IndexedTest extends Base {
 
     public Indexed $collection;
@@ -161,6 +163,20 @@ final class IndexedTest extends Base {
         $this->assertEquals(
             Indexed::fromArray(['John.', 'Jane.', 'Jane.', 'Jane.', 'Richard.', 'Richard.']),
             $this->collection->apply(fn($value) => $value.'.')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testReduce ():void {
+
+        $this->assertSame(
+            'John-Jane-Jane-Jane-Richard-Richard-',
+            $this->collection->reduce(fn($carry, $value) => $carry.$value.'-')
         );
 
     }

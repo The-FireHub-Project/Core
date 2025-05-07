@@ -15,6 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
+use FireHub\Core\Support\DataStructures\Function\Reduce;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 
 /**
@@ -35,5 +36,29 @@ abstract class Collection implements Dynamic {
      * @use \FireHub\Core\Support\DataStructures\Traits\Enumerable<TKey, TValue>
      */
     use Enumerable;
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Function\Reduce As reduce function.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->reduce(fn($carry, $value) => $carry.'-'.$value);
+     *
+     * // 'John-Jane-Jane-Jane-Richard-Richard-'
+     * ```
+     */
+    public function reduce (callable $callback, mixed $initial = null):mixed {
+
+        return new Reduce($this)($callback, $initial);
+
+    }
 
 }

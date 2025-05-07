@@ -15,6 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
+use FireHub\Core\Support\DataStructures\Function\Reduce;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
@@ -195,6 +196,30 @@ class Lazy implements Dynamic {
             foreach ($this as $key => $value) yield $key => $callback($value, $key);
 
         });
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Function\Reduce As reduce function.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->reduce(fn($carry, $value) => $carry.'-'.$value);
+     *
+     * // 'John-Doe-25-2-'
+     * ```
+     */
+    public function reduce (callable $callback, mixed $initial = null):mixed {
+
+        return new Reduce($this)($callback, $initial);
 
     }
 

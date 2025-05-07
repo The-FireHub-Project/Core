@@ -17,6 +17,7 @@ namespace support\datastructures\linear\dynamic;
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+use FireHub\Core\Support\DataStructures\Function\Reduce;
 use FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -30,6 +31,7 @@ use Generator;
 #[Small]
 #[Group('collection')]
 #[CoversClass(Lazy::class)]
+#[CoversClass(Reduce::class)]
 final class LazyTest extends Base {
 
     public Lazy $collection;
@@ -177,6 +179,20 @@ final class LazyTest extends Base {
         $this->assertEquals(
             Indexed::fromArray(['John', 'Doe', 25, 2]),
             $this->collection->values()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testReduce ():void {
+
+        $this->assertSame(
+            'John-Doe-25-2-',
+            $this->collection->reduce(fn($carry, $value) => $carry.$value.'-')
         );
 
     }
