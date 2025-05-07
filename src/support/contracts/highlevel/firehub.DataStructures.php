@@ -99,9 +99,9 @@ interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSe
      * Maximum number of elements that is allowed to be iterated.
      * </p>
      *
-     * @return $this
+     * @return $this This data structure.
      */
-    public function each (callable $callback, int $limit = MAX):self;
+    public function each (callable $callback, int $limit = MAX):static;
 
     /**
      * ### Applies the callback to the elements of the data structure
@@ -115,5 +115,41 @@ interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSe
      * corresponding values of a data structure.
      */
     public function apply (callable $callback):static;
+
+    /**
+     * ### Execute the given callback when the first argument given to the method evaluates to true
+     * @since 1.0.0
+     *
+     * @param bool $condition <p>
+     * Condition to meet.
+     * </p>
+     * @param callable($this):mixed $condition_meet <p>
+     * Callback if the condition is met.
+     * </p>
+     * @param null|callable($this):mixed $condition_not_meet [optional] <p>
+     * Callback if the condition is not met.
+     * </p>
+     *
+     * @return $this This data structure.
+     */
+    public function when (bool $condition, callable $condition_meet, ?callable $condition_not_meet = null):static;
+
+    /**
+     * ### Execute the given callback unless the first argument given to the method evaluates to true
+     * @since 1.0.0
+     *
+     * @param bool $condition <p>
+     * Condition to meet.
+     * </p>
+     * @param callable($this):mixed $condition_meet <p>
+     * Callback if the condition is met.
+     * </p>
+     * @param null|callable($this):mixed $condition_not_meet [optional] <p>
+     * Callback if the condition is not met.
+     * </p>
+     *
+     * @return $this This data structure.
+     */
+    public function unless (bool $condition, callable $condition_meet, ?callable $condition_not_meet = null):static;
 
 }
