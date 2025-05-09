@@ -17,7 +17,7 @@ namespace FireHub\Core\Support\DataStructures\Contracts;
 use FireHub\Core\Support\Contracts\Magic\Overloadable as MagicOverloadable;
 
 /**
- * ### Data structure that can be accessed dynamically by invoking properties as key-value pairs.
+ * ### Data structure that can be accessed dynamically by invoking properties as key-value pairs
  * @since 1.0.0
  *
  * @template TKey of array-key
