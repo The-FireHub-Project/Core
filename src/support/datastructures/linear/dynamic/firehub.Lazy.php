@@ -224,6 +224,44 @@ class Lazy implements Dynamic {
     }
 
     /**
+     * ### Merge a new data structure into the current one
+     * @since 1.0.0
+     *
+     * @template TMergeKey
+     * @template TMergeValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Lazy(fn() => yield from ['middlename' => 'Marry']);
+     *
+     * $merged = $collection->merge($collection2);
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'middlename' => 'Marry']
+     * ```
+     *
+     * @param self<TMergeKey, TMergeValue> ...$data_structures <p>
+     * Data structures to merge.
+     * </p>
+     *
+     * @return static<TKey|TMergeKey, TValue|TMergeValue> New merged data structure.
+     */
+    public function merge (self ...$data_structures):static {
+
+        return new static(function () use ($data_structures):Generator {
+
+            yield from $this;
+
+            foreach ($data_structures as $data_structure)
+                yield from $data_structure;
+
+        });
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0

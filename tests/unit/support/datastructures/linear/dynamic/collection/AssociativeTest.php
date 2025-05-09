@@ -235,6 +235,22 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testMerge ():void {
+
+        $collection = new Associative(['firstname' => 'Jane', 'middlename' => 'Marry']);
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'middlename' => 'Marry']),
+            $this->collection->merge($collection)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testExist ():void {
 
         $this->assertTrue($this->collection->exist('firstname'));

@@ -159,6 +159,44 @@ class Associative extends Collection implements ArrayAccessible, ArrayableStorag
     }
 
     /**
+     * ### Merge a new data structure into the current one
+     * @since 1.0.0
+     *
+     * @uses static::toArray() To get data structure data as an array.
+     *
+     * @template TMergeKey of array-key
+     * @template TMergeValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'Jane', 'middlename' => 'Marry']);
+     *
+     * $merged = $collection->merge($collection2);
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'middlename' => 'Marry']
+     * ```
+     *
+     * @param self<TMergeKey, TMergeValue> ...$data_structures <p>
+     * Data structures to merge.
+     * </p>
+     *
+     * @return static<TKey|TMergeKey, TValue|TMergeValue> New merged data structure.
+     */
+    public function merge (self ...$data_structures):static {
+
+        $storage = $this->toArray();
+
+        foreach ($data_structures as $data_structure)
+            $storage += $data_structure->toArray();
+
+        return new static($storage);
+
+    }
+
+    /**
      * ### Check if item exist in collection
      * @since 1.0.0
      *

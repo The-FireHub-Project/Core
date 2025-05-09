@@ -198,6 +198,10 @@ class Obj extends Collection {
      *
      * @since 1.0.0
      *
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::attach() To add an object
+     * in the storage.
+     *
      * @example
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
@@ -221,7 +225,56 @@ class Obj extends Collection {
         foreach ($this as $object => $info)
             $storage->attach($object, $callback($info, $object));
 
-        return $storage; // @phpstan-ignore  return.type
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * ### Merge a new data structure into the current one
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::attach() To add an object
+     * in the storage.
+     *
+     * @template TMergeKey of object
+     * @template TMergeValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection = new Obj();
+     * $collection->attach($cls1, 'data for object 1');
+     * $collection->attach($cls2, [1,2,3]);
+     *
+     * $collection2 = new Obj();
+     * $collection2->attach($cls3, 20);
+     *
+     * $merged = $collection->merge($collection2);
+     * ```
+     *
+     * @param self<TMergeKey, TMergeValue> ...$data_structures <p>
+     * Data structures to merge.
+     * </p>
+     *
+     * @return static<TKey|TMergeKey, TValue|TMergeValue> New merged data structure.
+     */
+    public function merge (self ...$data_structures):static {
+
+        $storage = new static();
+
+        foreach ($this as $object => $info)
+            $storage->attach($object, $info);
+
+        foreach ($data_structures as $data_structure)
+            foreach ($data_structure as $object => $info)
+                $storage->attach($object, $info);
+
+        return $storage; // @phpstan-ignore return.type
 
     }
 

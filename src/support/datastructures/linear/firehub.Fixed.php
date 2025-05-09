@@ -276,6 +276,58 @@ class Fixed extends SplFixedArray implements FixedContract, ArrayAccessible {
     }
 
     /**
+     * ### Merge a new data structure into the current one
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::getSize() To get the size of the data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::setSize() To set the size of the data structure.
+     *
+     * @template TMergeValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $collection2 = new Fixed(2);
+     *
+     * $collection2[0] = 'four';
+     * $collection2[1] = 'five';
+     *
+     * $merged = $collection->merge($collection2);
+     *
+     * // ['one', 'two', 'three', 'four', 'five']
+     * ```
+     *
+     * @param self<TMergeValue> ...$data_structures <p>
+     * Data structures to merge.
+     * </p>
+     *
+     * @return static<TValue|TMergeValue> New merged data structure.
+     */
+    public function merge (self ...$data_structures):static {
+
+        $storage = clone $this;
+        $size = $this->getSize(); $counter = $size;
+
+        foreach ($data_structures as $data_structure)
+            $size += $data_structure->getSize();
+
+        $storage->setSize($size);
+
+        foreach ($data_structures as $data_structure)
+            foreach ($data_structure as $value) $storage[$counter++] = $value; // @phpstan-ignore offsetAssign.valueType
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0

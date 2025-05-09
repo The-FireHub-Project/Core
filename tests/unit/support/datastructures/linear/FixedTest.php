@@ -188,6 +188,33 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testMerge ():void {
+
+        $collection2 = new Fixed(2);
+
+        $collection2[0] = 'four';
+        $collection2[1] = 'five';
+
+        $collection3 = new Fixed(5);
+
+        $collection3[0] = 'one';
+        $collection3[1] = 'two';
+        $collection3[2] = 'three';
+        $collection3[3] = 'four';
+        $collection3[4] = 'five';
+
+        $this->assertEquals(
+            $collection3,
+            $this->collection->merge($collection2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJsonSerialize ():void {
 
         $json = $this->collection->toJson();

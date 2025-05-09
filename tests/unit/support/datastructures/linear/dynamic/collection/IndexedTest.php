@@ -258,6 +258,22 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testMerge ():void {
+
+        $collection = new Indexed(['Johnie', 'Janie', 'Baby']);
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie', 'Baby']),
+            $this->collection->merge($collection)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testShift ():void {
 
         $collection = new Indexed(['Jane', 'Jane', 'Jane', 'Richard', 'Richard']);

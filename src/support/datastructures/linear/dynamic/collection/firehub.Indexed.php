@@ -140,6 +140,43 @@ class Indexed extends Collection implements ArrayableStorage, Sequantionable {
     }
 
     /**
+     * ### Merge a new data structure into the current one
+     * @since 1.0.0
+     *
+     * @uses static::toArray() To get data structure data as an array.
+     *
+     * @template TMergeValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection2 = new Indexed(['Johnie', 'Janie', 'Baby']);
+     *
+     * $merged = $collection->merge($collection2);
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie', 'Baby']
+     * ```
+     *
+     * @param self<TMergeValue> ...$data_structures <p>
+     * Data structures to merge.
+     * </p>
+     *
+     * @return static<TValue|TMergeValue> New merged data structure.
+     */
+    public function merge (self ...$data_structures):static {
+
+        $storage = $this->storage;
+
+        foreach ($data_structures as $data_structure)
+            $storage = [...$storage,  ...$data_structure->toArray()];
+
+        return new static($storage);
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0

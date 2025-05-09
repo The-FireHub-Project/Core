@@ -159,6 +159,31 @@ final class ObjTest extends Base {
      *
      * @return void
      */
+    public function testMerge ():void {
+
+        $obj4 = new stdClass();
+
+        $collection = new Obj();
+        $collection->attach($obj4, 'data for object 4');
+
+        $collection3 = new Obj();
+        $collection3->attach($this->cls1, 'data for object 1');
+        $collection3->attach($this->cls2, [1, 2, 3]);
+        $collection3->attach($this->cls3, 20);
+        $collection3->attach($obj4, 'data for object 4');
+
+        $this->assertEquals(
+            $collection3,
+            $this->collection->merge($collection)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testExist ():void {
 
         $this->assertTrue($this->collection->exist($this->cls1));
