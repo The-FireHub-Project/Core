@@ -18,6 +18,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
 };
+use FireHub\Core\Support\DataStructures\Helpers\SequenceRange;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyDoesntExistException, StorageMissingDataException
 };
@@ -273,6 +274,56 @@ class Obj extends Collection {
         foreach ($data_structures as $data_structure)
             foreach ($data_structure as $object => $info)
                 $storage->attach($object, $info);
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Helpers\SequenceRange As range helper.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::count() To send SequenceRange info
+     * about the number of elements in current storage.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::attach() To add an object
+     * in the storage.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection = new Obj();
+     * $collection->attach($cls1, 'data for object 1');
+     * $collection->attach($cls2, [1,2,3]);
+     * $collection->attach($cls3, 20);
+     *
+     * $slice = $collection->slice(1, 2);
+     * ```
+     */
+    public function slice (int $offset, ?int $length = null):static {
+
+        $range = new SequenceRange($this->count(), $offset, $length);
+        $start = $range->start();
+        $end = $range->end();
+
+        $storage = new static();
+
+        $position = 0;
+        foreach ($this as $object => $info) {
+
+            if ($position++ < $start) continue;
+
+            if ($position > $end) break;
+
+            $storage->attach($object, $info);
+
+        }
 
         return $storage; // @phpstan-ignore return.type
 

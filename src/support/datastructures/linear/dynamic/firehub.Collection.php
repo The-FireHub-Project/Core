@@ -15,6 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
+use FireHub\Core\Support\DataStructures\Contracts\Selectable;
 use FireHub\Core\Support\DataStructures\Function\Reduce;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 
@@ -26,8 +27,9 @@ use FireHub\Core\Support\DataStructures\Traits\Enumerable;
  * @template TValue
  *
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Selectable<TKey, TValue>
  */
-abstract class Collection implements Dynamic {
+abstract class Collection implements Dynamic, Selectable {
 
     /**
      * ### Enumerable data structure methods that every element meets a given criterion

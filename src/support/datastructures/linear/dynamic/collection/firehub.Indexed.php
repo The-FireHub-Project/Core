@@ -181,6 +181,32 @@ class Indexed extends Collection implements ArrayableStorage, Sequantionable {
      *
      * @since 1.0.0
      *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::slice() To extract a slice of the array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $slice = $collection->slice(1, 4);
+     *
+     * // ['Jane', 'Jane', 'Jane', 'Richard']
+     * ```
+     */
+    public function slice (int $offset, ?int $length = null):static {
+
+        $storage = Arr::slice($this->storage, $offset, $length);
+
+        return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @uses \FireHub\Core\Support\LowLevel\Arr::shift() To remove an item at the beginning of the data structure if
      * $items value is 5 or less.
      * @uses \FireHub\Core\Support\LowLevel\Arr::splice() To remove an item at the beginning of the data structure if

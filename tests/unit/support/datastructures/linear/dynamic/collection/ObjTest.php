@@ -184,6 +184,24 @@ final class ObjTest extends Base {
      *
      * @return void
      */
+    public function testSlice ():void {
+
+        $collection = new Obj();
+        $collection->attach($this->cls2, [1, 2, 3]);
+        $collection->attach($this->cls3, 20);
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->slice(1, 2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testExist ():void {
 
         $this->assertTrue($this->collection->exist($this->cls1));

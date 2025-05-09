@@ -251,6 +251,20 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testSlice ():void {
+
+        $this->assertEquals(
+            new Associative(['lastname' => 'Doe', 'age' => 25]),
+            $this->collection->slice(1, 2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testExist ():void {
 
         $this->assertTrue($this->collection->exist('firstname'));

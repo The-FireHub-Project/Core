@@ -16,8 +16,10 @@ namespace FireHub\Core\Support\DataStructures\Linear;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
 use FireHub\Core\Support\Contracts\ArrayAccessible;
+use FireHub\Core\Support\DataStructures\Contracts\Selectable;
 use FireHub\Core\Support\DataStructures\Function\Reduce;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
+use FireHub\Core\Support\DataStructures\Helpers\SequenceRange;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
 };
@@ -38,13 +40,14 @@ use SplFixedArray;
  *
  * @extends SplFixedArray<TValue>
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed<int, ?TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Selectable<int, ?TValue>
  * @implements \FireHub\Core\Support\Contracts\ArrayAccessible<int, ?TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Fixed extends SplFixedArray implements FixedContract, ArrayAccessible {
+class Fixed extends SplFixedArray implements FixedContract, Selectable, ArrayAccessible {
 
     /**
      * ### Enumerable data structure methods that every element meets a given criterion
@@ -324,6 +327,53 @@ class Fixed extends SplFixedArray implements FixedContract, ArrayAccessible {
             foreach ($data_structure as $value) $storage[$counter++] = $value; // @phpstan-ignore offsetAssign.valueType
 
         return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Helpers\SequenceRange As range helper.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::count() To send SequenceRange info about the number
+     * of elements in current storage.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $collection->slice(1, 1);
+     *
+     * // ['two']
+     * ```
+     */
+    public function slice (int $offset, ?int $length = null):static {
+
+        $range = new SequenceRange($this->count(), $offset, $length);
+        $start = $range->start();
+        $end = $range->end();
+
+        $storage = new static($range->numberOfItems());
+
+        $position = 0; $counter = 0;
+        foreach ($this as $value) {
+
+            if ($position++ < $start) continue;
+
+            if ($position > $end) break;
+
+            $storage[$counter++] = $value;
+
+        }
+
+        return $storage;
 
     }
 

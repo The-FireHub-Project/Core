@@ -26,6 +26,7 @@ use FireHub\Core\Support\Traits\ {
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
+use FireHub\Core\Support\LowLevel\Arr;
 
 /**
  * ### Associative array collection type
@@ -191,6 +192,32 @@ class Associative extends Collection implements ArrayAccessible, ArrayableStorag
 
         foreach ($data_structures as $data_structure)
             $storage += $data_structure->toArray();
+
+        return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::slice() To extract a slice of the array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $slice = $collection->slice(1, 2);
+     *
+     * // ['lastname' => 'Doe', 'age' => 25]
+     * ```
+     */
+    public function slice (int $offset, ?int $length = null):static {
+
+        $storage = Arr::slice($this->storage, $offset, $length, true);
 
         return new static($storage);
 

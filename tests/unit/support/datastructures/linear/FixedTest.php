@@ -215,6 +215,49 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testSlice ():void {
+
+        $collection = new Fixed(2);
+        $collection[0] = 'two';
+        $collection[1] = 'three';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->slice(1)
+        );
+
+        $collection = new Fixed(1);
+        $collection[0] = 'two';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->slice(1, 1)
+        );
+
+        $collection = new Fixed(2);
+        $collection[0] = 'two';
+        $collection[1] = 'three';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->slice(-2, 3)
+        );
+
+        $collection = new Fixed(1);
+        $collection[0] = 'two';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->slice(1, -1)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJsonSerialize ():void {
 
         $json = $this->collection->toJson();
