@@ -22,6 +22,7 @@ use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Ensure
 };
 use FireHub\Core\Support\DataStructures\Function\Reduce;
+use FireHub\Core\Support\DataStructures\Helpers\SequenceRange;
 use FireHub\Core\Support\Enums\Data\Type;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -38,6 +39,7 @@ use stdClass;
 #[CoversClass(CountBy::class)]
 #[CoversClass(Ensure::class)]
 #[CoversClass(Reduce::class)]
+#[CoversClass(SequenceRange::class)]
 final class IndexedTest extends Base {
 
     public Indexed $collection;

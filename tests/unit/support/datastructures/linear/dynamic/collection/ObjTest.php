@@ -16,6 +16,7 @@ namespace support\datastructures\linear\dynamic\collection;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+use FireHub\Core\Support\DataStructures\Helpers\SequenceRange;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyDoesntExistException, StorageMissingDataException
 };
@@ -31,6 +32,7 @@ use stdClass;
 #[Small]
 #[Group('collection')]
 #[CoversClass(Obj::class)]
+#[CoversClass(SequenceRange::class)]
 final class ObjTest extends Base {
 
     public Obj $collection;

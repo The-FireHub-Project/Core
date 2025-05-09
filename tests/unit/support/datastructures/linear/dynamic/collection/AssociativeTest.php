@@ -21,6 +21,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
 use FireHub\Core\Support\DataStructures\Operation\ {
     Contains, Find, Is
 };
+use FireHub\Core\Support\DataStructures\Helpers\SequenceRange;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
@@ -37,6 +38,7 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Contains::class)]
 #[CoversClass(Find::class)]
 #[CoversClass(Is::class)]
+#[CoversClass(SequenceRange::class)]
 final class AssociativeTest extends Base {
 
     public Associative $collection;

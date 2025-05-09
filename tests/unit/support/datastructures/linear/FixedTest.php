@@ -20,6 +20,7 @@ use FireHub\Core\Support\DataStructures\Operation\ {
     Contains, Ensure
 };
 use FireHub\Core\Support\DataStructures\Function\Reduce;
+use FireHub\Core\Support\DataStructures\Helpers\SequenceRange;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -34,6 +35,7 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Contains::class)]
 #[CoversClass(Ensure::class)]
 #[CoversClass(Reduce::class)]
+#[CoversClass(SequenceRange::class)]
 final class FixedTest extends Base {
 
     public Fixed $collection;
