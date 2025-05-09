@@ -330,6 +330,45 @@ class Obj extends Collection {
     }
 
     /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::slice() To get a slice from a data
+     * structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection = new Obj();
+     * $collection->attach($cls1, 'data for object 1');
+     * $collection->attach($cls2, [1,2,3]);
+     * $collection->attach($cls3, 20);
+     *
+     * $nth = $collection->nth(2);
+     * ```
+     */
+    public function nth (int $step, int $offset = 0, ?int $length = null):static {
+
+        $storage = new static();
+
+        $counter = 0;
+        foreach (
+            $offset !== 0 || $length !== null
+                ? $this->slice($offset, $length)
+                : $this as $object => $info
+        ) if ($counter++ % (max($step, 1)) === 0)  $storage->attach($object, $info);
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
      * ### Checks if an object exists in the storage
      * @since 1.0.0
      *

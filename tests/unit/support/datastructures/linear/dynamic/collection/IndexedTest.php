@@ -305,6 +305,25 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testNth ():void {
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Richard']),
+            $this->collection->nth(2)
+        );
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane']),
+            $this->collection->nth(2, 1, 4)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testShift ():void {
 
         $collection = new Indexed(['Jane', 'Jane', 'Jane', 'Richard', 'Richard']);

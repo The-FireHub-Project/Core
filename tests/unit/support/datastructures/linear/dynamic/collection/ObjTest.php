@@ -204,6 +204,24 @@ final class ObjTest extends Base {
      *
      * @return void
      */
+    public function testNth ():void {
+
+        $collection = new Obj();
+        $collection->attach($this->cls1, 'data for object 1');
+        $collection->attach($this->cls3, 20);
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->nth(2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testExist ():void {
 
         $this->assertTrue($this->collection->exist($this->cls1));

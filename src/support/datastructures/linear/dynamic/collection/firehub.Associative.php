@@ -224,6 +224,38 @@ class Associative extends Collection implements ArrayAccessible, ArrayableStorag
     }
 
     /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::slice() To get a slice from
+     * a data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $nth = $collection->nth(2);
+     *
+     * // ['firstname' => 'John', 'age' => 25]
+     * ```
+     */
+    public function nth (int $step, int $offset = 0, ?int $length = null):static {
+
+        $storage = []; $counter = 0;
+        foreach (
+            $offset !== 0 || $length !== null
+                ? $this->slice($offset, $length)
+                : $this->storage as $key => $value
+        ) if ($counter++ % (max($step, 1)) === 0) $storage[$key] = $value;
+
+        return new static($storage);
+
+    }
+
+    /**
      * ### Check if item exist in collection
      * @since 1.0.0
      *

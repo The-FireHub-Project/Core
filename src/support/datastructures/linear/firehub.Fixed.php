@@ -382,6 +382,47 @@ class Fixed extends SplFixedArray implements FixedContract, Selectable, ArrayAcc
      *
      * @since 1.0.0
      *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::getSize() To get the size of the data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::setSize() To set the size of the data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::slice() To get a slice from a data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $nth = $collection->nth(2);
+     *
+     * // ['one', 'three']
+     * ```
+     */
+    public function nth (int $step, int $offset = 0, ?int $length = null):static {
+
+        $storage = new static($this->getSize());
+
+        $position = 0; $counter = 0;
+        foreach (
+            $offset !== 0 || $length !== null
+                ? $this->slice($offset, $length)
+                : $this as $value
+        ) if ($position++ % (max($step, 1)) === 0) $storage[$counter++] = $value;
+
+        $storage->setSize($counter);
+
+        return $storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @return array<TValue> Data which can be serialized by json_encode(), which is a value of any type other than a
      * resource.
      */

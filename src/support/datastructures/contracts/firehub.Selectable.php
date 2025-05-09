@@ -41,4 +41,25 @@ interface Selectable {
      */
     public function slice (int $offset, ?int $length = null):static;
 
+    /**
+     * ### Data structure consisting of every n-th element
+     * @since 1.0.0
+     *
+     * @param positive-int $step <p>
+     * N-th step.
+     * </p>
+     * @param int $offset [optional] <p>
+     * If the offset is non-negative, the sequence will start at that offset in the array.
+     * If the offset is negative, the sequence will start that far from the end of the array.
+     * </p>
+     * @param null|int $length [optional] <p>
+     * If length is given and is positive, then the sequence will have that many elements in it.
+     * If length is given and is negative, then the sequence will stop that many elements from the end of the array.
+     * If it is omitted, then the sequence will have everything from offset up until the end of the array.
+     * </p>
+     *
+     * @return static<TKey, TValue> New filtered collection.
+     */
+    public function nth (int $step, int $offset = 0, ?int $length = null):static;
+
 }

@@ -207,6 +207,48 @@ class Indexed extends Collection implements ArrayableStorage, Sequantionable {
      *
      * @since 1.0.0
      *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed::slice() To get a slice from a data
+     * structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $nth = $collection->nth(2);
+     *
+     * // ['John', 'Jane', 'Richard']
+     * ```
+     * @example With offset and length.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $nth = $collection->nth(2, 1, 4);
+     *
+     * // ['Jane', 'Jane']
+     * ```
+     */
+    public function nth (int $step, int $offset = 0, ?int $length = null):static {
+
+        $storage = []; $counter = 0;
+        foreach (
+            $offset !== 0 || $length !== null
+                ? $this->slice($offset, $length)
+                : $this->storage as $value
+        ) if ($counter++ % (max($step, 1)) === 0) $storage[] = $value;
+
+        return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @uses \FireHub\Core\Support\LowLevel\Arr::shift() To remove an item at the beginning of the data structure if
      * $items value is 5 or less.
      * @uses \FireHub\Core\Support\LowLevel\Arr::splice() To remove an item at the beginning of the data structure if
