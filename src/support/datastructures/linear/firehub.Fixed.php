@@ -18,7 +18,9 @@ use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as Fixe
 use FireHub\Core\Support\Contracts\ArrayAccessible;
 use FireHub\Core\Support\DataStructures\Contracts\Selectable;
 use FireHub\Core\Support\DataStructures\Function\Reduce;
-use FireHub\Core\Support\DataStructures\Traits\Enumerable;
+use FireHub\Core\Support\DataStructures\Traits\ {
+    Enumerable, Sliceable
+};
 use FireHub\Core\Support\DataStructures\Helpers\SequenceRange;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
@@ -56,6 +58,14 @@ class Fixed extends SplFixedArray implements FixedContract, Selectable, ArrayAcc
      * @use \FireHub\Core\Support\DataStructures\Traits\Enumerable<int, ?TValue>
      */
     use Enumerable;
+
+    /**
+     * ### This trait allows usage of slicing methods
+     * @since 1.0.0
+     *
+     * @use \FireHub\Core\Support\DataStructures\Traits\Sliceable<int, ?TValue>
+     */
+    use Sliceable;
 
     /**
      * ### Trait contains all common JSON methods

@@ -28,18 +28,32 @@ interface Selectable {
      * @since 1.0.0
      *
      * @param int $offset <p>
-     * If the offset is non-negative, the sequence will start at that offset in the array.
-     * If the offset is negative, the sequence will start that far from the end of the array.
+     * If the offset is non-negative, the sequence will start at that offset of the data collection.
+     * If the offset is negative, the sequence will start that far from the end of the data collection.
      * </p>
      * @param null|int $length [optional] <p>
      * If length is given and is positive, then the sequence will have that many elements in it.
-     * If length is given and is negative, then the sequence will stop that many elements from the end of the array.
-     * If it is omitted, then the sequence will have everything from offset up until the end of the array.
+     * If length is given and is negative, then the sequence will stop that many elements from the end of the
+     * data collection.
+     * If it is omitted, then the sequence will have everything from offset up until the end of the data collection.
      * </p>
      *
      * @return static<TKey, TValue> New sliced data structure.
      */
     public function slice (int $offset, ?int $length = null):static;
+
+    /**
+     * ### Take first n items from collection
+     * @since 1.0.0
+     *
+     * @param int $count <p>
+     * If the count is positive, then the sequence will have that many elements in it.
+     * If the count is negative, then the sequence will stop that many elements from the end of the data collection.
+     * </p>
+     *
+     * @return self<TKey, TValue> New filtered data structure.
+     */
+    public function take (int $count):self;
 
     /**
      * ### Data structure consisting of every n-th element
@@ -49,17 +63,34 @@ interface Selectable {
      * N-th step.
      * </p>
      * @param int $offset [optional] <p>
-     * If the offset is non-negative, the sequence will start at that offset in the array.
-     * If the offset is negative, the sequence will start that far from the end of the array.
+     * If the offset is non-negative, the sequence will start at that offset of the data collection.
+     * If the offset is negative, the sequence will start that far from the end of the data collection.
      * </p>
      * @param null|int $length [optional] <p>
      * If length is given and is positive, then the sequence will have that many elements in it.
-     * If length is given and is negative, then the sequence will stop that many elements from the end of the array.
-     * If it is omitted, then the sequence will have everything from offset up until the end of the array.
+     * If length is given and is negative, then the sequence will stop that many elements from the end of the
+     * data collection.
+     * If it is omitted, then the sequence will have everything from offset up until the end of the data collection.
      * </p>
      *
-     * @return static<TKey, TValue> New filtered collection.
+     * @return static<TKey, TValue> New filtered data structure.
      */
     public function nth (int $step, int $offset = 0, ?int $length = null):static;
+
+    /**
+     * ### New data structure consisting of even elements
+     * @since 1.0.0
+     *
+     * @return self<TKey, TValue> New filtered data structure.
+     */
+    public function even ():self;
+
+    /**
+     * ### New data structure consisting of odd elements
+     * @since 1.0.0
+     *
+     * @return self<TKey, TValue> New filtered data structure.
+     */
+    public function odd ():self;
 
 }

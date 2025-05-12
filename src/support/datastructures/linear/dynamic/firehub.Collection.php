@@ -17,7 +17,9 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
 use FireHub\Core\Support\DataStructures\Contracts\Selectable;
 use FireHub\Core\Support\DataStructures\Function\Reduce;
-use FireHub\Core\Support\DataStructures\Traits\Enumerable;
+use FireHub\Core\Support\DataStructures\Traits\ {
+    Enumerable, Sliceable
+};
 
 /**
  * ### Abstract collection type
@@ -38,6 +40,14 @@ abstract class Collection implements Dynamic, Selectable {
      * @use \FireHub\Core\Support\DataStructures\Traits\Enumerable<TKey, TValue>
      */
     use Enumerable;
+
+    /**
+     * ### This trait allows usage of slicing methods
+     * @since 1.0.0
+     *
+     * @use \FireHub\Core\Support\DataStructures\Traits\Sliceable<TKey, TValue>
+     */
+    use Sliceable;
 
     /**
      * @inheritDoc

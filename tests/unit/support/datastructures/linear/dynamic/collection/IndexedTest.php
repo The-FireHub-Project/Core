@@ -305,6 +305,25 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testTake ():void {
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane']),
+            $this->collection->take(2)
+        );
+
+        $this->assertEquals(
+            new Indexed(['Richard', 'Richard']),
+            $this->collection->slice(-2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testNth ():void {
 
         $this->assertEquals(
@@ -315,6 +334,34 @@ final class IndexedTest extends Base {
         $this->assertEquals(
             new Indexed(['Jane', 'Jane']),
             $this->collection->nth(2, 1, 4)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testEven ():void {
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Richard']),
+            $this->collection->even()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testOdd ():void {
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Richard']),
+            $this->collection->odd()
         );
 
     }
