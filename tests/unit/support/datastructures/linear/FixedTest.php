@@ -260,6 +260,76 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testTakeUntil ():void {
+
+        $collection = new Fixed(1);
+        $collection[0] = 'one';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->takeUntil(fn($value) => $value === 'two')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testTakeWhile ():void {
+
+        $collection = new Fixed(1);
+        $collection[0] = 'one';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->takeWhile(fn($value) => $value !== 'two')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSkipUntil ():void {
+
+        $collection = new Fixed(2);
+        $collection[0] = 'two';
+        $collection[1] = 'three';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->skipUntil(fn($value) => $value === 'two')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSkipWhile ():void {
+
+        $collection = new Fixed(2);
+        $collection[0] = 'two';
+        $collection[1] = 'three';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->skipWhile(fn($value) => $value !== 'two')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testNth ():void {
 
         $collection = new Fixed(2);

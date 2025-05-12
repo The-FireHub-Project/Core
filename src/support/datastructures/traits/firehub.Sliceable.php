@@ -109,4 +109,28 @@ trait Sliceable {
 
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Traits\Sliceable::slice() To get a slice from a data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $merged = $collection->skip(2);
+     *
+     * // ['Jane', 'Jane', 'Richard', 'Richard']
+     * ```
+     */
+    public function skip (int $count):static {
+
+        return $this->slice($count); // @phpstan-ignore return.type
+
+    }
+
 }

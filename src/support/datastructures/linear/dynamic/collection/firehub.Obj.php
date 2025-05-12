@@ -334,6 +334,168 @@ class Obj extends Collection {
      *
      * @since 1.0.0
      *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection = new Obj();
+     * $collection->attach($cls1, 'data for object 1');
+     * $collection->attach($cls2, [1,2,3]);
+     * $collection->attach($cls3, 20);
+     *
+     * $take_until = $collection->takeUntil(function ($info, $object) {
+     *  return $info === [1, 2, 3];
+     * });
+     * ```
+     */
+    public function takeUntil (callable $callback):static {
+
+        $storage = new static();
+
+        foreach ($this as $object => $info) {
+
+            if ($callback($info, $object)) break;
+
+            $storage->attach($object, $info);
+
+        }
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection = new Obj();
+     * $collection->attach($cls1, 'data for object 1');
+     * $collection->attach($cls2, [1,2,3]);
+     * $collection->attach($cls3, 20);
+     *
+     * $take_while = $collection->takeWhile(function ($info, $object) {
+     *  return $info !== [1, 2, 3];
+     * });
+     * ```
+     */
+    public function takeWhile (callable $callback):static {
+
+        $storage = new static();
+
+        foreach ($this as $object => $info) {
+
+            if (!$callback($info, $object)) break;
+
+            $storage->attach($object, $info);
+
+        }
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection = new Obj();
+     * $collection->attach($cls1, 'data for object 1');
+     * $collection->attach($cls2, [1,2,3]);
+     * $collection->attach($cls3, 20);
+     *
+     * $skip_until = $collection->skipUntil(function ($info, $object) {
+     *  return $info === [1, 2, 3];
+     * });
+     * ```
+     */
+    public function skipUntil (callable $callback):static {
+
+        $storage = new static();
+
+        $found = false;
+        foreach ($this as $object => $info) {
+
+            if (!$found && !$callback($info, $object)) continue;
+
+            $found = true;
+
+            $storage->attach($object, $info);
+
+        }
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection = new Obj();
+     * $collection->attach($cls1, 'data for object 1');
+     * $collection->attach($cls2, [1,2,3]);
+     * $collection->attach($cls3, 20);
+     *
+     * $skip_while = $collection->skipWhile(function ($info, $object) {
+     *  return $info !== [1, 2, 3];
+     * });
+     * ```
+     */
+    public function skipWhile (callable $callback):static {
+
+        $storage = new static();
+
+        $found = false;
+        foreach ($this as $object => $info) {
+
+            if (!$found && $callback($info, $object)) continue;
+
+            $found = true;
+
+            $storage->attach($object, $info);
+
+        }
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::slice() To get a slice from a data
      * structure.
      *

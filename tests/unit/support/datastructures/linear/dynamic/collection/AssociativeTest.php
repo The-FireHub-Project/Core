@@ -267,6 +267,62 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testTakeUntil ():void {
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'lastname' => 'Doe']),
+            $this->collection->takeUntil(fn($value, $key) => $value === 25)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testTakeWhile ():void {
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'lastname' => 'Doe']),
+            $this->collection->takeWhile(fn($value) => $value !== 25)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSkipUntil ():void {
+
+        $this->assertEquals(
+            new Associative(['age' => 25, 10 => 2]),
+            $this->collection->skipUntil(fn($value) => $value === 25)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSkipWhile ():void {
+
+        $this->assertEquals(
+            new Associative(['lastname' => 'Doe', 'age' => 25, 10 => 2]),
+            $this->collection->skipWhile(fn($value) => $value === 'John')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testNth ():void {
 
         $this->assertEquals(

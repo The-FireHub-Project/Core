@@ -313,8 +313,83 @@ final class IndexedTest extends Base {
         );
 
         $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Jane', 'Jane']),
+            $this->collection->take(-2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testTakeUntil ():void {
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Jane', 'Jane']),
+            $this->collection->takeUntil(fn($value) => $value === 'Richard')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testTakeWhile ():void {
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Jane', 'Jane']),
+            $this->collection->takeWhile(fn($value) => $value !== 'Richard')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSkip ():void {
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Richard', 'Richard']),
+            $this->collection->skip(2)
+        );
+
+        $this->assertEquals(
             new Indexed(['Richard', 'Richard']),
-            $this->collection->slice(-2)
+            $this->collection->skip(-2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSkipUntil ():void {
+
+        $this->assertEquals(
+            new Indexed(['Richard', 'Richard']),
+            $this->collection->skipUntil(fn($value) => $value === 'Richard')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSkipWhile ():void {
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Jane', 'Richard', 'Richard']),
+            $this->collection->skipWhile(fn($value) => $value === 'John')
         );
 
     }

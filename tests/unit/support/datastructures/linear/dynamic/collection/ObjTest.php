@@ -204,6 +204,76 @@ final class ObjTest extends Base {
      *
      * @return void
      */
+    public function testTakeUntil ():void {
+
+        $collection = new Obj();
+        $collection->attach($this->cls1, 'data for object 1');
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->takeUntil(fn($info, $object) => $info === [1, 2, 3])
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testTakeWhile ():void {
+
+        $collection = new Obj();
+        $collection->attach($this->cls1, 'data for object 1');
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->takeWhile(fn($info, $object) => $info !== [1, 2, 3])
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSkipUntil ():void {
+
+        $collection = new Obj();
+        $collection->attach($this->cls2, [1, 2, 3]);
+        $collection->attach($this->cls3, 20);
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->skipUntil(fn($info, $object) => $info === [1, 2, 3])
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSkipWhile ():void {
+
+        $collection = new Obj();
+        $collection->attach($this->cls2, [1, 2, 3]);
+        $collection->attach($this->cls3, 20);
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->skipWhile(fn($info, $object) => $info !== [1, 2, 3])
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testNth ():void {
 
         $collection = new Obj();

@@ -207,6 +207,148 @@ class Indexed extends Collection implements ArrayableStorage, Sequantionable {
      *
      * @since 1.0.0
      *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $take_until = $collection->takeUntil(function ($value) {
+     *  return $value === 'Richard';
+     * });
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane']
+     * ```
+     */
+    public function takeUntil (callable $callback):static {
+
+        $storage = [];
+
+        foreach ($this->storage as $value) {
+
+            if ($callback($value)) break;
+
+            $storage[] = $value;
+
+        }
+
+        return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $take_while = $collection->takeWhile(function ($value) {
+     *  return $value === 'Richard';
+     * });
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane']
+     * ```
+     */
+    public function takeWhile (callable $callback):static {
+
+        $storage = [];
+
+        foreach ($this->storage as $value) {
+
+            if (!$callback($value)) break;
+
+            $storage[] = $value;
+
+        }
+
+        return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $skip_until = $collection->skipUntil(function ($value) {
+     *  return $value !== 'Richard';
+     * });
+     *
+     * // ['Richard', 'Richard']
+     * ```
+     */
+    public function skipUntil (callable $callback):static {
+
+        $storage = [];
+
+        $found = false;
+        foreach ($this->storage as $value) {
+
+            if (!$found && !$callback($value)) continue;
+
+            $found = true;
+
+            $storage[] = $value;
+
+        }
+
+        return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $skip_while = $collection->skipWhile(function ($value) {
+     *  return $value === 'John';
+     * });
+     *
+     * // ['Jane', 'Jane', 'Jane', 'Richard', 'Richard']
+     * ```
+     */
+    public function skipWhile (callable $callback):static {
+
+        $storage = [];
+
+        $found = false;
+        foreach ($this->storage as $value) {
+
+            if (!$found && $callback($value)) continue;
+
+            $found = true;
+
+            $storage[] = $value;
+
+        }
+
+        return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed::slice() To get a slice from a data
      * structure.
      *

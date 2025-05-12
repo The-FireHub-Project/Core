@@ -394,6 +394,186 @@ class Fixed extends SplFixedArray implements FixedContract, Selectable, ArrayAcc
      *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::getSize() To get the size of the data structure.
      * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::setSize() To set the size of the data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $take_until = $collection->takeUntil(function ($value) {
+     *  return $value === 'two';
+     * });
+     *
+     * // ['one']
+     * ```
+     */
+    public function takeUntil (callable $callback):static {
+
+        $storage = new static($this->getSize());
+
+        $counter = 0;
+        foreach ($this as $value) {
+
+            if ($callback($value)) break;
+
+            $storage[$counter++] = $value;
+
+        }
+
+        $storage->setSize($counter);
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::getSize() To get the size of the data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::setSize() To set the size of the data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $take_while = $collection->takeWhile(function ($value) {
+     *  return $value !== 'two';
+     * });
+     *
+     * // ['one']
+     * ```
+     */
+    public function takeWhile (callable $callback):static {
+
+        $storage = new static($this->getSize());
+
+        $counter = 0;
+        foreach ($this as $value) {
+
+            if (!$callback($value)) break;
+
+            $storage[$counter++] = $value;
+
+        }
+
+        $storage->setSize($counter);
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::getSize() To get the size of the data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::setSize() To set the size of the data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $skip_until = $collection->skipUntil(function ($value) {
+     *  return $value === 'two';
+     * });
+     *
+     * // ['two', 'three']
+     * ```
+     */
+    public function skipUntil (callable $callback):static {
+
+        $storage = new static($this->getSize());
+
+        $counter = 0; $found = false;
+        foreach ($this as $value) {
+
+            if (!$found && !$callback($value)) continue;
+
+            $found = true;
+
+            $storage[$counter++] = $value;
+
+        }
+
+        $storage->setSize($counter);
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::getSize() To get the size of the data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::setSize() To set the size of the data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $skip_while = $collection->skipWhile(function ($value) {
+     *  return $value !== 'two';
+     * });
+     *
+     * // ['two', 'three']
+     * ```
+     */
+    public function skipWhile (callable $callback):static {
+
+        $storage = new static($this->getSize());
+
+        $counter = 0; $found = false;
+        foreach ($this as $value) {
+
+            if (!$found && $callback($value)) continue;
+
+            $found = true;
+
+            $storage[$counter++] = $value;
+
+        }
+
+        $storage->setSize($counter);
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::getSize() To get the size of the data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::setSize() To set the size of the data structure.
      * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::slice() To get a slice from a data structure.
      *
      * @example
