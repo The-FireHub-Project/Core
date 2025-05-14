@@ -51,9 +51,9 @@ interface Selectable {
      * If the count is negative, then the sequence will stop that many elements from the end of the data structure.
      * </p>
      *
-     * @return self<TKey, TValue> New filtered data structure.
+     * @return static<TKey, TValue> New filtered data structure.
      */
-    public function take (int $count):self;
+    public function take (int $count):static;
 
     /**
      * ### Take until the given callback returns true
@@ -63,9 +63,9 @@ interface Selectable {
      * Function to call on each item in a data structure.
      * </p>
      *
-     * @return self<TKey, TValue> New data structure with items.
+     * @return static<TKey, TValue> New data structure with items.
      */
-    public function takeUntil (callable $callback):self;
+    public function takeUntil (callable $callback):static;
 
     /**
      * ### Take while the given callback returns true
@@ -75,9 +75,9 @@ interface Selectable {
      * Function to call on each item in a data structure.
      * </p>
      *
-     * @return self<TKey, TValue> New data structure with items.
+     * @return static<TKey, TValue> New data structure with items.
      */
-    public function takeWhile (callable $callback):self;
+    public function takeWhile (callable $callback):static;
 
     /**
      * ### Skip first n items from data structure
@@ -100,9 +100,9 @@ interface Selectable {
      * Function to call on each item in a data structure.
      * </p>
      *
-     * @return self<TKey, TValue> New data structure with items.
+     * @return static<TKey, TValue> New data structure with items.
      */
-    public function skipUntil (callable $callback):self;
+    public function skipUntil (callable $callback):static;
 
     /**
      * ### Skip while the given callback returns true
@@ -112,9 +112,9 @@ interface Selectable {
      * Function to call on each item in a data structure.
      * </p>
      *
-     * @return self<TKey, TValue> New data structure with items.
+     * @return static<TKey, TValue> New data structure with items.
      */
-    public function skipWhile (callable $callback):self;
+    public function skipWhile (callable $callback):static;
 
     /**
      * ### Data structure consisting of every n-th element
@@ -142,16 +142,16 @@ interface Selectable {
      * ### New data structure consisting of even elements
      * @since 1.0.0
      *
-     * @return self<TKey, TValue> New filtered data structure.
+     * @return static<TKey, TValue> New filtered data structure.
      */
-    public function even ():self;
+    public function even ():static;
 
     /**
      * ### New data structure consisting of odd elements
      * @since 1.0.0
      *
-     * @return self<TKey, TValue> New filtered data structure.
+     * @return static<TKey, TValue> New filtered data structure.
      */
-    public function odd ():self;
+    public function odd ():static;
 
 }
