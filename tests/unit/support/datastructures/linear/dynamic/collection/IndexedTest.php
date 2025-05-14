@@ -446,6 +446,25 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testSplice ():void {
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Richard']),
+            $this->collection->splice(2, 3)
+        );
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Marry', 'Richard']),
+            $this->collection->splice(2, 3, new Indexed(['Marry']))
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testShift ():void {
 
         $collection = new Indexed(['Jane', 'Jane', 'Jane', 'Richard', 'Richard']);

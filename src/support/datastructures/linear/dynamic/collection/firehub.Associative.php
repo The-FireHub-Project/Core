@@ -23,6 +23,7 @@ use FireHub\Core\Support\DataStructures\Traits\Arrayable;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
 };
+use FireHub\Core\Support\DataStructures\Helpers\SequenceRange;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
@@ -392,6 +393,71 @@ class Associative extends Collection implements ArrayAccessible, ArrayableStorag
                 ? $this->slice($offset, $length)
                 : $this->storage as $key => $value
         ) if ($counter++ % (max($step, 1)) === 0) $storage[$key] = $value;
+
+        return new static($storage);
+
+    }
+
+    /**
+     * ### Remove a portion of a data structure and replace it with something else
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::count() To get a number
+     * of elements for data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::slice() To get a slice from
+     * a data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::merge() To merge two data
+     * structures.
+     * @uses \FireHub\Core\Support\DataStructures\Helpers\SequenceRange As range helper.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $replacement = new Associative(['gender' => 'male']);
+     *
+     * $splice = $collection->splice(1, 2, $replacement);
+     *
+     * // ['firstname' => 'John', 'gender' => 'male', 10 => 2]
+     * ```
+     *
+     * @param int $offset <p>
+     * If the offset is non-negative, the sequence will start at that offset of the data structure.
+     * If the offset is negative, the sequence will start that far from the end of the data structure.
+     * </p>
+     * @param null|int $length [optional] <p>
+     * If length is given and is positive, then the sequence will have that many elements in it.
+     * If length is given and is negative, then the sequence will stop that many elements from the end of the
+     * data structure.
+     * If it is omitted, then the sequence will have everything from offset up until the end of the data structure.
+     * </p>
+     * @param null|static $replacement <p>
+     * If a replacement data structure is specified, then the removed elements will be replaced with elements from this
+     * data structure.
+     * </p>
+     *
+     * @return static<TKey, TValue> New spliced data structure.
+     */
+    public function splice (int $offset, ?int $length = null, ?self $replacement = null):static {
+
+        $range = new SequenceRange($this->count(), $offset, $length);
+
+        $start = $range->start();
+        $end = $range->end();
+
+        $storage = []; $position = 0;
+        foreach ($this->storage as $key => $value) {
+
+            if ($position++ >= $start && $position <= $end) continue;
+
+            $storage[$key] = $value;
+
+        }
+
+        if ($replacement)
+            return new static($storage)->slice(0, $offset)
+                ->merge($replacement, $this->slice($end));
 
         return new static($storage);
 

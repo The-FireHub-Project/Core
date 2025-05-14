@@ -337,6 +337,25 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testSplice ():void {
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 10 => 2]),
+            $this->collection->splice(1, 2)
+        );
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'gender' => 'male', 10 => 2]),
+            $this->collection->splice(1, 2, new Associative(['gender' => 'male']))
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testExist ():void {
 
         $this->assertTrue($this->collection->exist('firstname'));

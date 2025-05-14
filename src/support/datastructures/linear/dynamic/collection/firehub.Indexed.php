@@ -387,6 +387,53 @@ class Indexed extends Collection implements ArrayableStorage, Sequantionable {
     }
 
     /**
+     * ### Remove a portion of a data structure and replace it with something else
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::splice() As splice function.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed::toArray() To get replacement data
+     * structure as an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $replacement = new Indexed(['Marry']);
+     *
+     * $splice = $collection->splice(2, 3, $replacement);
+     *
+     * // ['John', 'Jane', 'Marry', 'Richard']
+     * ```
+     *
+     * @param int $offset <p>
+     * If the offset is non-negative, the sequence will start at that offset of the data structure.
+     * If the offset is negative, the sequence will start that far from the end of the data structure.
+     * </p>
+     * @param null|int $length [optional] <p>
+     * If length is given and is positive, then the sequence will have that many elements in it.
+     * If length is given and is negative, then the sequence will stop that many elements from the end of the
+     * data structure.
+     * If it is omitted, then the sequence will have everything from offset up until the end of the data structure.
+     * </p>
+     * @param null|static $replacement <p>
+     * If a replacement data structure is specified, then the removed elements will be replaced with elements from this
+     * data structure.
+     * </p>
+     *
+     * @return static<TValue> New spliced data structure.
+     */
+    public function splice (int $offset, ?int $length = null, ?self $replacement = null):static {
+
+        $storage = new static($this->storage);
+
+        Arr::splice($storage->storage, $offset, $length, $replacement?->toArray());
+
+        return $storage;
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0
