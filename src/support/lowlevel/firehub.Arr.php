@@ -665,7 +665,7 @@ final class Arr {
      * @param array<TKey, TValue> $array <p>
      * The array to compare from.
      * </p>
-     * @param array<array-key, mixed> $excludes <p>
+     * @param array<TKey, mixed> $excludes <p>
      * An array to compare against.
      * </p>
      * @param callable(mixed, mixed):int<-1, 1> $callback <p>
@@ -729,7 +729,7 @@ final class Arr {
      * @template TKey of array-key
      * @template TValue
      *
-     * @param array<array-key, TValue> $array <p>
+     * @param array<TKey, TValue> $array <p>
      * The array to compare from.
      * </p>
      * @param array<TKey, mixed> $excludes <p>
@@ -874,7 +874,7 @@ final class Arr {
      * @param array<TKey, TValue> $array <p>
      * The array to compare from.
      * </p>
-     * @param array<array-key, mixed> $excludes <p>
+     * @param array<TKey, mixed> $excludes <p>
      * An array to compare against.
      * </p>
      * @param callable(mixed, mixed):int<-1, 1> $callback <p>
@@ -996,7 +996,7 @@ final class Arr {
      * @param array<TKey, TValue> $array <p>
      * The array to compare from.
      * </p>
-     * @param array<array-key, mixed> $excludes <p>
+     * @param array<TKey, mixed> $excludes <p>
      * An array to compare against.
      * </p>
      * @param callable(mixed, mixed):int<-1, 1> $callback $callback <p>
