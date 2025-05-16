@@ -510,8 +510,8 @@ final class Arr {
      * The value is cast as usual for array keys.
      * </p>
      *
-     * @return ($index is null ? TValue[] : array<TValue, TValue>) Array of values representing a single column from
-     * the input array.
+     * @return ($index is null ? list<TValue> : array<TValue, TValue>) Array of values representing a single column
+     * from the input array.
      */
     public static function column (array $array, int|string $key, null|int|string $index = null):array {
 
@@ -739,8 +739,7 @@ final class Arr {
      * The comparison function.
      * </p>
      *
-     * @return TValue[] An array containing all the entries from $array that aren't present in any of the other
-     * arrays.
+     * @return TValue[] An array containing all the entries from $array that aren't present in any of the other arrays.
      *
      * @caution Returning non-integer values from the comparison function, such as float, will result in an internal
      * cast to int of the callback's return value.
@@ -1203,7 +1202,7 @@ final class Arr {
      * The array.
      * </p>
      *
-     * @return TValue[] An indexed array of values.
+     * @return list<TValue> An indexed array of values.
      */
     public static function values (array $array):array {
 
