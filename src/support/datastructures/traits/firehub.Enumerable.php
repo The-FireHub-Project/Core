@@ -12,27 +12,15 @@
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\Traits\Exceptions;
-
-use FireHub\Core\Components\Error\Exception;
+namespace FireHub\Core\Support\DataStructures\Traits;
 
 /**
- * ### Decoding not array Exception
+ * ### Enumerable data structure methods that every element meets a given criterion
  * @since 1.0.0
+ *
+ * @template TKey
+ * @template TValue
  */
-class JsonDecodingNotArrayException extends Exception {
-
-    /**
-     * @inheritDoc
-     *
-     * @since 1.0.0
-     */
-    public function __construct () {
-
-        parent::__construct();
-
-        $this->message = 'Provided JSON string is not an array.';
-
-    }
+trait Enumerable {
 
 }
