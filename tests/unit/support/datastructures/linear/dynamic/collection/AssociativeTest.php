@@ -111,6 +111,17 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testPull ():void {
+
+        $this->assertSame('John', $this->collection->pull('firstname'));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testSet ():void {
 
         $collection = new Associative(['firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']);

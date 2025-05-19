@@ -172,6 +172,55 @@ class Associative extends Collection {
     }
 
     /**
+     * ### Remove and takes an item from the collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::take() To take an item from
+     * the collection.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::remove() To remove an item from
+     * the collection.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $firstname = $collection->pull('firstname');
+     *
+     * // 'John'
+     * ```
+     * @example With a non-existing key
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $gender = $collection->pull('gender');
+     *
+     * // Error
+     * ```
+     *
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException If the key doesn't exist in
+     * the collection.
+     *
+     * @return TValue Item from a collection.
+     */
+    public function pull (int|string $key):mixed {
+
+        $value = $this->take($key);
+
+        $this->remove($key);
+
+        return $value;
+
+    }
+
+    /**
      * ### Adds or replaces item in the collection
      * @since 1.0.0
      *
