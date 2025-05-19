@@ -134,6 +134,22 @@ class Lazy implements Dynamic {
      *
      * @since 1.0.0
      *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy::toArray() To get data structure an array.
+     *
+     * @return array<array{key: TKey, value: TValue}> Data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize ():array {
+
+        return $this->toArray();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy::invoke() To invoke storage.
      */
     public function getIterator ():Traversable {
