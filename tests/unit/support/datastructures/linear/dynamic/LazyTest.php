@@ -16,6 +16,7 @@ namespace support\datastructures\linear\dynamic;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+use FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -41,6 +42,61 @@ final class LazyTest extends Base {
         $this->collection = new Lazy(
             fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]
         );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFromArray ():void {
+
+        $this->assertEquals(
+            Lazy::fromArray([
+                ['key' => 'firstname', 'value' => 'John'],
+                ['key' => 'lastname', 'value' => 'Doe'],
+                ['key' => 'age', 'value' => 25],
+                ['key' => 10, 'value' => 2]
+            ])->toArray(),
+            $this->collection->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFromArrayMissingDataKey ():void {
+
+        $this->expectException(StorageMissingDataException::class);
+
+        Lazy::fromArray([
+            ['value' => 'John'],
+            ['key' => 'lastname', 'value' => 'Doe'],
+            ['key' => 'age', 'value' => 25],
+            ['key' => 10, 'value' => 2]
+        ])->toArray();
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFromArrayMissingDataValue ():void {
+
+        $this->expectException(StorageMissingDataException::class);
+
+        Lazy::fromArray([
+            ['key' => 'firstname'],
+            ['key' => 'lastname', 'value' => 'Doe'],
+            ['key' => 'age', 'value' => 25],
+            ['key' => 10, 'value' => 2]
+        ])->toArray();
 
     }
 

@@ -50,6 +50,30 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testFromArray ():void {
+
+        $this->assertEquals(
+            Fixed::fromArray(['one', 'two', 'three']),
+            $this->collection
+        );
+
+        $storage = new Fixed(3);
+        $storage[0] = 'three';
+        $storage[1] = 'one';
+        $storage[2] = 'two';
+
+        $this->assertEquals(
+            Fixed::fromArray([1 => 'one', 2 => 'two', 0 => 'three'], true),
+            $storage
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testGetSize ():void {
 
         $this->assertSame(3, $this->collection->getSize());

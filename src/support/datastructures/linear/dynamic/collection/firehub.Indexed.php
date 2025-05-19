@@ -72,6 +72,31 @@ class Indexed extends Collection implements Sequantionable {
     }
 
     /**
+     * ### Create a data structure from an array
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $array = ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard'];
+     *
+     * $collection = Indexed::fromArray($array);
+     * ```
+     *
+     * @param TValue[] $array <p>
+     * Data for data structure.
+     * </p>
+     *
+     * @return static<TValue> Data structure from an array.
+     */
+    public static function fromArray (array $array):static {
+
+        return new static($array);
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0
