@@ -16,6 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
+use FireHub\Core\Support\LowLevel\Iterator;
 use SplFixedArray;
 
 /**
@@ -88,6 +89,34 @@ class Fixed extends SplFixedArray implements FixedContract {
     public function setSize (int $size):true {
 
         return parent::setSize($size); // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $array = $collection->toArray();
+     *
+     * // ['one', 'two', 'three']
+     * ```
+     *
+     * @return array<int, null|TValue> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        return Iterator::toArray($this);
 
     }
 

@@ -151,6 +151,46 @@ class Obj extends Collection {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection = new Obj();
+     * $collection->attach($cls1, 'data for object 1');
+     * $collection->attach($cls2, [1,2,3]);
+     * $collection->attach($cls3, 20);
+     *
+     * $array = $collection->toArray();
+     *
+     * // [
+     * //   ['key' => stdClass, 'value' => 'data for object 1'],
+     * //   ['key' => stdClass, 'value' => [1, 2, 3]],
+     * //   ['key' => stdClass, 'value' => 20]
+     * // ]
+     * ```
+     *
+     * @return array<array{key: TKey, value: TValue}> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        $result = [];
+
+        foreach ($this as $key => $value)
+            $result[] = ['key' => $key, 'value' => $value];
+
+        return $result;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
      */
     public function getIterator ():Traversable {
 

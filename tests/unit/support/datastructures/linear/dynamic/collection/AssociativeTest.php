@@ -239,6 +239,20 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testToArray ():void {
+
+        $this->assertSame(
+            ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2],
+            $this->collection->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testOverload ():void {
 
         $collection = new Associative(

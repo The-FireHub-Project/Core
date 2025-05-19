@@ -80,4 +80,15 @@ final class FixedTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testToArray ():void {
+
+        $this->assertSame(['one', 'two', 'three'], $this->collection->toArray());
+
+    }
+
 }
