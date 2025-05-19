@@ -16,6 +16,9 @@ namespace FireHub\Core\Support\DataStructures\Linear;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
+use FireHub\Core\Support\Traits\ {
+    Jsonable, Serializable
+};
 use FireHub\Core\Support\LowLevel\ {
     Iterables, Iterator
 };
@@ -47,6 +50,18 @@ class Fixed extends SplFixedArray implements FixedContract {
      * @use \FireHub\Core\Support\DataStructures\Traits\Enumerable<int, ?TValue>
      */
     use Enumerable;
+
+    /**
+     * ### Trait contains all common JSON methods
+     * @since 1.0.0
+     */
+    use Jsonable;
+
+    /**
+     * ### Trait contains all common serialize and unserialize methods
+     * @since 1.0.0
+     */
+    use Serializable;
 
     /**
      * ### Constructor

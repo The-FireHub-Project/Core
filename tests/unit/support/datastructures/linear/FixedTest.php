@@ -115,4 +115,29 @@ final class FixedTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testJsonSerialize ():void {
+
+        $json = $this->collection->toJson();
+
+        $this->assertSame('["one","two","three"]', $json);
+        $this->assertEquals($this->collection, Fixed::fromJson($json));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSerialize ():void {
+
+        $this->assertEquals($this->collection, Fixed::unserialize($this->collection->serialize()));
+
+    }
+
 }

@@ -282,4 +282,29 @@ final class AssociativeTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testJsonSerialize ():void {
+
+        $json = $this->collection->toJson();
+
+        $this->assertSame('{"firstname":"John","lastname":"Doe","age":25,"10":2}', $json);
+        $this->assertEquals($this->collection, Associative::fromJson($json));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSerialize ():void {
+
+        $this->assertEquals($this->collection, Associative::unserialize($this->collection->serialize()));
+
+    }
+
 }

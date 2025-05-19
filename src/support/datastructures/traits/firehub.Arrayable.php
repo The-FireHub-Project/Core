@@ -14,6 +14,9 @@
 
 namespace FireHub\Core\Support\DataStructures\Traits;
 
+use FireHub\Core\Support\Traits\ {
+    Jsonable, Serializable
+};
 use FireHub\Core\Support\LowLevel\Iterables;
 
 /**
@@ -24,6 +27,18 @@ use FireHub\Core\Support\LowLevel\Iterables;
  * @template TValue
  */
 trait Arrayable {
+
+    /**
+     * ### Trait contains all common JSON methods
+     * @since 1.0.0
+     */
+    use Jsonable;
+
+    /**
+     * ### Trait contains all common serialize and unserialize methods
+     * @since 1.0.0
+     */
+    use Serializable;
 
     /**
      * ### Underlying storage data
