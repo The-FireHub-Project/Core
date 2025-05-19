@@ -264,4 +264,51 @@ class Obj extends Collection {
 
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::toArray() To get data structure
+     * an array.
+     *
+     * @return array<array{key: TKey, value: TValue}> An associative array of key/value pairs that represent
+     * the serialized form of the object.
+     */
+    public function __serialize ():array {
+
+        return $this->toArray();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @param array<array{key: TKey, value: TValue}> $data <p>
+     * Serialized data.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing
+     * storage data.
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    public function __unserialize (array $data):void {
+
+        $storage = new SplObjectStorage();
+
+        foreach ($data as $item)
+            $storage->attach(
+                $item['key']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('key'),
+                $item['value']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('value')
+            );
+
+        $this->storage = $storage; // @phpstan-ignore assign.propertyType
+
+    }
+
 }

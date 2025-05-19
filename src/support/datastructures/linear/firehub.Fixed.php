@@ -184,4 +184,40 @@ class Fixed extends SplFixedArray implements FixedContract {
 
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @return array<TValue> An associative array of key/value pairs that represent the serialized form of the object.
+     */
+    public function __serialize ():array {
+
+        return $this->jsonSerialize();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count array parameter items.
+     *
+     * @param array<int, null|TValue> $data <p>
+     * Serialized data.
+     * </p>
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    public function __unserialize (array $data):void {
+
+        $this->setSize(Iterables::count($data));
+
+        $i = 0;
+        foreach ($data as $item)
+            $this[$i++] = $item;
+
+    }
+
 }
