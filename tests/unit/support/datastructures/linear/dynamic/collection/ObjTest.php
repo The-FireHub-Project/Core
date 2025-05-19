@@ -19,6 +19,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
+use stdClass;
 
 /**
  * ### Test Object array collection class
@@ -31,6 +32,10 @@ final class ObjTest extends Base {
 
     public Obj $collection;
 
+    public stdClass $cls1;
+    public stdClass $cls2;
+    public stdClass $cls3;
+
     /**
      * @since 1.0.0
      *
@@ -38,7 +43,70 @@ final class ObjTest extends Base {
      */
     public function setUp ():void {
 
+        $this->cls1 = new stdClass();
+        $this->cls2 = new stdClass();
+        $this->cls3 = new stdClass();
+
         $this->collection = new Obj;
+        $this->collection->attach($this->cls1, 'data for object 1');
+        $this->collection->attach($this->cls2, [1, 2, 3]);
+        $this->collection->attach($this->cls3, 20);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCount ():void {
+
+        $this->assertSame(3, $this->collection->count());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testHas ():void {
+
+        $this->assertTrue($this->collection->has($this->cls1));
+        $this->assertFalse($this->collection->has(new stdClass()));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAttach ():void {
+
+        $collection = new Obj;
+        $collection->attach($this->cls1, 'data for object 1');
+        $collection->attach($this->cls2, [1, 2, 3]);
+        $collection->attach($this->cls3, 20);
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testDetach ():void {
+
+        $collection = new Obj;
+        $collection->attach($this->cls2, [1, 2, 3]);
+        $collection->attach($this->cls3, 20);
+
+        $this->collection->detach($this->cls1);
+
+        $this->assertEquals($collection, $this->collection);
 
     }
 

@@ -56,6 +56,98 @@ class Obj extends Collection {
     }
 
     /**
+     * ### Checks if an object exists in the collection
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     *
+     * $collection = new Obj();
+     *
+     * $collection->has($cls1);
+     *
+     * // true
+     * ```
+     *
+     * @param TKey $object <p>
+     * The object to add.
+     * </p>
+     *
+     * @return bool if the object exists is in the collection, false otherwise.
+     */
+    public function has (object $object):bool {
+
+        return $this->storage->contains($object);
+
+    }
+
+    /**
+     * ### Adds an object to the collection
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     *
+     * $collection = new Obj();
+     *
+     * $collection->attach($cls1, 'data for object 1');
+     *
+     * // [
+     * //   ['key' => stdClass, 'value' => 'data for object 1']
+     * // ]
+     * ```
+     *
+     * @param TKey $object <p>
+     * The object to add.
+     * </p>
+     * @param TValue $data <p>
+     * The data to associate with the object.
+     * </p>
+     *
+     * @return void
+     */
+    public function attach (object $object, mixed $data = null):void {
+
+        $this->storage->attach($object, $data);
+
+    }
+
+    /**
+     * ### Removes an object from the collection
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     *
+     * $collection = new Obj();
+     *
+     * $collection->attach($cls1, 'data for object 1');
+     *
+     * $collection->detach($cls1);
+     * ```
+     *
+     * @param TKey $object <p>
+     * The object to remove.
+     * </p>
+     *
+     * @return void
+     */
+    public function detach (object $object):void {
+
+        $this->storage->detach($object);
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0

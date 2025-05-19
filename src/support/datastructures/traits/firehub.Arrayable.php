@@ -14,23 +14,31 @@
 
 namespace FireHub\Core\Support\DataStructures\Traits;
 
-use FireHub\Core\Support\LowLevel\Iterator;
+use FireHub\Core\Support\LowLevel\Iterables;
 
 /**
- * ### Enumerable data structure methods that every element meets a given criterion
+ * ### Arrayable data structure methods have an array as storage
  * @since 1.0.0
  *
  * @template TKey
  * @template TValue
  */
-trait Enumerable {
+trait Arrayable {
+
+    /**
+     * ### Underlying storage data
+     * @since 1.0.0
+     *
+     * @var array<TKey, TValue>
+     */
+    protected array $storage;
 
     /**
      * @inheritDoc
      *
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\LowLevel\Iterator::count() To count storage items.
+     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count array items.
      *
      * @example
      * ```php
@@ -44,7 +52,7 @@ trait Enumerable {
      */
     public function count ():int {
 
-        return Iterator::count($this);
+        return Iterables::count($this->storage);
 
     }
 

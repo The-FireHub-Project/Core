@@ -16,6 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Contracts\Sequantionable;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use FireHub\Core\Support\DataStructures\Traits\Arrayable;
 use FireHub\Core\Support\LowLevel\Arr;
 use Traversable;
 
@@ -39,6 +40,14 @@ use function FireHub\Core\Support\Helpers\Arr\ {
  * @api
  */
 class Indexed extends Collection implements Sequantionable {
+
+    /**
+     * ### Arrayable data structure methods have an array as storage
+     * @since 1.0.0
+     *
+     * @use \FireHub\Core\Support\DataStructures\Traits\Arrayable<int, TValue>
+     */
+    use Arrayable;
 
     /**
      * ### Constructor
