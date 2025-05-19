@@ -14,6 +14,7 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
+use FireHub\Core\Support\DataStructures\Contracts\Overloadable;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Traits\Arrayable;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
@@ -31,12 +32,13 @@ use Traversable;
  * @template TValue
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Overloadable<TKey, TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Associative extends Collection {
+class Associative extends Collection implements Overloadable {
 
     /**
      * ### Arrayable data structure methods have an array as storage
@@ -61,7 +63,7 @@ class Associative extends Collection {
     ) {}
 
     /**
-     * ### Check if item exist in collection
+     * ### Check if item exist in the collection
      * @since 1.0.0
      *
      * @example
@@ -433,6 +435,63 @@ class Associative extends Collection {
     public function getIterator ():Traversable {
 
         yield from $this->storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::exist() To check if item exist
+     * in the collection.
+     */
+    public function __isset (int|string $name):bool {
+
+        return $this->exist($name);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::get() To get an item from the
+     * collection.
+     */
+    public function __get (int|string $name):mixed {
+
+        return $this->get($name);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::set() To add or replaces item
+     * in the collection.
+     */
+    public function __set (int|string $name, mixed $value):void {
+
+        $this->set($value, $name);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::remove() To remove an item
+     * from
+     * the collection.
+     */
+    public function __unset (int|string $name):void {
+
+        $this->remove($name);
 
     }
 

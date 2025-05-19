@@ -234,4 +234,24 @@ final class AssociativeTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testOverload ():void {
+
+        $collection = new Associative(
+            ['lastname' => 'Doe', 'age' => 25, 10 => 2, 'middlename' => 'Marry']
+        );
+
+        $this->collection->middlename = 'Marry';
+        unset($this->collection->firstname);
+
+        $this->assertTrue(isset($this->collection->lastname));
+        $this->assertSame(25, $this->collection->age);
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
 }
