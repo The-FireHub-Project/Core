@@ -16,7 +16,9 @@ namespace support\datastructures\linear\dynamic\collection;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
-use FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException;
+use FireHub\Core\Support\DataStructures\Exceptions\ {
+    KeyDoesntExistException, StorageMissingDataException
+};
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -127,6 +129,30 @@ final class ObjTest extends Base {
 
         $this->assertTrue($this->collection->has($this->cls1));
         $this->assertFalse($this->collection->has(new stdClass()));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testInfo ():void {
+
+        $this->assertSame('data for object 1', $this->collection->info($this->cls1));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testInfoException ():void {
+
+        $this->expectException(KeyDoesntExistException::class);
+
+        $this->collection->info(new stdClass());
 
     }
 

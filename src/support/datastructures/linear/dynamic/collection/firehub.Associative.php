@@ -128,7 +128,7 @@ class Associative extends Collection implements Overloadable {
      *
      * // 'John'
      * ```
-     * @example With non-existing key
+     * @example With a non-existing key
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
      *

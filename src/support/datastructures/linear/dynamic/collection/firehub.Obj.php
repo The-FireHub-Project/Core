@@ -18,8 +18,10 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
 };
-use FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException;
-use SplObjectStorage, Traversable;
+use FireHub\Core\Support\DataStructures\Exceptions\ {
+    KeyDoesntExistException, StorageMissingDataException
+};
+use SplObjectStorage, Traversable, UnexpectedValueException;
 
 /**
  * ### Object collection type
@@ -144,6 +146,62 @@ class Obj extends Collection {
     public function has (object $object):bool {
 
         return $this->storage->contains($object);
+
+    }
+
+    /**
+     * ### Gets the information about the object
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     *
+     * $collection = new Obj();
+     *
+     * $collection->attach($cls1, 'data for object 1');
+     *
+     * $info = $collection()->info($cls1);
+     *
+     * // 'data for object 1'
+     * ```
+     * @example With a non-existing key
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     *
+     * $collection = new Obj();
+     *
+     * $collection->info($cls1, 'data for object 1');
+     *
+     * $info = $collection()->info(new stdClass());
+     *
+     * // Error
+     * ```
+     *
+     * @param TKey $object <p>
+     * The object to add.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException If the key doesn't exist
+     * in the collection.
+     *
+     * @return TValue Information from a collection for an object.
+     */
+    public function info (object $object):mixed {
+
+        try {
+
+            return $this->storage->offsetGet($object);
+
+        } catch (UnexpectedValueException) {
+
+            throw new KeyDoesntExistException()->withKey($object);
+
+        }
 
     }
 
