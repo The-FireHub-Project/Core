@@ -21,7 +21,7 @@ use FireHub\Core\Support\Enums\ {
 use FireHub\Core\Support\Exceptions\ArrException;
 use FireHub\Core\Support\Exceptions\Arr\ {
     ChunkLengthTooSmallException, KeysAndValuesDiffNumberOfElemsException, OutOfRangeException,
-    SizeInconsistentException, WalkArgumentCountException
+    SizeInconsistentException
 };
 use FireHub\Core\Support\LowLevel\Arr;
 use PHPUnit\Framework\Attributes\ {
@@ -41,7 +41,6 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(KeysAndValuesDiffNumberOfElemsException::class)]
 #[CoversClass(OutOfRangeException::class)]
 #[CoversClass(SizeInconsistentException::class)]
-#[CoversClass(WalkArgumentCountException::class)]
 final class ArrTest extends Base {
 
     public array $empty_arr = [];
@@ -161,20 +160,6 @@ final class ArrTest extends Base {
      *
      * @return void
      */
-    public function testWalkWalkArgumentCount ():void {
-
-        $this->expectException(WalkArgumentCountException::class);
-
-        $array = $this->list;
-        Arr::walk($array, fn(&$value, $key, $third) => $value = $key.'-x');
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
     public function testWalkRecursive ():void {
 
         $a1 = ['a' => 'red','b' => 'green'];
@@ -183,20 +168,6 @@ final class ArrTest extends Base {
         Arr::walkRecursive($a2, fn(&$value, $key) => $value = $key.'-x');
 
         $this->assertSame([['a' => 'a-x', 'b' => 'b-x'], '1-x', '2-x'], $a2);
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testWalkRecursiveWalkArgumentCount ():void {
-
-        $this->expectException(WalkArgumentCountException::class);
-
-        $array = [1, 2, 3];
-        Arr::walkRecursive($array, fn(&$value, $key, $third) => $value = $key.'-x');
 
     }
 

@@ -19,9 +19,9 @@ use FireHub\Core\Support\Enums\ {
 };
 use FireHub\Core\Support\Exceptions\Arr\ {
     ChunkLengthTooSmallException, FailedSortMultiArrayException, KeysAndValuesDiffNumberOfElemsException,
-    OutOfRangeException, SizeInconsistentException, WalkArgumentCountException
+    OutOfRangeException, SizeInconsistentException
 };
-use ArgumentCountError, ValueError;
+use ValueError;
 
 use const FireHub\Core\Support\Constants\Number\MAX_32_BIT;
 use const ARRAY_FILTER_USE_BOTH;
@@ -274,22 +274,11 @@ final class Arr {
      * </p>
      * @phpstan-param-out array<TKey, TValue> $array
      *
-     * @throws \FireHub\Core\Support\Exceptions\Arr\WalkArgumentCountException If the $callback function requires more
-     * than two parameters.
-     *
      * @return true True on success.
      */
     public static function walk (array &$array, callable $callback):true {
 
-        try {
-
-            return array_walk($array, $callback);
-
-        } catch (ArgumentCountError) {
-
-            throw new WalkArgumentCountException;
-
-        }
+        return array_walk($array, $callback);
 
     }
 
@@ -317,22 +306,11 @@ final class Arr {
      * </p>
      * @phpstan-param-out array<TKey, TValue> $array
      *
-     * @throws \FireHub\Core\Support\Exceptions\Arr\WalkArgumentCountException If the $callback function requires more
-     * than two parameters.
-     *
      * @return true True on success.
      */
     public static function walkRecursive (array &$array, callable $callback):true {
 
-        try {
-
-            return array_walk_recursive($array, $callback);
-
-        } catch (ArgumentCountError) {
-
-            throw new WalkArgumentCountException;
-
-        }
+        return array_walk_recursive($array, $callback);
 
     }
 
