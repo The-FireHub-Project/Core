@@ -17,6 +17,8 @@ namespace FireHub\Core\Support\DataStructures\Traits;
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use FireHub\Core\Support\LowLevel\Iterator;
 
+use const FireHub\Core\Support\Constants\Number\MAX;
+
 /**
  * ### Enumerable data structure methods that every element meets a given criterion
  * @since 1.0.0
@@ -57,6 +59,35 @@ trait Enumerable {
     public function count ():int {
 
         return Iterator::count($this);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->each(fn($value, $key) => $collection->set($value.'.', $key), 2);
+     *
+     * // ['firstname' => 'John.', 'lastname' => 'Doe.', 'age' => 25, 10 => 2]
+     * ```
+     */
+    public function each (callable $callback, int $limit = MAX):static {
+
+        $counter = 1;
+
+        foreach ($this as $key => $value) {
+            if ($counter++ > $limit) break;
+            $callback($value, $key);
+        }
+
+        return $this;
 
     }
 

@@ -21,6 +21,8 @@ use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 use FireHub\Core\Support\Contracts\Magic\Serializable;
 use FireHub\Core\Support\DataStructures\Operation\CountBy;
 
+use const FireHub\Core\Support\Constants\Number\MAX;
+
 /**
  * ### Data structures
  * @since 1.0.0
@@ -41,5 +43,22 @@ interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSe
      * @return \FireHub\Core\Support\DataStructures\Operation\CountBy<TKey, TValue> Count operation class.
      */
     public function countBy ():CountBy;
+
+    /**
+     * ### Call a user-generated function on each item in the data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Constants\Number\MAX As default limit.
+     *
+     * @param callable(TValue, TKey):void $callback <p>
+     * Function to call on each item in a data structure.
+     * </p>
+     * @param positive-int $limit [optional] <p>
+     * Maximum number of elements that is allowed to be iterated.
+     * </p>
+     *
+     * @return $this This data structure.
+     */
+    public function each (callable $callback, int $limit = MAX):static;
 
 }
