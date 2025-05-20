@@ -91,4 +91,29 @@ trait Enumerable {
 
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Contracts\HighLevel\DataStructures::transform() To apply the callback to the elements
+     * of the data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $with_dots = $collection->apply(fn($value) => $value.'.');
+     *
+     * // ['firstname' => 'John.', 'lastname' => 'Doe.', 'age' => '25.', 10 => '2.']
+     * ```
+     */
+    public function apply (callable $callback):static {
+
+        return (clone $this)->transform($callback); // @phpstan-ignore return.type
+
+    }
+
 }

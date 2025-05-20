@@ -190,6 +190,34 @@ class Fixed extends SplFixedArray implements FixedContract {
      *
      * @since 1.0.0
      *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $collection->transform(fn($value, $key) => $value.'.');
+     *
+     * // ['one.', 'two.', 'three.']
+     * ```
+     */
+    public function transform (callable $callback):self {
+
+        foreach ($this as $key => $value) $this[$key] = $callback($value);
+
+        return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @return array<TValue> Data which can be serialized by json_encode(), which is a value of any type other than a
      * resource.
      */

@@ -120,6 +120,44 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testTransform ():void {
+
+        $collection = new Fixed(3);
+        $collection[0] = 'one.';
+        $collection[1] = 'two.';
+        $collection[2] = 'three.';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->transform(fn($value) => $value.'.')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testApply ():void {
+
+        $collection = new Fixed(3);
+        $collection[0] = 'one.';
+        $collection[1] = 'two.';
+        $collection[2] = 'three.';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->apply(fn($value) => $value.'.')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJsonSerialize ():void {
 
         $json = $this->collection->toJson();
