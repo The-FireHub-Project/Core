@@ -14,7 +14,9 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
-use FireHub\Core\Support\DataStructures\Contracts\Overloadable;
+use FireHub\Core\Support\DataStructures\Contracts\ {
+    ArrayableStorage, Overloadable
+};
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Traits\Arrayable;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
@@ -32,13 +34,14 @@ use Traversable;
  * @template TValue
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\ArrayableStorage<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Overloadable<TKey, TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Associative extends Collection implements Overloadable {
+class Associative extends Collection implements ArrayableStorage, Overloadable {
 
     /**
      * ### Arrayable data structure methods have an array as storage

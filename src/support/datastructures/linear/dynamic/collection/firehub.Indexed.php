@@ -14,7 +14,9 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
-use FireHub\Core\Support\DataStructures\Contracts\Sequantionable;
+use FireHub\Core\Support\DataStructures\Contracts\ {
+    ArrayableStorage, Sequantionable
+};
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Traits\Arrayable;
 use FireHub\Core\Support\LowLevel\Arr;
@@ -33,13 +35,14 @@ use function FireHub\Core\Support\Helpers\Arr\ {
  * @template TValue
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<int, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\ArrayableStorage<int, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Sequantionable<TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Indexed extends Collection implements Sequantionable {
+class Indexed extends Collection implements ArrayableStorage, Sequantionable {
 
     /**
      * ### Arrayable data structure methods have an array as storage

@@ -19,7 +19,9 @@ use FireHub\Core\Support\Contracts\ {
 };
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 use FireHub\Core\Support\Contracts\Magic\Serializable;
-use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\DataStructures\Operation\ {
+    CountBy, Contains
+};
 
 use const FireHub\Core\Support\Constants\Number\MAX;
 
@@ -43,6 +45,16 @@ interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSe
      * @return \FireHub\Core\Support\DataStructures\Operation\CountBy<TKey, TValue> Count operation class.
      */
     public function countBy ():CountBy;
+
+    /**
+     * ### Determines whether a data structure contains
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Contains As return.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Operation\Contains<TKey, TValue> Contains operation class.
+     */
+    public function contains ():Contains;
 
     /**
      * ### Call a user-generated function on each item in the data structure

@@ -54,6 +54,7 @@ readonly class CountBy {
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative As return.
+     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy::where To count elements by user-defined function.
      * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To find whether the array key is a string.
      * @uses \FireHub\Core\Support\LowLevel\DataIs::int() To find whether the array key is an integer.
      * @uses \FireHub\Core\Support\Helpers\Data\toString() To convert value to string.
@@ -75,17 +76,11 @@ readonly class CountBy {
      */
     public function values ():Associative {
 
-        $storage = [];
-
-        foreach ($this->data_structure as $value) {
-
-            $value = DataIs::string($value) || DataIs::int($value) ? $value : toString($value, detailed: true);
-
-            $storage[$value] = ($storage[$value] ?? 0) + 1;
-
-        }
-
-        return new Associative($storage);
+        return $this->where(
+            fn($value) => DataIs::string($value) || DataIs::int($value) // @phpstan-ignore argument.type
+                ? $value
+                : toString($value, detailed: true)
+        );
 
     }
 
@@ -155,7 +150,7 @@ readonly class CountBy {
      * // ['J' => 4, 'R' => 2]
      * ```
      *
-     * @param callable(TValue, TKey):string $callback <p>
+     * @param callable(TValue, TKey=):string $callback <p>
      * User-defined function.
      * </p>
      *
