@@ -16,7 +16,9 @@ namespace support\datastructures\linear\dynamic\collection;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
-use FireHub\Core\Support\DataStructures\Operation\Contains;
+use FireHub\Core\Support\DataStructures\Operation\ {
+    Contains, Find
+};
 use FireHub\Core\Support\Enums\Data\Type;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
@@ -33,6 +35,7 @@ use PHPUnit\Framework\Attributes\ {
 #[Group('collection')]
 #[CoversClass(Associative::class)]
 #[CoversClass(Contains::class)]
+#[CoversClass(Find::class)]
 #[CoversClass(Type::class)]
 final class AssociativeTest extends Base {
 
@@ -94,6 +97,41 @@ final class AssociativeTest extends Base {
 
         $this->assertTrue($this->collection->contains()->where(fn($value, $key) => $value === 'John'));
         $this->assertFalse($this->collection->contains()->where(fn($value, $key) => $value === 'Richard'));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFind ():void {
+
+        $this->assertEquals('lastname', $this->collection->find()->key('Doe'));
+        $this->assertNull($this->collection->find()->key('Jane'));
+
+        $this->assertEquals('Doe', $this->collection->find()->value('lastname'));
+        $this->assertNull($this->collection->find()->value('middlename'));
+
+        $this->assertEquals('Doe', $this->collection->find()->first(fn($value, $key) => $key !== 'firstname'));
+        $this->assertNull($this->collection->find()->first(fn($value, $key) => $key === 'Jane'));
+
+        $this->assertEquals('lastname', $this->collection->find()->firstKey(fn($value, $key) => $value !== 'John'));
+        $this->assertNull($this->collection->find()->firstKey(fn($value, $key) => $value === 'middlename'));
+
+        $this->assertEquals(25, $this->collection->find()->last(fn($value, $key) => $key !== 10));
+        $this->assertNull($this->collection->find()->last(fn($value, $key) => $key === 'Jane'));
+
+        $this->assertEquals('age', $this->collection->find()->lastKey(fn($value, $key) => $value !== 2));
+        $this->assertNull($this->collection->find()->lastKey(fn($value, $key) => $value === 'middlename'));
+
+        $this->assertEquals('John', $this->collection->find()->before('Doe'));
+        $this->assertEquals('John', $this->collection->find()->beforeWhere(fn($value, $key) => $value === 'Doe'));
+        $this->assertNull($this->collection->find()->beforeWhere(fn($value, $key) => $value === 'John'));
+
+        $this->assertEquals(25, $this->collection->find()->after('Doe'));
+        $this->assertEquals(25, $this->collection->find()->afterWhere(fn($value, $key) => $value === 'Doe'));
+        $this->assertNull($this->collection->find()->afterWhere(fn($value, $key) => $value === 2));
 
     }
 
