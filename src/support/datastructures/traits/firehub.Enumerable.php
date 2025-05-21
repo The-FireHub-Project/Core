@@ -14,10 +14,13 @@
 
 namespace FireHub\Core\Support\DataStructures\Traits;
 
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
 use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Contains, Ensure, Find, Is
 };
-use FireHub\Core\Support\LowLevel\Iterator;
+use FireHub\Core\Support\LowLevel\ {
+    DataIs, Iterator
+};
 
 use const FireHub\Core\Support\Constants\Number\MAX;
 
@@ -159,6 +162,108 @@ trait Enumerable {
     public function apply (callable $callback):static {
 
         return (clone $this)->transform($callback); // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed As return.
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::null To check if the $callback parameter is passed.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $keys = $collection->keys();
+     *
+     * // [0, 1, 2]
+     * ```
+     * @example With user-defined filter.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $keys = $collection->keys(fn($value, $key) => $value === 'two');
+     *
+     * // [0, 2]
+     * ```
+     */
+    public function keys (?callable $callback = null):Indexed {
+
+        $array = [];
+
+        if (DataIs::null($callback))
+            foreach ($this as $key => $value) $array[] = $key;
+
+        else foreach ($this as $key => $value)
+            if ($callback($value, $key)) $array[] = $key;
+
+        return new Indexed($array);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed As return.
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::null To check if the $callback parameter is passed.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $keys = $collection->values();
+     *
+     * // ['one', 'two', 'three']
+     * ```
+     * @example With user-defined filter.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $keys = $collection->values(fn($value, $key) => $key !== 1);
+     *
+     * // ['one', 'three']
+     * ```
+     */
+    public function values (?callable $callback = null):Indexed {
+
+        $array = [];
+
+        if (DataIs::null($callback))
+            foreach ($this as $value) $array[] = $value;
+
+        else foreach ($this as $key => $value)
+            if ($callback($value, $key)) $array[] = $value;
+
+        return new Indexed($array);
 
     }
 

@@ -19,6 +19,7 @@ use FireHub\Core\Support\Contracts\ {
 };
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 use FireHub\Core\Support\Contracts\Magic\Serializable;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
 use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Contains, Ensure, Find, Is
 };
@@ -127,5 +128,31 @@ interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSe
      * the corresponding values of a data structure.
      */
     public function apply (callable $callback):static;
+
+    /**
+     * ### Get keys from the data structure
+     * @since 1.0.0
+     *
+     * @param null|callable $callback [optional] <p>
+     * If specified, then only keys where user function is true are returned.
+     * </p>
+     *
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed<TKey> Keys from
+     * the data structure.
+     */
+    public function keys (?callable $callback = null):Indexed;
+
+    /**
+     * ### Get values from the data structure
+     * @since 1.0.0
+     *
+     * @param null|callable $callback [optional] <p>
+     * If specified, then only values where user function is true are returned.
+     * </p>
+     *
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed<TValue> Values from
+     * the data structure.
+     */
+    public function values (?callable $callback = null):Indexed;
 
 }

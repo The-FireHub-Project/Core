@@ -14,11 +14,12 @@
 
 namespace FireHub\Core\Support\DataStructures\Traits;
 
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
 };
 use FireHub\Core\Support\LowLevel\ {
-    Arr, Iterables
+    Arr, DataIs, Iterables
 };
 use ArgumentCountError;
 
@@ -105,6 +106,90 @@ trait Arrayable {
         }
 
         return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed As return.
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::null To check if the $callback parameter is passed.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::keys() To get the keys of the array.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::filter() To filter the array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $keys = $collection->keys();
+     *
+     * // ['firstname', 'lastname', 'age', 10]
+     * ```
+     * @example With user-defined filter.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $keys = $collection->keys(fn($value, $key) => $value === 'John');
+     *
+     * // ['firstname']
+     * ```
+     */
+    public function keys (?callable $callback = null):Indexed {
+
+        if (DataIs::null($callback))
+            $array = Arr::keys($this->storage);
+
+        else $array = Arr::keys(Arr::filter($this->storage, $callback, true, true));
+
+        return new Indexed($array);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed As return.
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::null To check if the $callback parameter is passed.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::values() To get all the values from an array.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::filter() To filter the array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $values = $collection->values();
+     *
+     * // ['John', 'Doe', 25, 2]
+     * ```
+     * @example With user-defined filter.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $keys = $collection->values(fn($value, $key) => $key !== 'age');
+     *
+     * // ['John', 'Doe', 2]
+     * ```
+     */
+    public function values (?callable $callback = null):Indexed {
+
+        if (DataIs::null($callback))
+            $array = Arr::values($this->storage);
+
+        else $array = Arr::filter($this->storage, $callback, true, true);
+
+        return new Indexed($array);
 
     }
 
