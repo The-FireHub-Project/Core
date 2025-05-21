@@ -79,7 +79,7 @@ readonly class CountBy {
 
         foreach ($this->data_structure as $value) {
 
-            $value = DataIs::string($value) || DataIs::int($value) ? $value : toString($value);
+            $value = DataIs::string($value) || DataIs::int($value) ? $value : toString($value, detailed: true);
 
             $storage[$value] = ($storage[$value] ?? 0) + 1;
 
