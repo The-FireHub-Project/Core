@@ -50,11 +50,48 @@ readonly class CountBy {
     ) {}
 
     /**
+     * ### Count elements by search value
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy::where To count elements by a user-defined function.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::exist() To check if any values
+     * where found.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::get() To get a number of found
+     * values.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * use FireHub\Core\Support\DataStructures\Operations\CountBy;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $count_by_values = new CountBy($collection)->value('Jane');
+     *
+     * // 3
+     * ```
+     *
+     * @param mixed $search <p>
+     * The searched key.
+     * If the key is a string, the comparison is done in a case-sensitive manner.
+     * </p>
+     *
+     * @return non-negative-int Number of elements in the data structure by searched value.
+     */
+    public function value (mixed $search):int {
+
+        $result = $this->where(fn($value) => $value === $search);
+
+        return $result->exist(1) ? ($result->get(1) ?? 0) : 0;
+
+    }
+
+    /**
      * ### Count elements by values
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative As return.
-     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy::where To count elements by user-defined function.
+     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy::where To count elements by a user-defined function.
      * @uses \FireHub\Core\Support\LowLevel\DataIs::string() To find whether the array key is a string.
      * @uses \FireHub\Core\Support\LowLevel\DataIs::int() To find whether the array key is an integer.
      * @uses \FireHub\Core\Support\Helpers\Data\toString() To convert value to string.
@@ -85,7 +122,7 @@ readonly class CountBy {
     }
 
     /**
-     * ### Count elements by value type
+     * ### Count elements by value types
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj As return.
@@ -105,7 +142,7 @@ readonly class CountBy {
      *
      * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
      *
-     * $count_by_type = new CountBy($collection)->type();
+     * $count_by_type = new CountBy($collection)->types();
      *
      * // [Type::T_STRING => 2, Type::T_INT => 2]
      * ```
@@ -116,7 +153,7 @@ readonly class CountBy {
      * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj<\FireHub\Core\Support\Enums\Data\Type, positive-int>
      * Number of elements of a data structure by type.
      */
-    public function type ():Obj {
+    public function types ():Obj {
 
         $storage = new Obj();
 
@@ -150,12 +187,12 @@ readonly class CountBy {
      * // ['J' => 4, 'R' => 2]
      * ```
      *
-     * @param callable(TValue, TKey=):string $callback <p>
+     * @param callable(TValue, TKey=):mixed $callback <p>
      * User-defined function.
      * </p>
      *
-     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative<string, positive-int> Number
-     * of elements of a data structure by user-defined function.
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative<array-key, positive-int>
+     * Number of elements of a data structure by user-defined function.
      */
     public function where (callable $callback):Associative {
 

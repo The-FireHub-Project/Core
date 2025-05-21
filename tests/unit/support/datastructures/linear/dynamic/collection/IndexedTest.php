@@ -92,6 +92,8 @@ final class IndexedTest extends Base {
      */
     public function testCountBy ():void {
 
+        $this->assertSame(3, $this->collection->countBy()->value('Jane'));
+
         $collection = new Associative();
         $collection->set(3, 'Jane');
         $collection->set(1, 'John');
@@ -104,7 +106,7 @@ final class IndexedTest extends Base {
         $collection->attach(Type::T_STRING, 1);
         $collection->attach(Type::T_NULL, 1);
         $collection->attach(Type::T_OBJECT, 1);
-        $this->assertEquals($collection, $this->mix->countBy()->type());
+        $this->assertEquals($collection, $this->mix->countBy()->types());
 
         $this->assertEquals(
             new Associative(['J' => 4, 'R' => 2]),
