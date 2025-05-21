@@ -20,7 +20,7 @@ use FireHub\Core\Support\Contracts\ {
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 use FireHub\Core\Support\Contracts\Magic\Serializable;
 use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, Contains, Ensure
+    CountBy, Contains, Ensure, Is
 };
 
 use const FireHub\Core\Support\Constants\Number\MAX;
@@ -65,6 +65,16 @@ interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSe
      * @return \FireHub\Core\Support\DataStructures\Operation\Ensure<TKey, TValue> Find operation class.
      */
     public function ensure ():Ensure;
+
+    /**
+     * ### Check is data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Is As return.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Operation\Is<TKey, TValue> Check is operation class.
+     */
+    public function is ():Is;
 
     /**
      * ### Call a user-generated function on each item in the data structure
