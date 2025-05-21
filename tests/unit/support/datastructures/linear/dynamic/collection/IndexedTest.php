@@ -100,6 +100,8 @@ final class IndexedTest extends Base {
         $collection->set(2, 'Richard');
         $this->assertEquals($collection, $this->collection->countBy()->values());
 
+        $this->assertSame(1, $this->mix->countBy()->type(Type::T_STRING));
+
         $collection = new Obj();
         $collection->attach(Type::T_BOOL, 2);
         $collection->attach(Type::T_INT, 2);

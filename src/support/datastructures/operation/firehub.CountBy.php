@@ -18,6 +18,7 @@ use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
     Associative, Obj
 };
+use FireHub\Core\Support\Enums\Data\Type;
 use FireHub\Core\Support\LowLevel\ {
     Data, DataIs
 };
@@ -50,7 +51,7 @@ readonly class CountBy {
     ) {}
 
     /**
-     * ### Count elements by search value
+     * ### Count elements by searched value
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy::where To count elements by a user-defined function.
@@ -118,6 +119,45 @@ readonly class CountBy {
                 ? $value
                 : toString($value, detailed: true)
         );
+
+    }
+
+    /**
+     * ### Count elements by searched type
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy::where To count elements by a user-defined function.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::exist() To check if any values
+     * where found.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::get() To get a number of found
+     * values.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     * use FireHub\Core\Support\DataStructures\Operations\CountBy;
+     * use FireHub\Core\Support\Enums\Data\Type;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $count_by_type = new CountBy($collection)->type(Type::T_STRING);
+     *
+     * // 2
+     * ```
+     *
+     * @param \FireHub\Core\Support\Enums\Data\Type $search <p>
+     * The searched typed.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Data\TypeUnknownException If a type of value is unknown.
+     *
+     * @return non-negative-int Number of elements in the data structure by searched tyoe.
+     */
+    public function type (Type $search):int {
+
+        $result = $this->where(fn($value) => Data::getType($value) === $search);
+
+        return $result->exist(1) ? ($result->get(1) ?? 0) : 0;
 
     }
 
