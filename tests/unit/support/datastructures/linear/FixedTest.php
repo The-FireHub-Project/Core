@@ -20,6 +20,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
 use FireHub\Core\Support\DataStructures\Operation\ {
     Contains, Ensure, Find
 };
+use FireHub\Core\Support\DataStructures\Function\Reduce;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -34,6 +35,7 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Contains::class)]
 #[CoversClass(Ensure::class)]
 #[CoversClass(Find::class)]
+#[CoversClass(Reduce::class)]
 final class FixedTest extends Base {
 
     public Fixed $collection;
@@ -270,6 +272,20 @@ final class FixedTest extends Base {
     public function testSerialize ():void {
 
         $this->assertEquals($this->collection, Fixed::unserialize($this->collection->serialize()));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testReduce ():void {
+
+        $this->assertSame(
+            'one-two-three-',
+            new Reduce($this->collection)(fn($carry, $value) => $carry.$value.'-')
+        );
 
     }
 
