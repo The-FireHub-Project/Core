@@ -285,6 +285,78 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testWhenTrue ():void {
+
+        $this->assertEquals(
+            Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie']),
+            $this->collection->when(
+                true,
+                fn(Indexed $collection) => $collection->append('Johnie'),
+                fn(Indexed $collection) => $collection->append('Janie')
+            )
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testWhenFalse ():void {
+
+        $this->assertEquals(
+            Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Janie']),
+            $this->collection->when(
+                false,
+                fn(Indexed $collection) => $collection->append('Johnie'),
+                fn(Indexed $collection) => $collection->append('Janie')
+            )
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testUnlessTrue ():void {
+
+        $this->assertEquals(
+            Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Janie']),
+            $this->collection->unless(
+                true,
+                fn(Indexed $collection) => $collection->append('Johnie'),
+                fn(Indexed $collection) => $collection->append('Janie')
+            )
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testUnlessFalse ():void {
+
+        $this->assertEquals(
+            Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie']),
+            $this->collection->unless(
+                false,
+                fn(Indexed $collection) => $collection->append('Johnie'),
+                fn(Indexed $collection) => $collection->append('Janie')
+            )
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJsonSerialize ():void {
 
         $json = $this->collection->toJson();

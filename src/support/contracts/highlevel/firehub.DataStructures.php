@@ -130,6 +130,42 @@ interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSe
     public function apply (callable $callback):static;
 
     /**
+     * ### Execute the given callback when the first argument given to the method evaluates to true
+     * @since 1.0.0
+     *
+     * @param bool $condition <p>
+     * Condition to meet.
+     * </p>
+     * @param callable($this):mixed $condition_meet <p>
+     * Callback if the condition is met.
+     * </p>
+     * @param null|callable($this):mixed $condition_not_meet [optional] <p>
+     * Callback if the condition is not met.
+     * </p>
+     *
+     * @return $this This data structure.
+     */
+    public function when (bool $condition, callable $condition_meet, ?callable $condition_not_meet = null):self;
+
+    /**
+     * ### Execute the given callback unless the first argument given to the method evaluates to true
+     * @since 1.0.0
+     *
+     * @param bool $condition <p>
+     * Condition to meet.
+     * </p>
+     * @param callable($this):mixed $condition_meet <p>
+     * Callback if the condition is met.
+     * </p>
+     * @param null|callable($this):mixed $condition_not_meet [optional] <p>
+     * Callback if the condition is not met.
+     * </p>
+     *
+     * @return $this This data structure.
+     */
+    public function unless (bool $condition, callable $condition_meet, ?callable $condition_not_meet = null):self;
+
+    /**
      * ### Get keys from the data structure
      * @since 1.0.0
      *

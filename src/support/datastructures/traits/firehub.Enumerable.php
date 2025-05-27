@@ -170,6 +170,68 @@ trait Enumerable {
      *
      * @since 1.0.0
      *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->when(
+     *     true,
+     *     fn(Indexed $collection) => $collection->append('Johnie'),
+     *     fn(Indexed $collection) => $collection->append('Janie)
+     * );
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie']
+     * ```
+     */
+    public function when (bool $condition, callable $condition_meet, ?callable $condition_not_meet = null):static {
+
+        if ($condition)
+            $condition_meet($this);
+        else if ($condition_not_meet !== null)
+            $condition_not_meet($this);
+
+        return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->unless(
+     *     true,
+     *     fn(Indexed $collection) => $collection->append('Johnie'),
+     *     fn(Indexed $collection) => $collection->append('Janie)
+     * );
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Janie']
+     * ```
+     */
+    public function unless (bool $condition, callable $condition_meet, ?callable $condition_not_meet = null):static {
+
+        if (!$condition)
+            $condition_meet($this);
+        else if ($condition_not_meet !== null)
+            $condition_not_meet($this);
+
+        return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed As return.
      * @uses \FireHub\Core\Support\LowLevel\DataIs::null To check if the $callback parameter is passed.
      *
