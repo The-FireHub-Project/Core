@@ -21,7 +21,7 @@ use FireHub\Core\Support\DataStructures\Operation\ {
     Contains, Ensure, Find
 };
 use FireHub\Core\Support\DataStructures\Function\ {
-    Reduce, Slice
+    Reduce, Reject, Slice
 };
 use FireHub\Core\Support\DataStructures\Helpers\SequenceRange;
 use PHPUnit\Framework\Attributes\ {
@@ -39,6 +39,7 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Ensure::class)]
 #[CoversClass(Find::class)]
 #[CoversClass(Reduce::class)]
+#[CoversClass(Reject::class)]
 #[CoversClass(Slice::class)]
 #[CoversClass(SequenceRange::class)]
 final class FixedTest extends Base {
@@ -269,6 +270,35 @@ final class FixedTest extends Base {
         $this->assertEquals(
             $collection,
             $this->collection->filter(fn($value) => $value !== 'two')
+        );
+
+        $collection = new Fixed(1);
+        $collection[0] = 'one';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->filter(function ($value) {
+                if ($value === 'two') {return 'break';}
+                return true;
+            })
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testReject ():void {
+
+        $collection = new Fixed(2);
+        $collection[0] = 'one';
+        $collection[1] = 'three';
+
+        $this->assertEquals(
+            $collection,
+            new Reject($this->collection)(fn($value) => $value === 'two')
         );
 
     }

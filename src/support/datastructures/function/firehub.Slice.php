@@ -24,6 +24,7 @@ use FireHub\Core\Support\LowLevel\Arr;
  * ### Get slice from data structure
  * @since 1.0.0
  *
+ * @template TDataStructure of \FireHub\Core\Support\DataStructures\Contracts\Filterable
  * @template TKey
  * @template TValue
  */
@@ -35,7 +36,7 @@ readonly class Slice {
      *
      * @uses \FireHub\Core\Support\DataStructures\Contracts\Filterable As parameter.
      *
-     * @param \FireHub\Core\Support\DataStructures\Contracts\Filterable<TKey, TValue> $data_structure <p>
+     * @param TDataStructure<TKey, TValue> $data_structure <p>
      * Instance of data structures.
      * </p>
      *
@@ -50,7 +51,8 @@ readonly class Slice {
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Contracts\ArrayableStorage::toArray() To get data storage as an array.
-     * @uses \FireHub\Core\Support\LowLevel\Arr::reduce() To use as a reduce function.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::slice() To extract a slice of the array.
+     * @uses \FireHub\Core\Support\DataStructures\Contracts\Filterable::filter To filter items from the data structure.
      *
      * @param int $offset <p>
      * If the offset is non-negative, the sequence will start at that offset of the data structure.
@@ -63,7 +65,7 @@ readonly class Slice {
      * If it is omitted, then the sequence will have everything from offset up until the end of the data structure.
      * </p>
      *
-     * @return \FireHub\Core\Support\DataStructures\Contracts\Filterable<TKey, TValue> New sliced data structure.
+     * @return TDataStructure<TKey, TValue> New sliced data structure.
      */
     public function __invoke (int $offset, ?int $length = null):Filterable {
 
