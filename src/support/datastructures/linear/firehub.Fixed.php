@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
-use FireHub\Core\Support\DataStructures\Contracts\Filterable;
+use FireHub\Core\Support\DataStructures\Contracts\FilterableBreakable;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
@@ -37,13 +37,13 @@ use SplFixedArray;
  *
  * @extends SplFixedArray<TValue>
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed<int, ?TValue>
- * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<int, ?TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\FilterableBreakable<int, ?TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Fixed extends SplFixedArray implements FixedContract, Filterable {
+class Fixed extends SplFixedArray implements FixedContract, FilterableBreakable {
 
     /**
      * ### Enumerable data structure methods that every element meets a given criterion
@@ -220,6 +220,9 @@ class Fixed extends SplFixedArray implements FixedContract, Filterable {
      *
      * @since 1.0.0
      *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::getSize() To get the size of the current data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::setSize() To set the size for the new data structure.
+     *
      * @example
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Fixed;
@@ -241,8 +244,14 @@ class Fixed extends SplFixedArray implements FixedContract, Filterable {
 
         $counter = 0;
 
-        foreach ($this as $value)
-            !$callback($value) ?: $storage[$counter++] = $value;
+        foreach ($this as $value) {
+
+            $result = $callback($value);
+
+            if ($result === 'break') break;
+            !$result ?: $storage[$counter++] = $value;
+
+        }
 
         $storage->setSize($counter);
 

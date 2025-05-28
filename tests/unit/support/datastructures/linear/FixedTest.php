@@ -23,6 +23,7 @@ use FireHub\Core\Support\DataStructures\Operation\ {
 use FireHub\Core\Support\DataStructures\Function\ {
     Reduce, Slice
 };
+use FireHub\Core\Support\DataStructures\Helpers\SequenceRange;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -39,6 +40,7 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Find::class)]
 #[CoversClass(Reduce::class)]
 #[CoversClass(Slice::class)]
+#[CoversClass(SequenceRange::class)]
 final class FixedTest extends Base {
 
     public Fixed $collection;
