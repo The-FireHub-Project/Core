@@ -17,7 +17,7 @@ namespace support\datastructures\linear\dynamic;
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
 use FireHub\Core\Support\DataStructures\Function\ {
-    Reduce, Slice
+    Reduce, Slice, Splice
 };
 use FireHub\Core\Support\DataStructures\Helpers\SequenceRange;
 use FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException;
@@ -34,6 +34,7 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Lazy::class)]
 #[CoversClass(Reduce::class)]
 #[CoversClass(Slice::class)]
+#[CoversClass(Splice::class)]
 #[CoversClass(SequenceRange::class)]
 final class LazyTest extends Base {
 
@@ -191,6 +192,11 @@ final class LazyTest extends Base {
     }
 
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testSlice ():void {
 
         $this->assertEquals(
@@ -199,6 +205,23 @@ final class LazyTest extends Base {
                 ['key' => 'age', 'value' => 25]
             ],
             new Slice($this->collection)(1, 2)->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSplice ():void {
+
+        $this->assertEquals(
+            [
+                ['key' => 'firstname', 'value' => 'John'],
+                ['key' => 10, 'value' => 2]
+            ],
+            new Splice($this->collection)(1, 2)->toArray()
         );
 
     }

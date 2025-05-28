@@ -16,7 +16,9 @@ namespace support\datastructures\linear\dynamic\collection;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
-use FireHub\Core\Support\DataStructures\Function\Slice;
+use FireHub\Core\Support\DataStructures\Function\ {
+    Slice, Splice
+};
 use FireHub\Core\Support\DataStructures\Helpers\SequenceRange;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyDoesntExistException, StorageMissingDataException
@@ -34,6 +36,7 @@ use stdClass;
 #[Group('datastructures')]
 #[CoversClass(Obj::class)]
 #[CoversClass(Slice::class)]
+#[CoversClass(Splice::class)]
 #[CoversClass(SequenceRange::class)]
 final class ObjTest extends Base {
 
@@ -276,6 +279,24 @@ final class ObjTest extends Base {
         $this->assertEquals(
             $collection,
             new Slice($this->collection)(1, 2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSplice ():void {
+
+        $collection = new Obj();
+        $collection->attach($this->cls1, 'data for object 1');
+        $collection->attach($this->cls3, 20);
+
+        $this->assertEquals(
+            $collection,
+            new Splice($this->collection)(1, 1)
         );
 
     }

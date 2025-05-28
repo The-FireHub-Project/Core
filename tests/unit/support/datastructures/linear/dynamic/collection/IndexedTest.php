@@ -22,7 +22,7 @@ use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Ensure, Is
 };
 use FireHub\Core\Support\DataStructures\Function\ {
-    Reduce, Reject, Slice
+    Reduce, Reject, Slice, Splice
 };
 use FireHub\Core\Support\Enums\Data\Type;
 use PHPUnit\Framework\Attributes\ {
@@ -43,6 +43,7 @@ use stdClass;
 #[CoversClass(Reduce::class)]
 #[CoversClass(Reject::class)]
 #[CoversClass(Slice::class)]
+#[CoversClass(Splice::class)]
 final class IndexedTest extends Base {
 
     public Indexed $collection;
@@ -411,6 +412,20 @@ final class IndexedTest extends Base {
         $this->assertEquals(
             new Indexed(['Jane', 'Jane', 'Jane', 'Richard']),
             new Slice($this->collection)(1, -1)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSplice ():void {
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Richard']),
+            new Splice($this->collection)(2, 3)
         );
 
     }
