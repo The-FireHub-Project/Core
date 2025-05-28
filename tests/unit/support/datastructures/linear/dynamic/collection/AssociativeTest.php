@@ -21,6 +21,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
 use FireHub\Core\Support\DataStructures\Operation\ {
     Contains, Find
 };
+use FireHub\Core\Support\DataStructures\Function\Slice;
 use FireHub\Core\Support\Enums\Data\Type;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
@@ -34,10 +35,11 @@ use PHPUnit\Framework\Attributes\ {
  * @since 1.0.0
  */
 #[Small]
-#[Group('collection')]
+#[Group('datastructures')]
 #[CoversClass(Associative::class)]
 #[CoversClass(Contains::class)]
 #[CoversClass(Find::class)]
+#[CoversClass(Slice::class)]
 #[CoversClass(Type::class)]
 final class AssociativeTest extends Base {
 
@@ -413,6 +415,34 @@ final class AssociativeTest extends Base {
         $this->assertEquals(
             new Indexed(['John', 'Doe', 2]),
             $this->collection->values(fn($value, $key) => $key !== 'age')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFilter ():void {
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'age' => 25, 10 => 2]),
+            $this->collection->filter(fn($value, $key) => $key !== 'lastname')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSlice ():void {
+
+        $this->assertEquals(
+            new Associative(['lastname' => 'Doe', 'age' => 25]),
+            new Slice($this->collection)(1, 2)
         );
 
     }

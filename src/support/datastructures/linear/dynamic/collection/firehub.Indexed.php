@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Contracts\ {
-    ArrayableStorage, Sequantionable
+    ArrayableStorage, Filterable, Sequantionable
 };
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Traits\Arrayable;
@@ -36,13 +36,14 @@ use function FireHub\Core\Support\Helpers\Arr\ {
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<int, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\ArrayableStorage<int, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<int, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Sequantionable<TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Indexed extends Collection implements ArrayableStorage, Sequantionable {
+class Indexed extends Collection implements ArrayableStorage, Filterable, Sequantionable {
 
     /**
      * ### Arrayable data structure methods have an array as storage
@@ -292,6 +293,32 @@ class Indexed extends Collection implements ArrayableStorage, Sequantionable {
     public function toArray ():array {
 
         return $this->storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::filter() To filter elements in an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $filter = $collection->filter(fn($value) => $value === 'Jane');
+     *
+     * // ['Jane', 'Jane', 'Jane']
+     * ```
+     */
+    public function filter (callable $callback):static {
+
+        return new static(
+            Arr::filter($this->storage, $callback, true)
+        );
 
     }
 

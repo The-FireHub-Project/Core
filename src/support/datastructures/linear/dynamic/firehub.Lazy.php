@@ -15,6 +15,9 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
+use FireHub\Core\Support\DataStructures\Contracts\ {
+    FilterableBreakable, KeyFilterable
+};
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
@@ -32,12 +35,14 @@ use Closure, Generator, Traversable;
  * @template TValue
  *
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\FilterableBreakable<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\KeyFilterable<TKey, TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Lazy implements Dynamic {
+class Lazy implements Dynamic, FilterableBreakable, KeyFilterable {
 
     /**
      * ### Enumerable data structure methods that every element meets a given criterion
@@ -171,6 +176,39 @@ class Lazy implements Dynamic {
         };
 
         return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $filter = $collection->filter(fn($value, $key) => $key !== 'lastname');
+     *
+     * // ['firstname' => 'John', 'age' => 25, 10 => 2]
+     * ```
+     */
+    public function filter (callable $callback):static {
+
+        return new static (function () use ($callback) {
+
+            foreach ($this as $key => $value) {
+
+                $result = $callback($value, $key);
+
+                if ($result === 'break') break;
+                if ($result) yield $key => $value;
+
+            }
+
+        });
 
     }
 

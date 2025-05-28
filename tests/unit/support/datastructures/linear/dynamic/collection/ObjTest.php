@@ -16,6 +16,7 @@ namespace support\datastructures\linear\dynamic\collection;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+use FireHub\Core\Support\DataStructures\Function\Slice;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyDoesntExistException, StorageMissingDataException
 };
@@ -29,8 +30,9 @@ use stdClass;
  * @since 1.0.0
  */
 #[Small]
-#[Group('collection')]
+#[Group('datastructures')]
 #[CoversClass(Obj::class)]
+#[CoversClass(Slice::class)]
 final class ObjTest extends Base {
 
     public Obj $collection;
@@ -236,6 +238,42 @@ final class ObjTest extends Base {
                 ['key' => $this->cls3, 'value' => 21]
             ],
             $this->collection->apply(fn($info, $object) => $object !== $this->cls3 ? $info : $info + 1)->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFilter ():void {
+
+        $collection = new Obj;
+        $collection->attach($this->cls1, 'data for object 1');
+        $collection->attach($this->cls3, 20);
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->filter(fn($info, $object) => $object !== $this->cls2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSlice ():void {
+
+        $collection = new Obj();
+        $collection->attach($this->cls2, [1, 2, 3]);
+        $collection->attach($this->cls3, 20);
+
+        $this->assertEquals(
+            $collection,
+            new Slice($this->collection)(1, 2)
         );
 
     }

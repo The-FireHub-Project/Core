@@ -21,7 +21,9 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
 use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Ensure, Is
 };
-use FireHub\Core\Support\DataStructures\Function\Reduce;
+use FireHub\Core\Support\DataStructures\Function\ {
+    Reduce, Slice
+};
 use FireHub\Core\Support\Enums\Data\Type;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -33,12 +35,13 @@ use stdClass;
  * @since 1.0.0
  */
 #[Small]
-#[Group('collection')]
+#[Group('datastructures')]
 #[CoversClass(Indexed::class)]
 #[CoversClass(CountBy::class)]
 #[CoversClass(Ensure::class)]
 #[CoversClass(Is::class)]
 #[CoversClass(Reduce::class)]
+#[CoversClass(Slice::class)]
 final class IndexedTest extends Base {
 
     public Indexed $collection;
@@ -350,6 +353,49 @@ final class IndexedTest extends Base {
                 fn(Indexed $collection) => $collection->append('Johnie'),
                 fn(Indexed $collection) => $collection->append('Janie')
             )
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFilter ():void {
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Jane']),
+            $this->collection->filter(fn($value) => $value === 'Jane')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSlice ():void {
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Richard', 'Richard']),
+            new Slice($this->collection)(2)
+        );
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Jane', 'Richard']),
+            new Slice($this->collection)(1, 4)
+        );
+
+        $this->assertEquals(
+            new Indexed(['Richard', 'Richard']),
+            new Slice($this->collection)(-2, 3)
+        );
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Jane', 'Richard']),
+            new Slice($this->collection)(1, -1)
         );
 
     }

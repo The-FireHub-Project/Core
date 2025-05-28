@@ -16,7 +16,9 @@ namespace support\datastructures\linear\dynamic;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
-use FireHub\Core\Support\DataStructures\Function\Reduce;
+use FireHub\Core\Support\DataStructures\Function\ {
+    Reduce, Slice
+};
 use FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -27,9 +29,10 @@ use PHPUnit\Framework\Attributes\ {
  * @since 1.0.0
  */
 #[Small]
-#[Group('collection')]
+#[Group('datastructures')]
 #[CoversClass(Lazy::class)]
 #[CoversClass(Reduce::class)]
+#[CoversClass(Slice::class)]
 final class LazyTest extends Base {
 
     public Lazy $collection;
@@ -163,6 +166,37 @@ final class LazyTest extends Base {
                 ['key' => 10, 'value' => '2.']
             ],
             $this->collection->apply(fn($value) => $value.'.')->toArray()
+        );
+
+    }
+
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFilter ():void {
+
+        $this->assertSame([
+                ['key' => 'firstname', 'value' => 'John'],
+                ['key' => 'age', 'value' => 25],
+                ['key' => 10, 'value' => 2]
+            ],
+            $this->collection->filter(fn($value, $key) => $key !== 'lastname')->toArray()
+        );
+
+    }
+
+
+    public function testSlice ():void {
+
+        $this->assertEquals(
+            [
+                ['key' => 'lastname', 'value' => 'Doe'],
+                ['key' => 'age', 'value' => 25]
+            ],
+            new Slice($this->collection)(1, 2)->toArray()
         );
 
     }

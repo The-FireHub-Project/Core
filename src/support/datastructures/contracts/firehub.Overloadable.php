@@ -14,6 +14,7 @@
 
 namespace FireHub\Core\Support\DataStructures\Contracts;
 
+use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\Contracts\Magic\Overloadable as MagicOverloadable;
 
 /**
@@ -22,8 +23,10 @@ use FireHub\Core\Support\Contracts\Magic\Overloadable as MagicOverloadable;
  *
  * @template TKey of array-key
  * @template TValue
+ *
+ * @extends \FireHub\Core\Support\Contracts\HighLevel\DataStructures<TKey, TValue>
  */
-interface Overloadable extends MagicOverloadable {
+interface Overloadable extends DataStructures, MagicOverloadable {
 
     /**
      * @inheritDoc

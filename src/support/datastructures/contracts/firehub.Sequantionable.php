@@ -14,13 +14,17 @@
 
 namespace FireHub\Core\Support\DataStructures\Contracts;
 
+use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
+
 /**
  * ### Sequantionable data structure has items in sequence order as they are created
  * @since 1.0.0
  *
  * @template TValue
+ *
+ * @extends \FireHub\Core\Support\Contracts\HighLevel\DataStructures<int, TValue>
  */
-interface Sequantionable {
+interface Sequantionable extends DataStructures {
 
     /**
      * ### Removes an item at the beginning of the data structure

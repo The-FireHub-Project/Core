@@ -17,12 +17,26 @@ namespace FireHub\Core\Support\DataStructures\Contracts;
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 
 /**
- * ### Arrayable data structure has internal storage as an array
+ * ### Data structure that is capable of passing through a filter
  * @since 1.0.0
  *
- * @template TKey of array-key
+ * @template TKey
  * @template TValue
  *
  * @extends \FireHub\Core\Support\Contracts\HighLevel\DataStructures<TKey, TValue>
  */
-interface ArrayableStorage extends DataStructures {}
+interface Filterable extends DataStructures {
+
+    /**
+     * ### Filter items from data structure
+     * @since 1.0.0
+     *
+     * @param callable(TValue=, TKey=):bool $callback <p>
+     * Function to call on each item in a data structure.
+     * </p>
+     *
+     * @return static<TKey, TValue> New filtered data structure.
+     */
+    public function filter (callable $callback):static;
+
+}

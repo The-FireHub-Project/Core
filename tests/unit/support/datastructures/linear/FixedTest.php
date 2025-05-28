@@ -20,7 +20,9 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
 use FireHub\Core\Support\DataStructures\Operation\ {
     Contains, Ensure, Find
 };
-use FireHub\Core\Support\DataStructures\Function\Reduce;
+use FireHub\Core\Support\DataStructures\Function\ {
+    Reduce, Slice
+};
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -30,12 +32,13 @@ use PHPUnit\Framework\Attributes\ {
  * @since 1.0.0
  */
 #[Small]
-#[Group('collection')]
+#[Group('datastructures')]
 #[CoversClass(Fixed::class)]
 #[CoversClass(Contains::class)]
 #[CoversClass(Ensure::class)]
 #[CoversClass(Find::class)]
 #[CoversClass(Reduce::class)]
+#[CoversClass(Slice::class)]
 final class FixedTest extends Base {
 
     public Fixed $collection;
@@ -246,6 +249,42 @@ final class FixedTest extends Base {
         $this->assertEquals(
             new Indexed(['one', 'three']),
             $this->collection->values(fn($value, $key) => $key !== 1)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFilter ():void {
+
+        $collection = new Fixed(2);
+        $collection[0] = 'one';
+        $collection[1] = 'three';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->filter(fn($value) => $value !== 'two')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSlice ():void {
+
+        $collection = new Fixed(2);
+        $collection[0] = 'two';
+        $collection[1] = 'three';
+
+        $this->assertEquals(
+            $collection,
+            new Slice($this->collection)(1, 2)
         );
 
     }

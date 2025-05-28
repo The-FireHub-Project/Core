@@ -14,15 +14,14 @@
 
 namespace FireHub\Core\Support\DataStructures\Contracts;
 
-use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
-
 /**
- * ### Arrayable data structure has internal storage as an array
+ * ### Data structure that has keys capable of passing through a filter
  * @since 1.0.0
  *
- * @template TKey of array-key
+ * @template TKey
  * @template TValue
  *
- * @extends \FireHub\Core\Support\Contracts\HighLevel\DataStructures<TKey, TValue>
+ * @extends \FireHub\Core\Support\DataStructures\Contracts\Filterable<TKey, TValue>
  */
-interface ArrayableStorage extends DataStructures {}
+interface KeyFilterable extends Filterable {
+}

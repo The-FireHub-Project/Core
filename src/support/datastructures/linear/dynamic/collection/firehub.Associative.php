@@ -15,13 +15,14 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Contracts\ {
-    ArrayableStorage, Overloadable
+    ArrayableStorage, KeyFilterable, Overloadable
 };
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Traits\Arrayable;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
+use FireHub\Core\Support\LowLevel\Arr;
 use Traversable;
 
 /**
@@ -35,13 +36,14 @@ use Traversable;
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\ArrayableStorage<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\KeyFilterable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Overloadable<TKey, TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Associative extends Collection implements ArrayableStorage, Overloadable {
+class Associative extends Collection implements ArrayableStorage, KeyFilterable, Overloadable {
 
     /**
      * ### Arrayable data structure methods have an array as storage
@@ -476,6 +478,32 @@ class Associative extends Collection implements ArrayableStorage, Overloadable {
     public function toArray ():array {
 
         return $this->storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::filter() To filter elements in an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $filter = $collection->filter(fn($value, $key) => $key !== 'lastname');
+     *
+     * // ['firstname' => 'John', 'age' => 25, 10 => 2]
+     * ```
+     */
+    public function filter (callable $callback):static {
+
+        return new static(
+            Arr::filter($this->storage, $callback, true, true)
+        );
 
     }
 
