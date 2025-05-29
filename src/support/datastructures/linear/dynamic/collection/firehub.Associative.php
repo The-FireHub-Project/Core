@@ -15,14 +15,13 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Contracts\ {
-    ArrayableStorage, KeyFilterable, Overloadable
+    ArrayableStorage, Filterable, Overloadable
 };
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Traits\Arrayable;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
-use FireHub\Core\Support\LowLevel\Arr;
 use Traversable;
 
 /**
@@ -36,14 +35,14 @@ use Traversable;
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\ArrayableStorage<TKey, TValue>
- * @implements \FireHub\Core\Support\DataStructures\Contracts\KeyFilterable<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Overloadable<TKey, TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Associative extends Collection implements ArrayableStorage, KeyFilterable, Overloadable {
+class Associative extends Collection implements ArrayableStorage, Filterable, Overloadable {
 
     /**
      * ### Arrayable data structure methods have an array as storage
