@@ -890,12 +890,12 @@ final class ArrTest extends Base {
 
         $this->assertSame(
             [0 => 1, 3 => 2, 4 => 3],
-            Arr::unique([1, 1, 1, 2, 3])
+            Arr::distinct([1, 1, 1, 2, 3])
         );
 
         $this->assertSame(
             ['one' => 1, 'two' => 2, 'three' => 3],
-            Arr::unique(['one' => 1, 'one2' => 1, 'two' => 2, 'three' => 3])
+            Arr::distinct(['one' => 1, 'one2' => 1, 'two' => 2, 'three' => 3])
         );
 
     }

@@ -1493,7 +1493,7 @@ final class Arr {
      * @note The new array will preserve keys.
      * @note This method is not intended to work on multidimensional arrays.
      */
-    public static function unique (array $array):array {
+    public static function distinct (array $array):array {
 
         return array_unique($array, SORT_REGULAR);
 
