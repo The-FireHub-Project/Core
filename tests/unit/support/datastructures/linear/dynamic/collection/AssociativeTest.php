@@ -19,7 +19,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
     Associative, Indexed
 };
 use FireHub\Core\Support\DataStructures\Operation\ {
-    Contains, Find
+    Contains, Find, Take
 };
 use FireHub\Core\Support\DataStructures\Function\ {
     Slice, Splice
@@ -41,6 +41,7 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Associative::class)]
 #[CoversClass(Contains::class)]
 #[CoversClass(Find::class)]
+#[CoversClass(Take::class)]
 #[CoversClass(Slice::class)]
 #[CoversClass(Splice::class)]
 #[CoversClass(Type::class)]
@@ -460,6 +461,25 @@ final class AssociativeTest extends Base {
         $this->assertEquals(
             new Associative(['firstname' => 'John', 10 => 2]),
             new Splice($this->collection)(1, 2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testTakeOperation ():void {
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'lastname' => 'Doe']),
+            new Take($this->collection)->first(2)
+        );
+
+        $this->assertEquals(
+            new Associative(['age' => 25, 10 => 2]),
+            new Take($this->collection)->last(2)
         );
 
     }

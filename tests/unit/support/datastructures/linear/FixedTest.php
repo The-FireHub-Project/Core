@@ -18,7 +18,7 @@ use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Fixed;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
 use FireHub\Core\Support\DataStructures\Operation\ {
-    Contains, Ensure, Find
+    Contains, Ensure, Find, Take
 };
 use FireHub\Core\Support\DataStructures\Function\ {
     Reduce, Reject, Slice, Splice
@@ -38,6 +38,7 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Contains::class)]
 #[CoversClass(Ensure::class)]
 #[CoversClass(Find::class)]
+#[CoversClass(Take::class)]
 #[CoversClass(Reduce::class)]
 #[CoversClass(Reject::class)]
 #[CoversClass(Slice::class)]
@@ -318,6 +319,31 @@ final class FixedTest extends Base {
         $this->assertEquals(
             $collection,
             new Slice($this->collection)(1, 2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testTakeOperation ():void {
+
+        $collection = new Fixed(2);
+        $collection[0] = 'one';
+        $collection[1] = 'two';
+        $this->assertEquals(
+            $collection,
+            new Take($this->collection)->first(2)
+        );
+
+        $collection = new Fixed(2);
+        $collection[0] = 'two';
+        $collection[1] = 'three';
+        $this->assertEquals(
+            $collection,
+            new Take($this->collection)->last(2)
         );
 
     }

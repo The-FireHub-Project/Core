@@ -19,7 +19,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
     Indexed, Associative, Obj
 };
 use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, Ensure, Is
+    CountBy, Ensure, Is, Take
 };
 use FireHub\Core\Support\DataStructures\Function\ {
     Reduce, Reject, Slice, Splice
@@ -40,6 +40,7 @@ use stdClass;
 #[CoversClass(CountBy::class)]
 #[CoversClass(Ensure::class)]
 #[CoversClass(Is::class)]
+#[CoversClass(Take::class)]
 #[CoversClass(Reduce::class)]
 #[CoversClass(Reject::class)]
 #[CoversClass(Slice::class)]
@@ -426,6 +427,35 @@ final class IndexedTest extends Base {
         $this->assertEquals(
             new Indexed(['John', 'Jane', 'Richard']),
             new Splice($this->collection)(2, 3)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testTakeOperation ():void {
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane']),
+            new Take($this->collection)->first(2)
+        );
+
+        $this->assertEquals(
+            new Indexed(['Richard', 'Richard']),
+            new Take($this->collection)->last(2)
+        );
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Jane', 'Jane']),
+            new Take($this->collection)->until(fn($value) => $value === 'Richard')
+        );
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Jane', 'Jane']),
+            new Take($this->collection)->while(fn($value) => $value !== 'Richard')
         );
 
     }
