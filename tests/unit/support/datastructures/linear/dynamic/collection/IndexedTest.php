@@ -474,6 +474,21 @@ final class IndexedTest extends Base {
             new Take($this->collection)->odd()
         );
 
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Richard']),
+            new Take($this->collection)->distinct()
+        );
+
+        $this->assertEquals(
+            new Indexed(['John']),
+            new Take($this->collection)->unique()
+        );
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Jane', 'Richard', 'Richard']),
+            new Take($this->collection)->duplicates()
+        );
+
     }
 
     /**

@@ -48,6 +48,8 @@ final class FixedTest extends Base {
 
     public Fixed $collection;
 
+    public Fixed $collection_same_values;
+
     /**
      * @since 1.0.0
      *
@@ -59,6 +61,15 @@ final class FixedTest extends Base {
         $this->collection[0] = 'one';
         $this->collection[1] = 'two';
         $this->collection[2] = 'three';
+
+        $this->collection_same_values = new Fixed(7);
+        $this->collection_same_values[0] = 'one';
+        $this->collection_same_values[1] = 'two';
+        $this->collection_same_values[2] = 'two';
+        $this->collection_same_values[3] = 'three';
+        $this->collection_same_values[4] = 'three';
+        $this->collection_same_values[5] = 'three';
+        $this->collection_same_values[6] = [1,2,3];
 
     }
 
@@ -344,6 +355,35 @@ final class FixedTest extends Base {
         $this->assertEquals(
             $collection,
             new Take($this->collection)->last(2)
+        );
+
+        $collection = new Fixed(4);
+        $collection[0] = 'one';
+        $collection[1] = 'two';
+        $collection[2] = 'three';
+        $collection[3] = [1,2,3];
+        $this->assertEquals(
+            $collection,
+            new Take($this->collection_same_values)->distinct()
+        );
+
+        $collection = new Fixed(2);
+        $collection[0] = 'one';
+        $collection[1] = [1,2,3];
+        $this->assertEquals(
+            $collection,
+            new Take($this->collection_same_values)->unique()
+        );
+
+        $collection = new Fixed(5);
+        $collection[0] = 'two';
+        $collection[1] = 'two';
+        $collection[2] = 'three';
+        $collection[3] = 'three';
+        $collection[4] = 'three';
+        $this->assertEquals(
+            $collection,
+            new Take($this->collection_same_values)->duplicates()
         );
 
     }
