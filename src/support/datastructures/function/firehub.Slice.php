@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Function;
 
 use FireHub\Core\Support\DataStructures\Contracts\ {
-    ArrayableStorage, Filterable, FilterableBreakable, Sequantionable
+    ArrayableStorage, Filterable, Sequantionable
 };
 use FireHub\Core\Support\DataStructures\Helpers\SequenceRange;
 use FireHub\Core\Support\LowLevel\Arr;
@@ -87,10 +87,10 @@ readonly class Slice {
         $end = $range->end();
         $position = 0;
 
-        return $this->data_structure->filter(function () use ($start, $end, &$position) { // @phpstan-ignore argument.type
+        return $this->data_structure->filter(function () use ($start, $end, &$position) {
 
             if ($position++ < $start) return false;
-            if ($position > $end) return $this->data_structure instanceof FilterableBreakable ? 'break': false;
+            if ($position > $end) return 'break';
 
             return true;
 

@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Contracts\ {
-    FilterableBreakable, KeyFilterable
+    Filterable, KeyFilterable
 };
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\Traits\ {
@@ -37,14 +37,14 @@ use SplObjectStorage, Traversable, UnexpectedValueException;
  * @template TValue
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
- * @implements \FireHub\Core\Support\DataStructures\Contracts\FilterableBreakable<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\KeyFilterable<TKey, TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Obj extends Collection implements FilterableBreakable, KeyFilterable {
+class Obj extends Collection implements Filterable, KeyFilterable {
 
     /**
      * ### Trait contains all common JSON methods

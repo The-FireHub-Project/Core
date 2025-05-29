@@ -486,6 +486,39 @@ class Associative extends Collection implements ArrayableStorage, KeyFilterable,
      *
      * @since 1.0.0
      *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $filter = $collection->filter(fn($value, $key) => $key !== 'lastname');
+     *
+     * // ['firstname' => 'John', 'age' => 25, 10 => 2]
+     * ```
+     */
+    public function filter (callable $callback):static {
+
+        $storage = [];
+
+        foreach ($this->storage as $key => $value) {
+
+            $result = $callback($value, $key);
+
+            if ($result === 'break') break;
+            if ($result) $storage[$key] = $value;
+
+        }
+
+        return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::toArray() To get data structure
      * an array.
      *

@@ -31,7 +31,7 @@ interface Filterable extends DataStructures {
      * ### Filter items from data structure
      * @since 1.0.0
      *
-     * @param callable(TValue=, TKey=):bool $callback <p>
+     * @param callable(TValue=, TKey=):(bool|'break') $callback <p>
      * Function to call on each item in a data structure.
      * </p>
      *

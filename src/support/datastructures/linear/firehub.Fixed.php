@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
-use FireHub\Core\Support\DataStructures\Contracts\FilterableBreakable;
+use FireHub\Core\Support\DataStructures\Contracts\Filterable;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
@@ -37,13 +37,13 @@ use SplFixedArray;
  *
  * @extends SplFixedArray<TValue>
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed<int, ?TValue>
- * @implements \FireHub\Core\Support\DataStructures\Contracts\FilterableBreakable<int, ?TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<int, ?TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Fixed extends SplFixedArray implements FixedContract, FilterableBreakable {
+class Fixed extends SplFixedArray implements FixedContract, Filterable {
 
     /**
      * ### Enumerable data structure methods that every element meets a given criterion

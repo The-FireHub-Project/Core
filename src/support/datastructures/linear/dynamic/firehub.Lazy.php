@@ -16,7 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
 use FireHub\Core\Support\DataStructures\Contracts\ {
-    FilterableBreakable, KeyFilterable
+    Filterable, KeyFilterable
 };
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 use FireHub\Core\Support\Traits\ {
@@ -35,14 +35,14 @@ use Closure, Generator, Traversable;
  * @template TValue
  *
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic<TKey, TValue>
- * @implements \FireHub\Core\Support\DataStructures\Contracts\FilterableBreakable<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\KeyFilterable<TKey, TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Lazy implements Dynamic, FilterableBreakable, KeyFilterable {
+class Lazy implements Dynamic, Filterable, KeyFilterable {
 
     /**
      * ### Enumerable data structure methods that every element meets a given criterion
