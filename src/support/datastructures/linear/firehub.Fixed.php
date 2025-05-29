@@ -244,9 +244,9 @@ class Fixed extends SplFixedArray implements FixedContract, FilterableBreakable 
 
         $counter = 0;
 
-        foreach ($this as $value) {
+        foreach ($this as $key => $value) {
 
-            $result = $callback($value);
+            $result = $callback($value, $key);
 
             if ($result === 'break') break;
             !$result ?: $storage[$counter++] = $value;

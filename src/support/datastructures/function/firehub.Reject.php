@@ -56,7 +56,7 @@ readonly class Reject {
      */
     public function __invoke (callable $callback):Filterable {
 
-        return $this->data_structure->filter(fn($value) => !$callback($value)); // @phpstan-ignore argument.type
+        return $this->data_structure->filter(fn($value, $key) => !$callback($value, $key)); // @phpstan-ignore argument.type
 
     }
 
