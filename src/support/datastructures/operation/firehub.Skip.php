@@ -25,7 +25,7 @@ use FireHub\Core\Support\DataStructures\Function\Slice;
  * @template TKey
  * @template TValue
  */
-readonly class Take {
+readonly class Skip {
 
     /**
      * ### Constructor
@@ -44,7 +44,7 @@ readonly class Take {
     ) {}
 
     /**
-     * ### Take first n items from data structure
+     * ### Skip first n items from data structure
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Function\Slice To get a slice from the data structure.
@@ -52,59 +52,29 @@ readonly class Take {
      * @example
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
-     * use FireHub\Core\Support\DataStructures\Collection\Operations\Take;
+     * use FireHub\Core\Support\DataStructures\Collection\Operations\Skip;
      *
      * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
      *
-     * $take = new Take($collection)->first(2);
+     * $skip = new Skip($collection)->first(2);
      *
-     * // ['John', 'Jane']
+     * // ['Jane', 'Jane', 'Richard', 'Richard']
      * ```
      *
      * @param non-negative-int $number_of_items <p>
-     * Number of items to take.
+     * Number of items to skip.
      * </p>
      *
      * @return TDataStructure<TKey, TValue> New filtered data structure.
      */
     public function first (int $number_of_items):Filterable {
 
-        return new Slice($this->data_structure)(0, max($number_of_items, 0));
+        return new Slice($this->data_structure)(max($number_of_items, 0));
 
     }
 
     /**
-     * ### Take last n items from data structure
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Function\Slice To get a slice from the data structure.
-     *
-     * @example
-     * ```php
-     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
-     * use FireHub\Core\Support\DataStructures\Collection\Operations\Take;
-     *
-     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
-     *
-     * $take = new Take($collection)->last(2);
-     *
-     * // ['Richard', 'Richard']
-     * ```
-     *
-     * @param non-negative-int $number_of_items <p>
-     * Number of items to take.
-     * </p>
-     *
-     * @return TDataStructure<TKey, TValue> New filtered data structure.
-     */
-    public function last (int $number_of_items):Filterable {
-
-        return new Slice($this->data_structure)(min(-$number_of_items, 0), max($number_of_items, 0));
-
-    }
-
-    /**
-     * ### Take until the given callback returns true
+     * ### Skip until the given callback returns true
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Contracts\Filterable::filter() To filter items from the data structure.
@@ -112,15 +82,15 @@ readonly class Take {
      * @example
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
-     * use FireHub\Core\Support\DataStructures\Collection\Operations\Take;
+     * use FireHub\Core\Support\DataStructures\Collection\Operations\Skip;
      *
      * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
      *
-     * $take = new Take($collection)->until(function ($value) {
-     *  return $value === 'Richard';
+     * $skip = new Skip($collection)->until(function ($value) {
+     *  return $value !== 'Richard';
      * });
      *
-     * // ['John', 'Jane', 'Jane', 'Jane']
+     * // ['Richard', 'Richard']
      * ```
      *
      * @param callable(TValue, TKey=):bool $callback <p>
@@ -131,12 +101,20 @@ readonly class Take {
      */
     public function until (callable $callback):Filterable {
 
-        return $this->data_structure->filter(fn($value, $key) => !$callback($value, $key) ?: 'break');
+        return $this->data_structure->filter(function ($value, $key) use ($callback, &$found) {
+
+            if (!$found && !$callback($value, $key)) return false;
+
+            $found = true;
+
+            return true;
+
+        });
 
     }
 
     /**
-     * ### Take while the given callback returns true
+     * ### Skip while the given callback returns true
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Contracts\Filterable::filter() To filter items from the data structure.
@@ -144,26 +122,34 @@ readonly class Take {
      * @example
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
-     * use FireHub\Core\Support\DataStructures\Collection\Operations\Take;
+     * use FireHub\Core\Support\DataStructures\Collection\Operations\Skip;
      *
      * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
      *
-     * $take = new Take($collection)->while(function ($value) {
-     *  return $value !== 'Richard';
+     * $skip = new Skip($collection)->while(function ($value) {
+     *  return $value === 'John';
      * });
      *
-     * // ['John', 'Jane', 'Jane', 'Jane']
+     * // ['Jane', 'Jane', 'Jane', 'Richard', 'Richard']
      * ```
      *
      * @param callable(TValue, TKey=):bool $callback <p>
      * Function to call on each item in a data structure.
      * </p>
      *
-     * @return TDataStructure<TKey, TValue> filtered data structure.
+     * @return TDataStructure<TKey, TValue> New filtered data structure.
      */
     public function while (callable $callback):Filterable {
 
-        return $this->data_structure->filter(fn($value, $key) => !$callback($value, $key) ? 'break' : true);
+        return $this->data_structure->filter(function ($value, $key) use ($callback, &$found) {
+
+            if (!$found && $callback($value, $key)) return false;
+
+            $found = true;
+
+            return true;
+
+        });
 
     }
 

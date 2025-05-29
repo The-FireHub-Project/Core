@@ -19,7 +19,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
     Indexed, Associative, Obj
 };
 use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, Ensure, Is, Take
+    CountBy, Ensure, Is, Take, Skip
 };
 use FireHub\Core\Support\DataStructures\Function\ {
     Reduce, Reject, Slice, Splice
@@ -41,6 +41,7 @@ use stdClass;
 #[CoversClass(Ensure::class)]
 #[CoversClass(Is::class)]
 #[CoversClass(Take::class)]
+#[CoversClass(Skip::class)]
 #[CoversClass(Reduce::class)]
 #[CoversClass(Reject::class)]
 #[CoversClass(Slice::class)]
@@ -456,6 +457,30 @@ final class IndexedTest extends Base {
         $this->assertEquals(
             new Indexed(['John', 'Jane', 'Jane', 'Jane']),
             new Take($this->collection)->while(fn($value) => $value !== 'Richard')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSkip ():void {
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Richard', 'Richard']),
+            new Skip($this->collection)->first(2)
+        );
+
+        $this->assertEquals(
+            new Indexed(['Richard', 'Richard']),
+            new Skip($this->collection)->until(fn($value) => $value === 'Richard')
+        );
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Jane', 'Richard', 'Richard']),
+            new Skip($this->collection)->while(fn($value) => $value === 'John')
         );
 
     }
