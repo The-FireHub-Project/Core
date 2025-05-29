@@ -159,11 +159,98 @@ readonly class Take {
      * Function to call on each item in a data structure.
      * </p>
      *
-     * @return TDataStructure<TKey, TValue> filtered data structure.
+     * @return TDataStructure<TKey, TValue> New filtered data structure.
      */
     public function while (callable $callback):Filterable {
 
         return $this->data_structure->filter(fn($value, $key) => !$callback($value, $key) ? 'break' : true);
+
+    }
+
+    /**
+     * ### Take every n-th element
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Contracts\Filterable::filter() To filter items from the data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * use FireHub\Core\Support\DataStructures\Collection\Operations\Take;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $nth = new Take($collection)->nth(2);
+     *
+     * // ['John', 'Jane', 'Richard']
+     * ```
+     *
+     * @param positive-int $step <p>
+     * N-th step.
+     * </p>
+     *
+     * @return TDataStructure<TKey, TValue> New filtered data structure.
+     */
+    public function nth (int $step):Filterable {
+
+        return $this->data_structure->filter(function () use ($step, &$counter) {
+
+            return ($counter++ % (max($step, 1)) === 0);
+
+        });
+
+    }
+
+    /**
+     * ### Take even elements
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Skip::first() Ti skip first element.
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Take::nth() To get every n-th element.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * use FireHub\Core\Support\DataStructures\Collection\Operations\Take;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $nth = new Take($collection)->nth(2);
+     *
+     * // ['John', 'Jane', 'Richard']
+     * ```
+     *
+     * @return TDataStructure<TKey, TValue> New filtered data structure.
+     */
+    public function even ():Filterable {
+
+        return new self(new Skip($this->data_structure)->first(1))->nth(2);
+
+    }
+
+    /**
+     * ### Take odd elements
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Take::nth() To get every n-th element.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * use FireHub\Core\Support\DataStructures\Collection\Operations\Take;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $nth = new Take($collection)->nth(2);
+     *
+     * // ['John', 'Jane', 'Richard']
+     * ```
+     *
+     * @return TDataStructure<TKey, TValue> New filtered data structure.
+     */
+    public function odd ():Filterable {
+
+        return $this->nth(2);
 
     }
 

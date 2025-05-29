@@ -459,6 +459,21 @@ final class IndexedTest extends Base {
             new Take($this->collection)->while(fn($value) => $value !== 'Richard')
         );
 
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Richard']),
+            new Take($this->collection)->nth(2)
+        );
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Richard']),
+            new Take($this->collection)->even()
+        );
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Richard']),
+            new Take($this->collection)->odd()
+        );
+
     }
 
     /**
@@ -481,6 +496,11 @@ final class IndexedTest extends Base {
         $this->assertEquals(
             new Indexed(['Jane', 'Jane', 'Jane', 'Richard', 'Richard']),
             new Skip($this->collection)->while(fn($value) => $value === 'John')
+        );
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Jane', 'Richard']),
+            new Skip($this->collection)->nth(3)
         );
 
     }

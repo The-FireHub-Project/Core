@@ -153,4 +153,38 @@ readonly class Skip {
 
     }
 
+    /**
+     * ### Skip every n-th element
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Contracts\Filterable::filter() To filter items from the data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * use FireHub\Core\Support\DataStructures\Collection\Operations\Skip;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $nth = new Skip($collection)->nth(3);
+     *
+     * // ['John', 'Jane', 'Jane', 'Richard']
+     * ```
+     *
+     * @param positive-int $step <p>
+     * N-th step.
+     * </p>
+     *
+     * @return TDataStructure<TKey, TValue> New filtered data structure.
+     */
+    public function nth (int $step):Filterable {
+
+        return $this->data_structure->filter(function () use ($step, &$counter) {
+
+            return (++$counter % (max($step, 1)) !== 0);
+
+        });
+
+    }
+
 }
