@@ -23,5 +23,4 @@ namespace FireHub\Core\Support\DataStructures\Contracts;
  *
  * @extends \FireHub\Core\Support\DataStructures\Contracts\Filterable<TKey, TValue>
  */
-interface KeyFilterable extends Filterable {
-}
+interface KeyFilterable extends Filterable {}
