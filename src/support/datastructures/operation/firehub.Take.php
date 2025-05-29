@@ -373,6 +373,68 @@ readonly class Take {
     }
 
     /**
+     * ### Takes items with the specified keys
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Contracts\Filterable::filter To filter items from the data structure.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::inArray() To check if a value exists in an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     * use FireHub\Core\Support\DataStructures\Collection\Operations\Take;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $nth = new Take($collection)->only(['lastname']);
+     *
+     * // ['lastname' => 'Doe']
+     * ```
+     *
+     * @param list<mixed> $keys <p>
+     * List of keys to filter.
+     * </p>
+     *
+     * @return TDataStructure<TKey, TValue> New filtered data structure.
+     */
+    public function only (array $keys) {
+
+        return $this->data_structure->filter(fn($value, $key) => Arr::inArray($key, $keys));
+
+    }
+
+    /**
+     * ### Takes items except the specified keys
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Contracts\Filterable::filter To filter items from the data structure.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::inArray() To check if a value exists in an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     * use FireHub\Core\Support\DataStructures\Collection\Operations\Take;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $nth = new Take($collection)->except(['lastname']);
+     *
+     * // ['firstname' => 'John', 'age' => 25, 10 => 2]
+     * ```
+     *
+     * @param list<mixed> $keys <p>
+     * List of keys to filter.
+     * </p>
+     *
+     * @return TDataStructure<TKey, TValue> New filtered data structure.
+     */
+    public function except (array $keys) {
+
+        return $this->data_structure->filter(fn($value, $key) => !Arr::inArray($key, $keys));
+
+    }
+
+    /**
      * ### Convert value to string
      * @since 1.0.0
      *

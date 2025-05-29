@@ -482,6 +482,16 @@ final class AssociativeTest extends Base {
             new Take($this->collection)->last(2)
         );
 
+        $this->assertEquals(
+            new Associative(['lastname' => 'Doe']),
+            new Take($this->collection)->only(['lastname'])
+        );
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'age' => 25, 10 => 2]),
+            new Take($this->collection)->except(['lastname'])
+        );
+
     }
 
     /**
