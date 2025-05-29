@@ -18,7 +18,7 @@ use FireHub\Core\Support\Enums\Data\ {
     Category, Type
 };
 use FireHub\Core\Support\LowLevel\{
-    Data, DataIs, Obj, Resources
+    Data, DataIs, JSON, Obj, Resources
 };
 use Stringable;
 
@@ -34,6 +34,7 @@ use Stringable;
  * @uses \FireHub\Core\Support\LowLevel\Obj::id() To get ID from an object.
  * @uses \FireHub\Core\Support\LowLevel\Resources::id() To get ID from resource.
  * @uses \FireHub\Core\Support\LowLevel\Resources::type() To get a type from resource.
+ * @uses \FireHub\Core\Support\LowLevel\JSON::encode() To convert an array to JSON.
  *
  * @example
  * ```php
@@ -84,7 +85,7 @@ function toString (mixed $value, string $default_value = '', bool $detailed = fa
         $value === null => 'null',
         DataIs::string($value) => $value,
         DataIs::numeric($value) => (string)$value,
-        DataIs::array($value) => 'array',
+        DataIs::array($value) => JSON::encode($value) ?: '[]',
         $value instanceof Stringable => $value->__toString(),
         DataIs::object($value) => $detailed
             ? 'object('.$value::class.')['.Obj::id($value).']'

@@ -49,7 +49,7 @@ final class DataTest extends Base {
         $this->assertSame('null', toString(null));
         $this->assertSame('10', toString(10));
         $this->assertSame('10.5', toString(10.5));
-        $this->assertSame('array', toString([1,2,3]));
+        $this->assertSame('[1,2,3]', toString([1,2,3]));
         $this->assertSame('stdClass', toString(new stdClass()));
         $this->assertSame('hi!', toString(new class implements Stringable {
             public function __toString():string {
