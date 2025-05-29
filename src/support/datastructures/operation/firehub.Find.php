@@ -281,7 +281,7 @@ readonly class Find {
      * @return null|TValue The value after if it is found in the data structure, null otherwise. If a callback is valid
      * in a data structure more than before, the first matching value is returned.
      */
-    public function before (mixed $search) {
+    public function before (mixed $search):mixed {
 
         return $this->beforeWhere(fn($value) => $search === $value);
 
@@ -310,7 +310,7 @@ readonly class Find {
      * @return null|TValue The value before if it is found in the data structure, null otherwise. If a callback is valid
      * in a data structure more than once, the first matching value is returned.
      */
-    public function beforeWhere (callable $callback) {
+    public function beforeWhere (callable $callback):mixed {
 
         $found = null;
         foreach ($this->data_structure as $storage_key => $storage_value) {
@@ -352,7 +352,7 @@ readonly class Find {
      * @return null|TValue The value after if it is found in the data structure, null otherwise. If a callback is valid
      * in a data structure more than after, the first matching value is returned.
      */
-    public function after (mixed $search) {
+    public function after (mixed $search):mixed {
 
         return $this->afterWhere(fn($value) => $search === $value);
 
@@ -381,7 +381,7 @@ readonly class Find {
      * @return null|TValue The value after if it is found in the data structure, null otherwise. If a callback is valid
      * in a data structure more than once, the first matching value is returned.
      */
-    public function afterWhere (callable $callback) {
+    public function afterWhere (callable $callback):mixed {
 
         $found = false;
         foreach ($this->data_structure as $storage_key => $storage_value) {
