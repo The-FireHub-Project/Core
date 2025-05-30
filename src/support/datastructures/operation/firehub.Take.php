@@ -397,7 +397,7 @@ readonly class Take {
      *
      * @return TDataStructure<TKey, TValue> New filtered data structure.
      */
-    public function only (array $keys) {
+    public function only (array $keys):Filterable {
 
         return $this->data_structure->filter(fn($value, $key) => Arr::inArray($key, $keys));
 
@@ -428,7 +428,7 @@ readonly class Take {
      *
      * @return TDataStructure<TKey, TValue> New filtered data structure.
      */
-    public function except (array $keys) {
+    public function except (array $keys):Filterable {
 
         return $this->data_structure->filter(fn($value, $key) => !Arr::inArray($key, $keys));
 
