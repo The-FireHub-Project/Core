@@ -54,7 +54,7 @@ interface Sequantionable extends DataStructures {
      * ### Add items at the beginning of the data collection
      * @since 1.0.0
      *
-     * @param TValue ...$values <p>
+     * @param mixed ...$values <p>
      * Values to add.
      * </p>
      *
@@ -66,7 +66,7 @@ interface Sequantionable extends DataStructures {
      * ### Add items at the end of the data collection
      * @since 1.0.0
      *
-     * @param TValue ...$values <p>
+     * @param mixed ...$values <p>
      * Values to add.
      * </p>
      *

@@ -14,7 +14,9 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
-use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
+use FireHub\Core\Support\Contracts\HighLevel\ {
+    DataStructures, DataStructures\Linear
+};
 use FireHub\Core\Support\DataStructures\Contracts\ {
     ArrayableStorage, Filterable, Sequantionable
 };
@@ -343,6 +345,94 @@ class Indexed extends Collection implements ArrayableStorage, Filterable, Sequan
         }
 
         return new static($storage);
+
+    }
+
+    /**
+     * ### Join a new data structure into the current one
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed::append() To add items at the end
+     * of the data collection.
+     * @uses \FireHub\Core\Support\Contracts\HighLevel\DataStructures::values() To get values from joined
+     * data structures.
+     *
+     * @template TMergedValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection2 = new Indexed(['Johnie', 'Janie', 'Baby']);
+     *
+     * $join = $collection->join($collection2);
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie', 'Baby']
+     * ```
+     *
+     * @param \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear<mixed, TMergedValue> ...$data_structures <p>
+     * List of data structures to join.
+     * </p>
+     *
+     * @return static<TValue|TMergedValue> New joined data structure.
+     */
+    public function join (Linear ...$data_structures):static {
+
+        $storage = clone $this;
+
+        foreach ($data_structures as $data_structure)
+            $storage->append(...$data_structure->values());
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * ### Cross join a new data structure into the current one
+     * @since 1.0.0
+     *
+     * @template TMergedValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection2 = new Indexed(['Johnie', 'Janie', 'Baby']);
+     *
+     * $join = $collection->join($collection2);
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie', 'Baby']
+     * ```
+     *
+     * @param \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear<mixed, TMergedValue> ...$data_structures <p>
+     * List of data structures to join.
+     * </p>
+     *
+     * @return static<TValue|TMergedValue> New crossed joined data structure.
+     */
+    public function crossJoin (Linear ...$data_structures):static {
+
+        $storage = [[]];
+
+        foreach ([$this, ...$data_structures] as $index => $value) {
+
+            $result = [];
+            foreach ($storage as $product)
+                foreach ($value as $item) {
+
+                    $product[$index] = $item;
+
+                    $result[] = $product;
+
+                }
+
+            $storage = $result;
+
+        }
+
+        return new static($storage); // @phpstan-ignore return.type
 
     }
 

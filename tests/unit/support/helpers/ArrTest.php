@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\ {
 };
 
 use function FireHub\Core\Support\Helpers\Arr\ {
-    first, last, isEmpty
+    first, last, isEmpty, crossJoin
 };
 
 /**
@@ -32,6 +32,7 @@ use function FireHub\Core\Support\Helpers\Arr\ {
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\first')]
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\last')]
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\isEmpty')]
+#[CoversFunction('\FireHub\Core\Support\Helpers\Arr\crossJoin')]
 final class ArrTest extends Base {
 
     /**
@@ -67,6 +68,20 @@ final class ArrTest extends Base {
 
         $this->assertSame(3, last([1, 2, 3]));
         $this->assertNull(last([]));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCrossJoin ():void {
+
+        $this->assertEquals(
+            [['a', 'c'], ['a', 'd'], ['b', 'c'], ['b', 'd']],
+            crossJoin(['a', 'b'], ['c', 'd'])
+        );
 
     }
 

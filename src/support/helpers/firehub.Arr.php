@@ -114,3 +114,52 @@ function last (array $array):mixed {
     return isset($key) ? $array[$key] : null;
 
 }
+
+/**
+ * ### Cross join provided arrays
+ * @since 1.0.0
+ *
+ * @uses \FireHub\Core\Support\LowLevel\Arr::lastKey() To get the last key from an array.
+ *
+ * @template TValue
+ *
+ * @example
+ * ```php
+ * use function FireHub\Core\Support\Helpers\Arr\crossJoin;
+ *
+ * last([1,2,3]);
+ *
+ * // 3
+ * ```
+ *
+ * @param array<array-key, TValue> ...$arrays <p>
+ * Arrays to cross join.
+ * </p>
+ *
+ * @return list<array<TValue>> Cross joined arrays.
+ *
+ * @api
+ */
+function crossJoin (array ...$arrays):array {
+
+    $data = [[]];
+
+    foreach ($arrays as $index => $value) {
+
+        $result = [];
+        foreach ($data as $product)
+            foreach ($value as $item) {
+
+                $product[$index] = $item;
+
+                $result[] = $product;
+
+            }
+
+        $data = $result;
+
+    }
+
+    return $data;
+
+}

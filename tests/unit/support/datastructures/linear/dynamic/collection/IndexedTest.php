@@ -541,6 +541,40 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testJoin ():void {
+
+        $collection = new Indexed(['Johnie', 'Janie', 'Baby']);
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie', 'Baby']),
+            $this->collection->join($collection)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCrossJoin ():void {
+
+        $collection = new Indexed(['c', 'd']);
+
+        $this->assertEquals(
+            new Indexed([
+                ['a', 'c'], ['a', 'd'], ['b', 'c'], ['b', 'd']
+            ]),
+            new Indexed(['a', 'b'])->crossJoin($collection)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJsonSerialize ():void {
 
         $json = $this->collection->toJson();
