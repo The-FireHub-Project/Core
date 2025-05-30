@@ -14,6 +14,7 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
+use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Contracts\ {
     ArrayableStorage, Filterable, Overloadable
 };
@@ -65,6 +66,22 @@ class Associative extends Collection implements ArrayableStorage, Filterable, Ov
     public function __construct (
         protected array $storage = []
     ) {}
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public static function fromDataStructure (DataStructures $data_structure):static {
+
+        $storage = [];
+
+        foreach ($data_structure as $key => $value)
+            $storage[$key] = $value;
+
+        return new static($storage);
+
+    }
 
     /**
      * ### Create a data structure from an array

@@ -14,7 +14,9 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear;
 
-use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
+use FireHub\Core\Support\Contracts\HighLevel\ {
+    DataStructures, DataStructures\Linear\Fixed as FixedContract
+};
 use FireHub\Core\Support\DataStructures\Contracts\Filterable;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 use FireHub\Core\Support\Traits\ {
@@ -78,6 +80,27 @@ class Fixed extends SplFixedArray implements FixedContract, Filterable {
     public function __construct (int $size) {
 
         parent::__construct($size);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Contracts\HighLevel\DataStructures::count() To get number of elements in the provided
+     * data structure.
+     */
+    public static function fromDataStructure (DataStructures $data_structure):static {
+
+        $storage = new static($data_structure->count());
+
+        $i = 0;
+
+        foreach ($data_structure as $item)
+            $storage[$i++] = $item;
+
+        return $storage;
 
     }
 

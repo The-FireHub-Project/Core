@@ -14,6 +14,7 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
+use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Contracts\Filterable;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\Traits\ {
@@ -72,6 +73,25 @@ class Obj extends Collection implements Filterable {
     public function __construct () {
 
         $this->storage = new SplObjectStorage();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::attach() To add an object
+     * in the storage.
+     */
+    public static function fromDataStructure (DataStructures $data_structure):static {
+
+        $storage = new static();
+
+        foreach ($data_structure as $key => $value)
+            $storage->attach($key, $value);
+
+        return $storage; // @phpstan-ignore return.type
 
     }
 

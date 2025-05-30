@@ -78,6 +78,30 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testFromDataStructure ():void {
+
+        $collection = new Fixed(6);
+        $collection[0] = 'John';
+        $collection[1] = 'Jane';
+        $collection[2] = 'Jane';
+        $collection[3] = 'Jane';
+        $collection[4] = 'Richard';
+        $collection[5] = 'Richard';
+
+        $this->assertEquals(
+            $collection,
+            Fixed::fromDataStructure(
+                new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard'])
+            )
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testFromArray ():void {
 
         $this->assertEquals(

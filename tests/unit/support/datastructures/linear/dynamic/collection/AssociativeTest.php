@@ -67,6 +67,22 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testFromDataStructure ():void {
+
+        $this->assertEquals(
+            new Associative([0 => 'John', 1 => 'Jane', 2 => 'Jane', 3 => 'Jane', 4 => 'Richard', 5 => 'Richard']),
+            Associative::fromDataStructure(
+                new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard'])
+            )
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testFromArray ():void {
 
         $this->assertEquals(

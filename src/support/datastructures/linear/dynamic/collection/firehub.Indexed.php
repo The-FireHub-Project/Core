@@ -14,6 +14,7 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
+use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Contracts\ {
     ArrayableStorage, Filterable, Sequantionable
 };
@@ -72,6 +73,22 @@ class Indexed extends Collection implements ArrayableStorage, Filterable, Sequan
     ) {
 
         $this->storage = Arr::values($this->storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public static function fromDataStructure (DataStructures $data_structure):static {
+
+        $storage = [];
+
+        foreach ($data_structure as $value)
+            $storage[] = $value;
+
+        return new static($storage);
 
     }
 

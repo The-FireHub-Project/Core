@@ -14,7 +14,9 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
-use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic;
+use FireHub\Core\Support\Contracts\HighLevel\ {
+    DataStructures, DataStructures\Linear\Dynamic
+};
 use FireHub\Core\Support\DataStructures\Contracts\Filterable;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 use FireHub\Core\Support\Traits\ {
@@ -74,6 +76,23 @@ class Lazy implements Dynamic, Filterable {
     public function __construct (
         protected Closure $storage
     ) {}
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public static function fromDataStructure (DataStructures $data_structure):static {
+
+        return new static (static function () use ($data_structure) {
+
+            foreach ($data_structure as $key => $value)
+                yield $key => $value;
+
+        });
+
+
+    }
 
     /**
      * ### Create a data structure from an array

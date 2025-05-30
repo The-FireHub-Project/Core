@@ -16,6 +16,7 @@ namespace support\datastructures\linear\dynamic;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
 use FireHub\Core\Support\DataStructures\Operation\Take;
 use FireHub\Core\Support\DataStructures\Function\ {
     Reduce, Slice, Splice
@@ -51,6 +52,22 @@ final class LazyTest extends Base {
 
         $this->collection = new Lazy(
             fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFromDataStructure ():void {
+
+        $this->assertEquals(
+            $this->collection,
+            Lazy::fromDataStructure(
+                new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2])
+            )
         );
 
     }
