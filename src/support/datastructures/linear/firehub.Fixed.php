@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear;
 
 use FireHub\Core\Support\Contracts\HighLevel\ {
-    DataStructures, DataStructures\Linear\Fixed as FixedContract
+    DataStructures, DataStructures\Linear\Fixed as FixedContract, DataStructures\Linear
 };
 use FireHub\Core\Support\DataStructures\Contracts\Filterable;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
@@ -279,6 +279,59 @@ class Fixed extends SplFixedArray implements FixedContract, Filterable {
         $storage->setSize($counter);
 
         return $storage;
+
+    }
+
+    /**
+     * ### Join a new data structure into the current one
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::getSize() To get size of current data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::setSize() To set size for new data structure.
+     * @uses \FireHub\Core\Support\Contracts\HighLevel\DataStructures::count() To count elements of provided
+     * data structures.
+     *
+     * @template TMergedValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $collection = new Fixed(2);
+     * $collection[0] = 'four';
+     * $collection[1] = 'five';
+     *
+     * $join = $collection->join($collection2);
+     *
+     * // ['one', 'two', 'three', 'four', 'five']
+     * ```
+     *
+     * @param \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear<mixed, TMergedValue> ...$data_structures <p>
+     * List of data structures to join.
+     * </p>
+     *
+     * @return static<TValue|TMergedValue> New joined data structure.
+     */
+    public function join (Linear ...$data_structures):static {
+
+        $storage = clone $this;
+        $size = $this->getSize(); $counter = $size;
+
+        foreach ($data_structures as $data_structure)
+            $size += $data_structure->count();
+
+        $storage->setSize($size);
+
+        foreach ($data_structures as $data_structure)
+            foreach ($data_structure as $value)
+                $storage[$counter++] = $value;
+
+        return $storage; // @phpstan-ignore return.type
 
     }
 

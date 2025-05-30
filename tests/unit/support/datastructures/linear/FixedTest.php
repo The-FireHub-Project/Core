@@ -417,6 +417,31 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testJoin ():void {
+
+        $collection = new Fixed(5);
+        $collection[0] = 'one';
+        $collection[1] = 'two';
+        $collection[2] = 'three';
+        $collection[3] = 'four';
+        $collection[4] = 'five';
+
+        $join = new Fixed(2);
+        $join[0] = 'four';
+        $join[1] = 'five';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->join($join)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJsonSerialize ():void {
 
         $json = $this->collection->toJson();
