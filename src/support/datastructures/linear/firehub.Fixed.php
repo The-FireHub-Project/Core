@@ -18,7 +18,7 @@ use FireHub\Core\Support\Contracts\HighLevel\ {
     DataStructures, DataStructures\Linear\Fixed as FixedContract, DataStructures\Linear
 };
 use FireHub\Core\Support\DataStructures\Contracts\ {
-    Filterable, Reversible
+    Filterable, Reversible, Shuffleble
 };
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 use FireHub\Core\Support\Traits\ {
@@ -43,12 +43,13 @@ use SplFixedArray;
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed<int, ?TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<int, ?TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Reversible<int, ?TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Shuffleble<int, ?TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Fixed extends SplFixedArray implements FixedContract, Filterable, Reversible {
+class Fixed extends SplFixedArray implements FixedContract, Filterable, Reversible, Shuffleble {
 
     /**
      * ### Enumerable data structure methods that every element meets a given criterion
@@ -365,13 +366,53 @@ class Fixed extends SplFixedArray implements FixedContract, Filterable, Reversib
 
         $storage = new static($count);
 
-        foreach ($this as $key => $value){
+        foreach ($this as $key => $value) {
 
             $index = $count - 1 - $key;
 
             $storage[$index] = $value;
 
         }
+
+        return $storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::getSize() To get size of current data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::keys() To get this collection keys.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed::shuffle() To shuffle a collection
+     * keys.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $reverse = $collection->shuffle();
+     *
+     * // ['two', 'three', 'one']
+     * ```
+     */
+    public function shuffle ():static {
+
+        $count = $this->getSize();
+
+        $storage = new static($count);
+
+        $keys = $this->keys()->shuffle();
+
+        $counter = 0;
+        foreach ($keys as $key)
+            $storage[$key] = $this[$counter++];
 
         return $storage;
 

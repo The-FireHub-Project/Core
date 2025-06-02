@@ -461,6 +461,17 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testShuffle ():void {
+
+        $this->assertIsArray($this->collection->shuffle()->toArray());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJsonSerialize ():void {
 
         $json = $this->collection->toJson();
