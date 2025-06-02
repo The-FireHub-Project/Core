@@ -296,6 +296,37 @@ class Indexed extends Collection implements ArrayableStorage, Filterable, Sequan
      *
      * @since 1.0.0
      *
+     * @uses \FireHub\Core\Support\Helpers\Arr\random() To pick one or more random values out of the array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $random = $collection->random($collection2);
+     *
+     * // ['Jane']
+     * ```
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Arr\OutOfRangeException If an array is empty, or if the number is
+     * out of range.
+     */
+    public function random (int $number = 1):mixed {
+
+        $result = random($this->storage, $number);
+
+        return $number > 1
+            ? new static($result)
+            : $result;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @example
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
@@ -489,33 +520,25 @@ class Indexed extends Collection implements ArrayableStorage, Filterable, Sequan
     }
 
     /**
-     * @inheritDoc
-     *
+     * ### Pad a collection to the specified length with a value
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\Helpers\Arr\random() To pick one or more random values out of the array.
+     * @template TPaddedValue
      *
-     * @example
-     * ```php
-     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * @param int $size <p>
+     * New size of the array.
+     * If the length is positive, then the array is padded on the right if it is negative, then on the left.
+     * If the absolute value of length is less than or equal to the length of the array, then no padding takes place.
+     * </p>
+     * @param TPaddedValue $value <p>
+     * Value to pad if input is less than length.
+     * </p>
      *
-     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
-     *
-     * $random = $collection->random($collection2);
-     *
-     * // ['Jane']
-     * ```
-     *
-     * @throws \FireHub\Core\Support\Exceptions\Arr\OutOfRangeException If an array is empty, or if the number is
-     * out of range.
+     * @return static<TValue|TPaddedValue> New data structure with padded value.
      */
-    public function random (int $number = 1):mixed {
+    public function pad (int $size, mixed $value):static {
 
-        $result = random($this->storage, $number);
-
-        return $number > 1
-            ? new static($result)
-            : $result;
+        return new static(Arr::pad($this->storage, $size, $value));
 
     }
 

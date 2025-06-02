@@ -1285,7 +1285,10 @@ final class Arr {
      * It is possible to add at most 1,048,576 elements at a time.
      * @since 1.0.0
      *
-     * @param array<array-key, mixed> $array <p>
+     * @template TValue
+     * @template TPaddedValue
+     *
+     * @param array<array-key, TValue> $array <p>
      * Initial array of values to pad.
      * </p>
      * @param int $length <p>
@@ -1293,11 +1296,12 @@ final class Arr {
      * If the length is positive, then the array is padded on the right if it is negative, then on the left.
      * If the absolute value of a length is less than or equal to the length of the array, then no padding takes place.
      * </p>
-     * @param mixed $value <p>
+     * @param TPaddedValue $value <p>
      * Value to pad if input is less than length.
      * </p>
      *
-     * @return array<array-key, mixed> A copy of the input padded to size specified by $length with value $value.
+     * @return array<array-key, TValue|TPaddedValue> A copy of the input padded to size specified by $length with
+     * value $value.
      *
      * @caution Keys can be re-numbered.
      */

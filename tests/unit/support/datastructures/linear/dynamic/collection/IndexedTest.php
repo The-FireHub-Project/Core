@@ -268,6 +268,19 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testRandom ():void {
+
+        $this->assertIsString($this->collection->random());
+
+        $this->assertInstanceOf(Indexed::class, $this->collection->random(2));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testToArray ():void {
 
         $this->assertSame(
@@ -600,11 +613,17 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
-    public function testRandom ():void {
+    public function testPad ():void {
 
-        $this->assertIsString($this->collection->random());
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Daniel', 'Daniel', 'Daniel', 'Daniel']),
+            $this->collection->pad(10, 'Daniel')
+        );
 
-        $this->assertInstanceOf(Indexed::class, $this->collection->random(2));
+        $this->assertEquals(
+            new Indexed([ 'Daniel', 'Daniel', 'Daniel', 'Daniel', 'John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']),
+            $this->collection->pad(-10, 'Daniel')
+        );
 
     }
 
