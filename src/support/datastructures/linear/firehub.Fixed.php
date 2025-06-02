@@ -17,7 +17,9 @@ namespace FireHub\Core\Support\DataStructures\Linear;
 use FireHub\Core\Support\Contracts\HighLevel\ {
     DataStructures, DataStructures\Linear\Fixed as FixedContract, DataStructures\Linear
 };
-use FireHub\Core\Support\DataStructures\Contracts\Filterable;
+use FireHub\Core\Support\DataStructures\Contracts\ {
+    Filterable, Reversible
+};
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
@@ -40,12 +42,13 @@ use SplFixedArray;
  * @extends SplFixedArray<TValue>
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed<int, ?TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<int, ?TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Reversible<int, ?TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Fixed extends SplFixedArray implements FixedContract, Filterable {
+class Fixed extends SplFixedArray implements FixedContract, Filterable, Reversible {
 
     /**
      * ### Enumerable data structure methods that every element meets a given criterion
@@ -332,6 +335,31 @@ class Fixed extends SplFixedArray implements FixedContract, Filterable {
                 $storage[$counter++] = $value;
 
         return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::getSize() To get size of current data structure.
+     */
+    public function reverse ():static {
+
+        $count = $this->getSize();
+
+        $storage = new static($count);
+
+        foreach ($this as $key => $value){
+
+            $zIndex = $count - 1 - $key;
+
+            $storage[$zIndex] = $value;
+
+        }
+
+        return $storage;
 
     }
 
