@@ -451,7 +451,8 @@ class Obj extends Collection implements Filterable {
 
         foreach ([$this, ...$data_structures] as $data_structure)
             foreach ($data_structure as $object => $info)
-                $storage->has($object) ?: $storage->attach($object, $info); // @phpstan-ignore argument.type
+                // @phpstan-ignore-next-line argument.type
+                $storage->has($object) ?: $storage->attach($object, $info);
 
         return $storage; // @phpstan-ignore return.type
 
@@ -504,7 +505,8 @@ class Obj extends Collection implements Filterable {
 
         foreach ([$this, ...$data_structures] as $data_structure)
             foreach ($data_structure as $object => $info)
-                $storage->attach($object, $info); // @phpstan-ignore argument.type
+                // @phpstan-ignore-next-line argument.type
+                $storage->attach($object, $info);
 
         return $storage; // @phpstan-ignore return.type
 

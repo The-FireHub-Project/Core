@@ -19,7 +19,6 @@ use FireHub\Core\Support\DataStructures\Contracts\ {
     ArrayableStorage, Filterable, Overloadable
 };
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
 use FireHub\Core\Support\DataStructures\Traits\Arrayable;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
