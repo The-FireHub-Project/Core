@@ -547,6 +547,20 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testReverse ():void {
+
+        $this->assertEquals(
+            new Associative([10 => 2, 'age' => 25, 'lastname' => 'Doe', 'firstname' => 'John']),
+            $this->collection->reverse()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testOverload ():void {
 
         $collection = new Associative(

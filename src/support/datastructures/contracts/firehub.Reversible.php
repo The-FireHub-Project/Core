@@ -17,13 +17,22 @@ namespace FireHub\Core\Support\DataStructures\Contracts;
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 
 /**
- * ### Arrayable data structure has internal storage as an array
+ * ### Reversible data structure can reverse the order of their values
  * @since 1.0.0
  *
- * @template TKey of array-key
+ * @template TKey
  * @template TValue
  *
  * @extends \FireHub\Core\Support\Contracts\HighLevel\DataStructures<TKey, TValue>
- * @extends \FireHub\Core\Support\DataStructures\Contracts\Reversible<TKey, TValue>
  */
-interface ArrayableStorage extends DataStructures, Reversible {}
+interface Reversible extends DataStructures {
+
+    /**
+     * ### Reverse the order of values for data structure
+     * @since 1.0.0
+     *
+     * @return static<TKey, TValue> New reversed data structure.
+     */
+    public function reverse ():static;
+
+}

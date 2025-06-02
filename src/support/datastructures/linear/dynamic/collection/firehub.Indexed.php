@@ -440,6 +440,17 @@ class Indexed extends Collection implements ArrayableStorage, Filterable, Sequan
      * @inheritDoc
      *
      * @since 1.0.0
+     */
+    public function reverse ():static {
+
+        return new static(Arr::reverse($this->storage));
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed::toArray() To get data structure
      * an array.

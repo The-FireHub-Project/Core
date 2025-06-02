@@ -23,6 +23,7 @@ use FireHub\Core\Support\DataStructures\Traits\Arrayable;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
+use FireHub\Core\Support\LowLevel\Arr;
 use Traversable;
 
 /**
@@ -599,6 +600,17 @@ class Associative extends Collection implements ArrayableStorage, Filterable, Ov
             $storage = $data_structure->storage + $storage;
 
         return new static($storage + $this->storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function reverse ():static {
+
+        return new static(Arr::reverse($this->storage, true));
 
     }
 
