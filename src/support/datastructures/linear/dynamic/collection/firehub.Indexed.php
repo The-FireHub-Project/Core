@@ -440,10 +440,51 @@ class Indexed extends Collection implements ArrayableStorage, Filterable, Sequan
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::reverse() To reverse the order of array items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $reverse = $collection->reverse($collection2);
+     *
+     * // ['Richard', 'Richard', 'Jane', 'Jane', 'Jane', 'John']
+     * ```
      */
     public function reverse ():static {
 
         return new static(Arr::reverse($this->storage));
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::shuffle() To shuffle the array items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $shuffle = $collection->shuffle($collection2);
+     *
+     * // ['Jane', 'Richard', 'Jane', 'John', 'Jane', 'Richard']
+     * ```
+     */
+    public function shuffle ():static {
+
+        $storage = $this->storage;
+
+        Arr::shuffle($storage);
+
+        return new static($storage);
 
     }
 

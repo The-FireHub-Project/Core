@@ -344,6 +344,20 @@ class Fixed extends SplFixedArray implements FixedContract, Filterable, Reversib
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::getSize() To get size of current data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $reverse = $collection->reverse();
+     *
+     * // ['three', 'two', 'one']
+     * ```
      */
     public function reverse ():static {
 
@@ -353,9 +367,9 @@ class Fixed extends SplFixedArray implements FixedContract, Filterable, Reversib
 
         foreach ($this as $key => $value){
 
-            $zIndex = $count - 1 - $key;
+            $index = $count - 1 - $key;
 
-            $storage[$zIndex] = $value;
+            $storage[$index] = $value;
 
         }
 

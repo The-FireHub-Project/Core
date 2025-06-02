@@ -17,14 +17,22 @@ namespace FireHub\Core\Support\DataStructures\Contracts;
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 
 /**
- * ### Arrayable data structure has internal storage as an array
+ * ### Shuffle the values of the data structure
  * @since 1.0.0
  *
- * @template TKey of array-key
+ * @template TKey
  * @template TValue
  *
  * @extends \FireHub\Core\Support\Contracts\HighLevel\DataStructures<TKey, TValue>
- * @extends \FireHub\Core\Support\DataStructures\Contracts\Reversible<TKey, TValue>
- * @extends \FireHub\Core\Support\DataStructures\Contracts\Shuffleble<TKey, TValue>
  */
-interface ArrayableStorage extends DataStructures, Reversible, Shuffleble {}
+interface Shuffleble extends DataStructures {
+
+    /**
+     * ### Shuffle the values of the data structure
+     * @since 1.0.0
+     *
+     * @return static<TKey, TValue> New shuffled data structure.
+     */
+    public function shuffle ():static;
+
+}

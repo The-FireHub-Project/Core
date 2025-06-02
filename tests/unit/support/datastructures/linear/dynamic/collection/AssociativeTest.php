@@ -561,6 +561,17 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testShuffle ():void {
+
+        $this->assertIsArray($this->collection->shuffle()->toArray());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testOverload ():void {
 
         $collection = new Associative(
