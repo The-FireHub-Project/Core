@@ -18,9 +18,10 @@ use FireHub\Core\Testing\Base;
 use PHPUnit\Framework\Attributes\ {
     CoversFunction, Group, Small
 };
+use \FireHub\Core\Support\Exceptions\Arr\OutOfRangeException;
 
 use function FireHub\Core\Support\Helpers\Arr\ {
-    first, last, isEmpty, crossJoin, shuffle
+    first, last, isEmpty, crossJoin, random, shuffle
 };
 
 /**
@@ -33,6 +34,7 @@ use function FireHub\Core\Support\Helpers\Arr\ {
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\last')]
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\isEmpty')]
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\crossJoin')]
+#[CoversFunction('\FireHub\Core\Support\Helpers\Arr\random')]
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\shuffle')]
 final class ArrTest extends Base {
 
@@ -83,6 +85,34 @@ final class ArrTest extends Base {
             [['a', 'c'], ['a', 'd'], ['b', 'c'], ['b', 'd']],
             crossJoin(['a', 'b'], ['c', 'd'])
         );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testRandom ():void {
+
+        $arr = [1, 2, 3];
+
+        $this->assertIsInt(random($arr));
+
+        $this->assertIsArray(random($arr, 2));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAddException ():void {
+
+        $this->expectException(OutOfRangeException::class);
+
+        $this->assertIsArray(random([1, 2, 3], 4));
 
     }
 

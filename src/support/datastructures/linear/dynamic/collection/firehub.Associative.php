@@ -26,7 +26,9 @@ use FireHub\Core\Support\DataStructures\Exceptions\ {
 use FireHub\Core\Support\LowLevel\Arr;
 use Traversable;
 
-use function FireHub\Core\Support\Helpers\Arr\shuffle;
+use function FireHub\Core\Support\Helpers\Arr\ {
+    random, shuffle
+};
 
 /**
  * ### Associative array collection type
@@ -652,6 +654,37 @@ class Associative extends Collection implements ArrayableStorage, Filterable, Ov
         shuffle($storage);
 
         return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Arr\random() To pick one or more random values out of the array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $random = $collection->random($collection2);
+     *
+     * // ['Doe']
+     * ```
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Arr\OutOfRangeException If an array is empty, or if the number is
+     * out of range.
+     */
+    public function random (int $number = 1):mixed {
+
+        $result = random($this->storage, $number, true);
+
+        return $number > 1
+            ? new static($result)
+            : $result;
 
     }
 

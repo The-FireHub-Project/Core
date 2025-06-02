@@ -572,6 +572,19 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testRandom ():void {
+
+        $this->assertIsScalar($this->collection->random());
+
+        $this->assertInstanceOf(Associative::class, $this->collection->random(2));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testOverload ():void {
 
         $collection = new Associative(

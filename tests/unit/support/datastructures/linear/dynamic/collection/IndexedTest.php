@@ -600,6 +600,19 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testRandom ():void {
+
+        $this->assertIsString($this->collection->random());
+
+        $this->assertInstanceOf(Indexed::class, $this->collection->random(2));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJsonSerialize ():void {
 
         $json = $this->collection->toJson();

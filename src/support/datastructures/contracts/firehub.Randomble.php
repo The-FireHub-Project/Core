@@ -17,15 +17,26 @@ namespace FireHub\Core\Support\DataStructures\Contracts;
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 
 /**
- * ### Arrayable data structure has internal storage as an array
+ * ### Select random value from data structure
  * @since 1.0.0
  *
- * @template TKey of array-key
+ * @template TKey
  * @template TValue
  *
  * @extends \FireHub\Core\Support\Contracts\HighLevel\DataStructures<TKey, TValue>
- * @extends \FireHub\Core\Support\DataStructures\Contracts\Randomble<TKey, TValue>
- * @extends \FireHub\Core\Support\DataStructures\Contracts\Reversible<TKey, TValue>
- * @extends \FireHub\Core\Support\DataStructures\Contracts\Shuffleble<TKey, TValue>
  */
-interface ArrayableStorage extends DataStructures, Randomble, Reversible, Shuffleble {}
+interface Randomble extends DataStructures {
+
+    /**
+     * ### Select random value from data structure
+     * @since 1.0.0
+     *
+     * @param positive-int $number [optional] <p>
+     * Specifies how many entries you want to pick from a collection.
+     * </p>
+     *
+     * @return TValue|static<TKey, TValue> Random value from data structure.
+     */
+    public function random (int $number = 1):mixed;
+
+}

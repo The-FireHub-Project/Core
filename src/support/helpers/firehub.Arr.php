@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\Helpers\Arr;
 
 use FireHub\Core\Support\LowLevel\ {
-    Arr, Iterables
+    Arr, DataIs, Iterables
 };
 
 /**
@@ -161,6 +161,59 @@ function crossJoin (array ...$arrays):array {
     }
 
     return $data;
+
+}
+
+/**
+ * ### Pick one or more random values out of the array
+ * @since 1.0.0
+ *
+ * @uses \FireHub\Core\Support\LowLevel\Arr::random() To pick one or more random keys out of an array.
+ * @uses \FireHub\Core\Support\LowLevel\DataIs::array() To check if the value is an array.
+ *
+ * @template TKey of array-key
+ * @template TValue
+ *
+ * @example
+ * ```php
+ * use function FireHub\Core\Support\Helpers\Arr\random;
+ *
+ * random([1, 1, 1, 1, 2, 3, 3, 3, 4, 4, 5], 1);
+ *
+ * // 4
+ * ```
+ *
+ * @param array<TKey, TValue> $array <p>
+ * Array from we're picking random items.
+ * </p>
+ * @param positive-int $number [optional] <p>
+ * Specifies how many entries you want to pick.
+ * </p>
+ * @param bool $preserve_keys [optional] <p>
+ * Whether you want to preserve keys from an original array or not.
+ * </p>
+ *
+ * @throws \FireHub\Core\Support\Exceptions\Arr\OutOfRangeException If array is empty, or if number is out of range.
+ *
+ * @return ($preserve_keys is true ? mixed|array<TKey, TValue> : mixed|list<TValue>)
+ * If you're picking only one entry, return the value for a random entry.
+ * Otherwise, it returns an array of values for the random entries.
+ *
+ * @api
+ *
+ * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
+ */
+function random (array $array, int $number = 1, bool $preserve_keys = false):mixed {
+
+    $keys = Arr::random($array, $number);
+
+    if (!DataIs::array($keys)) return $array[$keys];
+
+    $items = [];
+    foreach ($keys as $key)
+        $preserve_keys ? $items[$key] = $array[$key] : $items[] = $array[$key];
+
+    return $items;
 
 }
 
