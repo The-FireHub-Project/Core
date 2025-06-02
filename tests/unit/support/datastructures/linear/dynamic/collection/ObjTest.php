@@ -333,6 +333,62 @@ final class ObjTest extends Base {
      *
      * @return void
      */
+    public function testMerge ():void {
+
+        $cls4 = new stdClass;
+
+        $collection = new Obj;
+        $collection->attach($this->cls1, 'new data for object 2');
+        $collection->attach($this->cls2, [1, 2, 3, 4]);
+        $collection->attach($this->cls3, 21);
+        $collection->attach($cls4, 31);
+
+        $result = new Obj;
+        $result->attach($this->cls1, 'data for object 1');
+        $result->attach($this->cls2, [1, 2, 3]);
+        $result->attach($this->cls3, 20);
+        $result->attach($cls4, 30);
+
+        $this->assertEquals(
+            $result,
+            $this->collection->merge($collection)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testUnion ():void {
+
+        $cls4 = new stdClass;
+
+        $collection = new Obj;
+        $collection->attach($this->cls1, 'new data for object 2');
+        $collection->attach($this->cls2, [1, 2, 3, 4]);
+        $collection->attach($this->cls3, 21);
+        $collection->attach($cls4, 31);
+
+        $result = new Obj;
+        $result->attach($this->cls1, 'new data for object 2');
+        $result->attach($this->cls2, [1, 2, 3, 4]);
+        $result->attach($this->cls3, 21);
+        $result->attach($cls4, 31);
+
+        $this->assertEquals(
+            $result,
+            $this->collection->union($collection)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJsonSerialize ():void {
 
         $json = $this->collection->toJson();
