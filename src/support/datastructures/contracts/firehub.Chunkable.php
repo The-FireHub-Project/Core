@@ -32,6 +32,8 @@ interface Chunkable extends DataStructures {
      * ### Split data structure into chunks by user function
      * @since 1.0.0
      *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy As return.
+     *
      * @param callable(TValue, TKey):bool $callback <p>
      * Function to chunk by.
      * </p>

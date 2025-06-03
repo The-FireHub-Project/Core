@@ -14,7 +14,7 @@
 
 namespace FireHub\Core\Support\DataStructures\Operation;
 
-use FireHub\Core\Support\DataStructures\Contracts\Filterable;
+use FireHub\Core\Support\DataStructures\Contracts\Chunkable;
 
 /**
  * ### Split collection into chunks
@@ -29,16 +29,16 @@ readonly class Chunk {
      * ### Constructor
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\DataStructures\Contracts\Filterable As parameter.
+     * @uses \FireHub\Core\Support\DataStructures\Contracts\Chunkable As parameter.
      *
-     * @param \FireHub\Core\Support\DataStructures\Contracts\Filterable<TKey, TValue> $data_structure <p>
+     * @param \FireHub\Core\Support\DataStructures\Contracts\Chunkable<TKey, TValue> $data_structure <p>
      * Instance of data structures.
      * </p>
      *
      * @return void
      */
     public function __construct (
-        protected Filterable $data_structure
+        protected Chunkable $data_structure
     ) {}
 
 }
