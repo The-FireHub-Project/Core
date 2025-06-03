@@ -59,7 +59,8 @@ readonly class Split {
      * Number of groups.
      * </p>
      *
-     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy<TKey, TValue> New chunked data structure.
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy<int, \FireHub\Core\Support\DataStructures\Contracts\Filterable<TKey, TValue>>
+     * New chunked data structure.
      */
     public function __invoke (int $number_of_groups):Lazy {
 

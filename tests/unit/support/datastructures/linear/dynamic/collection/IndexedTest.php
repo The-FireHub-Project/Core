@@ -22,7 +22,7 @@ use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Ensure, Is, Take, Skip
 };
 use FireHub\Core\Support\DataStructures\Function\ {
-    Chunk, Reduce, Reject, Slice, Splice, Split
+    Chunk, Partition, Reduce, Reject, Slice, Splice, Split
 };
 use FireHub\Core\Support\Enums\Data\Type;
 use PHPUnit\Framework\Attributes\ {
@@ -43,6 +43,7 @@ use stdClass;
 #[CoversClass(Take::class)]
 #[CoversClass(Skip::class)]
 #[CoversClass(Chunk::class)]
+#[CoversClass(Partition::class)]
 #[CoversClass(Reduce::class)]
 #[CoversClass(Reject::class)]
 #[CoversClass(Slice::class)]
@@ -575,9 +576,9 @@ final class IndexedTest extends Base {
     public function testChunk ():void {
 
         $this->assertEquals([
-            ['key' => 0, 'value' => new Indexed(['John', 'Jane', 'Jane', 'Jane'])],
-            ['key' => 1, 'value' => new Indexed(['Richard', 'Richard'])]
-        ],
+                ['key' => 0, 'value' => new Indexed(['John', 'Jane', 'Jane', 'Jane'])],
+                ['key' => 1, 'value' => new Indexed(['Richard', 'Richard'])]
+            ],
             new Chunk($this->collection)(4)->toArray()
         );
 
@@ -591,12 +592,28 @@ final class IndexedTest extends Base {
     public function testSplit ():void {
 
         $this->assertEquals([
-            ['key' => 0, 'value' => new Indexed(['John', 'Jane'])],
-            ['key' => 1, 'value' => new Indexed(['Jane', 'Jane'])],
-            ['key' => 2, 'value' => new Indexed(['Richard'])],
-            ['key' => 3, 'value' => new Indexed(['Richard'])]
-        ],
+                ['key' => 0, 'value' => new Indexed(['John', 'Jane'])],
+                ['key' => 1, 'value' => new Indexed(['Jane', 'Jane'])],
+                ['key' => 2, 'value' => new Indexed(['Richard'])],
+                ['key' => 3, 'value' => new Indexed(['Richard'])]
+            ],
             new Split($this->collection)(4)->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testPartition ():void {
+
+        $this->assertEquals([
+                ['key' => 0, 'value' => new Indexed(['Richard', 'Richard'])],
+                ['key' => 1, 'value' => new Indexed(['John', 'Jane', 'Jane', 'Jane'])]
+            ],
+            new Partition($this->collection)(fn($value) => $value === 'Richard')->toArray()
         );
 
     }
