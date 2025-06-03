@@ -22,7 +22,7 @@ use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Ensure, Is, Take, Skip
 };
 use FireHub\Core\Support\DataStructures\Function\ {
-    Reduce, Reject, Slice, Splice
+    Chunk, Reduce, Reject, Slice, Splice, Split
 };
 use FireHub\Core\Support\Enums\Data\Type;
 use PHPUnit\Framework\Attributes\ {
@@ -42,10 +42,12 @@ use stdClass;
 #[CoversClass(Is::class)]
 #[CoversClass(Take::class)]
 #[CoversClass(Skip::class)]
+#[CoversClass(Chunk::class)]
 #[CoversClass(Reduce::class)]
 #[CoversClass(Reject::class)]
 #[CoversClass(Slice::class)]
 #[CoversClass(Splice::class)]
+#[CoversClass(Split::class)]
 final class IndexedTest extends Base {
 
     public Indexed $collection;
@@ -561,6 +563,40 @@ final class IndexedTest extends Base {
                 ['key' => 1, 'value' => new Indexed(['Richard'])]
             ],
             $this->collection->chunkWhere(fn($value, $key) => $value === 'Richard')->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testChunk ():void {
+
+        $this->assertEquals([
+            ['key' => 0, 'value' => new Indexed(['John', 'Jane', 'Jane', 'Jane'])],
+            ['key' => 1, 'value' => new Indexed(['Richard', 'Richard'])]
+        ],
+            new Chunk($this->collection)(4)->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSplit ():void {
+
+        $this->assertEquals([
+            ['key' => 0, 'value' => new Indexed(['John', 'Jane'])],
+            ['key' => 1, 'value' => new Indexed(['Jane', 'Jane'])],
+            ['key' => 2, 'value' => new Indexed(['Richard'])],
+            ['key' => 3, 'value' => new Indexed(['Richard'])]
+        ],
+            new Split($this->collection)(4)->toArray()
         );
 
     }
