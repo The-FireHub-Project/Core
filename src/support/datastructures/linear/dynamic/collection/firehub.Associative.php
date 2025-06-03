@@ -16,9 +16,10 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Contracts\ {
-    ArrayableStorage, Filterable, Overloadable
+    ArrayableStorage, Chunkable, Filterable, Overloadable
 };
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
 use FireHub\Core\Support\DataStructures\Traits\Arrayable;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
@@ -41,6 +42,7 @@ use function FireHub\Core\Support\Helpers\Arr\ {
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\ArrayableStorage<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Chunkable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Overloadable<TKey, TValue>
  *
@@ -48,7 +50,7 @@ use function FireHub\Core\Support\Helpers\Arr\ {
  *
  * @api
  */
-class Associative extends Collection implements ArrayableStorage, Filterable, Overloadable {
+class Associative extends Collection implements ArrayableStorage, Chunkable, Filterable, Overloadable {
 
     /**
      * ### Arrayable data structure methods have an array as storage
@@ -563,6 +565,47 @@ class Associative extends Collection implements ArrayableStorage, Filterable, Ov
         }
 
         return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $chunk = $collection->chunkWhere(fn($value, $key) => $value === 'Doe');
+     *
+     * // [['firstname' => 'John', 'lastname' => 'Doe'], ['age' => 25, 10 => 2]]
+     * ```
+     */
+    public function chunkWhere (callable $callback):Lazy {
+
+        return new Lazy(function () use ($callback) {
+
+            $chunks = [];
+            foreach ($this as $key => $value) {
+
+                $chunks[$key] = $value;
+
+                if ($callback($value, $key)) {
+
+                    yield new static($chunks);
+
+                    $chunks = [];
+
+                }
+
+            }
+
+            if ($chunks) yield new static($chunks);
+
+        });
 
     }
 

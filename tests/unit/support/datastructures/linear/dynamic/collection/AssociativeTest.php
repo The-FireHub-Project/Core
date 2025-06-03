@@ -528,6 +528,22 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testChunkWhere ():void {
+
+        $this->assertEquals([
+            ['key' => 0, 'value' => new Associative(['firstname' => 'John', 'lastname' => 'Doe'])],
+            ['key' => 1, 'value' => new Associative(['age' => 25, 10 => 2])]
+        ],
+            $this->collection->chunkWhere(fn($value, $key) => $value === 'Doe')->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testMerge ():void {
 
         $collection = new Associative(['firstname' => 'Jane', 'middlename' => 'Marry']);

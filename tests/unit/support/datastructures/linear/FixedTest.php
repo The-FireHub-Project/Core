@@ -417,6 +417,29 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testChunkWhere ():void {
+
+        $collection = new Fixed(2);
+        $collection[0] = 'one';
+        $collection[1] = 'two';
+
+        $collection2 = new Fixed(1);
+        $collection2[0] = 'three';
+
+        $this->assertEquals([
+            ['key' => 0, 'value' => $collection],
+            ['key' => 1, 'value' => $collection2]
+        ],
+            $this->collection->chunkWhere(fn($value, $key) => $value === 'two')->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJoin ():void {
 
         $collection = new Fixed(5);
@@ -461,6 +484,20 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testReduce ():void {
+
+        $this->assertSame(
+            'one-two-three-',
+            new Reduce($this->collection)(fn($carry, $value) => $carry.$value.'-')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJsonSerialize ():void {
 
         $json = $this->collection->toJson();
@@ -478,20 +515,6 @@ final class FixedTest extends Base {
     public function testSerialize ():void {
 
         $this->assertEquals($this->collection, Fixed::unserialize($this->collection->serialize()));
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testReduce ():void {
-
-        $this->assertSame(
-            'one-two-three-',
-            new Reduce($this->collection)(fn($carry, $value) => $carry.$value.'-')
-        );
 
     }
 

@@ -18,9 +18,10 @@ use FireHub\Core\Support\Contracts\HighLevel\ {
     DataStructures, DataStructures\Linear
 };
 use FireHub\Core\Support\DataStructures\Contracts\ {
-    ArrayableStorage, Filterable, Sequantionable
+    ArrayableStorage, Chunkable, Filterable, Sequantionable
 };
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
 use FireHub\Core\Support\DataStructures\Traits\Arrayable;
 use FireHub\Core\Support\LowLevel\Arr;
 use Traversable;
@@ -39,6 +40,7 @@ use function FireHub\Core\Support\Helpers\Arr\ {
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<int, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\ArrayableStorage<int, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Chunkable<int, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<int, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Sequantionable<TValue>
  *
@@ -46,7 +48,7 @@ use function FireHub\Core\Support\Helpers\Arr\ {
  *
  * @api
  */
-class Indexed extends Collection implements ArrayableStorage, Filterable, Sequantionable {
+class Indexed extends Collection implements ArrayableStorage, Chunkable, Filterable, Sequantionable {
 
     /**
      * ### Arrayable data structure methods have an array as storage
@@ -376,6 +378,47 @@ class Indexed extends Collection implements ArrayableStorage, Filterable, Sequan
         }
 
         return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $chunk = $collection->chunkWhere(fn($value, $key) => $value === 'Richard');
+     *
+     * // [['John', 'Jane', 'Jane', 'Jane', 'Richard'], ['Richard']]
+     * ```
+     */
+    public function chunkWhere (callable $callback):Lazy {
+
+        return new Lazy(function () use ($callback) {
+
+            $chunks = [];
+            foreach ($this as $key => $value) {
+
+                $chunks[] = $value;
+
+                if ($callback($value, $key)) {
+
+                    yield new static($chunks);
+
+                    $chunks = [];
+
+                }
+
+            }
+
+            if ($chunks) yield new static($chunks);
+
+        });
 
     }
 

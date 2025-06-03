@@ -554,6 +554,22 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testChunkWhere ():void {
+
+        $this->assertEquals([
+                ['key' => 0, 'value' => new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard'])],
+                ['key' => 1, 'value' => new Indexed(['Richard'])]
+            ],
+            $this->collection->chunkWhere(fn($value, $key) => $value === 'Richard')->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJoin ():void {
 
         $collection = new Indexed(['Johnie', 'Janie', 'Baby']);
