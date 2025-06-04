@@ -129,7 +129,7 @@ interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSe
     public function transform (callable $callback):self;
 
     /**
-     * ### Creates new data stacktrace with applied callback to the elements of the data structure
+     * ### Creates new data structure with applied callback to the elements of the data structure
      * @since 1.0.0
      *
      * @param callable(TValue, TKey=):mixed $callback <p>
