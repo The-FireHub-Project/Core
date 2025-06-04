@@ -17,7 +17,9 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 use FireHub\Core\Support\Contracts\HighLevel\ {
     DataStructures, DataStructures\Linear, DataStructures\Linear\Dynamic
 };
-use FireHub\Core\Support\DataStructures\Contracts\Filterable;
+use FireHub\Core\Support\DataStructures\Contracts\ {
+    Filterable, KeyChangeable
+};
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
@@ -36,12 +38,13 @@ use Closure, Generator, Traversable;
  *
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\KeyChangeable<TKey, TValue>
  *
  * @phpstan-consistent-constructor
  *
  * @api
  */
-class Lazy implements Dynamic, Filterable {
+class Lazy implements Dynamic, Filterable, KeyChangeable {
 
     /**
      * ### Enumerable data structure methods that every element meets a given criterion
