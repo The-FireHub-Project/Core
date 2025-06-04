@@ -14,12 +14,16 @@
 
 namespace FireHub\Core\Support\DataStructures\Traits;
 
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
+    Indexed, Associative
+};
 use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Contains, Ensure, Find, Is
 };
+use FireHub\Core\Support\Exceptions\Arr\KeysAndValuesDiffNumberOfElemsException;
 use FireHub\Core\Support\LowLevel\ {
-    DataIs, Iterator
+    Arr, DataIs, Iterator
 };
 
 use const FireHub\Core\Support\Constants\Number\MAX;
@@ -326,6 +330,39 @@ trait Enumerable {
             if ($callback($value, $key)) $array[] = $value;
 
         return new Indexed($array);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::combine() To create an array by using one array for keys and
+     * another for its values.
+     * @uses \FireHub\Core\Support\Contracts\HighLevel\DataStructures::values() To get values from the data structure.
+     * @uses \FireHub\Core\Support\Contracts\HighLevel\DataStructures::toArray() To convert data structure to array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Richard']);
+     * $collection2 = new Indexed(['one', 'two', 'three']);
+     *
+     * $collection->combine($collection2);
+     *
+     * // ['John' => 'one', 'Jane' => 'two', 'Richard' => 'three']
+     * ```
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Arr\KeysAndValuesDiffNumberOfElemsException If arguments $keys and
+     * $values don't have the same number of elements.
+     */
+    public function combine (DataStructures $data_structure):Associative {
+
+        return new Associative(
+            Arr::combine($this->values()->toArray(), $data_structure->values()->toArray()) // @phpstan-ignore argument.type, argument.templateType
+        );
 
     }
 

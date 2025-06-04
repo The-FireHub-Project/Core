@@ -303,6 +303,20 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testCombine ():void {
+
+        $this->assertEquals(
+            new Associative(['John' => 'one', 'Jane' => 'two', 'Richard' => 'three']),
+            new Indexed(['John', 'Jane', 'Richard'])->combine(new Indexed(['one', 'two', 'three']))
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testTransform ():void {
 
         $this->assertEquals(
