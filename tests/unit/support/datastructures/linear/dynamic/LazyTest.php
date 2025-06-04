@@ -178,6 +178,24 @@ final class LazyTest extends Base {
      *
      * @return void
      */
+    public function testTransformKeys ():void {
+
+        $this->assertEquals([
+                ['key' => 'firstname.', 'value' => 'John'],
+                ['key' => 'lastname.', 'value' => 'Doe'],
+                ['key' => 'age.', 'value' => 25],
+                ['key' => '10.', 'value' => 2]
+            ],
+            $this->collection->transformKeys(fn($value, $key) => $key.'.')->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testApply ():void {
 
         $this->assertSame(
@@ -192,6 +210,23 @@ final class LazyTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testApplyToKeys ():void {
+
+        $this->assertEquals([
+            ['key' => 'firstname.', 'value' => 'John'],
+            ['key' => 'lastname.', 'value' => 'Doe'],
+            ['key' => 'age.', 'value' => 25],
+            ['key' => '10.', 'value' => 2]
+        ],
+            $this->collection->applyToKeys(fn($value, $key) => $key.'.')->toArray()
+        );
+
+    }
 
     /**
      * @since 1.0.0

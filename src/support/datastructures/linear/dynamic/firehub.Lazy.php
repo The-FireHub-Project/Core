@@ -209,6 +209,61 @@ class Lazy implements Dynamic, Filterable, KeyChangeable {
      *
      * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
      *
+     * $collection->transformKeys(fn($value, $key) => $value.'.');
+     *
+     * // ['firstname.' => 'John', 'lastname.' => 'Doe', 'age.' => 25, '10.' => 2]
+     * ```
+     */
+    public function transformKeys (callable $callback):self {
+
+        $storage = ($this->storage)();
+
+        $this->storage = static function () use ($callback, $storage) { // @phpstan-ignore assign.propertyType
+            foreach ($storage as $key => $value) {
+                yield $callback($value, $key) => $value;
+            }
+        };
+
+        return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy::transformKeys() To apply the callback to
+     * the keys of the data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $applyToKeys = $collection->applyToKeys(fn($value, $key) => $value.'.');
+     *
+     * // ['firstname.' => 'John', 'lastname.' => 'Doe', 'age.' => 25, '10.' => 2]
+     * ```
+     */
+    public function applyToKeys (callable $callback):static {
+
+        return (clone $this)->transformKeys($callback); // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
      * $filter = $collection->filter(fn($value, $key) => $key !== 'lastname');
      *
      * // ['firstname' => 'John', 'age' => 25, 10 => 2]
