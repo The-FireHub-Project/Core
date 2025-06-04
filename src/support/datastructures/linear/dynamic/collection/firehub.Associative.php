@@ -16,7 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Contracts\ {
-    ArrayableStorage, Chunkable, Filterable, KeyChangeable, KeySortable, Overloadable
+    ArrayableStorage, Chunkable, Filterable, Flippable, KeyChangeable, KeySortable, Overloadable
 };
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
@@ -47,6 +47,7 @@ use function FireHub\Core\Support\Helpers\Arr\ {
  * @implements \FireHub\Core\Support\DataStructures\Contracts\ArrayableStorage<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Chunkable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Flippable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\KeyChangeable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\KeySortable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Overloadable<TKey, TValue>
@@ -55,7 +56,7 @@ use function FireHub\Core\Support\Helpers\Arr\ {
  *
  * @api
  */
-class Associative extends Collection implements ArrayableStorage, Chunkable, Filterable, KeyChangeable, KeySortable, Overloadable {
+class Associative extends Collection implements ArrayableStorage, Chunkable, Filterable, Flippable, KeyChangeable, KeySortable, Overloadable {
 
     /**
      * ### Arrayable data structure methods have an array as storage
@@ -758,6 +759,17 @@ class Associative extends Collection implements ArrayableStorage, Chunkable, Fil
     public function reverse ():static {
 
         return new static(Arr::reverse($this->storage, true));
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function flip ():static {
+
+        return new static(Arr::flip($this->storage)); // @phpstan-ignore argument.type, argument.templateType
 
     }
 

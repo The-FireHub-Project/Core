@@ -621,6 +621,20 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testFlip ():void {
+
+        $this->assertEquals(
+            new Associative([2 => 10, 25 => 'age', 'Doe' => 'lastname', 'John' => 'firstname']),
+            $this->collection->flip()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testShuffle ():void {
 
         $this->assertIsArray($this->collection->shuffle()->toArray());
