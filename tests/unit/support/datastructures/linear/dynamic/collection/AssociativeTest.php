@@ -25,6 +25,9 @@ use FireHub\Core\Support\DataStructures\Function\ {
     Slice, Splice
 };
 use FireHub\Core\Support\Enums\Data\Type;
+use FireHub\Core\Support\Enums\ {
+    Order, Sort
+};
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
@@ -593,6 +596,47 @@ final class AssociativeTest extends Base {
     public function testShuffle ():void {
 
         $this->assertIsArray($this->collection->shuffle()->toArray());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSort ():void {
+
+        $this->assertEquals(
+            new Associative([10 => 2, 'age' => 25, 'lastname' => 'Doe', 'firstname' => 'John']),
+            $this->collection->sort()
+        );
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]),
+            $this->collection->sort(Order::DESC)
+        );
+
+        $this->assertEquals(
+            new Associative(['age' => 25, 10 => 2, 'firstname' => 'John', 'lastname' => 'Doe']),
+            $this->collection->sort(Order::DESC, Sort::BY_NUMERIC)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSortBy ():void {
+
+        $this->assertEquals(
+            new Associative([10 => 2, 'age' => 25, 'lastname' => 'Doe', 'firstname' => 'John']),
+            $this->collection->sortBy(function ($current, $next) {
+                if ($current === $next) return 0;
+                return ($current < $next) ? -1 : 1;
+            })
+        );
 
     }
 

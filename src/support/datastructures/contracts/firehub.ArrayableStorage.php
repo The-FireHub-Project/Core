@@ -27,5 +27,6 @@ use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
  * @extends \FireHub\Core\Support\DataStructures\Contracts\Randomble<TKey, TValue>
  * @extends \FireHub\Core\Support\DataStructures\Contracts\Reversible<TKey, TValue>
  * @extends \FireHub\Core\Support\DataStructures\Contracts\Shuffleble<TKey, TValue>
+ * @extends \FireHub\Core\Support\DataStructures\Contracts\Sortable<TKey, TValue>
  */
-interface ArrayableStorage extends DataStructures, Randomble, Reversible, Shuffleble {}
+interface ArrayableStorage extends DataStructures, Randomble, Reversible, Shuffleble, Sortable {}
