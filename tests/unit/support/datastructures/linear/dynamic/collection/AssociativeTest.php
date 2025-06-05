@@ -399,6 +399,20 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testTransformKeys ():void {
+
+        $this->assertEquals(
+            new Associative(['firstname.' => 'John', 'lastname.' => 'Doe', 'age.' => 25, '10.' => 2]),
+            $this->collection->transformKeys(fn($value, $key) => $key.'.')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testApply ():void {
 
         $this->assertEquals(
@@ -409,6 +423,20 @@ final class AssociativeTest extends Base {
         $this->assertEquals(
             new Associative(['firstname' => 'John.', 'lastname' => 'Doe', 'age' => 25, 10 => 2]),
             $this->collection->apply(fn($value, $key) => $key !== 'John' ?: $value.'.')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testApplyToKeys ():void {
+
+        $this->assertEquals(
+            new Associative(['firstname.' => 'John', 'lastname.' => 'Doe', 'age.' => 25, '10.' => 2]),
+            $this->collection->applyToKeys(fn($value, $key) => $key.'.')
         );
 
     }

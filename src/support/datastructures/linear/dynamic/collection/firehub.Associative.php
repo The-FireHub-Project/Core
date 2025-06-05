@@ -16,7 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Contracts\ {
-    Arrayable, Overloadable
+    Arrayable, KeyChangeable, Overloadable
 };
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
@@ -38,11 +38,12 @@ use function FireHub\Core\Support\Helpers\Arr\ {
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Arrayable<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\KeyChangeable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Overloadable<TKey, TValue>
  *
  * @api
  */
-class Associative extends ArrStorage implements Arrayable, Overloadable {
+class Associative extends ArrStorage implements Arrayable, KeyChangeable, Overloadable {
 
     /**
      * @inheritDoc
@@ -489,6 +490,59 @@ class Associative extends ArrStorage implements Arrayable, Overloadable {
         return $number > 1
             ? new static($result) // @phpstan-ignore argument.type
             : $result;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::applyToKeys() To create new
+     * data structure with applied callback to the keys of the data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->transformKeys(fn($value, $key) => $value.'.');
+     *
+     * // ['firstname.' => 'John', 'lastname.' => 'Doe', 'age.' => 25, '10.' => 2]
+     * ```
+     */
+    public function transformKeys (callable $callback):self {
+
+        $this->storage = $this->applyToKeys($callback)->toArray();
+
+        return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $applyToKeys = $collection->applyToKeys(fn($value, $key) => $value.'.');
+     *
+     * // ['firstname.' => 'John', 'lastname.' => 'Doe', 'age.' => 25, '10.' => 2]
+     * ```
+     */
+    public function applyToKeys (callable $callback):static {
+
+        $storage = [];
+
+        foreach ($this->storage as $key => $value) $storage[$callback($value, $key)] = $value;
+
+        return new static($storage);
 
     }
 
