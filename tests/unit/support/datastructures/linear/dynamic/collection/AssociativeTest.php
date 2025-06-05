@@ -484,6 +484,20 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testFilter ():void {
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'age' => 25, 10 => 2]),
+            $this->collection->filter(fn($value, $key) => $key !== 'lastname')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testReverse ():void {
 
         $this->assertEquals(

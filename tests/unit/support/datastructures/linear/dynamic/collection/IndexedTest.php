@@ -422,6 +422,20 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testFilter ():void {
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Jane']),
+            $this->collection->filter(fn($value) => $value === 'Jane')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testReverse ():void {
 
         $this->assertEquals(

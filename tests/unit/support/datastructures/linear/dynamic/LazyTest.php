@@ -226,6 +226,23 @@ final class LazyTest extends Base {
      *
      * @return void
      */
+    public function testFilter ():void {
+
+        $this->assertSame([
+            ['key' => 'firstname', 'value' => 'John'],
+            ['key' => 'age', 'value' => 25],
+            ['key' => 10, 'value' => 2]
+        ],
+            $this->collection->filter(fn($value, $key) => $key !== 'lastname')->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testReduce ():void {
 
         $this->assertSame(

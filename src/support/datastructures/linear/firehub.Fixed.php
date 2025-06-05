@@ -17,7 +17,9 @@ namespace FireHub\Core\Support\DataStructures\Linear;
 use FireHub\Core\Support\Contracts\HighLevel\ {
     DataStructures, DataStructures\Linear\Fixed as FixedContract, DataStructures\Linear
 };
-use FireHub\Core\Support\DataStructures\Contracts\Reversible;
+use FireHub\Core\Support\DataStructures\Contracts\ {
+    Filterable, Reversible
+};
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
@@ -39,11 +41,12 @@ use SplFixedArray;
  *
  * @extends SplFixedArray<TValue>
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed<int, ?TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<int, ?TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Reversible<int, ?TValue>
  *
  * @api
  */
-class Fixed extends SplFixedArray implements FixedContract, Reversible {
+class Fixed extends SplFixedArray implements FixedContract, Filterable, Reversible {
 
     /**
      * ### Enumerable data structure methods that every element meets a given criterion
@@ -227,6 +230,49 @@ class Fixed extends SplFixedArray implements FixedContract, Reversible {
         foreach ($this as $key => $value) $this[$key] = $callback($value);
 
         return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::getSize() To get the size of the current data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::setSize() To set the size for the new data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $filter = $collection->filter(fn($value) => $value !== 'two');
+     *
+     * // ['one', 'three']
+     * ```
+     */
+    public function filter (callable $callback):static {
+
+        $storage = new static($this->getSize());
+
+        $counter = 0;
+        foreach ($this as $key => $value) {
+
+            $result = $callback($value, $key);
+
+            if ($result === 'break') break;
+            !$result ?: $storage[$counter++] = $value;
+
+        }
+
+        $storage->setSize($counter);
+
+        return $storage;
 
     }
 

@@ -309,6 +309,35 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testFilter ():void {
+
+        $collection = new Fixed(2);
+        $collection[0] = 'one';
+        $collection[1] = 'three';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->filter(fn($value) => $value !== 'two')
+        );
+
+        $collection = new Fixed(1);
+        $collection[0] = 'one';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->filter(function ($value) {
+                if ($value === 'two') {return 'break';}
+                return true;
+            })
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testReverse ():void {
 
         $collection = new Fixed(3);
