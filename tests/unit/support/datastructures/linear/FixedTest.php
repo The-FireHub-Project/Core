@@ -309,6 +309,25 @@ final class FixedTest extends Base {
      *
      * @return void
      */
+    public function testReverse ():void {
+
+        $collection = new Fixed(3);
+        $collection[0] = 'three';
+        $collection[1] = 'two';
+        $collection[2] = 'one';
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->reverse()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJsonSerialize ():void {
 
         $json = $this->collection->toJson();

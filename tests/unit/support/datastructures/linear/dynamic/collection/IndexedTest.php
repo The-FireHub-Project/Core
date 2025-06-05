@@ -409,6 +409,20 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testReverse ():void {
+
+        $this->assertEquals(
+            new Indexed(['Richard', 'Richard','Jane', 'Jane', 'Jane', 'John']),
+            $this->collection->reverse()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJsonSerialize ():void {
 
         $json = $this->collection->toJson();

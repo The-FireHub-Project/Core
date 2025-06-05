@@ -21,6 +21,7 @@ use FireHub\Core\Support\DataStructures\Contracts\ {
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
+use FireHub\Core\Support\LowLevel\Arr;
 
 /**
  * ### Associative array collection type
@@ -453,6 +454,30 @@ class Associative extends ArrStorage implements Arrayable, Overloadable {
         $this->exist($key)
             ? $this->remove($key)
             : throw new KeyDoesntExistException()->withKey($key);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::reverse() To reverse the order of array items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $reverse = $collection->reverse($collection2);
+     *
+     * // [10 => 2, 'age' => 25, 'lastname' => 'Doe', 'firstname' => 'John']
+     * ```
+     */
+    public function reverse ():static {
+
+        return new static(Arr::reverse($this->storage, true));
 
     }
 
