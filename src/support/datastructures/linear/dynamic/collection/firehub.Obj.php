@@ -15,7 +15,9 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
-use FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException;
+use FireHub\Core\Support\DataStructures\Exceptions\ {
+    KeyDoesntExistException, StorageMissingDataException
+};
 use SplObjectStorage, Traversable, UnexpectedValueException;
 
 /**
@@ -48,9 +50,56 @@ class Obj extends Collection {
      *
      * @return void
      */
-    public function __construct () {
+    final public function __construct () {
 
         $this->storage = new SplObjectStorage();
+
+    }
+
+    /**
+     * ### Create a data structure from an array
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::attach() To add an object
+     * in the storage.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $array = [
+     *  ['key' => new stdClass, 'value' => 'data for object 1'],
+     *  ['key' => new stdClass, 'value' => [1, 2, 3]],
+     *  ['key' => new stdClass, 'value' => 20]
+     * ];
+     *
+     * $collection = Obj::fromArray($array);
+     * ```
+     *
+     * @param array<array{key: TKey, value: TValue}> $array <p>
+     * Data for data structure.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing in the
+     * storage data.
+     *
+     * @return static<TKey, TValue> Data structure from an array.
+     *
+     * @phpstan-ignore method.childParameterType
+     */
+    public static function fromArray (array $array):static {
+
+        $storage = new static();
+
+        foreach ($array as $item)
+            $storage->attach(
+                $item['key']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('key'),
+                $item['value']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('value')
+            );
+
+        return $storage; // @phpstan-ignore return.type
 
     }
 

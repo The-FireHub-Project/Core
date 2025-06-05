@@ -63,6 +63,112 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testFromArray ():void {
+
+        $this->assertEquals(
+            Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']),
+            $this->collection
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testShift ():void {
+
+        $collection = new Indexed(['Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+        $this->collection->shift();
+        $this->assertEquals($collection, $this->collection);
+
+        $collection = new Indexed(['Johnie', 'Janie', 'Baby', 'John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+        $collection2 = new Indexed(['Jane', 'Richard', 'Richard']);
+        $collection->shift(6);
+        $this->assertEquals($collection, $collection2);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testPop ():void {
+
+        $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard']);
+        $this->collection->pop();
+        $this->assertEquals($collection, $this->collection);
+
+        $collection = new Indexed(['Johnie', 'Janie', 'Baby', 'John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+        $collection2 = new Indexed(['Johnie', 'Janie', 'Baby']);
+        $collection->pop(6);
+        $this->assertEquals($collection, $collection2);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testPrepend ():void {
+
+        $collection = new Indexed(['Johnie', 'Janie', 'Baby', 'John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+
+        $this->collection->prepend('Johnie', 'Janie', 'Baby');
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAppend ():void {
+
+        $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie', 'Baby']);
+
+        $this->collection->append('Johnie', 'Janie', 'Baby');
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testHead ():void {
+
+        $this->assertSame('John', $this->collection->head());
+
+        $this->assertNull($this->empty->head());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testTail ():void {
+
+        $this->assertSame('Richard', $this->collection->tail());
+
+        $this->assertNull($this->empty->tail());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testToArray ():void {
 
         $this->assertSame(
