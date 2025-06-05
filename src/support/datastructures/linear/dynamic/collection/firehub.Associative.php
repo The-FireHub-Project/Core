@@ -23,6 +23,8 @@ use FireHub\Core\Support\DataStructures\Exceptions\ {
 };
 use FireHub\Core\Support\LowLevel\Arr;
 
+use function FireHub\Core\Support\Helpers\Arr\shuffle;
+
 /**
  * ### Associative array collection type
  *
@@ -478,6 +480,34 @@ class Associative extends ArrStorage implements Arrayable, Overloadable {
     public function reverse ():static {
 
         return new static(Arr::reverse($this->storage, true));
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Arr\shuffle() To shuffle the array items with keys preserved.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $shuffle = $collection->shuffle();
+     *
+     * // [10 => 2, 'lastname' => 'Doe', 'age' => 25, 'firstname' => 'John']
+     * ```
+     */
+    public function shuffle ():static {
+
+        $storage = $this->storage;
+
+        shuffle($storage);
+
+        return new static($storage);
 
     }
 

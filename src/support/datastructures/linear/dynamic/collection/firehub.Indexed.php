@@ -306,4 +306,32 @@ class Indexed extends ArrStorage implements Arrayable, Sequantionable {
 
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::shuffle() To shuffle the array items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $shuffle = $collection->shuffle($collection2);
+     *
+     * // ['Jane', 'Richard', 'Jane', 'John', 'Jane', 'Richard']
+     * ```
+     */
+    public function shuffle ():static {
+
+        $storage = $this->storage;
+
+        Arr::shuffle($storage);
+
+        return new static($storage);
+
+    }
+
 }

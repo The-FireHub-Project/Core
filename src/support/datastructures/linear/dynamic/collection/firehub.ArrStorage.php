@@ -14,7 +14,9 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
-use FireHub\Core\Support\DataStructures\Contracts\Reversible;
+use FireHub\Core\Support\DataStructures\Contracts\ {
+    Reversible, Shuffleble
+};
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
@@ -35,8 +37,9 @@ use ArgumentCountError, Traversable;
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Reversible<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Shuffleble<TKey, TValue>
  */
-abstract class ArrStorage extends Collection implements Reversible {
+abstract class ArrStorage extends Collection implements Reversible, Shuffleble {
 
     /**
      * ### Trait contains all common JSON methods
