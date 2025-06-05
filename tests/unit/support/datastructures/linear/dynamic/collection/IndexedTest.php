@@ -72,6 +72,22 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testFromDataStructure ():void {
+
+        $this->assertEquals(
+            new Indexed(['John', 'Doe', 25, 2]),
+            Indexed::fromDataStructure(
+                new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2])
+            )
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testFromArray ():void {
 
         $this->assertEquals(

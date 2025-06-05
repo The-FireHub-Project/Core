@@ -35,6 +35,18 @@ use FireHub\Core\Support\DataStructures\Operation\ {
 interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSerializable, Serializable {
 
     /**
+     * ### Create data structure from provided parameter
+     * @since 1.0.0
+     *
+     * @param \FireHub\Core\Support\Contracts\HighLevel\DataStructures<TKey, TValue> $data_structure <p>
+     * Data structure to use for creating new data structure.
+     * </p>
+     *
+     * @return static<TKey, TValue> New data structure provided parameter.
+     */
+    public static function fromDataStructure (DataStructures $data_structure):static;
+
+    /**
      * ### Count operations for data structures
      * @since 1.0.0
      *

@@ -15,7 +15,9 @@
 namespace support\datastructures\linear;
 
 use FireHub\Core\Testing\Base;
-use FireHub\Core\Support\DataStructures\Linear\Fixed;
+use FireHub\Core\Support\DataStructures\Linear\ {
+    Fixed, Dynamic\Collection\Indexed
+};
 use FireHub\Core\Support\DataStructures\Operation\ {
     Contains, Ensure, Find
 };
@@ -37,6 +39,8 @@ final class FixedTest extends Base {
 
     public Fixed $collection;
 
+    public Fixed $collection_same_values;
+
     /**
      * @since 1.0.0
      *
@@ -48,6 +52,39 @@ final class FixedTest extends Base {
         $this->collection[0] = 'one';
         $this->collection[1] = 'two';
         $this->collection[2] = 'three';
+
+        $this->collection_same_values = new Fixed(7);
+        $this->collection_same_values[0] = 'one';
+        $this->collection_same_values[1] = 'two';
+        $this->collection_same_values[2] = 'two';
+        $this->collection_same_values[3] = 'three';
+        $this->collection_same_values[4] = 'three';
+        $this->collection_same_values[5] = 'three';
+        $this->collection_same_values[6] = [1,2,3];
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFromDataStructure ():void {
+
+        $collection = new Fixed(6);
+        $collection[0] = 'John';
+        $collection[1] = 'Jane';
+        $collection[2] = 'Jane';
+        $collection[3] = 'Jane';
+        $collection[4] = 'Richard';
+        $collection[5] = 'Richard';
+
+        $this->assertEquals(
+            $collection,
+            Fixed::fromDataStructure(
+                new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard'])
+            )
+        );
 
     }
 

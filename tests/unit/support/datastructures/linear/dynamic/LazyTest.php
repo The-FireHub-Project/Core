@@ -15,7 +15,9 @@
 namespace support\datastructures\linear\dynamic;
 
 use FireHub\Core\Testing\Base;
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\ {
+    Lazy, Collection\Associative
+};
 use FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -41,6 +43,22 @@ final class LazyTest extends Base {
 
         $this->collection = new Lazy(
             fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFromDataStructure ():void {
+
+        $this->assertEquals(
+            $this->collection,
+            Lazy::fromDataStructure(
+                new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2])
+            )
         );
 
     }
