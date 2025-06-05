@@ -276,6 +276,34 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testTransform ():void {
+
+        $this->assertEquals(
+            new Indexed(['John.', 'Jane.', 'Jane.', 'Jane.', 'Richard.', 'Richard.']),
+            $this->collection->transform(fn($value) => $value.'.')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testApply ():void {
+
+        $this->assertEquals(
+            new Indexed(['John.', 'Jane.', 'Jane.', 'Jane.', 'Richard.', 'Richard.']),
+            $this->collection->apply(fn($value) => $value.'.')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJsonSerialize ():void {
 
         $json = $this->collection->toJson();

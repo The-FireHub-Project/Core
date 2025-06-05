@@ -18,8 +18,10 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
 };
-use FireHub\Core\Support\LowLevel\Iterables;
-use Traversable;
+use FireHub\Core\Support\LowLevel\ {
+    Arr, Iterables
+};
+use ArgumentCountError, Traversable;
 
 /**
  * ### Arr collection type
@@ -98,6 +100,40 @@ abstract class ArrStorage extends Collection {
     public function toArray ():array {
 
         return $this->storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::map() To apply the callback to the elements of the given array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->transform(fn($value) => $value.'.');
+     *
+     * // ['firstname' => 'John.', 'lastname' => 'Doe.', 'age' => '25.', 10 => '2.']
+     * ```
+     */
+    public function transform (callable $callback):self {
+
+        try {
+
+            $this->storage = Arr::map($this->storage, $callback);
+
+        } catch (ArgumentCountError) {
+
+            foreach ($this->storage as $key => $value) $this->storage[$key] = $callback($value, $key);
+
+        }
+
+        return $this;
 
     }
 
