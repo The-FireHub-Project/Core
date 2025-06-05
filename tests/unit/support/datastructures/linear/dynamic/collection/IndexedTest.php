@@ -15,7 +15,11 @@
 namespace support\datastructures\linear\dynamic\collection;
 
 use FireHub\Core\Testing\Base;
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
+    Indexed, Associative, Obj
+};
+use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\Enums\Data\Type;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -28,6 +32,7 @@ use stdClass;
 #[Small]
 #[Group('datastructures')]
 #[CoversClass(Indexed::class)]
+#[CoversClass(CountBy::class)]
 final class IndexedTest extends Base {
 
     public Indexed $collection;
@@ -68,6 +73,38 @@ final class IndexedTest extends Base {
         $this->assertEquals(
             Indexed::fromArray(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']),
             $this->collection
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCountBy ():void {
+
+        $this->assertSame(3, $this->collection->countBy()->value('Jane'));
+
+        $collection = new Associative();
+        $collection->set(3, 'Jane');
+        $collection->set(1, 'John');
+        $collection->set(2, 'Richard');
+        $this->assertEquals($collection, $this->collection->countBy()->values());
+
+        $this->assertSame(1, $this->mix->countBy()->type(Type::T_STRING));
+
+        $collection = new Obj();
+        $collection->attach(Type::T_BOOL, 2);
+        $collection->attach(Type::T_INT, 2);
+        $collection->attach(Type::T_STRING, 1);
+        $collection->attach(Type::T_NULL, 1);
+        $collection->attach(Type::T_OBJECT, 1);
+        $this->assertEquals($collection, $this->mix->countBy()->types());
+
+        $this->assertEquals(
+            new Associative(['J' => 4, 'R' => 2]),
+            $this->collection->countBy()->where(fn($value, $key) => substr((string)$value, 0, 1))
         );
 
     }
