@@ -451,4 +451,52 @@ class Indexed extends ArrStorage implements Arrayable, Sequantionable {
 
     }
 
+    /**
+     * ### Cross join a new data structure into the current one
+     * @since 1.0.0
+     *
+     * @template TMergedValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection2 = new Indexed(['Johnie', 'Janie', 'Baby']);
+     *
+     * $join = $collection->join($collection2);
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie', 'Baby']
+     * ```
+     *
+     * @param \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear<mixed, TMergedValue> ...$data_structures <p>
+     * List of data structures to join.
+     * </p>
+     *
+     * @return static<TValue|TMergedValue> New crossed joined data structure.
+     */
+    public function crossJoin (Linear ...$data_structures):static {
+
+        $storage = [[]];
+
+        foreach ([$this, ...$data_structures] as $index => $value) {
+
+            $result = [];
+            foreach ($storage as $product)
+                foreach ($value as $item) {
+
+                    $product[$index] = $item;
+
+                    $result[] = $product;
+
+                }
+
+            $storage = $result;
+
+        }
+
+        return new static($storage); // @phpstan-ignore return.type
+
+    }
+
 }
