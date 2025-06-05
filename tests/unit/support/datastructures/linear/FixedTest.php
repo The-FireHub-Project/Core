@@ -17,7 +17,7 @@ namespace support\datastructures\linear;
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Fixed;
 use FireHub\Core\Support\DataStructures\Operation\ {
-    Contains, Ensure
+    Contains, Ensure, Find
 };
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -32,6 +32,7 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Fixed::class)]
 #[CoversClass(Contains::class)]
 #[CoversClass(Ensure::class)]
+#[CoversClass(Find::class)]
 final class FixedTest extends Base {
 
     public Fixed $collection;
@@ -103,6 +104,24 @@ final class FixedTest extends Base {
 
         $this->assertTrue($this->collection->ensure()->none(fn($value) => is_int($value)));
         $this->assertFalse($this->collection->ensure()->none(fn($value) => is_string($value)));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testFind ():void {
+
+        $this->assertEquals(1, $this->collection->find()->key('two'));
+        $this->assertNull($this->collection->find()->key(3));
+
+        $this->assertEquals('two', $this->collection->find()->first(fn($value, $key) => $key !== 0));
+        $this->assertNull($this->collection->find()->first(fn($value, $key) => $key === 3));
+
+        $this->assertEquals(1, $this->collection->find()->firstKey(fn($value, $key) => $value !== 'one'));
+        $this->assertNull($this->collection->find()->firstKey(fn($value, $key) => $value === 'four'));
 
     }
 

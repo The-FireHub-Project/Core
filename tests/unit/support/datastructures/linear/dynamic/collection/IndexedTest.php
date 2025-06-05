@@ -19,7 +19,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
     Indexed, Associative, Obj
 };
 use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, Ensure
+    CountBy, Ensure, Is
 };
 use FireHub\Core\Support\Enums\Data\Type;
 use PHPUnit\Framework\Attributes\ {
@@ -36,6 +36,7 @@ use stdClass;
 #[CoversClass(Indexed::class)]
 #[CoversClass(CountBy::class)]
 #[CoversClass(Ensure::class)]
+#[CoversClass(Is::class)]
 final class IndexedTest extends Base {
 
     public Indexed $collection;
@@ -122,6 +123,18 @@ final class IndexedTest extends Base {
         $this->assertTrue($this->collection->ensure()->all(fn($value) => is_string($value)));
 
         $this->assertFalse($this->collection->ensure()->none(fn($value) => is_string($value)));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testIs ():void {
+
+        $this->assertFalse($this->collection->is()->empty());
+        $this->assertTrue($this->collection->is()->notEmpty());
 
     }
 

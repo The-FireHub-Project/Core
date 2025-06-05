@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Traits;
 
 use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, Contains, Ensure
+    CountBy, Contains, Ensure, Find, Is
 };
 use FireHub\Core\Support\LowLevel\Iterator;
 
@@ -58,6 +58,28 @@ trait Enumerable {
     public function ensure ():Ensure {
 
         return new Ensure($this);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function find ():Find {
+
+        return new Find($this);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function is ():Is {
+
+        return new Is($this);
 
     }
 
