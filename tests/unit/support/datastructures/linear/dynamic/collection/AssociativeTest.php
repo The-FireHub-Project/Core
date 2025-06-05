@@ -21,6 +21,9 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
 use FireHub\Core\Support\DataStructures\Operation\ {
     Contains, Find
 };
+use FireHub\Core\Support\DataStructures\Function\ {
+    Keys, Values
+};
 use FireHub\Core\Support\Enums\Data\Type;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
@@ -38,6 +41,8 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Associative::class)]
 #[CoversClass(Contains::class)]
 #[CoversClass(Find::class)]
+#[CoversClass(Keys::class)]
+#[CoversClass(Values::class)]
 #[CoversClass(Type::class)]
 final class AssociativeTest extends Base {
 
@@ -391,6 +396,44 @@ final class AssociativeTest extends Base {
         $this->assertEquals(
             new Associative(['firstname' => 'John.', 'lastname' => 'Doe', 'age' => 25, 10 => 2]),
             $this->collection->apply(fn($value, $key) => $key !== 'John' ?: $value.'.')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testKeys ():void {
+
+        $this->assertEquals(
+            new Indexed(['firstname', 'lastname', 'age', 10]),
+            $this->collection->keys()
+        );
+
+        $this->assertEquals(
+            new Indexed(['firstname']),
+            $this->collection->keys(fn($value, $key) => $value === 'John')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testValues ():void {
+
+        $this->assertEquals(
+            new Indexed(['John', 'Doe', 25, 2]),
+            $this->collection->values()
+        );
+
+        $this->assertEquals(
+            new Indexed(['John', 'Doe', 2]),
+            $this->collection->values(fn($value, $key) => $key !== 'age')
         );
 
     }

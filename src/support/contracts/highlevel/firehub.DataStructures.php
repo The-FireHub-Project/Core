@@ -19,6 +19,7 @@ use FireHub\Core\Support\Contracts\ {
 };
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 use FireHub\Core\Support\Contracts\Magic\Serializable;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
 use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Contains, Ensure, Find, Is
 };
@@ -175,5 +176,35 @@ interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSe
      * @return $this This data structure.
      */
     public function unless (bool $condition, callable $condition_meet, ?callable $condition_not_meet = null):self;
+
+    /**
+     * ### Get keys from the data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed As return.
+     *
+     * @param null|callable(TValue, TKey):bool $callback [optional] <p>
+     * If specified, then only keys where user function is true are returned.
+     * </p>
+     *
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed<TKey> Keys from
+     * the data structure.
+     */
+    public function keys (?callable $callback = null):Indexed;
+
+    /**
+     * ### Get values from the data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed As return.
+     *
+     * @param null|callable(TValue, TKey):bool $callback [optional] <p>
+     * If specified, then only values where user function is true are returned.
+     * </p>
+     *
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed<TValue> Values from
+     * the data structure.
+     */
+    public function values (?callable $callback = null):Indexed;
 
 }

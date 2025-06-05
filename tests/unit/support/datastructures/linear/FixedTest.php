@@ -21,6 +21,9 @@ use FireHub\Core\Support\DataStructures\Linear\ {
 use FireHub\Core\Support\DataStructures\Operation\ {
     Contains, Ensure, Find
 };
+use FireHub\Core\Support\DataStructures\Function\ {
+    Keys, Values
+};
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -35,6 +38,8 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Contains::class)]
 #[CoversClass(Ensure::class)]
 #[CoversClass(Find::class)]
+#[CoversClass(Keys::class)]
+#[CoversClass(Values::class)]
 final class FixedTest extends Base {
 
     public Fixed $collection;
@@ -242,6 +247,44 @@ final class FixedTest extends Base {
         $this->assertEquals(
             $collection,
             $this->collection->apply(fn($value) => $value.'.')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testKeys ():void {
+
+        $this->assertEquals(
+            new Indexed([0, 1, 2]),
+            $this->collection->keys()
+        );
+
+        $this->assertEquals(
+            new Indexed([0, 2]),
+            $this->collection->keys(fn($value, $key) => $value !== 'two')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testValues ():void {
+
+        $this->assertEquals(
+            new Indexed(['one', 'two', 'three']),
+            $this->collection->values()
+        );
+
+        $this->assertEquals(
+            new Indexed(['one', 'three']),
+            $this->collection->values(fn($value, $key) => $key !== 1)
         );
 
     }
