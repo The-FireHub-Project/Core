@@ -43,4 +43,28 @@ class Fixed extends SplFixedArray implements FixedContract {
      */
     use Enumerable;
 
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @return non-negative-int Size of the data structure.
+     */
+    public function getSize ():int {
+
+        return parent::getSize() > 0 ? parent::getSize() : 0;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function setSize (int $size):true {
+
+        return parent::setSize($size); // @phpstan-ignore return.type
+
+    }
+
 }

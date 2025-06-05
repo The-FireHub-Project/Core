@@ -45,4 +45,28 @@ final class FixedTest extends Base {
 
     }
 
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testGetSize ():void {
+
+        $this->assertSame(3, $this->collection->getSize());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSetSize ():void {
+
+        $this->collection->setSize(4);
+
+        $this->assertSame(4, $this->collection->getSize());
+
+    }
+
 }
