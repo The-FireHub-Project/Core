@@ -204,6 +204,27 @@ final class LazyTest extends Base {
      *
      * @return void
      */
+    public function testJoin ():void {
+
+        $collection = new Lazy(fn() => yield from ['middlename' => 'Marry']);
+
+        $this->assertEquals([
+            ['key' => 'firstname', 'value' => 'John'],
+            ['key' => 'lastname', 'value' => 'Doe'],
+            ['key' => 'age', 'value' => '25'],
+            ['key' => 10, 'value' => '2'],
+            ['key' => 'middlename', 'value' => 'Marry']
+        ],
+            $this->collection->join($collection)->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJsonSerialize ():void {
 
         $json = $this->collection->toJson();
