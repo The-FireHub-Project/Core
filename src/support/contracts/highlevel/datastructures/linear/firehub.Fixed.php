@@ -27,4 +27,24 @@ use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear;
  */
 interface Fixed extends Linear {
 
+    /**
+     * ### Get the size of the data structure
+     * @since 1.0.0
+     *
+     * @return non-negative-int Size of the data structure.
+     */
+    public function getSize ():int;
+
+    /**
+     * ### Change the size of the data structure
+     * @since 1.0.0
+     *
+     * @param non-negative-int $size <p>
+     * Size of the data structure.
+     * </p>
+     *
+     * @return true Always true.
+     */
+    public function setSize (int $size):true;
+
 }
