@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\Contracts\HighLevel;
 
 use FireHub\Core\Support\Contracts\ {
-    Arrayable, JsonSerializable
+    Arrayable, Countable, JsonSerializable
 };
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 use FireHub\Core\Support\Contracts\Magic\Serializable;
@@ -29,6 +29,6 @@ use FireHub\Core\Support\Contracts\Magic\Serializable;
  *
  * @extends \FireHub\Core\Support\Contracts\Iterator\IteratorAggregate<TKey, TValue>
  */
-interface DataStructures extends Arrayable, IteratorAggregate, JsonSerializable, Serializable {
+interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSerializable, Serializable {
 
 }

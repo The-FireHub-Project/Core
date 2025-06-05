@@ -14,6 +14,8 @@
 
 namespace FireHub\Core\Support\DataStructures\Traits;
 
+use FireHub\Core\Support\LowLevel\Iterator;
+
 /**
  * ### Enumerable data structure methods that every element meets a given criterion
  * @since 1.0.0
@@ -22,5 +24,28 @@ namespace FireHub\Core\Support\DataStructures\Traits;
  * @template TValue
  */
 trait Enumerable {
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Iterator::count() To count storage items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $count = $collection->count();
+     *
+     * // 6
+     */
+    public function count ():int {
+
+        return Iterator::count($this);
+
+    }
 
 }

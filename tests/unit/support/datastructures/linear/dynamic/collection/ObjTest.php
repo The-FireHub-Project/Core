@@ -114,6 +114,17 @@ final class ObjTest extends Base {
      *
      * @return void
      */
+    public function testCount ():void {
+
+        $this->assertSame(3, $this->collection->count());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testHas ():void {
 
         $this->assertTrue($this->collection->has($this->cls1));
