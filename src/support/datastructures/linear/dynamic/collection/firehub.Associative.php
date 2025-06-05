@@ -545,6 +545,78 @@ class Associative extends ArrStorage implements Arrayable, Overloadable {
     }
 
     /**
+     * ### Merge a new data structure into the current one
+     * @since 1.0.0
+     *
+     * @template TMergedKey of array-key
+     * @template TMergedValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'Jane', 'middlename' => 'Marry']);
+     *
+     * $merge = $collection->merge($collection2);
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'middlename' => 'Marry']
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative<TMergedKey, TMergedValue> ...$data_structures <p>
+     * List of data structures to merge.
+     * </p>
+     *
+     * @return static<TKey|TMergedKey, TValue|TMergedValue> New merged data structure.
+     */
+    public function merge (self ...$data_structures):static {
+
+        $storage = $this->storage;
+
+        foreach ($data_structures as $data_structure)
+            $storage += $data_structure->storage;
+
+        return new static($storage);
+
+    }
+
+    /**
+     * ### Union a new data structure into the current one
+     * @since 1.0.0
+     *
+     * @template TMergedKey of array-key
+     * @template TMergedValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'Jane', 'middlename' => 'Marry']);
+     *
+     * $union = $collection->union($collection2);
+     *
+     * // ['firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'middlename' => 'Marry']
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative<TMergedKey, TMergedValue> ...$data_structures <p>
+     * List of data structures to union.
+     * </p>
+     *
+     * @return static<TKey|TMergedKey, TValue|TMergedValue> New union data structure.
+     */
+    public function union (self ...$data_structures):static {
+
+        $storage = [];
+
+        foreach ($data_structures as $data_structure)
+            $storage = $data_structure->storage + $storage;
+
+        return new static($storage + $this->storage);
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0
