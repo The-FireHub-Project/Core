@@ -19,6 +19,9 @@ use FireHub\Core\Support\Contracts\ {
 };
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 use FireHub\Core\Support\Contracts\Magic\Serializable;
+use FireHub\Core\Support\DataStructures\Operation\ {
+    CountBy, Contains, Ensure
+};
 
 /**
  * ### Data structures
@@ -30,5 +33,35 @@ use FireHub\Core\Support\Contracts\Magic\Serializable;
  * @extends \FireHub\Core\Support\Contracts\Iterator\IteratorAggregate<TKey, TValue>
  */
 interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSerializable, Serializable {
+
+    /**
+     * ### Count operations for data structures
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy As return.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Operation\CountBy<TKey, TValue> Count operation class.
+     */
+    public function countBy ():CountBy;
+
+    /**
+     * ### Determines whether a data structure contains
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Contains As return.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Operation\Contains<TKey, TValue> Contains operation class.
+     */
+    public function contains ():Contains;
+
+    /**
+     * ### Ensure that satisfies in the data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Ensure As return.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Operation\Ensure<TKey, TValue> Find operation class.
+     */
+    public function ensure ():Ensure;
 
 }

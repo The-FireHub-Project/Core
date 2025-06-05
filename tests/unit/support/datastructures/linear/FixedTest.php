@@ -16,6 +16,9 @@ namespace support\datastructures\linear;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Fixed;
+use FireHub\Core\Support\DataStructures\Operation\ {
+    Contains, Ensure
+};
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -27,6 +30,8 @@ use PHPUnit\Framework\Attributes\ {
 #[Small]
 #[Group('datastructures')]
 #[CoversClass(Fixed::class)]
+#[CoversClass(Contains::class)]
+#[CoversClass(Ensure::class)]
 final class FixedTest extends Base {
 
     public Fixed $collection;
@@ -66,6 +71,38 @@ final class FixedTest extends Base {
             Fixed::fromArray([1 => 'one', 2 => 'two', 0 => 'three'], true),
             $storage
         );
+
+    }
+
+        /**
+         * @since 1.0.0
+         *
+         * @return void
+         */
+    public function testContains ():void {
+
+        $this->assertTrue($this->collection->contains()->key(0));
+        $this->assertFalse($this->collection->contains()->key(3));
+
+        $this->assertTrue($this->collection->contains()->value('one'));
+        $this->assertFalse($this->collection->contains()->value('four'));
+
+        $this->assertTrue($this->collection->contains()->where(fn($value, $key) => $value === 'one'));
+        $this->assertFalse($this->collection->contains()->where(fn($value, $key) => $value === 'four'));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testEnsure ():void {
+
+        $this->assertTrue($this->collection->ensure()->all(fn($value) => is_string($value)));
+
+        $this->assertTrue($this->collection->ensure()->none(fn($value) => is_int($value)));
+        $this->assertFalse($this->collection->ensure()->none(fn($value) => is_string($value)));
 
     }
 

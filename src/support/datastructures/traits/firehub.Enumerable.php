@@ -14,7 +14,9 @@
 
 namespace FireHub\Core\Support\DataStructures\Traits;
 
-use FireHub\Core\Support\DataStructures\Operation\CountBy;
+use FireHub\Core\Support\DataStructures\Operation\ {
+    CountBy, Contains, Ensure
+};
 use FireHub\Core\Support\LowLevel\Iterator;
 
 /**
@@ -34,6 +36,28 @@ trait Enumerable {
     public function countBy ():CountBy {
 
         return new CountBy($this);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function contains ():Contains {
+
+        return new Contains($this);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function ensure ():Ensure {
+
+        return new Ensure($this);
 
     }
 
