@@ -60,6 +60,40 @@ class Lazy implements Dynamic {
      *
      * @since 1.0.0
      *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $array = $collection->exist(0);
+     *
+     * // [
+     * //   ['key' => 'firstname' => 'firstname', 'value' => 'John'],
+     * //   ['key' => 'lastname', 'value' => 'Doe'],
+     * //   ['key' => 'age', 'value' => 25],
+     * //   ['key' => 10, 'value' => 2]
+     * // ]
+     * ```
+     *
+     * @return array<array{key: TKey, value: TValue}> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        $result = [];
+
+        foreach ($this as $key => $value)
+            $result[] = ['key' => $key, 'value' => $value];
+
+        return $result;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy::invoke() To invoke storage.
      */
     public function getIterator ():Traversable {

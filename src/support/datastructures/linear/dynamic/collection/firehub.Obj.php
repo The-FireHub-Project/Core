@@ -15,7 +15,8 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
-use SplObjectStorage, Traversable;
+use FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException;
+use SplObjectStorage, Traversable, UnexpectedValueException;
 
 /**
  * ### Object collection type
@@ -50,6 +51,194 @@ class Obj extends Collection {
     public function __construct () {
 
         $this->storage = new SplObjectStorage();
+
+    }
+
+    /**
+     * ### Checks if an object exists in the collection
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     *
+     * $collection = new Obj();
+     *
+     * $collection->has($cls1);
+     *
+     * // true
+     * ```
+     *
+     * @param TKey $object <p>
+     * The object to add.
+     * </p>
+     *
+     * @return bool if the object exists is in the collection, false otherwise.
+     */
+    public function has (object $object):bool {
+
+        return $this->storage->contains($object);
+
+    }
+
+    /**
+     * ### Gets the information about the object
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     *
+     * $collection = new Obj();
+     *
+     * $collection->attach($cls1, 'data for object 1');
+     *
+     * $info = $collection()->info($cls1);
+     *
+     * // 'data for object 1'
+     * ```
+     * @example With a non-existing key
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     *
+     * $collection = new Obj();
+     *
+     * $collection->info($cls1, 'data for object 1');
+     *
+     * $info = $collection()->info(new stdClass());
+     *
+     * // Error
+     * ```
+     *
+     * @param TKey $object <p>
+     * The object to add.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException If the key doesn't exist
+     * in the collection.
+     *
+     * @return TValue Information from a collection for an object.
+     */
+    public function info (object $object):mixed {
+
+        try {
+
+            return $this->storage->offsetGet($object);
+
+        } catch (UnexpectedValueException) {
+
+            throw new KeyDoesntExistException()->withKey($object);
+
+        }
+
+    }
+
+    /**
+     * ### Adds an object to the collection
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     *
+     * $collection = new Obj();
+     *
+     * $collection->attach($cls1, 'data for object 1');
+     *
+     * // [
+     * //   ['key' => stdClass, 'value' => 'data for object 1']
+     * // ]
+     * ```
+     *
+     * @param TKey $object <p>
+     * The object to add.
+     * </p>
+     * @param TValue $data <p>
+     * The data to associate with the object.
+     * </p>
+     *
+     * @return void
+     */
+    public function attach (object $object, mixed $data = null):void {
+
+        $this->storage->attach($object, $data);
+
+    }
+
+    /**
+     * ### Removes an object from the collection
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     *
+     * $collection = new Obj();
+     *
+     * $collection->attach($cls1, 'data for object 1');
+     *
+     * $collection->detach($cls1);
+     * ```
+     *
+     * @param TKey $object <p>
+     * The object to remove.
+     * </p>
+     *
+     * @return void
+     */
+    public function detach (object $object):void {
+
+        $this->storage->detach($object);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection = new Obj();
+     * $collection->attach($cls1, 'data for object 1');
+     * $collection->attach($cls2, [1,2,3]);
+     * $collection->attach($cls3, 20);
+     *
+     * $array = $collection->toArray();
+     *
+     * // [
+     * //   ['key' => stdClass, 'value' => 'data for object 1'],
+     * //   ['key' => stdClass, 'value' => [1, 2, 3]],
+     * //   ['key' => stdClass, 'value' => 20]
+     * // ]
+     * ```
+     *
+     * @return array<array{key: TKey, value: TValue}> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        $result = [];
+
+        foreach ($this as $key => $value)
+            $result[] = ['key' => $key, 'value' => $value];
+
+        return $result;
 
     }
 

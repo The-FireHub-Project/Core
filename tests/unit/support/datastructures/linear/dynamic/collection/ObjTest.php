@@ -16,6 +16,7 @@ namespace support\datastructures\linear\dynamic\collection;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+use FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -48,6 +49,93 @@ final class ObjTest extends Base {
         $this->cls3 = new stdClass();
 
         $this->collection = new Obj;
+        $this->collection->attach($this->cls1, 'data for object 1');
+        $this->collection->attach($this->cls2, [1, 2, 3]);
+        $this->collection->attach($this->cls3, 20);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testHas ():void {
+
+        $this->assertTrue($this->collection->has($this->cls1));
+        $this->assertFalse($this->collection->has(new stdClass()));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testInfo ():void {
+
+        $this->assertSame('data for object 1', $this->collection->info($this->cls1));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testInfoException ():void {
+
+        $this->expectException(KeyDoesntExistException::class);
+
+        $this->collection->info(new stdClass());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testAttach ():void {
+
+        $collection = new Obj;
+        $collection->attach($this->cls1, 'data for object 1');
+        $collection->attach($this->cls2, [1, 2, 3]);
+        $collection->attach($this->cls3, 20);
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testDetach ():void {
+
+        $collection = new Obj;
+        $collection->attach($this->cls2, [1, 2, 3]);
+        $collection->attach($this->cls3, 20);
+
+        $this->collection->detach($this->cls1);
+
+        $this->assertEquals($collection, $this->collection);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testToArray ():void {
+
+        $this->assertSame([
+            ['key' => $this->cls1, 'value' => 'data for object 1'],
+            ['key' => $this->cls2, 'value' => [1, 2, 3]],
+            ['key' => $this->cls3, 'value' => 20],
+        ], $this->collection->toArray());
 
     }
 

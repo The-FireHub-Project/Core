@@ -12,20 +12,12 @@
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\Contracts\HighLevel;
+namespace FireHub\Core\Support\DataStructures\Exceptions;
 
-use FireHub\Core\Support\Contracts\Arrayable;
-use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
+use FireHub\Core\Components\Error\Exception;
 
 /**
- * ### Data structures
+ * ### Data structure Exception
  * @since 1.0.0
- *
- * @template TKey
- * @template TValue
- *
- * @extends \FireHub\Core\Support\Contracts\Iterator\IteratorAggregate<TKey, TValue>
  */
-interface DataStructures extends Arrayable, IteratorAggregate {
-
-}
+class DataStructureException extends Exception {}
