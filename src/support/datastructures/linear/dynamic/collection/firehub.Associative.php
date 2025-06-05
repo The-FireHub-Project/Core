@@ -16,7 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Contracts\ {
-    Arrayable, KeyChangeable, Overloadable
+    Arrayable, Flippable, KeyChangeable, Overloadable
 };
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
@@ -38,12 +38,13 @@ use function FireHub\Core\Support\Helpers\Arr\ {
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Arrayable<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Flippable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\KeyChangeable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Overloadable<TKey, TValue>
  *
  * @api
  */
-class Associative extends ArrStorage implements Arrayable, KeyChangeable, Overloadable {
+class Associative extends ArrStorage implements Arrayable, Flippable, KeyChangeable, Overloadable {
 
     /**
      * @inheritDoc
@@ -667,6 +668,17 @@ class Associative extends ArrStorage implements Arrayable, KeyChangeable, Overlo
             $storage = $data_structure->storage + $storage;
 
         return new static($storage + $this->storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function flip ():static {
+
+        return new static(Arr::flip($this->storage)); // @phpstan-ignore argument.type, argument.templateType
 
     }
 
