@@ -21,6 +21,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
 use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Ensure, Is
 };
+use FireHub\Core\Support\DataStructures\Function\Combine;
 use FireHub\Core\Support\Enums\Data\Type;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -37,6 +38,7 @@ use stdClass;
 #[CoversClass(CountBy::class)]
 #[CoversClass(Ensure::class)]
 #[CoversClass(Is::class)]
+#[CoversClass(Combine::class)]
 final class IndexedTest extends Base {
 
     public Indexed $collection;
@@ -367,6 +369,20 @@ final class IndexedTest extends Base {
                 fn(Indexed $collection) => $collection->append('Johnie'),
                 fn(Indexed $collection) => $collection->append('Janie')
             )
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCombine ():void {
+
+        $this->assertEquals(
+            new Associative(['John' => 'one', 'Jane' => 'two', 'Richard' => 'three']),
+            new Indexed(['John', 'Jane', 'Richard'])->combine(new Indexed(['one', 'two', 'three']))
         );
 
     }
