@@ -16,6 +16,9 @@ namespace FireHub\Core\Support\DataStructures\Linear;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed as FixedContract;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
+use FireHub\Core\Support\Traits\ {
+    Jsonable, Serializable
+};
 use FireHub\Core\Support\LowLevel\ {
     Iterables, Iterator
 };
@@ -45,6 +48,18 @@ class Fixed extends SplFixedArray implements FixedContract {
      * @use \FireHub\Core\Support\DataStructures\Traits\Enumerable<int, ?TValue>
      */
     use Enumerable;
+
+    /**
+     * ### Trait contains all common JSON methods
+     * @since 1.0.0
+     */
+    use Jsonable;
+
+    /**
+     * ### Trait contains all common serialize and unserialize methods
+     * @since 1.0.0
+     */
+    use Serializable;
 
     /**
      * ### Constructor
@@ -159,6 +174,56 @@ class Fixed extends SplFixedArray implements FixedContract {
     public function toArray ():array {
 
         return Iterator::toArray($this);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @return array<TValue> Data which can be serialized by json_encode(), which is a value of any type other than a
+     * resource.
+     */
+    public function jsonSerialize ():array {
+
+        return parent::jsonSerialize();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @return array<TValue> An associative array of key/value pairs that represent the serialized form of the object.
+     */
+    public function __serialize ():array {
+
+        return $this->jsonSerialize();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count array parameter items.
+     *
+     * @param array<int, null|TValue> $data <p>
+     * Serialized data.
+     * </p>
+     *
+     * @phpstan-ignore-next-line method.childParameterType
+     */
+    public function __unserialize (array $data):void {
+
+        $this->setSize(Iterables::count($data));
+
+        $i = 0;
+        foreach ($data as $item)
+            $this[$i++] = $item;
 
     }
 
