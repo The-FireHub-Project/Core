@@ -16,9 +16,12 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Contracts\ {
-    Arrayable, Flippable, KeyChangeable, Overloadable
+    Arrayable, Flippable, KeyChangeable, KeySortable, Overloadable
 };
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+use FireHub\Core\Support\Enums\ {
+    Order, Sort
+};
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
@@ -41,11 +44,12 @@ use function FireHub\Core\Support\Helpers\Arr\ {
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Arrayable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Flippable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\KeyChangeable<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\KeySortable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Overloadable<TKey, TValue>
  *
  * @api
  */
-class Associative extends ArrStorage implements Arrayable, Flippable, KeyChangeable, Overloadable {
+class Associative extends ArrStorage implements Arrayable, Flippable, KeyChangeable, KeySortable, Overloadable {
 
     /**
      * @inheritDoc
@@ -754,6 +758,172 @@ class Associative extends ArrStorage implements Arrayable, Flippable, KeyChangea
     public function flip ():static {
 
         return new static(Arr::flip($this->storage)); // @phpstan-ignore argument.type, argument.templateType
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::sort() To sort an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $sort = $collection->sort();
+     *
+     * // [10 => 2, 'age' => 25, 'lastname' => 'Doe', 'firstname' => 'John']
+     * ```
+     * @example Sorting order.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     * use FireHub\Core\Support\Enums\Order;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $sort = $collection->sort(Order::DESC);
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]
+     * ```
+     * @example Sorting order with a flag.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     * use FireHub\Core\Support\Enums\Order;
+     * use FireHub\Core\Support\Enums\Sort;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $sort = $collection->sort(Order::DESC, Sort::BY_NUMERIC);
+     *
+     * // ['age' => 25, 10 => 2, 'firstname' => 'John', 'lastname' => 'Doe']
+     * ```
+     */
+    public function sort (Order $order = Order::ASC, Sort $flag = Sort::BY_REGULAR):static {
+
+        $storage = $this->storage;
+
+        Arr::sort($storage, $order, $flag, true);
+
+        return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::sortBy() To sort an array by values using a user-defined comparison
+     * function.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $sort = $collection->sortBy(function (mixed $current, mixed $next):int {
+     *  if ($a === $b) return 0;
+     *  return ($a < $b) ? -1 : 1;
+     * });
+     *
+     * // [10 => 2, 'age' => 25, 'lastname' => 'Doe', 'firstname' => 'John']
+     * ```
+     */
+    public function sortBy (callable $callback):static {
+
+        $storage = $this->storage;
+
+        Arr::sortBy($storage, $callback, true);
+
+        return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::sortByKeys() To sort an array by keys.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $sort = $collection->sortKeys();
+     *
+     * // [10 => 2, 'age' => 25, 'firstname' => 'John', 'lastname' => 'Doe']
+     * ```
+     * @example Sorting order.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     * use FireHub\Core\Support\Enums\Order;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $sort = $collection->sortKeys(Order::DESC);
+     *
+     * // ['lastname' => 'Doe', 'firstname' => 'John', 'age' => 25, 10 => 2]
+     * ```
+     * @example Sorting order with a flag.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     * use FireHub\Core\Support\Enums\Order;
+     * use FireHub\Core\Support\Enums\Sort;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $sort = $collection->sort(Order::ASC, Sort::BY_NUMERIC);
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]
+     * ```
+     */
+    public function sortKeys (Order $order = Order::ASC, Sort $flag = Sort::BY_REGULAR):static {
+
+        $storage = $this->storage;
+
+        Arr::sortByKeys($storage, $order, $flag);
+
+        return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::sortKeysBy() To sort an array by key using a user-defined comparison
+     * function.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $sort = $collection->sortKeysBy(function (mixed $current, mixed $next):int {
+     *  if ($current === $next) return 0;
+     *  return ($current < $next) ? -1 : 1;
+     * });
+     *
+     * // [10 => 2, 'age' => 25, 'firstname' => 'John', 'lastname' => 'Doe']
+     * ```
+     */
+    public function sortKeysBy (callable $callback):static {
+
+        $storage = $this->storage;
+
+        Arr::sortKeysBy($storage, $callback);
+
+        return new static($storage);
 
     }
 

@@ -24,7 +24,9 @@ use FireHub\Core\Support\DataStructures\Operation\ {
 use FireHub\Core\Support\DataStructures\Function\ {
     Chunk, Combine, Reduce, Reject, Partition, Slice, Splice, Split
 };
-use FireHub\Core\Support\Enums\Data\Type;
+use FireHub\Core\Support\Enums\ {
+    Order, Sort, Data\Type
+};
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -50,6 +52,9 @@ use stdClass;
 #[CoversClass(Slice::class)]
 #[CoversClass(Splice::class)]
 #[CoversClass(Split::class)]
+#[CoversClass(Order::class)]
+#[CoversClass(Sort::class)]
+#[CoversClass(Type::class)]
 final class IndexedTest extends Base {
 
     public Indexed $collection;
@@ -724,6 +729,47 @@ final class IndexedTest extends Base {
                 ['a', 'c'], ['a', 'd'], ['b', 'c'], ['b', 'd']
             ]),
             new Indexed(['a', 'b'])->crossJoin($collection)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSort ():void {
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Jane', 'John', 'Richard', 'Richard']),
+            $this->collection->sort()
+        );
+
+        $this->assertEquals(
+            new Indexed(['Richard', 'Richard', 'John', 'Jane', 'Jane', 'Jane']),
+            $this->collection->sort(Order::DESC)
+        );
+
+        $this->assertEquals(
+            new Indexed([1, 13, 2, 22, 27, 28, 29, 3, 4]),
+            $this->numbers->sort(Order::ASC, Sort::BY_STRING_FLAG_CASE)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSortBy ():void {
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Jane', 'John', 'Richard', 'Richard']),
+            $this->collection->sortBy(function ($current, $next) {
+                if ($current === $next) return 0;
+                return ($current < $next) ? -1 : 1;
+            })
         );
 
     }

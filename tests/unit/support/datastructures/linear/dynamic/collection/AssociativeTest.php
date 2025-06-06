@@ -24,7 +24,9 @@ use FireHub\Core\Support\DataStructures\Operation\ {
 use FireHub\Core\Support\DataStructures\Function\ {
     Keys, Slice, Splice, Values
 };
-use FireHub\Core\Support\Enums\Data\Type;
+use FireHub\Core\Support\Enums\ {
+    Order, Sort, Data\Type
+};
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
@@ -46,6 +48,8 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Slice::class)]
 #[CoversClass(Splice::class)]
 #[CoversClass(Values::class)]
+#[CoversClass(Order::class)]
+#[CoversClass(Sort::class)]
 #[CoversClass(Type::class)]
 final class AssociativeTest extends Base {
 
@@ -636,6 +640,47 @@ final class AssociativeTest extends Base {
         $this->assertEquals(
             new Associative([2 => 10, 25 => 'age', 'Doe' => 'lastname', 'John' => 'firstname']),
             $this->collection->flip()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSort ():void {
+
+        $this->assertEquals(
+            new Associative([10 => 2, 'age' => 25, 'lastname' => 'Doe', 'firstname' => 'John']),
+            $this->collection->sort()
+        );
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]),
+            $this->collection->sort(Order::DESC)
+        );
+
+        $this->assertEquals(
+            new Associative(['age' => 25, 10 => 2, 'firstname' => 'John', 'lastname' => 'Doe']),
+            $this->collection->sort(Order::DESC, Sort::BY_NUMERIC)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSortBy ():void {
+
+        $this->assertEquals(
+            new Associative([10 => 2, 'age' => 25, 'lastname' => 'Doe', 'firstname' => 'John']),
+            $this->collection->sortBy(function ($current, $next) {
+                if ($current === $next) return 0;
+                return ($current < $next) ? -1 : 1;
+            })
         );
 
     }
