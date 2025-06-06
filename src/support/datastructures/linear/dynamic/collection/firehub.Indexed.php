@@ -539,12 +539,12 @@ class Indexed extends ArrStorage implements Arrayable, Sequantionable {
      * ```php
      * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
      *
-     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
-     * $collection2 = new Indexed(['Johnie', 'Janie', 'Baby']);
+     * $collection = new Indexed(['a', 'b']);
+     * $collection2 = new Indexed(['c', 'd']);
      *
-     * $join = $collection->join($collection2);
+     * $join = $collection->crossJoin($collection2);
      *
-     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie', 'Baby']
+     * // ['a', 'c'], ['a', 'd'], ['b', 'c'], ['b', 'd']
      * ```
      *
      * @param \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear<mixed, TMergedValue> ...$data_structures <p>
