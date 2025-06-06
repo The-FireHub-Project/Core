@@ -18,8 +18,9 @@ use FireHub\Core\Support\Contracts\HighLevel\ {
     DataStructures, DataStructures\Linear\Fixed as FixedContract, DataStructures\Linear
 };
 use FireHub\Core\Support\DataStructures\Contracts\ {
-    Filterable, Reversible
+    Chunkable, Filterable, Reversible
 };
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
@@ -41,12 +42,13 @@ use SplFixedArray;
  *
  * @extends SplFixedArray<TValue>
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Fixed<int, ?TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Chunkable<int, ?TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<int, ?TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Reversible<int, ?TValue>
  *
  * @api
  */
-class Fixed extends SplFixedArray implements FixedContract, Filterable, Reversible {
+class Fixed extends SplFixedArray implements FixedContract, Chunkable, Filterable, Reversible {
 
     /**
      * ### Enumerable data structure methods that every element meets a given criterion
@@ -273,6 +275,63 @@ class Fixed extends SplFixedArray implements FixedContract, Filterable, Reversib
         $storage->setSize($counter);
 
         return $storage;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::getSize() To get the size of the current data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Fixed::setSize() To set the size for the new data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $chunk = $collection->chunkWhere(fn($value, $key) => $value === 'two');
+     *
+     * // [['one', 'two'], ['three']]
+     * ```
+     */
+    public function chunkWhere (callable $callback):Lazy {
+
+        return new Lazy(function () use ($callback) {
+
+            $chunks = new static($this->getSize()); $counter = 0;
+            foreach ($this as $key => $value) {
+
+                $chunks[$counter++] = $value;
+
+                if ($callback($value, $key)) {
+
+                    $chunks->setSize($counter);
+
+                    yield $chunks;
+
+                    $chunks = new static($this->getSize());
+
+                    $counter = 0;
+
+                }
+
+            }
+
+            if ($chunks[0] !== null) {
+
+                $chunks->setSize($counter);
+                yield $chunks;
+
+            }
+
+        });
 
     }
 

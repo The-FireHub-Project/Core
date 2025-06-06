@@ -19,10 +19,10 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
     Indexed, Associative, Obj
 };
 use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, Ensure, Is
+    CountBy, Ensure, Is, Skip, Take
 };
 use FireHub\Core\Support\DataStructures\Function\ {
-    Combine, Reduce, Reject, Slice, Splice
+    Chunk, Combine, Reduce, Reject, Partition, Slice, Splice, Split
 };
 use FireHub\Core\Support\Enums\Data\Type;
 use PHPUnit\Framework\Attributes\ {
@@ -39,12 +39,17 @@ use stdClass;
 #[CoversClass(Indexed::class)]
 #[CoversClass(CountBy::class)]
 #[CoversClass(Ensure::class)]
+#[CoversClass(Skip::class)]
+#[CoversClass(Take::class)]
 #[CoversClass(Is::class)]
+#[CoversClass(Chunk::class)]
 #[CoversClass(Combine::class)]
 #[CoversClass(Reduce::class)]
 #[CoversClass(Reject::class)]
+#[CoversClass(Partition::class)]
 #[CoversClass(Slice::class)]
 #[CoversClass(Splice::class)]
+#[CoversClass(Split::class)]
 final class IndexedTest extends Base {
 
     public Indexed $collection;
@@ -487,6 +492,160 @@ final class IndexedTest extends Base {
         $this->assertEquals(
             new Indexed(['John', 'Jane', 'Richard']),
             new Splice($this->collection)(2, 3)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testTakeOperation ():void {
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane']),
+            new Take($this->collection)->first(2)
+        );
+
+        $this->assertEquals(
+            new Indexed(['Richard', 'Richard']),
+            new Take($this->collection)->last(2)
+        );
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Jane', 'Jane']),
+            new Take($this->collection)->until(fn($value) => $value === 'Richard')
+        );
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Jane', 'Jane']),
+            new Take($this->collection)->while(fn($value) => $value !== 'Richard')
+        );
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Richard']),
+            new Take($this->collection)->nth(2)
+        );
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Richard']),
+            new Take($this->collection)->even()
+        );
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Richard']),
+            new Take($this->collection)->odd()
+        );
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Richard']),
+            new Take($this->collection)->distinct()
+        );
+
+        $this->assertEquals(
+            new Indexed(['John']),
+            new Take($this->collection)->unique()
+        );
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Jane', 'Richard', 'Richard']),
+            new Take($this->collection)->duplicates()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSkip ():void {
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Richard', 'Richard']),
+            new Skip($this->collection)->first(2)
+        );
+
+        $this->assertEquals(
+            new Indexed(['Richard', 'Richard']),
+            new Skip($this->collection)->until(fn($value) => $value === 'Richard')
+        );
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Jane', 'Richard', 'Richard']),
+            new Skip($this->collection)->while(fn($value) => $value === 'John')
+        );
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Jane', 'Richard']),
+            new Skip($this->collection)->nth(3)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testPartition ():void {
+
+        $this->assertEquals([
+            ['key' => 0, 'value' => new Indexed(['Richard', 'Richard'])],
+            ['key' => 1, 'value' => new Indexed(['John', 'Jane', 'Jane', 'Jane'])]
+        ],
+            new Partition($this->collection)(fn($value) => $value === 'Richard')->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testChunkWhere ():void {
+
+        $this->assertEquals([
+            ['key' => 0, 'value' => new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard'])],
+            ['key' => 1, 'value' => new Indexed(['Richard'])]
+        ],
+            $this->collection->chunkWhere(fn($value, $key) => $value === 'Richard')->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testChunk ():void {
+
+        $this->assertEquals([
+            ['key' => 0, 'value' => new Indexed(['John', 'Jane', 'Jane', 'Jane'])],
+            ['key' => 1, 'value' => new Indexed(['Richard', 'Richard'])]
+        ],
+            new Chunk($this->collection)(4)->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSplit ():void {
+
+        $this->assertEquals([
+            ['key' => 0, 'value' => new Indexed(['John', 'Jane'])],
+            ['key' => 1, 'value' => new Indexed(['Jane', 'Jane'])],
+            ['key' => 2, 'value' => new Indexed(['Richard'])],
+            ['key' => 3, 'value' => new Indexed(['Richard'])]
+        ],
+            new Split($this->collection)(4)->toArray()
         );
 
     }

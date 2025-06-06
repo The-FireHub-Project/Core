@@ -18,6 +18,7 @@ use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\ {
     Lazy, Collection\Associative
 };
+use FireHub\Core\Support\DataStructures\Operation\Take;
 use FireHub\Core\Support\DataStructures\Function\ {
     Reduce, Slice, Splice
 };
@@ -33,6 +34,7 @@ use PHPUnit\Framework\Attributes\ {
 #[Small]
 #[Group('datastructures')]
 #[CoversClass(Lazy::class)]
+#[CoversClass(Take::class)]
 #[CoversClass(Reduce::class)]
 #[CoversClass(Slice::class)]
 #[CoversClass(Splice::class)]
@@ -286,6 +288,31 @@ final class LazyTest extends Base {
                 ['key' => 10, 'value' => 2]
             ],
             new Splice($this->collection)(1, 2)->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testTakeOperation ():void {
+
+        $this->assertEquals(
+            [
+                ['key' => 'firstname', 'value' => 'John'],
+                ['key' => 'lastname', 'value' => 'Doe']
+            ],
+            new Take($this->collection)->first(2)->toArray()
+        );
+
+        $this->assertEquals(
+            [
+                ['key' => 'age', 'value' => 25],
+                ['key' => 10, 'value' => 2]
+            ],
+            new Take($this->collection)->last(2)->toArray()
         );
 
     }

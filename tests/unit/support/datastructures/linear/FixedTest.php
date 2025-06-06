@@ -19,7 +19,7 @@ use FireHub\Core\Support\DataStructures\Linear\ {
     Fixed, Dynamic\Collection\Indexed
 };
 use FireHub\Core\Support\DataStructures\Operation\ {
-    Contains, Ensure, Find
+    Contains, Ensure, Find, Take
 };
 use FireHub\Core\Support\DataStructures\Function\ {
     Keys, Reduce, Reject, Slice, Splice, Values
@@ -38,6 +38,7 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Contains::class)]
 #[CoversClass(Ensure::class)]
 #[CoversClass(Find::class)]
+#[CoversClass(Take::class)]
 #[CoversClass(Keys::class)]
 #[CoversClass(Reduce::class)]
 #[CoversClass(Reject::class)]
@@ -368,6 +369,83 @@ final class FixedTest extends Base {
         $this->assertEquals(
             $collection,
             new Slice($this->collection)(1, 2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testTakeOperation ():void {
+
+        $collection = new Fixed(2);
+        $collection[0] = 'one';
+        $collection[1] = 'two';
+        $this->assertEquals(
+            $collection,
+            new Take($this->collection)->first(2)
+        );
+
+        $collection = new Fixed(2);
+        $collection[0] = 'two';
+        $collection[1] = 'three';
+        $this->assertEquals(
+            $collection,
+            new Take($this->collection)->last(2)
+        );
+
+        $collection = new Fixed(4);
+        $collection[0] = 'one';
+        $collection[1] = 'two';
+        $collection[2] = 'three';
+        $collection[3] = [1,2,3];
+        $this->assertEquals(
+            $collection,
+            new Take($this->collection_same_values)->distinct()
+        );
+
+        $collection = new Fixed(2);
+        $collection[0] = 'one';
+        $collection[1] = [1,2,3];
+        $this->assertEquals(
+            $collection,
+            new Take($this->collection_same_values)->unique()
+        );
+
+        $collection = new Fixed(5);
+        $collection[0] = 'two';
+        $collection[1] = 'two';
+        $collection[2] = 'three';
+        $collection[3] = 'three';
+        $collection[4] = 'three';
+        $this->assertEquals(
+            $collection,
+            new Take($this->collection_same_values)->duplicates()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testChunkWhere ():void {
+
+        $collection = new Fixed(2);
+        $collection[0] = 'one';
+        $collection[1] = 'two';
+
+        $collection2 = new Fixed(1);
+        $collection2[0] = 'three';
+
+        $this->assertEquals([
+            ['key' => 0, 'value' => $collection],
+            ['key' => 1, 'value' => $collection2]
+        ],
+            $this->collection->chunkWhere(fn($value, $key) => $value === 'two')->toArray()
         );
 
     }

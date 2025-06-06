@@ -16,6 +16,7 @@ namespace support\datastructures\linear\dynamic\collection;
 
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+use FireHub\Core\Support\DataStructures\Operation\Take;
 use FireHub\Core\Support\DataStructures\Function\ {
     Slice, Splice
 };
@@ -34,6 +35,7 @@ use stdClass;
 #[Small]
 #[Group('datastructures')]
 #[CoversClass(Obj::class)]
+#[CoversClass(Take::class)]
 #[CoversClass(Slice::class)]
 #[CoversClass(Splice::class)]
 final class ObjTest extends Base {
@@ -295,6 +297,54 @@ final class ObjTest extends Base {
         $this->assertEquals(
             $collection,
             new Splice($this->collection)(1, 1)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testTakeOperation ():void {
+
+        $collection = new Obj();
+        $collection->attach($this->cls1, 'data for object 1');
+        $collection->attach($this->cls2, [1, 2, 3]);
+        $this->assertEquals(
+            $collection,
+            new Take($this->collection)->first(2)
+        );
+
+        $collection = new Obj();
+        $collection->attach($this->cls2, [1, 2, 3]);
+        $collection->attach($this->cls3, 20);
+        $this->assertEquals(
+            $collection,
+            new Take($this->collection)->last(2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testChunkWhere ():void {
+
+        $collection = new Obj();
+        $collection->attach($this->cls1, 'data for object 1');
+        $collection->attach($this->cls2, [1, 2, 3]);
+
+        $collection2 = new Obj();
+        $collection2->attach($this->cls3, 20);
+
+        $this->assertEquals([
+            ['key' => 0, 'value' => $collection],
+            ['key' => 1, 'value' => $collection2]
+        ],
+            $this->collection->chunkWhere(fn($info, $object) => $info === [1, 2, 3])->toArray()
         );
 
     }

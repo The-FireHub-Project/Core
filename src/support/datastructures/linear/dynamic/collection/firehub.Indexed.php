@@ -20,6 +20,7 @@ use FireHub\Core\Support\Contracts\HighLevel\ {
 use FireHub\Core\Support\DataStructures\Contracts\ {
     Arrayable, Sequantionable
 };
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
 use FireHub\Core\Support\LowLevel\Arr;
 
 use function FireHub\Core\Support\Helpers\Arr\ {
@@ -345,6 +346,47 @@ class Indexed extends ArrStorage implements Arrayable, Sequantionable {
         }
 
         return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $chunk = $collection->chunkWhere(fn($value, $key) => $value === 'Richard');
+     *
+     * // [['John', 'Jane', 'Jane', 'Jane', 'Richard'], ['Richard']]
+     * ```
+     */
+    public function chunkWhere (callable $callback):Lazy {
+
+        return new Lazy(function () use ($callback) {
+
+            $chunks = [];
+            foreach ($this as $key => $value) {
+
+                $chunks[] = $value;
+
+                if ($callback($value, $key)) {
+
+                    yield new static($chunks);
+
+                    $chunks = [];
+
+                }
+
+            }
+
+            if ($chunks) yield new static($chunks);
+
+        });
 
     }
 
