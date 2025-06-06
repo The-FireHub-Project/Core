@@ -18,7 +18,9 @@ use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\ {
     Lazy, Collection\Associative
 };
-use FireHub\Core\Support\DataStructures\Function\Reduce;
+use FireHub\Core\Support\DataStructures\Function\ {
+    Reduce, Slice, Splice
+};
 use FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -32,6 +34,8 @@ use PHPUnit\Framework\Attributes\ {
 #[Group('datastructures')]
 #[CoversClass(Lazy::class)]
 #[CoversClass(Reduce::class)]
+#[CoversClass(Slice::class)]
+#[CoversClass(Splice::class)]
 final class LazyTest extends Base {
 
     public Lazy $collection;
@@ -226,6 +230,20 @@ final class LazyTest extends Base {
      *
      * @return void
      */
+    public function testReduce ():void {
+
+        $this->assertSame(
+            'John-Doe-25-2-',
+            new Reduce($this->collection)(fn($carry, $value) => $carry.$value.'-')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testFilter ():void {
 
         $this->assertSame([
@@ -243,11 +261,31 @@ final class LazyTest extends Base {
      *
      * @return void
      */
-    public function testReduce ():void {
+    public function testSlice ():void {
 
-        $this->assertSame(
-            'John-Doe-25-2-',
-            new Reduce($this->collection)(fn($carry, $value) => $carry.$value.'-')
+        $this->assertEquals(
+            [
+                ['key' => 'lastname', 'value' => 'Doe'],
+                ['key' => 'age', 'value' => 25]
+            ],
+            new Slice($this->collection)(1, 2)->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSplice ():void {
+
+        $this->assertEquals(
+            [
+                ['key' => 'firstname', 'value' => 'John'],
+                ['key' => 10, 'value' => 2]
+            ],
+            new Splice($this->collection)(1, 2)->toArray()
         );
 
     }

@@ -22,7 +22,7 @@ use FireHub\Core\Support\DataStructures\Operation\ {
     Contains, Ensure, Find
 };
 use FireHub\Core\Support\DataStructures\Function\ {
-    Keys, Reduce, Values
+    Keys, Reduce, Reject, Slice, Splice, Values
 };
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -40,6 +40,9 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Find::class)]
 #[CoversClass(Keys::class)]
 #[CoversClass(Reduce::class)]
+#[CoversClass(Reject::class)]
+#[CoversClass(Slice::class)]
+#[CoversClass(Splice::class)]
 #[CoversClass(Values::class)]
 final class FixedTest extends Base {
 
@@ -329,6 +332,42 @@ final class FixedTest extends Base {
                 if ($value === 'two') {return 'break';}
                 return true;
             })
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testReject ():void {
+
+        $collection = new Fixed(2);
+        $collection[0] = 'one';
+        $collection[1] = 'three';
+
+        $this->assertEquals(
+            $collection,
+            new Reject($this->collection)(fn($value) => $value === 'two')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSlice ():void {
+
+        $collection = new Fixed(2);
+        $collection[0] = 'two';
+        $collection[1] = 'three';
+
+        $this->assertEquals(
+            $collection,
+            new Slice($this->collection)(1, 2)
         );
 
     }

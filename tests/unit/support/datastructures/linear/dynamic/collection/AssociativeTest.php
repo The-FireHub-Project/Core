@@ -22,7 +22,7 @@ use FireHub\Core\Support\DataStructures\Operation\ {
     Contains, Find
 };
 use FireHub\Core\Support\DataStructures\Function\ {
-    Keys, Values
+    Keys, Slice, Splice, Values
 };
 use FireHub\Core\Support\Enums\Data\Type;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
@@ -42,6 +42,8 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Contains::class)]
 #[CoversClass(Find::class)]
 #[CoversClass(Keys::class)]
+#[CoversClass(Slice::class)]
+#[CoversClass(Splice::class)]
 #[CoversClass(Values::class)]
 #[CoversClass(Type::class)]
 final class AssociativeTest extends Base {
@@ -489,6 +491,34 @@ final class AssociativeTest extends Base {
         $this->assertEquals(
             new Associative(['firstname' => 'John', 'age' => 25, 10 => 2]),
             $this->collection->filter(fn($value, $key) => $key !== 'lastname')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSlice ():void {
+
+        $this->assertEquals(
+            new Associative(['lastname' => 'Doe', 'age' => 25]),
+            new Slice($this->collection)(1, 2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSplice ():void {
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 10 => 2]),
+            new Splice($this->collection)(1, 2)
         );
 
     }

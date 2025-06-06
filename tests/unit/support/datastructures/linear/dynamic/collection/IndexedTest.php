@@ -22,7 +22,7 @@ use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Ensure, Is
 };
 use FireHub\Core\Support\DataStructures\Function\ {
-    Combine, Reduce
+    Combine, Reduce, Reject, Slice, Splice
 };
 use FireHub\Core\Support\Enums\Data\Type;
 use PHPUnit\Framework\Attributes\ {
@@ -42,6 +42,9 @@ use stdClass;
 #[CoversClass(Is::class)]
 #[CoversClass(Combine::class)]
 #[CoversClass(Reduce::class)]
+#[CoversClass(Reject::class)]
+#[CoversClass(Slice::class)]
+#[CoversClass(Splice::class)]
 final class IndexedTest extends Base {
 
     public Indexed $collection;
@@ -427,6 +430,63 @@ final class IndexedTest extends Base {
         $this->assertEquals(
             new Indexed(['Jane', 'Jane', 'Jane']),
             $this->collection->filter(fn($value) => $value === 'Jane')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testReject ():void {
+
+        $this->assertEquals(
+            new Indexed(['John', 'Richard', 'Richard']),
+            new Reject($this->collection)(fn($value) => $value === 'Jane')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSlice ():void {
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Richard', 'Richard']),
+            new Slice($this->collection)(2)
+        );
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Jane', 'Richard']),
+            new Slice($this->collection)(1, 4)
+        );
+
+        $this->assertEquals(
+            new Indexed(['Richard', 'Richard']),
+            new Slice($this->collection)(-2, 3)
+        );
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Jane', 'Richard']),
+            new Slice($this->collection)(1, -1)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSplice ():void {
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Richard']),
+            new Splice($this->collection)(2, 3)
         );
 
     }
