@@ -619,6 +619,62 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testDifference ():void {
+
+        $collection = new Associative(['firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'lastname' => 'Doe']),
+            $this->collection->difference($collection)
+        );
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'lastname' => 'Doe']),
+            $this->collection->difference($collection, fn($value_a, $value_b) => $value_a <=> $value_b)
+        );
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'lastname' => 'Doe']),
+            $this->collection->difference($collection, key: fn($key_a, $value_b) => $key_a <=> $value_b)
+        );
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'lastname' => 'Doe']),
+            $this->collection->difference(
+                $collection,
+                fn($key_a, $value_b) => $key_a <=> $value_b,
+                fn($key_a, $value_b) => $key_a <=> $value_b
+            )
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testDifferenceKeys ():void {
+
+        $collection = new Associative(['firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+
+        $this->assertEquals(
+            new Associative(['lastname' => 'Doe']),
+            $this->collection->differenceKeys($collection)
+        );
+
+        $this->assertEquals(
+            new Associative(['lastname' => 'Doe']),
+            $this->collection->differenceKeys($collection, fn($key_a, $value_b) => $key_a <=> $value_b)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testFlip ():void {
 
         $this->assertEquals(
