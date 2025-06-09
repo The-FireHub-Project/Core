@@ -454,11 +454,11 @@ class Obj extends Collection implements Chunkable, Filterable {
     }
 
     /**
-     * ### Merge a new data structure into the current one
+     * ### Create new data structure with values appearing in any data structure
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::has() To check if object already exists
-     * in the collection.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::has() To check if an object already
+     * exists in the collection.
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::attach() To add an object
      * in the storage.
      *
@@ -487,66 +487,11 @@ class Obj extends Collection implements Chunkable, Filterable {
      *
      * $merge = $collection->merge($collection2);
      * ```
-     *
      * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj<TMergedKey, TMergedValue> ...$data_structures <p>
-     * List of data structures to merge.
+     * Data structure to provide set operator.
      * </p>
      *
      * @return static<TKey|TMergedKey, TValue|TMergedValue> New merged data structure.
-     */
-    public function merge (self ...$data_structures):static {
-
-        $storage = clone $this;
-
-        foreach ([$this, ...$data_structures] as $data_structure)
-            foreach ($data_structure as $object => $info)
-                // @phpstan-ignore-next-line argument.type
-                $storage->has($object) ?: $storage->attach($object, $info);
-
-        return $storage; // @phpstan-ignore return.type
-
-    }
-
-    /**
-     * ### Union a new data structure into the current one
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::has() To check if object already exists
-     * in the collection.
-     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::attach() To add an object
-     * in the storage.
-     *
-     * @template TMergedKey of object
-     * @template TMergedValue
-     *
-     * @example
-     * ```php
-     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
-     *
-     * $cls1 = new stdClass();
-     * $cls2 = new stdClass();
-     * $cls3 = new stdClass();
-     * $cls4 = new stdClass();
-     *
-     * $collection = new Obj();
-     * $collection->attach($cls1, 'data for object 1');
-     * $collection->attach($cls2, [1,2,3]);
-     * $collection->attach($cls3, 20);
-     *
-     * $collection2 = new Obj();
-     * $collection2->attach($cls1, 'new data for object 1');
-     * $collection2->attach($cls2, [1,2,3]);
-     * $collection2->attach($cls3, 20);
-     * $collection2->attach($cls4, 30);
-     *
-     * $union = $collection->union($collection2);
-     * ```
-     *
-     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj<TMergedKey, TMergedValue> ...$data_structures <p>
-     * List of data structures to union.
-     * </p>
-     *
-     * @return static<TKey|TMergedKey, TValue|TMergedValue> New union data structure.
      */
     public function union (self ...$data_structures):static {
 
@@ -555,7 +500,7 @@ class Obj extends Collection implements Chunkable, Filterable {
         foreach ([$this, ...$data_structures] as $data_structure)
             foreach ($data_structure as $object => $info)
                 // @phpstan-ignore-next-line argument.type
-                $storage->attach($object, $info);
+                $storage->has($object) ?: $storage->attach($object, $info);
 
         return $storage; // @phpstan-ignore return.type
 

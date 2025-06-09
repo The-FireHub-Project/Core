@@ -704,6 +704,22 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testUnion ():void {
+
+        $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Johnie', 'Janie', 'Baby']);
+
+        $this->assertEquals(
+            new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Janie', 'Baby']),
+            $this->collection->union($collection)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testJoin ():void {
 
         $collection = new Indexed(['Johnie', 'Janie', 'Baby']);

@@ -490,6 +490,45 @@ class Indexed extends ArrStorage implements Arrayable, Sequantionable {
     }
 
     /**
+     * ### Create new data structure with values appearing in any data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Contracts\HighLevel\DataStructures::values() To get values provided data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed::toArray() To get an array from
+     * the provided data structure.
+     *
+     * @template TMergedValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection2 = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Johnie', 'Janie', 'Baby']);
+     *
+     * $join = $collection->join($collection2);
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Janie', 'Baby']
+     * ```
+     *
+     * @param \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear<mixed, TMergedValue> ...$data_structures <p>
+     * Data structure to provide set operator.
+     * </p>
+     *
+     * @return static<TValue|TMergedValue> New filtered data structure.
+     */
+    public function union (Linear ...$data_structures):static {
+
+        $storage = $this->storage;
+
+        foreach ($data_structures as $data_structure)
+            $storage += $data_structure->values()->toArray();
+
+        return new static($storage);
+
+    }
+
+    /**
      * ### Join a new data structure into the current one
      * @since 1.0.0
      *
