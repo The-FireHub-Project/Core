@@ -775,6 +775,27 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testIntersect ():void {
+
+        $collection = new Indexed(['John', 'Richard']);
+
+        $this->assertEquals(
+            new Indexed(['John', 'Richard', 'Richard']),
+            $this->collection->intersect($collection)
+        );
+
+        $this->assertEquals(
+            new Indexed(['John', 'Richard', 'Richard']),
+            $this->collection->intersect($collection, fn($value_a, $value_b) => $value_a <=> $value_b)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testSort ():void {
 
         $this->assertEquals(

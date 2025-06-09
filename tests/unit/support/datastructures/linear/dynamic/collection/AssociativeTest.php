@@ -675,6 +675,27 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testIntersectKeys ():void {
+
+        $collection = new Associative(['firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'age' => 25, 10 => 2]),
+            $this->collection->intersectKeys($collection)
+        );
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'age' => 25, 10 => 2]),
+            $this->collection->intersectKeys($collection, fn($key_a, $value_b) => $key_a <=> $value_b)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testFlip ():void {
 
         $this->assertEquals(

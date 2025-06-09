@@ -672,6 +672,59 @@ class Indexed extends ArrStorage implements Arrayable, Sequantionable {
     }
 
     /**
+     * ### Create new data structure with values appearing in all data structures
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::callable() To check if $value parameter is provided.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::intersectFunc() As intersect function.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::intersect() As intersect function.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage::toArray() To get data storage
+     * as an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection2 = new Indexed(['John', 'Richard']);
+     *
+     * $intersect = $collection->intersect($collection2);
+     *
+     * // ['John', 'Richard', 'Richard']
+     * ```
+     * @example With callback function.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection2 = new Indexed(['John', 'Richard']);
+     *
+     * $intersect = $collection->intersect($collection2, fn($value_a, $value_b) => $value_a <=> $value_b);
+     *
+     * // ['John', 'Richard', 'Richard']
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage<array-key, mixed> $data_structure <p>
+     * Data structure to provide set operator.
+     * </p>
+     * @param null|callable(mixed $a, mixed $b):int<-1, 1> $value [optional] <p>
+     * The comparison function must return an integer less than, equal to, or greater than zero if the first argument
+     * is considered to be respectively less than, equal to, or greater than the second.
+     * </p>
+     *
+     * @return static<TValue> New filtered data structure.
+     */
+    public function intersect (ArrStorage $data_structure, ?callable $value = null):static {
+
+        return new static(
+            DataIs::callable($value)
+                ? Arr::intersectFunc($this->storage, $data_structure->toArray(), $value)
+                : Arr::intersect($this->storage, $data_structure->toArray())
+        );
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0

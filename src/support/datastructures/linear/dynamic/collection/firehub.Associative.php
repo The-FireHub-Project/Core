@@ -866,6 +866,55 @@ class Associative extends ArrStorage implements Arrayable, Flippable, KeyChangea
     }
 
     /**
+     * ### Create new data structure with keys appearing in all data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::intersectKeyFunc() As intersect function.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::intersectKey() As intersect function.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage::toArray() To get data storage
+     * as an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $intersect = $collection->intersectKeys($collection2);
+     *
+     * // ['firstname' => 'John', 'age' => 25, 10 => 2]
+     * ```
+     * @example With callback function.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $intersect = $collection->intersectKeys($collection2, fn($key_a, $key_a) => $key_a <=> $key_a);
+     *
+     * // ['firstname' => 'John', 'age' => 25, 10 => 2]
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage<array-key, mixed> $data_structure <p>
+     * Data structure to provide set operator.
+     * </p>
+     * @param null|callable(mixed $a, mixed $b):int<-1, 1> $key [optional] <p>
+     * The comparison function.
+     * </p>
+     *
+     * @return static<TKey, TValue> New filtered data structure.
+     */
+    public function intersectKeys (ArrStorage $data_structure, ?callable $key = null):static {
+
+        return new static($key
+            ? Arr::intersectKeyFunc($this->storage, $data_structure->toArray(), $key) // @phpstan-ignore argument.type
+            : Arr::intersectKey($this->storage, $data_structure->toArray()));
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0
