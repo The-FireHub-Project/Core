@@ -18,7 +18,7 @@ use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Contracts\Filterable;
 
 /**
- * ### Create new data structure with keys or values that are not appearing in any of the other data structure
+ * ### Create new data structure with keys or values appearing in all data structures
  * @since 1.0.0
  *
  * @template TDataStructure of \FireHub\Core\Support\DataStructures\Contracts\Filterable
@@ -45,7 +45,7 @@ readonly class Intersect {
 
 
     /**
-     * ### Create new data structure with keys that are not appearing in any of the other data structure
+     * ### Create new data structure with keys appearing in all data structures
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Contracts\Filterable::filter() To filter items from data structure.
@@ -79,7 +79,7 @@ readonly class Intersect {
     }
 
     /**
-     * ### Create new data structure with values that are not appearing in any of the other data structure
+     * ### Create new data structure with values appearing in all data structures
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Contracts\Filterable::filter() To filter items from data structure.
@@ -113,7 +113,7 @@ readonly class Intersect {
     }
 
     /**
-     * ### Create new data structure with keys and values that are not appearing in any of the other data structure
+     * ### Create new data structure with keys and values appearing in all data structures
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\DataStructures\Contracts\Filterable::filter() To filter items from data structure.
