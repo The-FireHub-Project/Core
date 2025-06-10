@@ -1015,6 +1015,81 @@ class Associative extends ArrStorage implements Arrayable, Flippable, KeyChangea
     }
 
     /**
+     * ### Create new data structure with keys and values appearing in any data structure but not all
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::union() To create new
+     * data structure with values appearing in any data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::difference() To create new
+     * data structure with keys and values that are not appearing in the other data structure.
+     *
+     * @template TMergedKey of array-key
+     * @template TMergedValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'John_', 'lastname_' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $diff = $collection->symmetricDifference($collection2);
+     *
+     * // ['firstname' => 'John_', 'lastname' => 'Doe', '_lastname' => 'Doe']
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative<TMergedKey, TMergedValue> $data_structure <p>
+     * Data structure to provide set operator.
+     * </p>
+     *
+     * @return static<TKey|TMergedKey, TValue|TMergedValue> New filtered data structure.
+     */
+    public function symmetricDifference (self $data_structure):static {
+
+        return $this->difference($data_structure)
+            ->union($data_structure->difference($this));
+
+    }
+
+
+    /**
+     * ### Create new data structure with keys appearing in any data structure but not all
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::union() To create new
+     * data structure with values appearing in any data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::differenceKeys() To create new
+     * data structure with keys that are not appearing in the other data structure.
+     *
+     * @template TMergedKey of array-key
+     * @template TMergedValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'John_', 'lastname_' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $diff = $collection->symmetricDifferenceKeys($collection2);
+     *
+     * // ['firstname' => 'John_', 'lastname' => 'Doe', '_lastname' => 'Doe']
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative<TMergedKey, TMergedValue> $data_structure <p>
+     * Data structure to provide set operator.
+     * </p>
+     *
+     * @return static<TKey|TMergedKey, TValue|TMergedValue> New filtered data structure.
+     */
+    public function symmetricDifferenceKeys (self $data_structure):static {
+
+        return $this->differenceKeys($data_structure)
+            ->union($data_structure->differenceKeys($this));
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0

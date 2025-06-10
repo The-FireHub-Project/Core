@@ -795,6 +795,38 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testSymmetricDifference ():void {
+
+        $collection = new Associative(['firstname' => 'John_', 'lastname_' => 'Doe', 'age' => 25, 10 => 2]);
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John_', 'lastname_' => 'Doe', 'lastname' => 'Doe']),
+            $this->collection->symmetricDifference($collection)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSymmetricDifferenceKeys ():void {
+
+        $collection = new Associative(['firstname' => 'John_', 'lastname_' => 'Doe', 'age' => 25, 10 => 2]);
+
+        $this->assertEquals(
+            new Associative(['lastname_' => 'Doe', 'lastname' => 'Doe']),
+            $this->collection->symmetricDifferenceKeys($collection)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testFlip ():void {
 
         $this->assertEquals(

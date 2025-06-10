@@ -725,6 +725,42 @@ class Indexed extends ArrStorage implements Arrayable, Sequantionable {
     }
 
     /**
+     * ### Create new data structure with values appearing in any data structure but not all
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed::join() To join new data
+     * structure into the current one.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed::difference() To create new
+     * data structure with values that are not appearing in the other data structure.
+     *
+     * @template TMergedValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection2 = new Indexed(['John', 'Richard', 'Johnny']);
+     *
+     * $diff = $collection->symmetricDifference($collection2);
+     *
+     * // ['Jane', 'Jane', 'Jane', 'Johnny']
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed<TMergedValue> $data_structure <p>
+     * Data structure to provide set operator.
+     * </p>
+     *
+     * @return static<TValue|TMergedValue> New filtered data structure.
+     */
+    public function symmetricDifference (self $data_structure):static {
+
+        return $this->difference($data_structure)
+            ->join($data_structure->difference($this)); // @phpstan-ignore argument.type
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0

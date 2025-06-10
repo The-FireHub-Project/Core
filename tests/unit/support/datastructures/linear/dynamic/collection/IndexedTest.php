@@ -796,6 +796,22 @@ final class IndexedTest extends Base {
      *
      * @return void
      */
+    public function testSymmetricDifference ():void {
+
+        $collection = new Indexed(['John', 'Richard', 'Johnny']);
+
+        $this->assertEquals(
+            new Indexed(['Jane', 'Jane', 'Jane', 'Johnny']),
+            $this->collection->symmetricDifference($collection)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testSort ():void {
 
         $this->assertEquals(
