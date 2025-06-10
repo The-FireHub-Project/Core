@@ -232,13 +232,13 @@ interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSe
      *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy As return.
      *
-     * @param non-negative-int $microseconds <p>
-     * Number of microseconds to throttle each value.
+     * @param float $seconds_and_microseconds <p>
+     * Number of seconds and microseconds to throttle each value.
      * </p>
      *
      * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy<TKey, TValue> New Lazy data structure
      * with throttle from the current data structure.
      */
-    public function throttle (int $microseconds):Lazy;
+    public function throttle (float $seconds_and_microseconds):Lazy;
 
 }

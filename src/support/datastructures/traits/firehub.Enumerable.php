@@ -28,6 +28,8 @@ use FireHub\Core\Support\LowLevel\Iterator;
 
 use const FireHub\Core\Support\Constants\Number\MAX;
 
+use function FireHub\Core\Support\Helpers\PHP\sleep;
+
 /**
  * ### Enumerable data structure methods that every element meets a given criterion
  * @since 1.0.0
@@ -347,16 +349,18 @@ trait Enumerable {
      * @inheritDoc
      *
      * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\PHP\sleep() As sleep function.
      */
-    public function throttle (int $microseconds):Lazy {
+    public function throttle (float $seconds_and_microseconds):Lazy {
 
-        return new Lazy (function () {
+        return new Lazy (function () use ($seconds_and_microseconds) {
 
             foreach ($this as $key => $value) {
 
                 yield $key => $value;
 
-                usleep(500_000);
+                sleep($seconds_and_microseconds);
 
             }
 
