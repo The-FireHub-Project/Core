@@ -36,7 +36,9 @@ use function php_sapi_name;
 use function php_uname;
 use function phpversion;
 use function putenv;
+use function sleep;
 use function sys_get_temp_dir;
+use function usleep;
 use function version_compare;
 use function zend_version;
 
@@ -431,6 +433,39 @@ final class PHP {
     public static function resetMemoryPeakUsage ():void {
 
         memory_reset_peak_usage();
+
+    }
+
+
+    /**
+     * ### Delay execution
+     * @since 1.0.0
+     *
+     * @param non-negative-int $seconds <p>
+     * Halt time in seconds.
+     * </p>
+     *
+     * @return bool True on success, false if the call was interrupted by a signal.
+     */
+    public static function sleep (int $seconds):bool {
+
+        return sleep($seconds) === 0;
+
+    }
+
+    /**
+     * ### Delays program execution for the given number of microseconds
+     * @since 1.0.0
+     *
+     * @param int<0, 999999> $seconds <p>
+     * Halt time in microseconds.
+     * </p>
+     *
+     * @return void
+     */
+    public static function microsleep (int $seconds):void {
+
+        usleep(min($seconds, 999_999));
 
     }
 

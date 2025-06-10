@@ -19,8 +19,8 @@ use FireHub\Core\Support\Contracts\ {
 };
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 use FireHub\Core\Support\Contracts\Magic\Serializable;
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
-    Indexed, Associative
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\ {
+    Lazy, Collection\Indexed, Collection\Associative
 };
 use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Contains, Ensure, Find, Is
@@ -225,5 +225,20 @@ interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSe
      * @phpstan-ignore generics.notSubtype
      */
     public function combine (DataStructures $data_structure):Associative;
+
+    /**
+     * ### Throttle the lazy data structure such that each value is returned after the specified number of seconds
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy As return.
+     *
+     * @param non-negative-int $microseconds <p>
+     * Number of microseconds to throttle each value.
+     * </p>
+     *
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy<TKey, TValue> New Lazy data structure
+     * with throttle from the current data structure.
+     */
+    public function throttle (int $microseconds):Lazy;
 
 }

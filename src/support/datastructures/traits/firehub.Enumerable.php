@@ -15,8 +15,8 @@
 namespace FireHub\Core\Support\DataStructures\Traits;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
-    Indexed, Associative
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\ {
+    Lazy, Collection\Indexed, Collection\Associative
 };
 use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Contains, Ensure, Find, Is
@@ -340,6 +340,27 @@ trait Enumerable {
     public function combine (DataStructures $data_structure):Associative {
 
         return new Combine($this)($data_structure);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function throttle (int $microseconds):Lazy {
+
+        return new Lazy (function () {
+
+            foreach ($this as $key => $value) {
+
+                yield $key => $value;
+
+                usleep(500_000);
+
+            }
+
+        });
 
     }
 
