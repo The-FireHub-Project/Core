@@ -109,7 +109,7 @@ readonly class Contains {
      * ```
      *
      * @param mixed $search <p>
-     * The searched key.
+     * The searched value.
      * If the key is a string, the comparison is done in a case-sensitive manner.
      * </p>
      *
@@ -121,6 +121,74 @@ readonly class Contains {
             return Arr::inArray($search, $this->data_structure->toArray());
 
         return $this->where(fn($value) => $value === $search);
+
+    }
+
+    /**
+     * ### Determines whether a data structure contains a given key and value pair
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Contains::where() To check if a value exists
+     * in data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     * use FireHub\Core\Support\DataStructures\Collection\Operations\Contains;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $check = new Contains($collection)->pair('firstname', 'John');
+     *
+     * // true
+     * ```
+     *
+     * @param mixed $search_key <p>
+     * The searched key.
+     * If the key is a string, the comparison is done in a case-sensitive manner.
+     * </p>
+     * @param mixed $with_value $search <p>
+     * The searched key.
+     * If the key is a string, the comparison is done in a case-sensitive manner.
+     * </p>
+     *
+     * @return bool True if a data structure contains a provided key and value pair, false otherwise.
+     */
+    public function pair (mixed $search_key, mixed $with_value):bool {
+
+        return $this->where(fn($value, $key) => $key === $search_key && $value === $with_value);
+
+    }
+
+    /**
+     * ### Determines whether a data structure contains a given key or value
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Contains::where() To check if a value exists
+     * in data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     * use FireHub\Core\Support\DataStructures\Collection\Operations\Contains;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $check = new Contains($collection)->keyOrValue('Doe');
+     *
+     * // true
+     * ```
+     *
+     * @param mixed $search <p>
+     * The searched key or value.
+     * If the key is a string, the comparison is done in a case-sensitive manner.
+     * </p>
+     *
+     * @return bool True if a data structure contains a provided key or value, false otherwise.
+     */
+    public function keyOrValue (mixed $search):bool {
+
+        return $this->where(fn($value, $key) => $key === $search || $value === $search);
 
     }
 

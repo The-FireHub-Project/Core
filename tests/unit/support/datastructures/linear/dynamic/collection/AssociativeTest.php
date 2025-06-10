@@ -19,7 +19,7 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
     Indexed, Associative
 };
 use FireHub\Core\Support\DataStructures\Operation\ {
-    Contains, Find, Take
+    Contains, Difference, Find, Intersect, Take
 };
 use FireHub\Core\Support\DataStructures\Function\ {
     Keys, Slice, Splice, Values
@@ -42,7 +42,9 @@ use PHPUnit\Framework\Attributes\ {
 #[Group('datastructures')]
 #[CoversClass(Associative::class)]
 #[CoversClass(Contains::class)]
+#[CoversClass(Difference::class)]
 #[CoversClass(Find::class)]
+#[CoversClass(Intersect::class)]
 #[CoversClass(Take::class)]
 #[CoversClass(Keys::class)]
 #[CoversClass(Slice::class)]
@@ -110,6 +112,12 @@ final class AssociativeTest extends Base {
 
         $this->assertTrue($this->collection->contains()->value('John'));
         $this->assertFalse($this->collection->contains()->value('Richard'));
+
+        $this->assertTrue($this->collection->contains()->pair('firstname', 'John'));
+        $this->assertFalse($this->collection->contains()->pair('firstname', 'Richard'));
+
+        $this->assertTrue($this->collection->contains()->keyOrValue('Doe'));
+        $this->assertFalse($this->collection->contains()->keyOrValue('middlename'));
 
         $this->assertTrue($this->collection->contains()->type(Type::T_STRING));
         $this->assertFalse($this->collection->contains()->value(Type::T_INT));
@@ -675,6 +683,34 @@ final class AssociativeTest extends Base {
      *
      * @return void
      */
+    public function testDifferenceOperation ():void {
+
+        $collection2 = new Associative(['firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+
+        $this->assertEquals(
+            new Associative(['lastname' => 'Doe']),
+            new Difference($this->collection)->inKeys($collection2)
+        );
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John']),
+            new Difference($this->collection)->inValues($collection2)
+        );
+
+        $collection2 = new Associative(['_firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'lastname' => 'Doe']),
+            new Difference($this->collection)->inKeyAndValuePairs($collection2)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testIntersect ():void {
 
         $collection = new Associative(['firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
@@ -722,6 +758,34 @@ final class AssociativeTest extends Base {
         $this->assertEquals(
             new Associative(['firstname' => 'John', 'age' => 25, 10 => 2]),
             $this->collection->intersectKeys($collection, fn($key_a, $value_b) => $key_a <=> $value_b)
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testIntersectOperation ():void {
+
+        $collection2 = new Associative(['firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+
+        $this->assertEquals(
+            new Associative(['firstname' => 'John', 'age' => 25, 10 => 2]),
+            new Intersect($this->collection)->inKeys($collection2)
+        );
+
+        $this->assertEquals(
+            new Associative(['lastname' => 'Doe', 'age' => 25, 10 => 2]),
+            new Intersect($this->collection)->inValues($collection2)
+        );
+
+        $collection2 = new Associative(['_firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+
+        $this->assertEquals(
+            new Associative(['age' => 25, 10 => 2]),
+            new Intersect($this->collection)->inKeyAndValuePairs($collection2)
         );
 
     }
