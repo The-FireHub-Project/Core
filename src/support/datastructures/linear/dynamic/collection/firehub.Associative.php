@@ -866,6 +866,106 @@ class Associative extends ArrStorage implements Arrayable, Flippable, KeyChangea
     }
 
     /**
+     * ### Create new data structure with keys and values that are appearing in all data structures
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::callable() To check if $value parameter is provided.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::intersectAssocFuncKeyValue() As intersect function.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::intersectAssocFuncKey() As intersect function.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::intersectAssoc() As intersect function.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage::toArray() To get data storage
+     * as an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $intersect = $collection->intersect($collection2);
+     *
+     * // ['age' => 25, 10 => 2]
+     * ```
+     * @example With a callback function for values.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Indexed(['John', 'Richard']);
+     *
+     * $intersect = $collection->intersect($collection2, fn($value_a, $value_b) => $value_a <=> $value_b);
+     *
+     * // ['age' => 25, 10 => 2]
+     * ```
+     * @example With a callback function for keys.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Indexed(['John', 'Richard']);
+     *
+     * $intersect = $collection->intersect($collection2, key: fn($key_a, $key_a) => $key_a <=> $key_a);
+     *
+     * // ['age' => 25, 10 => 2]
+     * ```
+     * @example With a callback function for keys and values.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Indexed(['John', 'Richard']);
+     *
+     * $intersect = $collection->intersect($collection2, fn($value_a, $value_b) => $value_a <=> $value_b, fn($key_a, $key_a) => $key_a <=> $key_a);
+     *
+     * // ['age' => 25, 10 => 2]
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage<array-key, mixed> $data_structure <p>
+     * Data structure to provide set operator.
+     * </p>
+     * @param null|callable(mixed $a, mixed $b):int<-1, 1> $value [optional] <p>
+     * The comparison function must return an integer less than, equal to, or greater than zero if the first argument
+     * is considered to be respectively less than, equal to, or greater than the second.
+     * </p>
+     * @param null|callable(mixed $a, mixed $b):int<-1, 1> $key [optional] <p>
+     * The comparison function.
+     * </p>
+     *
+     * @return static<TKey, TValue> New filtered data structure.
+     */
+    public function intersect (ArrStorage $data_structure, ?callable $value = null, ?callable $key = null):static {
+
+        return new static( match (true) {
+            DataIs::callable($value) && DataIs::callable($key) =>
+            Arr::intersectAssocFuncKeyValue(
+                $this->storage,
+                $data_structure->toArray(),
+                $value,
+                $key
+            ),
+            DataIs::callable($value) =>
+            Arr::intersectAssocFuncValue(
+                $this->storage,
+                $data_structure->toArray(), // @phpstan-ignore argument.type
+                $value
+            ),
+            DataIs::callable($key) =>
+            Arr::intersectAssocFuncKey(
+                $this->storage,
+                $data_structure->toArray(),
+                $key
+            ),
+            default =>
+            Arr::intersectAssoc(
+                $this->storage,
+                $data_structure->toArray()
+            )
+        });
+
+    }
+
+    /**
      * ### Create new data structure with keys appearing in all data structure
      * @since 1.0.0
      *
