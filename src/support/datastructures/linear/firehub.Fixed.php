@@ -18,6 +18,9 @@ use FireHub\Core\Support\Contracts\HighLevel\ {
     DataStructures, DataStructures\Linear\Fixed as FixedContract
 };
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
+use FireHub\Core\Support\LowLevel\ {
+    Iterables, Iterator
+};
 use SplFixedArray;
 
 /**
@@ -83,6 +86,54 @@ class Fixed extends SplFixedArray implements FixedContract {
     }
 
     /**
+     * ### Create a data structure from an array
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count array parameter items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $array = ['one', 'two', 'three'];
+     *
+     * $collection = Fixed::fromArray($array);
+     * ```
+     *
+     * @param array<int, null|TValue> $array <p>
+     * Data for data structure.
+     * </p>
+     * @param bool $preserve_keys [optional] <p>
+     * Try to save the numeric indexes used in the original array.
+     * </p>
+     *
+     * @return static<TValue> Data structure from an array.
+     *
+     * @phpstan-ignore method.childParameterType
+     */
+    public static function fromArray (array $array, bool $preserve_keys = false):static {
+
+        $storage = new static(Iterables::count($array));
+
+        if ($preserve_keys) {
+
+            foreach ($array as $key => $item)
+                $storage[$key] = $item;
+
+        } else {
+
+            $i = 0;
+
+            foreach ($array as $item)
+                $storage[$i++] = $item;
+
+        }
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0
@@ -103,6 +154,34 @@ class Fixed extends SplFixedArray implements FixedContract {
     public function setSize (int $size):true {
 
         return parent::setSize($size); // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $array = $collection->toArray();
+     *
+     * // ['one', 'two', 'three']
+     * ```
+     *
+     * @return array<int, null|TValue> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        return Iterator::toArray($this);
 
     }
 

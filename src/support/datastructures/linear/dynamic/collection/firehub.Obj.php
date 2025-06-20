@@ -16,7 +16,9 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
-use FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException;
+use FireHub\Core\Support\DataStructures\Exceptions\ {
+    KeyDoesntExistException, StorageMissingDataException
+};
 use SplObjectStorage, Traversable, UnexpectedValueException;
 
 /**
@@ -69,6 +71,53 @@ class Obj extends Collection {
 
         foreach ($data_structure as $object => $info)
             $storage->attach($object, $info);
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * ### Create a data structure from an array
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::attach() To add an object
+     * in the storage.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $array = [
+     *  ['key' => new stdClass, 'value' => 'data for object 1'],
+     *  ['key' => new stdClass, 'value' => [1, 2, 3]],
+     *  ['key' => new stdClass, 'value' => 20]
+     * ];
+     *
+     * $collection = Obj::fromArray($array);
+     * ```
+     *
+     * @param array<array{key: TObject, value: TInfo}> $array <p>
+     * Data for data structure.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\StorageMissingDataException If $data is missing in the
+     * storage data.
+     *
+     * @return static<TObject, TInfo> Data structure from an array.
+     *
+     * @phpstan-ignore method.childParameterType
+     */
+    public static function fromArray (array $array):static {
+
+        $storage = new static();
+
+        foreach ($array as $item)
+            $storage->attach(
+                $item['key']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('key'),
+                $item['value']
+                ?? throw new StorageMissingDataException()->withData($item)->withKey('value')
+            );
 
         return $storage; // @phpstan-ignore return.type
 
@@ -219,6 +268,46 @@ class Obj extends Collection {
     public function detach (object $object):void {
 
         $this->storage->detach($object);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection = new Obj();
+     * $collection->attach($cls1, 'data for object 1');
+     * $collection->attach($cls2, [1,2,3]);
+     * $collection->attach($cls3, 20);
+     *
+     * $array = $collection->toArray();
+     *
+     * // [
+     * //   ['key' => stdClass, 'value' => 'data for object 1'],
+     * //   ['key' => stdClass, 'value' => [1, 2, 3]],
+     * //   ['key' => stdClass, 'value' => 20]
+     * // ]
+     * ```
+     *
+     * @return array<array{key: TObject, value: TInfo}> Data structure data as an array.
+     */
+    public function toArray ():array {
+
+        $result = [];
+
+        foreach ($this as $key => $value)
+            $result[] = ['key' => $key, 'value' => $value];
+
+        return $result;
 
     }
 
