@@ -14,6 +14,7 @@
 
 namespace FireHub\Core\Support\DataStructures\Traits;
 
+use FireHub\Core\Support\DataStructures\Operation\CountBy;
 use FireHub\Core\Support\LowLevel\Iterator;
 
 /**
@@ -24,6 +25,15 @@ use FireHub\Core\Support\LowLevel\Iterator;
  * @template TValue
  */
 trait Enumerable {
+
+    /**
+     * @inheritDoc
+     */
+    public function countBy ():CountBy {
+
+        return new CountBy($this);
+
+    }
 
     /**
      * @inheritDoc

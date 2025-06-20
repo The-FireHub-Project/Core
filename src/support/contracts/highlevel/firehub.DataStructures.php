@@ -19,6 +19,7 @@ use FireHub\Core\Support\Contracts\ {
 };
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 use FireHub\Core\Support\Contracts\Magic\Serializable;
+use FireHub\Core\Support\DataStructures\Operation\CountBy;
 
 /**
  * ### Data structures
@@ -42,5 +43,15 @@ interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSe
      * @return static<TKey, TValue> New data structure from provided parameter.
      */
     public static function fromDataStructure (DataStructures $data_structure):static;
+
+    /**
+     * ### Count operations for data structures
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\CountBy As return.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Operation\CountBy<$this> Count operation class.
+     */
+    public function countBy ():CountBy;
 
 }
