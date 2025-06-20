@@ -14,6 +14,7 @@
 
 namespace FireHub\Core\Support\Contracts\HighLevel;
 
+use FireHub\Core\Support\Contracts\Countable;
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 
 /**
@@ -25,6 +26,18 @@ use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
  *
  * @extends \FireHub\Core\Support\Contracts\Iterator\IteratorAggregate<TKey, TValue>
  */
-interface DataStructures extends IteratorAggregate {
+interface DataStructures extends Countable, IteratorAggregate {
+
+    /**
+     * ### Create data structure from provided parameter
+     * @since 1.0.0
+     *
+     * @param \FireHub\Core\Support\Contracts\HighLevel\DataStructures<covariant TKey, covariant TValue> $data_structure <p>
+     * Data structure to use for creating new data structure.
+     * </p>
+     *
+     * @return static<TKey, TValue> New data structure from provided parameter.
+     */
+    public static function fromDataStructure (DataStructures $data_structure):static;
 
 }

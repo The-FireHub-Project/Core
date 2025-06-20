@@ -15,6 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use FireHub\Core\Support\LowLevel\Iterables;
 use Traversable;
 
 /**
@@ -37,6 +38,29 @@ abstract class ArrStorage extends Collection {
      * @var array<TKey, TValue>
      */
     protected array $storage = [];
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count array items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $count = $collection->count();
+     *
+     * // 6
+     */
+    public function count ():int {
+
+        return Iterables::count($this->storage);
+
+    }
 
     /**
      * @inheritDoc

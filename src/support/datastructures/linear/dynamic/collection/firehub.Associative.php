@@ -14,6 +14,7 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
+use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Contracts\Arrayable;
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
@@ -43,6 +44,22 @@ class Associative extends ArrStorage implements Arrayable {
     public function __construct (?array $storage = null) {
 
         $this->storage = $storage ?? [];
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public static function fromDataStructure (DataStructures $data_structure):static {
+
+        $storage = [];
+
+        foreach ($data_structure as $key => $value)
+            $storage[$key] = $value;
+
+        return new static($storage);
 
     }
 
