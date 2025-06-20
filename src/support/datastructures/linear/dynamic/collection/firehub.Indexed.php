@@ -1,0 +1,241 @@
+<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galić <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+
+use FireHub\Core\Support\DataStructures\Contracts\ {
+    Arrayable, Sequantionable
+};
+use FireHub\Core\Support\LowLevel\Arr;
+
+use function FireHub\Core\Support\Helpers\Arr\ {
+    first, last
+};
+
+/**
+ * ### Indexed array collection type
+ *
+ * Collections which have numerical indexes in an ordered sequential manner (starting from 0 and ending with n-1).
+ * @since 1.0.0
+ *
+ * @template TValue
+ *
+ * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage<int, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Arrayable<int, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Sequantionable<TValue>
+ */
+class Indexed extends ArrStorage implements Arrayable, Sequantionable {
+
+    /**
+     * ### Underlying storage data
+     * @since 1.0.0
+     *
+     * @var array<TValue>
+     *
+     * @phpstan-ignore property.phpDocType
+     */
+    protected array $storage;
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::values() To help with removing keys from an array.
+     *
+     * @param null|array<TValue> $storage [optional] <p>
+     * Array to create underlying storage data.
+     * </p>
+     *
+     * @caution This collection will reindex the provided array if it is not already numerically indexed.
+     */
+    public function __construct (?array $storage = null) {
+
+        $this->storage = $storage ? Arr::values($storage) : [];
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::shift() To remove an item at the beginning of the data structure if
+     * $items value is 5 or less.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::splice() To remove an item at the beginning of the data structure if
+     * $items value is more than 5.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->shift();
+     *
+     * // ['Jane', 'Jane', 'Jane', 'Richard', 'Richard']
+     * ```
+     * @example Removing more than one item.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->shift(3);
+     *
+     * // ['Jane', 'Richard', 'Richard']
+     * ```
+     */
+    public function shift (int $items = 1):void {
+
+        if ($items <= 5)
+            for ($i = 0; $i < $items; $i++) Arr::shift($this->storage);
+
+        else Arr::splice($this->storage, 0, $items);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::pop() To remove an item at the end of the data collection if
+     * $items value is 5 or less.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::splice() To remove an item at the end of the data collection if
+     * $items value is greater than 5.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->pop();
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard']
+     * ```
+     * @example Removing more than one item.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->pop(3);
+     *
+     * // ['John', 'Jane', 'Jane']
+     * ```
+     */
+    public function pop (int $items = 1):void {
+
+        if ($items <= 5)
+            for ($i = 0; $i < $items; $i++) Arr::pop($this->storage);
+
+        else Arr::splice($this->storage, -$items);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->prepend('Johnie', 'Janie', 'Baby');
+     *
+     * // ['Johnie', 'Janie', 'Baby', 'John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']
+     * ```
+     */
+    public function prepend (mixed ...$values):void {
+
+        $this->storage = [...$values, ...$this->storage];
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->append('Johnie', 'Janie', 'Baby');
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie', 'Baby']
+     * ```
+     */
+    public function append (mixed ...$values):void {
+
+        $this->storage = [...$this->storage, ...$values];
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Arr\first() To get the first value from the storage.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $head = $collection->head()
+     *
+     * // 'John'
+     * ```
+     */
+    public function head ():mixed {
+
+        return first($this->storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Arr\last() To get the last value from the storage.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $tail = $collection->tail();
+     *
+     * // 'Richard'
+     * ```
+     */
+    public function tail ():mixed {
+
+        return last($this->storage);
+
+    }
+
+}

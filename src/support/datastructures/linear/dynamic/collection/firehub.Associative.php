@@ -1,0 +1,414 @@
+<?php declare(strict_types = 1);
+
+/**
+ * This file is part of the FireHub Web Application Framework package
+ *
+ * @author Danijel Galić <danijel.galic@outlook.com>
+ * @copyright 2025 FireHub Web Application Framework
+ * @license <https://opensource.org/licenses/OSL-3.0> OSL Open Source License version 3
+ *
+ * @package Core\Support
+ *
+ * @version GIT: $Id$ Blob checksum.
+ */
+
+namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+
+use FireHub\Core\Support\DataStructures\Contracts\Arrayable;
+use FireHub\Core\Support\DataStructures\Exceptions\ {
+    KeyAlreadyExistException, KeyDoesntExistException
+};
+
+/**
+ * ### Associative array collection type
+ *
+ * Collections that use named keys that you assign to them.
+ * @since 1.0.0
+ *
+ * @template TKey of array-key
+ * @template TValue
+ *
+ * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Arrayable<TKey, TValue>
+ *
+ * @api
+ */
+class Associative extends ArrStorage implements Arrayable {
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function __construct (?array $storage = null) {
+
+        $this->storage = $storage ?? [];
+
+    }
+
+    /**
+     * ### Check if item exist in the collection
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $exist = $collection->exist('firstname');
+     *
+     * // true
+     * ```
+     *
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @return bool True on success, false otherwise.
+     */
+    public function exist (int|string $key):bool {
+
+        return isset($this->storage[$key]);
+
+    }
+
+    /**
+     * ### Gets an item from the collection
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $firstname = $collection->get('firstname');
+     *
+     * // 'John'
+     * ```
+     * @example With a non-existing key
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $gender = $collection->get('gender');
+     *
+     * // null
+     * ```
+     *
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @return null|TValue Item from a collection, or null if an item with a provided key doesn't exist.
+     */
+    public function get (int|string $key):mixed {
+
+        return $this->storage[$key];
+
+    }
+
+    /**
+     * ### Takes an item from the collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::exist() To check if item
+     * exist in a collection.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::get() To get an item from
+     * the collection.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $firstname = $collection->take('firstname');
+     *
+     * // 'John'
+     * ```
+     * @example With a non-existing key
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $gender = $collection->take('gender');
+     *
+     * // Error
+     * ```
+     *
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException If the key doesn't exist in
+     * the collection.
+     *
+     * @return TValue Item from a collection.
+     */
+    public function take (int|string $key):mixed {
+
+        return $this->exist($key) // @phpstan-ignore return.type
+            ? $this->get($key)
+            : throw new KeyDoesntExistException()->withKey($key);
+
+    }
+
+    /**
+     * ### Remove and takes an item from the collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::take() To take an item from
+     * the collection.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::remove() To remove an item from
+     * the collection.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $firstname = $collection->pull('firstname');
+     *
+     * // 'John'
+     * ```
+     * @example With a non-existing key
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $gender = $collection->pull('gender');
+     *
+     * // Error
+     * ```
+     *
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException If the key doesn't exist in
+     * the collection.
+     *
+     * @return TValue Item from a collection.
+     */
+    public function pull (int|string $key):mixed {
+
+        $value = $this->take($key);
+
+        $this->remove($key);
+
+        return $value;
+
+    }
+
+    /**
+     * ### Adds or replaces item in the collection
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->set('Jane', 'firstname');
+     * $collection->set('female', 'gender');
+     *
+     * // ['firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']
+     * ```
+     *
+     * @param TValue $value <p>
+     * Collection value.
+     * </p>
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @return void
+     */
+    public function set (mixed $value, int|string $key):void {
+
+        $this->storage[$key] = $value;
+
+    }
+
+    /**
+     * ### Adds an item to the collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::exist() To check if item
+     * exist in a collection.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::set() To set an item in
+     * the collection.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->add('female', 'gender');
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']
+     * ```
+     * @example With an existing key
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->add('Jane', 'firstname');
+     *
+     * // Error
+     * ```
+     *
+     * @param TValue $value <p>
+     * Collection value.
+     * </p>
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyAlreadyExistException If the key already exists in
+     * the collection.
+     *
+     * @return void
+     */
+    public function add (mixed $value, int|string $key):void {
+
+        !$this->exist($key)
+            ? $this->set($value, $key)
+            : throw new KeyAlreadyExistException()->withKey($key);
+
+    }
+
+    /**
+     * ### Replaces an item in the collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::exist() To check if item
+     * exist in a collection.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::set() To set an item in
+     * the collection.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->replace('Jane', 'firstname');
+     *
+     * // ['firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']
+     * ```
+     * @example With an existing key
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->replace('female', 'gender');
+     *
+     * // Error
+     * ```
+     *
+     * @param TValue $value <p>
+     * Collection value.
+     * </p>
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException If the key doesn't exist in
+     * the collection.
+     *
+     * @return void
+     */
+    public function replace (mixed $value, int|string $key):void {
+
+        $this->exist($key)
+            ? $this->set($value, $key)
+            : throw new KeyDoesntExistException()->withKey($key);
+
+    }
+
+    /**
+     * ### Removes an item from the collection
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->remove('firstname');
+     *
+     * // ['lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']
+     * ```
+     *
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @return void
+     */
+    public function remove (int|string $key):void {
+
+        unset($this->storage[$key]);
+
+    }
+
+    /**
+     * ### Deletes an item from the collection
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::exist() To check if item
+     * exist in a collection.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::set() To set an item in
+     * the collection.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->delete('firstname');
+     *
+     * // ['lastname' => 'Doe', 'age' => 25, 10 => 2, 'gender' => 'female']
+     * ```
+     * @example With an existing key
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->delete('gender');
+     *
+     * // Error
+     * ```
+     *
+     * @param TKey $key <p>
+     * Collection key.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\DataStructures\Exceptions\KeyDoesntExistException If the key doesn't exist in
+     * the collection.
+     *
+     * @return void
+     */
+    public function delete (int|string $key):void {
+
+        $this->exist($key)
+            ? $this->remove($key)
+            : throw new KeyDoesntExistException()->withKey($key);
+
+    }
+
+}
