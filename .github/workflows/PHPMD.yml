@@ -22,9 +22,11 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@2.31.1
         with:
-          php-version: 8.3
+          php-version: 8.4
           coverage: none
-          tools: phpmd
+          tools: phpmd:2.x
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Run PHPMD
         run: phpmd . sarif phpmd.xml --reportfile phpmd-results.sarif
         continue-on-error: true
