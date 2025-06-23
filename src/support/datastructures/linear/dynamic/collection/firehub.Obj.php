@@ -15,6 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
+use FireHub\Core\Support\DataStructures\Contracts\Filterable;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
@@ -35,10 +36,11 @@ use SplObjectStorage, Traversable, UnexpectedValueException;
  * @template TInfo
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TObject, TInfo>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<TObject, TInfo>
  *
  * @api
  */
-class Obj extends Collection {
+class Obj extends Collection implements Filterable {
 
     /**
      * ### Trait contains all common JSON methods
@@ -356,6 +358,47 @@ class Obj extends Collection {
             $this->attach($object, $callback($info, $object));
 
         return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::attach() To add an object
+     * in the storage.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection = new Obj();
+     * $collection->attach($cls1, 'data for object 1');
+     * $collection->attach($cls2, [1,2,3]);
+     * $collection->attach($cls3, 20);
+     *
+     * $filter = $collection->filter(fn($info, $object) => $object !== $cls2);
+     * ```
+     */
+    public function filter (callable $callback):static {
+
+        $storage = new static();
+
+        foreach ($this as $object => $info) {
+
+            $result = $callback($info, $object);
+
+            if ($result === 'break') break;
+            if ($result) $storage->attach($object, $info);
+
+        }
+
+        return $storage;// @phpstan-ignore return.type
 
     }
 

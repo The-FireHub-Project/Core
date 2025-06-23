@@ -548,6 +548,39 @@ class Associative extends ArrStorage implements Arrayable, KeyChangeable, Overlo
      *
      * @since 1.0.0
      *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $filter = $collection->filter(fn($value, $key) => $key !== 'lastname');
+     *
+     * // ['firstname' => 'John', 'age' => 25, 10 => 2]
+     * ```
+     */
+    public function filter (callable $callback):static {
+
+        $storage = [];
+
+        foreach ($this->storage as $key => $value) {
+
+            $result = $callback($value, $key);
+
+            if ($result === 'break') break;
+            if ($result) $storage[$key] = $value;
+
+        }
+
+        return new static($storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::exist() To check if item exists
      * in the collection.
      */
