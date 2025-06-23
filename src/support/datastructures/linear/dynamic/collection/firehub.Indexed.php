@@ -442,6 +442,50 @@ class Indexed extends ArrStorage implements Arrayable, Sequantionable {
     }
 
     /**
+     * ### Pad a collection to the specified length with a value
+     * @since 1.0.0
+     *
+     * @template TPaddedValue
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $pad = $collection->pad(10, 'Daniel');
+     *
+     * // ['Jane', 'Richard', 'Jane', 'John', 'Jane', 'Richard', 'Daniel', 'Daniel', 'Daniel', 'Daniel']
+     * ```
+     * @example With negative size.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $pad = $collection->pad(-10, 'Daniel');
+     *
+     * // ['Daniel', 'Daniel', 'Daniel', 'Daniel', 'Jane', 'Richard', 'Jane', 'John', 'Jane', 'Richard']
+     * ```
+     *
+     * @param int $size <p>
+     * New size of the array.
+     * If the length is positive, then the array is padded on the right if it is negative, then on the left.
+     * If the absolute value of length is less than or equal to the length of the array, then no padding takes place.
+     * </p>
+     * @param TPaddedValue $value <p>
+     * Value to pad if input is less than length.
+     * </p>
+     *
+     * @return static<TValue|TPaddedValue> New data structure with padded value.
+     */
+    public function pad (int $size, mixed $value):static {
+
+        return new static(Arr::pad($this->storage, $size, $value));
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0
