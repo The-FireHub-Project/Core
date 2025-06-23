@@ -360,7 +360,9 @@ class Fixed extends SplFixedArray implements FixedContract, Chunkable, Filterabl
 
         $count = $this->getSize();
 
-        foreach ($this as $key => $value) {
+        $storage = clone $this;
+
+        foreach ($storage as $key => $value) {
 
             $index = $count - 1 - $key;
 
