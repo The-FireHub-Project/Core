@@ -19,6 +19,9 @@ use FireHub\Core\Support\DataStructures\Contracts\ {
     Arrayable, Sequantionable
 };
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+use FireHub\Core\Support\Enums\ {
+    Order, Sort
+};
 use FireHub\Core\Support\LowLevel\Arr;
 
 use function FireHub\Core\Support\Helpers\Arr\ {
@@ -399,7 +402,7 @@ class Indexed extends ArrStorage implements Arrayable, Sequantionable {
      *
      * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
      *
-     * $reverse = $collection->reverse($collection2);
+     * $collection->reverse($collection2);
      *
      * // ['Richard', 'Richard', 'Jane', 'Jane', 'Jane', 'John']
      * ```
@@ -407,6 +410,111 @@ class Indexed extends ArrStorage implements Arrayable, Sequantionable {
     public function reverse ():static {
 
         $this->storage = Arr::reverse($this->storage);
+
+        return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::shuffle() To shuffle the array items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $collection->shuffle($collection2);
+     *
+     * // ['Jane', 'Richard', 'Jane', 'John', 'Jane', 'Richard']
+     * ```
+     */
+    public function shuffle ():static {
+
+        Arr::shuffle($this->storage);
+
+        return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::sort() To sort an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $sort = $collection->sort();
+     *
+     * // ['Jane', 'Jane', 'Jane', 'John', 'Richard', 'Richard']
+     * ```
+     * @example Sorting order.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * use FireHub\Core\Support\Enums\Order;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $sort = $collection->sort(Order::DESC);
+     *
+     * // ['Richard', 'Richard', 'John', 'Jane', 'Jane', 'Jane']
+     * ```
+     * @example Sorting order with a flag.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     * use FireHub\Core\Support\Enums\Order;
+     * use FireHub\Core\Support\Enums\Sort;
+     *
+     * $collection = new Indexed([1, 2, 3, 4, 13, 22, 27, 28, 29]);
+     *
+     * $sort = $collection->sort(Order::ASC, Sort::BY_STRING_FLAG_CASE);
+     *
+     * // [1, 13, 2, 22, 27, 28, 29, 3, 4]
+     * ```
+     */
+    public function sort (Order $order = Order::ASC, Sort $flag = Sort::BY_REGULAR):static {
+
+        Arr::sort($this->storage, $order, $flag);
+
+        return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::sortBy() To sort an array by values using a user-defined comparison
+     * function.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $sort = $collection->sortBy(function ($current, $next):int {
+     *  if ($current === $next) return 0;
+     *  return ($current < $next) ? -1 : 1;
+     * });
+     *
+     * // ['Jane', 'Jane', 'Jane', 'John', 'Richard', 'Richard']
+     * ```
+     */
+    public function sortBy (callable $callback):static {
+
+        Arr::sortBy($this->storage, $callback);
 
         return $this;
 

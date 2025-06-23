@@ -351,7 +351,7 @@ class Fixed extends SplFixedArray implements FixedContract, Chunkable, Filterabl
      * $collection[1] = 'two';
      * $collection[2] = 'three';
      *
-     * $reverse = $collection->reverse();
+     * $collection->reverse();
      *
      * // ['three', 'two', 'one']
      * ```
