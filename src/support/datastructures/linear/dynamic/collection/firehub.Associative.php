@@ -16,7 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
 use FireHub\Core\Support\DataStructures\Contracts\ {
-    Arrayable, KeyChangeable, KeySortable, Overloadable
+    Arrayable, Flippable, KeyChangeable, KeySortable, Overloadable
 };
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
 use FireHub\Core\Support\Enums\ {
@@ -44,13 +44,14 @@ use function FireHub\Core\Support\Helpers\Arr\ {
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Arrayable<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Flippable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\KeyChangeable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\KeySortable<TKey, TValue>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Overloadable<TKey, TValue>
  *
  * @api
  */
-class Associative extends ArrStorage implements Arrayable, KeyChangeable, KeySortable, Overloadable {
+class Associative extends ArrStorage implements Arrayable, Flippable, KeyChangeable, KeySortable, Overloadable {
 
     /**
      * @inheritDoc
@@ -1041,6 +1042,51 @@ class Associative extends ArrStorage implements Arrayable, KeyChangeable, KeySor
 
         return $this->difference($data_structure)
             ->union($data_structure->difference($this));
+
+    }
+
+    /**
+     * ### Create a new data structure with keys appearing in any data structure but not all
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::union() To create new
+     * data structure with values appearing in any data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::differenceKeys() To create new
+     * data structure with keys that are not appearing in the other data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'John_', 'lastname_' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $diff = $collection->symmetricDifferenceKeys($collection2);
+     *
+     * // ['firstname' => 'John_', 'lastname' => 'Doe', '_lastname' => 'Doe']
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative<covariant TKey, covariant TValue> $data_structure <p>
+     * Data structure to provide set operator.
+     * </p>
+     *
+     * @return static<TKey, TValue> New filtered data structure.
+     */
+    public function symmetricDifferenceKeys (self $data_structure):static {
+
+        return $this->differenceKeys($data_structure)
+            ->union($data_structure->differenceKeys($this));
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     */
+    public function flip ():static {
+
+        return new static(Arr::flip($this->storage));  // @phpstan-ignore argument.type, argument.templateType
 
     }
 
