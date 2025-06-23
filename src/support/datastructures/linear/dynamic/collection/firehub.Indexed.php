@@ -21,7 +21,7 @@ use FireHub\Core\Support\DataStructures\Contracts\ {
 use FireHub\Core\Support\LowLevel\Arr;
 
 use function FireHub\Core\Support\Helpers\Arr\ {
-    first, last
+    first, last, random
 };
 
 /**
@@ -277,6 +277,37 @@ class Indexed extends ArrStorage implements Arrayable, Sequantionable {
     public function tail ():mixed {
 
         return last($this->storage);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Arr\random() To pick one or more random values out of the array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $random = $collection->random($collection2);
+     *
+     * // ['Jane']
+     * ```
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Arr\OutOfRangeException If an array is empty, or if the number is
+     * out of range.
+     */
+    public function random (int $number = 1):mixed {
+
+        $result = random($this->storage, $number);
+
+        return $number > 1 // @phpstan-ignore return.type
+            ? new static($result) // @phpstan-ignore argument.type
+            : $result;
 
     }
 

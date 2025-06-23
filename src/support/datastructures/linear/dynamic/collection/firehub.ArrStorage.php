@@ -14,6 +14,7 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
+use FireHub\Core\Support\DataStructures\Contracts\Randomble;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
@@ -33,8 +34,9 @@ use ArgumentCountError, Traversable;
  * @template TValue
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Randomble<TKey, TValue>
  */
-abstract class ArrStorage extends Collection {
+abstract class ArrStorage extends Collection implements Randomble {
 
     /**
      * ### Trait contains all common JSON methods
@@ -164,7 +166,6 @@ abstract class ArrStorage extends Collection {
         yield from $this->storage;
 
     }
-
 
     /**
      * @inheritDoc

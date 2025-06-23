@@ -22,6 +22,8 @@ use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
 
+use function FireHub\Core\Support\Helpers\Arr\random;
+
 /**
  * ### Associative array collection type
  *
@@ -453,6 +455,37 @@ class Associative extends ArrStorage implements Arrayable, Overloadable {
         $this->exist($key)
             ? $this->remove($key)
             : throw new KeyDoesntExistException()->withKey($key);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Arr\random() To pick one or more random values out of the array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $random = $collection->random($collection2);
+     *
+     * // ['Doe']
+     * ```
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Arr\OutOfRangeException If an array is empty, or if the number is
+     * out of range.
+     */
+    public function random (int $number = 1):mixed {
+
+        $result = random($this->storage, $number, true);
+
+        return $number > 1 // @phpstan-ignore return.type
+            ? new static($result) // @phpstan-ignore argument.type
+            : $result;
 
     }
 

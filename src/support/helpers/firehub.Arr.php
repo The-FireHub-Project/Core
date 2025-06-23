@@ -193,9 +193,10 @@ function crossJoin (array ...$arrays):array {
  * Whether you want to preserve keys from an original array or not.
  * </p>
  *
- * @throws \FireHub\Core\Support\Exceptions\Arr\OutOfRangeException If array is empty, or if number is out of range.
+ * @throws \FireHub\Core\Support\Exceptions\Arr\OutOfRangeException If an array is empty, or if the number
+ * is out of range.
  *
- * @return ($preserve_keys is true ? mixed|array<TKey, TValue> : mixed|list<TValue>)
+ * @return ($preserve_keys is true ? ($number is 1 ? TValue : array<TKey, TValue>) : ( $number is 1 ? TValue : list<TValue>))
  * If you're picking only one entry, return the value for a random entry.
  * Otherwise, it returns an array of values for the random entries.
  *
@@ -213,7 +214,7 @@ function random (array $array, int $number = 1, bool $preserve_keys = false):mix
     foreach ($keys as $key)
         $preserve_keys ? $items[$key] = $array[$key] : $items[] = $array[$key];
 
-    return $items;
+    return $items; // @phpstan-ignore return.type
 
 }
 
