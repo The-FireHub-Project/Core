@@ -454,6 +454,57 @@ class Obj extends Collection implements Chunkable, Filterable {
     }
 
     /**
+     * ### Create a new data structure with values appearing in any data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::has() To check if an object already
+     * exists in the collection.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj::attach() To add an object
+     * in the storage.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     * $cls4 = new stdClass();
+     *
+     * $collection = new Obj();
+     * $collection->attach($cls1, 'data for object 1');
+     * $collection->attach($cls2, [1,2,3]);
+     * $collection->attach($cls3, 20);
+     *
+     * $collection2 = new Obj();
+     * $collection2->attach($cls1, 'new data for object 1');
+     * $collection2->attach($cls2, [1,2,3]);
+     * $collection2->attach($cls3, 20);
+     * $collection2->attach($cls4, 30);
+     *
+     * $merge = $collection->merge($collection2);
+     * ```
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj<covariant TObject, covariant TInfo> ...$data_structures
+     * <p>
+     * Data structure to provide set operator.
+     * </p>
+     *
+     * @return static<TObject, TInfo> New merged data structure.
+     */
+    public function union (self ...$data_structures):static {
+
+        $storage = clone $this;
+
+        foreach ([$this, ...$data_structures] as $data_structure)
+            foreach ($data_structure as $object => $info)
+                // @phpstan-ignore-next-line argument.type
+                $storage->has($object) ?: $storage->attach($object, $info);
+
+        return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0

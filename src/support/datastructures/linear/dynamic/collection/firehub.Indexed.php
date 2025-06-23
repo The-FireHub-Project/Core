@@ -14,7 +14,9 @@
 
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
-use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
+use FireHub\Core\Support\Contracts\HighLevel\ {
+    DataStructures, DataStructures\Linear
+};
 use FireHub\Core\Support\DataStructures\Contracts\ {
     Arrayable, Sequantionable
 };
@@ -482,6 +484,89 @@ class Indexed extends ArrStorage implements Arrayable, Sequantionable {
     public function pad (int $size, mixed $value):static {
 
         return new static(Arr::pad($this->storage, $size, $value));
+
+    }
+
+    /**
+     * ### Create a new data structure with values appearing in any data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Contracts\HighLevel\DataStructures::values() To get values provided data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed::toArray() To get an array from
+     * the provided data structure.
+     *
+     * @template-covariant TCombinedKey
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection2 = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Johnie', 'Janie', 'Baby']);
+     *
+     * $join = $collection->join($collection2);
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Janie', 'Baby']
+     * ```
+     *
+     * @param \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear<TCombinedKey, covariant TValue> ...$data_structures <p>
+     * Data structure to provide set operator.
+     * </p>
+     *
+     * @return static<TValue> New filtered data structure.
+     *
+     * @phpstan-ignore-next-line method.variance
+     */
+    public function union (Linear ...$data_structures):static {
+
+        $storage = $this->storage;
+
+        foreach ($data_structures as $data_structure)
+            $storage += $data_structure->values()->toArray();
+
+        return new static($storage);
+
+    }
+
+    /**
+     * ### Join a new data structure into the current one
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed::append() To add items at the end
+     * of the data collection.
+     * @uses \FireHub\Core\Support\Contracts\HighLevel\DataStructures::values() To get values from joined
+     * data structures.
+     *
+     * @template-covariant TCombinedKey
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection2 = new Indexed(['Johnie', 'Janie', 'Baby']);
+     *
+     * $join = $collection->join($collection2);
+     *
+     * // ['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard', 'Johnie', 'Janie', 'Baby']
+     * ```
+     *
+     * @param \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear<TCombinedKey, covariant TValue> ...$data_structures <p>
+     * List of data structures to join.
+     * </p>
+     *
+     * @return static<TValue> New joined data structure.
+     *
+     * @phpstan-ignore-next-line method.variance
+     */
+    public function join (Linear ...$data_structures):static {
+
+        $storage = clone $this;
+
+        foreach ($data_structures as $data_structure)
+            $storage->append(...$data_structure->values());
+
+        return $storage; // @phpstan-ignore return.type
 
     }
 

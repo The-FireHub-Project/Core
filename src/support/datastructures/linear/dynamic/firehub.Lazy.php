@@ -15,7 +15,7 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 
 use FireHub\Core\Support\Contracts\HighLevel\ {
-    DataStructures, DataStructures\Linear\Dynamic
+    DataStructures, DataStructures\Linear, DataStructures\Linear\Dynamic
 };
 use FireHub\Core\Support\DataStructures\Contracts\ {
     Filterable, KeyChangeable
@@ -278,6 +278,42 @@ class Lazy implements Dynamic, Filterable, KeyChangeable {
                 if ($result) yield $key => $value;
 
             }
+
+        });
+
+    }
+
+    /**
+     * ### Join a new data structure into the current one
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Lazy(fn() => yield from ['middlename' => 'Marry']);
+     *
+     * $join = $collection->join($collection2);
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2, 'middlename' => 'Marry']
+     * ```
+     *
+     * @param \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear<covariant TKey, covariant TValue> ...$data_structures <p>
+     * List of data structures to join.
+     * </p>
+     *
+     * @return static<TKey, TValue> New joined data structure.
+     */
+    public function join (Linear ...$data_structures):static {
+
+        return new static (function () use ($data_structures) {
+
+            yield from $this;
+
+            foreach ([...$data_structures] as $data_structure)
+                foreach ($data_structure as $key => $value)
+                    yield $key => $value;
 
         });
 
