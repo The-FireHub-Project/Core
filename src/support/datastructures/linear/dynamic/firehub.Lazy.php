@@ -17,7 +17,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic;
 use FireHub\Core\Support\Contracts\HighLevel\ {
     DataStructures, DataStructures\Linear\Dynamic
 };
-
+use FireHub\Core\Support\DataStructures\Contracts\KeyChangeable;
 use FireHub\Core\Support\DataStructures\Traits\Enumerable;
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
@@ -35,10 +35,11 @@ use Closure, Generator, Traversable;
  * @template TValue
  *
  * @implements \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear\Dynamic<TKey, TValue>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\KeyChangeable<TKey, TValue>
  *
  * @api
  */
-class Lazy implements Dynamic {
+class Lazy implements Dynamic, KeyChangeable {
 
     /**
      * ### Enumerable data structure methods that every element meets a given criterion
@@ -188,6 +189,61 @@ class Lazy implements Dynamic {
         };
 
         return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->transformKeys(fn($value, $key) => $value.'.');
+     *
+     * // ['firstname.' => 'John', 'lastname.' => 'Doe', 'age.' => 25, '10.' => 2]
+     * ```
+     */
+    public function transformKeys (callable $callback):self {
+
+        $storage = ($this->storage)();
+
+        $this->storage = static function () use ($callback, $storage) { // @phpstan-ignore assign.propertyType
+            foreach ($storage as $key => $value) {
+                yield $callback($value, $key) => $value;
+            }
+        };
+
+        return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy::transformKeys() To apply the callback to
+     * the keys of the data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $applyToKeys = $collection->applyToKeys(fn($value, $key) => $value.'.');
+     *
+     * // ['firstname.' => 'John', 'lastname.' => 'Doe', 'age.' => 25, '10.' => 2]
+     * ```
+     */
+    public function applyToKeys (callable $callback):static {
+
+        return (clone $this)->transformKeys($callback); // @phpstan-ignore return.type
 
     }
 
