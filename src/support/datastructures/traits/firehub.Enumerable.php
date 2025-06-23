@@ -14,8 +14,12 @@
 
 namespace FireHub\Core\Support\DataStructures\Traits;
 
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
 use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Contains, Ensure, Find, Is
+};
+use FireHub\Core\Support\DataStructures\Function\ {
+    Keys, Values
 };
 use FireHub\Core\Support\LowLevel\Iterator;
 
@@ -219,6 +223,90 @@ trait Enumerable {
             $condition_not_meet($this);
 
         return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Function\Keys As a function.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $keys = $collection->keys();
+     *
+     * // [0, 1, 2]
+     * ```
+     * @example With user-defined filter.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $keys = $collection->keys(fn($value, $key) => $value === 'two');
+     *
+     * // [0, 2]
+     * ```
+     */
+    public function keys (?callable $callback = null):Indexed {
+
+        return new Keys($this)($callback);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Function\Values As a function.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $keys = $collection->values();
+     *
+     * // ['one', 'two', 'three']
+     * ```
+     * @example With user-defined filter.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Fixed;
+     *
+     * $collection = new Fixed(3);
+     *
+     * $collection[0] = 'one';
+     * $collection[1] = 'two';
+     * $collection[2] = 'three';
+     *
+     * $keys = $collection->values(fn($value, $key) => $key !== 1);
+     *
+     * // ['one', 'three']
+     * ```
+     */
+    public function values (?callable $callback = null):Indexed {
+
+        return new Values($this)($callback);
 
     }
 
