@@ -14,16 +14,21 @@
 
 namespace FireHub\Core\Support\DataStructures\Traits;
 
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\ {
+    Lazy, Collection\Indexed, Collection\Associative
+};
 use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Contains, Ensure, Find, Is
 };
 use FireHub\Core\Support\DataStructures\Function\ {
-    Keys, Values
+    Combine, Keys, Values
 };
 use FireHub\Core\Support\LowLevel\Iterator;
 
 use const FireHub\Core\Support\Constants\Number\MAX;
+
+use function FireHub\Core\Support\Helpers\PHP\sleep;
 
 /**
  * ### Enumerable data structure methods that every element meets a given criterion
@@ -307,6 +312,57 @@ trait Enumerable {
     public function values (?callable $callback = null):Indexed {
 
         return new Values($this)($callback);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Function\Combine As a function.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Richard']);
+     * $collection2 = new Indexed(['one', 'two', 'three']);
+     *
+     * $collection->combine($collection2);
+     *
+     * // ['John' => 'one', 'Jane' => 'two', 'Richard' => 'three']
+     * ```
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Arr\KeysAndValuesDiffNumberOfElemsException If arguments $keys and
+     * $values don't have the same number of elements.
+     */
+    public function combine (DataStructures $data_structure):Associative {
+
+        return new Combine($this)($data_structure);
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\PHP\sleep() As sleep function.
+     */
+    public function throttle (float $seconds_and_microseconds):Lazy {
+
+        return new Lazy (function () use ($seconds_and_microseconds) {
+
+            foreach ($this as $key => $value) {
+
+                yield $key => $value;
+
+                sleep($seconds_and_microseconds);
+
+            }
+
+        });
 
     }
 

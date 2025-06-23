@@ -19,7 +19,9 @@ use FireHub\Core\Support\Contracts\ {
 };
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 use FireHub\Core\Support\Contracts\Magic\Serializable;
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\ {
+    Lazy, Collection\Indexed, Collection\Associative
+};
 use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Contains, Ensure, Find, Is
 };
@@ -206,5 +208,39 @@ interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSe
      * the data structure.
      */
     public function values (?callable $callback = null):Indexed;
+
+    /**
+     * ### Combines the values of the data structure, as keys, with the values of another data structure
+     * @since 1.0.0
+     *
+     * @template-covariant TCombinedKey
+     * @template-covariant TCombinedValue
+     *
+     * @param \FireHub\Core\Support\Contracts\HighLevel\DataStructures<TCombinedKey, TCombinedValue> $data_structure <p>
+     * Data structure to be used for values.
+     * </p>
+     *
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative<TValue, TCombinedValue>
+     * New combined data structure.
+     *
+     * @phpstan-ignore generics.notSubtype
+     * @phpstan-ignore-next-line method.variance
+     */
+    public function combine (DataStructures $data_structure):Associative;
+
+    /**
+     * ### Throttle the lazy data structure such that each value is returned after the specified number of seconds
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy As return.
+     *
+     * @param float $seconds_and_microseconds <p>
+     * Number of seconds and microseconds to throttle each value.
+     * </p>
+     *
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy<TKey, TValue> New Lazy data structure
+     * with throttle from the current data structure.
+     */
+    public function throttle (float $seconds_and_microseconds):Lazy;
 
 }
