@@ -15,8 +15,12 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\Contracts\HighLevel\DataStructures;
-use FireHub\Core\Support\DataStructures\Contracts\Filterable;
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
+use FireHub\Core\Support\DataStructures\Contracts\ {
+    Chunkable, Filterable
+};
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\ {
+    Collection, Lazy
+};
 use FireHub\Core\Support\Traits\ {
     Jsonable, Serializable
 };
@@ -36,11 +40,12 @@ use SplObjectStorage, Traversable, UnexpectedValueException;
  * @template TInfo
  *
  * @extends \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection<TObject, TInfo>
+ * @implements \FireHub\Core\Support\DataStructures\Contracts\Chunkable<TObject, TInfo>
  * @implements \FireHub\Core\Support\DataStructures\Contracts\Filterable<TObject, TInfo>
  *
  * @api
  */
-class Obj extends Collection implements Filterable {
+class Obj extends Collection implements Chunkable, Filterable {
 
     /**
      * ### Trait contains all common JSON methods
@@ -399,6 +404,52 @@ class Obj extends Collection implements Filterable {
         }
 
         return $storage;// @phpstan-ignore return.type
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Obj;
+     *
+     * $cls1 = new stdClass();
+     * $cls2 = new stdClass();
+     * $cls3 = new stdClass();
+     *
+     * $collection = new Obj();
+     * $collection->attach($cls1, 'data for object 1');
+     * $collection->attach($cls2, [1,2,3]);
+     * $collection->attach($cls3, 20);
+     *
+     * $chunk = $collection->chunkWhere(fn($info, $object) => $info === [1,2,3]);
+     * ```
+     */
+    public function chunkWhere (callable $callback):Lazy {
+
+        return new Lazy(function () use ($callback) {
+
+            $chunks = new static();
+            foreach ($this as $object => $info) {
+
+                $chunks->attach($object, $info);
+
+                if ($callback($info, $object)) {
+
+                    yield $chunks;
+
+                    $chunks = new static();
+
+                }
+
+            }
+
+            if ($chunks->is()->notEmpty()) yield $chunks;
+
+        });
 
     }
 
