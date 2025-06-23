@@ -25,7 +25,9 @@ use FireHub\Core\Support\Enums\ {
 use FireHub\Core\Support\DataStructures\Exceptions\ {
     KeyAlreadyExistException, KeyDoesntExistException
 };
-use FireHub\Core\Support\LowLevel\Arr;
+use FireHub\Core\Support\LowLevel\ {
+    Arr, DataIs
+};
 
 use function FireHub\Core\Support\Helpers\Arr\ {
     random, shuffle
@@ -707,6 +709,338 @@ class Associative extends ArrStorage implements Arrayable, KeyChangeable, KeySor
             $storage = $data_structure->storage + $storage;
 
         return new static($storage);
+
+    }
+
+    /**
+     * ### Create a new data structure with keys and values that are not appearing in the other data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::callable() To check if $value parameter is provided.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::differenceAssocFuncKeyValue() As difference function.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::differenceAssocFuncKey() As difference function.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::differenceAssoc() As difference function.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage::toArray() To get data storage
+     * as an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $diff = $collection->difference($collection2);
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe']
+     * ```
+     * @example With a callback function for values.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Indexed(['John', 'Richard']);
+     *
+     * $diff = $collection->difference($collection2, fn($value_a, $value_b) => $value_a <=> $value_b);
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe']
+     * ```
+     * @example With a callback function for keys.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Indexed(['John', 'Richard']);
+     *
+     * $diff = $collection->difference($collection2, key: fn($key_a, $key_a) => $key_a <=> $key_a);
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe']
+     * ```
+     * @example With a callback function for keys and values.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Indexed(['John', 'Richard']);
+     *
+     * $diff = $collection->difference($collection2, fn($value_a, $value_b) => $value_a <=> $value_b, fn($key_a, $key_a) => $key_a <=> $key_a);
+     *
+     * // ['firstname' => 'John', 'lastname' => 'Doe']
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage<array-key, mixed> $data_structure <p>
+     * Data structure to provide set operator.
+     * </p>
+     * @param null|callable(mixed $a, mixed $b):int<-1, 1> $value [optional] <p>
+     * The comparison function must return an integer less than, equal to, or greater than zero if the first argument
+     * is considered to be respectively less than, equal to, or greater than the second.
+     * </p>
+     * @param null|callable(mixed $a, mixed $b):int<-1, 1> $key [optional] <p>
+     * The comparison function.
+     * </p>
+     *
+     * @return static<TKey, TValue> New filtered data structure.
+     */
+    public function difference (ArrStorage $data_structure, ?callable $value = null, ?callable $key = null):static {
+
+        return new static( match (true) {
+            DataIs::callable($value) && DataIs::callable($key) =>
+            Arr::differenceAssocFuncKeyValue(
+                $this->storage,
+                $data_structure->toArray(),
+                $value,
+                $key
+            ),
+            DataIs::callable($value) =>
+            Arr::differenceAssocFuncValue(
+                $this->storage,
+                $data_structure->toArray(), // @phpstan-ignore argument.type
+                $value
+            ),
+            DataIs::callable($key) =>
+            Arr::differenceAssocFuncKey(
+                $this->storage,
+                $data_structure->toArray(),
+                $key
+            ),
+            default =>
+            Arr::differenceAssoc(
+                $this->storage,
+                $data_structure->toArray()
+            )
+        });
+
+    }
+
+    /**
+     * ### Create a new data structure with keys that are not appearing in the other data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::differenceKeyFunc() As difference function.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::differenceKey() As difference function.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage::toArray() To get data storage
+     * as an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $diff = $collection->differenceKeys($collection2);
+     *
+     * // ['lastname' => 'Doe']
+     * ```
+     * @example With a callback function.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $diff = $collection->differenceKeys($collection2, fn($key_a, $key_a) => $key_a <=> $key_a);
+     *
+     * // ['lastname' => 'Doe']
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage<array-key, mixed> $data_structure <p>
+     * Data structure to provide set operator.
+     * </p>
+     * @param null|callable(mixed $a, mixed $b):int<-1, 1> $key [optional] <p>
+     * The comparison function.
+     * </p>
+     *
+     * @return static<TKey, TValue> New filtered data structure.
+     */
+    public function differenceKeys (ArrStorage $data_structure, ?callable $key = null):static {
+
+        return new static($key
+            ? Arr::differenceKeyFunc($this->storage, $data_structure->toArray(), $key) // @phpstan-ignore argument.type
+            : Arr::differenceKey($this->storage, $data_structure->toArray()));
+
+    }
+
+    /**
+     * ### Create a new data structure with keys and values that are appearing in all data structures
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::callable() To check if $value parameter is provided.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::intersectAssocFuncKeyValue() As intersect function.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::intersectAssocFuncKey() As intersect function.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::intersectAssoc() As intersect function.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage::toArray() To get data storage
+     * as an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $intersect = $collection->intersect($collection2);
+     *
+     * // ['age' => 25, 10 => 2]
+     * ```
+     * @example With a callback function for values.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Indexed(['John', 'Richard']);
+     *
+     * $intersect = $collection->intersect($collection2, fn($value_a, $value_b) => $value_a <=> $value_b);
+     *
+     * // ['age' => 25, 10 => 2]
+     * ```
+     * @example With a callback function for keys.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Indexed(['John', 'Richard']);
+     *
+     * $intersect = $collection->intersect($collection2, key: fn($key_a, $key_a) => $key_a <=> $key_a);
+     *
+     * // ['age' => 25, 10 => 2]
+     * ```
+     * @example With a callback function for keys and values.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Indexed(['John', 'Richard']);
+     *
+     * $intersect = $collection->intersect($collection2, fn($value_a, $value_b) => $value_a <=> $value_b, fn($key_a, $key_a) => $key_a <=> $key_a);
+     *
+     * // ['age' => 25, 10 => 2]
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage<array-key, mixed> $data_structure <p>
+     * Data structure to provide set operator.
+     * </p>
+     * @param null|callable(mixed $a, mixed $b):int<-1, 1> $value [optional] <p>
+     * The comparison function must return an integer less than, equal to, or greater than zero if the first argument
+     * is considered to be respectively less than, equal to, or greater than the second.
+     * </p>
+     * @param null|callable(mixed $a, mixed $b):int<-1, 1> $key [optional] <p>
+     * The comparison function.
+     * </p>
+     *
+     * @return static<TKey, TValue> New filtered data structure.
+     */
+    public function intersect (ArrStorage $data_structure, ?callable $value = null, ?callable $key = null):static {
+
+        return new static( match (true) {
+            DataIs::callable($value) && DataIs::callable($key) =>
+            Arr::intersectAssocFuncKeyValue(
+                $this->storage,
+                $data_structure->toArray(),
+                $value,
+                $key
+            ),
+            DataIs::callable($value) =>
+            Arr::intersectAssocFuncValue(
+                $this->storage,
+                $data_structure->toArray(), // @phpstan-ignore argument.type
+                $value
+            ),
+            DataIs::callable($key) =>
+            Arr::intersectAssocFuncKey(
+                $this->storage,
+                $data_structure->toArray(),
+                $key
+            ),
+            default =>
+            Arr::intersectAssoc(
+                $this->storage,
+                $data_structure->toArray()
+            )
+        });
+
+    }
+
+    /**
+     * ### Create a new data structure with keys appearing in all data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::intersectKeyFunc() As intersect function.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::intersectKey() As intersect function.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage::toArray() To get data storage
+     * as an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $intersect = $collection->intersectKeys($collection2);
+     *
+     * // ['firstname' => 'John', 'age' => 25, 10 => 2]
+     * ```
+     * @example With a callback function.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'John_', '_lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $intersect = $collection->intersectKeys($collection2, fn($key_a, $key_a) => $key_a <=> $key_a);
+     *
+     * // ['firstname' => 'John', 'age' => 25, 10 => 2]
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage<array-key, mixed> $data_structure <p>
+     * Data structure to provide set operator.
+     * </p>
+     * @param null|callable(mixed $a, mixed $b):int<-1, 1> $key [optional] <p>
+     * The comparison function.
+     * </p>
+     *
+     * @return static<TKey, TValue> New filtered data structure.
+     */
+    public function intersectKeys (ArrStorage $data_structure, ?callable $key = null):static {
+
+        return new static($key
+            ? Arr::intersectKeyFunc($this->storage, $data_structure->toArray(), $key) // @phpstan-ignore argument.type
+            : Arr::intersectKey($this->storage, $data_structure->toArray()));
+
+    }
+
+    /**
+     * ### Create a new data structure with keys and values appearing in any data structure but not all
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::union() To create new
+     * data structure with values appearing in any data structure.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative::difference() To create new
+     * data structure with keys and values that are not appearing in the other data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative;
+     *
+     * $collection = new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     * $collection2 = new Associative(['firstname' => 'John_', 'lastname_' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $diff = $collection->symmetricDifference($collection2);
+     *
+     * // ['firstname' => 'John_', 'lastname' => 'Doe', '_lastname' => 'Doe']
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative<covariant TKey, covariant TValue> $data_structure <p>
+     * Data structure to provide set operator.
+     * </p>
+     *
+     * @return static<TKey, TValue> New filtered data structure.
+     */
+    public function symmetricDifference (self $data_structure):static {
+
+        return $this->difference($data_structure)
+            ->union($data_structure->difference($this));
 
     }
 

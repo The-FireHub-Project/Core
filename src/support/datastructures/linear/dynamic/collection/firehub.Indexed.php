@@ -24,7 +24,9 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
 use FireHub\Core\Support\Enums\ {
     Order, Sort
 };
-use FireHub\Core\Support\LowLevel\Arr;
+use FireHub\Core\Support\LowLevel\ {
+    Arr, DataIs
+};
 
 use function FireHub\Core\Support\Helpers\Arr\ {
     first, last, random
@@ -567,6 +569,196 @@ class Indexed extends ArrStorage implements Arrayable, Sequantionable {
             $storage->append(...$data_structure->values());
 
         return $storage; // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * ### Cross join a new data structure into the current one
+     * @since 1.0.0
+     *
+     * @template-covariant TCombinedKey
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['a', 'b']);
+     * $collection2 = new Indexed(['c', 'd']);
+     *
+     * $join = $collection->crossJoin($collection2);
+     *
+     * // ['a', 'c'], ['a', 'd'], ['b', 'c'], ['b', 'd']
+     * ```
+     *
+     * @param \FireHub\Core\Support\Contracts\HighLevel\DataStructures\Linear<TCombinedKey, covariant TValue> ...$data_structures <p>
+     * List of data structures to join.
+     * </p>
+     *
+     * @return static<array<TValue>> New crossed joined data structure.
+     *
+     * @phpstan-ignore-next-line method.variance
+     */
+    public function crossJoin (Linear ...$data_structures):static {
+
+        $storage = [[]];
+
+        foreach ([$this, ...$data_structures] as $index => $value) {
+
+            $result = [];
+            foreach ($storage as $product)
+                foreach ($value as $item) {
+
+                    $product[$index] = $item;
+
+                    $result[] = $product;
+
+                }
+
+            $storage = $result;
+
+        }
+
+        return new static($storage); // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * ### Create a new data structure with values that are not appearing in the other data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::callable() To check if $value parameter is provided.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::differenceFunc() As difference function.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::difference() As difference function.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage::toArray() To get data storage
+     * as an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection2 = new Indexed(['John', 'Richard']);
+     *
+     * $diff = $collection->difference($collection2);
+     *
+     * // ['Jane', 'Jane', 'Jane']
+     * ```
+     * @example With a callback function.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection2 = new Indexed(['John', 'Richard']);
+     *
+     * $diff = $collection->difference($collection2, fn($value_a, $value_b) => $value_a <=> $value_b);
+     *
+     * // ['Jane', 'Jane', 'Jane']
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage<array-key, mixed> $data_structure <p>
+     * Data structure to provide set operator.
+     * </p>
+     * @param null|callable(mixed $a, mixed $b):int<-1, 1> $value [optional] <p>
+     * The comparison function must return an integer less than, equal to, or greater than zero if the first argument
+     * is considered to be respectively less than, equal to, or greater than the second.
+     * </p>
+     *
+     * @return static<TValue> New filtered data structure.
+     */
+    public function difference (ArrStorage $data_structure, ?callable $value = null):static {
+
+        return new static(
+            DataIs::callable($value)
+                ? Arr::differenceFunc($this->storage, $data_structure->toArray(), $value)
+                : Arr::difference($this->storage, $data_structure->toArray())
+        );
+
+    }
+
+    /**
+     * ### Create a new data structure with values appearing in all data structures
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\DataIs::callable() To check if $value parameter is provided.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::intersectFunc() As intersect function.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::intersect() As intersect function.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage::toArray() To get data storage
+     * as an array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection2 = new Indexed(['John', 'Richard']);
+     *
+     * $intersect = $collection->intersect($collection2);
+     *
+     * // ['John', 'Richard', 'Richard']
+     * ```
+     * @example With a callback function.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection2 = new Indexed(['John', 'Richard']);
+     *
+     * $intersect = $collection->intersect($collection2, fn($value_a, $value_b) => $value_a <=> $value_b);
+     *
+     * // ['John', 'Richard', 'Richard']
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ArrStorage<array-key, mixed> $data_structure <p>
+     * Data structure to provide set operator.
+     * </p>
+     * @param null|callable(mixed $a, mixed $b):int<-1, 1> $value [optional] <p>
+     * The comparison function must return an integer less than, equal to, or greater than zero if the first argument
+     * is considered to be respectively less than, equal to, or greater than the second.
+     * </p>
+     *
+     * @return static<TValue> New filtered data structure.
+     */
+    public function intersect (ArrStorage $data_structure, ?callable $value = null):static {
+
+        return new static(
+            DataIs::callable($value)
+                ? Arr::intersectFunc($this->storage, $data_structure->toArray(), $value)
+                : Arr::intersect($this->storage, $data_structure->toArray())
+        );
+
+    }
+
+    /**
+     * ### Create a new data structure with values appearing in any data structure but not all
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed::join() To join new data
+     * structure into the current one.
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed::difference() To create new
+     * data structure with values that are not appearing in the other data structure.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     * $collection2 = new Indexed(['John', 'Richard', 'Johnny']);
+     *
+     * $diff = $collection->symmetricDifference($collection2);
+     *
+     * // ['Jane', 'Jane', 'Jane', 'Johnny']
+     * ```
+     *
+     * @param \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed<covariant TValue> $data_structure <p>
+     * Data structure to provide set operator.
+     * </p>
+     *
+     * @return static<TValue> New filtered data structure.
+     */
+    public function symmetricDifference (self $data_structure):static {
+
+        return $this->difference($data_structure)
+            ->join($data_structure->difference($this)); // @phpstan-ignore argument.type
 
     }
 
