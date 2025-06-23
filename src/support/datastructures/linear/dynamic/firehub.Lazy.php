@@ -166,6 +166,36 @@ class Lazy implements Dynamic {
      *
      * @since 1.0.0
      *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
+     *
+     * $collection = new Lazy(fn() => yield from ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2]);
+     *
+     * $collection->transform(fn($value, $key) => $value.'.');
+     *
+     * // ['firstname' => 'John.', 'lastname' => 'Doe.', 'age' => '25.', 10 => '2.']
+     * ```
+     */
+    public function transform (callable $callback):self {
+
+        $storage = ($this->storage)();
+
+        $this->storage = static function () use ($callback, $storage) { // @phpstan-ignore assign.propertyType
+            foreach ($storage as $key => $value) {
+                yield $key => $callback($value, $key);
+            }
+        };
+
+        return $this;
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy::toArray() To get data structure an array.
      *
      * @return array<array{key: TKey, value: TValue}> Data which can be serialized by json_encode(), which is a value
