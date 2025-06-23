@@ -20,7 +20,7 @@ use FireHub\Core\Support\Contracts\ {
 use FireHub\Core\Support\Contracts\Iterator\IteratorAggregate;
 use FireHub\Core\Support\Contracts\Magic\Serializable;
 use FireHub\Core\Support\DataStructures\Operation\ {
-    CountBy, Contains
+    CountBy, Contains, Ensure, Find, Is
 };
 
 /**
@@ -65,5 +65,35 @@ interface DataStructures extends Arrayable, Countable, IteratorAggregate, JsonSe
      * @return \FireHub\Core\Support\DataStructures\Operation\Contains<$this> Contains operation class.
      */
     public function contains ():Contains;
+
+    /**
+     * ### Ensure that satisfies in the data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Ensure As return.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Operation\Ensure<$this> Ensure operation class.
+     */
+    public function ensure ():Ensure;
+
+    /**
+     * ### Find in the data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Find As return.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Operation\Find<$this> Find operation class.
+     */
+    public function find ():Find;
+
+    /**
+     * ### Check is data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Is As return.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Operation\Is<$this> Check is operation class.
+     */
+    public function is ():Is;
 
 }
