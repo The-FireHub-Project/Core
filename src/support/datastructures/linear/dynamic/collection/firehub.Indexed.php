@@ -386,4 +386,30 @@ class Indexed extends ArrStorage implements Arrayable, Sequantionable {
 
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\Arr::reverse() To reverse the order of array items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed;
+     *
+     * $collection = new Indexed(['John', 'Jane', 'Jane', 'Jane', 'Richard', 'Richard']);
+     *
+     * $reverse = $collection->reverse($collection2);
+     *
+     * // ['Richard', 'Richard', 'Jane', 'Jane', 'Jane', 'John']
+     * ```
+     */
+    public function reverse ():static {
+
+        $this->storage = Arr::reverse($this->storage);
+
+        return $this;
+
+    }
+
 }
