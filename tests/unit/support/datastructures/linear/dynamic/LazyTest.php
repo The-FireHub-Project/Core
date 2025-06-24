@@ -63,10 +63,10 @@ final class LazyTest extends Base {
     public function testFromDataStructure ():void {
 
         $this->assertEquals(
-            $this->collection,
+            $this->collection->toArray(),
             Lazy::fromDataStructure(
                 new Associative(['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2])
-            )
+            )->toArray()
         );
 
     }
@@ -348,7 +348,7 @@ final class LazyTest extends Base {
         $json = $this->collection->toJson();
 
         $this->assertSame('[{"key":"firstname","value":"John"},{"key":"lastname","value":"Doe"},{"key":"age","value":25},{"key":10,"value":2}]', $json);
-        $this->assertEquals($this->collection, Lazy::fromJson($json));
+        $this->assertEquals($this->collection->toArray(), Lazy::fromJson($json)->toArray());
 
     }
 
@@ -359,7 +359,7 @@ final class LazyTest extends Base {
      */
     public function testSerialize ():void {
 
-        $this->assertEquals($this->collection, Lazy::unserialize($this->collection->serialize()));
+        $this->assertEquals($this->collection->toArray(), Lazy::unserialize($this->collection->serialize())->toArray());
 
     }
 
