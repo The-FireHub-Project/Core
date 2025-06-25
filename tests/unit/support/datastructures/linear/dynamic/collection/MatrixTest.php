@@ -41,6 +41,8 @@ final class MatrixTest extends Base {
 
     public Matrix $collection;
 
+    public Matrix $numbers;
+
     /**
      * @since 1.0.0
      *
@@ -54,6 +56,12 @@ final class MatrixTest extends Base {
             3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
             4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
             5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+        ]);
+
+        $this->numbers = new Matrix([
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9]
         ]);
 
     }
@@ -108,6 +116,23 @@ final class MatrixTest extends Base {
             $collection,
             $this->collection->column('lastname', 'firstname')
         );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCollapse ():void {
+
+        $collection = new Indexed([
+            1, 2, 3, 4, 5, 6, 7, 8, 9
+        ]);
+
+        $this->assertEquals(
+            $collection,
+            $this->numbers->collapse());
 
     }
 

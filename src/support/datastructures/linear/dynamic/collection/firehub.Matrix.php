@@ -73,6 +73,10 @@ class Matrix extends Associative {
      * ### Return the values from a single column in the matrix data structure
      * @since 1.0.0
      *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed As return,
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative As return.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::column() To get values from a single column of the matrix.
+     *
      * @param key-of<TColumns> $column <p>
      * The column of values to return.
      * This value may be an integer key of the column you wish to retrieve, or it may be a string key name for an
@@ -96,6 +100,21 @@ class Matrix extends Associative {
         // @phpstan-ignore return.type
         return $index ? new Associative(Arr::column($this->storage, $column, $index))
             : new Indexed(Arr::column($this->storage, $column));
+
+    }
+
+    /**
+     * ### Collapses a matrix into a single, flat data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed As return.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::merge() To merge empty array and matrix items.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed<value-of<TColumns>>
+     */
+    public function collapse ():Indexed {
+
+        return new Indexed(Arr::merge([], ...$this->storage));
 
     }
 
