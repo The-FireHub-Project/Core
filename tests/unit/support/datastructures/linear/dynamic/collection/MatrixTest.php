@@ -145,13 +145,13 @@ final class MatrixTest extends Base {
 
         $collection = new Matrix([
             'Doe' => [
-                'John' => [['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21]],
-                'Jane' => [['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27]],
-                'Johnie' => [['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14]],
-                'Janie' => [['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]]
+                'John' => [1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21]],
+                'Jane' => [2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27]],
+                'Johnie' => [4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14]],
+                'Janie' => [5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]]
             ],
             'Roe' => [
-                'Richard' => [['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25]]
+                'Richard' => [3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25]]
             ]
         ]);
 

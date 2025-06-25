@@ -16,7 +16,7 @@ namespace FireHub\Core\Support\DataStructures\Function;
 
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Matrix;
 use FireHub\Core\Support\LowLevel\ {
-    Arr, DataIs
+    Arr, DataIs, Iterables
 };
 
 /**
@@ -51,6 +51,7 @@ readonly class GroupBy {
      * @uses \FireHub\Core\Support\LowLevel\DataIs::callable() To check if the provided column is callable.
      * @uses \FireHub\Core\Support\LowLevel\Arr::merge() To merge data.
      * @uses \FireHub\Core\Support\LowLevel\Arr::slice() To extract a slice of the array.
+     * @uses \FireHub\Core\Support\LowLevel\Iterables::count() To count the number of columns.
      *
      * @param array<key-of<TColumns>, array<array-key, mixed>> $array <p>
      * The array.
@@ -60,32 +61,38 @@ readonly class GroupBy {
      * </p>
      *
      * @return array<value-of<TColumns>, array<array-key, mixed>>
+     *
+     * @phpstan-ignore parameter.phpDocType
      */
-    private function merge (array $array, mixed $column):array {
+    private function merge (array $array, int|string|callable $column, int|string|callable ...$columns):array {
+
+        $_key = $column;
 
         $merge = [];
+        foreach ($array as $array_key => $value) {
 
-        foreach ($array as $value) {
+            if (DataIs::callable($_key))
+                $column = $_key($value);
+            else if (isset($value[$_key]))
+                $column = $value[$_key];
 
-            $key = null;
+            if ($column === null) continue;
 
-            if (DataIs::callable($column))
-                $key = $column($value);
-            else if (isset($value[$column]))
-                $key = $value[$column];
-
-            if ($key === null) continue;
-
-            $merge[$key][] = $value;
+            $merge[$column][$array_key] = $value;
 
         }
 
-        if (func_num_args() > 2)
-            foreach ($merge as $key => $value)
-                $merge[$key] = $this->merge(
-                    // @phpstan-ignore argument.type
-                    ...(Arr::merge([ $value ], Arr::slice(func_get_args(), 2, func_num_args())))
-                );
+        if (!empty($columns)) {
+
+            foreach ($merge as $key => $value) {
+
+                $params = Arr::merge([$value], Arr::slice($columns, 0, Iterables::count($columns) +2 ));
+
+                $merge[$key] = $this->merge(...$params); // @phpstan-ignore argument.type
+
+            }
+
+        }
 
         return $merge;
 
