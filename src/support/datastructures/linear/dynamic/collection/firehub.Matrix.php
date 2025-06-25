@@ -17,7 +17,10 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Operation\Select;
 use FireHub\Core\Support\DataStructures\Helpers\Where;
 use FireHub\Core\Support\Enums\Comparison;
+use FireHub\Core\Support\Exceptions\Arr\ArrayItemMissingKeyException;
 use FireHub\Core\Support\LowLevel\Arr;
+
+use function FireHub\Core\Support\Helpers\Arr\uniqueDuplicatesTwoDimensional;
 
 /**
  * ### Matrix array collection type
@@ -35,6 +38,89 @@ use FireHub\Core\Support\LowLevel\Arr;
  * @api
  */
 class Matrix extends Associative {
+
+    /**
+     * ### Takes unique values from a matrix data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Arr\uniqueDuplicatesTwoDimensional() As unique function.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Matrix;
+     *
+     * $collection = new Matrix([
+     *  1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+     *  2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+     *  3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+     *  4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+     *  5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+     * ]);
+     *
+     * $unique = $collection->unique();
+     *
+     * // [
+     * //   1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+     * //   3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25]
+     * // ]
+     * ```
+     *
+     * @param key-of<TColumns> $column <p>
+     * Array key to group with.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Arr\ArrayItemMissingKeyException If any of the items doesn't have
+     * a provided key.
+     *
+     * @return static<TIdentify, TColumns> New filtered matrix data structure.
+     */
+    public function unique (mixed $column):static {
+
+        return new static(uniqueDuplicatesTwoDimensional($this->storage, $column)['unique']);
+
+    }
+
+    /**
+     * ### Takes duplicates values from a matrix data structure
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Arr\uniqueDuplicatesTwoDimensional() As unique function.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Matrix;
+     *
+     * $collection = new Matrix([
+     *  1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+     *  2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+     *  3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+     *  4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+     *  5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+     * ]);
+     *
+     * $duplicates = $collection->duplicates();
+     *
+     * // [
+     * //   2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+     * //   4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+     * //   5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+     * // ]
+     * ```
+     *
+     * @param key-of<TColumns> $column <p>
+     * Array key to group with.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Arr\ArrayItemMissingKeyException If any of the items doesn't have
+     * a provided key.
+     *
+     * @return static<TIdentify, TColumns> New filtered matrix data structure.
+     */
+    public function duplicates (mixed $column):static {
+
+        return new static(uniqueDuplicatesTwoDimensional($this->storage, $column)['duplicates']);
+
+    }
 
     /**
      * ### Filter matrix items

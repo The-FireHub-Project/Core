@@ -18,10 +18,12 @@ use FireHub\Core\Testing\Base;
 use PHPUnit\Framework\Attributes\ {
     CoversFunction, Group, Small
 };
-use \FireHub\Core\Support\Exceptions\Arr\OutOfRangeException;
+use FireHub\Core\Support\Exceptions\Arr\ {
+    ArrayItemMissingKeyException, OutOfRangeException
+};
 
 use function FireHub\Core\Support\Helpers\Arr\ {
-    first, last, isEmpty, crossJoin, random, shuffle
+    first, last, isEmpty, crossJoin, random, shuffle, uniqueDuplicatesTwoDimensional
 };
 
 /**
@@ -36,6 +38,7 @@ use function FireHub\Core\Support\Helpers\Arr\ {
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\crossJoin')]
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\random')]
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\shuffle')]
+#[CoversFunction('\FireHub\Core\Support\Helpers\Arr\uniqueDuplicatesTwoDimensional')]
 final class ArrTest extends Base {
 
     /**
@@ -126,6 +129,59 @@ final class ArrTest extends Base {
         $arr = ['firstname' => 'John', 'lastname' => 'Doe', 'age' => 25, 10 => 2];
 
         $this->assertTrue(shuffle($arr));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testUniqueDuplicatesTwoDimensional ():void {
+
+        $arr = [
+            1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+            2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+            3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+            4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+            5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+        ];
+
+        $this->assertSame(
+            [
+                'unique' => [
+                    1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+                    3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25]
+                ],
+                'duplicates' => [
+                    2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+                    4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+                    5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+                ]
+            ],
+            uniqueDuplicatesTwoDimensional($arr, 'lastname')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testUniqueDuplicatesTwoDimensionalException ():void {
+
+        $this->expectException(ArrayItemMissingKeyException::class);
+
+        $arr = [
+            1 => ['id' => 1, 'firstname' => 'John', 'age' => 21],
+            2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+            3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+            4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+            5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+        ];
+
+        uniqueDuplicatesTwoDimensional($arr, 'lastname');
 
     }
 

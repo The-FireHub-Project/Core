@@ -14,6 +14,7 @@
 
 namespace FireHub\Core\Support\Helpers\Arr;
 
+use FireHub\Core\Support\Exceptions\Arr\ArrayItemMissingKeyException;
 use FireHub\Core\Support\LowLevel\ {
     Arr, DataIs, Iterables
 };
@@ -222,11 +223,11 @@ function random (array $array, int $number = 1, bool $preserve_keys = false):mix
  * ### Shuffle array items with keys preserved
  * @since 1.0.0
  *
- * @template TKey of array-key
- * @template TValue
- *
  * @uses \FireHub\Core\Support\LowLevel\Arr::keys() To get array keys.
  * @uses \FireHub\Core\Support\LowLevel\Arr::shuffle() To shuffle array items.
+ *
+ * @template TKey of array-key
+ * @template TValue
  *
  * @example
  * ```php
@@ -258,5 +259,74 @@ function shuffle (array &$array):true {
     $array = $items;
 
     return true;
+
+}
+
+/**
+ * ### Group two-dimensional array by provided unique and duplicated column values
+ * @since 1.0.0
+ *
+ * @uses \FireHub\Core\Support\LowLevel\Arr::inArray() To check if a value exists in an array.
+ *
+ * @template TKey of array-key
+ * @template TValue of array<array-key, mixed>
+ *
+ * @example
+ * ```php
+ * use function FireHub\Core\Support\Helpers\Arr\uniqueDuplicatesTwoDimensional;
+ *
+ * uniqueDuplicatesTwoDimensional([
+ *  1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+ *  2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+ *  3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+ *  4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+ *  5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+ * ], 'lastname');
+ *
+ * // [
+ * //   1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+ *      3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25]
+ * // ],
+ * // [
+ * //   2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+ * //   4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+ * //   5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+ * // ]
+ * ```
+ *
+ * @param array<TKey, TValue> $array <p>
+ * The array.
+ * </p>
+ * @param key-of<TValue> $key <p>
+ * Array key to group with.
+ * </p>
+ *
+ * @throws \FireHub\Core\Support\Exceptions\Arr\ArrayItemMissingKeyException If any of the items doesn't have
+ * a provided key.
+ *
+ * @return array<'unique'|'duplicates', array<TKey, TValue>> The grouped array with unique and duplicated values.
+ *
+ * @api
+ */
+function uniqueDuplicatesTwoDimensional (array $array, mixed $key):array {
+
+    $keys = [];
+    $unique = [];
+    $duplicates = [];
+
+    foreach ($array as $array_key => $array_value) {
+
+        if (!isset($array_value[$key])) throw new ArrayItemMissingKeyException()->withKey($key);
+
+        if (!Arr::inArray($array_value[$key], $keys)) {
+
+            $keys[] = $array_value[$key];
+            $unique[$array_key] = $array_value;
+
+        } else $duplicates[$array_key] = $array_value;
+
+    }
+
+    return ['unique' => $unique, 'duplicates' => $duplicates];
 
 }

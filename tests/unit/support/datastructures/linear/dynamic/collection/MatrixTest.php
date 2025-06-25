@@ -22,6 +22,7 @@ use FireHub\Core\Support\DataStructures\Operation\Select;
 use FireHub\Core\Support\DataStructures\Function\GroupBy;
 use FireHub\Core\Support\DataStructures\Helpers\Where;
 use FireHub\Core\Support\Enums\Comparison;
+use FireHub\Core\Support\Exceptions\Arr\ArrayItemMissingKeyException;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
 };
@@ -63,6 +64,87 @@ final class MatrixTest extends Base {
             [4, 5, 6],
             [7, 8, 9]
         ]);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testUnique ():void {
+
+        $collection = new Matrix([
+            1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+            3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25]
+        ]);
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->unique('lastname')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testUniqueException ():void {
+
+        $this->expectException(ArrayItemMissingKeyException::class);
+
+        $arr = [
+            1 => ['id' => 1, 'firstname' => 'John', 'age' => 21],
+            2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+            3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+            4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+            5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+        ];
+
+        new Matrix($arr)->unique('lastname');
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testDuplicates ():void {
+
+        $collection = new Matrix([
+            2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+            4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+            5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+        ]);
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->duplicates('lastname')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testDuplicatesException ():void {
+
+        $this->expectException(ArrayItemMissingKeyException::class);
+
+        $arr = [
+            1 => ['id' => 1, 'firstname' => 'John', 'age' => 21],
+            2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+            3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+            4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+            5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+        ];
+
+        new Matrix($arr)->duplicates('lastname');
 
     }
 
