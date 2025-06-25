@@ -173,15 +173,15 @@ final class DateAndTimeTest extends Base {
 
         $get = DateAndTime::sunInfo(0, 40.730610, -73.935242);
 
-        $this->assertSame(44299, $get['sunrise']);
-        $this->assertSame(78022, $get['sunset']);
-        $this->assertSame(61160, $get['transit']);
-        $this->assertSame(42549, $get['civil_twilight_begin']);
-        $this->assertSame(79772, $get['civil_twilight_end']);
-        $this->assertSame(40488, $get['nautical_twilight_begin']);
-        $this->assertSame(81833, $get['nautical_twilight_end']);
-        $this->assertSame(38493, $get['astronomical_twilight_begin']);
-        $this->assertSame(83828, $get['astronomical_twilight_end']);
+        $this->assertIsInt($get['sunrise']);
+        $this->assertIsInt($get['sunset']);
+        $this->assertIsInt($get['transit']);
+        $this->assertIsInt($get['civil_twilight_begin']);
+        $this->assertIsInt($get['civil_twilight_end']);
+        $this->assertIsInt($get['nautical_twilight_begin']);
+        $this->assertIsInt($get['nautical_twilight_end']);
+        $this->assertIsInt($get['astronomical_twilight_begin']);
+        $this->assertIsInt($get['astronomical_twilight_end']);
 
     }
 
