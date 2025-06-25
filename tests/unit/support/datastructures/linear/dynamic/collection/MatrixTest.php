@@ -15,8 +15,11 @@
 namespace support\datastructures\linear\dynamic\collection;
 
 use FireHub\Core\Testing\Base;
-use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Matrix;
+use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
+    Indexed, Associative, Matrix
+};
 use FireHub\Core\Support\DataStructures\Operation\Select;
+use FireHub\Core\Support\DataStructures\Function\GroupBy;
 use FireHub\Core\Support\DataStructures\Helpers\Where;
 use FireHub\Core\Support\Enums\Comparison;
 use PHPUnit\Framework\Attributes\ {
@@ -31,6 +34,7 @@ use PHPUnit\Framework\Attributes\ {
 #[Group('datastructures')]
 #[CoversClass(Matrix::class)]
 #[CoversClass(Select::class)]
+#[CoversClass(GroupBy::class)]
 #[CoversClass(Where::class)]
 #[CoversClass(Comparison::class)]
 final class MatrixTest extends Base {
@@ -72,6 +76,63 @@ final class MatrixTest extends Base {
             $this->collection->select(
                 'id', Comparison::GREATER, 2, ['lastname', Comparison::EQUAL, 'Doe']
             )->or('firstname', Comparison::EQUAL, 'Richard')->result()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testColumn ():void {
+
+        $collection = new Indexed([
+            'Doe', 'Doe', 'Roe', 'Doe', 'Doe'
+        ]);
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->column('lastname')
+        );
+
+        $collection = new Associative([
+            'John' => 'Doe',
+            'Jane' => 'Doe',
+            'Richard' => 'Roe',
+            'Johnie' => 'Doe',
+            'Janie' => 'Doe'
+        ]);
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->column('lastname', 'firstname')
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testGroupBy ():void {
+
+        $collection = new Matrix([
+            'Doe' => [
+                'John' => [['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21]],
+                'Jane' => [['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27]],
+                'Johnie' => [['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14]],
+                'Janie' => [['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]]
+            ],
+            'Roe' => [
+                'Richard' => [['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25]]
+            ]
+        ]);
+
+        $this->assertEquals(
+            $collection,
+            new GroupBy($this->collection)('lastname', fn($value) => $value['firstname'])
         );
 
     }

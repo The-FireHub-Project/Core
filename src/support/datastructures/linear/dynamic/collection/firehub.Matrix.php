@@ -17,6 +17,7 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Operation\Select;
 use FireHub\Core\Support\DataStructures\Helpers\Where;
 use FireHub\Core\Support\Enums\Comparison;
+use FireHub\Core\Support\LowLevel\Arr;
 
 /**
  * ### Matrix array collection type
@@ -65,6 +66,36 @@ class Matrix extends Associative {
             $where->and(...$value); // @phpstan-ignore argument.type
 
         return new Select($this, $where); // @phpstan-ignore return.type
+
+    }
+
+    /**
+     * ### Return the values from a single column in the matrix data structure
+     * @since 1.0.0
+     *
+     * @param key-of<TColumns> $column <p>
+     * The column of values to return.
+     * This value may be an integer key of the column you wish to retrieve, or it may be a string key name for an
+     * associative array or property name.
+     * It may also be null to return complete arrays or objects (this is useful together with $index to reindex the
+     * array).
+     * </p>
+     * @param null|key-of<TColumns> $index [optional] <p>
+     * The column to use as the index/keys for the returned array.
+     * This value may be the integer key of the column, or it may be the string key name.
+     * The value is cast as usual for array keys.
+     * </p>
+     *
+     * @return ($index is null ? \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed<value-of<TColumns>> : \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative<value-of<TColumns>, value-of<TColumns>>)
+     * Data structure representing a single column from the matrix values.
+     *
+     * @phpstan-ignore-next-line parameter.phpDocType, generics.notSubtype
+     */
+    public function column (int|string $column, null|int|string $index = null):Indexed|Associative {
+
+        // @phpstan-ignore return.type
+        return $index ? new Associative(Arr::column($this->storage, $column, $index))
+            : new Indexed(Arr::column($this->storage, $column));
 
     }
 
