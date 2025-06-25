@@ -17,7 +17,6 @@ namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 use FireHub\Core\Support\DataStructures\Operation\Select;
 use FireHub\Core\Support\DataStructures\Helpers\Where;
 use FireHub\Core\Support\Enums\Comparison;
-use FireHub\Core\Support\Exceptions\Arr\ArrayItemMissingKeyException;
 use FireHub\Core\Support\LowLevel\Arr;
 
 use function FireHub\Core\Support\Helpers\Arr\uniqueDuplicatesTwoDimensional;
@@ -129,6 +128,29 @@ class Matrix extends Associative {
      * @uses \FireHub\Core\Support\DataStructures\Operation\Select As return.
      * @uses \FireHub\Core\Support\DataStructures\Helpers\Where::and() As and filter.
      *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Matrix;
+     * use FireHub\Core\Support\Enums\Comparison;
+     *
+     * $collection = new Matrix([
+     *  1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+     *  2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+     *  3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+     *  4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+     *  5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+     * ]);
+     *
+     * $select = $collection->select('id', Comparison::GREATER, 2, ['lastname', Comparison::EQUAL, 'Doe'])
+     *  ->or('firstname', Comparison::EQUAL, 'Richard');
+     *
+     * // [
+     * //   3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+     * //   4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+     * //   5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+     * // ]
+     * ```
+     *
      * @param key-of<TColumns> $compare <p>
      * Matrix key to compare.
      * </p>
@@ -163,6 +185,47 @@ class Matrix extends Associative {
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Associative As return.
      * @uses \FireHub\Core\Support\LowLevel\Arr::column() To get values from a single column of the matrix.
      *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Matrix;
+     * use FireHub\Core\Support\Enums\Comparison;
+     *
+     * $collection = new Matrix([
+     *  1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+     *  2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+     *  3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+     *  4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+     *  5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+     * ]);
+     *
+     * $column = $collection->column('lastname');
+     *
+     * // Indexed['Doe', 'Doe', 'Roe', 'Doe', 'Doe']
+     * ```
+     * @example With the provided index.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Matrix;
+     * use FireHub\Core\Support\Enums\Comparison;
+     *
+     * $collection = new Matrix([
+     *  1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+     *  2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+     *  3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+     *  4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+     *  5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+     * ]);
+     *
+     * $column = $collection->column('lastname', 'firstname');
+     *
+     * // Associative[
+     * //   'John' => 'Doe',
+     * //   'Jane' => 'Doe',
+     * //   'Richard' => 'Roe',
+     * //   'Johnie' => 'Doe',
+     * //   'Janie' => 'Doe'
+     * ]
+     * ```
+     *
      * @param key-of<TColumns> $column <p>
      * The column of values to return.
      * This value may be an integer key of the column you wish to retrieve, or it may be a string key name for an
@@ -195,6 +258,22 @@ class Matrix extends Associative {
      *
      * @uses \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed As return.
      * @uses \FireHub\Core\Support\LowLevel\Arr::merge() To merge empty array and matrix items.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Matrix;
+     * use FireHub\Core\Support\Enums\Comparison;
+     *
+     * $collection = new Matrix([
+     *  [1, 2, 3],
+     *  [4, 5, 6],
+     *  [7, 8, 9]
+     * ]);
+     *
+     * $collapse = $collection->collapse();
+     *
+     * // Indexed[1, 2, 3, 4, 5, 6, 7, 8, 9]
+     * ```
      *
      * @return \FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Indexed<value-of<TColumns>>
      */
