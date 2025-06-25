@@ -22,7 +22,7 @@ use FireHub\Core\Support\DataStructures\Operation\ {
     CountBy, Ensure, Is, Skip, Take
 };
 use FireHub\Core\Support\DataStructures\Function\ {
-    Chunk, Combine, Reduce, Reject, Partition, Slice, Splice, Split
+    Chunk, Combine, Reduce, Reject, Partition, Slice, Splice, Split, SplitIn
 };
 use FireHub\Core\Support\Enums\ {
     Order, Sort, Data\Type
@@ -52,6 +52,7 @@ use stdClass;
 #[CoversClass(Slice::class)]
 #[CoversClass(Splice::class)]
 #[CoversClass(Split::class)]
+#[CoversClass(SplitIn::class)]
 #[CoversClass(Order::class)]
 #[CoversClass(Sort::class)]
 #[CoversClass(Type::class)]
@@ -81,7 +82,7 @@ final class IndexedTest extends Base {
 
         $this->mix = new Indexed([$this->cls1, 0, 1, 'one', false, true, null]);
 
-        $this->numbers = new Indexed([1, 2, 3, 4, 13, 22, 27, 28, 29]);
+        $this->numbers = new Indexed([1, 2, 3, 4, 13, 22, 27, 28, 29, 50]);
 
     }
 
@@ -645,12 +646,28 @@ final class IndexedTest extends Base {
     public function testSplit ():void {
 
         $this->assertEquals([
-            ['key' => 0, 'value' => new Indexed(['John', 'Jane'])],
-            ['key' => 1, 'value' => new Indexed(['Jane', 'Jane'])],
-            ['key' => 2, 'value' => new Indexed(['Richard'])],
-            ['key' => 3, 'value' => new Indexed(['Richard'])]
+            ['key' => 0, 'value' => new Indexed([1, 2, 3, 4])],
+            ['key' => 1, 'value' => new Indexed([13, 22, 27])],
+            ['key' => 2, 'value' => new Indexed([28, 29, 50])]
         ],
-            new Split($this->collection)(4)->toArray()
+            new Split($this->numbers)(3)->toArray()
+        );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSplitIn ():void {
+
+        $this->assertEquals([
+            ['key' => 0, 'value' => new Indexed([1, 2, 3, 4])],
+            ['key' => 1, 'value' => new Indexed([13, 22, 27, 28])],
+            ['key' => 2, 'value' => new Indexed([29, 50])]
+        ],
+            new SplitIn($this->numbers)(3)->toArray()
         );
 
     }
@@ -825,7 +842,7 @@ final class IndexedTest extends Base {
         );
 
         $this->assertEquals(
-            new Indexed([1, 13, 2, 22, 27, 28, 29, 3, 4]),
+            new Indexed([1, 13, 2, 22, 27, 28, 29, 3, 4, 50]),
             $this->numbers->sort(Order::ASC, Sort::BY_STRING_FLAG_CASE)
         );
 

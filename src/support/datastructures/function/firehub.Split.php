@@ -14,17 +14,15 @@
 
 namespace FireHub\Core\Support\DataStructures\Function;
 
-use FireHub\Core\Support\DataStructures\Contracts\ {
-    Chunkable, Filterable
-};
+use FireHub\Core\Support\DataStructures\Contracts\Filterable;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Lazy;
 use FireHub\Core\Support\LowLevel\NumInt;
 
 /**
- * ### Split the collection into the given number of groups filling non-terminal groups first
+ * ### Split the data structure into the given number of groups
  * @since 1.0.0
  *
- * @template TDataStructure of \FireHub\Core\Support\DataStructures\Contracts\Chunkable&\FireHub\Core\Support\DataStructures\Contracts\Filterable
+ * @template TDataStructure of \FireHub\Core\Support\DataStructures\Contracts\Filterable
  */
 readonly class Split {
 
@@ -32,7 +30,7 @@ readonly class Split {
      * ### Constructor
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\DataStructures\Contracts\Chunkable As parameter.
+     * @uses \FireHub\Core\Support\DataStructures\Contracts\Filterable As parameter.
      *
      * @param TDataStructure $data_structure <p>
      * Instance of data structures.
@@ -41,7 +39,7 @@ readonly class Split {
      * @return void
      */
     public function __construct (
-        protected Chunkable&Filterable $data_structure
+        protected Filterable $data_structure
     ) {}
 
     /**
@@ -52,7 +50,7 @@ readonly class Split {
      * @uses \FireHub\Core\Support\LowLevel\NumInt::floor() To round group size down.
      * @uses \FireHub\Core\Support\LowLevel\NumInt::divide() To divide the total number of elements with number
      * of groups.
-     * @uses \FireHub\Core\Support\Contracts\HighLevel\DataStructures::count() To get total number of elements.
+     * @uses \FireHub\Core\Support\Contracts\HighLevel\DataStructures::count() To get the total number of elements.
      *
      * @param positive-int $number_of_groups <p>
      * Number of groups.
