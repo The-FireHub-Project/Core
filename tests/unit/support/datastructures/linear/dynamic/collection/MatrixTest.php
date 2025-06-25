@@ -175,7 +175,7 @@ final class MatrixTest extends Base {
      *
      * @return void
      */
-    public function testColumn ():void {
+    public function testPluck ():void {
 
         $collection = new Indexed([
             'Doe', 'Doe', 'Roe', 'Doe', 'Doe'
@@ -183,7 +183,7 @@ final class MatrixTest extends Base {
 
         $this->assertEquals(
             $collection,
-            $this->collection->column('lastname')
+            $this->collection->pluck('lastname')
         );
 
         $collection = new Associative([
@@ -196,7 +196,7 @@ final class MatrixTest extends Base {
 
         $this->assertEquals(
             $collection,
-            $this->collection->column('lastname', 'firstname')
+            $this->collection->pluck('lastname', 'firstname')
         );
 
     }

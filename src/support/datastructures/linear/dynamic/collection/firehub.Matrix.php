@@ -198,7 +198,7 @@ class Matrix extends Associative {
      *  5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
      * ]);
      *
-     * $column = $collection->column('lastname');
+     * $pluck = $collection->pluck('lastname');
      *
      * // Indexed['Doe', 'Doe', 'Roe', 'Doe', 'Doe']
      * ```
@@ -215,7 +215,7 @@ class Matrix extends Associative {
      *  5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
      * ]);
      *
-     * $column = $collection->column('lastname', 'firstname');
+     * $pluck = $collection->pluck('lastname', 'firstname');
      *
      * // Associative[
      * //   'John' => 'Doe',
@@ -244,7 +244,7 @@ class Matrix extends Associative {
      *
      * @phpstan-ignore-next-line parameter.phpDocType, generics.notSubtype
      */
-    public function column (int|string $column, null|int|string $index = null):Indexed|Associative {
+    public function pluck (int|string $column, null|int|string $index = null):Indexed|Associative {
 
         // @phpstan-ignore return.type
         return $index ? new Associative(Arr::column($this->storage, $column, $index))
