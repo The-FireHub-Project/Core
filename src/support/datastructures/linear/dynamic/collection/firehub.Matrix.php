@@ -15,8 +15,6 @@
 namespace FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection;
 
 use FireHub\Core\Support\DataStructures\Operation\Select;
-use FireHub\Core\Support\DataStructures\Helpers\Where;
-use FireHub\Core\Support\Enums\Comparison;
 use FireHub\Core\Support\LowLevel\Arr;
 
 use function FireHub\Core\Support\Helpers\Arr\ {
@@ -39,6 +37,20 @@ use function FireHub\Core\Support\Helpers\Arr\ {
  * @api
  */
 class Matrix extends Associative {
+
+    /**
+     * ### Filter matrix items
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\DataStructures\Operation\Select As return.
+     *
+     * @return \FireHub\Core\Support\DataStructures\Operation\Select<$this, TIdentify, TColumns>
+     */
+    public function select ():Select {
+
+        return new Select($this);
+
+    }
 
     /**
      * @inheritDoc
@@ -192,62 +204,6 @@ class Matrix extends Associative {
     public function duplicates (mixed $column):static {
 
         return new static(uniqueDuplicatesTwoDimensional($this->storage, $column)['duplicates']);
-
-    }
-
-    /**
-     * ### Filter matrix items
-     * @since 1.0.0
-     *
-     * @uses \FireHub\Core\Support\DataStructures\Operation\Select As return.
-     * @uses \FireHub\Core\Support\DataStructures\Helpers\Where::and() As and filter.
-     *
-     * @example
-     * ```php
-     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Matrix;
-     * use FireHub\Core\Support\Enums\Comparison;
-     *
-     * $collection = new Matrix([
-     *  1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
-     *  2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
-     *  3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
-     *  4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
-     *  5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
-     * ]);
-     *
-     * $select = $collection->select('id', Comparison::GREATER, 2, ['lastname', Comparison::EQUAL, 'Doe'])
-     *  ->or('firstname', Comparison::EQUAL, 'Richard');
-     *
-     * // [
-     * //   3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
-     * //   4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
-     * //   5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
-     * // ]
-     * ```
-     *
-     * @param key-of<TColumns> $compare <p>
-     * Matrix key to compare.
-     * </p>
-     * @param \FireHub\Core\Support\Enums\Comparison|value-of<\FireHub\Core\Support\Enums\Comparison> $comparison <p>
-     * Comparison operator.
-     * </p>
-     * @param value-of<TColumns> $with <p>
-     * Value to compare with.
-     * </p>
-     * @param array<array{key-of<TColumns>, \FireHub\Core\Support\Enums\Comparison|value-of<\FireHub\Core\Support\Enums\Comparison>, value-of<TColumns>}> ...$and <p>
-     * And filter.
-     * </p>
-     *
-     * @return \FireHub\Core\Support\DataStructures\Operation\Select<$this, TColumns> New matrix with selected items.
-     */
-    public function select (mixed $compare, Comparison|string $comparison, mixed $with, array ...$and):Select {
-
-        $where = new Where($this, $compare, $comparison, $with);
-
-        foreach ($and as $value)
-            $where->and(...$value); // @phpstan-ignore argument.type
-
-        return new Select($this, $where); // @phpstan-ignore return.type
 
     }
 

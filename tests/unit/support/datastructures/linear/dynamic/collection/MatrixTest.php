@@ -14,16 +14,14 @@
 
 namespace support\datastructures\linear\dynamic\collection;
 
+use FireHub\Core\Support\Enums\Comparison;
 use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
     Indexed, Associative, Matrix
 };
 use FireHub\Core\Support\DataStructures\Operation\Select;
 use FireHub\Core\Support\DataStructures\Function\GroupBy;
-use FireHub\Core\Support\DataStructures\Helpers\Where;
-use FireHub\Core\Support\Enums\ {
-    Comparison, Order
-};
+use FireHub\Core\Support\Enums\Order;
 use FireHub\Core\Support\Exceptions\Arr\ArrayItemMissingKeyException;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -38,8 +36,6 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(Matrix::class)]
 #[CoversClass(Select::class)]
 #[CoversClass(GroupBy::class)]
-#[CoversClass(Where::class)]
-#[CoversClass(Comparison::class)]
 #[CoversClass(Order::class)]
 final class MatrixTest extends Base {
 
@@ -67,6 +63,57 @@ final class MatrixTest extends Base {
             [4, 5, 6],
             [7, 8, 9]
         ]);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testSelect ():void {
+
+        $collection = new Matrix([
+            1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+            3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25]
+        ]);
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->select()->where(['id', Comparison::EQUAL, 1], ['id', Comparison::EQUAL, 3])->result()
+        );
+
+        $collection = new Matrix([
+            2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+            4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+            5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+        ]);
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->select()->whereNot(['id', Comparison::EQUAL, 1], ['id', Comparison::EQUAL, 3])->result()
+        );
+
+        $collection = new Matrix([
+            1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+            5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+        ]);
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->select()->whereBetween('age', 16, 21)->result()
+        );
+
+        $collection = new Matrix([
+            2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+            3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+            4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14]
+        ]);
+
+        $this->assertEquals(
+            $collection,
+            $this->collection->select()->whereNotBetween('age', 16, 21)->result()
+        );
 
     }
 
@@ -159,30 +206,9 @@ final class MatrixTest extends Base {
     public function testRandom ():void {
 
         $this->assertIsString($this->collection->random(1, 'firstname'));
+        $this->assertIsArray($this->collection->random(1));
 
         $this->assertInstanceOf(Matrix::class, $this->collection->random(2, 'firstname'));
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function testSelect ():void {
-
-        $collection = new Matrix([
-            3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
-            4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
-            5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
-        ]);
-
-        $this->assertEquals(
-            $collection,
-            $this->collection->select(
-                'id', Comparison::GREATER, 2, ['lastname', Comparison::EQUAL, 'Doe']
-            )->or('firstname', Comparison::EQUAL, 'Richard')->result()
-        );
 
     }
 
