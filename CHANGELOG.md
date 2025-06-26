@@ -1,10 +1,13 @@
 # Release Notes for v0.x.x.pre-alpha
 
-## [Unreleased](https://github.com/The-FireHub-Project/Core/compare/v0.1.6...develop-pre-alpha-m1)
+## [Unreleased](https://github.com/The-FireHub-Project/Core/compare/v0.1.7...develop-pre-alpha-m1)
+
+# [v0.1.7](https://github.com/The-FireHub-Project/Core/compare/v0.1.6...v0.1.7) – (2025-06-26)
 
 ### Added
 - Create Arr helper functions, first and last ([#18](https://github.com/The-FireHub-Project/Core/issues/18), [1019f93](https://github.com/The-FireHub-Project/Core/pull/4/commits/1019f93))
 - Create Resources low-level proxy class ([#18](https://github.com/The-FireHub-Project/Core/issues/18), [7b2479a](https://github.com/The-FireHub-Project/Core/pull/4/commits/7b2479a))
+- Create Data Structures
 
 # [v0.1.6](https://github.com/The-FireHub-Project/Core/compare/v0.1.5...v0.1.6) – (2025-03-18)
 
