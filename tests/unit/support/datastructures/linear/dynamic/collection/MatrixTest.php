@@ -153,6 +153,19 @@ final class MatrixTest extends Base {
      *
      * @return void
      */
+    public function testRandom ():void {
+
+        $this->assertIsArray($this->collection->random());
+
+        $this->assertInstanceOf(Matrix::class, $this->collection->random(2));
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
     public function testSelect ():void {
 
         $collection = new Matrix([

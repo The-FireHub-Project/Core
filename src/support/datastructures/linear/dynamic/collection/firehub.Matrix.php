@@ -19,7 +19,9 @@ use FireHub\Core\Support\DataStructures\Helpers\Where;
 use FireHub\Core\Support\Enums\Comparison;
 use FireHub\Core\Support\LowLevel\Arr;
 
-use function FireHub\Core\Support\Helpers\Arr\uniqueDuplicatesTwoDimensional;
+use function FireHub\Core\Support\Helpers\Arr\ {
+    random, uniqueDuplicatesTwoDimensional
+};
 
 /**
  * ### Matrix array collection type
@@ -37,6 +39,76 @@ use function FireHub\Core\Support\Helpers\Arr\uniqueDuplicatesTwoDimensional;
  * @api
  */
 class Matrix extends Associative {
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Arr\random() To pick one or more random values out of the array.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Matrix;
+     *
+     * $collection = new Matrix([
+     *  1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+     *  2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+     *  3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+     *  4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+     *  5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+     * ]);
+     *
+     * $random = $collection->random(1);
+     *
+     * // ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27]
+     * ```
+     * @example With provided column key.
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Matrix;
+     *
+     * $collection = new Matrix([
+     *  1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+     *  2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+     *  3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+     *  4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+     *  5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+     * ]);
+     *
+     * $random = $collection->random(1, firstname);
+     *
+     * // 'Jane'
+     * ```
+     *
+     * @param key-of<TColumns> ...$columns [optional] <p>
+     * If specified, method will return random value from provided column.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Arr\OutOfRangeException If an array is empty, or if the number is
+     * out of range.
+     *
+     * @return TColumns|static<TIdentify, TColumns> Random value from data structure.
+     */
+    public function random (int $number = 1, mixed ...$columns):mixed {
+
+        $storage = [];
+        foreach ($columns as $column)
+            $storage[] = Arr::column($this->storage, $column);
+
+
+        if ($storage) {
+
+            $result = random(Arr::merge(...$storage), $number);
+
+            return $number > 1 // @phpstan-ignore return.type
+                ? new static($result) // @phpstan-ignore argument.type
+                : $result;
+
+        }
+
+        return parent::random($number);
+
+    }
 
     /**
      * ### Takes unique values from a matrix data structure
