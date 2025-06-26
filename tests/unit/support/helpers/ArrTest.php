@@ -15,15 +15,16 @@
 namespace support\helpers;
 
 use FireHub\Core\Testing\Base;
-use PHPUnit\Framework\Attributes\ {
-    CoversFunction, Group, Small
-};
+use FireHub\Core\Support\Enums\Order;
 use FireHub\Core\Support\Exceptions\Arr\ {
     ArrayItemMissingKeyException, OutOfRangeException
 };
+use PHPUnit\Framework\Attributes\ {
+    CoversClass, CoversFunction, Group, Small
+};
 
 use function FireHub\Core\Support\Helpers\Arr\ {
-    first, last, isEmpty, crossJoin, random, shuffle, uniqueDuplicatesTwoDimensional
+    first, last, isEmpty, crossJoin, random, shuffle, uniqueDuplicatesTwoDimensional, multiSort
 };
 
 /**
@@ -32,6 +33,7 @@ use function FireHub\Core\Support\Helpers\Arr\ {
  */
 #[Small]
 #[Group('helpers')]
+#[CoversClass(Order::class)]
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\first')]
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\last')]
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\isEmpty')]
@@ -39,6 +41,7 @@ use function FireHub\Core\Support\Helpers\Arr\ {
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\random')]
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\shuffle')]
 #[CoversFunction('\FireHub\Core\Support\Helpers\Arr\uniqueDuplicatesTwoDimensional')]
+#[CoversFunction('\FireHub\Core\Support\Helpers\Arr\multiSort')]
 final class ArrTest extends Base {
 
     /**
@@ -182,6 +185,36 @@ final class ArrTest extends Base {
         ];
 
         uniqueDuplicatesTwoDimensional($arr, 'lastname');
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testMultiSort ():void {
+
+        $arr = [
+            ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'gender' => 'male', 'age' => 25],
+            ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'gender' => 'female', 'age' => 23],
+            ['id' => 3, 'firstname' => 'Richard', 'lastname' => 'Roe', 'gender' => 'male', 'age' => 27],
+            ['id' => 4, 'firstname' => 'Jane', 'lastname' => 'Roe', 'gender' => 'female', 'age' => 22],
+            ['id' => 5, 'firstname' => 'John', 'lastname' => 'Roe', 'gender' => 'male', 'age' => 26]
+        ];
+
+        multiSort($arr, ['lastname' => Order::ASC, 'age' => Order::DESC]);
+
+        $this->assertSame(
+            [
+                ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'gender' => 'male', 'age' => 25],
+                ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'gender' => 'female', 'age' => 23],
+                ['id' => 3, 'firstname' => 'Richard', 'lastname' => 'Roe', 'gender' => 'male', 'age' => 27],
+                ['id' => 5, 'firstname' => 'John', 'lastname' => 'Roe', 'gender' => 'male', 'age' => 26],
+                ['id' => 4, 'firstname' => 'Jane', 'lastname' => 'Roe', 'gender' => 'female', 'age' => 22]
+            ],
+            $arr
+        );
 
     }
 

@@ -15,6 +15,7 @@
 namespace FireHub\Core\Support\Helpers\Arr;
 
 use FireHub\Core\Support\Exceptions\Arr\ArrayItemMissingKeyException;
+use FireHub\Core\Support\Enums\Order;
 use FireHub\Core\Support\LowLevel\ {
     Arr, DataIs, Iterables
 };
@@ -328,5 +329,82 @@ function uniqueDuplicatesTwoDimensional (array $array, mixed $key):array {
     }
 
     return ['unique' => $unique, 'duplicates' => $duplicates];
+
+}
+
+/**
+ * ### Sort multiple on two-dimensional arrays
+ * @since 1.0.0
+ *
+ * @uses \FireHub\Core\Support\LowLevel\Arr::column() To return the values from a single column in the input array.
+ * @uses \FireHub\Core\Support\LowLevel\Arr::multiSort() To sort multiple or multidimensional arrays.
+ * @uses \FireHub\Core\Support\Enums\Order::DESC As order enum.
+ *
+ * @template TArray of array<array-key, array<array-key, mixed>>
+ *
+ * @example
+ * ```php
+ * use FireHub\Core\Support\Enums\Order;
+ * use function FireHub\Core\Support\Helpers\Arr\multiSort;
+ *
+ * $array = [
+ *  ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'gender' => 'male', 'age' => 25],
+ *  ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'gender' => 'female', 'age' => 23],
+ *  ['id' => 3, 'firstname' => 'Richard', 'lastname' => 'Roe', 'gender' => 'male', 'age' => 27],
+ *  ['id' => 4, 'firstname' => 'Jane', 'lastname' => 'Roe', 'gender' => 'female', 'age' => 22],
+ *  ['id' => 5, 'firstname' => 'John', 'lastname' => 'Roe', 'gender' => 'male', 'age' => 26]
+ * ];
+ *
+ * multiSort($array, [
+ *  'lastname' => Order::ASC
+ *  'age' => Order::DESC
+ * ]);
+ *
+ * // [
+ * //   ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'gender' => 'male', 'age' => 25],
+ * //   ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'gender' => 'female', 'age' => 23],
+ * //   ['id' => 3, 'firstname' => 'Richard', 'lastname' => 'Roe', 'gender' => 'male', 'age' => 27],
+ * //   ['id' => 5, 'firstname' => 'John', 'lastname' => 'Roe', 'gender' => 'male', 'age' => 26],
+ * //   ['id' => 4, 'firstname' => 'Jane', 'lastname' => 'Roe', 'gender' => 'female', 'age' => 22]
+ * // ]
+ * ```
+ *
+ * @param TArray &$array <p>
+ * A two-dimensional array being sorted.
+ * </p>
+ * @param array<int|string, \FireHub\Core\Support\Enums\Order|value-of<\FireHub\Core\Support\Enums\Order>> $fields <p>
+ * List of fields to sort by.
+ * </p>
+ *
+ * @throws \FireHub\Core\Support\Exceptions\Arr\FailedSortMultiArrayException Failed to sort a multi-sort array.
+ * @throws \FireHub\Core\Support\Exceptions\Arr\SizeInconsistentException If array sizes are inconsistent.
+ *
+ * @return bool True on success, false otherwise.
+ *
+ * @caution Associative (string) keys will be maintained, but numeric keys will be re-indexed.
+ * @note Resets array's internal pointer to the first element.
+ *
+ * @api
+ */
+function multiSort (array &$array, array $fields):bool {
+
+    $multi_sort = [];
+
+    foreach ($fields as $column => $order) {
+
+        $order = match($order) {
+            Order::DESC => SORT_DESC,
+            default => SORT_ASC
+        };
+
+        $multi_sort[] = [...Arr::column($array, $column)];
+
+        $multi_sort[] = $order;
+
+    }
+
+    $multi_sort[] = &$array;
+
+    return Arr::multiSort($multi_sort); // @phpstan-ignore argument.type
 
 }

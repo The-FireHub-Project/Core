@@ -21,7 +21,9 @@ use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\ {
 use FireHub\Core\Support\DataStructures\Operation\Select;
 use FireHub\Core\Support\DataStructures\Function\GroupBy;
 use FireHub\Core\Support\DataStructures\Helpers\Where;
-use FireHub\Core\Support\Enums\Comparison;
+use FireHub\Core\Support\Enums\ {
+    Comparison, Order
+};
 use FireHub\Core\Support\Exceptions\Arr\ArrayItemMissingKeyException;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, Group, Small
@@ -38,6 +40,7 @@ use PHPUnit\Framework\Attributes\ {
 #[CoversClass(GroupBy::class)]
 #[CoversClass(Where::class)]
 #[CoversClass(Comparison::class)]
+#[CoversClass(Order::class)]
 final class MatrixTest extends Base {
 
     public Matrix $collection;
@@ -155,9 +158,9 @@ final class MatrixTest extends Base {
      */
     public function testRandom ():void {
 
-        $this->assertIsArray($this->collection->random());
+        $this->assertIsString($this->collection->random(1, 'firstname'));
 
-        $this->assertInstanceOf(Matrix::class, $this->collection->random(2));
+        $this->assertInstanceOf(Matrix::class, $this->collection->random(2, 'firstname'));
 
     }
 
@@ -254,6 +257,30 @@ final class MatrixTest extends Base {
             $collection,
             new GroupBy($this->collection)('lastname', fn($value) => $value['firstname'])
         );
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testMultiSort ():void {
+
+        $collection = new Matrix ([
+            ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+            ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+            ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16],
+            ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+            ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+        ]);
+
+        $this->collection->multiSort([
+            'lastname' => Order::ASC,
+            'firstname' => Order::DESC
+        ]);
+
+        $this->assertEquals($collection, $this->collection);
 
     }
 

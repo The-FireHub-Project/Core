@@ -20,7 +20,7 @@ use FireHub\Core\Support\Enums\Comparison;
 use FireHub\Core\Support\LowLevel\Arr;
 
 use function FireHub\Core\Support\Helpers\Arr\ {
-    random, uniqueDuplicatesTwoDimensional
+    multiSort, random, uniqueDuplicatesTwoDimensional
 };
 
 /**
@@ -46,6 +46,8 @@ class Matrix extends Associative {
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\Helpers\Arr\random() To pick one or more random values out of the array.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::column() To get a single column from the storage.
+     * @uses \FireHub\Core\Support\LowLevel\Arr::merge() To merge columns.
      *
      * @example
      * ```php
@@ -352,6 +354,56 @@ class Matrix extends Associative {
     public function collapse ():Indexed {
 
         return new Indexed(Arr::merge([], ...$this->storage));
+
+    }
+
+    /**
+     * ### Sort multiple on two-dimensional arrays
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Arr\multiSort() As multi-sort function.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\DataStructures\Linear\Dynamic\Collection\Matrix;
+     * use FireHub\Core\Support\Enums\Comparison;
+     *
+     * $collection = new Matrix([
+     *  1 => ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'age' => 21],
+     *  2 => ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'age' => 27],
+     *  3 => ['id' => 3, 'firstname' => 'Richard', 'lastname' =>'Roe', 'age' => 25],
+     *  4 => ['id' => 4, 'firstname' => 'Johnie', 'lastname' =>'Doe', 'age' => 14],
+     *  5 => ['id' => 5, 'firstname' => 'Janie', 'lastname' =>'Doe', 'age' => 16]
+     * ]);
+     *
+     * $collection->collapse([
+     *  'lastname' => Order::ASC
+     *  'firstname' => Order::DESC
+     * ]);
+     *
+     * // [
+     * //    ['id' => 1, 'firstname' => 'John', 'lastname' => 'Doe', 'gender' => 'male', 'age' => 25],
+     * //    ['id' => 2, 'firstname' => 'Jane', 'lastname' => 'Doe', 'gender' => 'female', 'age' => 23],
+     * //    ['id' => 3, 'firstname' => 'Richard', 'lastname' => 'Roe', 'gender' => 'male', 'age' => 27],
+     * //    ['id' => 5, 'firstname' => 'John', 'lastname' => 'Roe', 'gender' => 'male', 'age' => 26],
+     * //    ['id' => 4, 'firstname' => 'Jane', 'lastname' => 'Roe', 'gender' => 'female', 'age' => 22]
+     * // ]
+     * ```
+     *
+     * @param array<int|string, \FireHub\Core\Support\Enums\Order|value-of<\FireHub\Core\Support\Enums\Order>> $fields <p>
+     * List of fields to sort by.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Arr\FailedSortMultiArrayException Failed to sort a multi-sort array.
+     * @throws \FireHub\Core\Support\Exceptions\Arr\SizeInconsistentException If array sizes are inconsistent.
+     *
+     * @return bool True on success, false otherwise.
+     *
+     * @caution Associative (string) keys will be maintained, but numeric keys will be re-indexed.
+     */
+    public function multiSort (array $fields):bool {
+
+        return multiSort($this->storage, $fields);
 
     }
 
