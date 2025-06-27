@@ -2,6 +2,9 @@
 
 ## [Unreleased](https://github.com/The-FireHub-Project/Core/compare/v0.1.7...develop-pre-alpha-m1)
 
+### Added
+- Create Char support high-level class ([#18](https://github.com/The-FireHub-Project/Core/issues/18), [1019f93](https://github.com/The-FireHub-Project/Core/pull/4/commits/1019f93))
+
 # [v0.1.7](https://github.com/The-FireHub-Project/Core/compare/v0.1.6...v0.1.7) – (2025-06-26)
 
 ### Added
