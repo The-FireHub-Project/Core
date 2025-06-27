@@ -23,6 +23,8 @@ use FireHub\Core\Support\LowLevel\ {
     CharMB, StrMB
 };
 
+use function FireHub\Core\Support\Helpers\Str\asBoolean;
+
 /**
  * ### Character high-level class
  *
@@ -66,11 +68,12 @@ class Char implements Characters {
         private ?Encoding $encoding = null
     ) {
 
-        StrMB::length($character = (string)$character) === 1
-            ?: throw new CharacterMustBeSingleCharacterException;
-
         // @phpstan-ignore assign.propertyType
-        $this->character = $character;
+        $this->character = match(true) {
+            $character === false => '0',
+            StrMB::length((string)$character) !== 1 => throw new CharacterMustBeSingleCharacterException,
+            default => (string)$character
+        };
 
     }
 
@@ -162,6 +165,31 @@ class Char implements Characters {
         }
 
         return $this->encoding ?? StrMB::encoding();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Helpers\Str\asBoolean() To convert raw string to boolean.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\Char;
+     *
+     * Char::from('1')->asBoolean();
+     *
+     * // true
+     * ```
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Regex\ReplaceException If error while performing a regular expression,
+     * search and replace.
+     */
+    public function asBoolean ():bool {
+
+        return asBoolean($this->character);
 
     }
 

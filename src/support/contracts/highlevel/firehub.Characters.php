@@ -25,6 +25,18 @@ use FireHub\Core\Support\Contracts\Magic\Stringable;
 interface Characters extends Stringable {
 
     /**
+     * ### Boolean representation of the given logical character value
+     *
+     * True – positive-int
+     * False – non-positive-int
+     * For all other characters, the return value is a result of a boolean cast.
+     * @since 1.0.0
+     *
+     * @return bool True or false, based on a boolean representation of the given logical character value.
+     */
+    public function asBoolean ():bool;
+
+    /**
      * ### Get character as raw string
      * @since 1.0.0
      *
