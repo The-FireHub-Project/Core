@@ -88,19 +88,6 @@ final class CharMBTest extends Base {
     /**
      * @since 1.0.0
      *
-     * @return void
-     */
-    public function testChrCannotConvertEmptyCharacter ():void {
-
-        $this->expectException(CharacterToCodepointException::class);
-
-        CharMB::ord('');
-
-    }
-
-    /**
-     * @since 1.0.0
-     *
      * @return array
      */
     public static function codepoints ():array {

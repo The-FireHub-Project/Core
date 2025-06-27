@@ -83,15 +83,14 @@ final class CharMB {
      * </p>
      *
      * @throws \FireHub\Core\Support\Exceptions\Char\CharacterToCodepointException If character couldn't be converted to
-     * codepoint, or character is empty.
+     * codepoint.
      *
      * @return int The Unicode code point for the first character of string.
      */
     public static function ord (string $character, ?Encoding $encoding = null):int {
 
         if (empty($character))
-            throw new CharacterToCodepointException()
-                ->withMessage('Cannot convert empty character to codepoint.');
+            return 0;
 
         return ($ord = mb_ord($character, $encoding?->value)) !== false
             ? $ord : throw new CharacterToCodepointException()
