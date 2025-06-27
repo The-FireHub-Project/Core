@@ -25,6 +25,14 @@ use FireHub\Core\Support\Contracts\Magic\Stringable;
 interface Characters extends Stringable {
 
     /**
+     * ### Get character as raw string
+     * @since 1.0.0
+     *
+     * @return non-empty-string Character as string.
+     */
+    public function print ():string;
+
+    /**
      * ### Get character as codepoint
      * @since 1.0.0
      *

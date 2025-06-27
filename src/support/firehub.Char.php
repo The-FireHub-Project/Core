@@ -15,7 +15,9 @@
 namespace FireHub\Core\Support;
 
 use FireHub\Core\Support\Contracts\HighLevel\Characters;
-use FireHub\Core\Support\Enums\String\Encoding;
+use FireHub\Core\Support\Enums\String\ {
+    CaseFolding, Encoding
+};
 use FireHub\Core\Support\Exceptions\Char\CharacterMustBeSingleCharacterException;
 use FireHub\Core\Support\LowLevel\ {
     CharMB, StrMB
@@ -127,6 +129,63 @@ class Char implements Characters {
     }
 
     /**
+     * ### Get or change character encoding
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Enums\String\Encoding As parameter and return.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\Char;
+     * use FireHub\Core\Support\Enums\String\Encoding;
+     *
+     * Char::from('F')->encoding(Encoding::UTF_8);
+     * ```
+     *
+     * @param null|\FireHub\Core\Support\Enums\String\Encoding $encoding <p>
+     * Character encoding.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Exceptions\EncodingException If we couldn't get current encoding.
+     *
+     * @return ($encoding is null ? \FireHub\Core\Support\Enums\String\Encoding : $this) This character or
+     * current encoding.
+     */
+    public function encoding (?Encoding $encoding = null):self|Encoding {
+
+        if ($encoding) {
+
+            $this->encoding = $encoding;
+
+            return $this;
+
+        }
+
+        return $this->encoding ?? StrMB::encoding();
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\Char;
+     *
+     * Char::from('F')->print();
+     *
+     * // F
+     * ```
+     */
+    public function print (?string $string = null):string {
+
+        return $this->character;
+
+    }
+
+    /**
      * @inheritDoc
      *
      * @since 1.0.0
@@ -150,6 +209,57 @@ class Char implements Characters {
     public function codepoint ():int {
 
         return CharMB::ord($this->character, $this->encoding);
+
+    }
+
+    /**
+     * ### Make a character lowercase
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\StrMB::convert() To convert character.
+     * @uses \FireHub\Core\Support\Enums\String\CaseFolding::LOWER To uppercase character.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\Char;
+     *
+     * Char::fromString('F')->toLower();
+     *
+     * // f
+     * ```
+     *
+     * @return $this This character.
+     */
+    public function toLower ():self {
+
+        $this->character = StrMB::convert($this->character, CaseFolding::LOWER, $this->encoding);
+
+        return $this;
+
+    }
+
+    /**
+     * ### Make a character uppercase
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\LowLevel\StrMB::convert() To convert character.
+     * @uses \FireHub\Core\Support\Enums\String\CaseFolding::UPPER To uppercase character.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\Char;
+     *
+     * Char::fromString('f')->toUpper();
+     *
+     * // F
+     *
+     * @return $this This character.
+     */
+    public function toUpper ():self {
+
+        $this->character = StrMB::convert($this->character, CaseFolding::UPPER, $this->encoding);
+
+        return $this;
 
     }
 

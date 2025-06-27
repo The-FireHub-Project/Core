@@ -82,7 +82,59 @@ final class CharTest extends Base {
     #[DataProvider('codepoints')]
     public function testFromCodepoint (string $string, int $codepoint, Encoding $encoding):void {
 
-        $this->assertSame($string, Char::fromCodepoint($codepoint, $encoding)->__toString());
+        $this->assertSame($string, Char::fromCodepoint($codepoint, $encoding)->print());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testEncoding ():void {
+
+        $this->assertSame(Encoding::UTF_8, $this->control->encoding());
+        $this->assertSame(Encoding::UTF_8, $this->punctuation->encoding());
+        $this->assertSame(Encoding::UTF_8, $this->space->encoding());
+        $this->assertSame(Encoding::UTF_8, $this->char_lower->encoding());
+        $this->assertSame(Encoding::UTF_8, $this->char_upper->encoding());
+        $this->assertSame(Encoding::UTF_8, $this->digit->encoding());
+        $this->assertSame(Encoding::UTF_8, $this->greek->encoding());
+
+        $this->assertSame(
+            $this->control->print(),
+            $this->control->encoding(Encoding::ISO_8859_1)->print()
+        );
+
+        $this->assertSame(
+            $this->punctuation->print(),
+            $this->punctuation->encoding(Encoding::ISO_8859_1)->print()
+        );
+
+        $this->assertSame(
+            $this->space->print(),
+            $this->space->encoding(Encoding::ISO_8859_1)->print()
+        );
+
+        $this->assertSame(
+            $this->char_lower->print(),
+            $this->char_lower->encoding(Encoding::ISO_8859_1)->print()
+        );
+
+        $this->assertSame(
+            $this->char_upper->print(),
+            $this->char_upper->encoding(Encoding::ISO_8859_1)->print()
+        );
+
+        $this->assertSame(
+            $this->digit->print(),
+            $this->digit->encoding(Encoding::ISO_8859_1)->print()
+        );
+
+        $this->assertSame(
+            $this->greek->print(),
+            $this->greek->encoding(Encoding::ISO_8859_1)->print()
+        );
 
     }
 
@@ -99,6 +151,28 @@ final class CharTest extends Base {
     public function testCodepoint (string $string, int $codepoint, Encoding $encoding):void {
 
         $this->assertSame($codepoint, new Char($string, $encoding)->codepoint());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testToLower ():void {
+
+        $this->assertSame('y', $this->char_upper->toLower()->print());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testToUpper ():void {
+
+        $this->assertSame('X', $this->char_lower->toUpper()->print());
 
     }
 
