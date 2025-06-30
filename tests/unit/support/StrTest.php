@@ -53,6 +53,8 @@ final class StrTest extends Base {
         $this->control = new Str(new Char(new Codepoint(0))->print());
         $this->string = new Str('FireHub', Encoding::UTF_8);
         $this->insensitive_string = new iStr('FireHub', Encoding::UTF_8);
+        $this->string_with_glue = Str::fromList(['F', 'i', 'r', 'e', 'H', 'u', 'b'], '-', null, Encoding::UTF_8);
+        $this->string_with_glue_and_conjunction = Str::fromList(['F', 'i', 'r', 'e', 'H', 'u', 'b'], '-', '=', Encoding::UTF_8);
         $this->string_lower = new Str('firehub', Encoding::UTF_8);
         $this->string_upper = new Str('FIREHUB', Encoding::UTF_8);
         $this->string_with_num = new Str('FireHub123', Encoding::UTF_8);
@@ -71,6 +73,8 @@ final class StrTest extends Base {
         $this->assertSame($this->control->print(), $this->control->__toString());
         $this->assertSame($this->string->print(), $this->string->__toString());
         $this->assertSame($this->insensitive_string->print(), $this->insensitive_string->__toString());
+        $this->assertSame($this->string_with_glue->print(), $this->string_with_glue->__toString());
+        $this->assertSame($this->string_with_glue_and_conjunction->print(), $this->string_with_glue_and_conjunction->__toString());
         $this->assertSame($this->string_lower->print(), $this->string_lower->__toString());
         $this->assertSame($this->string_upper->print(), $this->string_upper->__toString());
         $this->assertSame($this->string_with_num->print(), $this->string_with_num->__toString());

@@ -40,7 +40,7 @@ abstract class aStr implements Strings {
      */
     public function __construct (
         protected readonly string $string,
-    ) { }
+    ) {}
 
     /**
      * @inheritDoc
