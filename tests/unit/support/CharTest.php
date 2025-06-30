@@ -18,6 +18,7 @@ use FireHub\Core\Testing\Base;
 use FireHub\Core\Support\Char;
 use FireHub\Core\Support\Characters\Codepoint;
 use FireHub\Core\Support\Enums\String\Encoding;
+use FireHub\Core\Support\Characters\Exceptions\CharacterMustBeSingleCharacterException;
 use PHPUnit\Framework\Attributes\ {
     CoversClass, DataProvider, Group, Small
 };
@@ -56,6 +57,19 @@ final class CharTest extends Base {
         $this->digit = new Char('4', Encoding::UTF_8);
         $this->greek = new Char('Ϸ', Encoding::UTF_8);
         $this->false = new Char(false, Encoding::UTF_8);
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function testCharacterMustBeSingleCharacterException ():void {
+
+        $this->expectException(CharacterMustBeSingleCharacterException::class);
+
+        new Char(10);
 
     }
 
