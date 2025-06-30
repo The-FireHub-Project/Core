@@ -19,7 +19,7 @@ use FireHub\Core\Support\Char;
 use FireHub\Core\Support\Characters\Codepoint;
 use FireHub\Core\Support\Enums\String\Encoding;
 use PHPUnit\Framework\Attributes\ {
-    CoversClass, DataProvider, Depends, Group, Small
+    CoversClass, DataProvider, Group, Small
 };
 
 /**
@@ -121,7 +121,6 @@ final class CharTest extends Base {
      * @return void
      */
     #[DataProvider('codepoints')]
-    #[Depends(Codepoint::class)]
     public function testCodepoint (string $string, int $codepoint, Encoding $encoding):void {
 
         $this->assertSame($codepoint, new Char($string, $encoding)->codepoint()->position());

@@ -61,8 +61,6 @@ class Char extends aChar {
      *
      * @throws \FireHub\Core\Support\Characters\Exceptions\CharacterMustBeSingleCharacterException If the character is
      * not a single character.
-     * @throws \FireHub\Core\Support\Exceptions\Codepoint\CodepointToCharacterException If codepoint couldn't be
-     * converted to character.
      *
      * @return void
      */
