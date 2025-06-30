@@ -14,16 +14,14 @@
 
 namespace FireHub\Core\Support\Characters;
 
+use FireHub\Core\Support\Contracts\HighLevel\Characters\Codepoint as CodepointCharacter;
 use FireHub\Core\Support\LowLevel\CharMB;
 
 /**
  * ### Character codepoint
- *
- * Codepoints is a site dedicated to Unicode and all things related to codepoints, characters, glyphs
- * and internationalization.
  * @since 1.0.0
  */
-class Codepoint {
+class Codepoint implements CodepointCharacter {
 
     /**
      * ### Constructor
@@ -40,10 +38,9 @@ class Codepoint {
     ) {}
 
     /**
-     * ### Get codepoint position
-     * @since 1.0.0
+     * @inheritDoc
      *
-     * @return non-negative-int Codepoint position.
+     * @since 1.0.0
      */
     public function position ():int {
 
@@ -52,15 +49,14 @@ class Codepoint {
     }
 
     /**
-     * ### Get character from codepoint
+     * @inheritDoc
+     *
      * @since 1.0.0
      *
      * @uses \FireHub\Core\Support\LowLevel\CharMB::chr() To get character by Unicode code point value.
      *
      * @throws \FireHub\Core\Support\Exceptions\Codepoint\CodepointToCharacterException If codepoint couldn't be
      * converted to character.
-     *
-     * @return string Character from codepoint.
      */
     public function character ():string {
 
