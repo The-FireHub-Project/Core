@@ -15,6 +15,8 @@
 namespace FireHub\Core\Support\Characters;
 
 use FireHub\Core\Support\Contracts\HighLevel\Characters;
+use FireHub\Core\Support\Characters\Exceptions\CharacterMustBeSingleCharacterException;
+use FireHub\Core\Support\LowLevel\StrMB;
 
 use function FireHub\Core\Support\Helpers\Str\asBoolean;
 
@@ -24,19 +26,35 @@ use function FireHub\Core\Support\Helpers\Str\asBoolean;
  * Class allows you to manipulate characters in various ways.
  * @since 1.0.0
  *
- * @template TCharacter of string
+ * @template TCharacter of non-empty-string
  *
  * @implements \FireHub\Core\Support\Contracts\HighLevel\Characters<TCharacter>
  */
 abstract class aChar implements Characters {
 
     /**
-     * ### The character
+     * ### Constructor
      * @since 1.0.0
      *
-     * @var TCharacter
+     * @uses \FireHub\Core\Support\LowLevel\StrMB::length() To get string length.
+     *
+     * @param TCharacter $character <p>
+     * The character.
+     * </p>
+     *
+     * @throws \FireHub\Core\Support\Characters\Exceptions\CharacterMustBeSingleCharacterException If the character is
+     * not a single character.
+     *
+     * @return void
      */
-    protected string $character = '';
+    public function __construct (
+        protected readonly string $character
+    ) {
+
+        if (StrMB::length($character) !== 1)
+            throw new CharacterMustBeSingleCharacterException;
+
+    }
 
     /**
      * ### Boolean representation of the given logical character value

@@ -23,7 +23,7 @@ use FireHub\Core\Support\Contracts\Magic\Stringable;
  * Interface allows you to represent character.
  * @since 1.0.0
  *
- * @template TCharacter of string
+ * @template TCharacter of non-empty-string
  */
 interface Characters extends Stringable {
 

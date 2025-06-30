@@ -19,7 +19,6 @@ use FireHub\Core\Support\Characters\ {
     aChar, Codepoint as CodepointClass
 };
 use FireHub\Core\Support\Enums\String\Encoding;
-use FireHub\Core\Support\Characters\Exceptions\CharacterMustBeSingleCharacterException;
 use FireHub\Core\Support\LowLevel\ {
     CharMB, StrMB
 };
@@ -37,14 +36,6 @@ use FireHub\Core\Support\LowLevel\ {
  * @api
  */
 class Char extends aChar {
-
-    /**
-     * ### The character
-     * @since 1.0.0
-     *
-     * @var TCharacter
-     */
-    protected string $character;
 
     /**
      * ### Constructor
@@ -69,13 +60,12 @@ class Char extends aChar {
         private readonly ?Encoding $encoding = null
     ) {
 
-        // @phpstan-ignore assign.propertyType
-        $this->character = match(true) {
+        // @phpstan-ignore argument.type
+        parent::__construct( match(true) {
             $character === false => '0',
             $character instanceof Codepoint => $character->character(),
-            StrMB::length((string)$character) !== 1 => throw new CharacterMustBeSingleCharacterException,
             default => (string)$character
-        };
+        });
 
     }
 
