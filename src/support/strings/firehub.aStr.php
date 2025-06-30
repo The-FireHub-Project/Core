@@ -29,12 +29,18 @@ use FireHub\Core\Support\Contracts\HighLevel\Strings;
 abstract class aStr implements Strings {
 
     /**
-     * ### The string
+     * ### Constructor
      * @since 1.0.0
      *
-     * @var TCharacters
+     * @param TCharacters $string <p>
+     * The string.
+     * </p>
+     *
+     * @return void
      */
-    protected string $string = '';
+    public function __construct (
+        protected readonly string $string,
+    ) { }
 
     /**
      * @inheritDoc

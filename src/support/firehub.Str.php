@@ -28,6 +28,8 @@ use FireHub\Core\Support\Enums\String\Encoding;
  *
  * @extends \FireHub\Core\Support\Strings\aStr<TCharacters>
  *
+ * @phpstan-consistent-constructor
+ *
  * @api
  */
 class Str extends aStr {
@@ -50,13 +52,13 @@ class Str extends aStr {
      */
     public function __construct (
         string|int|float|bool|Stringable $string,
-        protected ?Encoding $encoding = null
+        protected readonly ?Encoding $encoding = null
     ) {
 
         if ($string === false) $string = '0';
 
-        // @phpstan-ignore assign.propertyType
-        $this->string = (string)$string;
+        // @phpstan-ignore argument.type
+        parent::__construct((string)$string);
 
     }
 
