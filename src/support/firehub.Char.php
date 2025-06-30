@@ -68,7 +68,7 @@ class Char extends aChar {
      */
     public function __construct (
         string|int|float|bool|Codepoint $character,
-        private ?Encoding $encoding = null
+        private readonly ?Encoding $encoding = null
     ) {
 
         // @phpstan-ignore assign.propertyType
