@@ -12,15 +12,15 @@
  * @version GIT: $Id$ Blob checksum.
  */
 
-namespace FireHub\Core\Support\Exceptions\Char;
+namespace FireHub\Core\Support\Characters\Exceptions;
 
-use FireHub\Core\Support\Exceptions\CharException;
+use FireHub\Core\Components\Error\Exception;
 
 /**
  * ### Character must be a single character exception
  * @since 1.0.0
  */
-class CharacterMustBeSingleCharacterException extends CharException {
+class CharacterMustBeSingleCharacterException extends Exception {
 
     /**
      * @inheritDoc

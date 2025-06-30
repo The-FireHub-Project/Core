@@ -4,6 +4,7 @@
 
 ### Added
 - Create Char support high-level class ([#18](https://github.com/The-FireHub-Project/Core/issues/18), [65cefa4](https://github.com/The-FireHub-Project/Core/pull/4/commits/65cefa4))
+- Create Codepoint char support high-level class ([#18](https://github.com/The-FireHub-Project/Core/issues/18), [8dedb01](https://github.com/The-FireHub-Project/Core/pull/4/commits/8dedb01))
 
 # [v0.1.7](https://github.com/The-FireHub-Project/Core/compare/v0.1.6...v0.1.7) – (2025-06-26)
 
