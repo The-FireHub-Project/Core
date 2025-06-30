@@ -14,6 +14,7 @@
 
 namespace FireHub\Core\Support\Contracts\HighLevel;
 
+use FireHub\Core\Support\Contracts\HighLevel\Characters\Codepoint;
 use FireHub\Core\Support\Contracts\Magic\Stringable;
 
 /**
@@ -25,6 +26,16 @@ use FireHub\Core\Support\Contracts\Magic\Stringable;
  * @template TCharacter of string
  */
 interface Characters extends Stringable {
+
+    /**
+     * ### Get character as codepoint
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Contracts\HighLevel\Characters\Codepoint As return.
+     *
+     * @return \FireHub\Core\Support\Contracts\HighLevel\Characters\Codepoint Character as codepoint.
+     */
+    public function codepoint ():Codepoint;
 
     /**
      * ### Get character as raw string

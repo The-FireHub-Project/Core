@@ -14,12 +14,15 @@
 
 namespace FireHub\Core\Support;
 
+use FireHub\Core\Support\Contracts\HighLevel\Characters\Codepoint;
 use FireHub\Core\Support\Characters\ {
-    aChar, Codepoint
+    aChar, Codepoint as CodepointClass
 };
 use FireHub\Core\Support\Enums\String\Encoding;
 use FireHub\Core\Support\Characters\Exceptions\CharacterMustBeSingleCharacterException;
-use FireHub\Core\Support\LowLevel\StrMB;
+use FireHub\Core\Support\LowLevel\ {
+    CharMB, StrMB
+};
 
 /**
  * ### Character global class
@@ -47,9 +50,9 @@ class Char extends aChar {
      * ### Constructor
      * @since 1.0.0
      *
-     * @uses \FireHub\Core\Support\Characters\Codepoint::character() To get character from codepoint.
+     * @uses \FireHub\Core\Support\Contracts\HighLevel\Characters\Codepoint::character() To get character from codepoint.
      *
-     * @param TCharacter|int|float|bool|\FireHub\Core\Support\Characters\Codepoint $character <p>
+     * @param TCharacter|int|float|bool|\FireHub\Core\Support\Contracts\HighLevel\Characters\Codepoint $character <p>
      * The character.
      * </p>
      * @param null|\FireHub\Core\Support\Enums\String\Encoding $encoding [optional] <p>
@@ -110,6 +113,32 @@ class Char extends aChar {
         return $encoding
             ? new static($this->character, $encoding)
             : ($this->encoding ?? StrMB::encoding());
+
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @since 1.0.0
+     *
+     * @uses \FireHub\Core\Support\Characters\Codepoint As codepoint class.
+     * @uses \FireHub\Core\Support\LowLevel\CharMB::ord To get codepoint value from a character.
+     *
+     * @example
+     * ```php
+     * use FireHub\Core\Support\Char;
+     *
+     * $char = Char::from('F')->codepoint();
+     *
+     * // 70
+     * ```
+     *
+     * @throws \FireHub\Core\Support\Exceptions\Char\CharacterToCodepointException If character couldn't be converted to
+     * codepoint.
+     */
+    public function codepoint ():Codepoint {
+
+        return new CodepointClass(CharMB::ord($this->character, $this->encoding));
 
     }
 

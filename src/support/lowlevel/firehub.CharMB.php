@@ -85,7 +85,7 @@ final class CharMB {
      * @throws \FireHub\Core\Support\Exceptions\Char\CharacterToCodepointException If character couldn't be converted to
      * codepoint.
      *
-     * @return int The Unicode code point for the first character of string.
+     * @return non-negative-int The Unicode code point for the first character of string.
      */
     public static function ord (string $character, ?Encoding $encoding = null):int {
 
@@ -93,7 +93,7 @@ final class CharMB {
             return 0;
 
         return ($ord = mb_ord($character, $encoding?->value)) !== false
-            ? $ord : throw new CharacterToCodepointException()
+            ? (max($ord, 0)) : throw new CharacterToCodepointException()
                 ->withCharacter($character)
                 ->withEncoding($encoding);
 

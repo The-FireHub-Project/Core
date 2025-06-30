@@ -19,7 +19,7 @@ use FireHub\Core\Support\Char;
 use FireHub\Core\Support\Characters\Codepoint;
 use FireHub\Core\Support\Enums\String\Encoding;
 use PHPUnit\Framework\Attributes\ {
-    CoversClass, Group, Small
+    CoversClass, DataProvider, Depends, Group, Small
 };
 
 /**
@@ -114,6 +114,23 @@ final class CharTest extends Base {
     /**
      * @since 1.0.0
      *
+     * @param string $string
+     * @param int $codepoint
+     * @param \FireHub\Core\Support\Enums\String\Encoding $encoding
+     *
+     * @return void
+     */
+    #[DataProvider('codepoints')]
+    #[Depends(Codepoint::class)]
+    public function testCodepoint (string $string, int $codepoint, Encoding $encoding):void {
+
+        $this->assertSame($codepoint, new Char($string, $encoding)->codepoint()->position());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
      * @return void
      */
     public function testAsBoolean():void {
@@ -144,6 +161,22 @@ final class CharTest extends Base {
         $this->assertIsString($this->digit->__toString());
         $this->assertIsString($this->greek->__toString());
         $this->assertIsString($this->false->__toString());
+
+    }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return array
+     */
+    public static function codepoints ():array {
+
+        return [
+            ['A', 65, Encoding::UTF_8],
+            ['?', 63, Encoding::UTF_8],
+            ['€', 0x20AC, Encoding::UTF_8],
+            ['🐘', 128024, Encoding::UTF_8]
+        ];
 
     }
 
