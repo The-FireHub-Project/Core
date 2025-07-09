@@ -28,4 +28,4 @@ jobs:
       - name: Install composer dependencies
         run: composer install  --no-interaction --no-progress --prefer-dist
       - name: Run PHPCS
-        run: phpcs -q --report=checkstyle src | cs2pr
+        run: phpcs -n -q --report=checkstyle src | cs2pr
