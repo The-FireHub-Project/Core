@@ -4,5 +4,7 @@
     <description>Custom coding standard for this repository</description>
 
     <file>./src/</file>
+
+    <rule ref="Generic.Commenting.Fixme"/>
     
 </ruleset>
