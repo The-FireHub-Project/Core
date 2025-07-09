@@ -3,8 +3,6 @@
 
     <description>Custom coding standard for this repository</description>
 
-    <rule ref="./vendor/firehub/code-standard/ruleset.xml"/>
-
     <file>./src/</file>
 
   <rule ref="Generic.Commenting.Todo"/>
