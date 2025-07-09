@@ -1,0 +1,31 @@
+name: PHPCS
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+jobs:
+  run:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest, windows-latest, macOS-latest]
+        php-versions: ['8.4']
+    name: Run PHPUnit with PHP ${{ matrix.php-versions }} on ${{ matrix.operating-system }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: mbstring, zip, apcu
+          tools: cs2pr, phpcs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Install composer dependencies
+        run: composer install  --no-interaction --no-progress --prefer-dist
+      - name: Run PHPCS
+        run: phpcs -n -q --report=checkstyle src | cs2pr

@@ -126,7 +126,7 @@ return (new Config)
             'single_line' => true,
             'space_before_parenthesis' => true
         ],
-        'final_class' => true,
+        'final_class' => false,
         'final_internal_class' => [
             'consider_absent_docblock_as_internal_class' => true,
             'exclude' => [],
@@ -203,7 +203,7 @@ return (new Config)
 
         // constant notation
         'native_constant_invocation' => [
-            'exclude' => ['null', 'false', 'true'],
+            'exclude' => ['null', 'false', 'true', 'T_ARRAY', 'T_STRING', 'HTML_ENTITIES'],
             'fix_built_in' => true,
             'include' => [],
             'scope' => 'all',
@@ -261,7 +261,7 @@ return (new Config)
             'after_heredoc' => true,
             'attribute_placement' => 'standalone',
             'keep_multiple_spaces_after_comma' => false,
-            'on_multiline' => 'ensure_single_line'
+            'on_multiline' => 'ensure_fully_multiline'
         ],
         'native_function_invocation' => [
             'exclude' => [],
@@ -277,9 +277,7 @@ return (new Config)
         'phpdoc_to_property_type' => false,
         'phpdoc_to_return_type' => false,
         'regular_callable_call' => true,
-        'return_type_declaration' => [
-            'space_before' => 'none'
-        ],
+        'return_type_declaration' => false,
         'single_line_throw' => true,
         'static_lambda' => true,
         'use_arrow_functions' => true,
@@ -478,7 +476,7 @@ return (new Config)
             'fix_inline' => true,
             'replacements' => []
         ],
-        'no_blank_lines_after_phpdoc' => true,
+        'no_blank_lines_after_phpdoc' => false,
         'no_empty_phpdoc' => true,
         'no_superfluous_phpdoc_tags' => false,
         'phpdoc_add_missing_param_annotation' => [
@@ -488,9 +486,9 @@ return (new Config)
             'align' => 'left',
             'spacing' => 1,
             'tags' => [
-                'test', 'covers',  'method', 'property', 'property-read', 'property-write', 'phpstan-method',
+                'test', 'covers', 'method', 'property', 'property-read', 'property-write', 'phpstan-method',
                 'phpstan-param', 'phpstan-property', 'phpstan-property-read', 'phpstan-property-write',
-                'phpstan-assert', 'phpstan-assert-if-true', 'phpstan-assert-if-false',  'psalm-method', 'psalm-param',
+                'phpstan-assert', 'phpstan-assert-if-true', 'phpstan-assert-if-false', 'psalm-method', 'psalm-param',
                 'psalm-param-out', 'psalm-property', 'psalm-property-read', 'psalm-property-write', 'psalm-assert',
                 'psalm-assert-if-true', 'psalm-assert-if-false'
             ]
@@ -517,11 +515,11 @@ return (new Config)
             'order' => [
                 'title', 'description', 'since', 'author', 'copyright', 'license', 'category', 'package', 'subpackage',
                 'version', 'inheritdoc', 'uses', 'template', 'see', 'link', 'example', 'method',
-                'property', 'property-read',  'property-write', 'extends', 'implements', 'global', 'param', 'var',
+                'property', 'property-read', 'property-write', 'extends', 'implements', 'global', 'param', 'var',
                 'throws', 'return', 'internal', 'api', 'deprecated', 'experimental',
                 'warning', 'caution', 'info', 'note',
                 'phpstan-ignore', 'phpstan-ignore-line', 'phpstan-ignore-next-line', 'SuppressWarnings',
-                'enhancement', 'investigate', 'performance', 'suggestion',  'incident', 'security', 'optimize',
+                'enhancement', 'investigate', 'performance', 'suggestion', 'incident', 'security', 'optimize',
                 'refactor', 'feature', 'testing', 'comment', 'debug', 'fixme', 'hack', 'todo', 'bug'
             ]
         ],
@@ -630,6 +628,9 @@ return (new Config)
             'space_multiple_catch' => null
         ]
     ])
-    ->setFinder(Finder::create()
-        ->in(__DIR__)
-    );
+    ->setFinder(
+        Finder::create()
+            //->in(__DIR__) @todo excluded paths until cs-fixer supports PHP 8.4
+            ->in('phar')
+    )
+;

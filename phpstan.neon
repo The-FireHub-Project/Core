@@ -1,13 +1,13 @@
 includes:
     - phar://phpstan.phar/conf/bleedingEdge.neon
 parameters:
-    level: 9
+    level: 10
     paths:
         - src/
     excludePaths:
         analyseAndScan:
             - src/testing/
-    treatPhpDocTypesAsCertain: true
+    treatPhpDocTypesAsCertain: false
     checkExplicitMixedMissingReturn: true
     checkFunctionNameCase: true
     checkInternalClassCaseSensitivity: true
@@ -20,5 +20,5 @@ parameters:
     reportUnmatchedIgnoredErrors: false
     checkUninitializedProperties: true
     checkImplicitMixed: true
-    checkMissingOverrideMethodAttribute: true
+    #checkMissingOverrideMethodAttribute: true
     tipsOfTheDay: false
