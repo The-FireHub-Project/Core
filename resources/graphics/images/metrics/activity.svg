@@ -30,6 +30,72 @@
                                 <div class="details">
                                     <div>on branch <span class="code">docs</span></div>
                                     <div class="commit">
+                                        <div class="sha">#de5543f</div>
+                                        <div class="message">Update base metrics</div>
+                                    </div>
+                                </div>
+                                <div class="timestamp">13 Jul 2025, 23:45:11</div>
+                            </section>
+                        </div>
+                        <div class="row fill-width">
+                            <section class="activity">
+                                <div class="field">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+                                        <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
+                                    </svg>
+                                    <div class="content">
+                                        <span class="user">github-actions[bot]</span>
+                                        pushed 1 commit in
+                                        <span class="repo">The-FireHub-Project-old2/Core</span>
+                                    </div>
+                                </div>
+                                <div class="details">
+                                    <div>on branch <span class="code">docs</span></div>
+                                    <div class="commit">
+                                        <div class="sha">#72ccf7c</div>
+                                        <div class="message">Update activity metrics</div>
+                                    </div>
+                                </div>
+                                <div class="timestamp">12 Jul 2025, 23:44:56</div>
+                            </section>
+                        </div>
+                        <div class="row fill-width">
+                            <section class="activity">
+                                <div class="field">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+                                        <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
+                                    </svg>
+                                    <div class="content">
+                                        <span class="user">github-actions[bot]</span>
+                                        pushed 1 commit in
+                                        <span class="repo">The-FireHub-Project-old2/Core</span>
+                                    </div>
+                                </div>
+                                <div class="details">
+                                    <div>on branch <span class="code">docs</span></div>
+                                    <div class="commit">
+                                        <div class="sha">#aa95925</div>
+                                        <div class="message">Update base metrics</div>
+                                    </div>
+                                </div>
+                                <div class="timestamp">12 Jul 2025, 23:44:41</div>
+                            </section>
+                        </div>
+                        <div class="row fill-width">
+                            <section class="activity">
+                                <div class="field">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+                                        <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
+                                    </svg>
+                                    <div class="content">
+                                        <span class="user">github-actions[bot]</span>
+                                        pushed 1 commit in
+                                        <span class="repo">The-FireHub-Project-old2/Core</span>
+                                    </div>
+                                </div>
+                                <div class="details">
+                                    <div>on branch <span class="code">docs</span></div>
+                                    <div class="commit">
                                         <div class="sha">#729e9ac</div>
                                         <div class="message">Update activity metrics</div>
                                     </div>
@@ -57,72 +123,6 @@
                                     </div>
                                 </div>
                                 <div class="timestamp">11 Jul 2025, 23:44:21</div>
-                            </section>
-                        </div>
-                        <div class="row fill-width">
-                            <section class="activity">
-                                <div class="field">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
-                                        <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
-                                    </svg>
-                                    <div class="content">
-                                        <span class="user">github-actions[bot]</span>
-                                        pushed 1 commit in
-                                        <span class="repo">The-FireHub-Project-old2/Core</span>
-                                    </div>
-                                </div>
-                                <div class="details">
-                                    <div>on branch <span class="code">docs</span></div>
-                                    <div class="commit">
-                                        <div class="sha">#5f873bb</div>
-                                        <div class="message">Update base metrics</div>
-                                    </div>
-                                </div>
-                                <div class="timestamp">10 Jul 2025, 23:44:01</div>
-                            </section>
-                        </div>
-                        <div class="row fill-width">
-                            <section class="activity">
-                                <div class="field">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
-                                        <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
-                                    </svg>
-                                    <div class="content">
-                                        <span class="user">dieselxxx</span>
-                                        pushed 1 commit in
-                                        <span class="repo">The-FireHub-Project-old2/Core</span>
-                                    </div>
-                                </div>
-                                <div class="details">
-                                    <div>on branch <span class="code">develop-pre-alpha-m1</span></div>
-                                    <div class="commit">
-                                        <div class="sha">#9bcc7bf</div>
-                                        <div class="message">Update phpcs.yml</div>
-                                    </div>
-                                </div>
-                                <div class="timestamp">9 Jul 2025, 11:07:29</div>
-                            </section>
-                        </div>
-                        <div class="row fill-width">
-                            <section class="activity">
-                                <div class="field">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
-                                        <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
-                                    </svg>
-                                    <div class="content">
-                                        <span class="user">dieselxxx</span>
-                                        pushed 1 commit in
-                                        <span class="repo">The-FireHub-Project-old2/Core</span>
-                                    </div>
-                                </div>
-                                <div class="details">
-                                    <div>on branch <span class="code">develop-pre-alpha-m1</span></div>
-                                    <div class="commit">
-                                        <div class="sha">#5571629</div>
-                                        <div class="message">Update phpcs.xml</div>
-                                    </div>
-                                </div>
-                                <div class="timestamp">9 Jul 2025, 10:24:01</div>
                             </section>
                         </div>
                     </section>
